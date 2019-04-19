@@ -1,4 +1,4 @@
-The solution:
+Çözüm:
 
 ```js
 function delay(f, ms) {
@@ -9,15 +9,14 @@ function delay(f, ms) {
 
 }
 ```
+Yukarıda ok fonksiyonunun nasıl kullanıldığına dikkat edin. Bildiğiniz gibi, ok fonksiyonlarında `this` ve `arguments` bulunmaz, bunun için `f.apply(this, arguments)` , `this` ve `arguments`'ı saklayıcıdan(wrapper) alır.
 
-Please note how an arrow function is used here. As we know, arrow functions do not have own `this` and `arguments`, so `f.apply(this, arguments)` takes `this` and `arguments` from the wrapper.
-
-If we pass a regular function, `setTimeout` would call it without arguments and `this=window` (in-browser), so we'd need to write a bit more code to pass them from the wrapper:
+Eğer sıradan bir fonksiyon paslarsanız, `setTimeout` bunu argümansız `this=window` ( tarayıcıda ) olacak şekilde çağırır, bundan dolayı saklayıcıdan bu değerleri iletebilmek için biraz daha kod yazmalıyız:
 
 ```js
 function delay(f, ms) {
 
-  // added variables to pass this and arguments from the wrapper inside setTimeout
+  // `this` ve diğer argümanların setTimeout içerisindeki saklayıcıdan iletilmesini sağlar.
   return function(...args) {
     let savedThis = this;
     setTimeout(function() {

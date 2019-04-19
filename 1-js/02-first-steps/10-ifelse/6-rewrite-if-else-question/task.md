@@ -1,23 +1,23 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Rewrite 'if..else' into '?'
+# `if..else`'i `'?'` formunda yazınız
 
-Rewrite `if..else` using multiple ternary operators `'?'`.
+Aşağıdaki `if..else` cümlesini "üçlü" operatörler `'?`' olarak yazın:
 
-For readability, it's recommended to split the code into multiple lines.
+Okunabilirlik açısından kodu satırlara bölmeniz önerilir.
 
 ```js
-let message;
+let mesaj;
 
-if (login == 'Employee') {
-  message = 'Hello';
-} else if (login == 'Director') {
-  message = 'Greetings';
-} else if (login == '') {
-  message = 'No login';
+if (login == 'Çalışan') {
+  mesaj = 'Merhaba';
+} else if (giris == 'Yönetici') {
+  mesaj = 'Sana da merhaba patron';
+} else if (giris == '') {
+  mesaj = 'Giriş yasak';
 } else {
-  message = '';
+  mesaj = '';
 }
 ```

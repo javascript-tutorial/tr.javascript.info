@@ -1,10 +1,10 @@
-importance: 4
+Önem: 4
 
 ---
 
-# Rewrite "if" into "switch"
+# "if" ile yazılmış kodu "switch" cümlesine çeviriniz.
 
-Rewrite the code below using a single `switch` statement:
+Aşağıdaki kodu `switch` cümlesine çeviriniz
 
 ```js run
 let a = +prompt('a?', '');

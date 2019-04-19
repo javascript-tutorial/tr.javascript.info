@@ -1,19 +1,18 @@
-importance: 2
+Önem: 2
 
 ---
 
-# A random number from min to max
+# Minimum ve maximum arasında rasgele sayı üretme.
 
-The built-in function `Math.random()` creates a random value from `0` to `1` (not including `1`).
+JavaScript dahilinde `Math.random()` `0` ile `1` arasında ( `1` dahil değil) rasgele bir sayı döndürür.
 
-Write the function `random(min, max)` to generate a random floating-point number from `min` to `max` (not including `max`).
+Öyle bir fonksiyon yazın ki `random(min,max)` bu değerler arasında rasgele ondalıklı sayı üreten bir fonksiyon yazın.
 
-Examples of its work:
+Örnekler:
 
 ```js
 alert( random(1, 5) ); // 1.2345623452
 alert( random(1, 5) ); // 3.7894332423
 alert( random(1, 5) ); // 4.3435234525
 ```
-
-You can use the solution of the [previous task](info:task/random-min-max) as the base.
+ [Bir önceki görevi](info:task/random-min-max) temel alabilirsiniz.

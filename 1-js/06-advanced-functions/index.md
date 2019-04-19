@@ -1,1 +1,1 @@
-# Advanced working with functions
+# Fonksiyonlar ile çalışma ileri seviye.

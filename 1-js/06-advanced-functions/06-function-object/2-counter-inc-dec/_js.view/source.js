@@ -1,18 +1,18 @@
-function makeCounter() {
-  let count = 0;
+function sayacUret() {
+  let sayac = 0;
 
-  // ... your code ...
+  // ... sizin kodunuz ...
 }
 
-let counter = makeCounter();
+let sayac = sayacUret();
 
-alert( counter() ); // 0
-alert( counter() ); // 1
+alert( sayac() ); // 0
+alert( sayac() ); // 1
 
-counter.set(10); // set the new count
+sayac.set(10); // sayacın değerini ayarla
 
-alert( counter() ); // 10
+alert( sayac() ); // 10
 
-counter.decrease(); // decrease the count by 1
+sayac.azalt(); // sayacın değerini 1 azaltır.
 
-alert( counter() ); // 10 (instead of 11)
+alert( sayac() ); // 10 (11'in yerine 10 yazması lazım)

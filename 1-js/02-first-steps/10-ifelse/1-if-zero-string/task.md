@@ -1,14 +1,14 @@
-importance: 5
+Önem: 5
 
 ---
 
-# if (a string with zero)
+# Eğer bir karakter 0 ise
 
-Will `alert` be shown?
+Alert gösterilecek mi?
 
 ```js
 if ("0") {
-  alert( 'Hello' );
+  alert( 'Merhaba' );
 }
 ```
 

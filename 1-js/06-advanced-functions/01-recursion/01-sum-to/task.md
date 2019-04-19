@@ -1,36 +1,36 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Sum all numbers till the given one
+# Verilen değere kadar olan tüm sayıları toplayan fonksiyon
 
-Write a function `sumTo(n)` that calculates the sum of numbers `1 + 2 + ... + n`.
+`topla(n)` fonksiyonu `1+2+....+n` şeklinde toplama işlemi yapar.
 
-For instance:
+Örneğin:
 
 ```js no-beautify
-sumTo(1) = 1
-sumTo(2) = 2 + 1 = 3
-sumTo(3) = 3 + 2 + 1 = 6
-sumTo(4) = 4 + 3 + 2 + 1 = 10
+topla(1) = 1
+topla(2) = 2 + 1 = 3
+topla(3) = 3 + 2 + 1 = 6
+topla(4) = 4 + 3 + 2 + 1 = 10
 ...
-sumTo(100) = 100 + 99 + ... + 2 + 1 = 5050
+topla(100) = 100 + 99 + ... + 2 + 1 = 5050
 ```
 
-Make 3 solution variants:
+3 farklı şekilde yapınız:
 
-1. Using a for loop.
-2. Using a recursion, cause `sumTo(n) = n + sumTo(n-1)` for `n > 1`.
-3. Using the [arithmetic progression](https://en.wikipedia.org/wiki/Arithmetic_progression) formula.
+1. Döngü kullanarak
+2. Özçağrı kullanarak, `topla(n) = n + topla(n-1)` her `n > 1` için.
+3. [Aritmetik işlem kullanarak](https://en.wikipedia.org/wiki/Arithmetic_progression)
 
-An example of the result:
+Sonuc:
 
 ```js
-function sumTo(n) { /*... your code ... */ }
+function topla(n) { /*... kodunuz ... */ }
 
-alert( sumTo(100) ); // 5050
+alert( topla(100) ); // 5050
 ```
 
-P.S. Which solution variant is the fastest? The slowest? Why?
+Not: Hangi yöntem daha hızlıdır? Hangisi yavaştır? Neden?
 
-P.P.S. Can we use recursion to count `sumTo(100000)`? 
+Not2: Özçağrı ile `topla(100000)` çalıştırılabilir mi? 

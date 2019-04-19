@@ -1,3 +1,3 @@
-# Data types
+# Veri Tipleri
 
-More data structures and more in-depth study of the types.
+Veri tiplerinin derinleme incelemesi 

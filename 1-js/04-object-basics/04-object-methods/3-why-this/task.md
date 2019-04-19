@@ -1,26 +1,26 @@
-importance: 3
+Önem: 3
 
 ---
 
-# Explain the value of "this"
+# "this" in değerini açıklayın
 
-In the code below we intend to call `user.go()` method 4 times in a row.
+Aşağıdaki amaç `obj.selamVer()` in 4 defa çağırılmasıdır.
 
-But calls `(1)` and `(2)` works differently from `(3)` and `(4)`. Why?
+Fakat `(1)` ve `(2)` , `(3)` ve `(4)` ten farklı çalışmaktadır. Neden?
 
 ```js run no-beautify
-let obj, method;
+let obj, metod;
 
 obj = {
-  go: function() { alert(this); }
+  selamVer: function() { alert(this); }
 };
 
-obj.go();               // (1) [object Object]
+obj.selamVer();               // (1) [object Object]
 
-(obj.go)();             // (2) [object Object]
+(obj.selamVer)();             // (2) [object Object]
 
-(method = obj.go)();    // (3) undefined
+(metod = obj.selamVer)();    // (3) undefined
 
-(obj.go || obj.stop)(); // (4) undefined
+(obj.selamVer || obj.yolcuEt)(); // (4) undefined
 ```
 

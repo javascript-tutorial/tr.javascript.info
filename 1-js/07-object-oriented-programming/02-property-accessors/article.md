@@ -1,33 +1,33 @@
 
-# Property getters and setters
+# Getter ve Setter Özellikleri ( Alıcılar ve Ayarlayıcılar )
 
-There are two kinds of properties.
+İki türlü özellik mevcuttur.
 
-The first kind is *data properties*. We already know how to work with them. Actually, all properties that we've been using till now were data properties.
+Bunlardan ilki *veri özellikleri*. Bunu zaten biliyorsunuz. Aslında şimdiye kadar kullandığınız tüm özellikler *veri özellikleri*'dir.
 
-The second type of properties is something new. It's *accessor properties*. They are essentially functions that work on getting and setting a value, but look like regular properties to an external code.
+İkinci tip özellikler ise *erişim özellikleri*'dir. Bunlar değerleri almak(get) ve ayarlamak(set) için kullanılan fonksiyonlardır, dışarıdaki koddan sanki bir özellikmiş gibi görünürler.
 
 [cut]
 
-## Getters and setters
+## Alıcılar ve Ayarlayıcılar
 
-Accessor properties are represented by "getter" and "setter" methods. In an object literal they are denoted by `get` and `set`:
+Erişim özellikleri "alıcı" ve "ayarlayıcı" metodlar ile tanımlanır. Obje içerisinde tam olarak `get` ve `set` şeklinde belirtilir:
+
 
 ```js
 let obj = {
   *!*get propName()*/!* {
-    // getter, the code executed on getting obj.propName
+    // obj.propName yazıldığında burası çalışır.
   },
 
   *!*set propName(value)*/!* {
-    // setter, the code executed on setting obj.propName = value
+    // ayarlayıcı  obj.propName = value ayarlandığında burası çalışır.
   }
 };
 ```
+Alıcı metodlar `obj.propName` okunduğunda, ayarlayıcı metodlar ise atama yapıldığında çalışır.
 
-The getter works when `obj.propName` is read, the setter -- when it is assigned.
-
-For instance, we have a `user` object with `name` and `surname`:
+Örneğin `user` objemiz olsun ve bunun `name` ve `surname` özellikleri olsun:
 
 ```js run
 let user = {
@@ -35,8 +35,7 @@ let user = {
   surname: "Smith"
 };
 ```
-
-Now we want to add a "fullName" property, that should be "John Smith". Of course, we don't want to copy-paste existing information, so we can implement it as an accessor:
+"fullName" adında bir özellik eklemek istenirser, elbette var olan kodu kopyala yapıştır yapmayacağız bunun yerine erişim özelliği kullanabiliriz:
 
 ```js run
 let user = {
@@ -55,11 +54,11 @@ alert(user.fullName); // John Smith
 */!*
 ```
 
-From outside, an accessor property looks like a regular one. That's the idea of accessor properties. We don't *call* `user.fullName` as a function, we *read* it normally: the getter runs behind the scenes.
+Dışardan, bu özellik normal görünür. Aslında fikir de tam olarak budur. Biz `user.fullName` 'i fonksiyon olarak çağırmıyoruz. Onu normal bir şekilde özellikmiş gibi okuyoruz. Alıcı perdenin arkasında çalışıyor.
 
-As of now, `fullName` has only a getter. If we attempt to assign `user.fullName=`, there will be an error.
+Şu anda `fullName`'in sadece alıcısı var. Eğer `user.fullName=` şeklinde atamaya çalışırsanız hata alırsınız.
 
-Let's fix it by adding a setter for `user.fullName`:
+Bunu düzeltmek için ayarlayıcı metodu eklemek gerekmektedir:
 
 ```js run
 let user = {
@@ -77,38 +76,38 @@ let user = {
 */!*
 };
 
-// set fullName is executed with the given value.
+// FullName ayarlandı.
 user.fullName = "Alice Cooper";
 
 alert(user.name); // Alice
 alert(user.surname); // Cooper
 ```
+Şimdi yeni bir "sanal" özelliğimiz oldu. Okunabiliyor, yazılabiliyor fakat aslında yok.
 
-Now we have a "virtual" property. It is readable and writable, but in fact does not exist.
+```smart header="Erişim özellikleri sadece get/set ile erişilebilir"
 
-```smart header="Accessor properties are only accessible with get/set"
-A property can either be a "data property" or an "accessor property", but not both.
+Bir özellik ya "veri özelliği" ya da "erişim özelliği" olabilir, aynı anda ikisi olamaz.
 
-Once a property is defined with `get prop()` or `set prop()`, it's an accessor property. So there must be a getter to read it, and must be a setter if we want to assign it.
+Bir özellik `get prop()` ile veya `set prop()` ile tanımlanmışsa, artık erişim özelliğidir. Bundan dolayı okuyabilmek için alıcı ve atama yapabilmek için ayarlayıcı olması gerekir.
 
-Sometimes it's normal that there's only a setter or only a getter. But the property won't be readable or writable in that case.
+Bazen sadece ayarlayıcı veya alıcı olabilir. Fakat böyle bir durumda özellik okunabilir veya yazılabilir olmaz. Her ikisinin de yazılmış olması gerekir.
+
 ```
 
 
-## Accessor descriptors
+## Erişim Tanımlayıcıları
 
-Descriptors for accessor properties are different -- as compared with data properties.
+Erişim tanımlayıcıları normal veri özelliklerine göre daha farklıdır.
+Erişim özellikleri için `deger` ve `yazılabilir` yoktur, bunun yerine `get` ve `set` fonksiyonları vardır.
 
-For accessor properties, there is no `value` and `writable`, but instead there are `get` and `set` functions.
+Öyleyse erişim tanımlayıcıları şunlara sahiptir:
 
-So an accessor descriptor may have:
+- **`get`** -- parametresi olmayan fonksiyon, sadece özellik okunduğunda çalışır.
+- **`set`** -- bir parametreli fonksiyon, özellik ayarlanmak istendiğinde çalışır.
+- **`enumerable`** -- bu veri özellikleri ile aynıdır.
+- **`configurable`** -- bu veri özellikleri ile aynıdır.
 
-- **`get`** -- a function without arguments, that works when a property is read,
-- **`set`** -- a function with one argument, that is called when the property is set,
-- **`enumerable`** -- same as for data properties,
-- **`configurable`** -- same as for data properties.
-
-For instance, to create an accessor `fullName` with `defineProperty`, we can pass a descriptor with `get` and `set`:
+Örneğin `fullName` ve `definePropery` erişim tanımlayıcıları için `get` ve `set`'i iletebiliriz.
 
 ```js run
 let user = {
@@ -132,10 +131,9 @@ alert(user.fullName); // John Smith
 
 for(let key in user) alert(key);
 ```
+Tekrar hatırlatmakta fayda var, bir özelliklik ya erişim özelliği veya veri özelliği olabilir, ikisi aynı anda olamaz.
 
-Please note once again that a property can be either an accessor or a data property, not both.
-
-If we try to supply both `get` and `value` in the same descriptor, there will be an error:
+Aynı tanımlayıcıda eğer hem `get` hem de `value` değerini kullanırsak aşağıdaki hata meydana gelir:
 
 ```js run
 *!*
@@ -150,11 +148,11 @@ Object.defineProperty({}, 'prop', {
 });
 ```
 
-## Smarter getters/setters
+## Akıllı getters/setters
 
-Getters/setters can be used as wrappers over "real" property values to gain more control over them.
+Getter/Setter "gerçek" özelliklerin üzerinde daha iyi kontrol amacıyla kurulabilir.
 
-For instance, if we want to forbid too short names for `user`, we can store `name` in a special property `_name`. And filter assignments in the setter:
+Örneğin, `user` gibi çok kısa isimler için `name` özelliğini `_name` içerisinde tutabilirsiniz. Sonrasında atamaları setter'da filteleyebilirsiniz:
 
 ```js run
 let user = {
@@ -164,7 +162,7 @@ let user = {
 
   set name(value) {
     if (value.length < 4) {
-      alert("Name is too short, need at least 4 characters");
+      alert("İsim çok kısa, en az 4 karakter olmalıdır.");
       return;
     }
     this._name = value;
@@ -174,17 +172,15 @@ let user = {
 user.name = "Pete";
 alert(user.name); // Pete
 
-user.name = ""; // Name is too short...
+user.name = ""; // İsim çok kısa...
 ```
+Teknik olarak, dışarıdan hala `user._name` ile erişilebilir. Fakat genel bir kural olarak `"_"` ile başlayan özellikler içte kullanılan değişkenlerdir ve dışarıdan hiç bir zaman erişilmemelidir.
 
-Technically, the external code may still access the name directly by using `user._name`. But there is a widely known agreement that properties starting with an underscore `"_"` are internal and should not be touched from outside the object.
 
+## Uyumluluk için kullanma
+Getter/setter fikrinin amacı aslında "normal" veri özelliklerinin kontrolünü her an elde tutabilmektir.
 
-## Using for compatibility
-
-One of the great ideas behind getters and setters -- they allow to take control over a "normal" data property and tweak it at any moment.
-
-For instance, we started implementing user objects using data properties `name` and `age`:
+Örneğin, kullanıcı objesini `name` ve `age` özellikleri ekleyelim:
 
 ```js
 function User(name, age) {
@@ -197,7 +193,7 @@ let john = new User("John", 25);
 alert( john.age ); // 25
 ```
 
-...But sooner or later, things may change. Instead of `age` we may decide to store `birthday`, because it's more precise and convenient:
+... Bu ilerde muhtemeldir değişebilir. Örneğin `age` yerine ileride `birthday` verisi tutmak istebiliriz, böylece daha kesin yaş bilgisi tutulabilir:
 
 ```js
 function User(name, birthday) {
@@ -207,12 +203,11 @@ function User(name, birthday) {
 
 let john = new User("John", new Date(1992, 6, 1));
 ```
+Peki eski `age` özelliği ne olacak ?
 
-Now what to do with the old code that still uses `age` property?
+Her yerde bunu arayıp düzeltebiliriz, fakat bu zaman alır ve kod başkaları tarafından yazıldıysa zor olur. Ayrıca `user` objesinin içinde `age` özelliği pek de fena bir fikir sayılmaz, değil mi?  Aslında bazı yerlerde tam da istediğimiz `age`'dir.
 
-We can try to find all such places and fix them, but that takes time and can be hard to do if that code is written by other people. And besides, `age` is a nice thing to have in `user`, right? In some places it's just what we want.
-
-Adding a getter for `age` mitigates the problem:
+`age` için bir getter yazmak aslında bu problemi ortadan kaldırır.
 
 ```js run no-beautify
 function User(name, birthday) {
@@ -232,8 +227,7 @@ function User(name, birthday) {
 
 let john = new User("John", new Date(1992, 6, 1));
 
-alert( john.birthday ); // birthday is available
-alert( john.age );      // ...as well as the age
+alert( john.birthday ); // birthday'e
+alert( john.age );      // ... ve yaşa aynı anda erişilebilir.
 ```
-
-Now the old code works too and we've got a nice additional property.
+Şimdi eski kod da çalışır, ayrıca yeni bir özelliğe de sahip olmuş oluruz.

@@ -1,9 +1,9 @@
-importance: 5
-
+Önem: 5
 ---
 
-# Rewrite to prototypes
+# Prototip ile tekrar yaz
 
-The `Clock` class is written in functional style. Rewrite it using prototypes.
+`Clock` sınıfı fonksiyonel stilde yazılmıştır. Bunu prototype kullanarak tekrar yazınız.
 
+Not: Saniye atışını console ekranından izleyebilirsiniz.
 P.S. The clock ticks in the console, open it to see.

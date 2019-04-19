@@ -1,15 +1,15 @@
-describe("truncate", function() {
-  it("truncate the long string to the given lenth (including the ellipsis)", function() {
+describe("Metin kesme", function () {
+  it("Verilen metinin `...` düşünerek kesme işlemini yapar.", function () {
     assert.equal(
-      truncate("What I'd like to tell on this topic is:", 20),
-      "What I'd like to te…"
+      truncate("Size bu konuda söylemek istediğim şey:", 20),
+      "Size bu konuda sö..."
     );
   });
 
-  it("doesn't change short strings", function() {
+  it("Kısa metinleri kesmez", function () {
     assert.equal(
-      truncate("Hi everyone!", 20),
-      "Hi everyone!"
+      truncate("Merhaba!", 20),
+      "Merhaba!"
     );
   });
 

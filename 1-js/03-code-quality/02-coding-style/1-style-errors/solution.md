@@ -1,48 +1,48 @@
 
-You could note the following:
+Notunuz aşağıdaki gibi olabilir:
 
 ```js no-beautify
-function pow(x,n)  // <- no space between arguments
-{  // <- figure bracket on a separate line
-  let result=1;   // <- no spaces to the both sides of =
-  for(let i=0;i<n;i++) {result*=x;}   // <- no spaces
-  // the contents of { ... } should be on a new line
-  return result;
+function ust(x,n)  // <- argümanlar arasında boşluk bulunmamakta.
+{  // <-süslü parantez yeni satırda
+  let sonuc=1;   // <-  = in iki yanında da boşluk bulunmamakta
+  for(let i=0;i<n;i++) {sonuc*=x;}   // <- boşluk yok
+  // süslü parantezin içi yeni bir satırda olmalı
+  return sonuc;
 }
 
-let x=prompt("x?",''), n=prompt("n?",'') // <-- technically possible,
-// but better make it 2 lines, also there's no spaces and ;
-if (n<0)  // <- no spaces inside (n < 0), and should be extra line above it
-{   // <- figure bracket on a separate line
-  // below - a long line, may be worth to split into 2 lines
-  alert(`Power ${n} is not supported, please enter an integer number greater than zero`);
+let x=prompt("x?",''), n=prompt("n?",'') // <-- teknik olarka mümkün,
+// fakat iki satır yapmak daha iyi, ayrıca boşluk ve ; kullanılmamış.
+if (n<0)  // <- (n < 0) olmalı, arada boşluk kullanılmamış
+{   // <- süslü parantez yeni satırda
+  // Aşağıdaki uzun metin iki satırda yazılsa daha iyi olabilir
+  alert(`${n} üssü alınamadı, kullandığınız sayı 0'dan küçük olamaz. Lütfen doğal sayıları kullanınız.`);
 }
-else // <- could write it on a single line like "} else {"
+else // <- tek satırda  "} else {" şeklinde kullanılabilir.
 {
-  alert(pow(x,n))  // no spaces and ;
+  alert(ust(x,n))  //  ; ve boşluk kullanılmamıştır.
 }
 ```
 
-The fixed variant:
+düzeltilmiş şekli:
 
 ```js
-function pow(x, n) {
-  let result = 1;
+function ust(x, n) {
+  let sonuc = 1;
 
   for (let i = 0; i < n; i++) {
-    result *= x;
+    sonuc *= x;
   }
 
-  return result;
+  return sonuc;
 }
 
 let x = prompt("x?", "");
 let n = prompt("n?", "");
 
 if (n < 0) {
-  alert(`Power ${n} is not supported,
-    please enter an integer number greater than zero`);
+  alert(`${n} üssü alınamadı, kullandığınız sayı 0'dan küçük olamaz.
+     Lütfen doğal sayıları kullanınız.`);
 } else {
-  alert( pow(x, n) );
+  alert( ust(x, n) );
 }
 ```

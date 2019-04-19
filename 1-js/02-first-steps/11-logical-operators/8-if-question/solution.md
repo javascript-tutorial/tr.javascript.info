@@ -1,20 +1,19 @@
-The answer: the first and the third will execute.
+Cevap: Birinci ve üçüncü çalışacak.
 
 Details:
 
 ```js run
-// Runs.
-// The result of -1 || 0 = -1, truthy
-if (-1 || 0) alert( 'first' );
+// Çalışır.
+//  -1 || 0 'in sonucu  -1, doğrudur.
+if (-1 || 0) alert( 'birinci' );
 
-// Doesn't run
-// -1 && 0 = 0, falsy
-if (-1 && 0) alert( 'second' );
+// Çalışmaz
+// -1 && 0 'ın sonucu 0, yanlıştır.
+if (-1 && 0) alert( 'ikinci' );
 
-// Executes
-// Operator && has a higher precedence than ||
-// so -1 && 1 executes first, giving us the chain:
-// null || -1 && 1  ->  null || 1  ->  1
-if (null || -1 && 1) alert( 'third' );
+// Çalışır
+// && operatörü || 'a göre önceliği daha yüksektir. -1 && 1 önce çalışır. Sonrasında şu şekilde bir ifade ortaya çıkar
+// null || -1 && -> null || 1 -> 1
+if (null || -1 && 1) alert( 'üçüncü' );
 ```
 

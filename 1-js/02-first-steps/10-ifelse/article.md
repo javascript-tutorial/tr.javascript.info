@@ -1,239 +1,241 @@
-# Conditional operators: if, '?'
+# Koşul operatörleri: if, '?'
 
-Sometimes we need to perform different actions based on a condition.
 
-There is the `if` statement for that and also the conditional (ternary) operator for conditional evaluation which we will be referring as  the “question mark” operator: `"?"` for simplicity.
+Bazı durumlarda koşula göre farklı eylemler yapmak isteyebilirsiniz.
+
+`"?"` operatörü veya `if` cümlesi bu koşulları kontrol etmenizi sağlar. 
 
 [cut]
 
-## The "if" statement
+## "if" cümlesi
 
-The "if" statement gets a condition, evaluates it and, if the result is `true`, executes the code.
+"if" cümlesi koşulu alır ve kontrol eder sonucunda `true` ise kodu çalıştırır.
 
-For example:
+Örneğin:
 
 ```js run
-let year = prompt('In which year was ECMAScript-2015 specification published?', '');
+let yil = prompt('ECMAScript-2015 standarları hangi yıl yayınlanmıştır?', '');
 
 *!*
-if (year == 2015) alert( 'You are right!' );
+if (yil == 2015) alert( 'Evet doğru!' );
 */!*
 ```
 
-In the example above, the condition is a simple equality check: `year == 2015`, but it can be much more complex.
+Yukarıdaki örnekte "if" basit bir eşitliği kontrol eder `yil == 2015`, fakat bu kontrol elbette daha karmaşık olabilir.
 
-If there is more than one command to execute, we can use a code block in figure brackets:
+Eğer birden fazla komut çalıştırmak isterseniz bunu süslü parantez içinde yapabilirsiniz.
 
 ```js
-if (year == 2015) {
-  alert( "That's correct!" );
-  alert( "You're so smart!" );
+if (yil == 2015) {
+  alert( "Evet doğru!" );
+  alert( "Bravo!" );
 }
 ```
+Her `if` kullandığınızda süslü parantez kullanmanız okunurluğu artıracaktır. Tek satırda yazsanız süslü parantez içinde yazmanız önerilir.
 
-It is recommended to use figure brackets every time with `if`, even if there is only one command. That improves readability.
 
-## Boolean conversion
+## Boolean dönüştürme
 
-The `if (…)` statement evaluates the expression in parentheses and converts it to the boolean type.
+`if(...)` cümlesi parantez içine yazdığımız ifadeyi çalıştırır  ve bunu sonucu boolean tipinde dönderir.
 
-Let's recall the conversion rules from the chapter <info:type-conversions>:
+<info:type-conversation> bölümünü hatırlarsanız:
 
-- A number `0`, an empty string `""`, `null`, `undefined` and `NaN` become `false`. Because of that they are called "falsy" values.
-- Other values become `true`, so they are called "truthy".
+- `0`, boş karakter `""`, `null`, `undefined` ve `NaN` `false` olarak döndürülür. Bunlara `falsy` yani `yanlış` değerler de diyebiliriz.
+- Diğer değerler ise `true` olur ve bunlara `truthy` veya `doğru` değerler de denebilir. ( Not: Bunların tam karşılıklarını bulamadım )
 
-So, the code under this condition would never execute:
+Örneğin aşağıdaki kod satırı hiç bir zaman çalışmayacaktır:
 
 ```js
-if (0) { // 0 is falsy
+if (0) { // 0 false döndürür
+  ...
+}
+```
+... Aşağıdaki ise her zaman çalışacaktır:
+
+```js
+if (1) { // 1 her zaman true döndürür
+  ...
+}
+```
+Ayrıca şart yazmadan önce de kodun değerlendirmesi yapılabilir.
+
+```js
+let sonuc = (year == 2015); // eşitlik doğru yanlış değerlendirmesi yapmaya yarar.
+
+if (sonuc) {
   ...
 }
 ```
 
-...And inside this condition -- always works:
+## "else" cümlesi 
 
-```js
-if (1) { // 1 is truthy
-  ...
-}
-```
+`if` cümlesi opsiyonel olarak "else" bloğu da içerebilir. Bu eğer `if` parantezi içerisinde yazdığımız kod yanlış ise çalışır.
 
-We can also pass a pre-evaluated boolean value to `if`, like here:
 
-```js
-let cond = (year == 2015); // equality evaluates to true or false
-
-if (cond) {
-  ...
-}
-```
-
-## The "else" clause
-
-The `if` statement may contain an optional "else" block. It executes when the condition is wrong.
-
-For example:
+Örneğin:
 ```js run
-let year = prompt('In which year was ECMAScript-2015 specification published?', '');
+let yil = prompt('ECMAScript-2015 standarları hangi yıl yayınlanmıştır?', '');
 
-if (year == 2015) {
-  alert( 'You guessed it right!' );
+if (yil == 2015) {
+  alert( 'Doğru!' );
 } else {
-  alert( 'How can you be so wrong?' ); // any value except 2015
+  alert( 'Nasıl bu kadar yanlış yapabiliyorsun!' ); // 2015 dışındaki her değerde burası çalışır.
 }
 ```
 
-## Several conditions: "else if"
+## Birden fazla koşul: "else if"
 
-Sometimes we'd like to test several variants of a condition. There is an `else if` clause for that.
+Bazı durumlarda birden fazla durumu kontrol etmeniz gerekebilir. Bu durumlarda `else if` cümlesi kullanabilirsiniz.
 
-For example:
+Örneğin:
 
 ```js run
-let year = prompt('In which year was ECMAScript-2015 specification published?', '');
+let yil = prompt('ECMAScript-2015 standarları hangi yıl yayınlanmıştır?', '');
 
-if (year < 2015) {
-  alert( 'Too early...' );
-} else if (year > 2015) {
-  alert( 'Too late' );
+if (yil < 2015) {
+  alert( 'daha sonra...' );
+} else if (yil > 2015) {
+  alert( 'daha önce' );
 } else {
-  alert( 'Exactly!' );
+  alert( 'Kesinlikle!' );
 }
 ```
+Yukarıdaki kodda önce `yil < 2015` kontrolü yapılır. Eğer bu değerlendirme yanlış ise bir sonraki koşula geçilir. Eğer `year > 2015` doğru ise bu koşul içindeki alarm fonksiyonu çalışır. Diğer hallerde son `alert` fonksiyonu çalışır. 
 
-In the code above JavaScript first checks `year < 2015`. If it is falsy it then goes to the next condition `year > 2015`, and otherwise shows the last `alert`.
+Sonuncusunda bir tane daha `else if` bloğu olabilirdi: `else if ( yil == 2015 )`
 
-There can be more `else if` blocks. The ending `else` is optional.
+## Üçlü operatör '?'
 
-## Ternary operator '?'
 
-Sometimes we need to assign a variable depending on a condition.
+Bazen `alert` yerine bir değişkene değer atamak isteyebilirsiniz.
 
-For instance:
+Örneğin:
 
 ```js run no-beautify
-let accessAllowed;
-let age = prompt('How old are you?', '');
+let girisIzni;
+let yas = prompt('Kaç yaşındasın?', '');
 
 *!*
-if (age > 18) {
-  accessAllowed = true;
+if (yas > 18) {
+  girisIzni = true;
 } else {
-  accessAllowed = false;
+  girisIzni = false;
 }
 */!*
 
-alert(accessAllowed);
+alert(girisIzni);
 ```
+"üçlü" veya "soru işareti" operatörü yukarıdaki işlemi daha kolay yapmanızı sağlar.
 
-The so-called "ternary" or "question mark" operator lets us do that shorter and simpler.
+Operatör `"?"` işareti ile ifade edilir. Resmi tanımda "üçlü" kullanılmasının sebebi üç tane operanddan oluşmasından dolayıdır. Aslında JavaScript dilinde 3 tane operandı olan başka bir operatör yoktur.
 
-The operator is represented by a question mark `"?"`.  The formal term "ternary" means that the operator has three operands. It is actually the one and only operator in JavaScript which has that many.
-
-The syntax is:
+Yazımı şu şekildedir:
 ```js
-let result = condition ? value1 : value2
+let sonuc = koşul ? deger1 : deger2
 ```
 
-The `condition` is evaluated, if it's truthy then `value1` is returned, otherwise -- `value2`.
+`koşul` değerlendirildikten sonra eğer doğru döner ise `deger1` yanlış döner ise `deger2` sonuç değişkenine atanır.
 
-For example:
+Örneğin:
 
 ```js
-let accessAllowed = (age > 18) ? true : false;
+let girisIzni = (yas > 18) ? true : false;
 ```
+Aslında `yas > 18` etrafındaki parantezleri de kaldırabiliriz. Çünkü soru işareti `>` göre daha düşük önceliğe sahiptir. `yas > 18 ? true : false` şeklinde yazılsa da sonuç değişmeyecektir.
 
-Technically, we can omit parentheses around `age > 18`. The question mark operator has a low precedence. It executes after the comparison `>`, so that'll do the same:
 
 ```js
 // the comparison operator "age > 18" executes first anyway
 // (no need to wrap it into parentheses)
-let accessAllowed = age > 18 ? true : false;
+let girisIzni = yas > 18 ? true : false;
 ```
 
-...But parentheses make the code more readable. So it's recommended to use them.
+... Fakat yine de parantez kullanmanız önerilir. Bu okunabilirliği artırmaktadır.
 
 ````smart
-In the example above it's possible to evade the question mark operator, because the comparison by itself returns `true/false`:
+Yukarıdaki örnekte soru işaretini kaldırmak mümkündür çünkü karşılaştırmanın kendisi true/false döndürür:
 
 ```js
 // the same
-let accessAllowed = age > 18;
+let girisIzni = yas > 18;
 ```
 ````
 
-## Multiple '?'
+## Birden fazla '?'
 
-A sequence of question mark `"?"` operators allows returning a value that depends on more than one condition.
+Birden fazla `"?"` işareti kullanarak birden fazla koşula göre değer döndürme işlemini sağlayabilirsiniz.
 
-For instance:
+
+ÖrneğiN:
 ```js run
-let age = prompt('age?', 18);
+let yas = prompt('yaş?', 18);
 
-let message = (age < 3) ? 'Hi, baby!' :
-  (age < 18) ? 'Hello!' :
-  (age < 100) ? 'Greetings!' :
-  'What an unusual age!';
+let mesaj = (yas < 3) ? 'Ne tatlı şeysin sen öyle!' :
+  (yas < 18) ? 'Merhaba!' :
+  (yas < 100) ? 'Merhaba efendim!' :
+  'Ne garip bir yaşın var!';
 
-alert( message );
+alert( mesaj );
 ```
+İlk başta neyin ne olduğunu anlamak zaman alabilir. Fakat daha yakından bakınca sıra ile değerin kontrol edildiğini görebilirsiniz.
 
-It may be difficult at first to grasp what's going on. But after a closer look we can see that it's just an ordinary sequence of tests.
+1. İlk soru işareti `yas < 3` kontrolünü yapar.
+2. Eğer doğru ise `Ne tatlı şeysin sen öyle!` döndürür. Diğer türlü sonraki `":"`e gider ve `yas < 18` kontrolünü yapar.
+3. Eğer doğru ise `Merhaba` döndürür. Diğer türlü sonraki `":"`e gider ve `yas < 100` kontrolünü yapar.
+4. Eğer doğru ise `Merhaba efendim` döndürür. Diğer türlü sonraki `":"`e gider ve `'Ne garip bir yaş'` döner.
 
-1. The first question mark checks whether `age < 3`.
-2. If true -- returns `'Hi, baby!'`, otherwise -- goes after the colon `":"` and checks for `age < 18`.
-3. If that's true -- returns `'Hello!'`, otherwise -- goes after the next colon `":"` and checks for `age < 100`.
-4. If that's true -- returns `'Greetings!'`, otherwise -- goes after the last colon `":"` and returns `'What an unusual age!'`.
+aynı `if..else` mantığı gibi
 
-The same logic using `if..else`:
+
 
 ```js
-if (age < 3) {
-  message = 'Hi, baby!';
-} else if (a < 18) {
-  message = 'Hello!';
-} else if (age < 100) {
-  message = 'Greetings!';
+if (yas < 3) {
+  mesaj = 'Ne tatlı şeysin sen öyle!';
+} else if (yas < 18) {
+  mesaj = 'Merhaba!';
+} else if (yas < 100) {
+  mesaj = 'Merhaba efendim!';
 } else {
-  message = 'What an unusual age!';
+  mesaj = 'Ne garip bir yaşın var!';
 }
 ```
 
-## Non-traditional use of '?'
+## Geleneksel olmayan olmayan '?' kontrolü
 
-Sometimes the question mark `'?'` is used as a replacement for `if`:
+Bazı durumlarda `'?'` `if` in yerine kullanılabilir:
 
 ```js run no-beautify
-let company = prompt('Which company created JavaScript?', '');
+let firma = prompt('JavaScript hangi firma tarafından yaratılmıştır?', '');
 
 *!*
-(company == 'Netscape') ?
-   alert('Right!') : alert('Wrong.');
+(firma == 'Netscape') ?
+   alert('Doğru!') : alert('Yanlış.');
 */!*
 ```
 
-Depending on the condition `company == 'Netscape'`, either the first or the second part after `"?"` gets executed and shows the alert.
+Koşula göre `firma =='Netscap'`, soru işaretinden sonra birinci bölüm veya ikinci bölüm çalışır.
 
-We don't assign a result to a variable here. The idea is to execute different code depending on the condition.
+Sonucu bir değere atanmamıştır. Amaç duruma göre doğrudan kodu çalıştırmak.
 
-**It is not recommended to use the question mark operator in this way.**
 
-The notation seems to be shorter than `if`, which appeals to some programmers. But it is less readable.
+**Soru işaretinin bu amaç doğrultusunda kullanılması önerilmez.**
 
-Here is the same code with `if` for comparison:
+Yazımı if yazımından daha kısa olsa bile daha az okunabilir durumdadır.
+Aşağıda `if` ile yazımını görmektesiniz.
+
 
 ```js run no-beautify
-let company = prompt('Which company created JavaScript?', '');
+let firma = prompt('JavaScript hangi firma tarafından yaratılmıştır?', '');
 
 *!*
-if (company == 'Netscape') {
-  alert('Right!');
+if (firma == 'Netscape') {
+  alert('Doğru!');
 } else {
-  alert('Wrong.');
+  alert('Yanlış.');
 }
 */!*
 ```
 
-Our eyes scan the code vertically. The constructs which span several lines are easier to understand than a long horizontal instruction set.
+Okurken kodu dikey olarak okuruz. Bundan dolayı yazımın bir kaç satıra dağıtılması okumayı uzun satırlara göre daha kolay hale getirir.
 
-The idea of a question mark `'?'` is to return one or another value depending on the condition. Please use it for exactly that. There is `if` to execute different branches of the code.
+`'?'` işaretinin ideal kullanımı sadece o ya da bu sorusudur. Daha uzun bir cümle için `if` kullanmalısınız. 

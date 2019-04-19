@@ -1,4 +1,4 @@
-function count(obj) { 
+function ozellikSayisi(obj) {
   return Object.keys(obj).length;
 }
 

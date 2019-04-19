@@ -1,4 +1,4 @@
 
-1. `true`, taken from `rabbit`.
-2. `null`, taken from `animal`.
-3. `undefined`, there's no such property any more.
+1. `rabbit`'ten `true` alınır.
+1. `animal`'den `null` alınır.
+3. Böyle bir özerllik olmadığından `undefined` alınır.

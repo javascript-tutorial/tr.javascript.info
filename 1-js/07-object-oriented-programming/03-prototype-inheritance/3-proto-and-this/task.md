@@ -1,12 +1,11 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Where it writes?
+# Nereye yazar?
+`animal`dan türemiş bir `rabbit`'imizi var.
 
-We have `rabbit` inheriting from `animal`.
-
-If we call `rabbit.eat()`, which object receives the `full` property: `animal` or `rabbit`? 
+Eğer `rabbit.eat()` çağırılırsa hangi obje `full` özelliğini alır: `animal` mi yoksa `rabbit` mi?
 
 ```js
 let animal = {

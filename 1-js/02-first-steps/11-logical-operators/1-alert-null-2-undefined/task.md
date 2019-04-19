@@ -1,10 +1,10 @@
-importance: 5
+Önem: 5
 
 ---
 
-# What's the result of OR?
+# VEYA'nın sonucu nedir?
 
-What the code below is going to output?
+Aşağıdaki kodun çıktısı nedir?
 
 ```js
 alert( null || 2 || undefined );

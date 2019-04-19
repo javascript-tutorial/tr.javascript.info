@@ -1,22 +1,23 @@
-importance: 4
+Önem: 4
 
 ---
 
 # Get average age
+# Ortalama yaşın alınması
 
-Write the function `getAverageAge(users)` that gets an array of objects with property `age` and gets the average.
+`ortalamaYasAl(kullanicilar)` adında bir fonksiyon alınız. Bu fonksiyon `yas` ozelliğine sahip objelerden oluşan bir dizi alsın ve bunların ortalamasını hesaplasın.
 
-The formula for the average is `(age1 + age2 + ... + ageN) / N`.
+Ortalama formülü `(yas1 + yas2 + ..... + yasN) / N`
 
-For instance:
+Örneğin:
 
 ```js no-beautify
-let john = { name: "John", age: 25 }
-let pete = { name: "Pete", age: 30 }
-let mary = { name: "Mary", age: 29 }
+let muzaffer = { adi: "Muzaffer", yas: 25 };
+let mehmet = { adi: "Mehmet",yas: 30 };
+let ahmet = { adi: "Ahmet", yas: 29 };
 
-let arr = [ john, pete, mary ];
+let arr = [   muzaffer , mehmet, ahmet ];
 
-alert( getAverageAge(arr) ); // (25+30+29)/3 = 28
+alert( ortalamaYasAl(arr) ); // (25+30+29)/3 = 28
 ```
 

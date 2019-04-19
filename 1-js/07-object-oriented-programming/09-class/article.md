@@ -1,15 +1,15 @@
 
-# Classes
+# Sınıflar
 
-The "class" construct allows to define prototype-based classes with a clean, nice-looking syntax.
+"class" yapısı prototip-tabanlı sınıfların temiz ve güzel bir yazıma sahip olmasını sağlar.
 
 [cut]
 
-## The "class" syntax
+## "class" Yazımı 
 
-The `class` syntax is versatile, we'll start from a simple example first.
+`class` yazımı oldukça değişkendir. Öncelikle en basit olanıyla başlayalım
 
-Here's a prototype-based class `User`:
+Aşağıda prototip-bazlı `User` sınıfını görmektesiniz:
 
 ```js run
 function User(name) {
@@ -24,7 +24,7 @@ let user = new User("John");
 user.sayHi();
 ```
 
-...And that's the same using `class` syntax:
+...Aşağıda ise bunun `class` yazımıyla tekrar yazılmış hali bulunmaktadır:
 
 ```js run
 class User {
@@ -42,17 +42,16 @@ class User {
 let user = new User("John");
 user.sayHi();
 ```
+İkisinin de aynı olduğu kolayca görülmektedir. Dikakat ederseniz class içerisindeki metodların arasında virgül yoktur. Bazen bunu unutabilirsiniz bu durumda `class` çalışmayackatır. Bu normal obje değildir, sadece  `class` yazımıdır.
 
-It's easy to see that the two examples are alike. Just please note that methods in a class do not have a comma between them. Notice developers sometimes forget it and put a comma between class methods, and things don't work. That's not a literal object, but a class syntax.
+Peki `class` tam olarak ne işe yarar? Eğer dil-seviyesinde yeni bir varlık olarak algılarsanız yanlış olur.
 
-So, what exactly does `class` do? We may think that it defines a new language-level entity, but that would be wrong.
+Burada `class User{....}` aslında iki şey yapıyor:
 
-The `class User {...}` here actually does two things:
+1. `"constructor"` fonksiyonunu referens alan veren bir `User` değişkeni oluşturur.
+2. Tanımındakileri `User.prototype`'a koyar. Burada `sayHi` ve `constructor`'u içerir.
 
-1. Declares a variable `User` that references the function named `"constructor"`.
-2. Puts into `User.prototype` methods listed in the definition. Here it includes `sayHi` and the `constructor`.
-
-Here's the code to dig into the class and see that:
+Sınıf daha derinlemesine incelenirse aslında şu şekildedir:
 
 ```js run
 class User {
@@ -61,28 +60,26 @@ class User {
 }
 
 *!*
-// proof: User is the "constructor" function
+// kanır: User constructor(yapıcı) fonksiyondur.
 */!*
 alert(User == User.prototype.constructor); // true
 
 *!*
-// proof: there are two methods in its "prototype"
+// Kanıt: "prototipte" iki tane metod vardır.
 */!*
 alert(Object.getOwnPropertyNames(User.prototype)); // constructor, sayHi
 ```
 
-Here's the illustration of what `class User` creates:
+Aşağıda `class User` in yarattıkları hakkında bir görsel bulunmaktadır:
 
 ![](class-user.png)
 
 
+`class` demekki yapıcı metod ve prototip metodlarını tanımlayan özel bir yazımdır.
 
-So `class` is a special syntax to define a constructor together with its prototype methods.
+...Sadece bu değil. Küçük bazı farklılıkları da vardır:
 
-...But not only that. There are minor tweaks here and there:
-
-Constructors require `new`
-: Unlike a regular function, a class `constructor` can't be called without `new`:
+Yapıcılar `new`'e ihtiyaç duyarlar. Normal fonksiyonların aksine bir sınıfın `constructor`'(yapıcı)u `new` olmadan çağırılamaz:
 
 ```js run
 class User {
@@ -90,26 +87,26 @@ class User {
 }
 
 alert(typeof User); // function
-User(); // Error: Class constructor User cannot be invoked without 'new'
+User(); // Hata: Sınıf yapıcı User `new` olmadan uyarılamaz.
 ```
 
-Different string output
-: If we output it like `alert(User)`, some engines show `"class User..."`, while others show `"function User..."`.
+Farklı karakter dizisi çıktıları
+: Eğer `alert(User)` gibi çıktı verirsek, bazı javascript motorları bunu `"class User..."`, bazıları ise `"function User..."` şeklinde gösterir.
 
-Please don't be confused: the string representation may vary, but that's still a function, there is no separate "class" entity in JavaScript language.
+Karakter dizisi gösterimleri farklılık gösterse bile bunlar hala fonksiyondur ve JavaScript dilinde "class" diye varlık(entity) yoktur.
 
-Class methods are non-enumerable
-: A class definition sets `enumerable` flag to `false` for all methods in the `"prototype"`. That's good, because if we `for..in` over an object, we usually don't want its class methods.
+Sınıf metodları döngülenemezler
+: Bir Class tanımı  `"prototype"`'da bulunan tüm metodların `enumerable`(döngülenebilir) bayrağını `false` yapar. Bu iyidir çünkü eğer objeyi `for..in` ile dönersek aslında sınıf metodlarını istemeyiz.
 
-Classes have a default `constructor() {}`
-: If there's no `constructor` in the `class` construct, then an empty function is generated, same as if we had written `constructor() {}`.
+Sınıflar varsayılan olarak `constructor(){}`'a sahiptirler.
+: Eğer `class` içerisinde `constructor` bulunmazsa, boş bir ofnksiyon üretilir ve sanki biz `constructor(){}` yazmışız gibi çalışır.
 
-Classes always `use strict`
-: All code inside the class construct is automatically in strict mode.
+Sınıflar her zaman `use strict` kullanır.
+: Sınıf içerisindeki tüm kodlar otomatik olarak `sıkı` moda tabidir.
 
-### Getters/setters
+### Alıcı/ayarlayıcılar
 
-Classes may also include getters/setters. Here's an example with `user.name` implemented using them:
+Sınıflar alıcı/ayarlayıcıları da içerebilirler. Aşağıdaki `user.name` bunun uygulamasını gösterir:
 
 ```js run
 class User {
@@ -142,8 +139,7 @@ alert(user.name); // John
 
 user = new User(""); // Name too short.
 ```
-
-Internally, getters and setters are also created on the `User` prototype, like this:
+İçindeki alıcı/ayarlayıcılar aslında `User` prototipinde yaratılırlar, aşağıdaki gibi:
 
 ```js
 Object.defineProperty(User.prototype, {
@@ -157,12 +153,11 @@ Object.defineProperty(User.prototype, {
   }
 });
 ```
+### Sadece metodlar
 
-### Only methods
+Obje değişmezlerinden farklı olarak `özellik:değer` sınıf içerisinde tanımlanamaz. Sadece metodlar ve alıcı/ayarlayıcılar. Şartnamede bu sınırlamayı kaldırmak için bazı çalışmalar bulunmakla beraber henüz bitirilmemiştir.
 
-Unlike object literals, no `property:value` assignments are allowed inside `class`. There may be only methods and getters/setters. There is some work going on in the specification to lift that limitation, but it's not yet there.
-
-If we really need to put a non-function value into the prototype, then we can alter `prototype` manually, like this:
+Eğer gerçekten fonksiyon olmayan değerleri prototip'e koymak istiyorsanız, `prototype`'ı açağıdaki gibi değiştirmeniz gerekmektedir:
 
 ```js run
 class User { }
@@ -171,10 +166,9 @@ User.prototype.test = 5;
 
 alert( new User().test ); // 5
 ```
+Yani teknik olarak bu mümkündür, fakat bunu neden yaptığınıza emin olmalısınız. Çünkü böyle özellikler bu sınıfın tüm objelerinde paylaşılacaktır.
 
-So, technically that's possible, but we should know why we're doing it. Such properties will be shared among all objects of the class.
-
-An "in-class" alternative is to use a getter:
+Sınıf içerisinde bunun alternatifi ise alıcı kullanmaktır:
 
 ```js run
 class User {
@@ -185,19 +179,18 @@ class User {
 
 alert( new User().test ); // 5
 ```
+Dışta ise kullanımı aynıdır. Fakat alıcı ile yazılan varyasyonu biraz daha yavaştır.
 
-From the external code, the usage is the same. But the getter variant is a bit slower.
+## Sınıf İfadeleri
 
-## Class Expression
+Sınıflar da fonksiyonlar gibi diğer ifadelerin içerisinde tanımlanabilir, başka yerlere gönderilebilir, döndürülebilir vs.
 
-Just like functions, classes can be defined inside another expression, passed around, returned etc.
-
-Here's a class-returning function ("class factory"):
+Aşağıdaki sınıf fonksiyon döndürmektedir:
 
 ```js run
 function makeClass(phrase) {
 *!*
-  // declare a class and return it
+  // sınıf tanıma ve bunu döndür.
   return class {
     sayHi() {
       alert(phrase);
@@ -210,29 +203,28 @@ let User = makeClass("Hello");
 
 new User().sayHi(); // Hello
 ```
+Aslında `sınıf`'ın sadece prototipe sahip fonksiyonun özel bir yazımı olduğunu hatırlarsanız bunun çok normal olduğu bellidir.
 
-That's quite normal if we recall that `class` is just a special form of a function-with-prototype definition.
-
-And, like Named Function Expressions, such classes also may have a name, that is visible inside that class only:
+Ayrıca, isimli fonksiyon ifadeleri gibi, sınıfların da isimleri olabilir ve bunlar sadece sınıf içerisinden erişilebilir.
 
 ```js run
-// "Named Class Expression" (alas, no such term, but that's what's going on)
+// "İsimli Sınıf tanımı" (böyle bir tanım yok ama bundan sonra bu şekliyle devam edeceğiz.)
 let User = class *!*MyClass*/!* {
   sayHi() {
-    alert(MyClass); // MyClass is visible only inside the class
+    alert(MyClass); //MyClass sadece sınıf içerisinden erişilebilir.
   }
 };
 
-new User().sayHi(); // works, shows MyClass definition
+new User().sayHi(); // Çalışır ve MyClass tanımını gösterir.
 
-alert(MyClass); // error, MyClass not visible outside of the class
+alert(MyClass); // hata, MyClass sınıfın dışarından erişilemez.
 ```
 
-## Static methods
+## Statik metodlar
 
-We can also assign methods to the class function, not to its `"prototype"`. Such methods are called *static*.
+Sınıf fonksiyonlarına ayrıca metodlar atamak da mümkündür. Ama bu `"prototipine" atanmaz. Bu tür metodlar *static* olarak adlandırılır.
 
-An example:
+Örneğin:
 
 ```js run
 class User {
@@ -245,8 +237,7 @@ class User {
 
 User.staticMethod(); // true
 ```
-
-That actually does the same as assigning it as a function property:
+Aslında fonksiyon özelliği atamak ile aynı işi yapar.
 
 ```js
 function User() { }
@@ -256,11 +247,11 @@ User.staticMethod = function() {
 };
 ```
 
-The value of `this` inside `User.staticMethod()` is the class constructor `User` itself (the "object before dot" rule).
+`User.staticMethod()` içerindeki `this` sınıf yapıcı `User`'dır yani kendisi.
 
-Usually, static methods are used to implement functions that belong to the class, but not to any particular object of it.
+Genelde statik metodlar sınıfa ait olan fonksiyonların uygulamasında kullanılır, fakat bunun herhangi bir objesinde kullanılmaz.
 
-For instance, we have `Article` objects and need a function to compare them. The natural choice would be `Article.compare`, like this:
+Örneğin `Article` objelerimiz olsun ve bunların karşılaştırılması için bir fonksiyon yazalım. Bunun doğal çözümü `Article.compare` diye bir metod yazmaktır:
 
 ```js run
 class Article {
@@ -290,17 +281,17 @@ articles.sort(Article.compare);
 alert( articles[0].title ); // Body
 ```
 
-Here `Article.compare` stands "over" the articles, as a means to compare them. It's not a method of an article, but rather of the whole class.
+Burada `Article.compare` `Article`'ların üzerinde bunları karşılaştırmak için gerekmektedir. Article`ın bir metodu olmaktan ziyada tüm sınıfındır.
 
-Another example would be a so-called "factory" method. Imagine, we need few ways to create an article:
+Diğer bir örnek ise çokça dile getirilen "factory" sınıflarıdır. Article üretmek için bir kaç yol bulunmaktadır:
 
-1. Create by given parameters (`title`, `date` etc).
-2. Create an empty article with today's date.
+1. Verilen parametrelerle (`title`, `date` etc).
+2. Bu günün tarihi ile boş bir obje üret.
 3. ...
 
-The first way can be implemented by the constructor. And for the second one we can make a static method of the class.
+Birincisi yapıcı metodu uygulamaktır. İkincisi ise metodun bir statik metoduyla çözülebilir.
 
-Like `Article.createTodays()` here:
+Örneğin `Article.createTodays()`:
 
 ```js run
 class Article {
@@ -321,20 +312,19 @@ let article = Article.createTodays();
 
 alert( article.title ); // Todays digest
 ```
+Artık ne zaman bugünün makalelerini istesrek sadece `Article.createTodays()` çağırmamız yeterlidir. Tekrardan bu metod article'ın değil aslında tüm sınıfın bir metodudur.
 
-Now every time we need to create a todays digest, we can call `Article.createTodays()`. Once again, that's not a method of an article, but a method of the whole class.
-
-Static methods are also used in database-related classes to search/save/remove entries from the database, like this:
+Statik metodlar ayrıca veritabanı-ilintili sınıflarda arama/kaydetme/silme gibi işlerde kullanılabilir.
 
 ```js
-// assuming Article is a special class for managing articles
-// static method to remove the article:
+// Article'ın article'ları düzenleyen bir sınıf olduğunu varsayalım.
+// Article'ları silen statik metod şu şekildedir.
 Article.remove({id: 12345});
 ```
 
-## Summary
+## Özet
 
-The basic class syntax looks like this:
+Basit sınıf yazımı şu şekildedir:
 
 ```js
 class MyClass {
@@ -349,9 +339,8 @@ class MyClass {
   // ...
 }
 ```
+`MyClass`'ın değeri yapıcı olarak sağlanır. Eğer `yapıcı` yoksa, boş fonksiyon döner.
 
-The value of `MyClass` is a function provided as `constructor`. If there's no `constructor`, then an empty function.
+Her durumda, sınıf tanımında yer alan methodlar `prototip`'in bir üyesi olur, bunun bir istisnası statik sınıflardır. Statik sınıflar doğrudan `MyClass.staticMetod()` olarak çağrılabilir. Statik metodlar sınıfın fonksiyona bağlanmak istediğinde kullanılır. Objelerinde kullanılmaz.
 
-In any case, methods listed in the class declaration become members of its `prototype`, with the exception of static methods that are written into the function itself and callable as `MyClass.staticMethod()`. Static methods are used when we need a function bound to a class, but not to any object of that class.
-
-In the next chapter we'll learn more about classes, including inheritance.
+Bir sonraki bölümde kalıtım ve sınıflar hakkında daha geniş bilgi verilecektir

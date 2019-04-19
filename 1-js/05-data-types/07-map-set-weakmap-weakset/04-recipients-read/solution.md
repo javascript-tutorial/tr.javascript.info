@@ -1,41 +1,41 @@
-The sane choice here is a `WeakSet`:
+En mantıklı çözüm `WeakSet`'tir.
 
 ```js
-let messages = [
-    {text: "Hello", from: "John"},
-    {text: "How goes?", from: "John"},
-    {text: "See you soon", from: "Alice"}
+let mesajlar = [
+    {metin: "Merhaba", kimden: "Ahmet"},
+    {metin: "Nasıl Gidiyor?", kimden: "Ahmet"},
+    {metin: "Sonra görüşürüz", kimden: "Mehmet"}
 ];
 
-let readMessages = new WeakSet();
+let okunanlar = new WeakSet();
 
-// two messages have been read
-readMessages.add(messages[0]);
-readMessages.add(messages[1]);
-// readMessages has 2 elements
+// iki mesaj okundu
+okunanlar.add(mesajlar[0]);
+okunanlar.add(mesajlar[1]);
+// okunanlar'ın iki elemanı var.
 
-// ...let's read the first message again!
-readMessages.add(messages[0]);
-// readMessages still has 2 unique elements
+// ... Birincisi tekrar okunursa
+okunanlar.add(mesajlar[0]);
+// okunanlar hala 2 tane eşsiz elemana sahip
 
-// answer: was the message[0] read?
-alert("Read message 0: " + readMessages.has(messages[0])); // true
 
-messages.shift();
-// now readMessages has 1 element (technically memory may be cleaned later)
+// cevapla:mesajlar[0] okundu mu?
+alert("Read message 0: " + okunanlar.has(mesajlar[0])); // true
+
+mesajlar.shift();
+// şimdi mesajların 1 elemanı var ( teknik olarak hafıza daha sonra silinebilir)
 ```
 
-The `WeakSet` allows to store a set of messages and easily check for the existance of a message in it.
+`WeakSet`mesajların saklanmasını ve içinde aranan mesajların olup olmadığını söyleyebilecek bir mekanizmadır.
 
-It cleans up itself automatically. The tradeoff is that we can't iterate over it. We can't get "all read messages" directly. But we can do it by iterating over all messages and filtering those that are in the set.
+Kendini otomatik olarak temizler. Burada karşılaşılan zorluk döngüye girmemesidir. "tüm okunan mesajlar"'ı doğrudan gösteremez. Fakat bunu diziyi döngüye sokup sonrasında bu `WeakSet`'te olanları filtreleyerek çözebilirsiniz.
 
-P.S. Adding a property of our own to each message may be dangerous if messages are managed by someone else's code, but we can make it a symbol to evade conflicts.
+Not: Her mesaja kendi özelliğimizi eklemek eğer mesajlar dizisi başkası tarafından yönetiliyor ise tehlikeli olabilir, fakat bunu özmek için `symbol` kullanılabilir.
 
-Like this:
+Aşağıdaki gibi:
 ```js
-// the symbolic property is only known to our code
-let isRead = Symbol("isRead");
-messages[0][isRead] = true;
+// symbolic özellikler sadece bizim kodumuz tarafından bilinir.
+let okunduMu = Symbol("okunduMu");
+mesajlar[0][okunduMu] = true;
 ```
-
-Now even if someone else's code uses `for..in` loop for message properties, our secret flag won't appear.
+Şimdi eğer başkası `for..in` ile mesajlar dizisini dönmeye çalışsa bile gizli olarak eklediğimiz `okunduMu` görünmeyecektir.

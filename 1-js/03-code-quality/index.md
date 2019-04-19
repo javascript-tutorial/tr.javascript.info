@@ -1,3 +1,3 @@
-# Code quality
+# Kod Kalitesi
 
-This chapter explains coding practices that we'll use further in the development. 
+Bu bölümde ilerleyen zamanlarda kullanılacak kod pratikleri işlenecektir.

@@ -1,28 +1,28 @@
-# Arrow functions revisited
+# Ok fonksiyonları
 
-Let's revisit arrow functions.
+Ok fonksiyonlarının tekrardan üzerinden geçelim.
 
 [cut]
 
-Arrow functions are not just a "shorthand" for writing small stuff.
+Ok fonksiyonları sadece basit şeylerin kolayca yazılması için kullanılmaz.
 
-JavaScript is full of situations where we need to write a small function, that's executed somewhere else.
+JavaScript'te bir sürü başka yerde çalıştırılması gereken kolayca yazılacak fonksiyonlara ihtiyacımız olabilir, 
 
-For instance:
+Örneğin:
 
-- `arr.forEach(func)` -- `func` is executed by `forEach` for every array item.
-- `setTimeout(func)` -- `func` is executed by the built-in scheduler.
-- ...there are more.
+- `arr.forEach(func)` -- her bir `forEach` döngüsünde `func` çalıştırılır.
+- `setTimeout(func)` -- Varolan planlayıcı tarafında `func` çalıştırılır. 
+- .. vs.
 
-It's in the very spirit of JavaScript to create a function and pass it somewhere.
+Bir fonksiyon yaratıp bunu başka bir yerlere iletmek JavaScript'in ruhuna tam da uyan bir işlemdir.
+Böyle fonksiyonlarda var olan kaynağın ( context) kaybolması istenmez.
 
-And in such functions we usually don't want to leave the current context.
 
-## Arrow functions have no "this"
+## Ok fonksiyonlarının "this"'i yoktur.
 
-As we remember from the chapter <info:object-methods>, arrow functions do not have `this`. If `this` is accessed, it is taken from the outside.
+Daha önceki bölümden de <info:object-methods> hatırlayacağınız üzere, ok fonksiyonlarının `this`'i olmaz. Eğer `this` erişilmiş ise bu dışarıdaki `this`'dir.
 
-For instance, we can use it to iterate inside an object method:
+Örneğin bunu objenin içerisinde dönme amaçlı kullanabiliriz:
 
 ```js run
 let group = {
@@ -40,10 +40,9 @@ let group = {
 
 group.showList();
 ```
+Buradaki `forEach`'te ok fonksiyonu kullanılmıştır, ve `this.title` tam olarak dışarıdaki `showList` metodu ile aynı içeriğe sahiptir. Yani group.title'dır.
 
-Here in `forEach`, the arrow function is used, so `this.title` in it is exactly the same as in the outer method `showList`. That is: `group.title`.
-
-If we used a "regular" function, there would be an error:
+Eğer bunu "normal" bir fonksiyon ile yazsaydık, hata alırdık:
 
 ```js run
 let group = {
@@ -53,7 +52,7 @@ let group = {
   showList() {
 *!*
     this.students.forEach(function(student) {
-      // Error: Cannot read property 'title' of undefined
+      // Hata: 'title' özelliği tanımsız.
       alert(this.title + ': ' + student)
     });
 */!*
@@ -62,29 +61,28 @@ let group = {
 
 group.showList();
 ```
+Hatanın sebebi `forEach` çalışırken `this=undefined` varsayılan olarak çalışır, bundan dolayı `undefined.title` çağrısı yapılır.
 
-The error occurs because `forEach` runs functions with `this=undefined` by default, so the attempt to access `undefined.title` is made.
+Bu ok fonksiyonlarında işlemez çünkü ok fonksiyonlarında `this` bulunmamaktadır.
 
-That doesn't affect arrow functions, because they just don't have `this`.
-
-```warn header="Arrow functions can't run with `new`"
-Not having `this` naturally means another limitation: arrow functions can't be used as constructors. They can't be called with `new`.
+```warn header="Ok fonksiyonları `new` ile çalıştırılamazlar."
+`this`'in olmaması bazı sınırlamalara neden olur: ok fonksiyonları constructors(yapıcı - kurucu ) olamazlar ve `new` ile çağırılamazlar. 
 ```
 
-```smart header="Arrow functions VS bind"
-There's a subtle difference between an arrow function `=>` and a regular function called with `.bind(this)`:
+```smart header="Arrow fonksiyonları ile bind arasındaki fark"
+`=>` fonksiyonları ile `.bin(this)` ile çağırılan normal fonksiyonlar arasında ince bir fark vardır.
 
-- `.bind(this)` creates a "bound version" of the function.
-- The arrow `=>` doesn't create any binding. The function simply doesn't have `this`. The lookup of `this` is made exactly the same way as a regular variable search: in the outer lexical environment.
+- `.bind(this)` fonksiyonun "bağlı versiyonu"'nu oluştururken.
+- `=>` fonksiyonu hiç bir bağlılık oluşturmaz. Fonksiyon basit bir şekilde `this`'e sahip değildir. `this`'in aranması aynı normal fonksiyonlardaki gibi dışarıdaki sözcüksel ortamda aranması ile son bulur.
 ```
 
-## Arrows have no "arguments"
+## Ok fonksiyonlarının "argümanları" olmaz.
 
-Arrow functions also have no `arguments` variable.
+Ok fonksiyonlarının `argüman` değişkenleri olmaz.
 
-That's great for decorators, when we need to forward a call with the current `this` and `arguments`.
+Var olan `this` ve `argümanlar` ile çağrıyı  yönelendirmek istediğimizde ( dekoratör ) çok yararlı olur.
 
-For instance, `defer(f, ms)` gets a function and returns a wrapper around it that delays the call by `ms` milliseconds:
+Örneğin `defer(f, ms)` fonksiyonu bir fonksiyon alıyor ve çağrıyı `ms` kadar geciktiren bir saklayıcı ile dönderiyor:
 
 ```js run
 function defer(f, ms) {
@@ -98,10 +96,9 @@ function sayHi(who) {
 }
 
 let sayHiDeferred = defer(sayHi, 2000);
-sayHiDeferred("John"); // Hello, John after 2 seconds
+sayHiDeferred("John"); // Hello, John 2 sn sonra.
 ```
-
-The same without an arrow function would look like:
+Aynısı ok fonksiyonu olmadan aşağıdaki gibi görünür:
 
 ```js
 function defer(f, ms) {
@@ -113,16 +110,15 @@ function defer(f, ms) {
   };
 }
 ```
+Burada ayrıca `args` ve `ctx` değişkenlerinin yaratılması gerekir. Böylece `setTimeout` içerisindeki fonksiyon bunları alabilir.
 
-Here we had to create additional variables `args` and `ctx` so that the function inside `setTimeout` could take them.
+## Özet
 
-## Summary
+Ok fonksiyonları:
 
-Arrow functions:
+- `this` yok.
+- `argüman` yok
+- `new` ile çağırılamaz.
+- `super` yok. Bunu henüz işlemedik, ilerleyen <info:class-inheritance> bölümünde inceleyeceğiz.
 
-- Do not have `this`.
-- Do not have `arguments`.
-- Can't be called with `new`.
-- (They also don't have `super`, but we didn't study it. Will be in the chapter <info:class-inheritance>).
-
-That's because they are meant for short pieces of code that does not have their own "context", but rather works in the current one. And they really shine in that use case.
+Bunların nedeni kısa ve kendi "kaynağı" olmayan ve dış kaynağı kullanacak fonksiyonlar yaratılmak istenmesindendir. Bu noktada gerçekten beklendiği gibi bir etki yapmatadır.

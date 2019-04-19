@@ -1,13 +1,13 @@
 
-The method can take all enumerable keys using `Object.keys` and output their list.
+Metod tüm dönülebilir anahtarlını `Object.keys` ile alır ve listesini döner.
 
-To make `toString` non-enumerable, let's define it using a property descriptor. The syntax of `Object.create` allows to provide an object with property descriptors as the second argument.
+`toString`'i dönülemez yapmak için, özellik tanımlayıcı ile tanımlamak gereklidir. Bunun yazımı `Object.create` ile olur ve bu ikinci argüman olarak özellik tanımlayıcı alır.
 
 ```js run
 *!*
 let dictionary = Object.create(null, {
-  toString: { // define toString property
-    value() { // the value is a function
+  toString: { // toString özelliğini tanımla. 
+    value() { // Değeri bir fonksiyondur.
       return Object.keys(this).join();
     }
   }
@@ -17,13 +17,13 @@ let dictionary = Object.create(null, {
 dictionary.apple = "Apple";
 dictionary.__proto__ = "test";
 
-// apple and __proto__ is in the loop
+// apple ve __proto__ döngüde yer alır
 for(let key in dictionary) {
-  alert(key); // "apple", then "__proto__"
+  alert(key); // "apple", sonra "__proto__"
 }  
 
-// comma-separated list of properties by toString
+// listenin virgül ile ayrılmış versiyonu döner.
 alert(dictionary); // "apple,__proto__"
 ```
 
-When we create a property using a descriptor, its flags are `false` by default. So in the code above, `dictionary.toString` is non-enumerable.
+Tanımlayıcı ile özellik yarattığımızda bunun bayrakları varsayılan olarak `false` olur. Bundan dolayı yukarıdaki `dictionary.toString` dönülemezdir.

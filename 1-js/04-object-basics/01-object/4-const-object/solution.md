@@ -1,19 +1,19 @@
-Sure, it works, no problem.
+Tabi ki çalışır, hiç bir problem yok.
 
-The `const` only protects the variable itself from changing. 
+`const` sadece değişkenin kendisinin değişmesine engel olur.
 
-In other words, `user` stores a reference to the object. And it can't be changed. But the content of the object can.
+Diğer bir deyişle `kullanici` bir referans obje tutmaktadır ve bu değişmez. Fakat bunun içeriği değişebilir. 
 
 ```js run
-const user = {
-  name: "John"
+const kullanici = {
+  adi: "Mahmut"
 };
 
 *!*
-// works
-user.name = "Pete";
+// calisir
+kullanici.isim = "Mahmut";
 */!*
 
-// error
-user = 123;
+// hata
+kullanici = 123;
 ```

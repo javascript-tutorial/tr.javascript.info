@@ -1,14 +1,13 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Turn the object into JSON and back
-
-Turn the `user` into JSON and then read it back into another variable.
+# Objeyi JSON'a ve JSON'u objeye çevirme
+`kullanici` objesini JSON'a çevirin. Sonra başka bir değişkene JSON'u okuyup atama yapın.
 
 ```js
-let user = {
-  name: "John Smith",
-  age: 35
+let kullanici = {
+  adi: "Ahmet Mutsuz",
+  yas: 35
 };
 ```

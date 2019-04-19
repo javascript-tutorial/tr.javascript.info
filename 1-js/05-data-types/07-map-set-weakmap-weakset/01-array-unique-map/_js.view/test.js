@@ -1,15 +1,15 @@
-describe("unique", function() {
-  it("removes non-unique elements", function() {
-    let strings = ["Hare", "Krishna", "Hare", "Krishna",
-      "Krishna", "Krishna", "Hare", "Hare", ":-O"
+describe("essiz", function () {
+  it("tekrar eden elemanları sil", function () {
+    let kullanicilar = ["Emine", "Muzaffer", "Fatma", "Kanako",
+      "Kanako", "Muzaffer", "Fatma", "Kanako", ":-O"
     ];
 
-    assert.deepEqual(unique(strings), ["Hare", "Krishna", ":-O"]);
+    assert.deepEqual(unique(strings), ["Emine", ":-O"]);
   });
 
-  it("does not change the source array", function() {
-    let strings = ["Krishna", "Krishna", "Hare", "Hare"];
+  it("kaynak diziyi değiştirme", function () {
+    let strings = ["Emine", "Muzaffer", "Fatma"];
     unique(strings);
-    assert.deepEqual(strings, ["Krishna", "Krishna", "Hare", "Hare"]);
+    assert.deepEqual(strings, ["Emine", "Muzaffer", "Fatma"]);
   });
 });

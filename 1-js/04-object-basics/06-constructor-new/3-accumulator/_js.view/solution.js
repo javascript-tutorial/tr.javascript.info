@@ -1,8 +1,8 @@
-function Accumulator(startingValue) {
-  this.value = startingValue;
+function Toplayici(baslangicDegeri) {
+  this.deger = baslangicDegeri;
 
-  this.read = function() {
-    this.value += +prompt('How much to add?', 0);
+  this.oku = function () {
+    this.oku += +prompt('Kaç eklemek istersiniz?', 0);
   };
 
 }

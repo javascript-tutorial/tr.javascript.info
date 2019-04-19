@@ -1,13 +1,13 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Output every second
+# Her saniyenin çıktısını yazdırın.
 
-Write a function `printNumbers(from, to)` that outputs a number every second, starting from `from` and ending with `to`.
+`printNumbers(from, to)` adında bir fonksiyon yazın ve bu fonksiyon `baslangic`'tan `bitis'`e kadar her saniye bir sayı yazdırsın.
 
-Make two variants of the solution.
+Bunun iki iki versiyonunu da yazınız.
 
-1. Using `setInterval`.
-2. Using recursive `setTimeout`.
+1. `setInterval` kullanarak.
+2. Kendini tekrar eden `setTimeout` kullanarak.
 

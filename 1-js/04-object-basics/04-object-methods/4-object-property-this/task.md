@@ -1,23 +1,23 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Using "this" in object literal
+# Obje tanımında "this" kullanamak.
 
-Here the function `makeUser` returns an object.
+Aşağıda `kullaniciOlustur` obje döndermektedir.
 
-What is the result of accessing its `ref`? Why?
+`ref`'e ulaşıldığında ne döner? Neden?
 
 ```js
-function makeUser() {
+function kullaniciOlustur() {
   return {
-    name: "John",
+    isim: "İhsan",
     ref: this
   };
 };
 
-let user = makeUser();
+let kullanici = kullaniciOlustur();
 
-alert( user.ref.name ); // What's the result?
+alert( kullanici.ref.isim ); // Sonuç nedir?
 ```
 

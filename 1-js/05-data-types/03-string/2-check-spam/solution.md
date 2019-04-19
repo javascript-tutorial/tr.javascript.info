@@ -1,4 +1,4 @@
-To make the search case-insensitive, let's bring the stirng to lower case and then search:
+Büyük küçük harf duyarsız yapabilmek için önce tüm harfleri küçük harfe çevirebilir ve sonra arayabilirsiniz:
 
 ```js run
 function checkSpam(str) {

@@ -1,24 +1,24 @@
-# Prototypal inheritance
+# Protitipsel Kalıtım
 
-In programming, we often want to take something and extend it.
+Programlarken genelde bir şeyi alır ve bunu genişletmek isteriz.
 
-For instance, we have a `user` object with its properties and methods, and want to make `admin` and `guest` as slightly modified variants of it. We'd like to reuse what we have in `user`, not copy/reimplement its methods, just build a new object on top of it.
+Örneğin, `kullanici` adında bir obje ve bunun özellikleri ve metodları olsun, bunu biraz düzenleyerek `admin` ve `misafir` gibi iki farklı obje oluşturmak isteriz. Yani `kullanici` objesini doğrudan kopyalamak veya metodlarını tekrardan uygulamak değil bunlar üzerinden yeni objeler yaratmak isteyebiliriz.
 
-*Prototypal inheritance* is a language feature that helps in that.
+*Prototip kalıtımı* buna olanak sağlamaktadır.
 
 [cut]
 
 ## [[Prototype]]
 
-In JavaScript, objects have a special hidden property `[[Prototype]]` (as named in the specification), that is either `null` or references another object. That object is called "a prototype":
+Javascript objeleri gizli bir özellik olan `[[Prototype]]` özelliğine sahiptirler. Bu `null` olabilir veya başka objeye referans verebilir.  Referans verilen obje "prototip" olarak adlandırılır.
 
-![prototype](object-prototype-empty.png)
+![prototip](object-prototype-empty.png)
 
-That `[[Prototype]]` has a "magical" meaning. When we want to read a property from `object`, and it's missing, JavaScript automatically takes it from the prototype. In programming, such thing is called "prototypal inheritance". Many cool language features and programming techniques are based on it.
+`[[Prototip]]`'in "büyülü" bir anlamı bulunmaktadır. Objeden bir özellik okunmak istendiğinde, ve bu obje bulunamadığında JavaScript bunu otomatik olarak prototip'ten alır. Programlamada buna `prototip kalıtımı` denir. Birçok dil özelliği ve programlama tekniği bunun üzerine kuruludur.
 
-The property `[[Prototype]]` is internal and hidden, but there are many ways to set it.
+`[[Prototpe]]` gizli bir özelliktir, fakat bunu ayarlamanın bir çok yolu vardır.
 
-One of them is to use `__proto__`, like this:
+Bunlardan biri `__proto__` kullanmaktır:
 
 ```js run
 let animal = {
@@ -33,11 +33,11 @@ rabbit.__proto__ = animal;
 */!*
 ```
 
-Please note that `__proto__` is *not the same* as `[[Prototype]]`. That's a getter/setter for it. We'll talk about other ways of setting it later, but for now `__proto__` will do just fine.
+Aklınızda bulunsun `__proto__` `[[Prototype]]` ile *aynı değildir*. Bunun için alıcı/ayarlayıcı ( getter/setter)'dır. Bunun hakkında ilerleyen bölümlerde daha fazla açıklama yapılacaktır fakat şimdilik `__proto__` yeterlidir.
 
-If we look for a property in `rabbit`, and it's missing, JavaScript automatically takes it from `animal`.
+Örneğin `rabbit` adında bir özelliğe arasanız ve bu özellik yoksa, JavaScript bunu otomatik olarak `animal`'dan alır.
 
-For instance:
+Örneğin:
 
 ```js run
 let animal = {
@@ -51,24 +51,25 @@ let rabbit = {
 rabbit.__proto__ = animal; // (*)
 */!*
 
-// we can find both properties in rabbit now:
+// Artık her ikisini de rabbit'te bulabilirsiniz.
 *!*
 alert( rabbit.eats ); // true (**)
 */!*
 alert( rabbit.jumps ); // true
 ```
 
-Here the line `(*)` sets `animal` to be a prototype of `rabbit`.
+`(*)` satırında `animal`'ın `rabbit` in özleliği olması sağlanır
 
-Then, when `alert` tries to read property `rabbit.eats` `(**)`, it's not in `rabbit`, so JavaScript follows the `[[Prototype]]` reference and finds it in `animal` (look from the bottom up):
+Sonrasında `alert` `rabbit.eats` `(**)`'i okur. Bu `rabbit`'te olmadığından JavaScript `[[Prototype]]`'ı takip eder ve bunu `animal`'in içerinde bulur.
 
 ![](proto-animal-rabbit.png)
 
-Here we can say that "`animal` is the prototype of `rabbit`" or "`rabbit` prototypally inherits from `animal`".
+Böylece "`animal`" `rabbit`'in prototip'i veya "`rabbit` prototipsel olarak `animal` kalıtımını almıştır" diyebiliriz.
 
-So if `animal` has a lot of useful properties and methods, then they become automatically available in `rabbit`. Such properties are called "inherited".
+Diyelim ki `animal`'ın birçok özelliği ve metodu olsun, bunları otomatik olarak `rabbit` de kullanabilir. Bu çeşit özelliklere `kalıtılmış` özellikler denir.
 
-If we have a method in `animal`, it can be called on `rabbit`:
+Eğer `animal`'da bir metodumuz varsa bu metod `rabbit` tarafından çağırılabilir olmaktadır.
+
 
 ```js run
 let animal = {
@@ -85,17 +86,15 @@ let rabbit = {
   __proto__: animal
 };
 
-// walk is taken from the prototype
+// walk prototipten alınmıştır.
 *!*
 rabbit.walk(); // Animal walk
 */!*
 ```
-
-The method is automatically taken from the prototype, like this:
+Metod prototipten otomatik olarak şu şekilde alınmıştır:
 
 ![](proto-animal-rabbit-walk.png)
-
-The prototype chain can be longer:
+Prototip zinciri daha da uzun olabilir:
 
 
 ```js run
@@ -116,33 +115,36 @@ let longEar = {
   __proto__: rabbit
 }
 
-// walk is taken from the prototype chain
+// walk prorotip zincirinden alınmıştır.
 longEar.walk(); // Animal walk
-alert(longEar.jumps); // true (from rabbit)
+alert(longEar.jumps); // true (rabbit'ten gelmekte)
 ```
 
 ![](proto-animal-rabbit-chain.png)
 
-There are actually only two limitations:
+Aslında iki tane kısıtlama bulunmaktadır:
 
-1. The references can't go in circles. JavaScript will throw an error if we try to assign `__proto__` in a circle.
-2. The value of `__proto__` can be either an object or `null`. All other values (like primitives) are ignored.
 
-Also it may be obvious, but still: there can be only one `[[Prototype]]`. An object may not inherit from two others.
+1. Referanslar kapalı devre olamaz. Böyle bir duurmda hata verir.
+2. `__proto__`'nun değeri ya obje olur ya da `null` Diğer türlüsü ( tüm ilkel veri tipleri ) görmezden gelinir.
 
-## Read/write rules
+Çok açık olsa da tekrar söylemekte yarar var. Bir obje sadece bir tane `[[Prototype]]`'a sahip olabilir. Bir objenin iki farklı objeden kalıtım alamaz.
 
-The prototype is only used for reading properties.
+## Kuralların Okuması/Yazılması.
 
-For data properties (not getters/setters) write/delete operations work directly with the object.
 
-In the example below, we assign its own `walk` method to `rabbit`:
+Prototip sadece özelliklerin okunması için kullanılır.
+
+Veri özelliklerinin yazılma/silinme ( alıcı/ayarlayıcı değil) işi doğrudan obje üzerinden yapılır.
+
+
+Aşağıdaki örnekte `rabbit`'e kendi `walk` metodu atanmıştır:
 
 ```js run
 let animal = {
   eats: true,
   walk() {
-    /* this method won't be used by rabbit */  
+    /* Bu metod rabbit tarafından kullanılmayacaktır. */  
   }
 };
 
@@ -158,14 +160,13 @@ rabbit.walk = function() {
 
 rabbit.walk(); // Rabbit! Bounce-bounce!
 ```
-
-From now on, `rabbit.walk()` call finds the method immediately in the object and executes it, without using the prototype:
+Artık `rabbit.wal()` metodu doğrudan kendi içerisinde bulur ve çalıştırır. Prototip kullanmaz:
 
 ![](proto-animal-rabbit-walk-2.png)
 
-For getters/setters -- if we read/write a property, they are looked up in the prototype and invoked.
+Alıcı/Ayarlayıcı için ise eğer özellik okunursa bu doğrudan prototipte okunur ve uyarılır.
 
-For instance, check out `admin.fullName` property in the code below:
+Örneğin aşağıdaki `admin.fullName` özelliğine bakın:
 
 ```js run
 let user = {
@@ -188,30 +189,30 @@ let admin = {
 
 alert(admin.fullName); // John Smith (*)
 
-// setter triggers!
+// Ayarlayıcılar uyarıldı!
 admin.fullName = "Alice Cooper"; // (**)
 ```
 
-Here in the line `(*)` the property `admin.fullName` has a getter in the prototype `user`, so it is called. And in the line `(**)` the property has a setter in the prototype, so it is called.
+`(*)` satırında `admin.fullName` özelliği `user` prototipinde alıcıya sahiptir. Bundan dolayı çağırılır. `(**)` satırında ise ayarlayıcıya sahip olduğundan bu da çağırılır.
 
-## The value of "this"
+## "this"'in değeri
 
-An interesting question may arise in the example above: what's the value of `this` inside `set fullName(value)`? Where the properties `this.name` and `this.surname` are written: `user` or `admin`?
+Yukarıdaki örnekte aklınıza şöyle bir soru gelebilir. `set fullName(value)` içerisinde `this`'in değeri nedir? `this.name` ve `this.surname` yazılan yerlerde `admin` mi yoksa `user` mı kullanılır?
 
-The answer is simple: `this` is not affected by prototypes at all.
+Cevap basittir: `this` prototip tarafından hiç bir şekilde etkilenmez.
 
-**No matter where the method is found: in an object or its prototype. In a method call, `this` is always the object before the dot.**
+**Metodun bulunduğu yerin önemi olmaksızın, metod çağrısında `this` her zaman noktadan önceki bölümdür.**
 
-So, the setter actually uses `admin` as `this`, not `user`.
+Öyleyese aslında ayarlayıcı `admin`'i `this` olarak kullanır. `user`'ı değil.
 
-That is actually a super-important thing, because we may have a big object with many methods and inherit from it. Then we can run its methods on inherited objects and they will modify the state of these objects, not the big one.
+Çok büyük bir objeye ve buna ait birçok metoda, kalıtıma sahip olabileceğimizden dolayı bu aslında çok önemli bir olaydır.  Sonrasında büyük objenin değil kalıtılmış objelerin metodlarını çalıştırabilir ve bunların özelliklerini değiştirebiliriz.
 
-For instance, here `animal` represents a "method storage", and `rabbit` makes use of it.
+Örneğin burada `animal` aslında "metod deposu"'nu temsil etmektedir. `rabbit` ise bunu kullanır.
 
-The call `rabbit.sleep()` sets `this.isSleeping` on the `rabbit` object:
+`rabbit.sleep()` çağrısı `rabbit` üzerinde `this.isSleeping`'i ayarlar:
 
 ```js run
-// animal has methods
+// animal metodları
 let animal = {
   walk() {
     if (!this.isSleeping) {
@@ -228,25 +229,24 @@ let rabbit = {
   __proto__: animal
 };
 
-// modifies rabbit.isSleeping
+// rabbit.isSleeping'i modifiye eder.
 rabbit.sleep();
 
 alert(rabbit.isSleeping); // true
-alert(animal.isSleeping); // undefined (no such property in the prototype)
+alert(animal.isSleeping); // undefined (prototipte böyle bir özellik bulunmamaktadır.)
 ```
-
-The resulting picture:
+Sonuç görseli:
 
 ![](proto-animal-rabbit-walk-3.png)
 
-If we had other objects like `bird`, `snake` etc inheriting from `animal`, they would also gain access to methods of `animal`. But `this` in each method would be the corresponding object, evaluated at the call-time (before dot), not `animal`. So when we write data into `this`, it is stored into these objects.
+Eğer `bird`, `sname` gibi `animal`'dan miras alan objelere sahip olsaydık bunlar da `animal`'in metodlarına erişebilirlerdi. Fakat her metoddaki `this` bağlı bulunduğu objeye göre çalışırdı. Yani noktadan önceki metoda göre, `animal`'e göre değil. Bundan dolayı ne zaman `this`'e veri yazılsa o objelerin içerisine yazılır.
 
-As a result, methods are shared, but the object state is not.
+Sonuç olarak metodlar paylaşılsa bile objelerin durumları paylaşılmaz.
 
-## Summary
+## Özet
 
-- In JavaScript, all objects have a hidden `[[Prototype]]` property that's either another object or `null`.
-- We can use `obj.__proto__` to access it (there are other ways too, to be covered soon).
-- The object referenced by `[[Prototype]]` is called a "prototype".
-- If we want to read a property of `obj` or call a method, and it doesn't exist, then JavaScript tries to find it in the prototype. Write/delete operations work directly on the object, they don't use the prototype (unless the property is actually a setter).
-- If we call `obj.method()`, and the `method` is taken from the prototype, `this` still references `obj`. So methods always work with the current object even if they are inherited.
+- JavaScript'te tüm objelerin gizli `[[Prototype]]`'ı bulunmaktaıd. Bu özellik ya başka bir objedir veya `null`'dur.
+- Erişmek için `obj.__proto__` kullanılabilir. (elbette diğer yollar da mevcuttur, ilerde bunlara değineceğiz.)
+- `[[Prototype]]` tarafından temsil edilen objeye "prototip" denir.
+- Eğer bir `obj`'nin özelliğini okumak veya bir metodunu çağırmak istersek ve o metod yok ise JavaScript bunu prototipte bulmaya çalışır. Yazma/Silme operasyonları doğrudan obje üzerinde çalıştırılır. Özellik ayarlayıcı olmadığı sürece prototip kullanılmaz.
+- Eğer `obj.method()`'u çağırırsak ve `method` prototipten alınırsa `this` yine de `obj`'i temsil eder. Bundan dolayı metodlar her zaman o anki obje ile çalışırlar miras kalsalar bile.

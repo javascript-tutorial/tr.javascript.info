@@ -1,10 +1,10 @@
-importance: 3
+Önem: 3
 
 ---
 
-# What is the result of AND'ed alerts?
+# VE'lendirilmiş uyarıların çıktısı ne olur?
 
-What will this code show?
+Aşağıdaki kodun çıktısı nedir?
 
 ```js
 alert( alert(1) && alert(2) );

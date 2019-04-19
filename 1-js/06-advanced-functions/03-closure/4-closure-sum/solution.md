@@ -1,17 +1,18 @@
-For the second brackets to work, the first ones must return a function.
+İkincisinin çalışabilmesi için ilkinin fonksiyon döndürmesi gerekmektedir.
 
-Like this:
+
+Şunun gibi:
 
 ```js run
-function sum(a) {
+function topla(a) {
 
   return function(b) {
-    return a + b; // takes "a" from the outer lexical environment
+    return a + b; // dıştaki Sözcüksel Ortamdan "a" değişkenini almakta.
   };
 
 }
 
-alert( sum(1)(2) ); // 3
-alert( sum(5)(-1) ); // 4
+alert( topla(1)(2) ); // 3
+alert( topla(5)(-1) ); // 4
 ```
 

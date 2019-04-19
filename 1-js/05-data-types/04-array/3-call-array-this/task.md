@@ -1,10 +1,10 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Calling in an array context
+# Dizinin içerisinden çağrı 
 
-What is the result? Why?
+Sonuç ne olur? Neden?
 
 ```js
 let arr = ["a", "b"];

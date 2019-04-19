@@ -1,24 +1,24 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Debounce decorator
+# Geri Sektiren dekoratör
 
-The result of `debounce(f, ms)` decorator should be a wrapper that passes the call to `f` at maximum once per `ms` milliseconds.
+`debounce(f, ms)` dekoratörü `f` çağrısına `ms` zarfında en fazla bir defa izin vermelidir.
 
-In other words, when we call a "debounced" function, it guarantees that all other future in the closest `ms` milliseconds will be ignored.
+Diğer bir deyişle "debounced" fonksiyonu çağırıldığında, `ms`'e yakın diğer tüm özellikler görmezden gelinecektir.
 
-For instance:
+Örneğin:
 
 ```js no-beautify
 let f = debounce(alert, 1000);
 
-f(1); // runs immediately
-f(2); // ignored
+f(1); // Anında çalışacak
+f(2); // görmezden gelinecek
 
-setTimeout( () => f(3), 100); // ignored ( only 100 ms passed )
-setTimeout( () => f(4), 1100); // runs
-setTimeout( () => f(5), 1500); // ignored (less than 1000 ms from the last run)
+setTimeout( () => f(3), 100); // görmezden gelinecek ( 100 ms'de çalıştığından )
+setTimeout( () => f(4), 1100); // çalışır
+setTimeout( () => f(5), 1500); // görmezden gelinecek çünkü son çağrıdan itibaren 1000ms'den az bir zaman geçmiştir.
 ```
 
-In practice `debounce` is useful for functions that retrieve/update something when we know that nothing new can be done in such a short period of time, so it's better not to waste resources.
+Pratikte geri sektiren dekoratör değişmeyeceğini bildiğimiz bir zaman süresince aynı kaynağı tekrar çağırmamak için kullanılabilir.

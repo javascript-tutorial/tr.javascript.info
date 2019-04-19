@@ -1,25 +1,25 @@
-describe("Calculator", function() {
-  let calculator;
+describe("Hesap Makinesi", function () {
+  let hesapMakinesi;
 
-  before(function() {
-    calculator = new Calculator;
+  before(function () {
+    hesapMakinesi = new HesapMakinesi;
   });
 
-  it("calculate(12 + 34) = 46", function() {
-    assert.equal(calculator.calculate("12 + 34"), 46);
+  it("hesapMakinesi(12 + 34) = 46", function () {
+    assert.equal(hesapMakinesi.hesapla("12 + 34"), 46);
   });
 
-  it("calculate(34 - 12) = 22", function() {
-    assert.equal(calculator.calculate("34 - 12"), 22);
+  it("hesapMakinesi(34 - 12) = 22", function () {
+    assert.equal(hesapMakinesi.hesapla("34 - 12"), 22);
   });
 
-  it("add multiplication: calculate(2 * 3) = 6", function() {
-    calculator.addMethod("*", (a, b) => a * b);
-    assert.equal(calculator.calculate("2 * 3"), 6);
+  it("Çarpım ekle : hesapla(2 * 3) = 6", function () {
+    hesapMakinesi.metodEkle("*", (a, b) => a * b);
+    assert.equal(hesapMakinesi.hesapla("2 * 3"), 6);
   });
 
-  it("add power: calculate(2 ** 3) = 8", function() {
-    calculator.addMethod("**", (a, b) => a ** b);
-    assert.equal(calculator.calculate("2 ** 3"), 8);
+  it("Üs metodu ekle: hesapla(2 ** 3) = 8", function () {
+    hesapMakinesi.metodEkle("**", (a, b) => a ** b);
+    assert.equal(hesapMakinesi.metodEkle("2 ** 3"), 8);
   });
 });

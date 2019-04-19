@@ -1,23 +1,24 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Sort objects
+# Objelerin sıralanması
 
-Write the function `sortByName(users)` that gets an array of objects with property `name` and sorts it.
+`name` özelliğine sahip obje dizisini alan ve `sortByName(kullanicilar)` sıralayan fonksiyonu yazınız.
 
-For instance:
+Örneğin:
 
 ```js no-beautify
-let john = { name: "John", age: 25 }
-let pete = { name: "Pete", age: 30 }
-let mary = { name: "Mary", age: 28 }
+let muzaffer = { adi: "Muzaffer", yas: 25 };
+let mehmet = { adi: "Mehmet",yas: 30 };
+let ahmet = { adi: "Ahmet", yas: 28 };
 
-let arr = [ john, pete, mary ];
+
+let arr = [   muzaffer , mehmet, ahmet ];
 
 sortByName(arr);
 
-// now: [john, mary, pete]
-alert(arr[1].name) // Mary
+// şimdi: [ahmet, mehmet, muzaffer]
+alert(arr[1].adi) // Mehmet
 ```
 

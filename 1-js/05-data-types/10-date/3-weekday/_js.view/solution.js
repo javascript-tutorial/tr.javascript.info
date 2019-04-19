@@ -1,10 +1,10 @@
-function getLocalDay(date) {
+function yerelGunAl(tarih) {
 
-  let day = date.getDay();
+  let gun = tarih.getDay();
 
-  if (day == 0) { // weekday 0 (sunday) is 7 in european
-    day = 7;
+  if (gun == 0) { // Eğer normal haftanın günü 0 ( pazar ) ise bu avrupa takvimine göre 7 olmakta.
+    gun = 7;
   }
 
-  return day;
+  return gun;
 }

@@ -1,7 +1,7 @@
 
 
 ```js run demo
-let calculator = {
+let hesapMakines = {
   sum() {
     return this.a + this.b;
   },

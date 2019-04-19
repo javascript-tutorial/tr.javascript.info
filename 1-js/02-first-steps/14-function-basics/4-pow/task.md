@@ -1,19 +1,19 @@
-importance: 4
+Önem: 4
 
 ---
 
-# Function pow(x,n)
+# usAl(x,n)
 
-Write a function `pow(x,n)` that returns `x` in power `n`. Or, in other words, multiplies `x` by itself `n` times and returns the result.
+`usAl(x,n)` adında bir fonksiyon yazın. Bu fonksiyon `x` in `n` üssünü döndersin. Diğer bir deyişle `x`'i `n` kadar kendisiyle çarpsın.
 
 ```js
-pow(3, 2) = 3 * 3 = 9
-pow(3, 3) = 3 * 3 * 3 = 27
-pow(1, 100) = 1 * 1 * ...*1 = 1
+usAl(3, 2) = 3 * 3 = 9
+usAl(3, 3) = 3 * 3 * 3 = 27
+usAl(1, 100) = 1 * 1 * ...*1 = 1
 ```
 
-Create a web-page that prompts for `x` and `n`, and then shows the result of `pow(x,n)`.
+Bir web sayfası oluşturun ve kullanıcıya `x` ve `n` sayılarını sorsun. Ardından yazdığınız `usAl(x,n)` fonksiyonunu kullanarak sonucu ekranda göstersin.
 
 [demo]
 
-P.S. In this task the function should support only natural values of `n`: integers up from `1`.
+Not: Fonksiyon `n` için `1` den başlayarak doğal sayıları kapsamalıdır.

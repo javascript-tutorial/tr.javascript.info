@@ -1,18 +1,18 @@
-Let's look carefully at what's going on in the call `speedy.eat("apple")`.
+`speedy.eat("apple")` çağrısında ne oluyor isterseniz daha yakından inceleyelim
 
-1. The method `speedy.eat` is found in the prototype (`=hamster`), then executed with `this=speedy` (the object before the dot).
+1. (`=hamster`) protitipinde `speedy.eat` bulunur, sonra `this=speedy` olacak şekilde çalıştırılır. ( .dan önceki obje )
 
-2. Then `this.stomach.push()` needs to find `stomach` property and call `push` on it. It looks for `stomach` in `this` (`=speedy`), but nothing found.
+2. Sonra `this.stomach.push()` `stomach` özelliğini bulmalı ve `push`'u çağırmalı. `this` içinde `stomch`'(`=speedy`) i araştırır fakat bulamaz. 
 
-3. Then it follows the prototype chain and finds `stomach` in `hamster`.
+3. Sonra prototip bağını takip ederek `hamster` içinde `stomach`'i bulur.
 
-4. Then it calls `push` on it, adding the food into *the stomach of the prototype*.
+4. Bunun içindeki `push` u çalıştırır. Böylece *prototip'in `stomach`'i çalışmış olur*
 
-So all hamsters share a single stomach!
+Böylece tüm hamsterlar'ın bir tane `stomach`'i oluyor.
 
-Every time the `stomach` is taken from the prototype, then `stomach.push` modifies it "at place".
+Her defaında prototip'ten `stomach` alındığında ve sonra `stomach.push` ile `olduğu yerde` modifiye eder.
 
-Please note that such thing doesn't happen in case of a simple assignment `this.stomach=`:
+Aklınızda bulunsun basit bir atamada `this.stomach=` gibi basit atamada gerçekleşmez.
 
 ```js run
 let hamster = {
@@ -20,7 +20,7 @@ let hamster = {
 
   eat(food) {
 *!*
-    // assign to this.stomach instead of this.stomach.push
+    // this.stomach.push yerine this.stomach'i ata.
     this.stomach = [food];
 */!*
   }
@@ -34,11 +34,11 @@ let lazy = {
   __proto__: hamster
 };
 
-// Speedy one found the food
+// Speedy yemeği buldu
 speedy.eat("apple");
 alert( speedy.stomach ); // apple
 
-// Lazy one's stomach is empty
+// Lazy'nin stomach'i boş kaldı
 alert( lazy.stomach ); // <nothing>
 ```
 

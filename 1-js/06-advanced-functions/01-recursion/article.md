@@ -1,534 +1,543 @@
-# Recursion and stack
+# Kendini tekrarlayan ( özçağrı )  ve yığın
 
-Let's return to functions and study them more in-depth.
+Bu bölümde fonksiyonlar daha derinlemesine incelenecektir.
 
-Our first topic will be *recursion*.
+İlk konu *özçağrı*  olacaktır.
 
-If you are not new to programming, then it is probably familiar and you could skip this chapter.
+Eğer daha önce program yazdıysanız bir sonraki bölüme geçebilirsiniz.
 
-Recursion is a programming pattern that is useful in situations when a task can be naturally split into several tasks of the same kind, but simpler. Or when a task can be simplified into an easy action plus a simpler variant of the same task. Or, as we'll see soon, to deal with certain data structures.
+Öz çağrı bir programlama desenidir. Bu desen bir görevin aynı türde daha basit görevcikler haline getirilmesini sağlar. Veya bir görev daha kolay aksiyonlara ve aynı şekilde görevlere dönüştürülebildiğinde, veya daha sonra göreceğiniz gibi, belirli veri yapılarında kullanılabilir.
 
-When a function solves a task, in the process it can call many other functions. A partial case of this is when a function calls *itself*. That's called *recursion*.
+Bir fonksiyon problemi çözerken birçok farklı fonksiyonu çağırabilir. Bu özel durumda ise fonksiyon *kendisini* çağırır. Bu olaya *özçağrı*, *recursion* denir.
 
 [cut]
 
-## Two ways of thinking
-
-For something simple to start with -- let's write a function `pow(x, n)` that raises `x` to a natural power of `n`. In other words, multiplies `x` by itself `n` times.
+## Çift yönlü düşünme
+Başlangıçta `us(x,n)` adında bir fonksiyon olsun ve bu `n` üssü `x` i hesaplasın. Diğer bir ifadeyle `x`'i `n` defa kendisiyle çarpsın.
 
 ```js
-pow(2, 2) = 4
-pow(2, 3) = 8
-pow(2, 4) = 16
+us(2, 2) = 4
+us(2, 3) = 8
+us(2, 4) = 16
 ```
 
-There are two ways to implement it.
+Bunu uygulamanın iki yolu bulunmaktadır.
 
-1. Iterative thinking: the `for` loop:
+1. Tekrarlı düşünürseniz: `for` döngüsü:
 
     ```js run
-    function pow(x, n) {
-      let result = 1;
-
-      // multiply result by x n times in the loop
+    function us(x, n) {
+      let sonuc = 1;
+      // x'in x defa kendisiyle çarpımı.
       for(let i = 0; i < n; i++) {
-        result *= x;
+        sonuc *= x;
       }
 
-      return result;
+      return sonuc;
     }
 
-    alert( pow(2, 3) ); // 8
+    alert( us(2, 3) ); // 8
     ```
 
-2. Recursive thinking: simplify the task and call self:
+2. Özçağrı: işi daha basite indirgeyerek kendisini çağırsın:
 
     ```js run
-    function pow(x, n) {
+    function us(x, n) {
       if (n == 1) {
         return x;
       } else {
-        return x * pow(x, n - 1);
+        return x * us(x, n - 1);
       }
     }
 
-    alert( pow(2, 3) ); // 8
+    alert( us(2, 3) ); // 8
     ```
 
-Please note how the recursive variant is fundamentally different.
-
-When `pow(x, n)` is called, the execution splits into two branches:
+Dikkat ederseniz özçağrı fonksiyonu aslen farklıdır.
+`us(x,n)` çağrıldığında çalıştırılma iki dala ayrılır.
 
 ```js
               if n==1  = x
              /
-pow(x, n) =
+us(x, n) =
              \       
-              else     = x * pow(x, n - 1)
+              else     = x * us(x, n - 1)
 ```
 
-1. If `n==1`, then everything is trivial. It is called *the base* of recursion, because it immediately produces the obvious result: `pow(x, 1)` equals `x`.
-2. Otherwise, we can represent `pow(x, n)` as `x * pow(x, n-1)`. In maths, one would write <code>x<sup>n</sup> = x * x<sup>n-1</sup></code>. This is called *a recursive step*: we transform the task into a simpler action (multiplication by `x`) and a simpler call of the same task (`pow` with lower `n`). Next steps simplify it further and further untill `n` reaches `1`.
+1. Eğer `n==1` ise geriye kalanlar önemsizdir. Buna *temel* özçağrı denir, çünkü bu belirli bir sonucu çıktı verir: `us(x,1)` eşittir `x` 
 
-We can also say that `pow` *recursively calls itself* till `n == 1`.
+2. Diğer türlü `us(x,n)` `x*us(x,n-1)` şeklinde ifade edilebilir. Matematiksel olarak <code>x<sup>n</sup> = x * x<sup>n-1</sup></code> şeklinde ifade edilebilir. Buna *öztekrar basamağı* denir. Görev daha küçük aksiyonlara ( `x` ile çarpma ) indirgenmiş olur. Ayrıca aynı görevi daha basit görevlerle ( `us`'ün daha küçük `n` değeri) indirgenmiş oldu. Bir sonraki sitep ise bunun daha basite indirgene indirgene `n`'in `1` e ulaşmasını sağlamaktır.
 
-![recursive diagram of pow](recursion-pow.png)
+Buna `us` *öz çağrı ile* kendisini `n==1` olana kadar çağırır diyebiliriz.
+
+![özçağrı diyagramı](recursion-pow.png)
 
 
-For example, to calculate `pow(2, 4)` the recursive variant does these steps:
+`us(2,4)`'ü hesaplayabilmek için *özçağrı* şu adımları gerçekleştirir:
 
-1. `pow(2, 4) = 2 * pow(2, 3)`
-2. `pow(2, 3) = 2 * pow(2, 2)`
-3. `pow(2, 2) = 2 * pow(2, 1)`
-4. `pow(2, 1) = 2`
+1. `us(2, 4) = 2 * us(2, 3)`
+2. `us(2, 3) = 2 * us(2, 2)`
+3. `us(2, 2) = 2 * us(2, 1)`
+4. `us(2, 1) = 2`
 
-So, the recursion reduces a function call to a simpler one, and then -- to even more simpler, and so on, until the result becomes obvious.
 
-````smart header="Recursion is usually shorter"
-A recursive solution is usually shorter than an iterative one.
+*özçağrı* böylece fonksiyon çağrılarını dah abasite indirgemiştir. Daha sonra daha basite ve en sonunda sonuç belirli olana kadar devam etmiştir.
 
-Here we can rewrite the same using the ternary `?` operator instead of `if` to make `pow(x, n)` more terse and still very readable:
+````smart header="Özçağrı genelde tekrarlı olana göre daha kısadır"
+
+Aşağıda aynı fonksiyonun `?` ile tekrar yazılmış hali bulunmaktadır. 
 
 ```js run
-function pow(x, n) {
+function us(x, n) {
   return (n == 1) ? x : (x * pow(x, n-1));
 }
 ```
 ````
+Maksimum iç içe çağırma sayısına *özçağrı derinliği* `us` fonksiyonunda bu `n`'dir.
 
-The maximal number of nested calls (including the first one) is called *recursion depth*. In our case, it will be exactly `n`.
+JavaScript motorları maksimum özçağrı derinliğini sınırlamaktadır. Bazı motorlarda 10000, bazılarında 100000 limiti bulunmaktadır. Bunun için otomatik optimizasyonlar bulunmaktadır. Fakat yine de her motorda desteklenmemektedir ve çok basit durumlarda kullanılır.
 
-The maximal recursion depth is limited by JavaScript engine. We can make sure about 10000, some engines allow more, but 100000 is probably out of limit for the majority of them. There are automatic optimizations that help alleviate this ("tail calls optimizations"), but they are not yet supported everywhere and work only in simple cases.
+Bu özçağrı uygulamalarını limitler, fakat yine de çoğu yerde kullanılmaktadırlar. Çoğu görevde özçağrı şeklinde düşünmek daha basit ve sürdürülebilir bod yazmanızı sağlayacaktır.
 
-That limits the application of recursion, but it still remains very wide. There are many tasks where recursive way of thinking gives simpler code, easier to maintain.
+## Çalıştırma Yığını
 
-## The execution stack
+Peki *özçağrılar* nasıl çalışır. Bunun için fonksiyonların içinde ne yaptıklarına bakmak gerekmektedir.
 
-Now let's examine how recursive calls work. For that we'll look under the hood of functions.
+Çalışan fonksiyon hakkında bilgi *çalıştırma kaynağında* tutulur.
 
-The information about a function run is stored in its *execution context*.
+[Çalıştırma Kaynağı -  Execution Context](https://tc39.github.io/ecma262/#sec-execution-contexts) fonksiyonun çalışması hakkında detayları tutan dahili bir veri yapısıdır: Kontrol akışı nerede, o anki değişkenlerin değeri, `this` neye denk gelir ve bunun gibi detaylar dahili detaylar tutar.
 
-The [execution context](https://tc39.github.io/ecma262/#sec-execution-contexts) is an internal data structure that contains details about the execution of a function: where the control flow is now, the current variables, the value of `this` (we don't use it here) and few other internal details.
+Her fonksiyon çağrısı kendine ait çalıştırma kaynağı tutar.
 
-One function call has exactly one execution context associated with it.
+Eğer bir fonksiyon içeride başka bir çağrı yaparsa şunlar olur:
 
-When a function makes a nested call, the following happens:
+- O anki fonksiyon durur.
+- Bu fonksiyon ile ilintili çalışma kaynağı *çalışma kaynağı yığını* veri yapısı şeklinde kaydedilir.
+- Dallanılan çağrı çalıştırılır.
+- Bu işlem bittikten sonra çalışma kaynağı yığınından daha önceki çalışmakta olan yer geri alınır, böylece fonksiyon kaldığı yerden görevini tamamlayabilir.
 
-- The current function is paused.
-- The execution context associated with it is remembered in a special data structure called *execution context stack*.
-- The nested call executes.
-- After it ends, the old execution context is retrieved from the stack, and the outer function is resumed from where it stopped.
+Aşağıda `us(2,3)`'ün çalışması gösterilmiştir.
 
-Let's see what happens during the `pow(2, 3)` call.
+### us(2, 3)
 
-### pow(2, 3)
+`us(2,3)` çağrısının başlangıcında, çalışma kaynağı değişkenleri `x=2,n=3` olacak şekilde tutar. Çalışma şu anda birinci satırdadır. 
 
-In the beginning of the call `pow(2, 3)` the execution context will store variables: `x = 2, n = 3`, the execution flow is at line `1` of the function.
-
-We can sketch it as:
-
+Bu aşağıdaki gibi gösterilebilir:
 <ul class="function-execution-context-list">
   <li>
-    <span class="function-execution-context">Context: { x: 2, n: 3, at line 1 }</span>
-    <span class="function-execution-context-call">pow(2, 3)</span>
+    <span class="function-execution-context">Çalışma kaynağı: { x: 2, n: 3, birinci satırda }</span>
+    <span class="function-execution-context-call">us(2, 3)</span>
   </li>
 </ul>
 
-That's when the function starts to execute. The condition `n == 1` is falsy, so the flow continues into the second branch of `if`:
+Ardından fonksiyon çalışmaya başlar. `n==1` şartı yanlıştır, bundan dolayı ikinci `if`'e geçer.
 
 ```js run
-function pow(x, n) {
+function us(x, n) {
   if (n == 1) {
     return x;
   } else {
 *!*
-    return x * pow(x, n - 1);
+    return x * us(x, n - 1);
 */!*
   }
 }
 
-alert( pow(2, 3) );
+alert( us(2, 3) );
 ```
 
-
-The variables are same, but the line changes, so the context is now:
-
-<ul class="function-execution-context-list">
-  <li>
-    <span class="function-execution-context">Context: { x: 2, n: 3, at line 5 }</span>
-    <span class="function-execution-context-call">pow(2, 3)</span>
-  </li>
-</ul>
-
-To calculate `x*pow(x, n-1)`, we need to make a subcall of `pow` with new arguments `pow(2, 2)`.
-
-### pow(2, 2)
-
-To do a nested call, JavaScript remembers the current execution context in the *execution context stack*.
-
-Here we call the same function `pow`, but it absolutely doesn't matter. The process is the same for all functions:
-
-1. The current context is "remembered" on top of the stack.
-2. The new context is created for the subcall.
-3. When the subcall is finished -- the previous context is popped from the stack, and its execution continues.
-
-Here's the context stack when we entered the subcall `pow(2, 2)`:
+Değişkenler aynı fakat satır değiştir, şimdiki kaynak şu şekilde:
 
 <ul class="function-execution-context-list">
   <li>
-    <span class="function-execution-context">Context: { x: 2, n: 2, at line 1 }</span>
-    <span class="function-execution-context-call">pow(2, 2)</span>
-  </li>
-  <li>
-    <span class="function-execution-context">Context: { x: 2, n: 3, at line 5 }</span>
-    <span class="function-execution-context-call">pow(2, 3)</span>
+    <span class="function-execution-context">Kaynak: { x: 2, n: 3, 5. satırda }</span>
+    <span class="function-execution-context-call">us(2, 3)</span>
   </li>
 </ul>
 
-The new current execution context is on top (and bold), and previous remembered contexts are below.
+`x*pow(x, n-1)`'i hesaplayabilmek için `us` fonksiyonuna `us(2,2)` şeklinde yeni bir çağrı yapılmalıdır.
 
-When we finish the subcall -- it is easy to resume the previous context, because it keeps both variables and the exact place of the code where it stopped. Here in the picture we use the word "line", but of course it's more precise.
+### us(2, 2)
 
-### pow(2, 1)
+Dallanma işleminin yapılabilmesi için JavaScript'in öncelikle o anki çalışma durumunu *çalışma kaynağı yığını*na atması gerekmektedir.
 
-The process repeats: a new subcall is made at line `5`, now with arguments `x=2`, `n=1`.
+Burada `us` fonksiyonu çağrılmıştır. Bu herhangi bir fonksiyon da olabilirdi, aralarında bu yönden hiç bir farklılık bulunmamaktadır:
 
+1. O anki kaynak yığının en üstüne "hatırlatılır"
+2. Alt çağrı için yeni bir kaynak yaratılır.
+3. Alt çağrılar bittiğinde -- bir önceki kaynak yığından alınır ve çalışmasına devam eder.
+
+Aşağıda `pow(2,2)` altçağrısına girildiğinde kaynak yığınının durumu gösterilmektedir.
+
+<ul class="function-execution-context-list">
+  <li>
+    <span class="function-execution-context">Kaynak: { x: 2, n: 2, 1. satırda }</span>
+    <span class="function-execution-context-call">us(2, 2)</span>
+  </li>
+  <li>
+    <span class="function-execution-context">Kaynak: { x: 2, n: 3, 5. satırda }</span>
+    <span class="function-execution-context-call">us(2, 3)</span>
+  </li>
+</ul>
+
+Üst tarafta o anda çalışan kaynak ( kalın harflerle ), alt tarafta ise "hatırlatılan" kaynak bulunmaktadır.
+
+Altçağrı bittiğinde, daha önceki kalınan kaynaktan devam etmek kolaydır. Çünkü bu her iki değişkeni ve kaldığı satırı tutmaktadır. Burada "satır" denmesine rağmen aslında bunun daha net birşey olduğu bilinmelidir.
+
+
+### us(2, 1)
+
+İşlem tekrar ediyor: `5.` satırda yeni bir altçağrı yapılmaktadır, argümanlar ise `x=2`, `n=1` şeklindedir.
+
+Yeni çalışma yığını oluşturur, bir önceki yığının üstüne itelenir. 
 A new execution context is created, the previous one is pushed on top of the stack:
 
 <ul class="function-execution-context-list">
   <li>
-    <span class="function-execution-context">Context: { x: 2, n: 1, at line 1 }</span>
-    <span class="function-execution-context-call">pow(2, 1)</span>
+    <span class="function-execution-context">Kaynak: { x: 2, n: 1, 1. satır }</span>
+    <span class="function-execution-context-call">us(2, 1)</span>
   </li>
   <li>
-    <span class="function-execution-context">Context: { x: 2, n: 2, at line 5 }</span>
-    <span class="function-execution-context-call">pow(2, 2)</span>
+    <span class="function-execution-context">Kaynak: { x: 2, n: 2, 5. satır }</span>
+    <span class="function-execution-context-call">us(2, 2)</span>
   </li>
   <li>
-    <span class="function-execution-context">Context: { x: 2, n: 3, at line 5 }</span>
-    <span class="function-execution-context-call">pow(2, 3)</span>
+    <span class="function-execution-context">Kaynak: { x: 2, n: 3, 5.satır }</span>
+    <span class="function-execution-context-call">us(2, 3)</span>
   </li>
 </ul>
 
-There are 2 old contexts now and 1 currently running for `pow(2, 1)`.
+Şu anda 2 eski kaynak ve 1 tane çalışmakta olan kaynak bulunmaktadır `us(2,1)`
 
-### The exit
-
-During the execution of `pow(2, 1)`, unlike before, the condition `n == 1` is truthy, so the first branch of `if` works:
+### Çıkış
+`us(2,1)` çalışırken diğerlerinin aksine `n==1` şartı sağlanır, bundan dolayı ilk defa birinci `if` çalışır.
 
 ```js
-function pow(x, n) {
+function us(x, n) {
   if (n == 1) {
 *!*
     return x;
 */!*
   } else {
-    return x * pow(x, n - 1);
+    return x * us(x, n - 1);
   }
 }
 ```
+Daha fazla dallanan çağrı olmadığından dolayı fonksiyon sona erer ve değeri döner.
 
-There are no more nested calls, so the function finishes, returning `2`.
+Fonksiyon bittiğinden dolayı, çalışma kaynağına gerek kalmamıştır ve dolayısıyla hafızadan silinir. Bir önceki yığından alınır:
 
-As the function finishes, its execution context is not needed any more, so it's removed from the memory. The previous one is restored off the top of the stack:
-
-
-<ul class="function-execution-context-list">
-  <li>
-    <span class="function-execution-context">Context: { x: 2, n: 2, at line 5 }</span>
-    <span class="function-execution-context-call">pow(2, 2)</span>
-  </li>
-  <li>
-    <span class="function-execution-context">Context: { x: 2, n: 3, at line 5 }</span>
-    <span class="function-execution-context-call">pow(2, 3)</span>
-  </li>
-</ul>
-
-The execution of `pow(2, 2)` is resumed. It has the result of the subcall `pow(2, 1)`, so it also can finish the evaluation of `x * pow(x, n-1)`, returning `4`.
-
-Then the previous context is restored:
 
 <ul class="function-execution-context-list">
   <li>
-    <span class="function-execution-context">Context: { x: 2, n: 3, at line 5 }</span>
-    <span class="function-execution-context-call">pow(2, 3)</span>
+    <span class="function-execution-context">Kaynak: { x: 2, n: 2, 5. satırda }</span>
+    <span class="function-execution-context-call">us(2, 2)</span>
+  </li>
+  <li>
+    <span class="function-execution-context">Kaynak: { x: 2, n: 3, 5. satırda }</span>
+    <span class="function-execution-context-call">us(2, 3)</span>
   </li>
 </ul>
 
-When it finishes, we have a result of `pow(2, 3) = 8`.
+`us(2,2)` nin çalışması devam etti. `us(2,1)`'in sonucuna sahip olduğundan `x * us(x,n-1)`'in sonucunu bulabilir, bu da `4`'tür.
 
-The recursion depth in this case was: **3**.
+Ardından bir önceki kaynak geri yüklenir:
 
-As we can see from the illustrations above, recursion depth equals the maximal number of context in the stack.
+<ul class="function-execution-context-list">
+  <li>
+    <span class="function-execution-context">Kaynak: { x: 2, n: 3, 5. satırda }</span>
+    <span class="function-execution-context-call">us(2, 3)</span>
+  </li>
+</ul>
 
-Note the memory requirements. Contexts take memory. In our case, raising to the power of `n` actually requires the memory for `n` contexts, for all lower values of `n`.
+İşlemler bittiğinde, `us(2,3) = 8` sonucu alınır.
 
-A loop-based algorithm is more memory-saving:
+Bu durumda özçağrı derinliği **3**tür
+
+Yukarıda da görüldüğü üzere, özçağrı derinliği yığındaki kaynak sayısı demektir. Bu drumda `n`'in üssü değiştirildiğinde daha fazla hafıza kullanacaktır.
+
+Döngü bazlı algoritma daha az hafıza kullanacaktır:
 
 ```js
-function pow(x, n) {
-  let result = 1;
+function us(x, n) {
+  let sonuc = 1;
 
   for(let i = 0; i < n; i++) {
-    result *= x;
+    sonuc *= x;
   }
 
-  return result;
+  return sonuc;
 }
 ```
 
-The iterative `pow` uses a single context changing `i` and `result` in the process. Its memory requirements are small, fixed and do not depend on `n`.
+Tekrar eden `us` fonksiyonu `i` ve `sonuc` kaynağını kullanır ve sürekli bunları değiştirir. Hafıza gereksinimleri oldukça azdır ve bu hafıza büyüklüğü `n`'e bağlı değildir.
 
-**Any recursion can be rewritten as a loop. The loop variant usually can be made more effective.**
+**Tüm özçağrılar döngü olarak yazılabilir. Döngü versiyonu daha az kaynak gerektirecektir**
 
-...But sometimes the rewrite is non-trivial, especially when function uses different recursive subcalls depending on conditions and merges their results or when the branching is more intricate. And the optimization may be unneeded and totally not worth the efforts.
+... Bazen yeniden yazmak çok kolay değildir, özellikle fonksiyon alt çağrılarda özçağrı kullanıyorsa, bu çağrılar sonucunda daha karmaşık dallanmalar oluyor ise optimizasyon değmeyebilir.
 
-Recursion can give a shorter code, easier to understand and support. Optimizations are not required in every place, mostly we need a good code, that's why it's used.
+Özçağrı fonksiyonun daha kısa kod ile yazılmasını sağlar, ayrıca anlaşılmayı da kolaylaştırır. Optimizasyon her yerde gerekli değildir, genelde iyi kod gereklidir, bunun için kullanılır.
 
-## Recursive traversals
+## Özçağrı Akışı
 
-Another great application of the recursion is a recursive traversal.
+Özçağrıların kullanılabileceği diğer bir uygulama özçağrı akışıdır.
 
-Imagine, we have a company. The staff structure can be presented as an object:
+Bir firma hayal edin. Çalışanların yapısı obje olarak şu şekilde tanımlanabilir:
 
 ```js
-let company = {
-  sales: [{
-    name: 'John',
-    salary: 1000
+let firma = {
+  satis: [{
+    adi: 'Ahmet',
+    maasi: 1000
   }, {
-    name: 'Alice',
-    salary: 600
+    adi: 'Mehmet',
+    salary: 150
   }],
 
-  development: {
-    sites: [{
-      name: 'Peter',
-      salary: 2000
+  gelistirme: {
+    siteler: [{
+      adi: 'Mustafa',
+      ucret: 200
     }, {
-      name: 'Alex',
-      salary: 1800
+      adi: 'Mazlum',
+      ucret: 50
     }],
 
-    internals: [{
-      name: 'Jack',
-      salary: 1300
+    dahili: [{
+      adi: 'Zafer',
+      ucret: 1300
     }]
   }
 };
 ```
+Diğer bir deyişle bu firmanın departmanları bulunmaktadır.
 
-In other words, a company has departments.
+- Bir departman çalışanlar dizilerinden oluşabilir. Öreğin `satis` departmanı 2 tane çalışana sahiptir: Ahmet ve Mehmet.
+- Veya bazen departmanlar alt departmanlara ayrılabilirler. Örneğin `gelistirme` departmanı `siteler` ve `dahili` olmak üzere ikiye ayrılmıştır. Her bir alt departmanın kendine ait çalışanları vardır.
+- Bunun yanında departmanların büyüyüp alt departmanlara ayrılması da mümkündür.
 
-- A department may have an array of staff. For instance, `sales` department has 2 employees: John and Alice.
-- Or a department may split into subdepartments, like `development` has two branches: `sites` and `internals`. Each of them has the own staff.
-- It is also possible that when a subdepartment grows, it divides into subsubdepartments (or teams).
+    Örneğin `siteler` departmanı ileride iki ayrı takıma `siteA` ve `siteB` şeklinde ayrılabilirler. Ve yine potansiyele göre ileride bu takımlar da alt takımlara ayrılabilirler.
 
-    For instance, the `sites` department in the future may be split into teams for `siteA` and `siteB`. And they, potentially, can split even more. That's not on the picture, just something to have in mind.
+Öyle bir fonksiyon olsun ki tüm çalışanların maaşlarının toplamını dönsün. Bu nasıl yapılır?
 
-Now let's say we want a function to get the sum of all salaries. How can we do that?
 
-An iterative approach is not easy, because the structure is not simple. The first idea may be to make a `for` loop over `company` with nested subloop over 1st level departments. But then we need more nested subloops to iterate over the staff in 2nd level departments like `sites`. ...And then another subloop inside those for 3rd level departments that might appear in the future? Should we stop on level 3 or make 4 levels of loops? If we put 3-4 nested subloops in the code to traverse a single object, it becomes rather ugly.
+Döngü yaklaşımı kolay değildir, çünkü yapı kolay değildir. Önce `firma` için bir `for` döngüsü kullanıldığını ve bununla ilk seviye departmanları bulduğunuzu varsayın. Sonrasında bunun içine bir döngü daha yapıp `siteler`'i bulmanız gerekir. Ayrıca ilerisi için bir tane daha `for` döngüsü yapmanız lazım ve belki yine onun içerisine de bir döngü koymanız lazım. 3. basamakta mı 4. basamakta mı durmalı? Eğer ileride bu yapı sadece bir seviyeye indirilirse kodda karmaşıklık meydana gelir.
 
-Let's try recursion.
+Özçağrı yaklaşımıyla.
 
-As we can see, when our function gets a department to sum, there are two possible cases:
+Fonksiyon toplanacak departmanı aldığında iki muhtemel durum mevcuttur:
 
-1. Either it's a "simple" department with an *array of people* -- then we can sum the salaries in a simple loop.
-2. Or it's *an object with `N` subdepartments* -- then we can make `N` recursive calls to get the sum for each of the subdeps and combine the results.
+1. Bu "basit" bir departman olabilir *içerisinde çalışanlar bulunur* -- sonra bunların maaşları basit bir döngüyle toplanabilir.
+2. Veya *`N` alt departmana sahip obje* olabilir - öyleyse `N` defa özçağrı yapıp her bir alt departmanın toplamının sonucunu döndürülür.
 
-The (1) is the base of recursion, the trivial case.
+(1) özçağrının temelidir.
 
-The (2) is the recursive step. A complex task is split into subtasks for smaller departments. They may in turn split again, but sooner or later the split will finish at (1).
+(2) Özçağrının tekrar eden adımlarıdır. Karmaşık görev daha küçük departman görevlerine ayrılır. Sonrasında yine ayrılabilir fakat en sonunda (1)'e erişecektir.
 
-The algorithm is probably even easier to read from the code:
+Algoritma kodunu okumak oldukça kolaydır:
 
 
 ```js run
-let company = { // the same object, compressed for brevity
-  sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 600 }],
-  development: {
-    sites: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800 }],
-    internals: [{name: 'Jack', salary: 1300}]
+let firma = {
+  satis: [{
+    adi: 'Ahmet',
+    maasi: 1000
+  }, {
+    adi: 'Mehmet',
+    salary: 150
+  }],
+
+  gelistirme: {
+    siteler: [{
+      adi: 'Mustafa',
+      ucret: 200
+    }, {
+      adi: 'Mazlum',
+      ucret: 50
+    }],
+
+    dahili: [{
+      adi: 'Zafer',
+      ucret: 1300
+    }]
   }
 };
 
-// The function to do the job
+// İşi yapan fonksiyon
 *!*
-function sumSalaries(department) {
-  if (Array.isArray(department)) { // case (1)
-    return department.reduce((prev, current) => prev + current.salary, 0); // sum the array
-  } else { // case (2)
-    let sum = 0;
-    for(let subdep of Object.values(department)) {
-      sum += sumSalaries(subdep); // recursively call for subdepartments, sum the results
+function maaslariTopla(firma) {
+  if (Array.isArray(firma)) { // (1). durum
+    return firma.reduce((onceki, suanki) => onceki + suanki.salary, 0); // diziyi topla
+  } else { // (2.) durum
+    let toplam = 0;
+    for(let altDep of Object.values(altDep)) {
+      sum += maaslariTopla(altDep); // özçağrı ile alt departmanların çağrılması, bunu sum ile topla.
     }
     return sum;
   }
 }
 */!*
 
-alert(sumSalaries(company)); // 6700
+alert(maaslariTopla(firma)); // 2700
 ```
+Kod oldukça kısa ve anlaması kolay(umarım). Burada özçağrının gücünden bahsetmek mümkün, her seviye alt departman için çalışacaktır.
 
-The code is short and easy to understand (hopefully?). That's the power of recursion. It also works for any level of subdepartment nesting.
+Aşağıda ise bu çağrının diyagramı bulunmaktadır.
 
-Here's the diagram of calls:
+![Özçağrı ile maaşlar](recursive-salaries.png)
 
-![recursive salaries](recursive-salaries.png)
+Prensip basitçe şu şekilde açıklanabilir: Obje için `{...}` altçağrıları yapılır, `[...]` ise özçağrı ağacının "yapraklarıdır", anında sonucu dönerler.
 
-We can easily see the principle: for an object `{...}` subcalls are made, while arrays `[...]` are the "leaves" of the recursion tree, they give immediate result.
+Kodun akıllı özellikler kullandığına dikkat edin, bunlar daha önceki kolarda işlenmişti:
 
-Note that the code uses smart features that we've covered before:
-
-- Method `arr.reduce` explained in the chapter <info:array-methods> to get the sum of the array.
-- Loop `for(val of Object.values(obj))` to iterate over object values: `Object.values` returns an array of them.
+-  `arr.reduce` metodu <info:array-methods> bölümünde bir dizinin toplamını almak için kullanılmıştı.
+- `for(val of Object.values(obj))` objenin değerlerini dönmek için kullanılmıştı: `Object.values` objenin değerlerini dizi olarak döner.
 
 
-## Recursive structures
+## Özçağrı yapıları
 
-A recursive (recursively-defined) data structure is a structure that replicates itself in parts.
+Özçağrı yapıları, kendini bazı bölümlerde tekrar eden veri yapılarıdır.
 
-We've just seen it in the example of a company structure above.
+Örnekte kullanılan firmalar objesi bu yapıyı kullanmaktadır.
 
-A company *department* is:
-- Either an array of people.
-- Or an object with *departments*.
+Bir *departman*
+- Dizi veya çalışanlardan oluşur.
+- Veya *departmanlardan* oluşur.
 
-For web-developers there are much better known examples: HTML and XML documents.
+Web-geliştiricileri için daha bilinen bir örneği: HTML ve XML dökümanlarıdır.
 
-In the HTML document, an *HTML-tag* may contain a list of:
-- Text pieces.
-- HTML-comments.
-- Other *HTML-tags* (that in turn may contain text pieces/comments or other tags etc).
+HTML dökümanında, *HTML-tag*'ı şunları içerebilir:
+- Metinler
+- HTML-yorumları
+- Diğer *HTML-tagları* ( bunlar da yine metinler, yorumlar ve diğer tagları içerebilir)
 
-That's once again a recursive definition.
+Bu da yine özçağrı yapısıdır.
 
-For better understanding, we'll cover one more recursive structure named "Linked list" that might be a better alternative for arrays in some cases.
+Daha iyi anlaşılması için "Linked list" yapısı üzerinden gitmek gerekir. Bu bazı durumlarda *dizi*lere alternatif olarak kullanılabilir.
 
 ### Linked list
 
-Imagine, we want to store an ordered list of objects.
+Diyelim objelerin sıralı şekilde liste halinde tutmak istiyorsunuz.
 
-The natural choice would be an array:
+
+Diziler ile aşağıdaki gibi yapılabilir:
 
 ```js
 let arr = [obj1, obj2, obj3];
 ```
 
-...But there's a problem with arrays. The "delete element" and "insert element" operations are expensive. For instance, `arr.unshift(obj)` operation has to renumber all elements to make room for a new `obj`, and if the array is big, it takes time. Same with `arr.shift()`.
+... Fakat diziler "eleman silme", "eleman ekle" gibi olaylar için çok işlem yaparlar. Örneğin `arr.unshift(ob)` işlemi tüm elemanları yeni eleman için tekrardan sıraya dizer, eğer dizi büyükse bu zaman alır. Aynısı `arr.shift()` için de geçerlidir.
 
-The only structural modifications that do not require mass-renumbering are those that operate with the end of array: `arr.push/pop`. So an array can be quite slow for big queues.
 
-Alternatively, if we really need fast insertion/deletion, we can choose another data structure called a [linked list](https://en.wikipedia.org/wiki/Linked_list).
+Tekrardan numaralama gerektirmeyen `arr.push/pop` metodları kullanılabilir. Bunlar da dizinin sonuna ekler veya çıkarır. Çok elemanlı dizilerde bu işlemlerin yavaş olacağı söylenebilir.
 
-The *linked list element* is recursively defined as an object with:
-- `value`.
-- `next` property referencing the next *linked list element* or `null` if that's the end.
+Alternatif olarak, eğer hızlı bir şekilde, silme/yerleştirme istenirse diğer bir veri yapısı olan [linked list](https://en.wikipedia.org/wiki/Linked_list) kullanılabilir.
 
-For instance:
+
+*linked list elemanı* özçağrı biçimde aşağıdaki obje gibi tanımlanır:
+- `deger`.
+- `sonraki` sonraki *linked list elemanı*'nı tenımlar, sonuncuysa `null` döner.
+
+Örneğin:
 
 ```js
 let list = {
-  value: 1,
-  next: {
-    value: 2,
-    next: {
-      value: 3,
-      next: {
-        value: 4,
-        next: null
+  deger: 1,
+  sonraki: {
+    deger: 2,
+    sonraki: {
+      deger: 3,
+      sonraki: {
+        deger: 4,
+        sonraki: null
       }
     }
   }
 };
 ```
+Bu listenin grafiksel gösterimi şu şekildedir:
 
-Graphical representation of the list:
 
 ![linked list](linked-list.png)
 
-An alternative code for creation:
+Bu yapıyı yaratmanın alternatif yolu şu şekildedir:
 
 ```js no-beautify
-let list = { value: 1 };
-list.next = { value: 2 };
-list.next.next = { value: 3 };
-list.next.next.next = { value: 4 };
+let list = { deger: 1 };
+list.sonraki = { deger: 2 };
+list.sonraki.sonraki = { deger: 3 };
+list.sonraki.sonraki.sonraki = { deger: 4 };
 ```
+Burada görüldüğü üzere her obje `deger`e sahiptir ve komşusu olan `sonraki`ni gösterir. `list` değişkeni bu zincirin ilk halkasıdır, sonrasında `sonraki` pointer'ını takip eder.
 
-Here we can even more clearer see that there are multiple objects, each one has the `value` and `next` pointing to the neighbour. The `list` variable is the first object in the chain, so following `next` pointers from it we can reach any element.
-
-The list can be easily split into multiple parts and later joined back:
+Liste kolayca birçok parçaya bölünebilir ve sonradan tek bir yapı haline getirilebilir:
 
 ```js
-let secondList = list.next.next;
+let ikinciList = list.next.next;
 list.next.next = null;
 ```
 
-![linked list split](linked-list-split.png)
+![linked list ayırma](linked-list-split.png)
 
-To join:
+Birleştirme:
 
 ```js
-list.next.next = secondList;
+list.next.next = ikinciList;
 ```
+Ve istenildiği gibi elemanlar bir yerden silinebilir veya eklenebilir.
 
-And surely we can insert or remove items in any place.
-
-For instance, to prepend a new value, we need to update the head of the list:
+Örneğin yeni bir değer ekleneceği zaman, listenin başlangıcının güncellenmesi gerekir:
 
 ```js
-let list = { value: 1 };
-list.next = { value: 2 };
-list.next.next = { value: 3 };
-list.next.next.next = { value: 4 };
+let list = { deger: 1 };
+list.sonraki = { deger: 2 };
+list.sonraki.sonraki = { deger: 3 };
+list.sonraki.sonraki.sonraki = { deger: 4 };
 
 *!*
-// prepend the new value to the list
-list = { value: "new item", next: list };
+// Yeni bir değer ekleneceği zaman 
+list = { deger: "yeni eleman", sonraki: list };
 */!*
 ```
 
-![linked list](linked-list-0.png)
+![linked list](linked-list-0.png) 
 
-To remove a value from the middle, change `next` of the previous one:
+Yine ortalardan bir yerden veri silineceği zaman `sonraki`'nin bir öncekine getirilmesi gerekri.
 
 ```js
-list.next = list.next.next;
+list.sonraki = list.sonraki.sonraki;
 ```
 
 ![linked list](linked-list-remove-1.png)
 
-We made `list.next` jump over `1` to value `2`. The value `1` is now excluded from the chain. If it's not stored anywhere else, it will be automatically removed from the memory.
+`list.sonraki`'nin değeri `1`'den `2`'ye geçirildi. `1` değeri artık zincirden çıkarıldı. Eğer bu değer başka bir yerde tutulmuyor ise, bu değer ileride otomatik olarak hafızadan silinecektir.
 
-Unlike arrays, there's no mass-renumbering, we can easily rearrange elements.
+Diziler gibi çok büyük sayida tekrar numaralama bulunmamaktadır, ve kolayca istenilen eleman istenilen yere koyulur.
 
-Naturally, lists are not always better than arrays. Otherwise everyone would use only lists.
+Her zaman List diziden daha iyidir denemez. Öyle olsaydı herkes dizi yerine List kullanırdı.
 
-The main drawback is that we can't easily access an element by its number. In an array that's easy: `arr[n]` is a direct reference. But in the list we need to start from the first item and go `next` `N` times to get the Nth element.
+En büyük handikapı List'te istenilen elemana kolayca erişim sağlanamaz. Dizilerde bu oldukça kolaydır: `dizi[n]` doğrudan referans verir. Fakat dizilerde ilk elemandan itibaren `sonraki` şeklinde `N` defa gitmek gerekir.
 
-...But we don't always need such operations. For instance, when we need a queue or even a [deque](https://en.wikipedia.org/wiki/Double-ended_queue) -- the ordered structure that must allow very fast adding/removing elements from both ends.
+Fakat çoğu zaman böyle bir işleme ihtiyaç duymayız. Örneğin bir kuyruk ihtiyacı olduğunda hatta [deque](https://en.wikipedia.org/wiki/Double-ended_queue) ihtiyacı olduğunda hızlı bir şekilde baştan veya sondan eleman eklenip silinmesi gerekir.
 
-Sometimes it's worth to add another variable named `tail` to track the last element of the list (and update it when adding/removing elements from the end). For large sets of elements the speed difference versus arrays is huge.
+Bazen `kuyruk` adında bir değişken eklenerek  ( yeni eleman eklendiğinde/çıkarıldığında ) listenin son elemanı takip edilebilir. Büyük dizilerde listeye göre hız oldukça fazladır.
 
-## Summary
+## Özet
 
-Terms:
-- *Recursion*  is a programming term that means a "self-calling" function. Such functions can be used to solve certain tasks in elegant ways.
+Tanımlar:
+- *Öz Çağrı*  kendi kendini çağırma fonksiyonu demektir. Böyle fonksiyonlar belirli yapıdaki görevlerin çözülmesini sağlar. 
 
-    When a function calls itself, that's called a *recursion step*. The *basis* of recursion is function arguments that make the task so simple that the function does not make further calls.
+    Fonksiyon kendisini çağırdığında buna *öztekrar adımı* denir. *temel* ise öz çağrı fonksiyonun argümanının tekrar öz çağrı yapılamayacak kadar basite indirgenmesi olayıdır.
+    
+-  [Özçağrı yapısı](https://en.wikipedia.org/wiki/Recursive_data_type) kendisini tekrar kullanarak tanımlanan veri yapılarıdır.
 
-- A [recursively-defined](https://en.wikipedia.org/wiki/Recursive_data_type) data structure is a data structure that can be defined using itself.
-
-    For instance, the linked list can be defined as a data structure consisting of an object referencing a list (or null).
-
+    Örneğin, linked list objenin listeyi referans veren bir veri yapısı olarak tanımlanabilir.
+    
     ```js
-    list = { value, next -> list }
+    list = { deger, sonraki -> list }
     ```
-
-    Trees like HTML elements tree or the department tree from this chapter are also naturally recursive: they branch and every branch can have other branches.
-
-    Recursive functions can be used to walk them as we've seen in the `sumSalary` example.
-
-Any recursive function can be rewritten into an iterative one. And that's sometimes required to optimize stuff. But for many tasks a recursive solution is fast enough and easier to write and support.
+    HTML elemanlarının ağacı veya departman ağacı gibi yapılar özçağrı yapısıdır: Bunların dalları ve dallarının yine dalları bulunmaktadır.
+    
+    *Özçağrı* fonksiyonları `maaslariTopla` fonksiyonunda olduğu gibi elemanların üzerinden geçer.
+    
+Her özçağrı fonksiyonu tekrarlı şekile getirilebilir. Bazen optimize etmek için kullanılabilir. Fakat çoğu görev için özçağrı çözümleri yeteri kadar hızlı ve yazması kolaydır.

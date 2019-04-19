@@ -17,14 +17,12 @@ function debounce(f, ms) {
 
 }
 ```
+`debounce` çağrısı bir saklayıcı döner. İki durum söz konusudur:
 
-The call to `debounce` returns a wrapper. There may be two states:
+- `isCooldown = false` -- çalışmaya hazır.
+- `isCooldown = true` -- timeout'u bekliyor..
 
-- `isCooldown = false` -- ready to run.
-- `isCooldown = true` -- waiting for the timeout.
+İlk çağırıldığında `isCooldown` false döner, bundan dolayı çalışır ve `isCooldown` `true` olur.
 
-In the first call `isCooldown` is falsy, so the call proceeds, and the state changes to `true`.
-
-While `isCooldown` is true, all other calls are ignored.
-
-Then `setTimeout` reverts it to `false` after the given delay.
+`isCooldown` true iken diğer çağrılar görmezden gelinir.
+`setTimeout` belirlenen vakit geçtikten sonra tekrar `isCooldown`'u false'a çevirir.

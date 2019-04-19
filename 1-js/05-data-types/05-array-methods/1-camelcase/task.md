@@ -1,19 +1,17 @@
-importance: 5
+Önem: 5
 
 ---
+# border-left-width'i borderLeftWidth gibi deve hörgücü(camelcase) şekline getiren fonksiyonu yazınız.
 
-# Translate border-left-width to borderLeftWidth
+`camelize(str)` fonksiyonu yazınız. Bu metod "benim-öz-geçmişim" gibi yazılan kelimeleri "benimÖzGeçmişim" şekline getiren fonksiyonu yazınız.
 
-Write the function `camelize(str)` that changes dash-separated words like "my-short-string" into camel-cased "myShortString".
+Bu fonksiyon: tüm tireleri silmeli, dashten sonraki kelimenin ilk harfi büyük harf haline getirilmeli.
 
-That is: removes all dashes, each word after dash becomes uppercased.
-
-Examples:
+Örnek:
 
 ```js
 camelize("background-color") == 'backgroundColor';
 camelize("list-style-image") == 'listStyleImage';
 camelize("-webkit-transition") == 'WebkitTransition';
 ```
-
-P.S. Hint: use `split` to split the string into an array, transform it and `join` back.
+Not: `split` kullanarak karakterleri dizi haline getirebilirsiniz, bunu `join` ile tekrar karakter dizisi haline getirin.

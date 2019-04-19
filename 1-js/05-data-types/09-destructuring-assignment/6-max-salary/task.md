@@ -1,22 +1,22 @@
-importance: 5
+Önem: 5
 
 ---
 
-# The maximal salary 
+# Azami Maaş
 
-There is a `salaries` object:
+Maaşların olduğu obje:
 
 ```js
-let salaries = {
-  "John": 100,
-  "Pete": 300,
-  "Mary": 250
+let maaslar = {
+  "Ahmet": 100,
+  "Mehmet": 300,
+  "Muzaffer": 250
 };
 ```
 
-Create the function `topSalary(salaries)` that returns the name of the top-paid person.
+`azamiMaas(maaslar)` fonksiyonu gönderilen maaşların içerisinden kimin en yüksek maaşı aldığını döndürsün.
 
-- If `salaries` is empty, it should return `null`.
-- If there are multiple top-paid persons, return any of them.
+- Eğer `maaslar` boş ise `null` döndürmelidir.
+- Eğer bir kaç tane en yüksek maaşlı kişi var ise bu durumda onları dizi şeklinde döndürsün.
 
-P.S. Use `Object.entries` and destructuring to iterate over key/value pairs.
+Not: `Object.entries` kullanabilirsiniz.

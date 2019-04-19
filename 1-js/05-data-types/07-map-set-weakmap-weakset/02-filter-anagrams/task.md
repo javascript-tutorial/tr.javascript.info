@@ -1,28 +1,25 @@
-importance: 4
+Önem: 4
 
 ---
 
-# Filter anagrams
+# Anagram Filtresi
 
-[Anagrams](https://en.wikipedia.org/wiki/Anagram) are words that have the same number of same letters, but in different order.
+[Anagramlar](https://en.wikipedia.org/wiki/Anagram) aynı sayıda harfi olan aynı harflere sahip kelime demektir. Dizilimleri farklı olmalıdır.
 
-For instance:
+Örneğin:
 
 ```
-nap - pan
-ear - are - era
-cheaters - hectares - teachers
+aks, ask, kas, sak
+alim, amil, ilam, imal, imla, mail, mali
+açlık, akçıl, çakıl, çalık, çalkı, kaçlı, kalıç, lakç
 ```
+`atemiz(dizi)` adında bir fonksiyon yazın ve bu fonksiyon diziyi anagramlardan temizlesin.
 
-Write a function `aclean(arr)` that returns an array cleaned from anagrams.
-
-For instance:
+Örneğin:
 
 ```js
-let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+let arr = ["aks", "alim", "açlık", "ask", "ilam", "çalık"];
 
-alert( aclean(arr) ); // "nap,teachers,ear" or "PAN,cheaters,era"
+alert( aclean(arr) ); // "aks,alim,açlık" veya "ask,ilam,çalık"
 ```
-
-From every anagram group should remain only one word, no matter which one.
-
+Hangisi olduğuna bakılmaksızın her anagram grubunda bir tane kelime kalmalıdır. Hangisinin olduğu önemli değildir.

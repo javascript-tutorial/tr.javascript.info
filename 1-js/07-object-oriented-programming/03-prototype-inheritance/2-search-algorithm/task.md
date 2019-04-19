@@ -1,12 +1,12 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Searching algorithm
+#Arama algoritması
 
-The task has two parts.
+Görev iki bölümden oluşmaktadır.
 
-We have an object:
+Bir objemiz var:
 
 ```js
 let head = {
@@ -27,5 +27,5 @@ let pockets = {
 };
 ```
 
-1. Use `__proto__` to assign prototypes in a way that any property lookup will follow the path: `pockets` -> `bed` -> `table` -> `head`. For instance, `pockets.pen` should be `3` (found in `table`), and `bed.glasses` should be `1` (found in `head`).
-2. Answer the question: is it faster to get `glasses` as `pocket.glasses` or `head.glasses`? Benchmark if needed.
+1. `__proto__` kullanarak prototipleri özellikleri `pockets`->`bed`->`table`->`head` gibi bir yolu takip edecek şekilde prototipleri atayınız. Örneğin `pockets.pen` `3` ( `table`'da bulunan ) olmalı, `bed.glasses` ise `1` ( `head`'de bulunmalı) 
+2. Sizce `glasses` değerini `pocket.glasses` ile mi yoksa `head.glasses` ile mi almak daha hızlıdır? 

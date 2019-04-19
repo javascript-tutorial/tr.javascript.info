@@ -1,17 +1,17 @@
 ```js run no-beautify
 function sortByName(arr) {
-  arr.sort((a, b) => a.name > b.name);
+  arr.sort((a, b) => a.adi > b.adi);
 }
 
-let john = { name: "John", age: 25 };
-let pete = { name: "Pete", age: 30 };
-let mary = { name: "Mary", age: 28 };
+let muzaffer = { adi: "Muzaffer", yas: 25 };
+let mehmet = { adi: "Mehmet",yas: 30 };
+let ahmet = { adi: "Ahmet", yas: 28 };
 
-let arr = [ john, pete, mary ];
+let arr = [   muzaffer , mehmet, ahmet ];
 
 sortByName(arr);
 
-// now sorted is: [john, mary, pete]
-alert(arr[1].name) // Mary
+// şimdi: [ahmet, mehmet, muzaffer]
+alert(arr[1].adi) // Mehmet
 ```
 

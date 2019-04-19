@@ -1,20 +1,20 @@
 
-# Function in if
+# if'in içindeki fonksiyon
 
-Look at the code. What will be result of the call at the last line?
+Aşağıdaki son satır çalıştığında sonuç ne olur?
 
 ```js run
-let phrase = "Hello";
+let sozcuk = "Merhaba";
 
 if (true) {
-  let user = "John";
+  let kullanici = "Ahmet";
 
-  function sayHi() {
-    alert(`${phrase}, ${user}`);
+  function selamVer() {
+    alert(`${sozcuk}, ${kullanici}`);
   }
 }
 
 *!*
-sayHi();
+selamVer();
 */!*
 ```

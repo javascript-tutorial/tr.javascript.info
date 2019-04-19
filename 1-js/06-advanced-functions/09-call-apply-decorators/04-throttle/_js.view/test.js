@@ -11,33 +11,33 @@ describe("throttle(f, 1000)", function() {
     this.clock = sinon.useFakeTimers();
   });
 
-  it("the first call runs now", function() {
+  it("ilk çağrı şimdi çalışıyor", function() {
     f1000(1); // runs now
     assert.equal(log, "1");
   });
 
-  it("then calls are ignored till 1000ms when the last call works", function() {
-    f1000(2); // (throttling - less than 1000ms since the last run)
-    f1000(3); // (throttling - less than 1000ms since the last run)
-    // after 1000 ms f(3) call is scheduled
+  it("Son çağrıdan sonra 1000ms içerisindeki çağrılar görmezden gelinir.", function() {
+    f1000(2); // (son çağrıdan sonra 1000ms içerisinde olduğundan kısma gerçekleşir)
+    f1000(3); // (son çağrıdan sonra 1000ms içerisinde olduğundan kısma gerçekleşir)
+    // 1000 ms sonrasında f(3) planlanır.
 
-    assert.equal(log, "1"); // right now only the 1st call done
+    assert.equal(log, "1"); // şu anda sadece ilk çağrı gerçekleşti.
 
-    this.clock.tick(1000); // after 1000ms...
-    assert.equal(log, "13"); // log==13, the call to f1000(3) is made
+    this.clock.tick(1000); // 1000ms sonrasında
+    assert.equal(log, "13"); // log==13, f1000(3) çağrısı gerçekleşmekte.
   });
 
-  it("the third call waits 1000ms after the second call", function() {
+  it("3. çağrı ikinci çağrı sonrasında 1000ms beklemeli", function() {
     this.clock.tick(100);
-    f1000(4); // (throttling - less than 1000ms since the last run)
+    f1000(4); // (son çağrıdan sonra 1000ms içerisinde olduğundan kısma gerçekleşir)
     this.clock.tick(100);
-    f1000(5); // (throttling - less than 1000ms since the last run)
+    f1000(5); // (son çağrıdan sonra 1000ms içerisinde olduğundan kısma gerçekleşir)
     this.clock.tick(700);
-    f1000(6); // (throttling - less than 1000ms since the last run)
+    f1000(6); // (son çağrıdan sonra 1000ms içerisinde olduğundan kısma gerçekleşir)
 
-    this.clock.tick(100); // now 100 + 100 + 700 + 100 = 1000ms passed
+    this.clock.tick(100); // şimdi 100 + 100 + 700 + 100 = 1000ms geçti
 
-    assert.equal(log, "136"); // the last call was f(6)
+    assert.equal(log, "136"); // son çağrı f(6)
   });
 
   after(function() {

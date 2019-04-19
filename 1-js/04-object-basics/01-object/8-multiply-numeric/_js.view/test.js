@@ -1,18 +1,18 @@
-describe("multiplyNumeric", function() {
-  it("multiplies all numeric properties by 2", function() {
+describe("ikiIleCarp", function () {
+  it("Sayısal olan özelliklerin değerlerini iki ile çarpar.", function () {
     let menu = {
-      width: 200,
-      height: 300,
-      title: "My menu"
+      en: 200,
+      boy: 300,
+      baslik: "Menü"
     };
-    let result = multiplyNumeric(menu);
-    assert.equal(menu.width, 400);
-    assert.equal(menu.height, 600);
-    assert.equal(menu.title, "My menu");
+    let sonuc = ikiIleCarp(menu);
+    assert.equal(menu.en, 400);
+    assert.equal(menu.boy, 600);
+    assert.equal(menu.baslik, "Menü");
   });
 
-  it("returns nothing", function() {
-    assert.isUndefined( multiplyNumeric({}) );
+  it("birşey döndürmez", function () {
+    assert.isUndefined(ikiIleCarp({}));
   });
 
 });

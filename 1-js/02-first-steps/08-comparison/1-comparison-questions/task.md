@@ -1,10 +1,10 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Comparisons
+# Karşılaştırma
 
-What will be the result for expressions?
+Aşağıdaki ifadelerin sonuçlarını yazınız?
 
 ```js no-beautify
 5 > 4

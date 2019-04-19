@@ -1,10 +1,10 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Type conversions
+# Tip Dönüştürme
 
-What are results of these expressions?
+Aşağıdaki ifadelerin sonuçları nedir?
 
 ```js no-beautify
 "" + 1 + 0
@@ -23,4 +23,4 @@ null + 1
 undefined + 1
 ```
 
-Think well, write down and then compare with the answer.
+İyice düşünün, bir yere yazın ve sonra sonucunuzu doğru cevap ile karşılaştırın.

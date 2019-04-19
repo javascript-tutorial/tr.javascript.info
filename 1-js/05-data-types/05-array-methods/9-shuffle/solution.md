@@ -1,29 +1,28 @@
-The simple solution could be:
+En basit çözümü aşağıdaki gibi olabilir.
 
 ```js run
 *!*
-function shuffle(array) {
-  array.sort(() => Math.random() - 0.5);
+function karistir(dizi) {
+  dizi.sort(() => Math.random() - 0.5);
 }
 */!*
 
-let arr = [1, 2, 3];
-shuffle(arr);
-alert(arr);
+let dizi = [1, 2, 3];
+karistir(dizi);
+alert(dizi);
 ```
+Yukarıdaki çalışıyor denebilir çünkü `Math.random()-0.5` rasgele bir sayıdır ve pozitif veya negatif olabilir. Böylece sıralama fonksiyonu rasgele elemanları dizer.
 
-That somewhat works, because `Math.random()-0.5` is a random number that may be positive or negative, so the sorting function reorders elements randomly.
+Fakat sıralama fonksiyonu bu amaçla kullanılamaz. Tüm permütasyon aynı olasılıkta değildirler.
 
-But because the sorting function is not meant to be used this way, not all permutations have the same probability.
-
-For instance, consider the code below. It runs `shuffle` 1000000 times and counts appearances of all possible results:
+Aşağıdaki koda bakılacak olursa `karistir` 1000000 defa çalıştırılacak olursa bile olası sonuçlar şu şekildedir:
 
 ```js run
 function shuffle(array) {
   array.sort(() => Math.random() - 0.5);
 }
 
-// counts of appearances for all possible permutations
+// mümkün olan tüm permütasyonların görünme sayısı.
 let count = {
   '123': 0,
   '132': 0,
@@ -35,17 +34,16 @@ let count = {
 
 for(let i = 0; i < 1000000; i++) {
   let array = [1, 2, 3];
-  shuffle(array);
+  karistir(array);
   count[array.join('')]++;
 }
 
-// show counts of all possible permutations
+// mümkün olan tüm permütasyonların görünme sayısı.
 for(let key in count) {
   alert(`${key}: ${count[key]}`);
 }
 ```
-
-An example result (for V8, July 2017):
+( Temmuz 2017 itibari ile sonuçlar aşağıdaki gibidir.)
 
 ```js
 123: 250706
@@ -55,35 +53,35 @@ An example result (for V8, July 2017):
 312: 125148
 321: 125223
 ```
+Görüğünüz gibi `123` ve `213` ün çıkma olasılığı daha fazladır.
 
-We can see the bias clearly: `123` and `213` appear much more often than others.
+Sonuçlar JavaScript motoruna göre değişebilir. Fakat görüldüğü gibi bu fonksiyon çok güvenilir değildir.
 
-The result of the code may vary between JavaScript engines, but we can already see that the approach is unreliable.
+Neden çalışmadı? Genel olarak konuşmak gerekirse `sort` kara kutudur: biz buraya bir dizi göndeririz o içinde karşılaştırma fonksiyonları vs. kullanır ve biz sıralanmış şekilde bu diziyi alırız.  Bu kadar fazla rasgele karşılaştırmadan dolayı bu kara kutu deliye döndü, bu deliye dönme olayında nasıl davranacağı da JavaScript motoruna bağlıdır.
 
-Why it doesn't work? Generally speaking, `sort` is a "black box": we throw an array and a comparison function into it and expect the array to be sorted. But due to the utter randomness of the comparison the black box goes mad, and how exactly it goes mad depends on the concrete implementation that differs between engines.
 
-There are other good ways to do the task. For instance, there's a great algorithm called [Fisher-Yates shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle). The idea is to walk the array in the reverse order and swap each element with a random one before it:
+Bu problem bir kaç yöntemle çözülebilir. [Fisher-Yates shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle). Fikre göre dizi tersten başlayarak rasgele sayı ile değiştirilecek şekilde yazılmalıdır:
 
 ```js
-function shuffle(array) {
+function karistir(array) {
   for(let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i+1)); // random index from 0 to i
-    [array[i], array[j]] = [array[j], array[i]]; // swap elements
+    let j = Math.floor(Math.random() * (i+1)); // random index  0 ile i arasında
+    [array[i], array[j]] = [array[j], array[i]]; // elemanların yer değiştirmesi için.
   }
 }
 ```
 
-Let's test it the same way:
+Aynı şekilde test edilirse:
 
 ```js run
-function shuffle(array) {
+function karistir(array) {
   for(let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i+1));
     [array[i], array[j]] = [array[j], array[i]];
   }
 }
 
-// counts of appearances for all possible permutations
+// mümkün olan tüm permütasyonların görünme sayısı.
 let count = {
   '123': 0,
   '132': 0,
@@ -95,7 +93,7 @@ let count = {
 
 for(let i = 0; i < 1000000; i++) {
   let array = [1, 2, 3];
-  shuffle(array);
+  karistir(array);
   count[array.join('')]++;
 }
 
@@ -115,7 +113,6 @@ The example output:
 312: 166199
 321: 166316
 ```
+Şimdi daha iyi görünüyor: tüm permütasyonlar yakın olasılıkla.
 
-Looks good now: all permutations appear with the same probability.
-
-Also, performance-wise the Fisher-Yates algorithm is much better, there's no "sorting" overhead.
+Performans yönünden Fisher-Yates algoritması harikatıdır. Hiç sıralama ile uğraşmaya gerek yok.

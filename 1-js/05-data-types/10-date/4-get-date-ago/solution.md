@@ -1,27 +1,26 @@
-The idea is simple: to substract given number of days from `date`:
+Yapacağımız işlem: verilen `tarih`'ten istenen gün kadar çıkarmaktır:
 
 ```js
-function getDateAgo(date, days) {
-  date.setDate(date.getDate() - days);
-  return date.getDate();
+function kacGunOnce(tarih, gun) {
+  tarih.setDate(tarih.getDate() - gun);
+  return tarih.getDate();
 }
 ```
+...  Fakat fonksiyon `tarih`'i değiştirmemelidir. Bu önemlidir çünkü dışarıdaki kod gönderilen tarihin aynı kaldığını varsaymaktadır.
 
-...But the function should not change `date`. That's an important thing, because the outer code which gives us the date does not expect it to change.
-
-To implement it let's clone the date, like this:
+Bunu uygulayabilmek için tarih objesinin klonunu almak mümkündür:
 
 ```js run
-function getDateAgo(date, days) {
-  let dateCopy = new Date(date);
+function kacGunOnce(tarih, gun) {
+  let tarihKopyasi = new Date(tarih);
 
-  dateCopy.setDate(date.getDate() - days);
-  return dateCopy.getDate();
+  tarihKopyasi.setDate(tarih.getDate() - gun);
+  return tarihKopyasi.getDate();
 }
 
-let date = new Date(2015, 0, 2);
+let tarih = new Date(2015, 0, 2);
 
-alert( getDateAgo(date, 1) ); // 1, (1 Jan 2015)
-alert( getDateAgo(date, 2) ); // 31, (31 Dec 2014)
-alert( getDateAgo(date, 365) ); // 2, (2 Jan 2014)
+alert( kacGunOnce(tarih, 1) ); // 1, (1 Ocak 2015)
+alert( kacGunOnce(tarih, 2) ); // 31, (31 Aralık 2014)
+alert( kacGunOnce(tarih, 365) ); // 2, (2 Ocak 2014)
 ```

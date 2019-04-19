@@ -1,11 +1,11 @@
-importance: 4
+Önem: 4
 
 ---
 
-# An occasional infinite loop
+# Infinite loop
 
-This loop is infinite. It never ends. Why?
-
+Aşağıdaki döngü neden sonsuzdur ve hiç bir zaman bitmez?
+s
 ```js
 let i = 0;
 while (i != 10) {

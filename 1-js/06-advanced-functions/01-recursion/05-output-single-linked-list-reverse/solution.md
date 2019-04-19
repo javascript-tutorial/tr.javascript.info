@@ -1,74 +1,75 @@
-# Using a recursion
+# Özçağrı kullanarak
 
-The recursive logic is a little bit tricky here.
+Özçağrı çözümü burada biraz çetrefilli.
 
-We need to first output the rest of the list and *then* output the current one:
+Önce listenin ggeri kalanını yazdırmak *sonra* ise o anki değerini yazdırmak gerekmektedir.
+
 
 ```js run
 let list = {
-  value: 1,
-  next: {
-    value: 2,
-    next: {
-      value: 3,
-      next: {
-        value: 4,
-        next: null
+  deger: 1,
+  sonraki: {
+    deger: 2,
+    sonraki: {
+      deger: 3,
+      sonraki: {
+        deger: 4,
+        sonraki: null
       }
     }
   }
 };
 
-function printReverseList(list) {
+function geriListeYazdır(list) {
 
-  if (list.next) {
-    printReverseList(list.next);
+  if (list.sonraki) {
+    geriListeYazdır(list.sonraki);
   }
 
-  alert(list.value);
+  alert(list.deger);
 }
 
-printReverseList(list);
+geriListeYazdır(list);
 ```
 
-# Using a loop
+# Döngü versiyonu
 
-The loop variant is also a little bit more complicated then the direct output.
+Döngü versiyonu da bir öncekine göre biraz daha karmaşıktır.
 
-There is no way to get the last value in our `list`. We also can't "go back".
+`list`'teki son değerin alınması gibi bir yol yoktur. Ayrıca "geri doğru" gidilemez.
 
-So what we can do is to first go through the items in the direct order and rememeber them in an array, and then output what we remembered in the reverse order:
+Bundan dolayı elemanlar sıra ile bir diziye yazılıp sonra bu dizi sondan başa okunarak bu problem çözülebilir.
 
 ```js run
 let list = {
-  value: 1,
-  next: {
-    value: 2,
-    next: {
-      value: 3,
-      next: {
-        value: 4,
-        next: null
+  deger: 1,
+  sonraki: {
+    deger: 2,
+    sonraki: {
+      deger: 3,
+      sonraki: {
+        deger: 4,
+        sonraki: null
       }
     }
   }
 };
 
-function printReverseList(list) {
-  let arr = [];
+function geriListeYazdır(list) {
+  let dizi = [];
   let tmp = list;
 
   while (tmp) {
-    arr.push(tmp.value);
-    tmp = tmp.next;
+    dizi.push(tmp.deger);
+    tmp = tmp.sonraki;
   }
 
-  for (let i = arr.length - 1; i >= 0; i--) {
-    alert( arr[i] );
+  for (let i = dizi.length - 1; i >= 0; i--) {
+    alert( dizi[i] );
   }
 }
 
-printReverseList(list);
+geriListeYazdır(list);
 ```
 
-Please note that the recursive solution actually does exactly the same: it follows the list, remembers the items in the chain of nested calls (in the execution context stack), and then outputs them. 
+İki çözüm de aynı şekilde listeyi dolanıyor ve çalıştırma yığınındaki çağrıları hatırlayıp bunları ekrana basıyor.

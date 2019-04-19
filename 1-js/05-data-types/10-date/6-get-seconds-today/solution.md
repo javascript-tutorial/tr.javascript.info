@@ -1,25 +1,24 @@
-To get the number of seconds, we can generate a date using the current day and time 00:00:00, then substract it from "now".
+Bu gün geçen zamanı alabilmek için bu günün 00:00:00'ı için bir `tarih` objesi oluşturup bunu `şimdi`'nin `tarih` objesinden çıkarabilirsiniz. 
 
-The difference is the number of milliseconds from the beginning of the day, that we should divide by 1000 to get seconds:
+Bunun sonucu milisaniye cinsinden olacaktır, bundan dolayı dönen değeri 1000'e bölerseniz saniye alırsınız:
 
 ```js run
-function getSecondsToday() {
-  let now = new Date();
+function bugundenSaniye() {
+  let simdi = new Date();
 
-  // create an object using the current day/month/year
-  let today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+ // o anki gün/ay/yıl'ı kullanarak yeni bir tarih objesi oluşturur.
+ let bugun = new Date(simdi.getFullYear(), simdi.getMonth(), simdi.getDate());
 
-  let diff = now - today; // ms difference
-  return Math.round(diff / 1000); // make seconds
+  let fark = simdi - bugun; // ms cinsinden
+  return Math.round(fark / 1000); // saniyeye çevrildi
 }
 
-alert( getSecondsToday() );
+alert( bugundenSaniye() );
 ```
-
-An alternative solution would be to get hours/minutes/seconds and convert them to seconds:
+Bunun alternativi, saat/dakika/saniye gibi bilgilerin saniyeye çevrilmesidir:
 
 ```js run
-function getSecondsToday() {
+function bugundenSaniye() {
   let d = new Date();
   return d.getHours() * 3600 + d.getMinutes() * 60 + d.getSeconds();
 };

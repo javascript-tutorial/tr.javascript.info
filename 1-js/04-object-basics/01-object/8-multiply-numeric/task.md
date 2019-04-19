@@ -2,32 +2,31 @@ importance: 3
 
 ---
 
-# Multiply numeric properties by 2
+# Sayısal özellikleri 2 ile çarpın.
 
-Create a function `multiplyNumeric(obj)` that multiplies all numeric properties of `obj` by `2`.
+`ikiIleCarp(obj)` adında bir fonksiyon yazın, bu fonksiyon `obj` sayısal özelliklerini `2` ile çarpsın.
 
-For instance:
+Örneğin:
 
 ```js
 // before the call
 let menu = {
-  width: 200,
-  height: 300,
-  title: "My menu"
+  en: 200,
+  boy: 300,
+  baslik: "Menü"
 };
 
-multiplyNumeric(menu);
+ikiIleCarp(menu);
 
-// after the call
+// Çağrı yapıldıktan sonra
 menu = {
-  width: 400,
-  height: 600,
-  title: "My menu"
+  en: 400,
+  boy: 600,
+  baslik: "Menü"
 };
 ```
 
-Please note that `multiplyNumeric` does not need to return anything. It should modify the object in-place.
-
-P.S. Use `typeof` to check for a number here.
+Dikkat ederseniz `multiplyNumeric` birşey döndürmedi, öyleyse değişikliği olduğu yerde yapmak zorunda.
+Not: `typeof` ile objenin tipinin `numeric` olup olmadığını kontrol edebilirsiniz.
 
 

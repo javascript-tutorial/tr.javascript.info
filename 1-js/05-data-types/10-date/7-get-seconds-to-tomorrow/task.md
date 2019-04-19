@@ -1,15 +1,15 @@
-importance: 5
+Önem: 5
 
 ---
 
-# How many seconds till tomorrow?
+# Yarına kaç saniye var?
 
-Create a function `getSecondsToTomorrow()` that returns the number of seconds till tomorrow.
+`yarinaKacSn()` adında bir fonksiyon yazın ve bu fonksiyon yarına kaç saniye olduğunu dönsün.
 
-For instance, if now is `23:00`, then:
+Örneğin, eğer saat `23:00` ise :
 
 ```js
-getSecondsToTomorrow() == 3600
+yarinaKacSn() == 3600
 ```
 
-P.S. The function should work at any day, the "today" is not hardcoded.
+Not: Fonksiyon her gün çalışabilmelidir. Bu demek oluyor ki elle bu günün değerini almamalısınız.

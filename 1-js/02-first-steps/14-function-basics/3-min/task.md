@@ -1,12 +1,12 @@
-importance: 1
+Önem: 1
 
 ---
 
-# Function min(a, b)
+# Fonksiyon min(a, b)
 
-Write a function `min(a,b)` which returns the least of two numbers `a` and `b`.
+`min(a,b)` adında bir fonksiyon yazın. `a` veya `b` den küçük olanını döndürsün.
 
-For instance:
+Örneğin:
 
 ```js
 min(2, 5) == 2

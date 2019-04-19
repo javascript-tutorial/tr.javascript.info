@@ -1,36 +1,36 @@
-beforeEach(function() {
+beforeEach(function () {
   sinon.stub(window, "prompt");
 });
 
-afterEach(function() {
+afterEach(function () {
   prompt.restore();
 });
 
-describe("readNumber", function() {
+describe("sayiOku", function () {
 
-  it("if a number, returns it", function() {
+  it("eğer sayı ise döndür", function () {
     prompt.returns("123");
     assert.strictEqual(readNumber(), 123);
   });
 
-  it("if 0, returns it", function() {
+  it("Eğer 0 ise döndür", function () {
     prompt.returns("0");
     assert.strictEqual(readNumber(), 0);
   });
 
-  it("continues the loop unti meets a number", function() {
-    prompt.onCall(0).returns("not a number");
-    prompt.onCall(1).returns("not a number again");
+  it("Sayı olana kadar soru sormaya devam eder", function () {
+    prompt.onCall(0).returns("Sayı değil");
+    prompt.onCall(1).returns("yine sayı değil");
     prompt.onCall(2).returns("1");
     assert.strictEqual(readNumber(), 1);
   });
 
-  it("if an empty line, returns null", function() {
+  it("eğer boş değer girilirse null dönder", function () {
     prompt.returns("");
     assert.isNull(readNumber());
   });
 
-  it("if cancel, returns null", function() {
+  it("iptal tuşuna basılırsa null dönder", function () {
     prompt.returns(null);
     assert.isNull(readNumber());
   });

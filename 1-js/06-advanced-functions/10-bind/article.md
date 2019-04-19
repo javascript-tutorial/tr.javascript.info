@@ -3,19 +3,19 @@ libs:
 
 ---
 
-# Function binding
+# Fonksiyon bağlama
 
-When using `setTimeout` with object methods or passing object methods along, there's a known problem: "losing `this`".
+Obje metodları ile `setTimeout` kullanıldığında veya obje metodları iletilirken, `this`'in kaybolması bilinen bir problemdir.
 
-Suddenly, `this` just stops working right. The situation is typical for novice developers, but happens with experienced ones as well.
+Aniden, `this` kaybolur. Bu problem başlangıç seviyesi geliştiriciler için çok tipiktir, bazen deneyimli geliştiriceler de bu hataya düşerler.
 
 [cut]
 
-## Losing "this"
+## "this"'in kaybolması
 
-We already know that in JavaScript it's easy to lose `this`. Once a method is passed somewhere separately from the object -- `this` is lost.
+JavaScript'te `this` in ne kadar kolay bir şekilde kaybolduğunu zaten biliyorsunuz. Eğer bir metod objeden farklı bir yere iletilirse `this` kaybolur.
 
-Here's how it may happen with `setTimeout`:
+Bu `setTimeout` ile nasıl olur bakalım:
 
 ```js run
 let user = {
@@ -30,22 +30,22 @@ setTimeout(user.sayHi, 1000); // Hello, undefined!
 */!*
 ```
 
-As we can see, the output shows not "John" as `this.firstName`, but `undefined`!
+Gördüğünüz gibi, çıktı "John"'u göstermedi bunun yerine `undefined` döndü!
 
-That's because `setTimeout` got the function `user.sayHi`, separately from the object. The last line can be rewritten as:
+Bunun nedeni `setTimeout`'un `user.sayHi` fonksiyonunun objeden ayrı olmasıdır. Son satır şu şekilde yazılabilri:
 
 ```js
 let f = user.sayHi;
-setTimeout(f, 1000); // lost user context
+setTimeout(f, 1000); // lost kullanıcı kaynağı kayboldu
 ```
 
-The method `setTimeout` in-browser is a little special: it sets `this=window` for the function call (for Node.JS, `this` becomes the timer object, but doesn't really matter here). So for `this.firstName` it tries to get `window.firstName`, which does not exist. In other similar cases as we'll see, usually `this` just becomes `undefined`.
+Tarayıcıda `setTimeout` kullanımı biraz özeldir: `this=window` olarak ayarlanır. ( Node.JS için `this` timer objesi olur, fakat burada pek de önemli değil.) Öyleyse `this.firstName` bu değeri `window.firstName`'den almaya çalışır, fakat böyle birşey yok. Buna benzer durumlarda siz de göreceksiniz `this` genelde `undefined` olur.
 
-The task is quite typical -- we want to pass an object method somewhere else (here -- to the scheduler) where it will be called. How to make sure that it will be called in the right context?
+Aslında yapmak istediğimiz çok basit obje metodunu çağrılan yere ( -- ) iletmek istiyoruz ( burada -- zamanlayıcıdır.) Bunun doğru kaynakta çağırıldığına nasıl emin olunabilir?
 
-## Solution 1: a wrapper
+## Çözüm 1: saklayıcı
 
-The simplest solution is to use an wrapping function:
+En basit çözüm bir saklayıcı ( wrapper ) fonksiyonu kullanmaktır:
 
 ```js run
 let user = {
@@ -62,17 +62,16 @@ setTimeout(function() {
 */!*
 ```
 
-Now it works, because it receives `user` from the outer lexical environment, and then calls the method normally.
+Çalışmasının nedeni `user`'ı dış sözcük ortamından almasıdır, sonrasında metodu normal bir şekilde çalıştırır.
 
-The same, but shorter:
+Aynısı, fakat biraz daha kısa hali:
 
 ```js
 setTimeout(() => user.sayHi(), 1000); // Hello, John!
 ```
+Fena değil, fakat kod yapısal olarak biraz sorunlu görünüyor.
 
-Looks fine, but a slight vulnerability appears in our code structure.
-
-What if before `setTimeout` triggers (there's one second delay!) `user` changes value? Then, suddenly, the it will call the wrong object!
+`setTimeout` çalışmadan önce ( 1 sn ara ile çalışıyor ) `user` değeri değişirse? Sonra aniden yanlış objeyi çağıracaktır.
 
 
 ```js run
@@ -91,24 +90,24 @@ user = { sayHi() { alert("Another user in setTimeout!"); } };
 // Another user in setTimeout?!?
 ```
 
-The next solution guarantees that such thing won't happen.
+Bir sonraki çözüm içe böyle birşeyin olmasını engeller.
 
-## Solution 2: bind
+## Çözüm 2: bağlama
 
-Functions provide a built-in method [bind](mdn:js/Function/bind) that allows to fix `this`.
+Fonksiyonlar [bind](mdn:js/Function/bind) varsayılan fonksiyonu sağlarlar. Bu fonksiyon `this`'in sabitlenmesini olanak verir.
 
-The basic syntax is:
+Basitçe yazımı şu şekildedir:
 
 ```js
-// more complex syntax will be little later
-let boundFunc = func.bind(context);
+// daha karmaşık yazımlarına ileride geleceğiz.
+let boundFunc = func.bind(kaynak);
 ````
 
-The result of `func.bind(context)` is a special function-like "exotic object", that is callable as function and transparently passes the call to `func` setting `this=context`.
+`func.bind(kaynak)`'ın sonucu özel bir fonksiyon benzeri "egzotik obje"'dir. Fonksiyon gibi çağırılabilir ve saydam bir şekilde çağrıyı `func`'a `this=kaynak` olacak şekilde iletir.
 
-In other words, calling `boundFunc` is like `func` with fixed `this`.
+Diğer bir deyişle `boundFunc` aslında sabit `this`'e sahip `func`'dur.
 
-For instance, here `funcUser` passes a call to `func` with `this=user`:
+Örneğin burada `funcUser` çağrıyı `func` fonksiyonuna `this=user` olacak şekilde iletir.
 
 ```js run  
 let user = {
@@ -125,9 +124,9 @@ funcUser(); // John
 */!*
 ```
 
-Here `func.bind(user)` as a "bound variant" of `func`, with fixed `this=user`.
+Burada `func.bind(user)` aslında `func`'un `this=user` olarak "bağlanmış halidir".
 
-All arguments are passed to the original `func` "as is", for instance:
+Tüm argümanlar orjinal `func`'a olduğu gibi aktarılır, örneğin:
 
 ```js run  
 let user = {
@@ -138,15 +137,14 @@ function func(phrase) {
   alert(phrase + ', ' + this.firstName);
 }
 
-// bind this to user
+// this'i user'a bağla.
 let funcUser = func.bind(user);
 
 *!*
-funcUser("Hello"); // Hello, John (argument "Hello" is passed, and this=user)
+funcUser("Hello"); // Hello, John ("Hello" iletildi ve this=user oldu)
 */!*
 ```
-
-Now let's try with an object method:
+Bunu obje metodu ile deneyecek olursak:
 
 
 ```js run
@@ -166,9 +164,9 @@ sayHi(); // Hello, John!
 setTimeout(sayHi, 1000); // Hello, John!
 ```
 
-In the line `(*)` we take the method `user.sayHi` and bind it to `user`. The `sayHi` is a "bound" function, that can be called alone or passed to `setTimeout` -- doesn't matter, the context will be right.
+`(*)` satırında `user.sayHi` metodunu aıyoruz ve `user`'a bağlıyoruz. `sayHi` bu durumda `bağlanmış` fonksiyon oluyor. Böylece tek başına çağrılabilir veya `setTimeout` içerisinde çağrılabilir. Nereden çağırıldığı çok da önemli değidlir. Kaynağı her zaman doğru olacaktır.
 
-Here we can see that arguments are passed "as is", only `this` is fixed by `bind`:
+Gördüğünüz gibi tüm argümanlar "olduğu gibi" iletilir, sadece `this` `bind` tarafından sabitlenmiştir:
 
 ```js run
 let user = {
@@ -180,12 +178,12 @@ let user = {
 
 let say = user.say.bind(user);
 
-say("Hello"); // Hello, John ("Hello" argument is passed to say)
-say("Bye"); // Bye, John ("Bye" is passed to say)
+say("Hello"); // Hello, John ("Hello" `say` fonksiyonuna iletildi)
+say("Bye"); // Bye, John ("Bye" `say` fonksiyonuna iletildi.)
 ```
 
-````smart header="Convenience method: `bindAll`"
-If an object has many methods and we plan to actively pass it around, then we could bind them all in a loop:
+````smart header="Kullanışlı metod: `bindAll`"
+Eğer bir objenin birçok metodu var ise bunu aktik olarak gerekli yerlere iletep, bunları bir döngü içerisine alabiliriz:
 
 ```js
 for (let key in user) {
@@ -194,12 +192,12 @@ for (let key in user) {
   }
 }
 ```
+Bu şekilde büyük bağlama olayları için bazı JavaScript kütüphanelerinden yardım alınabilir. Örneğin lodash ,[_.bindAll(obj)](http://lodash.com/docs#bindAll) fonksiyonuna sahiptir.
 
-JavaScript libraries also provide functions for convenient mass binding , e.g. [_.bindAll(obj)](http://lodash.com/docs#bindAll) in lodash.
 ````
 
-## Summary
+## Özet
 
-Method `func.bind(context, ...args)` returns a "bound variant" of function `func` that fixes the context `this` and first arguments if given.
+`func.bind(kaynak, ...args)` `func` fonksiyonunun "bağlanmış hali"'ni döndürür. Bu bağlanmış halde `this` ve argümanlar sabitlenir.
 
-Usually we apply `bind` to fix `this` in an object method, so that we can pass it somewhere. For example, to `setTimeout`. There are more reasons to `bind` in the modern development, we'll meet them later.
+Bind genelde obje metodlarındaki `this`'in sabitlenmesi amacıyla kullanılır, sonrasında istenilen yere iletilebilir. `setTimeout` örneği gibi. `bind`'in modern geliştirmede kullanılmasının bir çok nedeni vardır bunlara ilerleyen konularda değineceğiz.

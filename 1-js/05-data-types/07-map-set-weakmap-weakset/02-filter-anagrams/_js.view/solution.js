@@ -1,8 +1,8 @@
 
-function aclean(arr) {
+function atemiz(dizi) {
   let map = new Map();
 
-  for(let word of arr) {
+  for (let word of dizi) {
     let sorted = word.toLowerCase().split("").sort().join("");
     map.set(sorted, word);
   }

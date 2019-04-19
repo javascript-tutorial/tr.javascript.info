@@ -1,11 +1,11 @@
-function unique(arr) {
-  let result = [];
+function benzersiz(arr) {
+  let sonuc = [];
 
   for (let str of arr) {
-    if (!result.includes(str)) {
-      result.push(str);
+    if (!sonuc.includes(str)) {
+      sonuc.push(str);
     }
   }
 
-  return result;
+  return sonuc;
 }

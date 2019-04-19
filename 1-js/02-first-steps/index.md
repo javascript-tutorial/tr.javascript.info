@@ -1,3 +1,3 @@
-# JavaScript Fundamentals
+# JavaScript temelleri
 
-Let's learn the fundamentals of script building.
+Bu bölümde JavaScript temelleri işlenecektir.

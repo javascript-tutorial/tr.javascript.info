@@ -1,12 +1,12 @@
 
-function readNumber() {
-  let num;
+function sayiOku() {
+  let sayi;
 
   do {
-    num = prompt("Enter a number please?", 0);
-  } while ( !isFinite(num) );
+    sayi = prompt("Lütfen bir sayı giriniz?", 0);
+  } while (!isFinite(sayi));
 
-  if (num === null || num === '') return null;
-  
-  return +num;
+  if (sayi === null || sayi === '') return null;
+
+  return +sayi;
 }

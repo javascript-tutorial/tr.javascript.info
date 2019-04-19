@@ -1,13 +1,13 @@
 ```js run
-function getLocalDay(date) {
+function yerelGunAl(tarih) {
 
-  let day = date.getDay();
+  let gun = tarih.getDay();
 
-  if (day == 0) { // 0 becomes 7
-    day = 7;
+  if (gun == 0) { //0 -> 7 olmakta.
+    gun = 7;
   }
 
-  return day;
+  return gun;
 }
 
 alert( getLocalDay(new Date(2012, 0, 3)) ); // 2

@@ -1,38 +1,37 @@
-importance: 4
+Önem: 4
 
 ---
 
-# Is "else" required?
+# "else" gerekli mi?
 
-The following function returns `true` if the parameter `age` is greater than `18`.
+Aşağıdaki fonksiyon eğer `yas` parametresi `18`'den büyükse `true` dönderir. 
 
-Otherwise it asks for a confirmation and returns its result:
+Diğer türlü onay sorar ve sonucunu döndürür.
 
 ```js
-function checkAge(age) {
-  if (age > 18) {
+function yasKontrolu(yas) {
+  if (yas > 18) {
     return true;
 *!*
   } else {
     // ...
-    return confirm('Did parents allow you?');
+    return confirm('Ebeveynlerin izin verdi mi?');
   }
 */!*
 }
 ```
 
-Will the function work differently if `else` is removed?
+Bu fonksiyondan if kaldırılırsa çalışması fark olur mu?
 
 ```js
-function checkAge(age) {
-  if (age > 18) {
+function yasKontrolu(yas) {
+  if (yas > 18) {
     return true;
   }
 *!*
   // ...
-  return confirm('Did parents allow you?');
+  return confirm('Ebeveynlerin izin verdi mi?');
 */!*
 }
 ```
-
-Is there any difference in the bahavior of these two variants?
+Eğer farklı ise farkı açıklayabilir misiniz?

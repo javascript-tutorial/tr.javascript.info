@@ -1,30 +1,28 @@
 
 ```js run
-let room = {
-  number: 23
+let oda = {
+  sayi: 23
 };
 
-let meetup = {
-  title: "Conference",
-  occupiedBy: [{name: "John"}, {name: "Alice"}],
-  place: room
+let tanisma = {
+  baslik: "Konferans",
+  dolduruldu: [{adi: "Ahmet"}, {adi: "Mehmet"}],
+  yer: oda
 };
 
-room.occupiedBy = meetup;
-meetup.self = meetup;
+oda.dolduruldu = tanisma;
+tanisma.self = tanisma;
 
-alert( JSON.stringify(meetup, function replacer(key, value) {
-  return (key != "" && value == meetup) ? undefined : value;
+alert( JSON.stringify(tanisma, function degistirici(anahtar, deger) {
+  return (anahtar != "" && deger == tanisma) ? undefined : deger;
 }));
 
 /* 
 {
-  "title":"Conference",
-  "occupiedBy":[{"name":"John"},{"name":"Alice"}],
-  "place":{"number":23}
+  "baslik":"Konferans",
+  "dolduruldu":[{"adi":"Ahmet"},{"adi":"Mehmet"}],
+  "yer":{"sayi":23}
 }
 */
 ```
-
-Here we also need to test `key==""` to exclude the first call where it is normal that `value` is `meetup`.
-
+Burada `anahtar ==""` kontrolü de yapılmalı çünkü ilk çağrıda `deger`==`tanisma`'dır, ve `anahtar` boş gelir.

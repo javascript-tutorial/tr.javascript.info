@@ -1,63 +1,64 @@
-# The modern mode, "use strict"
+# Modern mod, "use strict"
 
-For a long time JavaScript was evolving without compatibility issues. New features were added to the language, but the old functionality did not change.
+Uzun süredir JavaScript uyumluluk sorunu olmadan gelişmeye devam etmektedir. Yeni özellikler eklenmekte fakat eski özellikler olduğu gibi kalmaktadır.
 
-That had the benefit of never breaking existing code. But the downside was that any mistake or an imperfect decision made by JavaScript creators got stuck in the language forever.
+Bu eski kodlarınızın çalışacağı garantisini verir. Kötü yanı ise JavaScript geliştiricileri tarafından eskiden verilen kötü bir kararın veya hatanın sürekli tekrar edilmesine neden olur. 
 
-It had been so until 2009 when ECMAScript 5 (ES5) appeared. It added new features to the language and modified some of the existing ones. To keep the old code working, most modifications are off by default. One needs to enable them explicitly with a special directive `"use strict"`.
+ECMAScript 5 (ES5) standardı 2009 yılında kabul edilmiştir. Bu standar yeni özellikler eklediği gibi eskide olanlardan bazılarını da düzenlemiştir. Eski kodun çalışabilirliğini garanti altına almak için çoğu düzenleme varsayılan olarak kapalı durumda gelir. Bunları açmak için `"use strict"` kullanılmalıdır.
 
 [cut]
 
 ## "use strict"
 
-The directive looks like a string: `"use strict"` or `'use strict'`. When it is located on the top of the script, then the whole script works the "modern" way.
+Bu direktif için kod dosyanızın başına `"use strict"` veya `'use strict'` yazmanız yeterlidir. Artık kodunuz "modern" JavaScript olarak çalışmaktadır.
 
-For example
+Örnek : 
 
 ```js
 "use strict";
 
-// this code works the modern way
+// Bu kod modern JavaScript olarak çalışır
 ...
 ```
 
-We will learn functions (a way to group commands) soon.
+Yakında fonksiyonları ( komutları gruplama ) göreceksiniz. 
 
-Looking ahead let's just note that `"use strict"` can be put at the start of a function (most kinds of functions) instead of the whole script. Then strict mode is enabled in that function only. But usually people use it for the whole script.
+`"use strict"` birden çok fonksiyonda kullanılacağı gibi tek fonksiyon için de kullanılabilir. Fakat genelde tüm dosya için kullanılır.
 
 
-````warn header="Ensure that \"use strict\" is at the top"
-Please make sure that `"use strict"` is on the top of the script, otherwise the strict mode may not be enabled.
+````warn header="\"use strict\" in en üstte olduğuna emin olun"
 
-There is no strict mode here:
+Lütfen yazarken `"use strict"` direktifinin sayfanızın en üst satırında olduğuna emin olun. Aksi taktirde bu mod açılmayacaktır.
+
+Örneğin aşağıda "sıkı" modu açık değildir:
+
 
 ```js no-strict
-alert("some code");
-// "use strict" below is ignored, must be on the top
+alert("Bazı kodlar");
+// "use strict"'i buraya yazarsanız bu mod açılmaz.
 
 "use strict";
 
-// strict mode is not activated
+// sıkı modu aktif değildir.
 ```
 
-Only comments may appear above `"use strict"`.
 ````
 
-```warn header="There's no way to cancel `use strict`"
-There is no directive `"no use strict"` or alike, that would return the old behavior.
+```warn header="`use strict`'i iptal eden bir direktif bulunmamaktadır"
+Modern JavaScript'i eski haline getiren `"no use strict"` gibi bir direktif bulunmamaktadır.
 
-Once we enter the strict mode, there's no return.
+Sıkı moda girdiğinizda artık eskiye dönüş yoktur.
 ```
 
-## Always "use strict"
+## Her zaman "use strict" kullanın
 
-The differences of `"use strict"` versus the "default" mode are still to be covered.
+`"use strict"` ile varsayılan modun farkları üzerinden tekrar geçilecektir.
 
-In the next chapters, as we learn language features, we'll make notes about the differences of the strict mode. Luckily, there are not so many. And they actually make our life better.
+Gelecek bölümlerde dilin özelliklerini öğrendikçe bu sıkı mod ile varsayılan modun farkları hakkında bilgi verilecektir. Aslında çok fark olmamasına rağmen sıkı mod yazdığımız kodu daha iyi hale getirir.
 
-At this point in time it's enough to know about it in general:
+Şu anda genel hatlarıyla bilmek yeterli olacaktır.
 
-1. The `"use strict"` directive switches the engine to the "modern" mode, changing the behavior of some built-in features. We'll see the details as we study.
-2. The strict mode is enabled by `"use strict"` at the top. Also there are several language features like "classes" and "modules" that enable strict mode automatically.
-3. The strict mode is supported by all modern browsers.
-4. It's always recommended to start scripts with `"use strict"`. All examples in this tutorial assume so, unless (very rarely) specified otherwise.
+1. `"use strict"` JavaScript motorunda varsayılan ile "modern" mod arasında geçiş yapmaya yarar. İleride kodunuza ne gibi artılar sağlayacağını göreceksiniz.
+2. Sıkı moda dosyanın başına `"use strict"` direktifiyle geçilebilir. Bu bize "sınıf" veya "modül" gibi dil özelliklerini kazandırır.
+3. Sıkı mod tüm modern tarayıcılar tarafından desteklenir.
+4. Bundan sonra tersi söylenmedikçe her yazacağınız örneklerde  `"use strict"` ile başlayacağınız varsayılmaktadır. 

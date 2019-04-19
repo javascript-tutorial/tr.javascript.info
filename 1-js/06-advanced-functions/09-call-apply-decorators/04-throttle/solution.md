@@ -29,11 +29,10 @@ function throttle(func, ms) {
   return wrapper;
 }
 ```
+`throttle(func,ms)`'e yapılan çağrı `saklayıcı`(wrapper) döner.
 
-A call to `throttle(func, ms)` returns `wrapper`.
+1. İlk çağrıda `saklayıcı` `func` döner ve rahatlama yavaşlama durumuna girer ( `isThrottled=true` ).
+2. Bu durumda tüm çağrılar `savedArgs/savedThis` içerisinde tutulur. Bu kaynaklar ve argümanlar hafızada tutulmalıdır. Çünkü çağrıyı eşzamanlı olarak çoğaltmamız için bu bilgiler gereklidir.
+3. ... `ms` süresi geçtikten sonra `setTimeout` çalışır. Yavaşlama durumu sona erer (`isThrottled = false` ). Eğer görmezden gelinmiş çağrı var ise `saklayıcı` son hafızada tutulan kaynağı ve argüman ile çalışır.
 
-1. During the first call, the `wrapper` just runs `func` and sets the cooldown state (`isThrottled = true`).
-2. In this state all calls memorized in `savedArgs/savedThis`. Please note that both the context and the arguments are equally important and should be memorized. We need them simultaneously to reproduce the call.
-3. ...Then after `ms` milliseconds pass, `setTimeout` triggers. The cooldown state is removed (`isThrottled = false`). And if we had ignored calls, then `wrapper` is executed with last memorized arguments and context.
-
-The 3rd step runs not `func`, but `wrapper`, because we not only need to execute `func`, but once again enter the cooldown state and setup the timeout to reset it.
+Son adım `func` yerine `wrapper` çalıştırır, çünkü sadece `func`'ın çalışması yetmez ayrıca yavaşlama durumuna girilmesi gereklidir.

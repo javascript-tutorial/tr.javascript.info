@@ -1,18 +1,19 @@
-importance: 4
+Önem: 4
 
 ---
 
-# Filter range "in place"
+# Olduğu yerde filtreleme
 
-Write a function `filterRangeInPlace(arr, a, b)` that gets an array `arr` and removes from it all values except those that are between `a` and `b`. The test is: `a ≤ arr[i] ≤ b`.
+`arr` alan ve `filterRangeInPlace(arr,a,b)` fonksiyonu ile `a` ile `b` arasındaki değerleri alıp ve bunun haricindekileri bu diziden silen fonksiyonu yazınız.
 
-The function should only modify the array. It should not return anything.
+Fonksiyon diziyi modifiye etmeli. Birşey döndürmemeli.
 
-For instance:
+
+Örneğin:
 ```js
 let arr = [5, 3, 8, 1];
 
-filterRangeInPlace(arr, 1, 4); // removed the numbers except from 1 to 4
+filterRangeInPlace(arr, 1, 4); // 1 ile 4 aralığı dışındaki sayıları siliniz.
 
 alert( arr ); // [3, 1]
 ```

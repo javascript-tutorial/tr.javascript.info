@@ -16,7 +16,8 @@ null + 1 = 1 // (3)
 undefined + 1 = NaN // (4)
 ```
 
-1. The addition with a string `"" + 1` converts `1` to a string: `"" + 1 = "1"`, and then we have `"1" + 0`, the same rule is applied.
-2. The subtraction `"-"` (like most math operations) only works with numbers, it converts an empty string `""` to `0`.
-3. `null` becomes `0` after the numeric conversion.
-4. `undefined` becomes `NaN` after the numeric conversion.
+1. Karakter dizisi ile toplama 1'i karaktere çevirir ve sonrasında iki karakterin toplanması kuralı uygulanır.
+
+2. Çıkarma `"-"`  işlemi sadece sayısal değerler için kullanılır. İçerisi boş olan karakter dizisini 0'a dönüştürür.
+3. `null` sayısal olarak dönüştürüldüğünde `0` olur
+4. Daha önce de belirttiğimiz gibi `undefined` sayısal veriye çevrilmeye çalışınca `null` un aksine `NaN`(sayı değildir - not a number) olur.

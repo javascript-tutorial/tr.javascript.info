@@ -1,33 +1,28 @@
-Internally the decimal fraction `6.35` is an endless binary. As always in such cases, it is stored with a precision loss.
-
-Let's see:
+Aslında `6.35`'in decimal bölümü sonsuz binarydir. Böyle bir durumda kesinlik kaybına uğrarlar.
 
 ```js run
 alert( 6.35.toFixed(20) ); // 6.34999999999999964473
 ```
+Bu kesinlik kaybı sayının küçülmesine veya büyümesine neden olabilir. Bu örnekte sayı çok çok küçük bir oranda küçülüyor bundan dolayı aşağıya yuvarladı.
 
-The precision loss can cause both increase and decrease of a number. In this particular case the number becomes a tiny bit less, that's why it rounded down.
-
-And what's for `1.35`?
+`1.35` için ise:
 
 ```js run
 alert( 1.35.toFixed(20) ); // 1.35000000000000008882
 ```
+Sayı çok küçük bir değer ile büyük limitin üstüne çıktı, bundan dolayı yukarıya yuvarladı.
 
-Here the precision loss made the number a little bit greater, so it rounded up.
 
-**How can we fix the problem with `6.35` if we want it to be rounded the right way?**
+**Peki `6.35` için bu problem nasıl çözülebilir**
 
-We should bring it closer to an integer prior to rounding:
+Tam sayı değerini yuvarlama değerine yaklaştırılırsa problem çözülür:
 
 ```js run
 alert( (6.35 * 10).toFixed(20) ); // 63.50000000000000000000
 ```
-
-Note that `63.5` has no precision loss at all. That's because the decimal part `0.5` is actually `1/2`. Fractions divided by powers of `2` are exactly represented in the binary system, now we can round it:
+`63.5` hiç bir kayba uğramıyor dikkat ederseniz. Çünkü `0.5` lik fark aslında `1/2`. `2` ve üstü ile yapılan işlemler binary sistemde tam olarak ifade edildiğinden dolayı bu problem çözülmektedir.
 
 
 ```js run
-alert( Math.round(6.35 * 10) / 10); // 6.35 -> 63.5 -> 64(rounded) -> 6.4
+alert( Math.round(6.35 * 10) / 10); // 6.35 -> 63.5 -> 64(yuvarlandı) -> 6.4
 ```
-

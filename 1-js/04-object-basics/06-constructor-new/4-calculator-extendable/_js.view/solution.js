@@ -1,25 +1,25 @@
-function Calculator() {
+function HesapMakinesi() {
 
-  let methods = {
+  let metodlar = {
     "-": (a, b) => a - b,
     "+": (a, b) => a + b
   };
 
-  this.calculate = function(str) {
+  this.hesapla = function (str) {
 
     let split = str.split(' '),
       a = +split[0],
       op = split[1],
       b = +split[2]
 
-    if (!methods[op] || isNaN(a) || isNaN(b)) {
+    if (!metodlar[op] || isNaN(a) || isNaN(b)) {
       return NaN;
     }
 
-    return methods[op](a, b);
+    return metodlar[op](a, b);
   }
 
-  this.addMethod = function(name, func) {
-    methods[name] = func;
+  this.metodEkle = function (isim, fonksiyon) {
+    metodlar[isim] = fonksiyon;
   };
 }

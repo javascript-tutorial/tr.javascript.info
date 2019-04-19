@@ -1,12 +1,11 @@
-importance: 5
+Önem: 5
 
 ---
 
-# An error in the inheritance
+# Kalıtımda hata
 
-Find an error in the prototypal inheritance below.
+Aşağıdaki prototip kalıtımındaki hata nedir? Bu hatanın sonucunda neler olabilir?
 
-What's wrong? What are consequences going to be?
 
 ```js
 function Animal(name) {

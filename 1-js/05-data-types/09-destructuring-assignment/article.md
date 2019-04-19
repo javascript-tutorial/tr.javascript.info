@@ -1,517 +1,508 @@
-# Destructuring assignment
+# Atamaların ayrıştırılması
 
-The two most used data structures in JavaScript are `Object` and `Array`.
+JavaScript'te en fazla kullanılan veri yapıları `Obje` ve `Dizi`'dir.
 
-Objects allow us to pack many pieces of information into a single entity and arrays allow us to store ordered collections. So we can make an object or an array and handle it as a single entity, or maybe pass it to a function call.
+Objeler bir çok bilgiyi tek bir varlık altında toplamaya yarar. Diziler ise sıralı koleksiyonları tutmaya yarar. Böyleyece obje veya dizi tek bir varlık olarak başka fonksiyonlara paslanabilir.
 
-*Destructuring assignment* is a special syntax that allows us to "unpack" arrays or objects into a bunch of variables, as sometimes they are more convenient. Destructuring also works great with complex functions that have a lot of parameters, default values, and soon we'll see how these are handled too.
+*Atamaların ayrıştırılması* dizileri veya objeleri *paketinden çıkarma* ve değişkenlerine kadar ayrıştırma olarak tanımlanabilir. Bu ayrıştırma birçok parametre alan karmaşık fonksiyonlar, varsayılan değerler için de oldukça kullanışlıdır.
 
 [cut]
 
-## Array destructuring
+## Dizi ayrıştırma
 
-An example of how the array is destructured into variables:
+Dizinin değişkenlerine nasıl ayrıştırılacağı aşağıdaki örnekte gösterilmiştir:
 
 ```js
-// we have an array with the name and surname
-let arr = ["Ilya", "Kantor"]
+// Adı ve soyadı şeklinde bir dizi
+let arr = ["Ahmet", "Pamuk"]
 
 *!*
-// destructuring assignment
-let [firstName, surname] = arr;
+// dizi ayrıştırma
+let [adi, soyadi] = arr;
 */!*
 
-alert(firstName); // Ilya
-alert(surname);  // Kantor
+alert(adi); // Ahmet
+alert(soyadi);  // Pamuk
 ```
+Şimdi dizi ile çalışmak yerine doğrudan değişkenler ile çalışabilirsiniz.
 
-Now we can work with variables instead of array members.
-
-It looks great when combined with `split` or other array-returning methods:
+`split` ile birlikte harika bir şekilde çalışabilir:
 
 ```js
-let [firstName, surname] = "Ilya Kantor".split(' ');
+let [adi, soyadi] = "Ahmet Pamuk".split(' ');
 ```
 
-````smart header="\"Destructuring\" does not mean \"destructive\""
-It's called "destructuring assignment", because it "destructurizes" by copying items into variables. But the array itself is not modified.
+````smart header="\"Ayrıştırma\" \"parçalayıp değer kaybetme\" anlamına gelmez"
+*Ayrıştırma* bozma anlamına gelmez. Değerleri değişkenlere atamaya yarar. Fakat dizinin kendisinde bir değişiklik olmaz.
 
-It's just a shorter way to write:
+Sadece daha kısa yazım sağlar:
 ```js
-// let [firstName, surname] = arr;
-let firstName = arr[0];
-let surname = arr[1];
+// let [adi, soyadi] = arr;
+let adi = arr[0];
+let soyadi = arr[1];
 ```
 ````
 
-````smart header="Ignore first elements"
-Unwanted elements of the array can also be thrown away via an extra comma:
+````smart header="İlk elemanları görmezden gel"
+İstenmeyen elemanlar fazladan virgül ile diziden atılabilir.
 
 ```js run
 *!*
-// first and second elements are not needed
-let [, , title] = ["Julius", "Caesar", "Consul", "of the Roman Republic"];
+// birinci ve ikinci elemanlar gerekli değil
+let [, , baslik] = ["Julius", "Caesar", "Konsil", "Roma Cumhuriyeti"];
 */!*
 
-alert( title ); // Consul
+alert( baslik ); // Konsil
 ```
-
-In the code above, although the first and second elements of the array are skipped, the third one is assigned to `title`, and the rest are also skipped.
+Yukarıdaki örnekte, birinci ve ikinci eleman pas geçilmesine rağmen üçüncü eleman `baslik` olarak atanmıstır. Geri kalan da pas geçilmiştir.
 ````
 
-````smart header="Works with any iterable on the right-side"
+````smart header="Eşitliğin sağ taraftaki herhangi bir sıralı erişim objesiyle(iterable) çalışabilir."
 
-...Actually, we can use it with any iterable, not only arrays:
+... Aslında,  sadece diziler değil, her türlü sıralı erişim objesinyle çalışabilir:
 
 ```js
 let [a, b, c] = "abc"; // ["a", "b", "c"]
-let [one, two, three] = new Set([1, 2, 3]);
+let [bir, iki, üç] = new Set([1, 2, 3]);
 ```
 
 ````
 
 
-````smart header="Assign to anything at the left-side"
+````smart header=Herşeyi sol tarafa ata"
 
-We can use any "assignables" at the left side.
+Sol tarafta sadece "atanabilirler" kullanılmaktadır.
 
-For instance, an object property:
+Örneğin, bir obje özelliği:
+
 ```js run
-let user = {};
-[user.name, user.surname] = "Ilya Kantor".split(' ');
+let kullanici = {};
+[kullanici.adi, kullanici.soyadi] = "Ahmet Pamuk".split(' ');
 
-alert(user.name); // Ilya
+alert(kullanici.adi); // Ahmet
 ```
 
 ````
 
-````smart header="Looping with .entries()"
+````smart header=" .entries() ile döngü"
 
-In the previous chapter we saw the [Object.entries(obj)](mdn:js/Object/entries) method.
+Bir önceki konuda [Object.entries(obj)](mdn:js/Object/entries) metodu kullanıldı.
 
-We can use it with destructuring to loop over keys-and-values of an object:
+Bu metodu objenin anahtar-değer ikilisinin üzerinden dönmek ve bunları ayrıştırmak için kullanabilirsiniz:
 
 ```js run
-let user = {
-  name: "John",
-  age: 30
+let kullanici = {
+  adi: "Ahmet",
+  yasi: 30
 };
 
-// loop over keys-and-values
+// anahtar-deger döngüsü
 *!*
-for(let [key, value] of Object.entries(user)) {
+for(let [key, value] of Object.entries(kullanici)) {
 */!*
-  alert(`${key}:${value}`); // name:John, then age:30
+  alert(`${key}:${value}`); // adi:Ahmet, sonra yasi:30
 }
 ```
-
-...And the same for a map:
+... Map de aynı şekilde:
 
 ```js run
-let user = new Map();
-user.set("name", "John");
-user.set("age", "30");
+let kullanici = new Map();
+user.set("adi", "Ahmet");
+user.set("yasi", "30");
 
 *!*
-for(let [key, value] of user.entries()) {
+for(let [key, value] of kullanici.entries()) {
 */!*
-  alert(`${key}:${value}`); // name:John, then age:30
+  alert(`${key}:${value}`); // adi:Ahmet, sonra yasi:30
 }
 ```
 ````
-### The rest '...'
+### Geri kalan '...'
 
-If we want not just to get first values, but also to gather all that follows -- we can add one more parameter that gets "the rest" using three dots `"..."`:
+Sadece ilk değerler değil de, geri kalanlar da alınmak istenirse -- bir parametre `"..."` ile "geri kalanını al" demek mümkündür:
 
 ```js run
-let [name1, name2, *!*...rest*/!*] = ["Julius", "Caesar", *!*"Consul", "of the Roman Republic"*/!*];
+let [adi1, adi2, *!*...geri_kalan*/!*] = ["Julius", "Caesar", *!*"Konsil", "Roma Cumhuriyeti"*/!*];
 
-alert(name1); // Julius
-alert(name2); // Caesar
+alert(adi1); // Julius
+alert(adi2); // Caesar
 
 *!*
-alert(rest[0]); // Consul
-alert(rest[1]); // of the Roman Republic
-alert(rest.length); // 2
+alert(geri_kalan[0]); // Konsil
+alert(geri_kalan[1]); // Roma Cumhuriyeti
+alert(geri_kalan.length); // 2
 */!*
 ```
 
-The value of `rest` is the array of the remaining array elements. We can use any other variable name in place of `rest`, just make sure it has three dots before it and goes last in the destructuring assignmemnt.
+`geri_kalan`, geriye kalan elemanları kapsayan dizidir. `geri_kalan` yerine istediğiniz bir değişken ismi kullanabilirsiniz. Fakat öncesine üç nokta eklemeyi unutmayın.
 
-### Default values
+### Varsayılan Değerler
 
-If there are fewer values in the array than variables in the assignment, there will be no error. Absent values are considered undefined:
-
-```js run
-*!*
-let [firstName, surname] = [];
-*/!*
-
-alert(firstName); // undefined
-```
-
-If we want a "default" value to replace the missing one, we can provide it using `=`:
+Eğer dizide atanabilecek değerden daha az veri varsa her hangi bir hata almazsınız. Sadece değer olmadığından dolayı değişkenler `undefined` olur:
 
 ```js run
 *!*
-// default values
-let [name="Guest", surname="Anonymous"] = ["Julius"];
+let [adi, soyadi] = [];
 */!*
 
-alert(name);    // Julius (from array)
-alert(surname); // Anonymous (default used)
+alert(adi); // undefined
 ```
-
-Default values can be more complex expressions or even function calls. They are evaluated only if the value is not provided.
-
-For instance, here we use the `prompt` function for two defaults. But it will run only for the missing one:
+Eğer tanımsız değişkenler için varsayılan değeri atamak istiyorsanız bunu `=` kullanarak yapabilirsiniz:
 
 ```js run
-// runs only prompt for surname
-let [name=prompt('name?'), surname=prompt('surname?')] = ["Julius"];
+*!*
+// varsayılan değerler
+let [adi="Misafir", soyadi="Tanımsız"] = ["Julius"];
+*/!*
 
-alert(name);    // Julius (from array)
-alert(surname); // whatever prompt gets
+alert(adi);    // Julius (diziden geleen)
+alert(soyadi); // Anonymous (varsayılan)
+```
+
+Varsayılan değerler daha karmaşık veya fonksiyon bile olabilir. Sadece atanacak dizide değer yoksa çalıştırılır.
+
+Örneğin burada ikisi değişkenin varsayılan değeri için `prompt` kullanıldı fakat sadece ikincisi için çalışır:
+
+```js run
+// sadece soyadı için çalışır.
+let [adi=prompt('adi?'), soyadi=prompt('soyadi?')] = ["Julius"];
+
+alert(adi);    // Julius (diziden)
+alert(soyadi); // prompt'tan değer alır.
 ```
 
 
 
-## Object destructuring
+## Objelerin ayrıştırılması
 
-The destructuring assignment also works with objects.
+Ayrıştırma objeler için de çalışır.
 
-The basic syntax is:
+Yazımı:
 
 ```js
 let {var1, var2} = {var1:…, var2…}
 ```
+Eşitliğin sağ tarafında ayrıştırmak istenilen objeler bulunmaktadır. Sol tarafta ise denk gelen özellikler için bir "şablon" bulunmaktadır.
 
-We have an existing object at the right side, that we want to split into variables. The left side contains a "pattern" for corresponding properties. In the simple case, that's a list of variable names in `{...}`.
+Basit durumda, değişken isimlerini içeren `{ ... }` bir listedir.
 
-For instance:
+Örneğin:
 
 ```js run
-let options = {
-  title: "Menu",
-  width: 100,
-  height: 200
+let ozellikler = {
+  baslik: "Menü",
+  genislik: 100,
+  yukseklik: 200
 };
 
 *!*
-let {title, width, height} = options;
+let {baslik, genislik, yukseklik} = ozellikler;
 */!*
 
-alert(title);  // Menu
-alert(width);  // 100
-alert(height); // 200
+alert(baslik);  // Menü
+alert(genislik);  // 100
+alert(yukseklik); // 200
 ```
 
-Properties `options.title`, `options.width` and `options.height` are assigned to the corresponding variables. The order does not matter. This works too:
+`ozellikler.baslik`, `ozellikler.genislik` ve `ozellikler.yukseklik` isimleri denk  gelen değişkenlere atandılar. Sıralama önemli değildir. Aşağıdaki de çalışır:
 
 ```js
-// changed the order of properties in let {...}
-let {height, width, title} = { title: "Menu", height: 200, width: 100 }
+// let {...}  içerisindeki özelliklerin sırası değiştirildi
+let {yukseklik, genislik, baslik} = { baslik: "Menü", yukseklik: 200, genislik: 100 }
 ```
+Sol taraftaki şablon özellikler ile değişkenleri düzgün bir şekilde eşlemeye çalıştığından dolayı karmaşık olabilir.
 
-The pattern on the left side may be more complex and specify the mapping between properties and variables.
-
-If we want to assign a property to a variable with another name, for instance, `options.width` to go into the variable named `w`, then we can set it using a colon:
+Eğer özelliği değişkene farklı bir isimle tanımlamak istiyorsanız. Örneğin `ozellikler.genislik`'in değişken ismi `g` olabilir. Bunu `:` kullanarak ayarlayabilirsiniz.
 
 ```js run
-let options = {
-  title: "Menu",
-  width: 100,
-  height: 200
+let ozellikler = {
+  baslik: "Menü",
+  genislik: 100,
+  yukseklik: 200
 };
 
 *!*
-// { sourceProperty: targetVariable }
-let {width: w, height: h, title} = options;
+// { kaynakOzelligi: hedefDegiskeni }
+let {genislik: g, yukseklik: y, baslik} = ozellikler;
 */!*
 
-// width -> w
-// height -> h
-// title -> title
+// genislik -> g
+// yukseklik -> y
+// baslik -> baslik
 
-alert(title);  // Menu
-alert(w);      // 100
-alert(h);      // 200
+alert(baslik);  // Menu
+alert(genislik);      // 100
+alert(yukseklik);      // 200
 ```
 
-The colon shows "what : goes where". In the example above the property `width` goes to `w`, property `height` goes to `h`, and `title` is assigned to the same name.
+İki nokta üst üste "hangisi : nereye" ikilisini gösterir. Yukarıdaki örnekte `genislik` `g` olur, `yukseklik` `h` olur ve `baslik` aynı isime atanır.
 
-For potentially missing properties we can set default values using `"="`, like this:
+Var olması garanti olmayan özelliklerin varsayılan değerleri `"="` ile atanır. Örneğin:
+
 
 ```js run
-let options = {
-  title: "Menu"
+let ozellikler = {
+  baslik: "Menü"
 };
 
 *!*
-let {width=100, height=200, title} = options;
+let {genislik=100, yukseklik=200, baslik} = ozellikler;
 */!*
 
-alert(title);  // Menu
-alert(width);  // 100
-alert(height); // 200
+alert(baslik);  // Menü
+alert(genislik);  // 100
+alert(yukseklik); // 200
 ```
+Dizilerde veya fonksiyon parametrelerinde olduğu gibi, varsayılan değerler ifade veya fonksiyon çağrısı bile olabilir. Değer sağlanmadığında bunlar çalışır.
 
-Just like with arrays or function parameters, default values can be any expressions or even function calls. They will be evaluated if the value is not provided.
-
-The code below asks for width, but not the title.
+Aşağıdaki kod genişlik için sorar fakat başlık için sormaz.
 
 ```js run
-let options = {
-  title: "Menu"
+let ozellikler = {
+  baslik: "Menü"
 };
 
 *!*
-let {width=prompt("width?"), title=prompt("title?")} = options;
+let {genislik=prompt("genislik?"), baslik=prompt("baslik?")} = ozellikler;
 */!*
 
-alert(title);  // Menu
-alert(width);  // (whatever you the result of prompt is)
+alert(baslik);  // Menü
+alert(genislik);  // prompt'ta yazılan değer
 ```
-
-We also can combine both the colon and equality:
+Ayrıca iki nokta üst üste ve eşitlik birleştirilebilir:
 
 ```js run
-let options = {
-  title: "Menu"
+let ozellikler = {
+  baslik: "Menü"
 };
 
 *!*
-let {width:w=100, height:h=200, title} = options;
+let {genislik:g=100, yukseklik:y=200, baslik} = ozellikler;
 */!*
 
-alert(title);  // Menu
-alert(w);      // 100
-alert(h);      // 200
+alert(baslik);  // Menu
+alert(g);      // 100
+alert(y);      // 200
 ```
 
-### The rest operator
+### Geriye Kalan operatörü
 
-What if the object has more properties than we have variables? Can we take some and then assign the "rest" somewhere?
+Eğer obje değişkenden fazla özelliğe sahipse ne olur? Bazılarını alıp "geriye kalan"'a atanabilir mi?
 
-The specification for using the rest operator (three dots) here is almost in the standard, but most browsers do not support it yet.
+Burada kullanılabilecek geriye kalan operatörü ( üç nokta ) neredeyse standart olmuştur, fakat yine de çoğu tarayıcı henüz desteklememektedir.
 
-It looks like this:
+Aşağıdaki gibi çalışır:
 
 ```js run
-let options = {
-  title: "Menu",
-  height: 200,
-  width: 100
+let ozellikler = {
+  baslik: "Menü",
+  yukseklik: 200,
+  genislik: 100
 };
 
 *!*
-let {title, ...rest} = options;
+let {baslik, ...geri_kalan} = ozellikler;
 */!*
 
-// now title="Menu", rest={height: 200, width: 100}
-alert(rest.height);  // 200
-alert(rest.width);   // 100
+// şimdi baslik="Menü", geri_kalan={yukseklik: 200, genislik: 100}
+alert(geri_kalan.yukseklik);  // 200
+alert(geri_kalan.genislik);   // 100
 ```
 
 
 
-````smart header="Gotcha without `let`"
-In the examples above variables were declared right before the assignment: `let {…} = {…}`. Of course, we could use existing variables too. But there's a catch.
+````smart header=" `let` kullanmak istenmediğinde düşünülmesi gereken"
 
-This won't work:
+Yukarıdaki örnekte `let {...} = {...}` şeklinde atamadan önce yeni bir değişken ataması yapılmıştır. Tabi ki daha önceden var olan değişkenler de kullanılabilir. Fakat burada düşünülmesi gereken bir nüans vardır.
+
+Aşağıdaki çalışmayacaktır:
+
 ```js run
-let title, width, height;
+let baslik, genislik, yukseklik;
 
 // error in this line
-{title, width, height} = {title: "Menu", width: 200, height: 100};
+// bu satırda hata verir
+{baslik, genislik, yukseklik} = {baslik: "Menü", genislik: 200, yukseklik: 100};
 ```
 
-The problem is that JavaScript treats `{...}` in the main code flow (not inside another expression) as a code block. Such code blocks can be used to group statements, like this:
+Problem şu ki JavaScript `{...}`'i ana kod akışında bir kod bloğu olarak düşünmektedir, diğer bir ifadenin içinde değil. Böyle kod blokları şu şekilde komutları gruplamak için kullanılır:
 
 ```js run
 {
-  // a code block
-  let message = "Hello";
+  // bir kod bloğu
+  let mesaj = "Merhaba";
   // ...
-  alert( message );
+  alert( mesaj );
 }
 ```
-
-To show JavaScript that it's not a code block, we can wrap the whole assignment in brackets `(...)`:
+JavaScript'e bunun bir kod bloğu olmadığını göstermek için tüm tanımlama `(...)` içine alınmalıdır:
 
 ```js run
-let title, width, height;
+let baslik, genislik, yukseklik;
 
-// okay now
-*!*(*/!*{title, width, height} = {title: "Menu", width: 200, height: 100}*!*)*/!*;
+// şimdi çalışır
+*!*(*/!*{baslik, genislik, yukseklik} = {baslik: "Menü", genislik: 200, yukseklik: 100}*!*)*/!*;
 
-alert( title ); // Menu
+alert( baslik ); // Menü
 ```
 
-````
 
-## Nested destructuring
 
-If an object or an array contain other objects and arrays, we can use more complex left-side patterns to extract deeper portions.
+## İç içe ayrıştırma
 
-In the code below `options` has another object in the property `size` and an array in the property `items`. The pattern at the left side of the assignment has the same structure:
+Eğer bir obje diğer dizi veya objeleri içeriyorsa, eşitliğin sol tarafında daha karmaşık şablon kullanarak derinlere inilebilir.
+
+Aşağıdaki kodda `ozellikler` içerisinde `boyut` adında başka bir obje ve `elemanlar` adında bir dizi içermektedir. Atamanın sol tarafında aynı yapı bulunmaktadır:
 
 ```js run
-let options = {
-  size: {
-    width: 100,
-    height: 200
+let ozellikler = {
+  boyut: {
+    genislik: 100,
+    yukseklik: 200
   },
-  items: ["Cake", "Donut"],
-  extra: true    // something extra that we will not destruct
+  elemanlar: ["Kek", "Ekmek"],
+  ekstra: true    // ayrıştırılacak başka şeyler
 };
 
-// destructuring assignment on multiple lines for clarity
+// ayrıştırma daha açık olması için birkaç satırda yazılmıştır.
 let {
-  size: { // put size here
-    width,
-    height
+  boyut: { // buraya boyutlar atanır.
+    genislik,
+    yukseklik
   },
-  items: [item1, item2], // assign items here
-  title = "Menu" // not present in the object (default value is used)
-} = options;
+  elemanlar: [eleman1, eleman2], // burada elemanlar atanır
+  baslik = "Menü" // objede bulunmadığından varsayılan değer kullanılır.
+} = ozellikler;
 
-alert(title);  // Menu
-alert(width);  // 100
-alert(height); // 200
-alert(item1);  // Cake
-alert(item2);  // Donut
+alert(baslik);  // Menü
+alert(genislik);  // 100
+alert(yukseklik); // 200
+alert(eleman1);  // Kek
+alert(eleman2);  // Ekmek
 ```
-
-The whole `options` object except `extra` that was not mentioned, is assigned to corresponding variables.
+Tüm `ozellikler` objesi `ekstra` hariç karşılık gelen değişkene atanmıştır.
 
 ![](destructuring-complex.png)
 
-Finally, we have `width`, `height`, `item1`, `item2` and `title` from the default value.
+Sonunda, `genislik`, `yukseklik`, `eleman1`, `eleman2` ve `baslik`'in varsayılan değeri elde edilmiş oldu.
 
-That often happens with destructuring assignments. We have a complex object with many properties and want to extract only what we need.
+Genelde çok karmaşık objelerde sadece işinize yarayanları almak daha mantıklıdır.
 
-Even here it happens:
+Farklı bir örnek:
 ```js
-// take size as a whole into a variable, ignore the rest
-let { size } = options;
+// boyut'un tek bir değişkene ata ve gerisini pas geç.
+
+let { boyut } = ozellikler;
 ```
 
-## Smart function parameters
+## Akıllı Fonksiyon Parametreleri
 
-There are times when a function may have many parameters, most of which are optional. That's especially true for user interfaces. Imagine a function that creates a menu. It may have a width, a height, a title, items list and so on.
+Bir fonksiyonun birçok parametresinin isteğe bağlı olduğu durumlar olabilir. Bu genelde kullanıcı arayüzü için geçerlidir. Diyelim ki menüyü oluşturan bir fonksiyon düşünün. Bu yükseklik, genişlik, başlık, elemanların listesi vs.. gibi bir çok parametreye sahip olabilir.
 
-Here's a bad way to write such function:
+Aşağıda bunun nasıl kötü yazılabileceği gösterilmiştir:
 
 ```js
-function showMenu(title = "Untitled", width = 200, height = 100, items = []) {
+function menuyuGoster(baslik = "Başlıksız", genislik = 200, yukseklik = 100, elemanlar = []) {
   // ...
 }
 ```
+Buna fonksiyona değer gönderirken en büyük problem sıralamayı hatırlamaktır. Genelde IDE'ler bize bunun için yardımcı olur. Fakat yine de tam başarılı sayılmazlar. Diğer bir problem ise bu fonksiyonu çağırırken hangi argümana değer göndermezsek sorun çıkmaz bilgisidir. Bu bilgi de çok muallaktır.
 
-In real-life the problem is how to remember the order of arguments. Usually IDEs try to help us, especially if the code is well-documented, but still... Another problem is how to call a function when most parameters are ok by default.
-
-Like this?
+Aşağıdaki gibi?
 
 ```js
-showMenu("My Menu", undefined, undefined, ["Item1", "Item2"])
+menuyuGoster("Benim menüm", undefined, undefined, ["Birinci Eleman", "İkinci Eleman"])
 ```
 
-That's ugly. And becomes unreadable when we deal with more parameters.
+Çok çirkin. Ayrıca daha fazla parametre olsa okuması da zor.
 
-Destructuring comes to the rescue!
+Burada ayrıştırma devreye giriyor!
 
-We can pass parameters as an object, and the function immediately destructurizes them into variables:
+Parametreler bir obje içerisinde gönderilebilir ve fonksyionun içerisinde bunlar değişkene atanabilir:
 
 ```js run
-// we pass object to function
-let options = {
-  title: "My menu",
-  items: ["Item1", "Item2"]
+// objeleri fonksiyonlara gönderme
+let ozellikler = {
+  baslik: "Benim Menüm",
+  elemanlar: ["Birinci Eleman", "İkinci Eleman"]
 };
 
-// ...and it immediately expands it to variables
-function showMenu(*!*{title = "Untitled", width = 200, height = 100, items = []}*/!*) {
-  // title, items – taken from options,
-  // width, height – defaults used
-  alert( title + ' ' + width + ' ' + height ); // My Menu 100 200
-  alert( items ); // Item1, Item2
+// ...  ve doğrudan değişkenlerine ayrılabilir.
+function menuyuGoster(*!*{baslik = "Başlıksız", genislik = 200, yukseklik = 100, elemanlar = []}*/!*) {
+  // baslik, elemanlar – bunlar ozellikler objesinden alınacak,
+  // genislik, yukseklik – varsayılandakiler kullanılacak
+  alert( baslik + ' ' + genislik + ' ' + yukseklik ); // Benim Menüm 200 100
+  alert( items ); // Birinci Eleman, İkinci Eleman
 }
 
-showMenu(options);
+menuyuGoster(ozellikler);
 ```
-
-We can also use more complex destructuring with nested objects and colon mappings:
+Daha karmaşık ayrıştırma kullanarak iç içe objeleri de kullanmak mümkündür:
 
 ```js run
-let options = {
-  title: "My menu",
-  items: ["Item1", "Item2"]
+let ozellikler = {
+  baslik: "Benim Menüm",
+  elemanlar: ["Birinci Eleman", "İkinci eleman"]
 };
 
 *!*
-function showMenu({
-  title = "Untitled",
-  width:w = 100,  // width goes to w
-  height:h = 200, // height goes to h
-  items: [item1, item2] // items first element goes to item1, second to item2
+function menuyuGoster({
+  baslik = "Başlıksız",
+  genislik:g = 100,  // genislik g'ye atanır.
+  yukseklik:h = 200, // yukseklik y'ye atanır.
+  elemanlar: [eleman1, eleman2] // elemanların birincisi eleman1'e ikincisi eleman2'ye atanır.
 }) {
 */!*
-  alert( title + ' ' + w + ' ' + h ); // My Menu 100 200
+  alert( baslik + ' ' + g + ' ' + y ); // Benim menüm 100 200
   alert( item1 ); // Item1
   alert( item2 ); // Item2
 }
 
-showMenu(options);
+menuyuGoster(ozellikler);
 ```
 
-The syntax is the same as for a destructuring assignment:
+Yazımı daha önce yaptığınız ayrıştırma tanımı ile aynıdır:
 ```js
 function({
-  incomingProperty: parameterName = defaultValue
+  gelenOzellik: parametreAdi = vasayilanDeger
   ...
 })
 ```
-
-Please note that such destructuring assumes that `showMenu()` does have an argument. If we want all values by default, then we should specify an empty object:
+Dikkat edin bu şekilde ayrıştırma `menuyuGoster()` bir argüman aldığını varsayar. Eğer varsayılanda değerler olması isteniyor ise menuyuGoster({}) boş obje almalıdır:
 
 ```js
-showMenu({});
+menuyuGoster({});
 
-// that would give an error
-showMenu();
+// Bu hata verir.
+menuyuGoster();
 ```
-
-We can fix this by making `{}` the default value for the whole destructuring thing:
-
+Varsayılan değerleri göndermek için `{}` gönderilmesi gerekmektedir:
 
 ```js run
-// simplified parameters a bit for clarity
-function showMenu(*!*{ title="Menu", width=100, height=200 } = {}*/!*) {
-  alert( title + ' ' + width + ' ' + height );
+// daha net göstermek için bazı parametreler silinmiştir
+function menuyuGoster(*!*{ baslik="Menü", genislik=100, yukseklik=200 } = {}*/!*) {
+  alert( baslik + ' ' + genislik + ' ' + yukseklik );
 }
 
-showMenu(); // Menu 100 200
+menuyuGoster(); // Menü 100 200
 ```
+Yukarıdaki kodda argümanın tamamı varsayılanda `{}` şeklindedir. Bundan dolayı her zaman ayrıştıracak birşey vardır.
 
-In the code above, the whole arguments object is `{}` by default, so there's always something to destructurize.
+## Özet
 
-## Summary
+- Objeler veya diziler ayrıştırılarak birçok değişkene atanabilirler.  
 
-- Destructuring assignment allows for instantly mapping an object or array onto many variables.
-- The object syntax:
+- Obje Yazımı:
     ```js
-    let {prop : varName = default, ...} = object
+    let {ozellik : degiskenAdi = varsayilan, ...} = obje
     ```
-
-    This means that property `prop` should go into the variable `varName` and, if no such property exists, then `default` value should be used.
-
-- The array syntax:
+    Bu demek oluyor ki `ozellik` `degiskenAdi`'na gidecek ve eğer böyle bir özellik mevcut değilse `varsayilan` bu değer için kullanılacak.
+    
+- Dizi yazımı:
 
     ```js
-    let [item1 = default, item2, ...rest] = array
+    let [eleman1 = varsayilan, eleman2, ...geri_kalan] = dizi
     ```
-
-    The first item goes to `item1`, the second goes into `item2`, all the rest makes the array `rest`.
-
-- For more complex cases, the left side must have the same structure as the right one.
+    İlk eleman `eleman1`'e atanacak, ikincisi `eleman2`'ye ve geri kalan hepsi `geri_kalan` dizisine atanacak.
+    
+- Daha karmaşık yapılar için, eşitliğin sol tarafı sağ tarafı ile anyı olmalıdır.

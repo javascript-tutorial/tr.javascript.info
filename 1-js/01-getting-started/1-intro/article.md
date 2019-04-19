@@ -1,121 +1,120 @@
-# An Introduction to JavaScript
+# JavaScript'e Giriş
 
-Let's see what's so special about JavaScript, what we can achieve with it and which other technologies play well with it.
+Bakalım JavaScript nedir, ne yapılır ve hangi teknolojilerle birlikte çalışır.
 
-## What is JavaScript?
+## JavaScript  Nedir?
 
-*JavaScript* was initially created to *"make webpages alive"*.
+*JavaScript*, ilk başta  *"web belgelerine canlılık"* getirmek için oluşturulmuştur.
 
-The programs in this language are called *scripts*. They can be written right in the HTML and execute automatically as the page loads.
+Bu dilde yazılan kod kümelerine betik denir. Doğrudan HTML kodu içerisine yazılıp sayfa yüklendiğinde doğrudan çalışabilir.
 
-Scripts are provided and executed as a plain text. They don't need a special preparation or a compilation to run.
+Komutlar herhangi bir derleme ve hazırlığa gereksinim duymadan doğrudan çalışırlar.
 
-In this aspect, JavaScript is very different from another language called [Java](http://en.wikipedia.org/wiki/Java).
+Bu yönden bakınca JavaScript diğer dillere kıyasla oldukça farklıdır.Bkz: [Java](http://en.wikipedia.org/wiki/Java).
 
-```smart header="Why <u>Java</u>Script?"
-When JavaScript was created, it initially had another name: "LiveScript". But Java language was very popular at that time, so it was decided that positioning a new language as a "younger brother" of Java would help.
 
-But as it evolved, JavaScript became a fully independent language, with its own specification called [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript), and now it has no relation to Java at all.
+```smart header="Neden <u>Java</u>Script?"
+JavaScript ilk yazıldığında, başka bir adı vardı: "LiveScript". Ancak Java dili o dönemlerde çok ünlü olduğundan dolayı yeni bir dil ve "küçük kardeş" gibi görünmesi açısından JavaScript olarak değiştirildi.
+
+Ancak JavaScript gelişerek kendince yönergeleri [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript) olan bağımsız bir dil haline geldi. Şu anda Java ile hiç bir ilgisi bulunmamaktadır.
+```
+Günümüzde JavaScript yalnızca ağ tarayıcıda değil, sunucuda veya
+[ JavaScript motoru](https://en.wikipedia.org/wiki/JavaScript_engine) olan her yerde çalışmaktadır.
+
+Tarayıcılar bu JavaScript motoru gömülü bir biçimde gelirler. Bu ayrıca "JavaScript sanal makinesi" olarak da adlandırılır.
+
+Bu JavaScript motorlarından bazıları şunlardır;
+
+- [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) --  Chrome ve Opera.
+- [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) --  Firefox.
+- Internet Explorer'ın "Trident", "Chakra" takma adlı motorlarının yanında Microsoft Edge için "ChakraCore" adında ayrı bir motoru bulunmaktadır. Safari ise "Nitro", "SquirrelFish" ve "SquirrelFish Extreme" gibi takma adlarla adlandırılan JavaScript motorunu kullanmaktadır.
+
+Yukarıdaki terimleri aklınızda tutarsanız iyi olur, çünkü ileride şu tür tümcelerle karşılaşabilirsiniz: "V8'de A özelliğinin altyapısı", "Bu özelliğin altyapısının Chrome ve Opera'da bulunduğunu anlamanız gerekir.""
+
+```smart header="JavaScript Motoru Nasıl Çalışır?"
+
+Motorlar çok karmaşık yapılardır. Ancak kolay ögelere dayanırlar.
+
+1. Eğer bu motor tarayıcıya gömülmüş ise yazılan JavaScript kodlarını ayrıştırır.
+2. Sonra bu kodları makine diline çevirir.
+3. Makine bu kodları çok hızlı bir biçimde çalıştırır.
+
+Motor bu sürecin her bir adımında iyileştirme yapar. Hatta derlenmiş ve çalışır durumda bulunan kodlardaki veri yapılarını inceler ve bunları iyileştirerek daha hızlı duruma getirir. Sonuç olarak yazılan bu kodlar çok hızlı bir biçimde çalışır.
 ```
 
-At present, JavaScript can execute not only in the browser, but also on the server, or actually on any device where there exists a special program called [the JavaScript engine](https://en.wikipedia.org/wiki/JavaScript_engine).
+## Tarayıcı içerisindeki JavaScript neler yapabilir?
 
-The browser has an embedded engine, sometimes it's also called a "JavaScript virtual machine".
+Günümüz JavaScript'i "güvenli" bir programlama dilidir. Düşük düzeydeki diller gibi bellek veya işlemciye doğrudan erişim sağlamaz. Tarayıcı için olduğundan dolayı böyle birşeye gereksinim duymaz.
 
-Different engines have different "codenames", for example:
+JavaScript'in yapabilecekçeleri büyük bir oranda ortama dayanır. Örneğin [Node.JS](https://wikipedia.org/wiki/Node.js), JavaScript işlevleri ile dosyaları okuma, yazma veya ağ üzerinden isteme işlemlerini yapabilir.
 
-- [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) -- in Chrome and Opera.
-- [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) -- in Firefox.
-- ...There are other codenames like "Trident", "Chakra" for different versions of IE, "ChakraCore" for Microsoft Edge, "Nitro" and "SquirrelFish" for Safari etc.
+Tarayıcı içerisindeki JavaScript ise web sayfasında görsel değişikliklere ve kullanıcı ile sunucu arasındaki etkileşimle ilgili herşeyi yapabilir.
 
-The terms above are good to remember, because they are used in developer articles on the internet. We'll use them too. For instance, if "a feature X is supported by V8", then it probably works in Chrome and Opera.
+Örneğin tarayıcı içerisindeki JavaScript şunları yapabilir:
 
-```smart header="How engines work?"
+- Sayfaya yeni HTML kodları ekleme veya öncekileri değiştirme, stilleri değiştirme veya ekleme.
+- Kullanıcının eylemlerine karşılık verme. Tıklama veya fare imlecinin hareketine göre işlem yaptırabilme.
+- Ağ üzerinden talep gönderebilme. Dosya yükleme veya indirebilme ( buna [AJAX](https://en.wikipedia.org/wiki/Ajax_(programming)) ve [COMET](https://en.wikipedia.org/wiki/Comet_(programming) teknolojileri denir )
+- Tarayıcıdaki çerezleri silme, ekleme veya düzeltme işlemlerinin yapılması. İleti gösterilmesi.
+- Kullanıcı tarafında verilerin saklanması ( "local storage")
 
-Engines are complicated. But the basics are easy.
+## Tarayıcı içerisinde bulunan JavaScript ne yapamaz ?
 
-1. The engine (embedded if it's a browser) reads ("parses") the script.
-2. Then it converts ("compiles") the script to the machine language.
-3. And then the machine code runs, pretty fast.
+Tarayıcı içerisinde bulunan JavaScript kullanıcı güvenliği amacıyla sınırlandırılmıştır. Amaç zararlı web sitelerinin özel bilgilere erişip kullanıcıya zarar vermesini engellemektir.
 
-The engine applies optimizations on every stage of the process. It even watches the compiled script as it runs, analyzes the data that flows through it and applies optimizations to the machine code based on that knowledge. At the end, scripts are quite fast.
-```
+Bu engellemeleri şu biçimde sıralayabiliriz :
 
-## What can in-browser JavaScript do?
+- Web sayfasında çalışan JavaScript dosyalara erişim sağlayamaz, saklama alanınızda bulunan programları kopyalayamaz veya çalıştıramaz. İşletim sisteminizin fonksiyonlarına doğrudan erişimi yoktur.
 
-The modern JavaScript is a "safe" programming language. It does not provide low-level access to memory or CPU, because it was initially created for browsers which do not require it.
+    Günümüz tarayıcıları dosyalarla çalışmanıza izin verebilir. Ancak bu izin oldukça sınırlıdır. Örneğin, yalnızca dosyayı tarayıcıya taşıyıp bırakabilirsiniz veya `<input>` kullanarak dosyayı seçebilirsiniz.
 
-The capabilities greatly depend on the environment that runs JavaScript. For instance, [Node.JS](https://wikipedia.org/wiki/Node.js) supports functions that allow JavaScript to read/write arbitrary files, perform network requests etc.
+    Her zaman kullanıcıyla kamera veya mikrofon vasıtasıyla veya diğer aygıtlar aracılığıyla etkileşime geçebilirsiniz. Ancak kullanıcının kesin iznini almanız gerekir. Dolayısıyla bir web sayfası JavaScript ile gizliden sizin web kameranızı izleyemez veya çevrenizde bulunanlar hakkında bilgi alamaz. [NSA](https://en.wikipedia.org/wiki/National_Security_Agency)
 
-In-browser JavaScript can do everything related to webpage manipulation, interaction with the user and the webserver.
+- Farklı sekmeler birbiri ile iletişime geçemez ve bilgi alışverişi yapamazlar. Bazı sitelerde aynı sekmeler iletişimde bulunabilir, örneğin bir sekmeden JavaScript ile diğer sekmeyi açabilirsiniz. Bu durumda bile, bir sayfa diğerinden farklı alan adı, kural veya kapılarda ise erişemez.
 
-For instance, in-browser JavaScript is able to:
-
-- Add new HTML to the page, change the existing content, modify styles.
-- React to user actions, run on mouse clicks, pointer movements, key presses.
-- Send requests over the network to remote servers, download and upload files (so-called [AJAX](https://en.wikipedia.org/wiki/Ajax_(programming)) and [COMET](https://en.wikipedia.org/wiki/Comet_(programming)) technologies).
-- Get and set cookies, ask questions to the visitor, show messages.
-- Remember the data on the client-side ("local storage").
-
-## What CAN'T in-browser JavaScript do?
-
-JavaScript's abilities in the browser are limited for the sake of the user's safety. The aim is to prevent an evil webpage from accessing private information or harming the user's data.
-
-The examples of such restrictions are:
-
-- JavaScript on a webpage may not read/write arbitrary files on the hard disk, copy them or execute programs. It has no direct access to OS system functions.
-
-    Modern browsers allow it to work with files, but the access is limited and only provided if the user does certain actions, like "dropping" a file into a browser window or selecting it via an `<input>` tag.
-
-    There are ways to interact with camera/microphone and other devices, but they require a user's explicit permission. So a JavaScript-enabled page may not sneakily enable a web-camera, observe the surroundings and send the information to the [NSA](https://en.wikipedia.org/wiki/National_Security_Agency).
-- Different tabs/windows generally do not know about each other. Sometimes they do, for example when one window uses JavaScript to open the other one. But even in this case, JavaScript from one page may not access the other if they come from different sites (from a different domain, protocol or port).
-
-    This is called the "Same Origin Policy". To work around that, *both pages* must contain a special JavaScript code that handles data exchange.
-
-    The limitation is again for user's safety. A page from `http://anysite.com` which a user has opened must not be able to access another browser tab with the URL `http://gmail.com` and steal information from there.
-- JavaScript can easily communicate over the net to the server where the current page came from. But its ability to receive data from other sites/domains is crippled. Though possible, it requires explicit agreement (expressed in HTTP headers) from the remote side. Once again, that's safety limitations.
+    Bu olaya "Same Origin Policy" ( Aynı kaynak kuralı ) denir. Bunu çözmek için *her iki sayfa* özel bir JavaScript kodu ile birbirlerini onaylamalıdır. Bu engellemeler yine kullanıcının güvenliği içindir. Kullanıcının açtığı `http://örnekyerlik.com` sitesi diğer sekmede bulunan `http://diğeryerlik.com` sitesinden bilgi çalamamalıdır.
+- JavaScript kolayca bulunduğu sayfadan veri alabilir. Ancak başka site veya alan adlarından veri alması sorunludur. Olanaklı olmasında karşın her iki yanın onayı gereklidir. Yine, bunun nedeni güvenlik sınırlarıdır diyebiliriz.
 
 ![](limitations.png)
 
-Such limits do not exist if JavaScript is used outside of the browser, for example on a server. Modern browsers also allow installing plugin/extensions which may get extended permissions.
+Bu sınırlar, tarayıcı dışında kullanıldığında ortadan kalkar. Örneğin, sunucular daha geniş yetkilere sahiptir.
 
-## What makes JavaScript unique?
 
-There are at least *three* great things about JavaScript:
+## JavaScript'i eşsiz yapan nedir ?
+
+JavaScript'i eşsiz yapan en az 3 neden vardır:
 
 ```compare
-+ Full integration with HTML/CSS.
-+ Simple things done simply.
-+ Supported by all major browsers and enabled by default.
++ HTML/CSS ile tamamen bütünleşik çalışması.
++ Basit şeyler basitçe yapılır.
++ Tüm önemli tarayıcılarda çalışır ve ön tanımlı olarak etkindir.
 ```
 
-Combined, these three things exist only in JavaScript and no other browser technology.
+JavaScript'ten başka bu üç özelliği taşıyan hiçbir tarayıcı teknolojisi yoktur.
 
-That's what makes JavaScript unique. That's why it's the most widespread tool to create browser interfaces.
+JavaScript'in eşsiz olma nedeni budur ve bu yüzden web sayfaları geliştirmekte kullanılan en yaygın araçtır.
 
-While planning to learn a new technology, it's beneficial to check its perspectives. So let's move on to the modern trends that include new languages and browser abilities.
+Yeni bir teknolojiyi öğrenmeye başlarken, sunacağı avantajlar için öngörü önemlidir. Bu sebeptendir ki, yeni diller ve tarayıcı yetkinlikleri içeren bu yönelimlere ayak uydurmalıyız.
 
+## JavaScript'e üstün diller
 
-## Languages "over" JavaScript
+JavaScript'in sözdizimi ve yazımı herkese uymayabilir. Her yiğidin yoğurt yiyişi ayrıdır.
 
-The syntax of JavaScript does not suit everyone's needs. Different people want different features.
+Bu olağan bir durum, çünkü tasarımlar ve gereksinimler kişiden kişiye göre değişir.
 
-That's to be expected, because projects and requirements are different for everyone.
+Bundan dolayı yakın zamanda bir sürü yeni *transpiled* yani çevirilmiş diller türemiştir. Bu diller, çalıştırılmadan önce JavaScript'e çevriliyor. Günümüz araçları bu çeviri işini çok hızlı bir biçimde yapmaktadır. Gerçekte, doğrudan -siz yazarken bile- çevirme işini yapıp bu yeni dosyayı kullanılabilir duruma getirirler.
 
-So recently a plethora of new languages appeared, which are *transpiled* (converted) to JavaScript before they run in the browser.
+Bu dillere örnek vermek gerekirse:
 
-Modern tools make the transpilation very fast and transparent, actually allowing developers to code in another language and autoconverting it "under the hood".
+- [CofeeScript](http://coffeescript.org) JavaScript için "şeker yazım" denebilecek bir dildir. Yazılımı daha kısadır ve daha temiz kod yazmaya yardımcı olur. Genellikle [Ruby](https://www.ruby-lang.org/tr/) geliştiriciler bunu sever.
 
-Examples of such languages:
+- [Typescript](http://www.typescriptlang.org/) durağan veri yapıları ile JavaScript yazılmasını sağlar. Karmaşık programlar geliştirmeyi kolaylaştırır. Microsoft tarafından geliştirilmiştir.
 
-- [CoffeeScript](http://coffeescript.org/) is a "syntax sugar" for JavaScript, it introduces shorter syntax, allowing to write more precise and clear code. Usually Ruby devs like it.
-- [TypeScript](http://www.typescriptlang.org/) is concentrated on adding "strict data typing", to simplify development and support of complex systems. It is developed by Microsoft.
-- [Dart](https://www.dartlang.org/) is a standalone language that has its own engine that runs in non-browser environments (like mobile apps). It was initially offered by Google as a replacement for JavaScript, but as of now, browsers require it to be transpiled to JavaScript just like the ones above.
+- [Dart](https://www.dartlang.org/) kendi başına ayrı bir dildir. Tarayıcı üzerinde veya telefon uygulamalarında kendi motoru üzerinden çalıştırılır. Google'ın tarayıcılarda JavaScript yerine Dart'ı önermiş olmasına karşın, bu günlerde JavaScript'e çeviri yapılarak kullanılmaktadır.
 
-There are more. Of course even if we use one of those languages, we should also know JavaScript, to really understand what we're doing.
+Bunlara daha fazla örnek eklenebilir. Yukarıdakileri bilseniz bile ne yaptığınızı tam olarak anlamak için JavaScript bilmelisiniz.
 
-## Summary
-
-- JavaScript was initially created as a browser-only language, but now it is used in many other environments as well.
-- At this moment, JavaScript has a unique position as the most widely-adopted browser language with full integration with HTML/CSS.
-- There are many languages that get "transpiled" to JavaScript and provide certain features. It is recommended to take a look at them, at least briefly, after mastering JavaScript.
+## Özet
+- JavaScript başlangıçta yalnızca ağ tarayıcılarında kullanılmak üzere geliştirilmiş bir dildi. Ancak günümüzde, birçok çevrede çalışabilir durumda.
+- JavaScript şu anda HTML/CSS ile bütünleşik olmasından ve geniş uyumluluğundan dolayı benzersizdir.
+- Bir çok JavaScript'e çevirici dil bulunmaktadır. JavaScript'i iyi bir biçimde öğrendikten sonra bu dillere de bir bakmanızı öneririz.

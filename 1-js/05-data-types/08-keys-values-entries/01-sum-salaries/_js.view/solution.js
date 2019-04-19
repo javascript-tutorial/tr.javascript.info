@@ -1,10 +1,10 @@
-function sumSalaries(salaries) {
+function toplamMaas(maaslar) {
 
-  let sum = 0;
-  for (let salary of Object.values(salaries)) {
-    sum += salary;
+  let toplam = 0;
+  for (let maas of Object.values(maaslar)) {
+    toplam += maas;
   }
 
-  return sum;
+  return toplam;
 }
 

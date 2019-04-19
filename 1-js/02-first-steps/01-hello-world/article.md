@@ -1,19 +1,18 @@
-# Hello, world!
+# Merhaba Dünya
 
-The tutorial that you're reading is about core JavaScript, which is platform-independent. Further on, you will learn Node.JS and other platforms that use it.
+Okuyacağınız bu konu Javascript'in özü hakkındadır, platform ile bağlantılı değildir. İleride Node.JS ve diğer platformlarda aynı şekilde kullanabilirsiniz.
 
-But, we need a working environment to run our scripts, and, just because this book is online, the browser is a good choice. We'll keep the amount of browser-specific commands (like `alert`) to a minimum, so that you don't spend time on them if you plan to concentrate on another environment like Node.JS. On the other hand, browser details are explained in detail in the [next part](/ui) of the tutorial.
+Fakat kodlarımızın çalıştırılabilmesi için en azından bir ortam gerekli ve bu kitap tarayıcı üzerinden açılarak size bu ortamı yaratmış oluyor. Tarayıcı özel komutları ( `alert`) daha az tutulacak. Böylece eğer diğer platformlara yönelmek istiyorsanız bu komutlarla zaman geçirmenize gerek kalmayacak. Diğer yandan [sonraki](/ui) bölümde tarayıcı özellikleri daha derinlemesine incelenecektir.
 
-So first, let's see how to attach a script to a webpage. For server-side environments, you can just execute it with a command like `"node my.js"` for Node.JS.
-
+Öyleyse web sayfasına nasıl JavaScript dökümanı ekleyeceğinizi öğreneceksiniz. Sunucu taraflı çevrelerde JavaScript kodunuzu `"node my.js"` komutuyla çalıştırabilirsiniz.
 
 [cut]
 
-## The "script" tag
+## Script etiketi
 
-JavaScript programs can be inserted in any part of an HTML document with the help of the `<script>` tag.
+Javascript programları html içerisine `<script>` etiketi ile eklenebilir.
 
-For instance:
+Örneğin:
 
 ```html run height=100
 <!DOCTYPE HTML>
@@ -21,7 +20,7 @@ For instance:
 
 <body>
 
-  <p>Before the script...</p>
+  <p>Javascript Kodundan önce...</p>
 
 *!*
   <script>
@@ -29,7 +28,7 @@ For instance:
   </script>
 */!*
 
-  <p>...After the script.</p>
+  <p>...Javascript kodundan sonra.</p>
 
 </body>
 
@@ -37,25 +36,22 @@ For instance:
 ```
 
 ```online
-You can run the example by clicking on the "Play" button in its right-top corner.
+Sağ üst taraftaki "Play" ( Çalıştır ) butonuna basarak örneği çalıştırabilirsiniz.
 ```
 
-The `<script>` tag contains JavaScript code which is automatically executed when the browser meets the tag.
+`<script>` etiketi içerisine yazdığınız JavaScript komutu tarayıcı o koda geldiğinde doğrudan okunur.
 
+## Modern yazım
 
-## The modern markup
+Bu günlerde `<script>` etiketi genelde özellikler eklenmeden yazılmakta. Fakat eski kodlara baktınızda aşağıdaki gibi kodları görmek mümkündür:
 
-The `<script>` tag has a few attributes that are rarely used nowadays, but we can find them in old code:
+ `type` özelliği: <code>&lt;script <u>type</u>=...&gt;</code>
+ : Eski HTML4 standardı script etiketi içerisinde tip gelirmeyi zorunlu kılıyordu. Genelde bu `type="text/javascript"` idi. Günümüzde ise HTML standartları `type` özelliğini varsayılan olarak kabul edebiliyor.
 
- The `type` attribute: <code>&lt;script <u>type</u>=...&gt;</code>
+`language` (dil) özelliği: <code>&lt;script <u>language</u>=...&gt;</code>
+: Bu özellik yazılan script'in dilini göstermek amacıyla kullanılır. Fakat bu da artık önemini yitirmiştir. Javascript varsayılan dil olduğundan dolayı söylemeye gerek yoktur.
 
- : The old standard HTML4 required a script to have a type. Usually it was `type="text/javascript"`. The modern HTML standard assumes this `type` by default. No attribute is required.
-
- The `language` attribute: <code>&lt;script <u>language</u>=...&gt;</code>
-  : This attribute was meant to show the language of the script. As of now, this attribute makes no sense, the language is JavaScript by default. No need to use it.
-
-Comments before and after scripts.
-: In really ancient books and guides, one may find comments inside `<script>`, like this:
+JavaScript kodundan önce ve sonra yazılan yorumlar. Çok eski JavaScript kitaplarına bakarsanız aşağıdaki gibi bir kod bloğuyla karşılaşmanız muhtemeldir:
 
     ```html no-beautify
     <script type="text/javascript"><!--
@@ -63,30 +59,28 @@ Comments before and after scripts.
     //--></script>
     ```
 
-    These comments were supposed to hide the code from an old browser that didn't know about a `<script>` tag. But all browsers born in the past 15+ years don't have any issues. We mention it here, because such comments serve as a sign. If you see that somewhere -- that code is probably really old and not worth looking into.
+    Bu yorumların amacı <script> etiketini anlamayan tarayıcılarda JavaScript kodunun ekrana yazılmasını engellemektir. Fakat artık neredeyse tüm tarayıcılar `<script>` etiketini anladıklarından bu konuda da bir sıkıntı bulunmamaktadır. Eğer böyle bir kod bloğu görürseniz kod çok eski diyebilirsiniz.
 
+## Dışardan yüklenen Javascript kod dosyaları
 
-## External scripts
+Eğer çok fazla JavaScript kodunuz varsa bunları ayrı bir sayfaya koyabilirsiniz.
 
-If we have a lot of JavaScript code, we can put it into a separate file.
-
-The script file is attached to HTML with the `src` attribute:
+Sonrasında bu dosyayı aşağıdaki gibi yol göstererek sayfanızda çalıştırılmasını sağlayabilirsiniz.
 
 ```html
-<script src="/path/to/script.js"></script>
+<script src="/kod/yolu/ana.js"></script>
 ```
 
-Here `/path/to/script.js` is an absolute path to the file with the script (from the site root).
+Buraki `/kod/yolu/ana.js` site ana dizininden itibaren kesin(absolute) yol belirtir.
 
-It is also possible to provide a path relative to the current page. For instance, `src="script.js"` would mean a file `"script.js"` in the current folder.
+Tabi göreceli(relative) yol belirtmek de mümkündür. Örneğin `src="script.js"` HTML dosyasının kayıt edildiği klasördeki `"script.js"`'yi al anlamına gelir.
 
-We can give a full URL as well, for instance:
+Tam URL vermek de mümkündür. Örneğin:
 
 ```html
 <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
 ```
-
-To attach several scripts, use multiple tags:
+Birkaç kod dosyası eklemek isterseniz aşağıdaki gibi yazabilirsiniz.
 
 ```html
 <script src="/js/script1.js"></script>
@@ -95,29 +89,27 @@ To attach several scripts, use multiple tags:
 ```
 
 ```smart
-As a rule, only the simplest scripts are put into HTML. More complex ones reside in separate files.
+Kural olarak en basit JavaScript kodları doğrudan HTML içerisine yazılır. Daha karmaşık olanlar farklı dosyalarda taşınır.
 
-The benefit of a separate file is that the browser will download it and then store in its [cache](https://en.wikipedia.org/wiki/Web_cache).
+Ayrı dosyalarda taşınmasının bir diğer güzel yanı tarayıcıların bu dosyaları indirip ön belleğe almasıdır.[cache] https://tr.wikipedia.org/wiki/Web_%C3%B6nbelle%C4%9Fi).
 
-After this, other pages that want the same script will take it from the cache instead of downloading it. So the file is actually downloaded only once.
-
-That saves traffic and makes pages faster.
+Bu olaydan sonra eğer bu kod dosyaları değişmediyse daha sonraki sayfa gösterimlerinde o dosyaları tekrar indirmeyecektir. Yani kod dosyaları sadece bir defa indirilecektir. Bu da web sayfasının veri trafiğinin daha az olmasını ve sayfanın daha hızlı gösterilmesini sağlar.
 ```
 
-````warn header="If `src` is set, the script content is ignored."
-A single `<script>` tag can't have both the `src` attribute and the code inside.
+````warn header="Eğer `src`etiketi yazılmışsa sadece kod dosyası eklemeye yarar. Yani hem `scr` ekleyip hemde `<script>` tagları arasında kod çalıştıramazsınız.
 
-This won't work:
+Aşağıdaki kod bloğu çalışmayacaktır:
+
 
 ```html
 <script *!*src*/!*="file.js">
-  alert(1); // the content is ignored, because src is set
+  alert(1); // İçerik görmezden gelinecektir çünkü `src` tagı kullanılmıştır.
 </script>
 ```
 
-We must choose: either it's an external `<script src="…">` or a regular `<script>` with code.
+`script` tagını kullırken dışarıdan mı dosya ekleyeceksiniz ( `<script src="…">` ) yoksa dosyayı içeride mi yazacaksınız bunun kararını vermemiz gerekmektedir.
 
-The example above can be split into two scripts to work:
+Yukarıdaki örnek iyi `<script>` etiketi içerisinde şu şekilde çalıştırılır.
 
 ```html
 <script src="file.js"></script>
@@ -127,11 +119,11 @@ The example above can be split into two scripts to work:
 ```
 ````
 
-## Summary
+## Özet
 
-- We can use a `<script>` tag to add JavaScript code to the page.
-- The `type` and `language` attributes are not required.
-- A script in an external file can be inserted with `<script src="path/to/script.js"></script>`.
+- `<script>` etiketi kullanarak sayfaya Javascript kodu entegre edebilirsiniz.
+- `type` ve `language` özellikleri artık gerekli değildir.
+- Dışarıdan bir kod eklemek için `src` özelliğini kullanabilirsiniz. Ör : `<script src="path/to/script.js"></script>`
 
 
-There is much more to learn about browser scripts and their interaction with the web-page. But let's keep in mind that this part of the tutorial is devoted to the JavaScript language, so we shouldn't distract ourselves from it. We'll be using a browser as a way to run JavaScript, which is very convenient for online reading, but yet one of many.
+Tarayıcı ve web sayfası etkileşimi üzerine JavaScript tarafında öğrenilecek çok şey vardır. Fakat unutmayın ki bu bölüm JavaScript diline adanmıştır. Tarayıcıyı sadece JavaScript çalıştırabilmesinden dolayı kullanacaksınız. Böylece anında kodu çalıştırabilecek ve bir yandan da kitabı okumaya devam edebileceksiniz.

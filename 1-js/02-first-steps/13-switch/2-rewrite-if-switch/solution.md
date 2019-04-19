@@ -1,4 +1,4 @@
-The first two checks turn into two `case`. The third check is split into two cases:
+İlk ikisi iki tane `case`e dönüşür. Üçüncüsü ise iki tane `case`e dönüşür.
 
 ```js run
 let a = +prompt('a?', '');
@@ -20,7 +20,6 @@ switch (a) {
 */!*
 }
 ```
+Not: En altta bulunan `break` gerekli değildir. Fakat kodu gelecekte oluşacak değişikliklere yönelik yazarsanız daha iyi olur.
 
-Please note: the `break` at the bottom is not required. But we put it to make the code future-proof.
-
-In the future, there is a chance that we'd want to add one more `case`, for example `case 4`. And if we forget to add a break before it, at the end of `case 3`, there will be an error. So that's a kind of self-insurance.
+İlerde diyelim ki yeni bir `case` yazma ihtiyacı duydunuz örneğin `case 4` ve bir öncekinde `break` cümlesini unuttunuz diyelim. Bu durumda `case 3` ün sonunda hata olacaktır. Bu şekilde yazma bir çeşit sigortadır.

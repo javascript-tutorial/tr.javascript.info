@@ -1,22 +1,21 @@
+Açıklama
 
-Here's the explanations.
+1. Normal metod çağrısı yapılmaktadır.
 
-1. That's a regular object method call.
+2. Aynı şekilde çağrı yapılmaktadır. Tek fark parantez ve bu parantez sadece sıralama için kullanılmaktadır. Bir anlam ifade etmez.
 
-2. The same, brackets do not change the order of operations here, the dot is first anyway.
-
-3. Here we have a more complex call `(expression).method()`. The call works as if it were split into two lines:
+3. Daha karmaşık bir çağrı, `(ifade).metod()`. Eğer bu metod iki satıra ayrılırsa çalışır:
 
     ```js no-beautify
-    f = obj.go; // calculate the expression
-    f();        // call what we have
+    f = obj.selamVer; // ifadeyi hesapla
+    f();        // çağır
     ```
+    Burada `f()` fonksiyon olarak `this` ifadesi olmadan çalıştırılmıştır.
 
-    Here `f()` is executed as a function, without `this`.
+4.  Aynı şekilde `.` nın sol tarafında bir ifade bulunmaktadır.
 
-4. The similar thing as `(3)`, to the left of the dot `.` we have an expression.
+`(3)` ve `(4)` ün davranışını açıklamak için dönen referans tipini tekrar çalıştırmak gereklidir.
 
-To explain the behavior of `(3)` and `(4)` we need to recall that property accessors (dot or square brackets) return a value of the Reference Type.  
+Metod çağrısı haricinde her işlem( atama `=` veya `||`) bu fonksiyonu normal değere döndürür. Bundan dolayı da `this`'in tanımsız kalmasına yol açar.
 
-Any operation on it except a method call (like assignment `=` or `||`) turns it into an ordinary value, which does not carry the information allowing to set `this`.
 

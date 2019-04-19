@@ -1,24 +1,26 @@
-# The "switch" statement
+# "switch" cümleleri
 
-A `switch` statement can replace multiple `if` checks.
+```
+Türkçe olarak buradaki anlamıyla `switch` kelimesini karşılacak bir kelime bulunmamaktadır 
+```
 
-It gives a more descriptive way to compare a value with multiple variants.
+`Switch` cümleleri `if` cümleleri haline de getirilebilirler.
+
+Daha açıklayıcı ve değerleri birçok farklı şekilde karşılaştırabilir.
 
 [cut]
 
-## The syntax
+## Yazım
 
-The `switch` has one or more `case` blocks and an optional default.
-
-It looks like this:
+`Switch` bir veya birden fazla `case` bloğu içermelidir. İsteğe bağlı olarak `default` bloğu kullanılabilir. Yazımı aşağıdaki gibidir.
 
 ```js no-beautify
 switch(x) {
-  case 'value1':  // if (x === 'value1')
+  case 'deger1':  // if (x === 'deger1')
     ...
     [break]
 
-  case 'value2':  // if (x === 'value2')
+  case 'deger2':  // if (x === 'deger2')
     ...
     [break]
 
@@ -27,72 +29,68 @@ switch(x) {
     [break]
 }
 ```
+- `x` değeri `sıkı eşitlik` ile kontrol edildi. ( `deger1`) sonra da `deger2`
 
-- The value of `x` is checked for a strict equality to the value from the first `case` (that is, `value1`) then to the second (`value2`) and so on.
-- If the equality is found, `switch` starts to execute the code starting from the corresponding `case`, until the nearest `break` (or until the end of `switch`).
-- If no case is matched then the `default` code is executed (if it exists).
+- Eğer eşitlik bulunursa en yakın `break` olan yere kadar çalışmaya devam eder. Eğer `break` yoksa döngüyü kıramayacağından dolayı `switch` sonuna kadar çalışır.
 
-## An example
+- Eğer hiç bir eşitlik sağlanamazsa `default` içinde olan kod çalışır.
 
-An example of `switch` (the executed code is highlighted):
+## Örnek
+Aşağıda bulunan örnekte çalışacak `case` bloğu vurgulanmıştır.
+```js run
+let a = 2 + 2;
+
+switch (a) {
+  case 3:
+    alert( 'Çok kısa' );
+    break;
+*!*
+  case 4:
+    alert( 'Kesinlikle!' );
+    break;
+*/!*
+  case 5:
+    alert( 'Çok büyük' );
+    break;
+  default:
+    alert( "Böyle bir değeri bilmiyorum." );
+}
+```
+Başlangıçta `switch` cümlesi `a` değişkenini ilk önce 3 `case`'i ile karşılaştırır. Bu karşılaştırma `yanlış` olduğundan ikinciye geçer.
+
+`4` ise eşitliği sağlar `4`den itibaren en yakın `break`e kadar olan bölüm çalışır.
+
+**Eğer `break` konulmazsa sonraki `case` de hiç bir kontrol olmadan çalışır**
+
+`break` olmadan yazılmış hali:
 
 ```js run
 let a = 2 + 2;
 
 switch (a) {
   case 3:
-    alert( 'Too small' );
-    break;
+    alert( 'Çok kısa' );
 *!*
   case 4:
-    alert( 'Exactly!' );
-    break;
-*/!*
+    alert( 'Kesinlikle!' );
   case 5:
-    alert( 'Too large' );
-    break;
+    alert( 'Çok büyük' );
   default:
-    alert( "I don't know such values" );
-}
-```
-
-Here the `switch` starts to compare `a` from the first `case` variant that is `3`. The match fails.
-
-Then `4`. That's a match, so the execution starts from `case 4` until the nearest `break`.
-
-**If there is no `break` then the execution continues with the next `case` without any checks.**
-
-An example without `break`:
-
-```js run
-let a = 2 + 2;
-
-switch (a) {
-  case 3:
-    alert( 'Too small' );
-*!*
-  case 4:
-    alert( 'Exactly!' );
-  case 5:
-    alert( 'Too big' );
-  default:
-    alert( "I don't know such values" );
+    alert( "Böyle bir değeri bilmiyorum." );
 */!*
 }
 ```
-
-In the example above we'll see sequential execution of three `alert`s:
+Bu döngü çalıştırıldığında ekranda sıralı şekilde uyarılar göreceksiniz. 
 
 ```js
-alert( 'Exactly!' );
-alert( 'Too big' );
-alert( "I don't know such values" );
+alert( 'Kesinlikle!' );
+alert( 'Çok büyük' );
+alert( "Böyle bir değeri bilmiyorum." );
 ```
 
-````smart header="Any expression can be a `switch/case` argument"
-Both `switch` and `case` allow arbitrary expressions.
+````smart header="Her türli ifade `switch/case` olabilir.
 
-For example:
+Örneğin:
 
 ```js run
 let a = "1";
@@ -101,74 +99,73 @@ let b = 0;
 switch (+a) {
 *!*
   case b + 1:
-    alert("this runs, because +a is 1, exactly equals b+1");
+    alert("Çalışır çünkü a+1 = b+1");
     break;
 */!*
 
   default:
-    alert("this doesn't run");
+    alert("Burası çalışmaz");
 }
 ```
-Here `+a` gives `1`, that's compared with `b + 1` in `case`, and the corresponding code is executed.
+`+a` `1` değeri dönderir. `case` işleminde `b+1` ile karşılaştırıldığında sonuç `doğru` olduğundan içerideki `alert` çalışır.
 ````
 
-## Grouping of "case"
+## "case"'leri gruplama
+Gövdesinde aynı kodu çalıştıran birden fazla `case` gruplanabilir.
 
-Several variants of `case` which share the same code can be grouped.
-
-For example, if we want the same code to run for `case 3` and `case 5`:
+Örneğin, diyelim ki `case 3` ve `case 5` için aynı kodu çalıştırmak isteniz:
 
 ```js run no-beautify
 let a = 2 + 2;
 
 switch (a) {
   case 4:
-    alert('Right!');
+    alert('Doğru!');
     break;
 
 *!*
-  case 3:                    // (*) grouped two cases
+  case 3:                    // (*) iki "case" gruplandı
   case 5:
-    alert('Wrong!');
-    alert("Why don't you take a math class?");
+    alert('Yanlış!');
+    alert("Neden matematik dersi almıyorsun?");
     break;
 */!*
 
   default:
-    alert('The result is strange. Really.');
+    alert('Sonuç garip. Gerçekten!');
 }
 ```
 
-Now both `3` and `5` show the same message.
+`3` ve `5` aynı mesajı gösterecek.
 
-The ability to "group" cases is a side-effect of how `switch/case` works without `break`. Here the execution of `case 3` starts from the line `(*)` and goes through `case 5`, because there's no `break`.
+Aslında "gruplama" `switch/case`'in break olmadan çalıştırılmış halidir. 
+Yan etki de denebilir. `case 3` `(*)`'dan başlar ve arada `break` olmadığından `case 5` ile devam eder.
 
-## Type matters
+## Tipler önemlidir
 
-Let's emphasize that the equality check is always strict. The values must be of the same type to match.
+Başta da söylenildiği gibi değişken eşitlikleri her zaman `sıkı` olarak kontrol edilir. Bundan dolayı değerler karşılaştırılırken aynı tipte olmasına dikkat edilmesi gerekir.
 
-For example, let's consider the code:
+Örneğin, aşağıdaki kodu göz önüne alırsanız:
 
 ```js run
-let arg = prompt("Enter a value?")
+let arg = prompt("Bir değer giriniz?")
 switch (arg) {
   case '0':
   case '1':
-    alert( 'One or zero' );
+    alert( 'Bir veya 2' );
     break;
 
   case '2':
-    alert( 'Two' );
+    alert( '2' );
     break;
 
   case 3:
-    alert( 'Never executes!' );
+    alert( 'Hiç bir zaman çalışmaz!' );
     break;
   default:
-    alert( 'An unknown value' )
+    alert( 'Bilinmeyen bir değer' )
 }
 ```
-
-1. For `0`, `1`, the first `alert` runs.
-2. For `2` the second `alert` runs.
-3. But for `3`, the result of the `prompt` is a string `"3"`, which is not strictly equal `===` to the number `3`. So we've got a dead code in `case 3`! The `default` variant will execute.
+1. `0` ve `1` değerleri için ilk `alert` çalışır.
+2. `2` değeri için ikinci `alert` çalışır.
+3. `prompt` her zaman karakter dizisi döndüreceğinden dolayı kontrol eğer `3` şeklinde yapılsaydı bu durumda ekrana mesaj çıkacaktı. Fakat kontrol sayı olan 3 ile yapıldığından dolayı bu ölü koddur ve hiç bir zaman çalışmaz. Bunun yerine `default` kodu çalışacaktır.

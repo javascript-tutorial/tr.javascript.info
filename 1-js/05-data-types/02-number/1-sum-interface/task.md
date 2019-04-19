@@ -1,11 +1,11 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Sum numbers from the visitor
+# Kullanıcının girdiği değerleri toplayan program
 
-Create a script that prompts the visitor to enter two numbers and then shows their sum.
+Kullanıcıya iki defa değer soran ve bu değerleri toplayan kodu yazınız.
 
 [demo]
 
-P.S. There is a gotcha with types.
+P.S. Tiplerle ilgili bir numara var.

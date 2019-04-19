@@ -1,29 +1,29 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Filter through function
+# Fonksiyon ile filtreler
 
-We have a built-in method `arr.filter(f)` for arrays. It filters all elements through the function `f`. If it returns `true`, then that element is returned in the resulting array.
+Diziler için `arr.filter(f)` adında JavaScript dahilinde bir metod bulunmaktadır. Bu metod tüm elemanları `f` fonksiyonu ile filtreler. Eğer `true` döner ise o eleman sonuç listesinde görünür.
 
-Make a set of "ready to use" filters:
+"Kullanmaya hazır" filtreler yapınız:
 
-- `inBetween(a, b)` -- between `a` and `b` or equal to them (inclusively).
-- `inArray([...])` -- in the given array.
+- `arasinda(a, b)` --  `a` ve `b` araında veya eşit.
+- `diziIcinde([...])` -- verilen dizi içerisinde
 
-The usage must be like this:
+Kullanımları şu şekilde olacaktır:
 
-- `arr.filter(inBetween(3,6))` -- selects only values between 3 and 6.
-- `arr.filter(inArray([1,2,3]))` -- selects only elements matching with one of the members of `[1,2,3]`.
+- `arr.filter(arasinda(3,6))` -- sadece 3 ile 6 arasındaki değerleri seçer.
+- `arr.filter(diziIcinde([1,2,3]))` -- elemanlar eşitse onları seçeer. Bu durumda sadece `[1,2,3]` elemanları seçilecektir.
 
-For instance:
+Örneğin:
 
 ```js
-/* .. your code for inBetween and inArray */
+/* .. arasinda ve diziIcinde için yazdığınız kodlar. */
 let arr = [1, 2, 3, 4, 5, 6, 7];
 
-alert( arr.filter(inBetween(3, 6)) ); // 3,4,5,6
+alert( arr.filter(arasinda(3, 6)) ); // 3,4,5,6
 
-alert( arr.filter(inArray([1, 2, 10])) ); // 1,2
+alert( arr.filter(diziIcinde([1, 2, 10])) ); // 1,2
 ```
 

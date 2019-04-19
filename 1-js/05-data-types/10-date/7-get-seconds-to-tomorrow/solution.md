@@ -1,15 +1,15 @@
-To get the number of milliseconds till tomorrow, we can from "tomorrow 00:00:00" substract the current date.
+Yarına olan süreyi bulmak için "yarının 00:00:00"'ından şimdi arasındaki fark bulunur. 
 
-First, we generate that "tomorrow", and then do it:
+Önce "yarını" tanımlamak gereklidir:
 
 ```js run
-function getSecondsToTomorrow() {
-  let now = new Date();
+function yarinaKacSn() {
+  let simdi = new Date();
 
-  // tomorrow date
-  let tomorrow = new Date(now.getFullYear(), now.getMonth(), *!*now.getDate()+1*/!*);
+  // yarin
+  let yarin = new Date(simdi.getFullYear(), simdi.getMonth(), *!*simdi.getDate()+1*/!*);
 
-  let diff = tomorrow - now; // difference in ms
-  return Math.round(diff / 1000); // convert to seconds
+  let fark = yarin - simdi; // ms cinsinden fark
+  return Math.round(fark / 1000); // saniyeye cevir
 }
 ```

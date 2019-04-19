@@ -1,113 +1,109 @@
-# Array methods
+# Dizi Metodları
 
-Arrays provide a lot of methods. To make things easier, in this chapter they are split into groups.
+Diziler bir çok metod sunarlar. İşleri daha kolaylaştırmak için bu bölüm ikiye ayrılacaktır.
 
 [cut]
 
-## Add/remove items
+## Elaman silme/ekleme
 
-We already know methods that add and remove items from the beginning or the end:
+Eleman eklemenin ve silmenin baştan ve sondan nasıl olacağını gördünüz:
 
-- `arr.push(...items)` -- adds items to the end,
-- `arr.pop()` -- extracts an item from the end,
-- `arr.shift()` -- extracts an item from the beginning,
-- `arr.unshift(...items)` -- adds items to the beginning.
+- `arr.push(...items)` -- elemanları sona ekler,
+- `arr.pop()` -- sondaki elemanı çıkarır.
+- `arr.shift()` -- başlangıçtan eleman çıkarır.
+- `arr.unshift(...items)` -- başlangıça eleman ekler.
 
-Here are few others.
+Diğer birkaç metod ise aşağıdaki gibidir.
 
 ### splice
 
-How to delete an element from the array?
+Diziden eleman nasıl silinir?
 
-The arrays are objects, so we can try to use `delete`:
+Diziler de obje olduklarından dolayı, `delete` kullanarak silinebilir.
 
 ```js run
-let arr = ["I", "go", "home"];
+let arr = ["eve", "gitmek", "istiyorum"];
 
-delete arr[1]; // remove "go"
+delete arr[1]; // "gitmek" silinecek 
 
 alert( arr[1] ); // undefined
 
-// now arr = ["I",  , "home"];
+// şimdi arr = ["eve",  , "istiyorum"];
 alert( arr.length ); // 3
 ```
 
-The element was removed, but the array still has 3 elements, we can see that `arr.length == 3`.
+Eleman silinmesine rağmen, dizi hala 3 elemana sahip. Bunu `arr.length == 3` kontrolünü yaparak görebilirsiniz.
 
-That's natural, because `delete obj.key` removes a value by the `key`. It's all it does. Fine for objects. But for arrays we usually want the rest of elements to shift and occupy the freed place. We expect to have a shorter array now.
+Olması gereken de bu, çünkü `delete obj.key` değeri `anahtara` göre siler. Sadece bu işi yapar. Bu da objeler için yeterlidir. Fakat diziler için genelde istediğimiz elamanların birbirlerinin yerleri doldurmasıdır. Bundan dolayı dizinin kısaldığını görmemiz lazım.
 
-So, special methods should be used.
+Bundan dolayı özel metodlar kullanılmalıdır.
 
-The [arr.splice(str)](mdn:js/Array/splice) method is a swiss army knife for arrays. It can do everything: add, remove and insert elements.
+[arr.splice(str)](mdn:js/Array/splice) metodu isviçre çakısı gibi her işe yarar. Diziye yeni bir eleman ekleyebilir ve silebilir.
 
-The syntax is:
+Yazımı:
 
 ```js
 arr.splice(index[, deleteCount, elem1, ..., elemN])
 ```
+`index`'ten başlar ve `deleteCount`kadar elemanı siler ve sonra `elem1, ..., elemN` şeklinde yerlerine yerleştirir. Diziden silinen elemanları dönderir.
 
-It starts from the position `index`: removes `deleteCount` elements and then inserts `elem1, ..., elemN` at their place. Returns the array of removed elements.
+Bu metodu örnek ile anlamak çok daha kolaydır.
 
-This method is easy to grasp by examples.
-
-Let's start with the deletion:
+Silme işlemi ile başlayalım:
 
 ```js run
-let arr = ["I", "study", "JavaScript"];
+let arr = ["Ben", "JavaScript", "çalışıyorum"];
 
 *!*
-arr.splice(1, 1); // from index 1 remove 1 element
+arr.splice(1, 1); // index 1'den 1 elaman sil
 */!*
 
-alert( arr ); // ["I", "JavaScript"]
+alert( arr ); // ["Ben", "çalışıyorum"]
 ```
+Kolay değil mi? `1`. indeksten başlayarak 1 eleman sildi.
 
-Easy, right? Starting from the index `1` it removed `1` element.
-
-In the next example we remove 3 elements and replace them by the other two:
+Bir sonraki örnekte ise 4 eleman silinecek ve yeni bir eleman bunların yerine konulacak.
 
 ```js run
-let arr = [*!*"I", "study", "JavaScript",*/!* "right", "now"];
+let arr = [*!*"Ben", "şu", "an",*/!* "JavaScript", "çalışıyorum"];
 
-// remove 3 first elements and replace them by another
-arr.splice(0, 3, "Let's", "dance")
+// İlk 3 elamanı sil ve öncesine yeni eleman ekle.
+arr.splice(0, 4, "Ders")
 
-alert( arr ) // now [*!*"Let's", "dance"*/!*, "right", "now"]
+alert( arr ) // Şimdi [Ders çalışıyorum]
 ```
-
-Here we can see that `splice` returns the array of removed elements:
+Burada `splice` in silinen elemanları döndürdüğü görülebilir.
 
 ```js run
-let arr = [*!*"I", "study",*/!* "JavaScript", "right", "now"];
+let arr = [*!*"Ben", "şu",*/!* "an", "JavaScript", "çalışıyorum"];
 
-// remove 2 first elements
+// ilk iki elemanı sil.
 let removed = arr.splice(0, 2);
 
-alert( removed ); // "I", "study" <-- array of removed elements
+alert( removed ); // "Ben", "şu" <-- silinen elemanlar
 ```
-
-The `splice` method is also able to insert the elements without any removals. For that we need to set `deleteCount` to `0`:
+`splice` metodu ayrıca hiç birşey silmeden de ekleme yapabilir. Bunun için `deleteCount`'u `0` yapmanız gerekmektedir:
 
 ```js run
-let arr = ["I", "study", "JavaScript"];
+let arr = ["Ben", "JavaScript", "çalışıyorum"];
 
-// from index 2
-// delete 0
-// then insert "complex" and "language"
-arr.splice(2, 0, "complex", "language");
+// 1. indeksten
+// 0 tane sil
+// Sonrasında "karmaşık" ekle
+arr.splice(1, 0,  "karmaşık");
 
-alert( arr ); // "I", "study", "complex", "language", "JavaScript"
+alert( arr ); // "Ben", "karmaşık", "JavaScript", "çalışıyorum"
 ```
 
-````smart header="Negative indexes allowed"
-Here and in other array methods, negative indexes are allowed. They specify the position from the end of the array, like here:
+````smart header="Negatif indekslerde kullanılabilir"
+Bu ve diğer metodlarda negatif indeksler kullanılabilir. Negatif indeksler dizinin sonundan başına doğrudur. Örneğin:
 
 ```js run
 let arr = [1, 2, 5]
 
-// from index -1 (one step from the end)
-// delete 0 elements,
-// then insert 3 and 4
+// indeks -1 ( sondan birinci ) 
+// 0 eleman sil,
+// 3 vs 4 ekle
 arr.splice(-1, 0, 3, 4);
 
 alert( arr ); // 1,2,3,4,5
@@ -116,19 +112,18 @@ alert( arr ); // 1,2,3,4,5
 
 ### slice
 
-The method [arr.slice](mdn:js/Array/slice) is much simpler than similar-looking `arr.splice`.
+[arr.slice](mdn:js/Array/slice) metodu `arr.splice`'a göre daha basittir.
 
-The syntax is:
+Yazımı:
 
 ```js
 arr.slice(start, end)
 ```
+Yeni bir dizi döndürür. Bu dizi içerisinde `"start"` ile `"end"` arasında ( `"end"` dahil olmadan ) tüm elemanları kopyalar. `start` ve `end` negatif olabilir. Negatif durumlarda dizi sondan değer başlar.
 
-It returns a new array where it copies all items start index `"start"` to `"end"` (not including `"end"`). Both `start` and `end` can be negative, in that case position from array end is assumed.
+`str.slice` gibi çalışır fakat karakter dizisi(string) yapmak yerine alt-dizi yapar.
 
-It works like `str.slice`, but makes subarrays instead of substrings.
-
-For instance:
+Örneğin:
 
 ```js run
 let str = "test";
@@ -143,36 +138,35 @@ alert( arr.slice(-2) ); // s,t
 
 ### concat
 
-The method [arr.concat](mdn:js/Array/concat) joins the array with other arrays and/or items.
+[arr.concat](mdn:js/Array/concat) metodu dizi ile diğer dizileri veya elemanları birbirine eklemeye yarar.
 
-The syntax is:
+Yazımı:
 
 ```js
 arr.concat(arg1, arg2...)
 ```
 
-It accepts any number of arguments -- either arrays or values.
+İstenildiği kadar arhümanı kabul eder, bunlar dizi veya değer olabilir.
 
-The result is a new array containing items from `arr`, then `arg1`, `arg2` etc.
+Sonuç `arr`, ardından `arg1`, `arg2` şeklinde tüm dizileri ve değerleri içeren bir dizi olur.
 
-If an argument is an array or has `Symbol.isConcatSpreadable` property, then all its elements are copied. Otherwise the argument itself is copied.
+Eğer bir argüman dizi ve `Symbol.isConcatSpreadable` özelliğine sahip ise ise bunun tüm alt elemanları kopyalanır. Diğer türlü argümanın sadece kendisi kopyalanır.
 
-For instance:
+Örneğin:
 
 ```js run
 let arr = [1, 2];
 
-// merge arr with [3,4]
+// diziyi [3,4] ile birleştir
 alert( arr.concat([3, 4])); // 1,2,3,4
 
-// merge arr with [3,4] and [5,6]
+// diziyi [3,4] ve [5,6] ile birleştir
 alert( arr.concat([3, 4], [5, 6])); // 1,2,3,4,5,6
 
-// merge arr with [3,4], then add values 5 and 6
+// diziyi [3,4] ile birleştir ve ardından 5, 6 ekle 
 alert( arr.concat([3, 4], 5, 6)); // 1,2,3,4,5,6
 ```
-
-Normally, it only copies elements from arrays ("spreads" them), other objects even if they look like arrays and added as a whole:
+Normalde, dizide bulunan elemanları kopyalar. Diğer objeler dizi olsalar bile bir bütün olarak eklenirler.
 
 ```js run
 let arr = [1, 2];
@@ -186,36 +180,38 @@ alert( arr.concat(arrayLike) ); // 1,2,[object Object]
 //[1, 2, arrayLike]
 ```
 
-...But if an array-like object has `Symbol.isConcatSpreadable` property, then its elements are added instead:
+...Fakat dizi benzeri obje `Symbol.isConcatSpreadable` özelliğine sahipse, bunların elemanları eklenir:
+
 
 ```js run
 let arr = [1, 2];
 
 let arrayLike = {
-  0: "something",
-  1: "else",
+  0: "başka",
+  1: "birşey",
 *!*
   [Symbol.isConcatSpreadable]: true,
 */!*
   length: 2
 };
 
-alert( arr.concat(arrayLike) ); // 1,2,something,else
+alert( arr.concat(arrayLike) ); // 1,2,başka,birşey
 ```
 
-## Searching in array
+## Dizide arama
 
-These are methods to search for something in an array.
+Dizi içerisinde aramak için bazı metodlar bulunmaktadır.
 
-### indexOf/lastIndexOf and includes
+### indexOf/lastIndexOf ve includes
 
-The methods [arr.indexOf](mdn:js/Array/indexOf), [arr.lastIndexOf](mdn:js/Array/lastIndexOf) and [arr.includes](mdn:js/Array/includes) have the same syntax and do essentially the same as their string counterparts, but operate on items instead of characters:
+[arr.indexOf](mdn:js/Array/indexOf), [arr.lastIndexOf](mdn:js/Array/lastIndexOf) ve [arr.includes](mdn:js/Array/includes) aynı yazıma sahiptirler, ve aslında hepsi aynı işi yapar. Sadece karakterler yerine elemanlar üzerinde çalışırlar.
 
-- `arr.indexOf(item, from)` looks for `item` starting from index `from`, and returns the index where it was found, otheriwse `-1`.
-- `arr.lastIndexOf(item, from)` -- same, but looks from right to left.
-- `arr.includes(item, from)` -- looks for `item` starting from index `from`, returns `true` if found.
+- `arr.indexOf(eleman, balangic)` `baslangic` indeksinden itibaren `eleman`'ı arar ve bulursa bunun indeksini döner, bulamazsa `-1` döner.
+- `arr.lastIndexOf(eleman, baslangic)` -- aynı, fakat bu sağdan sola doğru bakar.
+- `arr.includes(eleman, baslangic)` --  `eleman` `baslangıc`'tan başlayarak elemanları kontrol eder. Bulursa `true` döner.
 
-For instance:
+
+Örneğin:
 
 ```js run
 let arr = [1, 0, false];
@@ -227,133 +223,128 @@ alert( arr.indexOf(null) ); // -1
 alert( arr.includes(1) ); // true
 ```
 
-Note that the methods use `===` comparison. So, if we look for `false`, it finds exactly `false` and not the zero.
-
-If we want to check for inclusion, and don't want to know the exact index, then `arr.includes` is preferred.
-
-
+Bu metodlar eşitlik kontrolü için `===` kullanır. Bundan dolayı `false`'a bakacak olursanız `0` ile eşit değildir. Sadece `false` ile eşittir.
+Eğer sadece dizi içinde var olup olmadığını kontrol etmek istiyorsanız `arr.includes` tercih edilir.
+ 
 ### find and findIndex
 
-Imagine we have an array of objects. How do we find an object with the specific condition?
+Objelerden oluşma bir dizinin olduğunu varsayın. Bazı şartları sağlayan objeleri nasıl bulursunuz.
 
-Here the [arr.find](mdn:js/Array/find) method comes in handy.
+Burada [arr.find](mdn:js/Array/find) metodu yararlı olur.
 
-The syntax is:
+Yazımı:
 ```js
-let result = arr.find(function(item, index, array) {
-  // should return true if the item is what we are looking for
+let result = arr.find(function(elaman, index, dizi) {
+  //  eğer aranan eleman bulunursa true döndürmeli.
 });
 ```
+Bu fonksiyon her eleman için tekrar tekrar çağırılır.
 
-The function is called repetitively for each element of the array:
+- `elaman` eleman'ı tanımlar.
+- `index` indeks'i tanımlar.
+- `array` dizinin kendisidir.
 
-- `item` is the element.
-- `index` is its index.
-- `array` is the array itself.
+Eğer `true` döndürür ise arama durur ve `eleman`'ın kendisi döner. Eğer bulunamazsa `undefined` döndürülür.
 
-If it returns `true`, the search is stopped, the `item` is returned. If nothing found, `undefined` is returned.
-
-For example, we have an array of users, each with the fields `id` and `name`. Let's find the one with `id == 1`:
+Örneğin, kullanıcıların bulunduğu bir dizi ve her dizide `id` ve `isim` alanları bulunsun. `id == 1` olan elemanı bulalım.
 
 ```js run
-let users = [
-  {id: 1, name: "John"},
-  {id: 2, name: "Pete"},
-  {id: 3, name: "Mary"}
+let kullanicilar = [
+  {id: 1, isim: "Ahmet"},
+  {id: 2, isim: "Muzaffer"},
+  {id: 3, isim: "Emine"}
 ];
 
-let user = users.find(item => item.id == 1);
+let kullanici = kullanicilar.find(eleman => eleman.id == 1);
 
-alert(user.name); // John
+alert(kullanici.isim); // Ahmet
 ```
+Objelerin dizi içerisinde yer alması çokça karşılaşılan bir olaydır, bundan dolayı `find` metodu çok kullanışlıdır.
 
-In real life arrays of objects is a common thing, so the `find` method is very useful.
+Dikkat ederseniz `find` metodunda sadece bir tane argüman kullanılmıştır `item => item.id == 1`. `find` metodunun diğer parametreleri çok nadir olarak kullanılır.
 
-Note that in the example we provide to `find` a single-argument function `item => item.id == 1`. Other parameters of `find` are rarely used.
-
-The [arr.findIndex](mdn:js/Array/findIndex) method is essentially the same, but it returns the index where the element was found instead of the element itself.
+[arr.findIndex](mdn:js/Array/findIndex) metodu da aynı find metodu gibi çalışır fakat elemanın kendi yerine `index`'ini döndürür.
 
 ### filter
 
-The `find` method looks for a single (first) element that makes the function return `true`.
+`find` metodu sadece fonksiyonu `true` yapan elemana bakar.
 
-If there may be many, we can use [arr.filter(fn)](mdn:js/Array/filter).
+Birden fazlası için ise [arr.filter(fn)](mdn:js/Array/filter) kullanılabilir.
 
-The syntax is roughly the same as `find`, but it returns an array of matching elements:
+Yazımı neredeyse `find` ile aynıdır, fakat tek bir eleman yerine kurala uyan elemanları dizi halinde döner.
 
 ```js
-let results = arr.filter(function(item, index, array) {
-  // should return true if the item passes the filter
+let results = arr.filter(function(eleman, index, dizi) {
+  // eğer elemanlar filtreye uygunsa true döndürür.
 });
 ```
 
-For instance:
+Örneğin:
 
 ```js run
-let users = [
-  {id: 1, name: "John"},
-  {id: 2, name: "Pete"},
-  {id: 3, name: "Mary"}
+let kullanicilar = [
+  {id: 1, isim: "Ahmet"},
+  {id: 2, isim: "Muzaffer"},
+  {id: 3, isim: "Emine"}
 ];
 
-// returns array of the first two users
-let someUsers = users.filter(item => item.id < 3);
+// ilk iki kullaniciyi döndürür.
+let baziKullanicilar = kullanicilar.filter(eleman => eleman.id < 3);
 
-alert(someUsers.length); // 2
+alert(baziKullanicilar.length); // 2
 ```
 
-## Transform an array
-
-This section is about the methods transforming or reordering the array.
+## Dizi dönüşümleri
+Bu bölüm dizinin dönüşümleri veya yeniden sıralanması hakkındadır.
 
 
 ### map
 
-The [arr.map](mdn:js/Array/map) method is one of the most useful and often used.
+[arr.map](mdn:js/Array/map) metodu en fazla kullanılan ve kullanışlı olan metodlardandır.
 
-The syntax is:
+Yazımı:
 
 ```js
-let result = arr.map(function(item, index, array) {
-  // returns the new value instead of item
+let sonuc = arr.map(function(eleman, index, dizi) {
+  // eleman yerine yeni değer döndürür.
 })
 ```
+Dizinin her elemanı için fonksiyonu çalıştırır ve sonuçlarını dizi olarak döner.
 
-It calls the function for each element of the array and returns the array of results.
-
-For instance, here we transform each element into its length:
+Örneğin elemanların uzunlukları ile ilgili bir değişiklik yapılabilir:
 
 ```js run
-let lengths = ["Bilbo", "Gandalf", "Nazgul"].map(item => item.length)
-alert(lengths); // 5,7,6
+let uzuluklar = ["Bilbo", "Gandalf", "Nazgul"].map(eleman => eleman.length)
+alert(uzunluklar); // 5,7,6
 ```
 
 ### sort(fn)
 
-The method [arr.sort](mdn:js/Array/sort) sorts the array *in place*.
+[arr.sort](mdn:js/Array/sort) metodu diziyi olduğu yerde sıralar.
 
-For instance:
+Örneğin:
 
 ```js run
 let arr = [ 1, 2, 15 ];
 
-// the method reorders the content of arr (and returns it)
+// metod dizinin içeriğini sıralar ve döndürür.
 arr.sort();
 
 alert( arr );  // *!*1, 15, 2*/!*
 ```
+Çıktısında birşey fark ettiniz mi?
 
-Did you notice anything strange in the outcome?
+Sıralama `1, 15, 2` oldu. Yanlış. Neden peki?
 
-The order became `1, 15, 2`. Incorrect. But why?
+**Diziler varsayılan olarak karakter sıralamasına göre sıralanırlar.**
 
-**The items are sorted as strings by default.**
+Tüm elemanlar karakter dizisine çevrilir ve karşılaştırılır. Bundan dolayı karakter sırasına göre `"2" > "15"` karşılaştırılır. 
 
-Literally, all elements are converted to strings and then compared. So, the lexicographic ordering is applied and indeed `"2" > "15"`.
+Kendi sıralamanızı yapmak için, iki argümanlı bir fonksiyonu `arr.sort()`'ın argüman olarak alması gerekmektedir.
 
-To use our own sorting order, we need to supply a function of two arguments as the argument of `arr.sort()`.
 
-The function should work like this:
+Fonksiyon aşağıdaki şekilde çalışmalıdır:
+
 ```js
 function compare(a, b) {
   if (a > b) return 1;
@@ -362,7 +353,7 @@ function compare(a, b) {
 }
 ```
 
-For instance:
+Örneğin:
 
 ```js run
 function compareNumeric(a, b) {
@@ -379,28 +370,29 @@ arr.sort(compareNumeric);
 
 alert(arr);  // *!*1, 2, 15*/!*
 ```
+Şimdi beklendiği gibi çalışmakta.
 
-Now it works as intended.
+Ne olduğunu düşünürsek. `arr` herşeyi tutabilir, değil mi? Sayı, karakter veya html elementi vs. tutabilir. İçinde bulunanları sıralamak için karşılaştırmayı yapan *sıralama fonksiyonu*na ihtiyaç vardır. Bunun da varsayılanı karakter sıralamadır.
 
-Let's step aside and think what's happening. The `arr` can be array of anything, right? It may contain numbers or strings or html elements or whatever. We have a set of *something*. To sort it, we need an *ordering function* that knows how to compare its elements. The default is a string order.
+`arr.sort(fn)` metodu içinde sıralama algoritmasına sahiptir. Bu sıralamanın nasıl çalıştığına dair bir bilgimiz olmasına gerek yok (Çoğu zaman [quicksort](https://en.wikipedia.org/wiki/Quicksort) ) kullanılır. Diziyi dolanır ve elemanları verilen algoritmaya göre karşılaştırır ve sıralar. Tek bilmeniz gereken `fn` fonksiyonunun karşılaştırmayı yaptığıdır.
 
-The `arr.sort(fn)` method has a built-in implementation of sorting algorithm. We don't need to care how it exactly works (an optimized [quicksort](https://en.wikipedia.org/wiki/Quicksort) most of the time). It will walk the array, compare its elements using the provided function and reorder them, all we need is to provide the `fn` which does the comparison.
+Eğer hangi elemanın karşılaştırıldığını öğrenmek istiyorsanız elbette bunu görebilirsiniz.
 
-By the way, if we ever want to know which elements are compared -- nothing prevents from alerting them:
 
 ```js run
 [1, -2, 15, 2, 0, 8].sort(function(a, b) {
   alert( a + " <> " + b );
 });
 ```
+Algoritma aynı elemanı bir kaç defa çalıştırma ihtiyacı duyabilir, fakat yine de olduğunca az karşılaştırmaya çalışır.
 
-The algorithm may compare an element multiple times in the process, but it tries to make as few comparisons as possible.
 
 
-````smart header="A comparison function may return any number"
-Actually, a comparison function is only required to return a positive number to say "greater" and a negative number to say "less".
+````smart header="Karşılaştırma fonksiyonu herhangi bir sayıyı döndürebilir."
 
-That allows to write shorter functions:
+Aslında, karşılaştırma fonksiyonu "büyük" olduğunu belirtmek için pozisitif sayı, "az" olduğunu belirtmek için negatif sayı döndürmelidir.
+
+Bu daha kısa fonksiyon yazılmasına olanak sağlar:
 
 ```js run
 let arr = [ 1, 2, 15 ];
@@ -411,21 +403,20 @@ alert(arr);  // *!*1, 2, 15*/!*
 ```
 ````
 
-````smart header="Arrow functions for the best"
-Remember [arrow functions](info:function-expression#arrow-functions)? We can use them here for neater sorting:
+````smart header="Daha zarif bir fonksiyon için ok kullanmak."
+[Ok fonksiyonlarını](info:function-expression#arrow-functions)? hatırlarsanız burada daha zarif bir biçimde sıralama yapılabilir:
 
 ```js
 arr.sort( (a, b) => a - b );
 ```
-
-This works exactly the same as the other, longer, version above.
+Bu, daha uzun versiyonu ile aynı şekilde çalışır.
 ````
 
 ### reverse
 
-The method [arr.reverse](mdn:js/Array/reverse) reverses the order of elements in `arr`.
+[arr.reverse](mdn:js/Array/reverse) metodu `arr`'in sıralamasını terse çevirir.
 
-For instance:
+Örneğin:
 
 ```js run
 let arr = [1, 2, 3, 4, 5];
@@ -433,37 +424,35 @@ arr.reverse();
 
 alert( arr ); // 5,4,3,2,1
 ```
-
-It also returns the array `arr` after the reversal.
+Ayrıca terse çevirmesinden sonra `arr`'i döndürür.
 
 ### split and join
 
-Here's the situation from the real life. We are writing a messaging app, and the person enters the comma-delimited list of receivers: `John, Pete, Mary`. But for us an array of names would be much more comfortable than a single string. How to get it?
+Bunun uygulamasını gerçek hayatta şu şekilde görmek mümkndür. Bir mesajlaşma uygulaması yazıdğınızı düşünün. Gönderen kişi alıcıları virgülle ayırarak yazsın. Örneğin `Ahmet, Mehmet, Muzaffer` gibi. Fakat bizim için bunun bir dizi olması karakter dizisi olmasından daha kullanışlıdır. Peki bu nasıl yapılmalı?
 
-The [str.split(delim)](mdn:js/String/split) method does exactly that. It splits the string into an array by the given delimiter `delim`.
+[str.split(delim)](mdn:js/String/split) tam olarak bunu yapmaktadır. Karakterleri verilen `delim` e göre ayırır ve sonrasında bunları dizi olarak döner.
 
-In the example below, we split by a comma followed by space:
+Aşağıdaki örnekte isimler virgül ve ardından boşluk yazarak ayrılmıştır.
 
 ```js run
-let names = 'Bilbo, Gandalf, Nazgul';
+let isimler = 'Bilbo, Gandalf, Nazgul';
 
-let arr = names.split(', ');
+let arr = isimler.split(', ');
 
-for (let name of arr) {
-  alert( `A message to ${name}.` ); // A message to Bilbo  (and other names)
+for (let isim of arr) {
+  alert( ` ${name}'e mesaj.` ); // Bilbo'e mesaj ve diğerleri.
 }
 ```
-
-The `split` method has an optional second numeric argument -- a limit on the array length. If it is provided, then the extra elements are ignored. In practice it is rarely used though:
+`split` metodu isteğe bağlı ikincil bir sayısal argüman alabilir - dizinin boyutu. Eğer bu verilirse, dizi bu verilen uzunluk kadar dolduktan sonra geri kalanlar görmezden gelinir. Pratikte çok nadir kullanılır.
 
 ```js run
-let arr = 'Bilbo, Gandalf, Nazgul, Saruman'.split(', ', 2);
+let dizi = 'Bilbo, Gandalf, Nazgul, Saruman'.split(', ', 2);
 
 alert(arr); // Bilbo, Gandalf
 ```
 
-````smart header="Split into letters"
-The call to `split(s)` with an empty `s` would split the string into an array of letters:
+````smart header="Harflere Çevirme"
+`split(s)`i boş `s` ile çağırırsanız harflerin dizisi haline getirirsiniz.
 
 ```js run
 let str = "test";
@@ -472,12 +461,12 @@ alert( str.split('') ); // t,e,s,t
 ```
 ````
 
-The call [arr.join(str)](mdn:js/Array/join) does the reverse to `split`. It creates a string of `arr` items glued by `str` between them.
+[arr.join(str)](mdn:js/Array/join) `split` in tam tersini yapar. `arr`'den karakter dizileri yaratır.
 
-For instance:
+Örnek:
 
 ```js run
-let arr = ['Bilbo', 'Gandalf', 'Nazgul'];
+let dizi = ['Bilbo', 'Gandalf', 'Nazgul'];
 
 let str = arr.join(';');
 
@@ -486,13 +475,11 @@ alert( str ); // Bilbo;Gandalf;Nazgul
 
 ### reduce/reduceRight
 
-When we need to iterate over an array -- we can use `forEach`.
+Dizi elemanlarının üzerinden geçilmek istendiğinde `forEach` kullanmak mümkündür.
 
-When we need to iterate and return the data for each element -- we can use `map`.
+[arr.reduce](mdn:js/Array/reduce) ve [arr.reduceRight](mdn:js/Array/reduceRight) metodları da bu işe yarar fakat daha dallı budaklıdır. Genelde dizilere göre tek bir karakter dizisini hesaplamaya yarar.
 
-The methods [arr.reduce](mdn:js/Array/reduce) and [arr.reduceRight](mdn:js/Array/reduceRight) also belong to that breed, but are a little bit more intricate. They are used to calculate a single value based on the array.
-
-The syntax is:
+Yazımı:
 
 ```js
 let value = arr.reduce(function(previousValue, item, index, arr) {
@@ -500,19 +487,19 @@ let value = arr.reduce(function(previousValue, item, index, arr) {
 }, initial);
 ```
 
-The function is applied to the elements. You may notice the familiar arguments, starting from the 2nd:
+Fonksiyon elemanlara uygulanır. İkinciden itibaren benzer bir yazıma rastlayabilirsiniz.
 
-- `item` -- is the current array item.
-- `index` -- is its position.
-- `arr` -- is the array.
+- `item` -- dizinin o anki elemanı.
+- `index` -- elemanın pozisyonu.
+- `arr` -- dizi.
 
-So far, like `forEach/map`. But there's one more argument:
+Şimdiye kadar `forEach/map` gibi. Fakat bir argüman daha var:
 
-- `previousValue` -- is the result of the previous function call, `initial` for the first call.
+- `previousValue` bir önceki fonksiyonun sonucudur `initial` ilk çağrının sonucudur.
 
-The easiest way to grasp that is by example.
+Örnekle anlatmak gerekirse:
 
-Here we get a sum of array in one line:
+Aşağıda dizinin toplamı bir satırda alınmaktadır:
 
 ```js run
 let arr = [1, 2, 3, 4, 5]
@@ -521,105 +508,98 @@ let result = arr.reduce((sum, current) => sum + current, 0);
 
 alert(result); // 15
 ```
+Burada `reduce` fonksiyonunun en çok kullanılan 2 argümanlı şekli kullanıldı.
 
-Here we used the most common variant of `reduce` which uses only 2 arguments.
+Detaylarına bakılacak olursa:
 
-Let's see the details of what's going on.
+1. İlk çalıştırıldığında `sum` başlangıç değerini alır ( `reduce`'un son argümanı ) `0`, ve `current` dizinin ilk elemanıdır `1`. Bundan dolayı sonuç `1` olur.
+2. İkinci döngüde `sum = 1`, buna ikinci dizi elemanı olan `2` eklenir ve döndürülür.
+3. Üçüncü döngüde ise `sum = 3` ve buna bir sonraki dizi elemanı eklenir ve böyle devam eder.
 
-1. On the first run, `sum` is the initial value (the last argument of `reduce`), equals `0`, and `current` is the first array element, equals `1`. So the result is `1`.
-2. On the second run, `sum = 1`, we add the second array element (`2`) to it and return.
-3. On the 3rd run, `sum = 3` and we add one more element ot it, and so on...
-
-The calculation flow:
+Hesaplama akışı:
 
 ![](reduce.png)
 
-Or in the form of a table, where each row represents is a function call on the next array element:
+Form tablosunda bunu daha açık bir şekilde görebilirsiniz. Satırlar fonksiyon çağrılarını göstermektedir.
 
-|   |`sum`|`current`|`result`|
+|   |`toplam`|`şimdiki`|`sonuç`|
 |---|-----|---------|---------|
-|the first call|`0`|`1`|`1`|
-|the second call|`1`|`2`|`3`|
-|the third call|`3`|`3`|`6`|
-|the fourth call|`6`|`4`|`10`|
-|the fifth call|`10`|`5`|`15`|
+|birinci çağrı|`0`|`1`|`1`|
+|ikinci çağrı|`1`|`2`|`3`|
+|üçüncü çağrı|`3`|`3`|`6`|
+|dördüncü çağrı|`6`|`4`|`10`|
+|beşinci çağrı|`10`|`5`|`15`|
 
+Gördüğünüz gibi bir önceki fonksiyonun sonucu sonraki fonksiyonun argümanı olmakta.
 
-As we can see, the result of the previous call becomes the first argument of the next one.
-
-We also can omit the initial value:
+Bunun ile birlikte başlangıç değerini pas geçmekte mümkün:
 
 ```js run
 let arr = [1, 2, 3, 4, 5];
 
-// removed initial value from reduce (no 0)
+// başlangıç değeri silindi, 0 değil.
 let result = arr.reduce((sum, current) => sum + current);
 
 alert( result ); // 15
 ```
+Sonuç aynı. Başlangıç değeri olmadığından dolayı, `reduce` fonksiyonu diznin ilk elemanını başlangıç değeri olarak almakta ve ikinciden itibaren döngüye başlamaktadır.
 
-The result is the same. That's because if there's no initial, then `reduce` takes the first element of the array as the initial value and starts the iteration from the 2nd element.
+Hesaplama tablosu yukarıdaki ile aynı olmaktadır, sadece birinci satır silinir.
 
-The calculation table is the same as above, minus the first row.
+Fakat böyle kullanımda çok dikkatli olunmalıdır. Eğer dizi boş ise, `recude` çağrısı başlangıç değeri olmadığında hata verir.
 
-But such use requires an extreme care. If the array is empty, then `reduce` call without initial value gives an error.
-
-Here's an example:
+Örneğin:
 
 ```js run
 let arr = [];
 
-// Error: Reduce of empty array with no initial value
-// if the initial value existed, reduce would return it for the empty arr.
+// Hata: Başlangıç değeri olmayan boş dizi ile `reduce` fonksiyonu kullanıldı.
+// Eğer başlangıç değeri olsaydı, `reduce` boş diziyi döndürebilirdi.
 arr.reduce((sum, current) => sum + current);
 ```
 
+Bundan dolayı her zaman başlangıç değeri kullanılması önerilir.
 
-So it's advised to always specify the initial value.
+[arr.reduceRight](mdn:js/Array/reduceRight) metodu da `reduce` metodu ile aynı işi yapar fakat diziyi sağdan sola doğru okur.
 
-The method [arr.reduceRight](mdn:js/Array/reduceRight) does the same, but goes from right to left.
+## Tekrar: forEach
 
+[arr.forEach](mdn:js/Array/forEach) metodu her eleman için bir fonksiyon çalıştırmaya yarar.
 
-## Iterate: forEach
-
-The [arr.forEach](mdn:js/Array/forEach) method allows to run a function for every element of the array.
-
-The syntax:
+Yazımı:
 ```js
 arr.forEach(function(item, index, array) {
-  // ... do something with item
+  // ... elemanla birşeyler yap
 });
 ```
-
-For instance, this shows each element of the array:
+Örneğin aşağıdaki kod dizinin her elemanını göstermeye yarar:
 
 ```js run
-// for each element call alert
+// her eleman için alert çağır
 ["Bilbo", "Gandalf", "Nazgul"].forEach(alert);
 ```
 
-And this code is more elaborate about their positions in the target array:
+Aşağıdaki kod elemanın dizideki pozisyonu hakkında daha açıklayıcıdır:
 
 ```js run
 ["Bilbo", "Gandalf", "Nazgul"].forEach((item, index, array) => {
-  alert(`${item} is at index ${index} in ${array}`);
+  alert(`${item} ${array}'in ${index}. indeksinde`);
 });
 ```
-
-The result of the function (if it returns any) is thrown away and ignored.
+Eğer fonksiyonun bir sonucu varsa bu görmezden gelinir.
 
 ## Array.isArray
 
-Arrays do not form a separate language type. They are based on objects.
+Diziler farklı bir tip değildir. Obje üzerine kurulmuşlardır.
 
-So `typeof` does not help to distinguish a plain object from an array:
+Bundan dolayı `typeof` normal obje ile diziyi ayırt etmekte yardımcı olamaz:
 
 ```js run
 alert(typeof {}); // object
-alert(typeof []); // same
+alert(typeof []); // aynısı
 ```
 
-...But arrays are used so often that there's a special method for that: [Array.isArray(value)](mdn:js/Array/isArray). It returns `true` if the `value` is an array, and `false` otherwise.
+... Fakat diziler çok kullanıldığından dolayı buna has metod bulunmaktadır: [Array.isArray(value)](mdn:js/Array/isArray) . Eğer değer `dizi` ise `true` döndürür. Diğer türlü `false` döndürür.
 
 ```js run
 alert(Array.isArray({})); // false
@@ -627,98 +607,99 @@ alert(Array.isArray({})); // false
 alert(Array.isArray([])); // true
 ```
 
-## Most methods support "thisArg"
+## Çoğu metod "thisArg"'ı destekler
 
-Almost all array methods that call functions -- like `find`, `filter`, `map`, with a notable exception of `sort`, accept an optional additional parameter `thisArg`.
+Fonksiyonları çağıran neredeyse tüm dizi metodları -- `find`, `filter`, `map` gibi `sort` hariç, ayrıca opsiyonel `thisArg` parametresini kabul eder.
 
-That parameter is not explained in the sections above, because it's rarely used. But for completeness we have to cover it.
+Yukarıdaki bölümde bu parametreden bahsedilmedi, bunun sebebi çok nadir olarak kullanılmasından dolayıdır. Fakat bütünlüğün sağlanmasından dolayı üstünden geçmekte fayda var.
 
-Here's the full syntax of these methods:
+Bu metodlarla "thisArg"'ın yazımı aşağıdaki gibidir:
 
 ```js
 arr.find(func, thisArg);
 arr.filter(func, thisArg);
 arr.map(func, thisArg);
 // ...
-// thisArg is the optional last argument
+// thisArg isteğe bağlı olarak kullanılan bir argümandır.
 ```
+`thisArg` değeri `func` için `this` olmaktadır.
 
-The value of `thisArg` parameter becomes `this` for `func`.
-
-For instance, here we use an object method as a filter and `thisArg` comes in handy:
+Örneğin, aşağıda objenin metodu filtre olarak kullanılmaktadır ve `thisArg` bu durumda oldukça kullanışlıdır:
 
 ```js run
-let user = {
-  age: 18,
-  younger(otherUser) {
-    return otherUser.age < this.age;
+let kullanici = {
+  yas: 18,
+  dahaGenc(digerKullanici) {
+    return digerKullanici.yas < this.yas;
   }
 };
 
-let users = [
-  {age: 12},
-  {age: 16},
-  {age: 32}
+let kullanicilar = [
+  {yas: 12},
+  {yas: 16},
+  {yas: 32}
 ];
 
 *!*
-// find all users younger than user
-let youngerUsers = users.filter(user.younger, user);
+// kullanıcıdan daha genç kullanıcıları bulunuz
+let dahaGencKullanicilar = kullanicilar.filter(kullanici.dahaGenc, kullanici);
 */!*
 
-alert(youngerUsers.length); // 2
+alert(dahaGencKullanicilar.length); // 2
 ```
 
-In the call above, we use `user.younger` as a filter and also provide `user` as the context for it. If we didn't provide the context, `users.filter(user.younger)` would call `user.younger` as a standalone function, with `this=undefined`. That would mean an instant error.
+Yukarıdaki çağrıda `kullanici.dahaGenc` filtre olarak kullanılmaktadır. Ayrıca `kullanici` bu fonksiyona gönderilmektedir. Eğer `kullanici.filter(kullanici.dahaGenc)`'i vermezseniz, `kullanici.dahaGenc` `this=undefined` olarak çağrılır. Bu da anında hata verir.
 
-## Summary
+## Özet
 
-A cheatsheet of array methods:
+Dizi metodlarının kısa açıklamaları:
 
-- To add/remove elements:
-  - `push(...items)` -- adds items to the end,
-  - `pop()` -- extracts an item from the end,
-  - `shift()` -- extracts an item from the beginning,
-  - `unshift(...items)` -- adds items to the beginning.
-  - `splice(pos, deleteCount, ...items)` -- at index `pos` delete `deleteCount` elements and insert `items`.
-  - `slice(start, end)` -- creates a new array, copies elements from position `start` till `end` (not inclusive) into it.
-  - `concat(...items)` -- returns a new array: copies all members of the current one and adds `items` to it. If any of `items` is an array, then its elements are taken.
+- Eleman ekleme/silme metodları:
+  - `push(...items)` -- elemanları sona ekler,
+  - `pop()` -- en sondaki elemanı alır,
+  - `shift()` -- başlangıçtan eleman alır,
+  - `unshift(...items)` -- başlangıça eleman ekler
+  - `splice(pos, deleteCount, ...items)` --  `pos` indeksinde `deleteCount` sayısı kadar elemanı siler ve bunları `items`'a ekler.
+  - `slice(start, end)` -- `start` ile `end` pozisyonları arasındaki (`end` dahil değil) elemanları yeni bir diziye kopyalar. 
+  - `concat(...items)` -- yeni bir dizi döndürür: var olan dizideki tüm elemanları kopyalar ve `items`'ı ekler. Eğer `items` dizi ise bunun elemanları da alınır.
+  
+- Elemanları aramaya yönelik metodlar:
+  - `indexOf/lastIndexOf(item, pos)` -- `pos`'tan başlayarak `item`'ı arar. Bulursa indeksini döndürür, bulamaz ise `-1` döndürür.
+  - `includes(value)` -- eğer dizi `value`'ya sahipse `true` döndürür. Diğer türlü `false` döndürür.
+  - `find/filter(func)` -- Elemanları fonksiyonlar ile filtreler. Buna göre fonksiyonu `true` yapan ilk veya tamamını döner.
+  - `findIndex` aynı `find` gibidir fakat bir değer yerine index döner.
+  
+- Diziler üzerinde dönüşümler:
+  - `map(func)` -- her eleman için `func` çağrılır ve bunların sonuçlarından bir dizi üretilerek döndürülür.
+  - `sort(func)` -- diziyi olduğu yerde sıralar ve döndürür.
+  - `reverse()` -- diziyi terse çevirir ve döndürür.
+  - `split/join` -- karakterleri diziye çevirir veya dizileri karaktere çevirir.
+  - `reduce(func, initial)` -- dizide bulunan elemanlar sıra ile `func` fonksiyonu üzerinden hesaplanır ve son değer döndürülür.
+  
+- Elemanlar üzerinden dönme:
+  - `forEach(func)` -- dizide bulunan her eleman için `func` çağrılır. Hiç birşey döndürmez.
 
-- To search among elements:
-  - `indexOf/lastIndexOf(item, pos)` -- look for `item` starting from position `pos`, return the index or `-1` if not found.
-  - `includes(value)` -- returns `true` if the array has `value`, otherwise `false`.
-  - `find/filter(func)` -- filter elements of through the function, return first/all values that make it return `true`.
-  - `findIndex` is like `find`, but returns the index instead of a value.
+- Ek olarak:
+  - `Array.isArray(arr)`  `arr`'in dizi olup olmadığını kontrol eder.
 
-- To transform the array:
-  - `map(func)` -- creates a new array from results of calling `func` for every element.
-  - `sort(func)` -- sorts the array in-place, then returns it.
-  - `reverse()` -- reverses the array in-place, then returns it.
-  - `split/join` -- convert a string to array and back.
-  - `reduce(func, initial)` -- calculate a single value over the array by calling `func` for each element and passing an intermediate result between the calls.
+Bu metodların içinden sadece `sort`, `reverse` ve `splice` doğrudan dizinin kendisi üzerinden işlem yapar. Diğerleri değer döndürür.
 
-- To iterate over elements:
-  - `forEach(func)` -- calls `func` for every element, does not return anything.
 
-- Additionally:
-  - `Array.isArray(arr)` checks `arr` for being an array.
+Yukarıdaki metodlar projelerin çoğundaki kullanılan dizi fonksiyonlarının %99'unu kapsar. Fakat bunun yanında farklı metodlar da bulunmaktadır:
 
-Of all these methods only `sort`, `reverse` and `splice` modify the array itself, the other ones only return a value.
+- [arr.some(fn)](mdn:js/Array/some)/[arr.every(fn)](mdn:js/Array/every) diziyi kontrol eder.
 
-These methods are the most used ones, they cover 99% of use cases. But there are few others:
+  Dizinin her elemanı için `fn` çağırılır. `Map`'e çok benzer fakat herhangi biri/hepsi `true` ise `true` döndürür. Diğer türlü `false` döndürür.
+  
+- [arr.fill(value, start, end)](mdn:js/Array/fill) -- diziyi tekrar eden `value` değeri ile `start` ile `index` arasına doldurur.
 
-- [arr.some(fn)](mdn:js/Array/some)/[arr.every(fn)](mdn:js/Array/every) checks the array.
+- [arr.copyWithin(target, start, end)](mdn:js/Array/copyWithin) -- `start` tan `end`'e kadar olan elemanları `target`'tan itibaren var olanların üzerine yazarak yapıştırır.
 
-  The function `fn` is called on each element of the array similar to `map`. If any/all results are `true`, returns `true`, otherwise `false`.
+Tüm liste için [kullanım talimatları](mdn:js/Array) sayfasına bakabilirsiniz.
 
-- [arr.fill(value, start, end)](mdn:js/Array/fill) -- fills the array with repeating `value` from index `start` to `end`.
+Görünürde çok fazla metod varmış gibi ve ezberlemesi zormuş gibi görünse de aslında göründüğünden çok daha kolaydır.
 
-- [arr.copyWithin(target, start, end)](mdn:js/Array/copyWithin) -- copies its elements from position `start` till position `end` into *itself*, at position `target` (overwrites existing).
+Sadece tanımların bulunduğu sayfaya bakmanız yeterlid. Ardından bu bölümdeki örnekleri çözerek pratik yaparsanız metodlar ile ilgili yeteri kadar bilgi sahibi olmuş olursunuz.
 
-For the full list, see the [manual](mdn:js/Array).
-
-From the first sight it may seem that there are so many methods, quite difficult to remember. But actually that's much easier than it seems.
-
-Look through the cheatsheet just to be aware of them. Then solve the tasks of this chapter to practice, so that you have experience with array methods.
-
-Afterwards whenever you need to do something with an array, and you don't know how -- come here, look at the cheatsheet and find the right method. Examples will help you to write it correctly. Soon you'll automatically remember the methods, without specific efforts from your side.
+Daha sonrasında metodlar ile ilgili birşey yapmak istediğinizde, nasıl yapıldığını bilmiyorsanız, buraya tekrar gelip doğru metodu bulabilirsiniz.
+Buradaki örnekler doğru bir şekilde yazmanıza yardımcı olacaktır. Sonrasında metodları hiç bir özel çaba harcamadan hatırlayacak duruma gelebilirsiniz.

@@ -1,5 +1,5 @@
 
-1. Let's add `__proto__`:
+1. `__proto__`'yu ekleyelim:
 
     ```js run
     let head = {
@@ -27,6 +27,6 @@
     alert( table.money ); // undefined
     ```
 
-2. In modern engines, performance-wise, there's no difference whether we take a property from an object or its prototype. They remember where the property was found and reuse it in the next request.
+3. Modern JavaScript motorlarında, bir özelliği objeden veya prototypetan almasının bir farklılığı yoktur. Özelliğin nerede olduğunu hatırlar ve bunu bir sonraki talepte tekrar kullanabilirler.
 
-    For instance, for `pockets.glasses` they remember where they found `glasses` (in `head`), and next time will search right there. They are also smart enough to update internal caches if something changes, so that optimization is safe.
+    Örneğin, `pockets.glasses` `glasses`'ı nerede bulduğunu hatırlar. Bu durumda `glasses` `head`'de bulundu, bir sonraki sefere doğrudan orada arayacaktır. Ayrıca kodda herhangi bir değişiklik olduğunda kendi önbelleğini siler böylece optimizasyon güvenli olur.

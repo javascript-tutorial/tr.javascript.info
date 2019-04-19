@@ -1,25 +1,25 @@
 
 
 ```js run demo
-function Calculator() {
+function HesapMakinesi() {
 
-  this.read = function() {
+  this.oku = function() {
     this.a = +prompt('a?', 0);
     this.b = +prompt('b?', 0);
   };
 
-  this.sum = function() {
+  this.topla = function() {
     return this.a + this.b;
   };
 
-  this.mul = function() {
+  this.carp = function() {
     return this.a * this.b;
   };
 }
 
-let calculator = new Calculator();
-calculator.read();
+let hesapMakinesi = new HesapMakinesi();
+hesapMakimesi.oku();
 
-alert( "Sum=" + calculator.sum() );
-alert( "Mul=" + calculator.mul() );
+alert( "Toplam=" + hesapMakinesi.topla() );
+alert( "Carpım=" + hesapMakinesi.carp() );
 ```

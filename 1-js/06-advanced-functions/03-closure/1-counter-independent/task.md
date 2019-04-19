@@ -1,31 +1,31 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Are counters independent?
+# Sayaçlar bağımsız mı?
 
-Here we make two counters: `counter` and `counter2` using the same `makeCounter` function.
+`sayac` ve `sayac2` aynı `sayacUret` fonksiyonu kullanmaktadır.
 
-Are they independent? What is the second counter going to show? `0,1` or `2,3` or something else?
+Bu sayaçlar birbirlerinden bağımsız mıdır? İkinci sayaç ne gösterecek ? `0,1` veya `2,3` veya tamamen başka birşey mi?
 
 ```js
-function makeCounter() {
-  let count = 0;
+function sayacUret() {
+  let say = 0;
 
   return function() {
-    return count++;
+    return say++;
   };
 }
 
-let counter = makeCounter();
-let counter2 = makeCounter();
+let sayac = sayacUret();
+let sayac2 = sayacUret();
 
-alert( counter() ); // 0
-alert( counter() ); // 1
+alert( sayac() ); // 0
+alert( sayac() ); // 1
 
 *!*
-alert( counter2() ); // ?
-alert( counter2() ); // ?
+alert( sayac2() ); // ?
+alert( sayac2() ); // ?
 */!*
 ```
 

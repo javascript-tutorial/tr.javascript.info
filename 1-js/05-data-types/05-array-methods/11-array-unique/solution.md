@@ -1,39 +1,38 @@
-Let's walk the array items:
-- For each item we'll check if the resulting array already has that item.
-- If it is so, then ignore, otherwise add to results.
+Dizinin elemanlarını dolaşacak olursak:
+- Her eleman için sonuç dizisinde bu elemanın olup olmadığınına bakılacak.
+- Eğer var ise, görmezden gelinecek, diğer türlü sonuç dizisine eklenecek.
 
 ```js run
-function unique(arr) {
-  let result = [];
+function benzersiz(arr) {
+  let sonuc = [];
 
   for (let str of arr) {
-    if (!result.includes(str)) {
-      result.push(str);
+    if (!sonuc.includes(str)) {
+      sonuc.push(str);
     }
   }
 
-  return result;
+  return sonuc;
 }
 
-let strings = ["Hare", "Krishna", "Hare", "Krishna",
-  "Krishna", "Krishna", "Hare", "Hare", ":-O"
+let kullanicilar = ["Emine", "Muzaffer", "Fatma", "Kanako",
+  "Kanako", "Muzaffer", "Fatma", "Kanako", ":-O"
 ];
 
-alert( unique(strings) ); // Hare, Krishna, :-O
+alert( benzersiz(kullanicilar) ); // Emine, Muzaffer, Fatma, Kanako, :-O
 ```
+Kod çalışacaktır, fakat performans problemi yaratabilir.
 
-The code works, but there's a potential performance problem in it.
+`sonuc.includes(str)` `sonuc` dizisini tamamen dolanır ve `str` ile karşılaştırır.
 
-The method `result.includes(str)` internally walks the array `result` and compares each element against `str` to find the match.
+Diyelimki `sonuc` dizisinde `100` tane eleman var ve `str` ile eşleşen yok. `sonuc` dizisi dolanılacak ve kesinlikle `100` defa karşılaştırma yapılacaktır. Eğer `sonuc` dizisi `10000` gibi elemana sahip ise bu karşılaştırma `10000` olacaktır.
 
-So if there are `100` elements in `result` and no one matches `str`, then it will walk the whole `result` and do exactly `100` comparisons. And if `result` is large, like `10000`, then there would be `10000` comparisons.
+Aslında problem bu değildir. JavaScript motoru `10000` karşılaştırmayı mikrosaniyeler içerisinde yapabilir.
 
-That's not a problem by itself, because JavaScript engines are very fast, so walk `10000` array is a matter of microseconds.
+Asıl sorun bu testlerin `arr`'in her bir elemanı için yapılmasıdır.
 
-But we do such test for each element of `arr`, in the `for` loop.
+Yani `arr.length` `10000` olduğundan dolayı biz `10000*10000` = 100 milyon karşılaştırma olmaktadır.
 
-So if `arr.length` is `10000` we'll have something like `10000*10000` = 100 millions of comparisons. That's a lot.
+Bundan dolayı bu çözüm az elemana sahip diziler için kullanılabilir.
 
-So the solution is only good for small arrays.
-
-Further in the chapter <info:map-set-weakmap-weakset> we'll see how to optimize it.
+Bu optimizasyonu <info:map-set-weakmap-weakset> bölümünde göreceksiniz. 

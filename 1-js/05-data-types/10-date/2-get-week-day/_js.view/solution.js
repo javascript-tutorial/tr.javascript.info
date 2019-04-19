@@ -1,5 +1,5 @@
-function getWeekDay(date) {
-  let days = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+function haftaninGunleriniAl(tarih) {
+  let gunler = ['PT', 'SA', 'ÇA', 'PR', 'CM', 'CT', 'PZ'];
 
-  return days[date.getDay()];
+  return gunler[tarih.getDay()];
 }

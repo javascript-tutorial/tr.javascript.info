@@ -1,39 +1,38 @@
-importance: 2
+Önem: 2
 
 ---
 
-# Chaining
+# Zincirleme
 
-There's a `ladder` object that allows to go up and down:
+`merdiven` objesi yukarı aşağı harekete izin vermektedir:
 
 ```js
-let ladder = {
-  step: 0,
-  up() { 
-    this.step++;
+let merdiven = {
+  adim: 0,
+  yukari() { 
+    this.adim++;
   },
-  down() { 
-    this.step--;
+  asagi() { 
+    this.adim--;
   },
-  showStep: function() { // shows the current step
-    alert( this.step );
+  adimiGoster: function() { // o anki adımı gösterir
+    alert( this.adim );
   }
 };
 ```
-
-Now, if we need to make several calls in sequence, can do it like this:
-
-```js
-ladder.up();
-ladder.up();
-ladder.down();
-ladder.showStep(); // 1
-```
-
-Modify the code of `up` and `down` to make the calls chainable, like this:
+Eğer aşağıdaki gibi ard arda çağrı yapılırsa:
 
 ```js
-ladder.up().up().down().showStep(); // 1
+merdiven.yukari();
+merdiven.yukari();
+merdiven.asagi();
+merdiven.adimiGoster(); // 1
 ```
 
-Such approach is widely used across JavaScript libraries.
+`yukari`  ve `asagi` metodlarını aşağıdaki gibi zincirleme yapılabilir hale getiriniz:
+
+```js
+merdiven.yukari().yukari().asagi().adimiGoster(); // 1
+```
+
+Bu yaklaşım çoğu JavaScript kütüphanesinde yaygın olarak kullanılmaktadır.

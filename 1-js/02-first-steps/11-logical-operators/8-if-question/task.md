@@ -1,16 +1,16 @@
-importance: 5
+Önem: 5
 
 ---
 
-# A question about "if"
+# "if" hakkında bir soru.
 
-Which of these `alert`s are going to execute?
+Hangi `alert` çalışacak?
 
-What will be the results of the expressions inside `if(...)`?
+`if(...)` içerisindeki değerin sonucu ne olacak?
 
 ```js
-if (-1 || 0) alert( 'first' );
-if (-1 && 0) alert( 'second' );
-if (null || -1 && 1) alert( 'third' );
+if (-1 || 0) alert( 'birinci' );
+if (-1 && 0) alert( 'ikinci' );
+if (null || -1 && 1) alert( 'üçüncü' );
 ```
 

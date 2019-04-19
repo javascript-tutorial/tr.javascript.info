@@ -1,14 +1,14 @@
-importance: 4
+Önem: 4
 
 ---
 
-# Sum with closures
+# Closure ile toplam
 
-Write function `sum` that works like this: `sum(a)(b) = a+b`.
+`topla` adında bir fonksiyon yaz ve şu şekilde çalışsın `topla(a)(b) = a+b`
 
-Yes, exactly this way, via double brackets (not a mistype).
+Evet aynen bu şekilde, iki tane parantez ile ( yanlış yazım değil)
 
-For instance:
+Örneğin:
 
 ```js
 sum(1)(2) = 3

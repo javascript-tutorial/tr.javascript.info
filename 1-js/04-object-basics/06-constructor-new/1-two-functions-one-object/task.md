@@ -1,10 +1,10 @@
-importance: 2
+Önem: 2
 
 ---
 
-# Two functions – one object
+# İki fonksiyon - bir obje
 
-Is it possible to create functions `A` and `B` such as `new A()==new B()`?
+`new A() == new B()` şeklinde `A` ve `B` fonksiyonları yaratmak mümkün müdür?
 
 ```js no-beautify
 function A() { ... }
@@ -15,5 +15,5 @@ let b = new B;
 
 alert( a == b ); // true
 ```
-
+Eğer mümkünse, bi işi yapan kodu yazınız.
 If it is, then provide an example of their code.

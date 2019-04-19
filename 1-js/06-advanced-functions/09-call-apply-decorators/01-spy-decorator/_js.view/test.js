@@ -1,6 +1,6 @@
-describe("spy", function() {
-  it("records calls into its property", function() {
-    function work() {}
+describe("spy", function () {
+  it("Çağrıları özelliğine kaydeder.", function () {
+    function work() { }
 
     work = spy(work);
     assert.deepEqual(work.calls, []);
@@ -17,7 +17,7 @@ describe("spy", function() {
     ]);
   });
 
-  it("transparently wraps functions", function() {
+  it("Görünmez bir şekilde fonksiyonu kaplar", function () {
 
     let sum = sinon.spy((a, b) => a + b);
 
@@ -28,7 +28,7 @@ describe("spy", function() {
   });
 
 
-  it("transparently wraps methods", function() {
+  it("Görünmez bir şekilde metodu kaplar.", function () {
 
     let calc = {
       sum: sinon.spy((a, b) => a + b)

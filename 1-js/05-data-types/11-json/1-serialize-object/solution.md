@@ -1,13 +1,13 @@
 
 
 ```js
-let user = {
-  name: "John Smith",
-  age: 35
+let kullanici = {
+  adi: "Ahmet Mutsuz",
+  yas: 35
 };
 
 *!*
-let user2 = JSON.parse(JSON.stringify(user));
+let kullanici2 = JSON.parse(JSON.stringify(kullanici));
 */!*
 ```
 

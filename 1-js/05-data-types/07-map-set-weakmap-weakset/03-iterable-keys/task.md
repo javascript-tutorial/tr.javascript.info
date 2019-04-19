@@ -1,24 +1,22 @@
-importance: 5
+Önem: 5
 
 ---
+# Sıralı erişilebilen anahtarlar
 
-# Iterable keys
+`map.keys()` dizisini alıp bunun ile uğraşmak istenmekte.
 
-We want to get an array of `map.keys()` and go on working with it (apart from the map itself).
-
-But there's a problem:
+Fakat bir problem var:
 
 ```js run
 let map = new Map();
 
-map.set("name", "John");
+map.set("adi", "Abdullah");
 
 let keys = map.keys();
 
 *!*
-// Error: numbers.push is not a function
-keys.push("more");
+// Error: numbers.push adında bir fonksiyon bulunmamaktadır.
+keys.push("daha fazla");
 */!*
 ```
-
-Why? How can we fix the code to make `keys.push` work?
+Neden? `keys.push` kodunu nasıl düzeltebilirsiniz?

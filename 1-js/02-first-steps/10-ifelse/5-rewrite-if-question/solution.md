@@ -1,6 +1,6 @@
 
 
 ```js
-result = (a + b < 4) ? 'Below' : 'Over';
+sonuc = (a + b < 4) ? 'Düşük' : 'Yüksek';
 ```
 

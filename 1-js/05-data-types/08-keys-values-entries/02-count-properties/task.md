@@ -1,21 +1,19 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Count properties
+# Özellik Sayısı
 
-Write a function `count(obj)` that returns the number of properties in the object:
+`ozellikSayisi(obj)` adında bir fonksiyon yazın ve bu fonksiyon objede bulunan özelliklerin sayısını dönsün.
 
 ```js
-let user = {
-  name: 'John',
-  age: 30
+let kullanici = {
+  adi: 'Ahmet',
+  yasi: 30
 };
 
-alert( count(user) ); // 2
+alert( ozellikSayisi(kullanici) ); // 2
 ```
 
-Try to make the code as short as possible.
-
-P.S. Ignore symbolic properties, count only "regular" ones.
-
+Kodu olabildiğince kısa yazınız.
+Not: Sembolik özellikleri pas geçin, sadece "gerçek" olanları hesaba katın.

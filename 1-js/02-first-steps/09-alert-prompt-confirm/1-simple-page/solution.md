@@ -1,11 +1,11 @@
 JavaScript-code:
 
 ```js demo run
-let name = prompt("What is your name?", "");
+let name = prompt("Adın ne?", "");
 alert(name);
 ```
 
-The full page:
+Sayfanın tamamı:
 
 ```html
 <!DOCTYPE html>

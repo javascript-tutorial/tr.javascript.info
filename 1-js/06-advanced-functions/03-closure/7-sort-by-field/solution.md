@@ -1,22 +1,22 @@
 
 
 ```js run
-let users = [
-  { name: "John", age: 20, surname: "Johnson" }, 
-  { name: "Pete", age: 18, surname: "Peterson" },
-  { name: "Ann", age: 19, surname: "Hathaway" }
+let kullanicilar = [
+  { ad: "Ahmet", yas: 20, soyad: "Zurnacı" },
+  { ad: "Hideo", yas: 18, soyad: "Konami" },
+  { ad: "Jane", yas: 19, soyad: "Hathaway" }
 ];
 
 *!*
-function byField(field) {
-  return (a, b) => a[field] > b[field] ? 1 : -1;
+function alanIle(alan) {
+  return (a, b) => a[alan] > b[alan] ? 1 : -1;
 }
 */!*
 
-users.sort(byField('name'));
-users.forEach(user => alert(user.name)); // Ann, John, Pete
+kullanicilar.sort(alanIle('ad'));
+kullanicilar.forEach(kullanici => alert(kullanici.ad)); // Ahmet, Hideo, Jane
 
-users.sort(byField('age'));
-users.forEach(user => alert(user.name)); // Pete, Ann, John
+kullanicilar.sort(alanIle('yas'));
+kullanicilar.forEach(kullanici => alert(kullanici.ad)); // Hideo, Jane, Ahmet
 ```
 

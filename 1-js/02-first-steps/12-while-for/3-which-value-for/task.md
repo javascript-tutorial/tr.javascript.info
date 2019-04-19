@@ -1,19 +1,19 @@
-importance: 4
+Önem: 4
 
 ---
 
-# Which values get shown by the "for" loop?
+# "For" döngüsü süresinde hangi değerler görünecek?
 
-For each loop write down which values it is going to show. Then compare with the answer.
+Her bir tekerrür için görünecek sonuçları bir yere yazın. Yazdıklarınızı cevap ile karşılaştırın.
 
-Both loops `alert` same values or not?
+Döngüler ekrana aynı uyarılar mı verir?
 
-1. The postfix form:
+1. Önden Eklemeli 
 
     ```js
     for (let i = 0; i < 5; i++) alert( i );
     ```
-2. The prefix form:
+2. Sonradan Eklemeli
 
     ```js
     for (let i = 0; i < 5; ++i) alert( i );

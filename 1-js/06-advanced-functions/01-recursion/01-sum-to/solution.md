@@ -1,40 +1,40 @@
-The solution using a loop:
+Döngü kullanarak çözümü:
 
 ```js run
-function sumTo(n) {
-  let sum = 0;
+function topla(n) {
+  let toplam = 0;
   for (let i = 1; i <= n; i++) {
-    sum += i;
+    toplam += i;
   }
-  return sum;
+  return toplam;
 }
 
-alert( sumTo(100) );
+alert( topla(100) );
 ```
 
-The solution using recursion:
+Özçağrı kullanarak toplama:
 
 ```js run
-function sumTo(n) {
+function topla(n) {
   if (n == 1) return 1;
-  return n + sumTo(n - 1);
+  return n + topla(n - 1);
 }
 
-alert( sumTo(100) );
+alert( topla(100) );
 ```
 
-The solution using the formula: `sumTo(n) = n*(n+1)/2`:
+Aritmetik işlemler ile toplama: `topla(n) = n*(n+1)/2`:
 
 ```js run
-function sumTo(n) {
+function topla(n) {
   return n * (n + 1) / 2;
 }
 
-alert( sumTo(100) );
+alert( topla(100) );
 ```
 
-P.S. Naturally, the formula is the fastest solution. It uses only 3 operations for any number `n`. The math helps!
+Not: Doğal olarak formül en hızlı olanırıd. `n`'in her değeri için 3 defa operasyon yapmaktadır. Matematik yardımcı olur!
 
-The loop variant is the second in terms of speed. In both the recursive and the loop variant we sum the same numbers. But the recursion involves nested calls and execution stack management. That also takes resources, so it's slower.
+Döngü hız bakımından ikinci sırada yer alır. Döngüde ve özçağrıda aynı sayılar toplanır. Fakat özçağrı iç içe çağrılar kullanarak çalışıtırma yığını yönetimi gerektirir. Bu da ayrıca bir kaynak demektir, bundan dolayı yavaştır.
 
-P.P.S. The standard describes a "tail call" optimization: if the recursive call is the very last one in the function (like in `sumTo` above), then the outer function will not need to resume the execution and we don't need to remember its execution context. In that case `sumTo(100000)` is countable. But if your JavaScript engine does not support it, there will be an error: maximum stack size exceeded, because there's usually a limitation on the total stack size.
+Not2: Eğer özçağrının son fonksiyonunda ise ( `topla` gibi ) dıştaki fonksiyon çalışmayı devam ettirmez ve çalıştırma kaynağının bilinmesine gerek yoktur. Bundan dolayı `topla(100000)` hesaplanabilirdir. Fakat JavaScript motoru bunu desteklemiyor ise bu durumda maksimum yığın geçildi hatası verecektir. Bunun nedeni yığının belirli bir sınırının olmasıdır. 

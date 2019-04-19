@@ -1,23 +1,24 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Create new Calculator
+# new MesapMakinesi fonksiyonunu yazınız.
 
-Create a constructor function `Calculator` that creates objects with 3 methods:
+Yapıcı `HesapMakinesi` fonksiyonunu yazınız ve aşağıdaki üç fonksiyonu buna uygulayınız:
 
-- `read()` asks for two values using `prompt` and remembers them in object properties.
-- `sum()` returns the sum of these properties.
-- `mul()` returns the multiplication product of these properties.
 
-For instance:
+- `oku()` veri giriş ekranı gösterir ve iki değeri objenin özelliklerine kaydeder.
+- `topla()` kaydedilen değerlerin toplamını döner.
+- `carp()` kaydedilen değerlerin çarpımını döner.
+
+Örneğin:
 
 ```js
-let calculator = new Calculator();
-calculator.read();
+let hesapMakinesi = new HesapMakinesi();
+hesapMakinesi.oku();
 
-alert( "Sum=" + calculator.sum() );
-alert( "Mul=" + calculator.mul() );
+alert( "Toplam=" + hesapMakines.topla() );
+alert( "Çarpım=" + hesaoMakinesi.carp() );
 ```
 
 [demo]

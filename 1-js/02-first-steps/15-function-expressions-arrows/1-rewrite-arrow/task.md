@@ -1,17 +1,17 @@
 
-# Rewrite with arrow functions
+# Ok Fonksiyonları ile tekrar yazınız
 
-Replace Function Expressions with arrow functions in the code:
+Aşağıda verilen Fonksiyon İfadelerini Ok fonksiyonlarına çevriniz.
 
 ```js run
-function ask(question, yes, no) {
-  if (confirm(question)) yes()
-  else no();
+function sor(soru, evet, hayir) {
+  if (confirm(soru)) evet()
+  else hayir();
 }
 
 ask(
-  "Do you agree?",
-  function() { alert("You agreed."); },
-  function() { alert("You canceled the execution."); }
+  "Kabul ediyor musun?",
+  function() { alert("Kabul ettin"); },
+  function() { alert("Çalışmasını durdurdun"); }
 );
 ```

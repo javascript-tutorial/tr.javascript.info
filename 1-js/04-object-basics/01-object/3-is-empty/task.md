@@ -1,20 +1,20 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Check for emptiness
+# Boş olup olmadığını kontrol et
 
-Write the function `isEmpty(obj)` which returns `true` if the object has no properties, `false` otherwise.
+`bosMu(obj)` adında bir fonksiyon tanımla ve eğer objenin hiç bir özelliği yok ise `true`, var ise `false` döndersin.
 
 Should work like that:
 
 ```js
-let schedule = {};
+let program = {};
 
-alert( isEmpty(schedule) ); // true
+alert( bosMu(program) ); // true
 
-schedule["8:30"] = "get up";
+schedule["8:30"] = "uyan";
 
-alert( isEmpty(schedule) ); // false
+alert( bosMu(schedule) ); // false
 ```
 

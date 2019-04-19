@@ -1,36 +1,36 @@
-importance: 5
+Önem: 5
 
 ---
 
 # Map to objects
+# Objelerin harita(Map)'lenmesi
 
-You have an array of `user` objects, each one has `name`, `surname` and `id`.
+`kullanici` dizindeki elemanlar `adi`, `soyadi` ve `id` özelliklerine sahiptirler.
 
-Write the code to create another array from it, of objects with `id` and `fullName`, where `fullName` is generated from `name` and `surname`.
+Bunlardan özellikleri `id`, `adi_soyadi` şeklinde `adi` ve `soyadi` özelliklerinden türeyen `adi_soyadi` özelliğine sahip objelerden sahip yeni bir dizi oluşturunuz.  
 
-For instance:
+Örneğin:
 
 ```js no-beautify
-let john = { name: "John", surname: "Smith", id: 1 };
-let pete = { name: "Pete", surname: "Hunt", id: 2 };
-let mary = { name: "Mary", surname: "Key", id: 3 };
+let ahmet = { adi: "Ahmet", soyadi: "Doğtaş", id: 1 };
+let mehmet = { adi: "Mehmet", soyadi: "İstikbal", id: 2 };
+let muzaffer = { adi: "Muzaffer", soyadi: "Bellona", id: 3 };
 
-let users = [ john, pete, mary ];
+let kullanicilar = [ ahmet, mehmet, muzaffer ];
 
 *!*
-let usersMapped = /* ... your code ... */
+let kullaniciMapped = /* ... Sizin kodunuz ... */
 */!*
 
 /*
-usersMapped = [
-  { fullName: "John Smith", id: 1 },
-  { fullName: "Pete Hunt", id: 2 },
-  { fullName: "Mary Key", id: 3 }
+kullaniciMapped = [
+  { adi_soyadi: "Ahmet Doğtaş", id: 1 },
+  { adi_soyadi: "Mehmet İstikbal", id: 2 },
+  { adi_soyadi: "Muzaffer Bellona", id: 3 }
 ]
 */
 
-alert( usersMapped[0].id ) // 1
-alert( usersMapped[0].fullName ) // John Smith
+alert( kullaniciMapped[0].id ) // 1
+alert( kullaniciMapped[0].adi_soyadi ) // Ahmet Doğtaş
 ```
-
-So, actually you need to map one array of objects to another. Try using `=>` here. There's a small catch.
+Burada yapmanız gereken aslında bir dizideki objeleri diğerine eşlemek(map etmek). `=>` kullanabilirsiniz.

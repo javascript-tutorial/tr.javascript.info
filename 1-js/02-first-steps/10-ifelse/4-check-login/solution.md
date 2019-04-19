@@ -1,25 +1,24 @@
 
 
 ```js run demo
-let userName = prompt("Who's there?", '');
+let userName = prompt("Kim var orada?", '');
 
 if (userName == 'Admin') {
 
-  let pass = prompt('Password?', '');
+  let pass = prompt('Şifre?', '');
 
-  if (pass == 'TheMaster') {
-    alert( 'Welcome!' );
+  if (pass == 'BüyükPatron') {
+    alert( 'Merhaba!' );
   } else if (pass == null) {
-    alert( 'Canceled.' );
+    alert( 'İptal Edildi.' );
   } else {
-    alert( 'Wrong password' );
+    alert( 'Yanlış Şifre' );
   }
 
 } else if (userName == null) {
-  alert( 'Canceled' );
+  alert( 'İptal Edildi' );
 } else {
-  alert( "I don't know you" );
+  alert( "Seni tanımıyorum" );
 }
 ```
-
-Note the vertical indents inside the `if` blocks. They are technically not required, but make the code more readable.
+`if` flokları arasındaki dikeyde bulunan boşluklara dikkat edin. Bu teknik olarak gerekli olmasa da okunabilirliği artırmaktadır.

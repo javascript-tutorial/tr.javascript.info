@@ -1,23 +1,23 @@
-importance: 3
+Önem: 3
 
 ---
 
-# Check the login
+# Giriş kontrolü
 
-Write the code which asks for a login with `prompt`.
+Giriş için `prompt` ile kullanıcı adını sorun.
 
-If the visitor enters `"Admin"`, then `prompt` for a password, if the input is an empty line or `key:Esc` -- show "Canceled.", if it's another string -- then show "I don't know you".
+Eğer kullanıcı `"Admin"` girerse `prompt` ile şifre sorun eğer  `key:Esc` ise "İptal Edildi", eğer boş ise "Seni tanımıyorum" yazısını ekranda gösterin.
 
-The password is checked as follows:
+Şifre aşağıdaki gibi kontrol edilmelidir:
 
-- If it equals "TheMaster", then show "Welcome!",
-- Another string -- show "Wrong password",
-- For an empty string or cancelled input, show "Canceled."
+- Eğer şifre "BüyükPatron", ise "Merhaba!",
+- Eğer bundan farklı ise -- "Yanlış Şifre"
+- Boş karakter veya iptal `key:Esc` için `İptal Edildi` yazısını gösterin.
 
-The schema:
+
+Şema:
 
 ![](ifelse_task.png)
-
-Please use nested `if` blocks. Mind the overall readability of the code.
+Lütfen iç içe `if` bloklarını kullanın. Kod yazımına dikkat edin.
 
 [demo]

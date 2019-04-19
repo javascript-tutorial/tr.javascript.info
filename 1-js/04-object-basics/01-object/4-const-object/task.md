@@ -1,18 +1,18 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Constant objects?
+# Sabit objeler?
 
-Is it possible to change an object declared with `const`, how do you think?
+`const` ile tanımlanmış objeler değiştirilebilir mi ? Ne düşünüyorsunuz?
 
 ```js
-const user = {
-  name: "John"
+const kullanici = {
+  isim: "Mazlum"
 };
 
 *!*
-// does it work?
-user.name = "Pete";
+// çalışır mı?
+kullanici.isim = "Mahmut";
 */!*
 ```

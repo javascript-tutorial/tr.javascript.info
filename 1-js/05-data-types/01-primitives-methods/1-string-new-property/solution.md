@@ -1,31 +1,28 @@
 
-Try running it:
+Çalıştırmayı deneyin:
 
 ```js run
-let str = "Hello";
+let str = "Merhaba";
 
 str.test = 5; // (*)
 
 alert(str.test); 
 ```
-
-There may be two kinds of result:
+İki türlü cevap verilebilir:
 1. `undefined`
-2. An error.
+2. Hata
 
-Why? Let's replay what's happening at line `(*)`:
+Neden? Ne olduğuna `(*)` satırından bakarsanız:
 
-1. When a property of `str` is accessed, a "wrapper object" is created.
-2. The operation with the property is carried out on it. So, the object gets the `test` property.
-3. The operation finishes and the "wrapper object" disappears.
+1. `str` nin bir özelliğine erişildiğinde, "obje kabı" yaratılır.
+2. Bundan dolayı obje `test` özelliğini alır.
+3. "obje kabı" kaybolur ve işlem tamamlanır.
 
-So, on the last line, `str` has no trace of the property. A new wrapper object for every object operation on a string.
+Öyleyse `str` nin son satırında özelliğe ait hiç bir iz yoktur. İlkel tipin üzerinde yapılan değişiklik için yeni obje kabı üretilir.
 
-Some browsers though may decide to further limit the programmer and disallow to assign properties to primitives at all. That's why in practice we can also see errors at line `(*)`. It's a little bit farther from the specification though.
+Bazı tarayıcılar ilkel tiplere yeni özellik tanımlanmasına izin vermezler. Bundan dolayı `(*)` bölümünde `undefined` değil de hata da görebilirsiniz. Bu aslında özelliklerin dışında bir uygulamadır.
 
-**This example clearly shows that primitives are not objects.**
+**Bu örnekten de gördüğünüz gibi ilkel tipler kesinlikle obje değillerdir.**
 
-They just can not store data. 
-
-All property/method operations are performed with the help of temporary objects.
+Geçici metodlar oluşturarak obje gibi davranırlar. Fakat bunları tutamazlar. Yukarıdaki örnekte olduğu gibi.
 

@@ -1,12 +1,12 @@
-In the code below, each line corresponds to the item in the task list.
+Aşağıdaki örnekte her satır yapılacaklar listesindeki 1 adıma denk gelmektedir.
 
 ```js run
-let admin, name; // can declare two variables at once
+let yonetici, isim; // iki değişkeni tek bir satırda tanımlamak mümkündür.
 
-name = "John";
+isim = "Ahmet";
 
-admin = name;
+yonetici = isim;
 
-alert( admin ); // "John"
+alert( yonetici ); // "Ahmet"
 ```
 

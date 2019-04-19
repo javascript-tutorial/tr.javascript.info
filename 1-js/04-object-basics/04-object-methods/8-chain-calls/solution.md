@@ -1,40 +1,39 @@
-The solution is to return the object itself from every call.
+Çözüm her metod çağrısı sonrası kendisini döndermektir.
 
 ```js run
-let ladder = {
-  step: 0,
-  up() {
-    this.step++;
+let merdiven = {
+  adim: 0,
+  yukari() {
+    this.adim++;
 *!*
     return this;
 */!*
   },
-  down() {
-    this.step--;
+  asagi() {
+    this.adim--;
 *!*
     return this;
 */!*
   },
-  showStep() {
-    alert( this.step );
+  adimiGoster() {
+    alert( this.adim );
 *!*
     return this;
 */!*
   }
 }
 
-ladder.up().up().down().up().down().showStep(); // 1
+merdiven.yukari().yukari().asagi().yukari().asagi().adimiGoster();//1
 ```
-
-We also can write a single call per line. For long chains it's more readable:
+Ayrıca her satır için tek çağrı da yazılabilir. Uzun zincirleme fonksiyonlar için bu daha okunabilirdir.
 
 ```js 
-ladder
+merdiven
+  .yukari()
+  .yukari()
+  .asagi()
   .up()
-  .up()
-  .down()
-  .up()
-  .down()
-  .showStep(); // 1
+  .asagi()
+  .adimiGoster(); // 1
 ```
 

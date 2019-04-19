@@ -1,21 +1,21 @@
-By definition, a factorial is `n!` can be written as `n * (n-1)!`.
+Tanım olarak `n!` faktöriyel `n * (n-1)!` şeklinde çalışır.
 
-In other words, the result of `factorial(n)` can be calculated as `n` multiplied by the result of `factorial(n-1)`. And the call for `n-1` can recursively descend lower, and lower, till `1`.
+Diğer bir deyişle `faktoriyel(n)` `n` in `factorial(n-1)` ile çarpılmasıdır. Sonrasında `n-1` `1` olana kadar basamak basamak azalır.
 
 ```js run
-function factorial(n) {
-  return (n != 1) ? n * factorial(n - 1) : 1;
+function faktoriyel(n) {
+  return (n != 1) ? n * faktoriyel(n - 1) : 1;
 }
 
-alert( factorial(5) ); // 120
+alert( faktoriyel(5) ); // 120
 ```
 
-The basis of recursion is the value `1`. We can also make `0` the basis here, doesn't matter much, but gives one more recursive step:
+Özçağrı'nın tabanı `1`'dir. `0`'da yapılabilir, çok önemli değildir, fakat 1 özçağrı daha yapmak gerekir.
 
 ```js run
-function factorial(n) {
-  return n ? n * factorial(n - 1) : 1;
+function faktoriyel(n) {
+  return n ? n * faktoriyel(n - 1) : 1;
 }
 
-alert( factorial(5) ); // 120
+alert( faktoriyel(5) ); // 120
 ```

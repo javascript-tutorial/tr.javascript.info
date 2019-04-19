@@ -1,13 +1,13 @@
-describe("delay", function() {
-  before(function() {
+describe("delay", function () {
+  before(function () {
     this.clock = sinon.useFakeTimers();
   });
 
-  after(function() {
+  after(function () {
     this.clock.restore();
   });
 
-  it("calls the function after the specified timeout", function() {
+  it("fonksiyonu istenen zamanın sonunda çağırır.", function () {
     let start = Date.now();
 
     function f(x) {
@@ -18,13 +18,13 @@ describe("delay", function() {
     let f1000 = delay(f, 1000);
     f1000("test");
     this.clock.tick(2000);
-    assert(f.calledOnce, 'calledOnce check fails');
+    assert(f.calledOnce, 'bir defa çağırılma kontrolü başarısız.');
   });
 
-  it("passes arguments and this", function() {
+  it("argümanları ve this'i iletir.", function () {
     let start = Date.now();
     let user = {
-      sayHi: function(phrase, who) {
+      sayHi: function (phrase, who) {
         assert.equal(this, user);
         assert.equal(phrase, "Hello");
         assert.equal(who, "John");
@@ -41,6 +41,6 @@ describe("delay", function() {
 
     this.clock.tick(2000);
 
-    assert(spy.calledOnce, 'calledOnce check failed');
+    assert(spy.calledOnce, 'bir defa çağırılma kontrolü başarısız.');
   });
 });

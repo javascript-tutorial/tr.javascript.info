@@ -1,12 +1,12 @@
-importance: 5
+Önem: 5
 
 ---
 
-# European weekday
+# Avrupa Haftanın Günleri
 
-European countries have days of week starting with monday (number 1), then tuesday (number 2) and till sunday (number 7). Write a function `getLocalDay(date)` that returns the "european" day of week for `date`.
+Avrupa devletlerinde hafta pazartesinden başlar ( pazartesi 1, salı 2, pazar 7 gibi ). `yerelGunAl(tarih)` adında bir fonksiyon yazın ve bu fonksiyon `tarih` objesinin haftanın hangi gününe denk geldiğini dönsün.
 
 ```js no-beautify
-let date = new Date(2012, 0, 3);  // 3 Jan 2012
-alert( getLocalDay(date) );       // tuesday, should show 2
+let tarih = new Date(2012, 0, 3);  // 3 Ocak 2012
+alert( yerelGunAl(tarih) );       // salı,2 dönmeli
 ```

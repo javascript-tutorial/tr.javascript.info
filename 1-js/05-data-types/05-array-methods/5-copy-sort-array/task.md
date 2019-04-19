@@ -1,12 +1,12 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Copy and sort array
+# Diziyi kopyala ve sırala
 
-We have an array of strings `arr`. We'd like to have a sorted copy of it, but keep `arr` unmodified.
+Karakterlerden oluşan bir `arr` disini, kopyalayan ve sıralayan fakat `arr` de bir değişikliğe neden olmayan fonksiyonu yazınız.
 
-Create a function `copySorted(arr)` that returns such a copy.
+Bu kopyayı döndüren `copySorted(arr)` fonksiyonunu yazınız.
 
 ```js
 let arr = ["HTML", "JavaScript", "CSS"];
@@ -14,5 +14,5 @@ let arr = ["HTML", "JavaScript", "CSS"];
 let sorted = copySorted(arr);
 
 alert( sorted ); // CSS, HTML, JavaScript
-alert( arr ); // HTML, JavaScript, CSS (no changes)
+alert( arr ); // HTML, JavaScript, CSS (değişmedi)
 ```

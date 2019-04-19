@@ -1,133 +1,122 @@
-# Numbers
+# Sayılar
 
-All numbers in JavaScript are stored in 64-bit format [IEEE-754](http://en.wikipedia.org/wiki/IEEE_754-1985), also known as "double precision".
+JavaScript'te tüm sayılar 64-bit formatında tutulur [IEEE-754](http://en.wikipedia.org/wiki/IEEE_754-1985), buna "double precision" da denir.
 
-Let's recap and expand upon what we currently know about them.
+Sayılar ile ilgili bilinenlerin üzerinden tekrar geçecek olunursa.
 
-## More ways to write a number
+## Sayıyı yazmanın bir çok yolu
 
-Imagine we need to write 1 billion. The obvious way is:
+Diyelim ki 1 milyar yazmak istiyorsunuz. Şu şekilde:
 
 ```js
-let billion = 1000000000;
+let milyar = 1000000000;
 ```
 
-But in real life we usually avoid writing a long string of zeroes as it's easy to mistype. Also, we are lazy. We will usually write something like `"1bn"` for a billion or `"7.3bn"` for 7 billion 300 million. The same is true for most large numbers.
-
-In JavaScript, we shorten a number by appending the letter `"e"` to the number and specifying the zeroes count:
+Fakat gerçek hayatta bu kadar 0 yan yana yazdığınızda karışma şansı olduğundan bunun yerine `1milyar` veya `7.3milyar` gibi yazılabilmektedir. Aynı özellik JavaScript için de geçerli. Fakat bu defa sayıdaki 0 sayısı  `"e"` ile birlikte kullanılmalıdır: 
 
 ```js run
-let billion = 1e9;  // 1 billion, literally: 1 and 9 zeroes
+let milyar = 1e9;  // 1 milyar 1 ve 9 sıfırdan oluşmaktadır.
 
-alert( 7.3e9 );  // 7.3 billions (7,300,000,000)
+alert( 7.3e9 );  // 7.3 milyar (7,300,000,000)
 ```
-
-In other words, `"e"` multiplies the number by `1` with the given zeroes count.
 
 ```js
 1e3 = 1 * 1000
 1.23e6 = 1.23 * 1000000 
 ```
 
-
-Now let's write something very small. Say, 1 microsecond (one millionth of a second): 
+Çok küçük bir sayıya bakıldığında. Örneğin 1 mikrosaniye ( saniyenin milyonda 1'i):
 
 ```js
 let ms = 0.000001;
 ```
-
-Just like before, using `"e"` can help. If we'd like to avoid writing the zeroes explicitly, we could say:
+Aynı şekilde `"e"` yardımcı olabilir. 0 ları yazmak yerine :
 
 ```js
 let ms = 1e-6; // six zeroes to the left from 1 
 ```
+Şeklinde tanımlayabilirsiniz. `0.000001` gördüğünüz gibi 6 tane sıfır bulunmaktadır. Bundan dolayı `1e-6` şeklinde yazılabilir.
 
-If we count the zeroes in `0.000001`, there are 6 of them. So naturally it's `1e-6`.  
-
-In other words, a negative number after `"e"` means a division by 1 with the given number of zeroes:
 
 ```js
-// -3 divides by 1 with 3 zeroes
+// -3 demek 1'in yanında 3 tane sıfır koy ve sayıyı böl.
 1e-3 = 1 / 1000 (=0.001)
 
-// -6 divides by 1 with 6 zeroes
+// -6 demek 1'in yanına 6 tane sıfır koy ve sayıyı böl.
 1.23e-6 = 1.23 / 1000000 (=0.00000123)
 ```
 
-### Hex, binary and octal numbers
+### HexaDecimal, binary ve octal sayılar.
 
-[Hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) numbers are widely used in JavaScript to represent colors, encode characters, and for many other things. So naturally, there exists a shorter way to write them: `0x` and then the number.
+[Hexadecimal](https://en.wikipedia.org/wiki/Hexadecimal) sayılar JavaScript'te çoğunlukla renklerde, karakter çevrimlerinde ve birçok alanda kullanılmaktadır. Bundan dolayı `0x` gibi kolay yazım biçimine sahiptir. Diğer türlü sayı kullanılması gerekmektedir.
 
-For instance:
+Örneğin:
 
 ```js run
 alert( 0xff ); // 255
-alert( 0xFF ); // 255 (the same, case doesn't matter)
+alert( 0xFF ); // 255 (büyük küçük harf farkı yoktur)
 ```
-
-Binary and octal numeral systems are rarely used, but also supported using the `0b` and `0o` prefixes:
+Binary ve Octal sayı sistemleri ise çok nadir kullanılmaktadır fakat `0b` veya `0o` önekleri mevcuttur.
 
 
 ```js run
-let a = 0b11111111; // binary form of 255
-let b = 0o377; // octal form of 255
+let a = 0b11111111; // binary 255
+let b = 0o377; // octal 255
 
-alert( a == b ); // true, the same number 255 at both sides
+alert( a == b ); // true, iki sayı da aynıdır.
 ```
 
-There are only 3 numeral systems with such support. For other numeral systems, we should use the function `parseInt` (which we will see later in this chapter).
+3 çeşit sayısal sistem desteklenmiştir. Diğer sayısal sistemler için ise `parseInt` kullanılmalıdır. 
 
-## toString(base)
+## toString(taban)
 
-The method `num.toString(base)` returns a string representation of `num` in the numeral system with the given `base`.
+`num.toString(base)` verilen tabana göre karakter dizisini döndürür.
 
-For example:
+Örneğin:
 ```js run
-let num = 255;
+let sayi = 255;
 
-alert( num.toString(16) );  // ff
-alert( num.toString(2) );   // 11111111
+alert( sayi.toString(16) );  // ff
+alert( sayi.toString(2) );   // 11111111
 ```
+`taban` `2` ile `36` arasında değişebilir. Varsayılanı `10`dur.
 
-The `base` can vary from `2` to `36`. By default it's `10`.
-
-Common use cases for this are:
-
-- **base=16** is used for hex colors, character encodings etc, digits can be `0..9` or `A..F`.
-- **base=2** is mostly for debugging bitwise operations, digits can be `0` or `1`.
-- **base=36** is the maximum, digits can be `0..9` or `A..Z`. The whole latin alphabet is used to represent a number. A funny, but useful case for `36` is when we need to turn a long numeric identifier into something shorter, for example to make a short url. Can simply represent it in the numeral system with base `36`:
+Genel olarak kullanımı şu şekildedir:
+- **16-tabanı** hex renkler için, karakter çevrimleri için kullanılır. `0..9` ve `A..F` arası kullanılabilir.
+- **2-tabanı** bit tipindeki uygulamalar için kullanılır. Sadece `0` veya `1`'dir değerlerini alabilir.
+- **36-tabanı** maximum bir basamak `0..9` veya `A..Z` arası kullanılabilir. Bu da demek oluyor ki bütün latin alfabesi sayıları tanımlamak için kullnılabilir. Bu uzun sayısal bir değeri daha kısa bir değee çevirmek istendiğinde kullanılabilir. Örneğin URL kısaltma kolay bir şekilde `36-taban`'nda ifade edilebilir.
 
     ```js run
     alert( 123456..toString(36) ); // 2n9c
     ```
 
-```warn header="Two dots to call a method"
-Please note that two dots in `123456..toString(36)` is not a typo. If we want to call a method directly on a number, like `toString` in the example above, then we need to place two dots `..` after it.
+```warn header="İki nokta ile metod çağırımı"
+`..` şeklinde yazım, hatalı bir yazım değildir. Eğer sayı üzerinden doğrudan metod çağırılmak isteniyor ise `..` yazımı kullanılıri
 
-If we placed a single dot: `123456.toString(36)`, then there would be an error, because JavaScript syntax implies the decimal part after the first dot. And if we place one more dot, then JavaScript knows that the decimal part is empty and now goes the method.
+Eğer tek nokta olursa:`123456.toString(36)` hata meydana gelir. Çünkü tek nokta olduğunda JavaScript ondalık sayı olarak algılar ve hata verir. Fakat bir tane daha nokta koyulursa JavaScript ondalık sayı olmadığını anladar ve doğrudan metoda gider.
 
-Also could write `(123456).toString(36)`.
+Şu şekilde de yazılabilir: `(123456).toString(36)`.
 ```
 
-## Rounding
+## Yuvarlama
 
-One of the most used operations when working with numbers is rounding.
+Sayılar ile yapılan önemli işlemlerden biri de yuvarlama işlemidir.
 
-There are several built-in functions for rounding:
+Yuvarlama işlemi için birçok dahili fonksiyon bulunmaktadır:
 
 `Math.floor`
-: Rounds down: `3.1` becomes `3`, and `-1.1` becomes `-2`.
+: Aşağı yuvarlar: `3.1`  `3` , `-1.1`  `-2` olur.
 
 `Math.ceil`
-: Rounds up: `3.1` becomes `4`, and `-1.1` becomes `-1`.
+: Yukarı yuvarlar: `3.1` `4`,  `-1.1` `-1` olur.
 
 `Math.round`
-: Rounds to the nearest integer: `3.1` becomes `3`, `3.6` becomes `4` and `-1.1` becomes `-1`.
+: En yakın tam sayıya yuvarlar: `3.1`  `3`, `3.6`  `4` ve `-1.1`  `-1` olur.
 
-`Math.trunc` (not supported by Internet Explorer)
-: Removes anything after the decimal point without rounding: `3.1` becomes `3`, `-1.1` becomes `-1`.
+`Math.trunc` (Internet Explorer desteklemez)
+: Ondalık bölümü siler: `3.1`  `3`, `-1.1`  `-1` olur.
 
-Here's the table to summarize the differences between them:
+Tablo şeklinde aşağıdaki gibi özetlenebilir:
 
 |   | `Math.floor` | `Math.ceil` | `Math.round` | `Math.trunc` |
 |---|---------|--------|---------|---------|
@@ -136,302 +125,284 @@ Here's the table to summarize the differences between them:
 |`-1.1`|  `-2`    |   `-1`  |    `-1`  |   `-1`   |
 |`-1.6`|  `-2`    |   `-1`  |    `-2`  |   `-1`   |
 
+Bu fonksiyonlar ondalık sayılar için önünüze gelebilecek tüm farklılıkları kapsar. Fakat ya ondalık bölümden n. basamağını yuvarlamak isterseniz?
 
-These functions cover all of the possible ways to deal with the decimal part of a number. But what if we'd like to round the number to `n-th` digit after the decimal?
+Örneğin `1.2345` diye bir sayı olsun ve bunu 2 basamağa yuvarlamak istiyorsunuz `1.23` gibi
 
-For instance, we have `1.2345` and want to round it to 2 digits, getting only `1.23`.
+Bunu yapmak için iki yol bulunmaktadır:
 
-There are two ways to do so:
-
-1. Multiply-and-divide.
-
-    For example, to round the number to the 2nd digit after the decimal, we can multiply the number by `100`, call the rounding function and then divide it back.
+1. Çarp ve Böl.
+    
+    Örneğin 2. basamaktan sonrasını yuvarlamak istiyorsanız bunu  `100` ile çarpıp sonra tekrar `100` e bölerseniz istediğinizi elde etmiş olursunuz.
+    
     ```js run
     let num = 1.23456;
 
     alert( Math.floor(num * 100) / 100 ); // 1.23456 -> 123.456 -> 123 -> 1.23
     ```
 
-2. The method [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) rounds the number to `n` digits after the point and returns a string representation of the result.
-        
+2. [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) kullanarak ondalık bölümde `n` basamaktan sonrası için yuvarlama yapılabilir.
+
     ```js run
     let num = 12.34;
     alert( num.toFixed(1) ); // "12.3"
     ```
-
-    This rounds up or down to the nearest value, similar to `Math.round`:
-
+    Bu `Math.round` gibi tam sayıya yakınlığına göre yukarıya veya aşağıya yuvarlar:
+    
     ```js run
     let num = 12.36;
     alert( num.toFixed(1) ); // "12.4"
     ```
 
-    Please note that result of `toFixed` is a string. If the decimal part is shorter than required, zeroes are appended to the end:
-
+    `toFixed` karakter dizisi döndürür. Eğer ondalık bölüm argümandan kısa ise sona `0` eklenir.
+    
     ```js run
     let num = 12.34;
-    alert( num.toFixed(5) ); // "12.34000", added zeroes to make exactly 5 digits 
+    alert( num.toFixed(5) ); // "12.34000", ondalık bölüm 5 basamaklı yapılmıştır. 
     ```
+    Önüne artı koyarak veya `Number()` fonksiyonunu kullaranak bunu sayıya çevirebilirsiniz: `+num.toFixed(5)`.
+    
+## Küsürlü hesaplama
 
-    We can convert it to a number using the unary plus or a `Number()` call: `+num.toFixed(5)`.
+JavaScript sayıları [IEEE-754](http://en.wikipedia.org/wiki/IEEE_754-1985) ifade edilir, bunlardan 52'si basamakları tutar. 11 tanesi ise ondalık bölümleri tutar ( tam sayılar için bu 11 bit sıfır olur) ve 1 bit işareti tutar.
 
-## Imprecise calculations
-
-Internally, a number is represented in 64-bit format [IEEE-754](http://en.wikipedia.org/wiki/IEEE_754-1985), so there are exactly 64 bits to store a number: 52 of them are used to store the digits, 11 of them store the position of the decimal point (they are zero for integer numbers), and 1 bit is for the sign.
-
-If a number is too big, it would overflow the 64-bit storage, potentially giving an infinity:
+Eğer sayı çok büyükse 64 bit alanın dışına çıkabilir bu da sonsuz döndürür.
 
 ```js run
-alert( 1e500 ); // Infinity 
-```
+alert( 1e500 ); // Sonsuz
+Çok ta açık olmamakla birlikte çoğunlukla ola gelen bir problem ise küsür kaybıdır.
 
-What may be a little less obvious, but happens quite often, is the loss of precision.
-
-Consider this (falsy!) test:
+Aşağıdaki olayı test edin:
 
 ```js run
 alert( 0.1 + 0.2 == 0.3 ); // *!*false*/!*
 ```
+Doğru eğer `0.1` ile `0.2`'nin toplamının `0.3` olduğunu sanıyorsanız yanılıyorsunuz. 
 
-That's right, if we check whether the sum of `0.1` and `0.2` is `0.3`, we get `false`. 
-
-Strange! What is it then if not `0.3`?
+Peki `0.3` değilse ne o zaman ?
 
 ```js run
 alert( 0.1 + 0.2 ); // 0.30000000000000004
 ```
+Yok artık! Burada yanlış karşılaştırmanın sonuçlarını gördünüz. Düşünün bir e-ticaret sitesi yapıyorsunuz. Kullanıcı `0.10₺` ve `0.20₺` lik iki tane çiklet ekledi sepetine. Sonuçta toplam `$0.30000000000000004` oldu. Sitenize gelen kişinin kafası karışacaktır.
 
-Ouch! There are more consequences than an incorrect comparison here. Imagine you're making an e-shopping site and the visitor puts `$0.10` and `$0.20` goods into his chart. The order total will be `$0.30000000000000004`. That would surprise anyone.
+Peki neden böyle birşey oluyor?
 
-But why does this happen?
+Sayı hafızada binary formatta tutulur. Fakat ondalık bölümleri `0.1`, `0.2` gibi desimal sistemde çok basit gibi duran sayılar aslında bitmez bir binary forma sahiptir.
 
-A number is stored in memory in its binary form, a sequence of ones and zeroes. But fractions like `0.1`, `0.2` that look simple in the decimal numeric system are actually unending fractions in their binary form.
+`0.1` nedir? `1` in `10` bölümünden elde edilir. Onluk sistemde kolayca gösterilir. Fakat ondalık sistemde `1/3` sonsuza kadar `0.3333(3)` şeklinde devam eder.
 
-In other words, what is `0.1`? It is one divided by ten `1/10`, one-tenth. In decimal numeral system such numbers are easily representable. Compare it to one-third: `1/3`. It becomes an endless fraction `0.33333(3)`. 
+Öyleyse `10`'a bölüm onluk sayılarda sorun yaratmazken `3`'e bölüm sorun yaratmaktadır. Aynı neden dolayı, bu defa binary sistem , aynı şekilde sonsuza kadar gider, `2`'nin katları ile bölüm tam sonuç verecektir. Fakat `1/10` sonsuza kadar giden bir binary değer verir.
 
-So, division by powers `10` is guaranteed to work well in the decimal system, but division by `3` is not. For the same reason, in the binary numeral system, the division by powers of `2` is guaranteed to work, but `1/10` becomes an endless binary fraction.
+Aslında *0.1* veya *0.2* tam olarak saklanamaz, tıpkı `1/3`'ün tam olarak saklanamaması gibi.
 
-There's just no way to store *exactly 0.1* or *exactly 0.2* using the binary system, just like there is no way to store one-third as a decimal fraction.
+IEEE-754 bunu en yakın değere yuvarlayarak çözmektedir. Bu kurallar bizim "küçük küsürleri" görmemizi engeller.
 
-The numeric format IEEE-754 solves this by rounding to the nearest possible number. These rounding rules normally don't allow us to see that "tiny precision loss", so the number shows up as `0.3`. But beware, the loss still exists.
-
-We can see this in action:
+Örneğin:
 ```js run
 alert( 0.1.toFixed(20) ); // 0.10000000000000000555
 ```
+Toplandığında ise "küsür kayıpları" üst üste eklenir. Bundan dolayı `0.1 + 0.2` `0.3` etmez.
 
-And when we sum two numbers, their "precision losses" add up.
+```smart header="Sadece JavaScript bu sorundan muzdarip değildir"
+Bu problemler diğer programlama dillerinde de mevcuttur.
 
-That's why `0.1 + 0.2` is not exactly `0.3`.
-
-```smart header="Not only JavaScript"
-The same issue exists in many other programming languages.
-
-PHP, Java, C, Perl, Ruby give exactly the same result, because they are based on the same numeric format. 
+PHP, Java, C, Perl, Ruby gibi diller de aslında aynı değeri verir. Çalıştıkları sistem aynı şekilde binary(ikili) sistemdir. 
 ```
 
-Can we work around the problem? Sure, there're a number of ways:
+Bu problemden nasıl kurtulunur? Tabi bunun için bir kaç yöntem mevcuttur:
 
-1. We can round the result with the help of a method [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed):
-
-    ```js run
-    let sum = 0.1 + 0.2;
-    alert( sum.toFixed(2) ); // 0.30
-    ```
-
-    Please note that `toFixed` always returns a string. It ensures that it has 2 digits after the decimal point. That's actually convenient if we have an e-shopping and need to show `$0.30`. For other cases, we can use the unary plus to coerce it into a number:
+1. [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) metodu yardımı ile yuvarlayabilirsiniz:
 
     ```js run
-    let sum = 0.1 + 0.2;
-    alert( +sum.toFixed(2) ); // 0.3
+    let toplam = 0.1 + 0.2;
+    alert( toplam.toFixed(2) ); // 0.30
+    ```
+    Unutmayın `toFixed` her zaman karakter dizisi döndürür. `.`'dan sonra 2 basamak alır. Eğer e-ticaret sistemi üzerinde çalışıyorsanız bu gerçekten kullanışlıdır çünkü sonuç `0.30` olmalıdır. Diğer hallerde önüne `+` koyarak bunu sayıya çevirebilirsiniz:
+    
+    ```js run
+    let toplam = 0.1 + 0.2;
+    alert( +toplam.toFixed(2) ); // 0.3
     ```
 
-2. We can temporarily turn numbers into integers for the maths and then revert it back. It works like this:
+2. Geçici olarak sayılar tam sayıya çevrilio sonradan geri döndürülebilir. Aşağıdaki gibi çalışır:
 
     ```js run
     alert( (0.1 * 10 + 0.2 * 10) / 10 ); // 0.3
     ```
+    Aşağıdaki gibi çalışır `0.1 * 10 = 1` ve `0.2 * 10 = 2` sonrasında iki tam sayı hiç bir ondalık bölüm olmadan toplanır böylece küsürat kaybı ortadan kalkar.
 
-    This works because when we do `0.1 * 10 = 1` and `0.2 * 10 = 2` then both numbers become integers, and there's no precision loss. 
+3. Eğer e-ticaret sitesi üzerinde çalışıyorsanız. En radikal çözüm tüm küsüratları kuruş olarak kaydedip hiç küsürat kullanmamak olabilir. Fakat ya %30 indirip yapmak isterseniz? Pratikte bu kullanım çok nadirdir. Bundan dolayı yukarıdaki iki şekilde problem çözülebilir.
 
-3. If we were dealing with a shop, then the most radical solution would be to store all prices in cents and use no fractions at all. But what if we apply a discount of 30%? In practice, totally evading fractions is rarely feasible, so the solutions above help avoid this pitfall.
-
-````smart header="The funny thing"
-Try running this:
+````smart header="Tuhaf tarafı"
+Aşağıdaki kodu çalıştırın:
 
 ```js run
-// Hello! I'm a self-increasing number! 
+// Merhaba ben kendi kendine artan sayıyım.! 
 alert( 9999999999999999 ); // shows 10000000000000000
 ```
+Bu da küsürat kaybından meydana gelir. Bir sayıda 64 bit bulunmaktadır. 52 tanesi basamak tutmaktadır. Fakat bu durumda bu basamak yeterli değildir. Bundan dolayı en etkisiz basamak kaybolur.
 
-This suffers from the same issue: a loss of precision. There are 64 bits for the number, 52 of them can be used to store digits, but that's not enough. So the least significant digits disappear.
-
-JavaScript doesn't trigger an error in such events. It does its best to fit the number into the desired format, but unfortunately, this format is not big enough.
+JavaScript böyle bir durumda hata vermez. Belirli formata göre en iyi şekilde sayıyı yerleştirmeye çalışır. Fakat bu format yeterli büyüklükte değil.
 ````
 
-```smart header="Two zeroes"
-Another funny consequence of the internal representation of numbers is the existence of two zeroes: `0` and `-0`.
+```smart header="Sıfırlar"
+Diğer bir komik olay ise `0` ve `-0`'ın varlığıdır.
 
-That's because a sign is represented by a single bit, so every number can be positive or negative, including a zero. 
+İşaret bir bit ile tutulduğundan dolayı tüm sayıların `-` ve `+` lı değerleri bulunmaktadır.
 
-In most cases the distinction is unnoticeable, because operators are suited to treat them as the same.
+Çoğu durumda bu ayrım soruna anlaşılamaz. Çünkü operatörler ikisine de aynı şekilde davranır.
 ```
 
 
 
-## Tests: isFinite and isNaN
+## Testler: isFinite ve isNaN
 
-Remember these two special numeric values?
+Hatırlarsanız iki tane özel sayı vardı.
 
-- `Infinite` (and `-Infinite`) is a special numeric value that is greater (less) than anything.
-- `NaN` represents an error.
+- `Infinite` (ve `-Infinite`), bu sayı hersayıdan büyüktür, veya her sayıdan küçüktür.
+- `NaN` ise bir hata göstergesidir.
 
-They belong to the type `number`, but are not "normal" numbers, so there are special functions to check for them:
+Her ikisi de `number` tipine aittirler, fakat "normal" sayı değildirler. Bundan dolayı bunların kontrolü için özel fonksiyonlar bulunmaktadır.
 
 
-- `isNaN(value)` converts its argument to a number and then tests it for being `NaN`:
+- `isNaN(deger)` argümanı sayıya çevirir ve sayı olup olmadığını kontrol eder.
 
     ```js run
     alert( isNaN(NaN) ); // true
     alert( isNaN("str") ); // true
     ```
-
-    But do we need this function? Can't we just use the comparison `=== NaN`? Sorry, but the answer is no. The value `NaN` is unique in that it does not equal anything, including itself:
-
+    
+    Bu fonksiyona ihtiyacınız var mı? Sadece === NaN kullanılsa ? Malesef ihtiyaç var. `NaN` kendi başına hiç bir şeye eşit değildir, hatta kendisine bile:
+    
     ```js run
     alert( NaN === NaN ); // false
     ```
 
-- `isFinite(value)` converts its argument to a number and returns `true` if it's a regular number, not `NaN/Infinity/-Infinity`:
+- `isFinite(deger)` argümanı sayıya çevirir ve  normal sayı ise `true` değil ise `NaN/Infinity/-Infinity` döndürür:
 
     ```js run
     alert( isFinite("15") ); // true
-    alert( isFinite("str") ); // false, because a special value: NaN
-    alert( isFinite(Infinity) ); // false, because a special value: Infinity
+    alert( isFinite("str") ); // false,  NaN döndürür.
+    alert( isFinite(Infinity) ); // false, Infinity döndürür.
     ```
-
-Sometimes `isFinite` is used to validate whether a string value is a regular number:
+Bazen `isFinite` karakterin sayı olup olmadığını kontrol için kullanılır:
 
 
 ```js run
-let num = +prompt("Enter a number", '');
+let num = +prompt("Bir sayı giriniz", '');
 
-// will be true unless you enter Infinity, -Infinity or not a number
+// Infinity girmediğiniz taktirde `true` olacaktır. -Infinity diye bir sayı yoktur.
 alert( isFinite(num) );
 ```
 
-Please note that an empty or a space-only string is treated as `0` in all numeric functions including `isFinite`.  
+Aklınızda bulunsun tüm boş veya sadece boşluk tuşu ile yazılan tüm değerler `0` olarak kabul edilir `isFinite`'de bu şekilde çalışır.
 
-```smart header="Compare with `Object.is`"
+```smart header="`Object.is` ile karşılaştırma"
 
-There is a special built-in method [Object.is](mdn:js/Object/is) that compares values like `===`, but is more reliable for two edge cases:
+Özel bir dahili metod olan [Object.is](mdn:js/Object/is) ile değerler `===` gibi karşılaştırılabilir. İki durum için daha güvenlidir denebilir:
 
-1. It works with `NaN`: `Object.is(NaN, NaN) === true`, that's a good thing. 
-2. Values `0` and `-0` are different: `Object.is(0, -0) === false`, it rarely matters, but these values technically are different.
+1. `NaN` ile çalışır: `Object.is(NaN, NaN) === true` bu iyi
+2. `0` ve `-0` farklıdır: `Object.is(0, -0) === false`,neredeyse hiç kullanılmaz, ama yinede teknik olarak farklıdırlar.
 
-In all other cases, `Object.is(a, b)` is the same as `a === b`. 
+Tüm durumlarda `Object.is(a, b)` `a === b` ile aynıdır.
 
-This way of comparison is often used in JavaScript specification. When an internal algorithm needs to compare two values for being exactly the same, it uses `Object.is` (internally called [SameValue](https://tc39.github.io/ecma262/#sec-samevalue)).
+Bu tür karşılaştırma genelde JavaScript içerisinde kullanılır. JavaScript içinde eğer algoritma iki değerin kesinlikle aynı olup olmadığını kontrol etmek istiyorsa `Object.is` kullanılır [SameValue](https://tc39.github.io/ecma262/#sec-samevalue)
 ```
 
 
-## parseInt and parseFloat
-
-Numeric conversion using a plus `+` or `Number()` is strict. If a value is not exactly a number, it fails:
+## parseInt ve parseFloat
+`+` veya `Number()` kullanılarak sayıya çevirme sıkı bir çevirmedir. Eğer argüman sayı değilse hata verir:
 
 ```js run
 alert( +"100px" ); // NaN
 ```
+Eğer başta veya sonda boşluk varsa bunlar görmezden gelinir.
 
-The sole exception is spaces at the beginning or at the end of the string, as they are ignored.
+Fakat gerçek hayatta değerler, `"100px"` veya `"12pt"`  gibi birim ekleri alabilir. Birçok ülkenin para birimi sona veya başa gelir. Bundan dolayı `15₺` gibi değerler kullanıldığında önemli olan sayı bölümü olabilir.
 
-But in real life we often have values in units, like `"100px"` or `"12pt"` in CSS. Also in many countries the currency symbol goes after the amount, so we have `"19€"` and would like to extract a numeric value out of that.
+`parseInt` ve `parseFloat` tam olarak bunlar için kullanılır.
 
-That's what `parseInt` and `parseFloat` are for.
-
-They "read" a number from a string until they can. In case of an error, the gathered number is returned. The function `parseInt` returns an integer, whilst `parseFloat` will return a floating-point number:
+Karakter dizisinden sayıları "okuyabildikleri kadar" okurlar. Hata olduğu durumda sayıyı dönderir. `parseInt` tam sayı dönderirken `parseFloat` küsüratlı sayı dönderir.
 
 ```js run
 alert( parseInt('100px') ); // 100
 alert( parseFloat('12.5em') ); // 12.5
 
-alert( parseInt('12.3') ); // 12, only the integer part is returned
-alert( parseFloat('12.3.4') ); // 12.3, the second point stops the reading
+alert( parseInt('12.3') ); // 12, sadece tamsayı bölümü alındı
+alert( parseFloat('12.3.4') ); // 12.3, birinci noktadan sonra yeniden nokta gördüğünde işlemi tamamladı
 ```
-
-There are situations when `parseInt/parseFloat` will return `NaN`. It happens when no digits could be read:
+Eğer hiç bir basamak okunamazsa `NaN` dönderirler.
 
 ```js run
-alert( parseInt('a123') ); // NaN, the first symbol stops the process
+alert( parseInt('a123') ); // NaN, ilk harf işlemi durdurur.
 ```
 
-````smart header="The second argument of `parseInt(str, radix)`"
-The `parseInt()` function has an optional second parameter. It specifies the base of the numeral system, so `parseInt` can also parse strings of hex numbers, binary numbers and so on:
+````smart header="`parseInt` in ikinci argümanı : `parseInt(str,radix)`"
+`parseInt` fonksiyonu isteğe bağlı olarak ikinci bir parametreye sahiptir. Bu sayı tabanını belirtir, böylece `parseInt` karakter olarak yazılmış hex sayılarını veya binary değerlerini de ayrıştırabilir.
 
 ```js run
 alert( parseInt('0xff', 16) ); // 255
-alert( parseInt('ff', 16) ); // 255, without 0x also works
+alert( parseInt('ff', 16) ); // 255, 0x olmadan da çalışır
 
 alert( parseInt('2n9c', 36) ); // 123456
 ```
 ````
 
-## Other math functions
+## Diğer matematik fonksiyonları
 
-JavaScript has a built-in [Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) object which contains a small library of mathematical functions and constants.
+JavaScript dahilinde matematiksel fonksiyonların ve sabitlerin bulunduğu küçük bir kütüphane mevcuttur. [Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) 
 
-A few examples:
+Birkaç örnek:
 
 `Math.random()`
-: Returns a random number from 0 to 1 (not including 1)
+:  0 ile 1 (1 dahil değil) arasında rasgele sayı üretir.
 
     ```js run
     alert( Math.random() ); // 0.1234567894322
     alert( Math.random() ); // 0.5435252343232
-    alert( Math.random() ); // ... (any random numbers)
+    alert( Math.random() ); // ... (herhangi bir rasgele sayı)
     ```
 
 `Math.max(a, b, c...)` / `Math.min(a, b, c...)`
-: Returns the greatest/smallest from the arbitrary number of arguments.
+: Verilen değerlerden en büyüğünü veya en küçüğünü döndüren fonksiyon
 
     ```js run
     alert( Math.max(3, 5, -10, 0, 1) ); // 5
     alert( Math.min(1, 2) ); // 1
     ```
 
-`Math.pow(n, power)`
-: Returns `n` raised the given power
+`Math.pow(n, üs)`
+: `n`'in `üs`sünü döndürür.
 
     ```js run
-    alert( Math.pow(2, 10) ); // 2 in power 10 = 1024
+    alert( Math.pow(2, 10) ); // 2'nin 10 üssü = 1024
     ```
+marh objesi daha birçok fonksiyon ve sabit barındırmaktadır. Trigonometri de bunlara dahildir.  [ Math objesi dökümantasyonu](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math)
 
-There are more functions and constants in `Math` object, including trigonometry, which you can find in the [docs for the Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) object.
+## Özet
 
-## Summary
+Büyük sayıları yazmak için:
+- `"e"` nin yanına kaç tane sıfır varsa onu yazın. Örneğin : `123e6` = `123` ün yanına `6` tane 0 yaz demektir.
+- `"e"` den sonra yazılan negatif sayı ise kaç tane sıfır varsa önüne bir koy ve değeri bu sayıya böl demektir. 
 
-To write big numbers:
 
-- Append `"e"` with the zeroes count to the number. Like: `123e6` is `123` with 6 zeroes.
-- A negative number after `"e"` causes the number to be divided by 1 with given zeroes. That's for one-millionth or such.
+Farklı sayı sistemleri:
 
-For different numeral systems:
+- Sayıları doğrudan hex olarak (`0x`), octal olarak(`0o`) veya binary(ikili) (`0b`) olarak yazmak mümkündür.
+- `parseInt(str,taban) verilen tabana göre karakteri ayrıştırmaya yarar. Taban `2` ile `36` aralığında olmalıdır ( 2 ve 36 dahil)
+- `num.toString(taban)` ise bir sayıyı karakter dizisine verilen tabanda yazmaya yarar. 
 
-- Can write numbers directly in hex (`0x`), octal (`0o`) and binary (`0b`) systems
-- `parseInt(str, base)` parses an integer from any numeral system with base: `2 ≤ base ≤ 36`.
-- `num.toString(base)` converts a number to a string in the numeral system with the given `base`.
+`12pt` ve `100px` gibi değerleri sayıya çevirme:
 
-For converting values like `12pt` and `100px` to a number:
+- `parseInt/parseFloat` hafif çevirimler için kullanılabilir, karakter görene kadar sayıları tutar ve karakter görürse tuttuklarını geri dönderir.
 
-- Use `parseInt/parseFloat` for the "soft" conversion, which reads a number from a string and then returns the value they could read before the error. 
+Ondalık bölüm:
 
-For fractions:
+- `Math.floor`, `Math.ceil`, `Math.trunc`, `Math.round` veya `num.toFixed(basamak)` kullanarak yuvarlayabilirsiniz.
+- Küsüratlarda olan sorunları sayılarla çalışırken her zaman aklınızda tutmalısınız.
 
-- Round using `Math.floor`, `Math.ceil`, `Math.trunc`, `Math.round` or `num.toFixed(precision)`.
-- Make sure to remember there's a loss of precision when working with fractions.
+Daha fazla matematik fonksiyonu:
 
-More mathematical functions:
-
-- See the [Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) object when you need them. The library is very small, but can cover basic needs.
-
+- Gerektiği zaman [Math](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math) adresinden incelenebilir. Kütüphane çok küçük olsa da basit gereksinimleri karşılar.
 

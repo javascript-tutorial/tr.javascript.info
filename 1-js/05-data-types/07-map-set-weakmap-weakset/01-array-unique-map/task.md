@@ -1,27 +1,25 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Filter unique array members
+# Eşsiz dizi elemanları filtreleyin.
 
-Let `arr` be an array.
+`arr` adında bir diziniz olsun.
 
-Create a function `unique(arr)` that should return an array with unique items of `arr`.
+`essiz(dizi)` adında bir fonksiyon yazınız bu fonksiyon `dizi`'nin eşsiz elemanlarını dönmelidir.
 
-For instance:
+Örneğin:
 
 ```js
-function unique(arr) {
-  /* your code */
+function essiz(arr) {
+  /* kodunuz */
 }
 
-let values = ["Hare", "Krishna", "Hare", "Krishna",
-  "Krishna", "Krishna", "Hare", "Hare", ":-O"
+let kullanicilar = ["Emine", "Muzaffer", "Fatma", "Kanako",
+  "Kanako", "Muzaffer", "Fatma", "Kanako", ":-O"
 ];
 
-alert( unique(values) ); // Hare, Krishna, :-O
+alert( benzersiz(kullanicilar) ); // Emine, :-O
 ```
-
-P.S. Here strings are used, but can be values of any type.
-
-P.P.S. Use `Set` to store unique values.
+Not: Burada karakterler kullanıldı fakat bunun yerine her tip olabilir.
+Not: Eşsiz değerler için `Set` kullanabilirsiniz.

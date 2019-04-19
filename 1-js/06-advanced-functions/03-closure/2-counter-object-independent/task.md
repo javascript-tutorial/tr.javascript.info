@@ -1,29 +1,30 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Counter object
+# Sayaç Objesi
 
-Here a counter object is made with the help of the constructor function.
+Aşağıda yapıcı fonksiyon ile üretilmiş bir sayac objesi bulunmaktadır.
 
-Will it work? What will it show?
+Çalışır mı? Çalışırsa ne gösterir?
+
 
 ```js
-function Counter() {
-  let count = 0;
+function Sayac() {
+  let say = 0;
 
-  this.up = function() {
-    return ++count;
+  this.yukselt = function() {
+    return ++say;
   };
-  this.down = function() {
-    return --count;
+  this.alcalt = function() {
+    return --say;
   };
 }
 
-let counter = new Counter();
+let sayac = new Sayac();
 
-alert( counter.up() ); // ?
-alert( counter.up() ); // ?
-alert( counter.down() ); // ?
+alert( sayac.yukselt() ); // ?
+alert( sayac.yukselt() ); // ?
+alert( sayac.alcalt() ); // ?
 ```
 

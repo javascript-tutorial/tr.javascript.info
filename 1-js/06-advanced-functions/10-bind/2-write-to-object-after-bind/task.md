@@ -1,10 +1,10 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Bound function as a method
+# Fonksiyonu metod olarak bağla.
 
-What will be the output?
+Aşağıdaki kodun çıktısı nedir?
 
 ```js
 function f() {

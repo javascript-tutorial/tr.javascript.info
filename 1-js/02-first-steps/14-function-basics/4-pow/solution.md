@@ -1,23 +1,22 @@
 
 ```js run demo
-function pow(x, n) {
-  let result = x;
+function usAl(x, n) {
+  let sonuc = x;
 
   for (let i = 1; i < n; i++) {
-    result *= x;
+    sonuc *= x;
   }
 
-  return result;
+  return sonuc;
 }
 
 let x = prompt("x?", '');
 let n = prompt("n?", '');
 
 if (n <= 1) {
-  alert(`Power ${n} is not supported,
-    use an integer greater than 0`);
+  alert(` ${n} için üs alınamamktadır. 0'dan büyük doğal sayı kullanınız.`);
 } else {
-  alert( pow(x, n) );
+  alert( usAl(x, n) );
 }
 ```
 

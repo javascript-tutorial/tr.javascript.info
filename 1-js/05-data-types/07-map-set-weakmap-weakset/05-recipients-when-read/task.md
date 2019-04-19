@@ -1,19 +1,17 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Store read dates
+# Okunma zamanlarını kaydedin.
 
-There's an array of messages as in the [previous task](info:task/recipients-read). The situation is similar.
-
+[öncegi görevde](info:task/recipients-read) mesaj dizisi vardı. Burada da durum ona benzer.
 ```js
-let messages = [
-    {text: "Hello", from: "John"},
-    {text: "How goes?", from: "John"},
-    {text: "See you soon", from: "Alice"}
+let mesajlar = [
+    {metin: "Merhaba", kimden: "Ahmet"},
+    {metin: "Nasıl Gidiyor?", kimden: "Ahmet"},
+    {metin: "Sonra görüşürüz", kimden: "Mehmet"}
 ];
 ```
+Şimdiki soru: Mesajın "ne zaman okunduğunu tutmak için" hangi veri yapısını önerirsiniz.
 
-The question now is: which data structure you'd suggest to store the information: "when the message was read?".
-
-In the previous task we only needed to store the "yes/no" fact. Now we need to store the date and it, once again, should disappear if the message is gone.
+Bir önceki görevde sadece "evet/hayır" tutmanız gerekmişti. Şimdi ise "ne zaman" bilgisinin tutulması gerekir, aynı şekilde eğer mesajlardan silindiğinde sizin oluşturduğunuz yapıdan da silinmesi gerekir.

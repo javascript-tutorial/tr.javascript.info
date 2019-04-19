@@ -1,25 +1,25 @@
 
-describe("calculator", function() {
-  let calculator;
-  before(function() {
+describe("hesapMakinesi", function () {
+  let hesapMakinesi;
+  before(function () {
     sinon.stub(window, "prompt")
 
     prompt.onCall(0).returns("2");
     prompt.onCall(1).returns("3");
 
-    calculator = new Calculator();
-    calculator.read();
+    hesapMakinesi = new HesapMakinesi();
+    hesapMakinesi.oku();
   });
 
-  it("when 2 and 3 are entered, the sum is 5", function() {
-    assert.equal(calculator.sum(), 5);
+  it("2 ile 3 toplanınca sonuç 5 çıkar.", function () {
+    assert.equal(hesapMakinesi.topla(), 5);
   });
 
-  it("when 2 and 3 are entered, the product is 6", function() {
-    assert.equal(calculator.mul(), 6);
+  it("2 ile 3 çarpılınca sonuç 6 çıkar", function () {
+    assert.equal(hesapMakinesi.carp(), 6);
   });
 
-  after(function() {
+  after(function () {
     prompt.restore();
   });
 });

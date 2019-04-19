@@ -1,12 +1,12 @@
-Here's the line with the error:
+Hatalı satırlar şunlardır:
 
 ```js
 Rabbit.prototype = Animal.prototype;
 ```
 
-Here `Rabbit.prototype` and `Animal.prototype` become the same object. So methods of both classes become mixed in that object.
+Burada `Rabbit.prototype` ve `Animal.prototype` aynı obje olmaktadır. Bu şekilde iki sınıf bu obje içinde karışmış olur.
 
-As a result, `Rabbit.prototype.walk` overwrites `Animal.prototype.walk`, so all animals start to bounce:
+Sonuç olarak `Rabbit.prototype.walk`, `Animal.prototype.walk`'ın üzerine yazar bu şekilde tüm `animal` `bounce` edebilir hale gelir.
 
 ```js run
 function Animal(name) {
@@ -35,12 +35,11 @@ animal.walk(); // pig bounces!
 */!*
 ```
 
-The correct variant would be:
+Doğrusu şu şekilde olabilir:
 
 ```js
 Rabbit.prototype.__proto__ = Animal.prototype;
-// or like this:
+// veya bv şekilde
 Rabbit.prototype = Object.create(Animal.prototype);
 ```
-
-That makes prototypes separate, each of them stores methods of the corresponding class, but `Rabbit.prototype` inherits from `Animal.prototype`.
+Bu prototipleri ayırır, her biri uyan sınıfın metodunu saklar, fakat `Rabbit.prototype` `Animal.prototype`'tan kalıtılır.

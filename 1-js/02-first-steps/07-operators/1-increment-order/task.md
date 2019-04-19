@@ -1,10 +1,10 @@
-importance: 5
+Önem: 5
 
 ---
 
-# The postfix and prefix forms
+# önden ve sonradan eklemeli değişkenler.
 
-What are the final values of all variables `a`, `b`, `c` and `d` after the code below?
+Aşağıdaki işlemlerden sonraki `a`, `b`, `c`,`d` değerlerini yazınız?
 
 ```js
 let a = 1, b = 1;

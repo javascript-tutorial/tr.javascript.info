@@ -1,3 +1,3 @@
 
-- Please note how methods are stored. They are simply added to the internal object.
-- All tests and numeric conversions are done in the `calculate` method. In future it may be extended to support more complex expressions.
+- Metodların nasıl kayıt edildiğine dikkat edin. Basit bir şekilde içteki objeye eklenmektedir.
+- Tüm test ve sayısal çevrimler `hesapla` metodunun içerisinde gerçekleşir. İleride daha karmaşık ifadeler için genişletilebilir.

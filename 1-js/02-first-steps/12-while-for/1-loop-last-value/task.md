@@ -1,8 +1,10 @@
-importance: 3
+Önem: 3
 
 ---
 
-# Last loop value
+# Döngünün son değeri
+
+Aşağıdaki kodda en son uyarıda ekrana ne yazar? Neden?
 
 What is the last value alerted by this code? Why?
 

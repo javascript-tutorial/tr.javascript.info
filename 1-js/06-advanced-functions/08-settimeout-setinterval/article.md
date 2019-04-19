@@ -1,145 +1,146 @@
-# Scheduling: setTimeout and setInterval
+# Zamanlama: setTimeout ve setInterval 
 
-We may decide to execute a function not right now, but at a certain time later. That's called "scheduling a call".
+Bir fonksiyon hemen çalıştırılmak istenmeyebilir, belirli bir zaman sonra çalışması istenebilir. Buna "çağrıyı zamanlama" denir.
 
-There are two methods for it:
+Bunun için iki metod var:
 
-- `setTimeout` allows to run a function once after the interval of time.
-- `setInterval` allows to run a function regularly with the interval between the runs.
+- `setTimeout` fonksiyonu belirli bir zaman sonra çalıştırmaya yarar.
+- `setInterval` fonksiyonun belirli aralıklar ile sürekli çalışmasını sağlar.
 
-These methods are not a part of JavaScript specification. But most environments have the internal scheduler and provide these methods. In particular, they are supported in all browsers and Node.JS.
-
+Bu metodlar JavaScript'in tanımları arasında yer almaz. Fakat çoğu ortam bu metodları sunar. Daha özele inecek olursak tüm tarayıcılar ve NodeJS bu metodları sağlar.
 
 [cut]
 
 ## setTimeout
 
-The syntax:
+Yazımı:
 
 ```js
-let timerId = setTimeout(func|code, delay[, arg1, arg2...])
+let zamanlayiciId = setTimeout(fonk|kod, bekleme[, arg1, arg2...])
 ```
 
-Parameters:
+Parametreler:
 
-`func|code`
-: Function or a string of code to execute.
-Usually, that's a function. For historical reasons, a string of code can be passed, but that's not recommended.
+`fonk|kod`
+: Fonksiyon veya çalıştırılacak kodun karakter dizisi hali. Genelde bu fonksiyon olur. Uyumluluk dolayısıyla karakter dizisi de gönderilebilir fakat önerilmez.
 
-`delay`
-: The delay before run, in milliseconds (1000 ms = 1 second).
+`bekleme`
+: Milisaniye cinsiden çalışmadan önceki bekleme süresi.(1000 ms = 1 saniye).
 
 `arg1`, `arg2`...
-: Arguments for the function (not supported in IE9-)
+: Fonksiyon için gerekli argümanlar.( IE9 öncesinde çalışmaz.)
 
-For instance, this code calls `sayHi()` after one second:
+Örneğin aşağıdaki kod `selamVer()` fonksiyonunu bir saniye sonra çalıştırır:
 
 ```js run
-function sayHi() {
-  alert('Hello');
+function selamVer() {
+  alert('Selam');
 }
 
 *!*
-setTimeout(sayHi, 1000);
+setTimeout(selamVer, 1000);
 */!*
 ```
 
-With arguments:
+Argümanlı versiyonu:
 
 ```js run
-function sayHi(phrase, who) {
-  alert( phrase + ', ' + who );
+function selamVer(ifade, kim) {
+  alert( ifade + ', ' + kim );
 }
 
 *!*
-setTimeout(sayHi, 1000, "Hello", "John"); // Hello, John
+setTimeout(selamVer, 1000, "Merhaba", "Ahmet"); // Merhaba, Ahmet
 */!*
 ```
 
-If the first argument is a string, then JavaScript creates a function from it.
+Eğer ilk argüman karakter dizisi ise, sonrasında JavaScript bundan fonksiyon üretir.
 
-So, this will also work:
-
-```js run no-beautify
-setTimeout("alert('Hello')", 1000);
-```
-
-But using strings is not recommended, use functions instead of them, like this:
+Aşağıdaki de aynı şekilde çalışacaktır:
 
 ```js run no-beautify
-setTimeout(() => alert('Hello'), 1000);
+setTimeout("selamVer('Merhaba')", 1000);
+```
+Karakter dizisi olarak fonksiyon göndermek aslında pek önerilmez, bunun yerine aşağıdaki gibi fonksiyon kullanılması daha doğrudur:
+
+```js run no-beautify
+setTimeout(() => alert('Merhaba'), 1000);
 ```
 
-````smart header="Pass a function, but don't run it"
-Novice developers sometimes make a mistake by adding brackets `()` after the function:
+````smart header="Fonksiyon gönder fakat çalıştırma."
+Yeni başlayan arkadaşlar bazen yanlışlıkla fonksiyonun sonuna `()` ekleyebilir:
+
 
 ```js
-// wrong!
-setTimeout(sayHi(), 1000);
+// yanlış!
+setTimeout(selamVer(), 1000);
 ```
-That doesn't work, because `setTimeout` expects a reference to function. And here `sayHi()` runs the function, and the *result of its execution* is passed to `setTimeout`. In our case the result of `sayHi()` is `undefined` (the function returns nothing), so nothing is scheduled.
+
+Bu çalışmaz, çünkü `setTimeout` referans bir fonksiyon beklemektedir. Burada `selamVer()` derseniz fonksiyonu çalıştırırsınız ve *bunun sonucu* `setTimeout` fonksiyonu tarafından kullanılır. Bizim durumumuzda `selamVer()` `undefined` döndürür. ( fonksiyon ile alakalı bir sorun yok ) bundan dolayı hiç birşey zamanlanmaz.
 ````
 
-### Canceling with clearTimeout
+### clearTimeout fonksiyonu ile iptal etme
 
-A call to `setTimeout` returns a "timer identifier" `timerId` that we can use to cancel the execution.
+`setTimeout` çağrısı "timer identifier" döner. Bu `timerId` ile zamanlayıcıyı iptal edebiliriz.
 
-The syntax to cancel:
+Yazımı aşağıdaki gibidir:
 
 ```js
 let timerId = setTimeout(...);
 clearTimeout(timerId);
 ```
 
-In the code below we schedule the function and then cancel it (changed our mind). As a result, nothing happens:
+Aşağıdaki kodda önce bir zamanlayıcı test eder sonrasında ise bunu iptal eder. Sonuç olarak hiçbir şey olmaz:
+
 
 ```js run no-beautify
-let timerId = setTimeout(() => alert("never happens"), 1000);
+let timerId = setTimeout(() => alert("Birşey olmayacak"), 1000);
 alert(timerId); // timer identifier
 
 clearTimeout(timerId);
-alert(timerId); // same identifier (doesn't become null after canceling)
+alert(timerId); // same identifier (iptal ettikten sonra null olmaz)
 ```
 
-As we can see from `alert` output, in a browser the timer identifier is a number. In other environments, that can be something else. For instance, Node.JS returns a timer object with additional methods.
+`alert` çıktısından da göreceğiniz gibi timer bir id numarası ile tanımlanır. Diğer ortamlarda bu başka birşey olabilir. Örneğin Node.Js bir sayı yerine farklı metodları olan timer objesi döner.
 
-Again, there is no universal specification for these methods, so that's fine.
+Tekrar söylemek gerekirse üzerinde anlaşılmış bir şartname bulunmamaktadır.
 
-For browsers, timers are described in the [timers section](https://www.w3.org/TR/html5/webappapis.html#timers) of HTML5 standard.
+Tarayıcılar için zamanlayıcılar [zamanlayıcı bölümünde](https://www.w3.org/TR/html5/webappapis.html#timers) belirtilmiştir.
 
 ## setInterval
 
-Method `setInterval` has the same syntax as `setTimeout`:
+`setInterval` `setTimeout` ile aynı yazıma sahiptir:
 
 ```js
 let timerId = setInterval(func|code, delay[, arg1, arg2...])
 ```
 
-All arguments have the same meaning. But unlike `setTimeout` it runs the function not only once, but regularly after the given interval of time.
+Tüm argümanlar aynı anlama gelir. Fakat `setTimeout`'a nazaran fonksiyonu sadece bir defa değil belirtilen zamanda sürekli olarak çalıştırır.
 
-To stop further calls, we should call `clearInterval(timerId)`.
+Bu zamanyalayıcı iptal etmek için `clearInterval(timerId)` kullanılmalıdır.
 
-The following example will show the message every 2 seconds. After 5 seconds, the output is stopped:
+Aşağıdaki örnekte mesaj her iki saniyede bir gönderilecektir. 5 saniye sonunda ise durdurulur.
 
 ```js run
-// repeat with the interval of 2 seconds
+// her iki sn'de tekrar et
 let timerId = setInterval(() => alert('tick'), 2000);
 
-// after 5 seconds stop
+// 5 saniye sonunda durdur.
 setTimeout(() => { clearInterval(timerId); alert('stop'); }, 5000);
 ```
 
-```smart header="Modal windows freeze time in Chrome/Opera/Safari"
-In browsers IE and Firefox the internal timer continues "ticking" while showing `alert/confirm/prompt`, but in Chrome, Opera and Safari the internal timer becomes "frozen".
+```smart header="Popup ekranında Chrome/Opera/Safari zamanı durdurur."
 
-So if you run the code above and don't dismiss the `alert` window for some time, then in Firefox/IE next `alert` will be shown immediately as you do it (2 seconds passed from the previous invocation), and in Chrome/Opera/Safari -- after 2 more seconds (timer did not tick during the `alert`).
+IE ve Firefox tarayıcılarda ekranda `alert/confirm/prompt` olduğu sürece zamanlayıcı çalışmaya devam eder, fakat Chrome, Opera ve Safari bu zamanı durdurur.
+
+Bundan dolayı eğer yukarıdi kodu çalıştırır ve iptal'e basmazsanız Firefox/IE'de bir sonraki `alert` durmadan gösterilir. Fakat Chrome/Opera/Safari'de kapatıldıktan sonra 2 sn sonra tekrar alert gelir.
 ```
 
-## Recursive setTimeout
+## Tekrarlı setTimeout
 
-There are two ways of running something regularly.
+Bir kodu düzenli olarak çalıştırmanın iki yolu bulunmaktadır.
 
-One is `setInterval`. The other one is a recursive `setTimeout`, like this:
+İlki `setInterval` diğeri ise aşağıdaki gibi kullanılan `setTimeout`:
 
 ```js
 /** instead of:
@@ -154,21 +155,21 @@ let timerId = setTimeout(function tick() {
 }, 2000);
 ```
 
-The `setTimeout` above schedules next call right at the end of the current one `(*)`.
+`setTimeout` bir sonraki çağrıyı o anki çağrı bittiği ana planlar `(*)` 
 
-Recursive `setTimeout` is more flexible method than `setInterval`. This way the next call may be scheduled differently, depending on the results of the current one.
+Kendini tekrar eden `setTimeout` `setInterval`'den daha esnektir. Bu şekliyle kullanıldığında bir sonraki planlanan çağrı ana çağrının durumuna göre ötelebilir veya daha geriye alınabilir.
 
-For instance, we need to write a service that each 5 seconds sends a request to server asking for data, but in case the server is overloaded, it should increase the interval to 10, 20, 40 seconds...
+Örneğin, her 5 sn'de bir sunucudan veri isteyen bir servis yazmamız gerekmektedir. Fakat sunucuya fazladan yük binerse bunun 10,20,40 sn olarak değiştirilmesi gerekmektedir.
 
-Here's the pseudocode:
+Sözde kod aşağıdaki gibidir:
 ```js
 let delay = 5000;
 
 let timerId = setTimeout(function request() {
-  ...send request...
+  ...talep gönder...
 
-  if (request failed due to server overload) {
-    // increase the interval to the next run
+  if (sunucu yüklenmesinden dolayı eğer talep iptal olursa) {
+    // bir sonraki talep için gerekli süreyi uzat.
     delay *= 2;
   }
 
@@ -177,12 +178,12 @@ let timerId = setTimeout(function request() {
 }, delay);
 ```
 
+Eğer CPU-aç görevleriniz varsa bu görevlerin süresini ölçüp buna göre bir çalışma planı oluşturmak mümkündür.
 
-And if we regulary have CPU-hungry tasks, then we can measure the time taken by the execution and plan the next call sooner or later.
 
-**Recursive `setTimeout` guarantees a delay between the executions, `setInterval` -- does not.**
+**Kendini tekrar eden `setTimeout` iki çağrı arasındaki süreyi garanti eder fkat `setInterval` bunu garanti etmez.**
 
-Let's compare two code fragments. The first one uses `setInterval`:
+Aşağıdaki iki kod parçacığı karşılaştırılacak olursa:
 
 ```js
 let i = 1;
@@ -191,7 +192,7 @@ setInterval(function() {
 }, 100);
 ```
 
-The second one uses recursive `setTimeout`:
+İkincisi tekrarlı `setTimeout` kullanmaktadır.
 
 ```js
 let i = 1;
@@ -201,72 +202,74 @@ setTimeout(function run() {
 }, 100);
 ```
 
-For `setInterval` the internal scheduler will run `func(i)` every 100ms:
+`setInterval` `func(i)` fonksiyonunu her 100ms'de bir çalıştırır.
 
 ![](setinterval-interval.png)
 
-Did you notice?...
+Dikkatinizi çekti mi?...
 
-**The real delay between `func` calls for `setInterval` is less than in the code!**
 
-That's natural, because the time taken by `func` execution "consumes" a part of the interval.
+**`func` çağrıları arasındaki geçen süre koddan daha kısa.**
 
-It is possible that `func` execution turns out to be longer than we expected and takes more than 100ms.
+Doğal olan bu aslında çünkü `func` çalıştığında bu arlığın bir kısmını harcar.
 
-In this case the engine waits for `func` to complete, then checks the scheduler and if the time is up, then runs it again *immediately*.
+Hatta bu `func` çalışmasının bizim beklediğimiz `100ms`'den fazla olması da mümkündür.
 
-In the edge case, if the function always executes longer than `delay` ms, then the calls will happen without pause at all.
+Bu durumda JS Motoru `func` fonksiyonunun bitmesini bekler, sonra planlayıcıyı kontrol eder eğer zaman geçmişse hiç beklemeden tekrar çalıştırır.
 
-And here is the picture for recursive `setTimeout`:
+Bu durumda ile karşılaşıldığında fonksiyon hiç beklemeden sürekli çalışır.
+
+Aşağıda ise kendini çağıran `setTimeout` gösterilmiştir:
 
 ![](settimeout-interval.png)
 
-**Recursive `setTimeout` guarantees the fixed delay (here 100ms).**
+**Kendini çağıran `setTimeout` arada geçen sürenin aynı olmasını garanti eder.(burada 100ms).**
 
-That's because a new call is planned at the end of the previous one.
+Bunun nedeni yeni çağrının önceki çağrının bitiminde hesaplanmasından dolayıdır.
 
-````smart header="Garbage collection"
-When a function is passed in `setInterval/setTimeout`, an internal reference is created to it and saved in the scheduler. It prevents the function from being garbage collected, even if there are no other references to it.
+````smart header="Garbage collection" ( Çöp Toplama)
+
+Bir fonksiyon `setInterval/setTimeout`'a gönderildiğinde içeride bir referansını oluşturup zamanlayıcıya kaydeder. Bundan dolayı bu fonksiyon Çöp toplama işlemine girmez. Dışarıda hiç bir referans olmasa bile bu fonksiyon yok olmaz.
 
 ```js
-// the function stays in memory until the scheduler calls it
+// zamanlayıcı çağırana kadar fonksiyon hafızada kalır.
 setTimeout(function() {...}, 100);
 ```
 
-For `setInterval` the function stays in memory until `cancelInterval` is called.
+`setInterval` metodu için fonksiyon `cancelInterval` çağırılmadığı sürece hafızada kalır.
 
-There's a side-effect. A function references the outer lexical environment, so, while it lives, outer variables live too. They may take much more memory than the function itself. So when we don't need the scheduled function any more, it's better to cancel it, even if it's very small.
+Bunun yan etkisi ise, dışarıdaki fonksiyondan veri almak isteyen bir fonksiyon sürekli çağırılır ve ayakta kalırsa dışarıdaki değişkenlerin de sürekliliği devam eder. Asıl bu fonksiyonun kendisinden bile fazla hafıza kaplayabilir. Öyleyse zamanlayıcı ile işiniz bittiğinde en iyisi iptal etmektir. Bu fonksiyonunuz küçük olsa bile yapılması gereken bir işlemdir.
 ````
 
 ## setTimeout(...,0)
 
-There's a special use case: `setTimeout(func, 0)`.
+`setTimeOut`'un farklı bir kullanım şekli daha bulunmakta: `setTimeout(func, 0)`
 
-This schedules the execution of `func` as soon as possible. But scheduler will invoke it only after the current code is complete.
+Bu `func`'ın mümkün olduğu anda zamanlanmasını sağlar. Fakat zamanlayıcı bunu sadece o anki kod işlemi bittiğinde gerçekleştirir.
 
-So the function is scheduled to run "right after" the current code. In other words, *asynchronously*.
+Bundan dolayı zamanlayıcı o anki işin "hemen arkasından" çalışmaya başlar. Diğer bir deyişle "asenkron".
 
-For instance, this outputs "Hello", then immediately "World":
+Örneğin aşağıdaki kod önce "Merhaba" ve hemen arkasından "Dünya" yazdırır.
 
 ```js run
-setTimeout(() => alert("World"), 0);
+setTimeout(() => alert("Dünya"), 0);
 
-alert("Hello");
+alert("Merhaba");
 ```
 
-The first line "puts the call into calendar after 0ms". But the scheduler will only "check the calendar" after the current code is complete, so `"Hello"` is first, and `"World"` -- after it.
+İlk satırda "çağrıyı 0ms sonra sıraya koy" demektir. Fakat zamanlayıcı bunu "önce sırayı kontrol et"'ten sonra bakar yani o anki kodu çalıştırdıktan sonra. Bundan dolayı `"Merhaba"` önce yazılır `"Dünya"` sonra.
 
-### Splitting CPU-hungry tasks
+### CPU-aç görevlerin parçalanması
 
-There's a trick to split CPU-hungry task using `setTimeout`.
+`setTimeout` ile CPU-aç görevlerin kullanılabilmesi şöyle bir yöntem kullanılabilir.
 
-For instance, syntax highlighting script (used to colorize code examples on this page) is quite CPU-heavy. To hightlight the code, it performs the analysis, creates many colored elements, adds them to the document -- for a big text that takes a lot. It may even cause the browser to "hang", that's unacceptable.
+Örneğin, yazıların renklerini değiştiren ( şu anki sayfa gibi ) bir uygulama tam olarak CPU-aç bir uygulamadır. Analiz eder, bir çok renkli eleman yaratır, bunları dökümana ekler dosya büyüdükçe bu da gittikçe daha fazla işlemci gerektirir. Hatta tarayıcının "hang " durumuna yani tepki vermemesine kadar gidebilir, bu da kabul edilemez.
 
-So we can split the long text to pieces. First 100 lines, then plan another 100 lines using `setTimeout(...,0)`, and so on.
+Bundan dolayı uzun metinleri ayırabiliriz. Önce 100 satır, sonra diğer bir 100 satır vs.
 
-For clarity, let's take a simpler example for consideration. We have a function to count from `1` to `1000000000`.
+Daha basit bir örnekten anlatmaya çalışırsak. Bir fonksiyonunuz olsun ve `1`'den `100000000000`'a kadar saysın
 
-If you run it, the CPU will hang. For server-side JS that's clearly noticeable, and if you are running it in-browser, then try to click other buttons on the page -- you'll see that whole JavaScript actually is paused, no other actions work until it finishes.
+Eğer kodu çalıştırırsanız işlemci tepki vermemeye başlar. Sunucu tabanlı JS kodlarında bu kolay bir şekilde fark edilebilir fakat eğer bu kodu tarayıcı üzerinde çalıştırıyorsanız diğer butonlara tıkladığınızda JavaScript'in durduğunu ve bunun bitene kadar da başka birşeyin çalışmadığını görürsünüz.
 
 ```js run
 let i = 0;
@@ -275,20 +278,20 @@ let start = Date.now();
 
 function count() {
 
-  // do a heavy job
+  // yoğun bir iş
   for(let j = 0; j < 1e9; j++) {
     i++;
   }
 
-  alert("Done in " + (Date.now() - start) + 'ms');
+  alert((Date.now() - start) + 'ms de tamamlandı');
 }
 
 count();
 ```
 
-The browser may even show "the script takes too long" warning (but hopefully won't, the number is not very big).
+Hatta taryıcı "bu kodun çalışması uzun zaman alıyor" uyarısı verebilir.
 
-Let's split the job using the nested `setTimeout`:
+Kodu `setTimeout` ile bölecek olursak:
 
 ```js run
 let i = 0;
@@ -297,15 +300,15 @@ let start = Date.now();
 
 function count() {
 
-  // do a piece of the heavy job (*)
+  // zorlu görevin bir bölümünü yap (*)
   do {
     i++;
   } while (i % 1e6 != 0);
 
   if (i == 1e9) {
-    alert("Done in " + (Date.now() - start) + 'ms');
+    alert((Date.now() - start) + 'ms de tamamlandı');
   } else {
-    setTimeout(count, 0); // schedule the new call (**)
+    setTimeout(count, 0); // yeni çağrıyı zamanla (**)
   }
 
 }
@@ -313,23 +316,23 @@ function count() {
 count();
 ```
 
-Now the browser UI is fully functional during the "counting" process.
+Şimdi tarayıcı ekranı "sayma işlemi" gerçekleşirken tamamen çalışır durumdadır.
 
-We do a part of the job `(*)`:
+İşin bir bölümü şu şekilde yapılır `(*)`
 
-1. First run: `i=1...1000000`.
-2. Second run: `i=1000001..2000000`.
-3. ...and so on, the `while` checks if `i` is evenly divided by `100000`.
+1. İlk çalışma: `i=1...1000000`.
+2. ikinci çalışma: `i=1000001..2000000`
+3. .. bu şekilde while `i` nin `100000`'e bölünüp bölünmediğine kadar.
 
-Then the next call is scheduled in `(*)` if we're not done yet.
+Eğer işlem hala bitmemişse `(**)` zamanlayıcısı tekrar çalışır.
 
-Pauses between `count` executions provide just enough "breath" for the JavaScript engine to do something else, to react on other user actions.
+Sayaç çalışırken duraklama yapılması JavaScript motoruna "nefes alması" ve başka iş yapabilmesi için zaman sağlar.
 
-The notable thing is that both variants: with and without splitting the job by `setInterval` -- are comparable in speed. There's no much difference in the overall counting time.
+Dikkat edilmesi gereken nokta: `setInterval` kullanılarak ve kullanılmadan yapılan iki testin çalışma süreleri çok farklı değildir.
 
-To make them closer let's make an improvement.
+Bu süreleri daha da yakınlaştırabilmek için neler yapılabilir bakalım.
 
-We'll move the scheduling in the beginning of the `count()`:
+Zamanlamayı `count()` fonksiyonunun başına alalım:
 
 ```js run
 let i = 0;
@@ -338,9 +341,9 @@ let start = Date.now();
 
 function count() {
 
-  // move the scheduling at the beginning
+  // zamanlama başa taşındı
   if (i < 1e9 - 1e6) {
-    setTimeout(count, 0); // schedule the new call
+    setTimeout(count, 0); // yeni çağrıyı zamanla
   }
 
   do {
@@ -348,7 +351,7 @@ function count() {
   } while (i % 1e6 != 0);
 
   if (i == 1e9) {
-    alert("Done in " + (Date.now() - start) + 'ms');
+    alert((Date.now() - start) + 'ms de tamamlandı');
   }
 
 }
@@ -356,44 +359,47 @@ function count() {
 count();
 ```
 
-Now when we start to `count()` and know that we'll need to `count()` more -- we schedule that immediately, before doing the job.
+Şimdi ise `count()` ile başlıyoruz ve `count` fonksiyonunun birden fazla çağırılacağınız biliyoruz.
 
-If you run it, easy to notice that it takes significantly less time.
+Çalıştırırsanız belirgin biçimde daha kısa süreceğini göreceksiniz.
 
-````smart header="Minimal delay of nested timers in-browser"
-In the browser, there's a limitation of how often nested timers can run. The [HTML5 standard](https://www.w3.org/TR/html5/webappapis.html#timers) says: "after five nested timers..., the interval is forced to be at least four milliseconds.".
+````smart header="Browserdaki iç içe zamanlayıcıların arasında bulunan minimum gecikmeler"
 
-Let's demonstrate what it means by the example below. The `setTimeout` call in it re-schedules itself after `0ms`. Each call remembers the real time from the previous one in the `times` array. What the real delays look like? Let's see:
+Tarayıcıda, iç içe zamanlayıcıların kullanımına ait bir limit bulunmaktadır. [HTML5 standard](https://www.w3.org/TR/html5/webappapis.html#timers) dediğine göre: "5 iç içe zamanlayıcıdan sonra, döngü en az 4 ms durmak zorundadır."
+
+Bunu aşağıdaki bulunan örnekte gösterelim. `setTimeout` çağrısı kendisini `0ms` sonra tekrarn çağırıyor. Her bir çağrı bir öncekinin zamanını `times` dizisinden hatırlıyor. Gecikme nasıl olacak bakalım:
+
 
 ```js run
 let start = Date.now();
 let times = [];
 
 setTimeout(function run() {
-  times.push(Date.now() - start); // remember delay from the previous call
+  times.push(Date.now() - start); // bir önceki çağrıdaki gecikmeyi hatırla.
 
-  if (start + 100 < Date.now()) alert(times); // show the delays after 100ms
-  else setTimeout(run, 0); // else re-schedule
+  if (start + 100 < Date.now()) alert(times); // gecikme 100ms den büyükse göster
+  else setTimeout(run, 0); // değilse tekrar zamanla
 }, 0);
 
-// an example of the output:
+// Çıktının örneği:
 // 1,1,1,1,9,15,20,24,30,35,40,45,50,55,59,64,70,75,80,85,90,95,100
 ```
 
-First timers run immediately (just as written in the spec), and then the delay comes into play and we see `9, 15, 20, 24...`.
+İlk zamanlayıcılar anında çalışacaktır ( dökümantasyonda yazdığı gibi ) bundan dosnra gecikmeler oyuna dahil olur. `9, 15, 20, 24...`
 
-That limitation comes from ancient times and many scripts rely on it, so it exists for historical reasons.
+Bu limitasyonların nedeni de yine eski zamanlara dayanmaktadır. Çoğu kod bu prensibe göre çalıştığından dolayı bu kurallar devam etmektedir.
 
-For server-side JavaScript, that limitation does not exist, and there exist other ways to schedule an immediate asynchronous job, like [process.nextTick](https://nodejs.org/api/process.html) and [setImmediate](https://nodejs.org/api/timers.html) for Node.JS. So the notion is browser-specific only.
+Sunucu tabanlı JavaScript için ise bu kısıtlama geçerli değildir. Ayrıca anlık olarak asenkronron işlerin zamanlaması amacıyla başka yollar da bulunmaktadır. Örneğin [process.nextTick](https://nodejs.org/api/process.html) ve [setImmediate](https://nodejs.org/api/timers.html) gibi. Yani buradaki kısıtlamanın tarayıcı bazlı olduğu sonucunu çıkarabilirsiniz.
 ````
 
-### Allowing the browser to render
+### Tarayıcının işlemesine izin vermek.
 
-Another benefit for in-browser scripts is that they can show a progress bar or something to the user. That's because the browser usually does all "repainting" after the script is complete.
+Tarayıcı taraflı kodların diğer bir yararı ise kullanıcıya progresss bar(ilerleme çubuğu) tarzında görselleri sunabilmesidir. Tarayıcı genelde "tekrar boyama" kod tekrarlandıktan sonra ( repainting) işlemi yaptığından.
 
-So if we do a single huge function then even if it changes something, the changes are not reflected in the document till it finishes.
 
-Here's the demo:
+Bundan dolayı diyelim ki çok büyük işler yapan bir fonksiyon olsa bile, dökümanda bulunan değişiklik bu işlem tamamlandıktan sonra gerçekleşir.
+
+ÖrneğiN:
 ```html run
 <div id="progress"></div>
 
@@ -403,8 +409,8 @@ Here's the demo:
   function count() {
     for(let j = 0; j < 1e6; j++) {
       i++;
-      // put the current i into the <div>
-      // (we'll talk more about innerHTML in the specific chapter, should be obvious here)
+      // anlık i değerini dive yazdır. <div>
+      // ( innerHTML ile ilgili daha sonraki bölümlerde konuşulacaktır.)
       progress.innerHTML = i;
     }
   }
@@ -413,9 +419,9 @@ Here's the demo:
 </script>
 ```
 
-If you run it, the changes to `i` will show up after the whole count finishes.
+Bunu çalıştıdığınızda `i`'nin değişikliği tüm sayma işlemi bittikten sonra görünür hale gelir.
 
-And if we use `setTimeout` to split it into pieces then changes are applied in-between the runs, so this looks better:
+eğer bunu `setTimeout` ile parçalara bölecek olursak bu defa daha güzel bir şekilde görünecektir.
 
 ```html run
 <div id="progress"></div>
@@ -425,7 +431,7 @@ And if we use `setTimeout` to split it into pieces then changes are applied in-b
 
   function count() {
 
-    // do a piece of the heavy job (*)
+    // yoğun işin bir bölümü (*)
     do {
       i++;
       progress.innerHTML = i;
@@ -441,24 +447,25 @@ And if we use `setTimeout` to split it into pieces then changes are applied in-b
 </script>
 ```
 
-Now the `<div>` shows increasing values of `i`.
+Artık `<div>` `i` nin yükselen değerini gösterecektir.
 
-## Summary
+## Özet
 
-- Methods `setInterval(func, delay, ...args)` and `setTimeout(func, delay, ...args)` allow to run the `func` regularly/once after `delay` milliseconds.
-- To cancel the execution, we should call `clearInterval/clearTimeout` with the value returned by `setInterval/setTimeout`.
-- Nested `setTimeout` calls is a more flexible alternative to `setInterval`. Also they can guarantee the minimal time *between* the executions.
-- Zero-timeout scheduling `setTimeout(...,0)` is used to schedule the call "as soon as possible, but after the current code is complete".
+- `setInterval(func, delay, ...args)` ve `setTimeout(func, delay, ...args)` metodları `func`'ın düzenli olarak `delay` ms aralıklar ile çalışmasını sağlar.
+- Çalışmayı durdurmak için `clearInterval/clearTimout` fonksiyonları `setInterval/setTimeout` metodundan dönen değerler ile çağırılmalıdır.
+- İç içe `setTimeout` çağrısı kullanmak `setInterval`'e göre daha esnektir. Ayrıca bu şekilde *aralarda* en kısa süre beklemesini sağlar.
+- 0 gecikmeli zamanlayıcı ise `setTimeout(...,0)` zamanlayıcıyı olabildiğince çabuk fakat o anki koddan sonra çağırılacak şekilde zamanlar.
 
-Some use cases of `setTimeout(...,0)`:
-- To split CPU-hungry tasks into pieces, so that the script doesn't "hang"
-- To let the browser do something else while the process is going on (paint the progress bar).
 
-Please note that all scheduling methods do not *guarantee* the exact delay. We should not rely on that in the scheduled code.
+`setTimeout(...,0)`'ın bazı kullanım durumları:
+- CPU-aç görevleri parçalara ayırmak için, böylece kod sürekli tepki verebilir.
+- Böylece görev devam ederken tarayıcının başka işlere ( ilerleme çubuğu ) zaman ayırır.
 
-For example, the in-browser timer may slow down for a lot of reasons:
-- The CPU is overloaded.
-- The browser tab is in the background mode.
-- The laptop is on battery.
+Tüm zamanlama metodları tam olarak gecikmeyi *garantilemez*. Zamanlayıcıda bu varsayımın üzerine birşey inşa etmeyin.
 
-All that may decrease the minimal timer resolution (the minimal delay) to 300ms or even 1000ms depending on the browser and settings.
+Örneğin, tarayıcı zamanı birçok nedenden ötürü yavaşlayabilir:
+- İşlemcinin yükü artarsa.
+- Tarayıcının tab'ı arka plana alındıysa.
+- Laptop batarya ile çalışıyorsa.
+
+Bunların hepsi tarayıcı zamanına etki eder. Aralardaki gecikme 300ms ile 1000ms arasında değişebilir. Tabi tarayıcı ve özellikleri de bu konuda etkin rol oynar.

@@ -1,17 +1,17 @@
 let menu = {
-  width: 200,
-  height: 300,
-  title: "My menu"
+  en: 200,
+  boy: 300,
+  baslik: "Menü"
 };
 
 
-function multiplyNumeric(obj) {
-  
-  /* your code */
+function ikiIleCarp(obj) {
+
+  /* kodunuzu buraya yazınız */
 
 }
 
-multiplyNumeric(menu);
+ikiIleCarp(menu);
 
-alert( "menu width=" + menu.width + " height=" + menu.height + " title=" + menu.title );
+alert("Menü eni=" + menu.en + " boyu=" + menu.boy + " başlık=" + menu.baslik);
 

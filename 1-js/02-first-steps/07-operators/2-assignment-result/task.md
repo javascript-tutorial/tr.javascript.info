@@ -1,10 +1,10 @@
-importance: 3
+Önem: 3
 
 ---
 
-# Assignment result
+# Atama sonuçları
 
-What are the values of `a` and `x` after the code below?
+Aşağıdaki işlemler sonrasında `a` ve `x` değerleri nedir ?
 
 ```js
 let a = 2;

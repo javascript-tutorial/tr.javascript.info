@@ -1,14 +1,13 @@
-importance: 5
-
+Önem: 5
 ---
 
-# Show a weekday
+# Haftanın günleri
 
-Write a function `getWeekDay(date)` to show the weekday in short format: 'MO', 'TU', 'WE', 'TH', 'FR', 'SA', 'SU'.
+`haftaninGunleriniAl(tarih)` adında bir fonksiyon yazın ve bu fonksiyon günlerin kısa formatlarını dönsün : 'PT', 'SA', 'ÇA', 'PR', 'CM', 'CT', 'PZ' gibi.
 
-For instance:
+Örneğin:
 
 ```js no-beautify
-let date = new Date(2012, 0, 3);  // 3 Jan 2012
-alert( getWeekDay(date) );        // should output "TU"
+let tarih = new Date(2012, 0, 3);  // 3 Jan 2012
+alert( haftaninGunleriniAl(date) );        //  "SA" dönmesi gerekiyor.
 ```

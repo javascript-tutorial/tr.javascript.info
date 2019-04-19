@@ -1,11 +1,11 @@
-We need to "map" all values from the interval 0..1 into values from `min` to `max`.
+Normalde  0..1 arasında olan değerleri `min` ve `max` arasına "haritalamamız` gerekmektedir.
 
-That can be done in two stages:
+Çözüm iki bölümden oluşur:
 
-1. If we multiply a random number from 0..1 by `max-min`, then it the interval of possible values increases `0..1` to `0..max-min`.
-2. Now if we add `min`, the possible interval becomes from `min` to `max`.
+1. Eğer 0..1 arasında seçilen rasgele sayı `max-min` ile çarpılırsa, değer `0..1` arasından `0..max-min` arasına kadar büyütülür.
+2. Eğer `min` eklenirse, bu aralık `min` den `max` a kadar olur.
 
-The function:
+Fonksiyon:
 
 ```js run
 function random(min, max) {

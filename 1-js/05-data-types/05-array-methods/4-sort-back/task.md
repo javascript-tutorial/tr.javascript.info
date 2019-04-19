@@ -1,13 +1,13 @@
-importance: 4
+Önem: 4
 
 ---
 
-# Sort in the reverse order
+# Diziyi tersine sıralayan fonksiyonu yazınız.
 
 ```js
 let arr = [5, 2, 1, -10, 8];
 
-// ... your code to sort it in the reverse order
+// ... kodunuz bu diziyi tersten sıralamalıdır.
 
 alert( arr ); // 8, 5, 2, 1, -10
 ```

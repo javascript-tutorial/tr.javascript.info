@@ -1,33 +1,32 @@
-**Answer: an error.**
+**Cevap: Hata.**
 
-Try it:
+Deneyin:
 ```js run
-function makeUser() {
+function kullaniciOlustur() {
   return {
-    name: "John",
+    isim: "İhsan",
     ref: this
   };
 };
 
-let user = makeUser();
+let kullanici = kullaniciOlustur();
 
-alert( user.ref.name ); // Error: Cannot read property 'name' of undefined
+alert( kullanici.ref.isim ); // Error: Cannot read property 'name' of undefined
 ```
+Çünkü `this`'i tanımlayan kurallar obje tanımına bakmaz.
 
-That's because rules that set `this` do not look at object literals. 
+Kodda `kullaniciOlustur()` içindeki `this` `undefined`'dır. Çünkü bu fonksiyon olarak çağırıldı metod olarak değil!.
 
-Here the value of `this` inside `makeUser()` is `undefined`, because it is called as a function, not as a method.
+Ve objet tanımının `this`'e doğrudan bir etkisi yoktur. `this` tüm fonksiyonu kapsar, kod bloğu veya obje tanımı bunu etkilemez.
 
-And the object literal itself has no effect on `this`. The value of `this` is one for the whole function, code blocks and object literals do not affect it.
+Öyleyse, `ref: this` aslında fonksiyonun `thsi` değerini alır.
 
-So `ref: this` actually takes current `this` of the function.
-
-Here's the opposite case:
+Şimdi tersi bir duruma bakalım:
 
 ```js run
-function makeUser() {
+function kullaniciOlustur() {
   return {
-    name: "John",
+    isim: "İhsan",
 *!*
     ref() {
       return this;
@@ -36,11 +35,9 @@ function makeUser() {
   };
 };
 
-let user = makeUser();
+let kullanici = kullaniciOlustur();
 
-alert( user.ref().name ); // John
+alert( kullanici.ref().isim ); // İhsan
 ```
-
-Now it works, because `user.ref()` is a method. And the value of `this` is set to the object before dot `.`.
-
+Şimdi çalışıyor çünkü `kullanici.ref()` metod oldu. `this`'in değeri de `.` dan öncesi olarak tanımlandı.
 

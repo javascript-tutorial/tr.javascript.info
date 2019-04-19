@@ -1,7 +1,7 @@
 
-The first call has `this == rabbit`, the other ones have `this` equal to `Rabbit.prototype`, because it's actually the object before the dot.
+İlk çağrı `this == rabbit`'e sonrakiler ise `this` eşittir `Rabbit.prototype'a olacak çekilde tanımlanmıştır. Daha önce de bahsettiğimiz gibi asıl obje `nokta`'dan önceki bölümdür.
 
-So only the first call shows `Rabbit`, other ones show `undefined`:
+Bundan dolayı sadece ilk çağrı `Rabbit`'i gösterir. Diğerleri ise `undefined`'dır.
 
 ```js run
 function Rabbit(name) {

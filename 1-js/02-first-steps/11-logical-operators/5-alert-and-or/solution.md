@@ -1,16 +1,15 @@
-The answer: `3`.
+Cevap: `3`.
 
 ```js run
 alert( null || 2 && 3 || 4 );
 ```
 
-The precedence of AND `&&` is higher than `||`, so it executes first.
+`&&`'in önceliği `||` den daha yüksek olduğundan dolayı önce VE çalışır.
 
-The result of `2 && 3 = 3`, so the expression becomes:
+`2 && 3` 3 dönderir. Sonrasında ifade şu şekilde dönüşür:
 
 ```
 null || 3 || 4
 ```
 
-Now the result if the first truthy value: `3`.
-
+İlk doğru değer `3` olduğundan dolayı 3 döner ve uyarı şeklinde ekranda gösterilir.

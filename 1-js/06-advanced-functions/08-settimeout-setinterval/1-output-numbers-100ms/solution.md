@@ -1,5 +1,5 @@
 
-Using `setInterval`:
+`setInterval`:
 
 ```js run
 function printNumbers(from, to) {
@@ -18,7 +18,7 @@ function printNumbers(from, to) {
 printNumbers(5, 10);
 ```
 
-Using recursive `setTimeout`:
+`setTimeout` kullanilarak:
 
 
 ```js run
@@ -34,9 +34,8 @@ function printNumbers(from, to) {
   }, 1000);
 }
 
-// usage:
+// kullanimi:
 printNumbers(5, 10);
 ```
 
-Note that in both solutions, there is an initial delay before the first output. Sometimes we need to add a line to make the first output immediately, that's easy to do.
-
+İki çözümde de ilk çıktı için bir gecikme söz konusudur. Bazen bir satır ekleyerek ilk çıktının hemen verilmesini sağlayabilirsiniz.

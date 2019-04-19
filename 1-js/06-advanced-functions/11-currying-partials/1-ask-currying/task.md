@@ -1,14 +1,14 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Partial application for login
+# Giriş işlemi için kısmi uygulama.
 
-The task is a little more complex variant of <info:task/question-use-bind>. 
+Bir önceki <info:task/question-use-bind>'dan biraz daha karmaşık bir göreviniz var.
 
-The `user` object was modified. Now instead of two functions `loginOk/loginFail`, it has a single function `user.login(true/false)`.
+`user` objesi değiştirildi. Şimdi `loginOk/loginFail` fonksiyonlarının yerine tek bir fonksiyon `user.login(true/false)` var.
 
-What to pass `askPassword` in the code below, so that it calls `user.login(true)` as `ok` and `user.login(fail)` as `fail`?
+Aşağıdaki `askPassword`'a ne iletilirse bu `user.login(true)`'u `ok` veya `user.login(fail)`'i `fail` olarak çağırır?
 
 ```js
 function askPassword(ok, fail) {
@@ -29,6 +29,4 @@ let user = {
 askPassword(?, ?); // ?
 */!*
 ```
-
-Your changes should only modify the highlighted fragment.
-
+Sadece işaretlenmiş bölümde gerçekleştiriniz.

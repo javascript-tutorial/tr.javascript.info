@@ -1,194 +1,192 @@
+# Objelerin ilkel çevirileri
 
-# Object to primitive conversion
+Objeler `obj1 + obj2` gibi toplanırsa, `obj1 - obj2` gibi çıkarılırsa veya `alert(obj)` gibi yazdırılırsa ne olur?
 
-What happens when objects are added `obj1 + obj2`, subtracted `obj1 - obj2` or printed using `alert(obj)`?
+Objeler içerisinde bu çevirimi yapan özel metodlar bulunmaktadır.
 
-There are special methods in objects that do the conversion.
-
-In the chapter <info:type-conversions> we've seen the rules for numeric, string and boolean conversions of primitives. But we left a gap for objects. Now, as we know about methods and symbols it becomes possible to close it.
+<info:type-conversions> bölümünde sayısal, karakter ve boolean çevrimleri gösterildi. Fakat objeler için daha sonra değilineceği söylendi. Şimdi objeler ve semboller hakkında bilginiz olduğuna göre bunu anlaması daha da kolay olacaktır.
 
 [cut]
+Objeler için boolean çevirimi bulunmamaktadır çünkü tüm objeler boolean dahilinde `true`'dur. Bundan dolayı sadece sayısal ve karakter çevrimleri mevcuttur.
 
-For objects, there's no to-boolean conversion, because all objects are `true` in a boolean context. So there are only string and numeric conversions.
+Sayısal çevirim obje çıkarıldığında veya metematiksel fonksiyonlar uygulandığında meydana gelir. Örneğin `Date` objesi (<info:date> bölümünde anlatılacak) çıkarılabilir ve `date1-date2` bu iki tarih arasındaki zaman farkını verir.
 
-The numeric conversion happens when we subtract objects or apply mathematical functions. For instance, `Date` objects (to be covered in the chapter <info:date>) can be subtracted, and the result of `date1 - date2` is the time difference between two dates.
+Karakter dizisi çevirimi için -- genelde `alert(ob)` çağırıldığında meydana gelir.
 
-As for the string conversion -- it usually happens when we output an object like `alert(obj)` and in similar contexts.
 
 ## ToPrimitive
 
-When an object is used in the context where a primitive is required, for instance, in an `alert` or mathematical operations, it's converted to a primitive value using the `ToPrimitive` algorithm ([specification](https://tc39.github.io/ecma262/#sec-toprimitive)).
+Objenin ilkel bir tip olarak gerekli olduğu durumlarda, örneğin `alert` veya matematiksel uygulamalarda, `ToPrimitive` algoritması kullanılarak bu işlem yapılır. ([Özellikleri](https://tc39.github.io/ecma262/#sec-toprimitive))
 
-That algorithm allows us to customize the conversion using a special object method.
+Bu algoritma özel bir obje metodu ile ilkel tipe çevrimi düzenlememizi sağlar.
 
-Depending on the context, the conversion has a so-called "hint".
+Duruma bağlı olarak, bu çevirime "ipucu(hint)" da denir.
 
-There are three variants:
+Üç çeşidi vardır:
 
-`"string"`
-: When an operation expects a string, for object-to-string conversions, like `alert`:
+`"karakter dizisi"` - `string`
+: Uygulama karakter dizisi bekliyorsa, objeden karakter dizisine çeviri yapmak gerekmektedir. Örneğin `alert`:
 
     ```js
-    // output
+    // çıktı
     alert(obj);
 
-    // using object as a property key
-    anotherObj[obj] = 123;
+    // veya obje özellik anahtarı olarak kullanıldığında.
+    digerObj[obj] = 123;
     ```
 
-`"number"`
-: When an operation expects a number, for object-to-number conversions, like maths:
+`"sayı"` - `number`
+: Eğer bir uygulama sayı bekliyorsa, objeden sayıya çevrilmelidir. Genelde aşağıdaki gibi matematiksel işlemlerde kullanılır:
 
     ```js
-    // explicit conversion
+    // doğrudan çeviri
     let num = Number(obj);
 
-    // maths (except binary plus)
-    let n = +obj; // unary plus
-    let delta = date1 - date2;
+    // matekatiksel işlemler için 
+    let n = +obj; 
+    let delta = tarih1 - tarih2;
 
-    // less/greater comparison
-    let greater = user1 > user2;
+    // karşılaştırmalarda
+    let greater = kullanici1 > kullanici2;
     ```
 
-`"default"`
-: Occurs in rare cases when the operator is "not sure" what type to expect.
+`"varsayılan"` - `default`
+: Çok nadir olmakla birlikte operatör ne beklediği konusunda "emin olmayabilir"
 
-    For instance, binary plus `+` can work both with strings (concatenates them) and numbers (adds them), so both strings and numbers would do. Or when an object is compared using `==` with a string, number or a symbol.
+    Örneğin, binary `+` karakter dizisi için birleştirme işlemi yaparken sayı için toplama işlemi yapar, bunden dolayı hem karakter hem sayı olabilir. Veya objeyi karakter, sayı veya sembol ile `==` şeklinde karşılaştırırken 
 
     ```js
-    // binary plus
-    let total = car1 + car2;
+    // binary toplama
+    let toplam = araba1 + araba2;
 
-    // obj == string/number/symbol
-    if (user == 1) { ... };
+    // obj == karakter/sayı/sembol
+    if (kullanici == 1) { ... };
     ```
 
-    The greater/less operator `<>` can work with both strings and numbers too. Still, it uses "number" hint, not "default". That's for historical reasons.
+    Büyüktür/küçüktür operatörü `<>` karakter ve sayı ile çalışabilir. Fakat yine de `default` değil de `sayı` ipucunu kullanır. Bu tarihsel nedenlerden ötürü böyledir.
+    
+    Pratikte tüm objeler ( `Date` objesi hariç ) `"default" çevrimini `"number"` çevrimi ile aynı şekilde yaparlar.
+    
+Sadece üç çeşit ipucu(hint) bulunmaktadır. `boolean` bulunmamaktadır, çünkü her obje zaten boolean `true` döndürür. `"default"` ve `"number"` için de aynı olduklarını varsayarsanız, sadece iki çevrim bulunmaktadır.
 
-    In practice, all built-in objects except for one case (`Date` object, we'll learn it later) implement `"default"` conversion the same way as `"number"`. And probably we should do the same.
 
-Please note -- there are only three hints. It's that simple. There is no "boolean" hint (all objects are `true` in boolean context) or anything else. And if we treat `"default"` and `"number"` the same, like most built-ins do, then there are only two conversions.
+**Çevrimi yapabilmek için JavaScript üç obje metodu bulup çağırmaya çalışır"**
 
-**To do the conversion, JavaScript tries to find and call three object methods:**
-
-1. Call `obj[Symbol.toPrimitive](hint)` if the method exists,
-2. Otherwise if hint is `"string"`
-    - try `obj.toString()` and `obj.valueOf()`, whatever exists.
-3. Otherwise if hint is `"number"` or `"default"`
-    - try `obj.valueOf()` and `obj.toString()`, whatever exists.
+1. Eğer  `obj[Symbol.toPrimitive](hint)` metodu varsa çağır,
+2. Eğer yoksa ve ipucu(hint) karakter ise
+    - `obj.toString()` ve `obj.valueOf()` metodlardan hangisi varsa çalıştır.
+3. Eğer ipucu(hint)  `"number"` veya `"default"` ise 
+    -  `obj.valueOf()` ve `obj.toString()` metodlarından hangisi varsa çalıştır.
 
 ## Symbol.toPrimitive
 
-Let's start from the first method. There's a built-in symbol named `Symbol.toPrimitive` that should be used to name the conversion method, like this:
+`Symbol.toPrimitive` adında bir metod var ve bu metod çeviri metodunu adlandırmak için kullanılır. Örneğin:
 
 ```js
 obj[Symbol.toPrimitive] = function(hint) {
-  // return a primitive value
-  // hint = one of "string", "number", "default"
+  // ilkel bir tip döndür.
+  // ipucu(hint) = "string", "number" veya "default"
 }
 ```
-
-For instance, here `user` object implements it:
+Örneğin `kullanici` objesi için bunu uygulayacak olursak:
 
 ```js run
-let user = {
-  name: "John",
-  money: 1000,
+let kullanici = {
+  isim: "İhsan",
+  para: 1000,
 
   [Symbol.toPrimitive](hint) {
-    alert(`hint: ${hint}`);
-    return hint == "string" ? `{name: "${this.name}"}` : this.money;
+    alert(`ipucu: ${hint}`);
+    return hint == "string" ? `{isim: "${this.isim}"}` : this.para;
   }
 };
 
-// conversions demo:
-alert(user); // hint: string -> {name: "John"}
-alert(+user); // hint: number -> 1000
-alert(user + 500); // hint: default -> 1500
+// demo
+alert(kullanici); // ipucu: string -> {isim: "İhsan"}
+alert(+kullanici); // ipucu: number -> 1000
+alert(kullanici + 500); // ipucu: default -> 1500
 ```
-
-As we can see from the code, `user` becomes a self-descriptive string or a money amount depending on the conversion. The single method `user[Symbol.toPrimitive]` handles all conversion cases.
-
+Koddan da gördüğünüz üzere `kullanici` çeviriye göre karakter veya para olabiliyor. Tek bir metod `kullanici[Symbol.toPrimitive]` tüm çeviri durumlarını karşılıyor.
 
 ## toString/valueOf
 
-Methods `toString` and `valueOf` come from ancient times. They are not symbols (symbols did not exist that long ago), but rather "regular" string-named methods. They provide an alternative "old-style" way to implement the conversion.
+`toString` ve `valueOf` gibi metodlar ilk JavaScript çıktığı zamandan kalma metodlardır. Sembol değillerdir( O zamanlar sembol yoktu), yani normal metodlardır. Eski tip çevirim düzenlemesi yapabilmenize olanak verir.
 
-If there's no `Symbol.toPrimitive` then JavaScript tries to find them and try in the order:
+Eğer `Symbol.toPrimitive` yoksa JavaScript aşağıdaki metodları bulmaya çalışır:
 
-- `toString -> valueOf` for "string" hint.
-- `valueOf -> toString` otherwise.
+- `toString -> valueOf` "string" ipuçları için.
+- `valueOf -> toString` diğer hallerde.
 
-For instance, here `user` does the same as above using a combination of `toString` and `valueOf`:
+Örneğin, `kullanici` objesinin içinde `toString` ve `valueOf` nasıl yazılacağı aşağıda gösterilmiştir:
 
 ```js run
-let user = {
-  name: "John",
-  money: 1000,
+let kullanici = {
+  isim: "İhsan",
+  para: 1000,
 
-  // for hint="string"
+  // hint="string" için
   toString() {
-    return `{name: "${this.name}"}`;
+    return `{isim: "${this.isim}"}`;
   },
 
-  // for hint="number" or "default"
+  // hint="number" veya "default" için
   valueOf() {
-    return this.money;
+    return this.para;
   }
 
 };
 
-alert(user); // toString -> {name: "John"}
-alert(+user); // valueOf -> 1000
-alert(user + 500); // valueOf -> 1500
+alert(kullanici); // toString -> {isim: "İhsan"}
+alert(+kullanici); // valueOf -> 1000
+alert(kullanici + 500); // valueOf -> 1500
 ```
 
-Often we want a single "catch-all" place to handle all primitive conversions. In this case we can implement `toString` only, like this:
+Genelde tek bir "hepsini yakala" metodu ile tüm çeviriler yapılmak istenir. Bu durumda `toString` metodu kullanılabilir:
+
 
 ```js run
-let user = {
-  name: "John",
+let kullanici = {
+  isim: "İhsan",
 
   toString() {
-    return this.name;
+    return this.isim;
   }
 };
 
-alert(user); // toString -> John
-alert(user + 500); // toString -> John500
+alert(kullanici); // toString -> İhsan
+alert(kullanici + 500); // toString -> İhsan500
 ```
 
-In the absence of `Symbol.toPrimitive` and `valueOf`, `toString` will handle all primitive conversions.
+Eğer `Symbol.toPrimitive` ve `valueOf` yoksa `toString` metodu objeleri ilkel tiplere çevirmeye çalışır.
 
 
-## ToPrimitive and ToString/ToNumber
+## ToPrimitive ve ToString/ToNumber
+İlkel tip çevrilerinde bilinmesi gereken en önemli olay bu metodların illa da ipucunda alınan tiplere dönüştürmesine gerek yoktur.
 
-The important thing to know about all primitive-conversion methods is that they do not necessarily return the "hinted" primitive.
+`toString()` illa karakter döndürecek diye veya `Symbol.toPrimitive` içerisinde eğer ipucu sayı ise sayı döndürecek diye bir kural yoktur.
 
-There is no control whether `toString()` returns exactly a string, or whether `Symbol.toPrimitive` method returns a number for a hint "number".
+**Tek zorunlu nokta bu metodların ilkel tip döndürmesidir**
 
-**The only mandatory thing: these methods must return a primitive.**
+Bu ilkel değeri alan operatör işine devam eder ve eğer gerekliyse başka çeviriler de yapabilir.
 
-An operation that initiated the conversion gets that primitive, and then continues to work with it, applying further conversions if necessary.
+Örneğin:
 
-For instance:
-
-- Mathematical operations (except binary plus) perform `ToNumber` conversion:
+- Matematiksel operatörler( binary toplama dışında) `ToNumber` çevrimini kullanır:
 
     ```js run
     let obj = {
-      toString() { // toString handles all conversions in the absence of other methods
+      toString() { // diğer metodlar yoksa karakter çevirimini bu metod yapar.
         return "2";
       }
     };
 
-    alert(obj * 2); // 4, ToPrimitive gives "2", then it becomes 2
+    alert(obj * 2); // 4, ToPrimitive  "2" verir, sonra bu 2 olur.
     ```
 
-- Binary plus checks the primitive -- if it's a string, then it does concatenation, otherwise it performs `ToNumber` and works with numbers.
+- Binary toplama ilkel tipi kontrol eder -- eğer karakter dizisi ise birleştirir diğer türlü sayılar için `ToNumber` çalışır.
 
-    String example:
+
+    Karakter dizisi örneği:
     ```js run
     let obj = {
       toString() {
@@ -196,10 +194,10 @@ For instance:
       }
     };
 
-    alert(obj + 2); // 22 (ToPrimitive returned string => concatenation)
+    alert(obj + 2); // 22 (ToPrimitive karakter dizisi dönderdi => birleştirme)
     ```
 
-    Number example:
+    Sayı örneği:
     ```js run
     let obj = {
       toString() {
@@ -207,32 +205,32 @@ For instance:
       }
     };
 
-    alert(obj + 2); // 3 (ToPrimitive returned boolean, not string => ToNumber)
+    alert(obj + 2); // 3 (ToPrimitive boolean dönderdi, string değil => ToNumber)
     ```
 
-```smart header="Historical notes"
-For historical reasons, methods `toString` or `valueOf` *should* return a primitive: if any of them returns an object, then there's no error, but that object is ignored (like if the method didn't exist).
+```smart header="Tarihi Nedenlar"
+`toString` veya `valueOf` ilkel tip döndürmelidir. Eğer obje dönderiyorsa bir hata vardır. Fakat bu obje sadece pas geçilir aynı metodu olmadığında sadece pas geçildiği gibi.
 
-In contrast, `Symbol.toPrimitive` *must* return a primitive, otherwise, there will be an error.
+Buna karşın `Symbol.toPrimitive`  ilkel dip döndürmek *zorundadır*, diğer türlü hata meydana gelir.
 ```
 
-## Summary
+## Özet
 
-The object-to-primitive conversion is called automatically by many built-in functions and operators that expect a primitive as a value.
+Obje-ilkel tip çevrimi, ilkel tip bekleyen çoğu fonksiyon ve operatör tarafından otomatik olarak yapılmaktadır.
 
-There are 3 types (hints) of it:
-- `"string"` (for `alert` and other string conversions)
-- `"number"` (for maths)
-- `"default"` (few operators)
+3 çeşit ipucu(hint) bulunmaktadır:
+- `"string"` ( `alert` ve diğer karakter çevrimleri için)
+- `"number"` (matematiksel)
+- `"default"` (sadece birkaç operatör)
 
-The specification describes explicitly which operator uses which hint. There are very few operators that "don't know what to expect" and use the `"default"` hint. Usually for built-in objects `"default"` hint is handled the same way as `"number"`, so in practice the last two are often merged together.
+Hangi operatörün hangi ipucunu kullanacağı doğrudan bildirilmiştir. Fakat bir kaç operatör vardır ki "ne beklemesi gerektiğini bilemez" bunlar `"default"` ipucunu kullanmaktadır. Genelde objeler `"default"` ve `"number"` ipu.larını aynı şekilde uygularlar böylece pratikte ikisi aynı şekilde işler.
 
-The conversion algorithm is:
+Çevirme algoritması:
 
-1. Call `obj[Symbol.toPrimitive](hint)` if the method exists,
-2. Otherwise if hint is `"string"`
-    - try `obj.toString()` and `obj.valueOf()`, whatever exists.
-3. Otherwise if hint is `"number"` or `"default"`
-    - try `obj.valueOf()` and `obj.toString()`, whatever exists.
+1. Eğer  `obj[Symbol.toPrimitive](hint)` metodu varsa çağır,
+2. Eğer yoksa ve ipucu(hint) karakter ise
+    - `obj.toString()` ve `obj.valueOf()` metodlardan hangisi varsa çalıştır.
+3. Eğer ipucu(hint)  `"number"` veya `"default"` ise 
+    -  `obj.valueOf()` ve `obj.toString()` metodlarından hangisi varsa çalıştır.
 
-In practice, it's often enough to implement only `obj.toString()` as a "catch-all" method for all conversions that return a "human-readable" representation of an object, for logging or debugging purposes.  
+Genelde tek bir "hepsini yakala" metodu ile tüm çeviriler yapılmak istenir. Böylece insan tarafından okunabilir gösterimi çıkarılabilir. Bu loglama için oldukça yararlıdır.

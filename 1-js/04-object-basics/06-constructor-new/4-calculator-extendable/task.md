@@ -1,36 +1,37 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Create an extendable calculator
+# Genişletilebilir özellikli hesap makinesi programını yazınız.
 
-Create a constructor function `Calculator` that creates "extendable" calculator objects.
+Yapıcı `HesapMakinesi` ile "genişletilebilir" hesap makinesi objesi yaratınız.
 
-The task consists of two parts.
+Bu görev iki bölümden oluşmaktadır.
 
-1. First, implement the method `calculate(str)` that takes a string like `"1 + 2"` in the format "NUMBER operator NUMBER" (space-delimited) and returns the result. Should understand plus `+` and minus `-`.
+1. Önce `hesapMakinesi(str)` şeklinde karakter dizisi alan `"1 + 2"`, "SAYI operatör SAYI" şeklinde yazımı olan ve sonucu döndüren bir metod yazınız. Bu `+` ve `-` gibi operatörleri anlayabilmelidir.
 
-    Usage example:
-
-    ```js
-    let calc = new Calculator;
-
-    alert( calc.calculate("3 + 7") ); // 10
-    ```
-2. Then add the method `addOperator(name, func)` that teaches the calculator a new operation. It takes the operator `name` and the two-argument function `func(a,b)` that implements it.
-
-    For instance, let's add the multiplication `*`, division `/` and power `**`:
+    Kullanım örneği:
 
     ```js
-    let powerCalc = new Calculator;
-    powerCalc.addMethod("*", (a, b) => a * b);
-    powerCalc.addMethod("/", (a, b) => a / b);
-    powerCalc.addMethod("**", (a, b) => a ** b);
+    let hesap = new HesapMakinesi;
 
-    let result = powerCalc.calculate("2 ** 3");
-    alert( result ); // 8
+    alert( hesap.hesapla("3 + 7") ); // 10
     ```
 
-- No brackets or complex expressions in this task.
-- The numbers and the operator are delimited with exactly one space.
-- There may be error handling if you'd like to add it.
+2. Sonra `operatorEkle(isim,fonksiyon)` adında bir metod ekle ve bu metod hesap makinesine yeni işlemi öğretsin. Bu metod `isim` operatörünü alır ve `fonksiyon(a,b)` yi uygular.
+    
+    Örneğin `*`,`/` ve `**`(üs) işlemlerini uygulayalım.
+
+    ```js
+    let usIslemi = new HesapMakinesi;
+    usIslemi.metodEkle("*", (a, b) => a * b);
+    usIslemi.metodEkle("/", (a, b) => a / b);
+    usIslemi.metodEkle("**", (a, b) => a ** b);
+
+    let sonuc = usIslemi.hesapla("2 ** 3");
+    alert( sonuc ); // 8
+    ```
+
+- Parantez veya daha karmaşık ifadeler kullanılmayacak.
+- Sayılar ve operatör kesinlikle arada bir boşluk olacak şekilde yazılacak.
+- Eğer isterseniz hata kontrolü yapabilirsiniz.

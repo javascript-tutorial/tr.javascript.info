@@ -1,12 +1,12 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Second bind
+# Üst üste bağlama
 
-Can we change `this` by additional binding?
+Fazladan bir defa daha bağlama işlemi yaparak `this`'i değiştirebilir miyiz?
 
-What will be the output?
+Aşağıdaki kodun çıktısı nedir?
 
 ```js no-beautify
 function f() {

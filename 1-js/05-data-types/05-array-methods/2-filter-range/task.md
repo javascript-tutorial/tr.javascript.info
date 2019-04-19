@@ -1,22 +1,22 @@
-importance: 4
+Önem: 4
 
 ---
 
-# Filter "in place"
+# Filtreleme ve yeni dizi dönme
 
-Write a function `filterRange(arr, a, b)` that gets an array `arr`, looks for elements between `a` and `b` in it and returns an array of them. 
+`filterRange(arr, a, b)` adında bir fonksiyon yazın. `arr` argümanı alsın, `a` ile `b` arasını alsın ve döndersin.
 
-The function should not modify the array. It should return the new array.
+Fonksiyon diziyi modifiye etmemeli. Yeni bir dizi döndürmeli.
 
-For instance:
+Örneğin:
 
 ```js
 let arr = [5, 3, 8, 1];
 
 let filtered = filterRange(arr, 1, 4); 
 
-alert( filtered ); // 3,1 (matching values)
+alert( filtered ); // 3,1 (eşleşen değerler)
 
-alert( arr ); // 5,3,8,1 (not modified)
+alert( arr ); // 5,3,8,1 (modifiye edilmedi)
 ```
 

@@ -1,19 +1,19 @@
-importance: 3
+Önem: 3
 
 ---
 
-# Is array copied?
+# Dizi kopyalandı mı?
 
-What is this code going to show?
+Aşağıdaki kodun çıktısı nedir?
 
 ```js
-let fruits = ["Apples", "Pear", "Orange"];
+let meyveler = ["Elma", "Armut", "Portakal"];
 
-// push a new value into the "copy"
-let shoppingCart = fruits;
-shoppingCart.push("Banana");
+// kopyaya yeni bir değer ekleme.
+let sepet = meyveler;
+sepet.push("Muz");
 
-// what's in fruits?
+// meyveler değişkeninin içinde ne vardır?
 alert( fruits.length ); // ?
 ```
 

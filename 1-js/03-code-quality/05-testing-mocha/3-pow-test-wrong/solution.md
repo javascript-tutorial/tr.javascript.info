@@ -1,50 +1,50 @@
-The test demonstrates one of the temptations a developer meets when writing tests.
+Bu test programcıların test yazarken onları cezbedecek yanlış yöntemleri göstermektedir.
 
-What we have here is actually 3 tests, but layed out as a single function with 3 asserts.
+Burada aslında 3 tane test var, fakat bunların hepsi bir fonksiyon içine tıkıştırılmış
 
-Sometimes it's easier to write this way, but if an error occurs, it's much less obvious what went wrong.
+Bazen böyle yazmak kolay olsa da bir hata olursa bu gizli saklı kalır ve nerede hata olduğu anlaşılamaz.
 
-If an error happens inside a complex execution flow, then we'll have to figure out the data at that point. We'll actually have to *debug the test*.
+Eğer karmaşık bir akış içinde bir hata olursa ve bunun nedenini testler vasıtasıyla çözmeye çalışırsanız, testleri **ayıklamanız** gerekir.
 
-It would be much better to break the test into multiple `it` blocks with clearly written inputs and outputs.
+Bunun yerine testi birden çok `it` bloğuna ayırırsanız bu problemden kurtulursunuz.
 
-Like this:
+Bunun gibi:
 ```js
-describe("Raises x to power n", function() {
-  it("5 in the power of 1 equals 5", function() {
-    assert.equal(pow(5, 1), 5);
+describe("x'in n. kuvvetini alir", function() {
+  it("5'in birinci kuvveti 5'tir", function() {
+    assert.equal(us(5, 1), 5);
   });
 
-  it("5 in the power of 2 equals 25", function() {
-    assert.equal(pow(5, 2), 25);
+  it("5'in ikinci kuvveti 25'tir", function() {
+    assert.equal(us(5, 2), 25);
   });
 
-  it("5 in the power of 3 equals 125", function() {
-    assert.equal(pow(5, 3), 125);
+  it("5'in üçüncü kuvveti 125'tir", function() {
+    assert.equal(us(5, 3), 125);
   });
 });
 ```
 
-We replaced the single `it` with `describe` and a group of `it` blocks. Now if something fails we would see clearly what the data was.
+Soruda tek bir `it` vardı. Bu birçok `it` bloğu ile değiştirildi. Eğer şimdi bir yanlış olursa yanlışın neden kaynaklandığı daha açık bir biçimde görünür.
 
-Also we can isolate a single test and run it in standalone mode by writing `it.only` instead of `it`:
+Ayrıca sadece tek bir `it` bloğu çalıştırmak istiyorsanız Mocha bunu `it.only` ile yapmanızı sağlar.:
 
 
 ```js
 describe("Raises x to power n", function() {
-  it("5 in the power of 1 equals 5", function() {
-    assert.equal(pow(5, 1), 5);
+  it("5'in birinci kuvveti 5'tir", function() {
+    assert.equal(us(5, 1), 5);
   });
 
 *!*
   // Mocha will run only this block
-  it.only("5 in the power of 2 equals 25", function() {
-    assert.equal(pow(5, 2), 25);
+  it.only("5'in ikinci kuvveti 25'tir", function() {
+    assert.equal(us(5, 2), 25);
   });
 */!*
 
-  it("5 in the power of 3 equals 125", function() {
-    assert.equal(pow(5, 3), 125);
+  it("5'in üçüncü kuvveti 125'tir", function() {
+    assert.equal(us(5, 3), 125);
   });
 });
 ```

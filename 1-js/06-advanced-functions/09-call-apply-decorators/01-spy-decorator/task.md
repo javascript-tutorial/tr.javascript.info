@@ -2,17 +2,17 @@ importance: 5
 
 ---
 
-# Spy decorator
+# Gözetmen dekoratör
 
-Create a decorator `spy(func)` that should return a wrapper that saves all calls to function in its `calls` property.
+`spy(func)` adında bir dekoratör yazın ve bu fonksiyona gelen tüm çağrıları `calls` özelliğine kaydetsin.
 
-Every call is saved as an array of arguments.
+Çağrıların tamamı argüman dizisi olarak kaydedilsin.
 
-For instance:
+Örneğin:
 
 ```js
 function work(a, b) {
-  alert( a + b ); // work is an arbitrary function or method
+  alert( a + b ); // work keyfi bir metod veya fonksiyondur.
 }
 
 *!*
@@ -23,8 +23,8 @@ work(1, 2); // 3
 work(4, 5); // 9
 
 for(let args of work.calls) {
-  alert( 'call:' + args.join() ); // "call:1,2", "call:4,5"
+  alert( 'çağrı:' + args.join() ); // "çağrı:1,2", "çağrı:4,5"
 }
 ```
 
-P.S. That decorator is sometimes useful for unit-testing, it's advanced form is `sinon.spy` in [Sinon.JS](http://sinonjs.org/) library.
+Not: Birim testleri için dekoratörler oldukça yararlıdır. Bunun daha gelişmiş bir versiyonu `sinon.spy` olarak [Sinon.JS](http://sinonjs.org/) kütüphanesinde bulunmaktadır.

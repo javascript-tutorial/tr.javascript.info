@@ -1,10 +1,10 @@
-importance: 3
+Önem: 3
 
 ---
 
-# What's the result of OR'ed alerts?
+# VEYA'landırılmış uyarıların çıktısı ne olur?
 
-What the code below will output?
+Aşağıdaki kodun çıktısı nedir?
 
 ```js
 alert( alert(1) || 2 || alert(3) );

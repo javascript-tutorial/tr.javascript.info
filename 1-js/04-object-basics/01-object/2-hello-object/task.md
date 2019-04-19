@@ -1,14 +1,14 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Hello, object
+# Merha obje
 
-Write the code, one line for each action:
+Her bir fiil için gerekli kodu yazınız.
 
-1. Create an empty object `user`.
-2. Add the property `name` with the value `John`.
-3. Add the property `surname` with the value `Smith`.
-4. Change the value of the `name` to `Pete`.
-5. Remove the property `name` from the object.
+1. `kullanici` adında boş bir obje oluşturun.
+2. `isim` adında bir özellik ekleyin ve değeri `Mazlum` olsun.
+3. `soyisim` adında bir özellik ekleyin ve değeri `Mülaim` olsun.
+4. `isim` özelliğini `Kemal` olarak değiştirin.
+5. `isim` özelliğini objeden silin.
 

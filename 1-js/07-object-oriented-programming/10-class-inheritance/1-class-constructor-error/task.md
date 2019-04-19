@@ -1,12 +1,13 @@
-importance: 5
+önem: 5
 
 ---
 
-# Error creating an instance
+# Nesne oluşturuken hata oluyor.
 
-Here's the code with `Rabbit` extending `Animal`.
+Aşağıda `Animal`'ıdan miras alan bir `Rabbit` sınıfı bulunmakta.
 
-Unfortunately, `Rabbit` objects can't be created. What's wrong? Fix it.
+Aşağıda bunu yapmaya çalıştık fakat başarılı olamadık. Problemi bulabilir misiniz?
+
 ```js run
 class Animal {
 

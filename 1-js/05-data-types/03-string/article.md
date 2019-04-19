@@ -1,509 +1,486 @@
-# Strings
+# Karakter Dizisi - Strings
 
-In JavaScript, the textual data is stored as strings. There is no separate type for a single character.
+JavaScript metinsel değerleri karakter dizisi olarak tutar. Bir karakter ile ( char ) karakter dizisi ( string ) arasında bir fark yoktur.
 
-The internal format for strings is always [UTF-16](https://en.wikipedia.org/wiki/UTF-16), it is not tied to the page encoding.
+Karakter dizisi formatı her zmaan [UTF-16](https://en.wikipedia.org/wiki/UTF-16)'dır ve sayfanın karakter setine bağlı değildir.
 
 [cut]
 
 ## Quotes
 
-Let's recall the kinds of quotes.
-
-Strings can be enclosed within either single quotes, double quotes or backticks:
-
+Tekrar hatırlayacak olursanız, Karakter dizisi tek tırnak ve çift tırnak ile açılıp kapatılabilir. :
 ```js
-let single = 'single-quoted';
-let double = "double-quoted";
+let tek = 'tek-tırnak';
+let cift = "çift-tırnak";
 
-let backticks = `backticks`;
+let us_isareti = `üs işareti`; // Backticks
 ```
-
-Single and double quotes are essentially the same. Backticks however allow us to embed any expression into the string, including function calls:
+Tek ve çift tırnak zaten aynıydı. Üs işareti ise JavaScript ifadelerini karakter dizisine yerleştirmenizi sağlar. Bu fonksiyon çağrısı dahil herşey olabilir:
 
 ```js run
-function sum(a, b) {
+function toplam(a, b) {
   return a + b;
 }
 
-alert(`1 + 2 = ${sum(1, 2)}.`); // 1 + 2 = 3.
+alert(`1 + 2 = ${toplam(1, 2)}.`); // 1 + 2 = 3.
 ```
-
-Another advantage of using backticks is that they allow a string to span multiple lines:
+Üs işaretinin diğer avantajı ise birkaç satırdan oluşan bir karakter dizisini yazabilmeniz:
 
 ```js run
-let guestList = `Guests:
- * John
- * Pete
- * Mary
+let davetliListesi = `Davetliler:
+ * İhsan
+ * Cemal
+ * Muzaffer
 `;
 
-alert(guestList); // a list of guests, multiple lines
+alert(davetliListesi); // birçok satırdan oluşan davetiye listesi
 ```
-
-If we try to use single or double quotes in the same way, there will be an error:
+Eğer yukarıdaki şekilde tek veya çift tırnak kullanmaya kalkarsanız hata alırsınız:
 ```js run
-let guestList = "Guests:  // Error: Unexpected token ILLEGAL
-  * John";
+let davetliListesi = "Davetliler:  // Error: Unexpected token ILLEGAL
+  * İhsan";
 ```
+Tek tırnak ve çift tırnak dil ilk yazılmaya başlandığı, çoklu satırların hesaba katılmadığı zamanlardan kalmadır. Garip tırnak ise ( alt + , ) çok sonraları oluşturulduğundan çok yönlüdür.
 
-Single and double quotes come from ancient times of language creation when the need for multiline strings was not taken into account. Backticks appeared much later and thus are more versatile.
-
-Backticks also allow us to specify a "template function" before the first backtick. The syntax is: <code>func&#96;string&#96;</code>. The function `func` is called automatically, receives the string and embedded expressions and can process them. You can read more about it in the [docs](mdn:JavaScript/Reference/Template_literals#Tagged_template_literals). This is called "tagged templates". This feature makes it easier to wrap strings into custom templating or other functionality, but it is rarely used.
+İlk üs işareti öncesinde "şablon fonksiyonu" tanımlanması da mümkündür. Yazımı : <code>func&#96;string&#96;</code> şeklindedir. `func` fonksiyonu otomatik olarak çağrılır, karakter dizisi ile ve içine gömülü ifadeyi alır ve çalıştırır. Bunun ile ilgili daha fazla bilgiyi [dökümanda](mdn:JavaScript/Reference/Template_literals#Tagged_template_literals) bulabilirsiniz. Buna "etiketmiş şablon"(tagged templates) denir. Bu şekilde karakter dizilerini özel temalar içerisinde veya diğer fonksiyonlarda kullanmak daha kolay olur, fakat yine de nadiren kullanılırlar.
 
 
-## Special characters
-
-It is still possible to create multiline strings with single quotes by using a so-called "newline character", written as `\n`, which denotes a line break:
+## Özel Karakterler
+"yeni satır" `\n` karakterini kullanarak çif tırnaklı karakter dizisi içerisinde birçok satırdan oluşan bir metin yazılabilir:
 
 ```js run
-let guestList = "Guests:\n * John\n * Pete\n * Mary";
+let davetliListesi = "Davetliler:\n * İhsan\n * Cemal\n * Muzaffer";
 
-alert(guestList); // a multiline list of guests
+alert(davetliListesi); // birçok satırdan oluşan davetiye listesi
 ```
 
-For example, these two lines describe the same:
-
+Örneğin, aşağıdaki iki satırın çıktısı aynı olacaktır:
 ```js run
-alert( "Hello\nWorld" ); // two lines using a "newline symbol"
+alert( "Merhaba\nDünya" ); // "yeni satır" sambolü ile iki satır.
 
-// two lines using a normal newline and backticks
-alert( `Hello
-World` );
+// üs işareti ile iki satır ( altgr + , )
+alert( `Merhaba
+Dünya` );
 ```
+"Yeni satır" karakterine göre daha az kullanılan "özel" karakterler bulunmaktadır:
 
-There are other, less common "special" characters as well. Here's the list:
-
-| Character | Description |
+| Karakter | Açıklama |
 |-----------|-------------|
 |`\b`|Backspace|
 |`\f`|Form feed|
-|`\n`|New line|
+|`\n`|Yeni Satır|
 |`\r`|Carriage return|
 |`\t`|Tab|
-|`\uNNNN`|A unicode symbol with the hex code `NNNN`, for instance `\u00A9` -- is a unicode for the copyright symbol `©`. It must be exactly 4 hex digits. |
-|`\u{NNNNNNNN}`|Some rare characters are encoded with two unicode symbols, taking up to 4 bytes. This long unicode requires braces around it.|
+|`\uNNNN`| hex kodu ile bir unicode `NNNN`, örneğin `\u00A9` -- `©` kopyalama hakkı için kullanılan işaret. Kesinlikle 4 basamaklı hex değeri olmalıdır. |
+|`\u{NNNNNNNN}`|Bazı karakterler nadirde olsa iki unicode sembolü ile ifade edilirler. 4 bytten oluşan uzun bir yazımı vardır. Karakterlerin süslü parantez içine alınması gerekmektedir.
 
-Examples with unicode:
+Unicode örnekleri:
 
 ```js run
 alert( "\u00A9" ); // ©
-alert( "\u{20331}" ); // 佫, a rare chinese hieroglyph (long unicode)
-alert( "\u{1F60D}"); // 😍, a smiling face symbol (another long unicode)
+alert( "\u{20331}" ); // 佫, Uzun bir çince hiyerograf (uzun unicode)
+alert( "\u{1F60D}"); // 😍, gülen yüz sembolü (uzun unicode)
 ```
 
-All special characters start with a backslash character `\`. It is also called an "escape character".
+Tüm özel karakterler her zaman `\` karakteri ile başlarlar. Karakterler normal akışında giderken başka bir iş yapması için var olan işlemi kesmesinden dolayı "kesme karakteri" denebilir..
 
-We would also use it if we want to insert a quote into the string.
+Karakter dizisine ünlem işareti koyulmak istendiğinde yine bu kesme işareti kullanılır.
 
-For instance:
+Örneğin:
 
 ```js run
-alert( 'I*!*\'*/!*m the Walrus!' ); // *!*I'm*/!* the Walrus!
+alert( 'N\'aber canım - Tavşan !' ); // N'aber canım - Tavşan !
 ```
+Gördüğünüz gibi `\'` kullanarak karakter dizisinin bitmesi engellendi.
 
-As you can see, we have to prepend the inner quote by the backslash `\'`, because otherwise it would indicate the string end.
+Tabi bu sadece başlangıç karakteri `'` ise geçerli. Daha düzgün bir çözüm çift tırnak kullanmak olacaktır:
+```js run
+alert( "N'aber canım - Tavşan!" ); // N'aber canım - Tavşan!
+```
+Dikkat edeceğiniz üzere `\` JavaScript'in doğru okuması amacıyladır. Ekranda görünmez. 
 
-Of course, that refers only to the quotes that are same as the enclosing ones. So, as a more elegant solution, we could switch to double quotes or backticks instead:
+Peki gerçekten `\` gösterilmek istenirse ne yapılmalı ? 
+
+Bu da mümkün, bunun için `\\` kullanılmalı:
+
 
 ```js run
-alert( `I'm the Walrus!` ); // I'm the Walrus!
+alert( `\\` ); //  \
 ```
 
-Note that the backslash `\` serves for the correct reading of the string by JavaScript, then disappears. The in-memory string has no `\`. You can clearly see that in `alert` from the examples above.
+## Karakter dizisi uzunluğu
 
-But what if we need to show an actual backslash `\` within the string?
-
-That's possible, but we need to double it like `\\`:
+`length` özelliği karakter dizisinin uzunluğunu verir.
 
 ```js run
-alert( `The backslash: \\` ); // The backslash: \
+alert( `Naber\n`.length ); // 6
+```
+Dikkat ederseniz `\n` "özel karakter" oludğundan dolayı bir karakter olarak tanımlandı.
+
+```warn header="`length` bir özelliktir"
+
+Genelde başka diller ile çalışmış programcılar yanlışlıkla `str.length` yerin `str.length()` metodunu çağırmaktadırlar. Böyle bir metod yoktur.
+
+`str.length` sayısal bir değerdir, fonksiyon değildir! Sonunda parantez açıp kapanmaz.
 ```
 
-## String length
+## Karakterlere erişim
 
-
-The `length` property has the string length:
+İstediğiniz pozisyondaki karakteri alabilmek için köşeli parantez içerisinde pozisyonu neresiyse onu yazın `[poz]` veya bunun yerine [str.charAt(pos)](mdn:js/String/charAt) metodunu da kullanabilirsiniz. İlk karakter 0. pozisyondur:
 
 ```js run
-alert( `My\n`.length ); // 3
+let str = `Selam`;
+
+// ilk karakter
+alert( str[0] ); // S
+alert( str.charAt(0) ); // S
+
+// son karakter
+alert( str[str.length - 1] ); // m
 ```
+Köşeli parantez karakter almanın modern yoludur, `charAt` ilk metodlardandır.
 
-Note that `\n` is a single "special" character, so the length is indeed `3`.
-
-```warn header="`length` is a property"
-People with a background in some other languages sometimes mistype by calling `str.length()` instead of just `str.length`. That doesn't work.
-
-Please note that `str.length` is a numeric property, not a function. There is no need to add brackets after it.
-```
-
-## Accessing characters
-
-To get a character at position `pos`, use square brackets `[pos]` or call the method [str.charAt(pos)](mdn:js/String/charAt). The first character starts from the zero position:
+Aralarındaki tek fark `[]` eğer karakteri bulamaz ise `undefined` döner. Fakat `charAt` boş karakter döner:
 
 ```js run
-let str = `Hello`;
-
-// the first character
-alert( str[0] ); // H
-alert( str.charAt(0) ); // H
-
-// the last character
-alert( str[str.length - 1] ); // o
-```
-
-The square brackets are a modern way of getting a character, while `charAt` exists mostly for historical reasons.
-
-The only difference between them is that if no character is found, `[]` returns `undefined`, and `charAt` returns an empty string:
-
-```js run
-let str = `Hello`;
+let str = `Selam`;
 
 alert( str[1000] ); // undefined
-alert( str.charAt(1000) ); // '' (an empty string)
+alert( str.charAt(1000) ); // '' (boş karakter)
 ```
 
-We can also iterate over characters using `for..of`:
+Karakterleri döngüye sokmak da mümkündür.
 
 ```js run
-for(let char of "Hello") {
-  alert(char); // H,e,l,l,o (char becomes "H", then "e", then "l" etc)
+for(let karakter of "Selam") {
+  alert(karakter); // S,e,l,a,m (karakter önce "S", sonra "e", sonra "a" vs)
 }
 ```
 
-## Strings are immutable
+## Karakterler tanımlandıktan sonra değiştirilemezler ( immutable )
 
-Strings can't be changed in JavaScript. It is impossible to change a character.
+JavaScript dilinde karakter dizisi değiştirilemez. Mümkün değildir.
 
-Let's try it to show that it doesn't work:
-
-```js run
-let str = 'Hi';
-
-str[0] = 'h'; // error
-alert( str[0] ); // doesn't work
-```
-
-The usual workaround is to create a whole new string and assign it to `str` instead of the old one.
-
-For instance:
+Örnek ile açıklamak gerekirse:
 
 ```js run
-let str = 'Hi';
+let str = 'Selam';
 
-str = 'h' + str[1];  // replace the string
-
-alert( str ); // hi
+str[0] = 's'; // hata
+alert( str[0] ); // çalışmaz, değişiklik olmaz
 ```
+Bunun çüzümü se yeni bir karakter dizisi atayıp `str`'yi buna atamaktır.
 
-In the following sections we'll see more examples of this.
+Örneğin:
+```js run
+let str = 'Selam';
 
-## Changing the case
+str = str[0] + 'ELAM' ;  // karakter dizisini tamamen değiştir.
 
-Methods [toLowerCase()](mdn:js/String/toLowerCase) and [toUpperCase()](mdn:js/String/toUpperCase) change the case:
+alert( str ); // SELAM
+```
+Bir dahaki bölümde bunun ile ilgili daha fazla örneğe denk geleceksiniz.
+
+## Harf işlemleri
+
+Küçük harfe çevirmek için [toLowerCase()](mdn:js/String/toLowerCase) ve büyük harfe çevirmek için [toUpperCase()](mdn:js/String/toUpperCase) metodları kullanılabilir.
 
 ```js run
-alert( 'Interface'.toUpperCase() ); // INTERFACE
-alert( 'Interface'.toLowerCase() ); // interface
+alert( 'Arayüz'.toUpperCase() ); // ARAYÜZ
+alert( 'Arayüz'.toLowerCase() ); // arayüz
 ```
 
-Or, if we want a single character lowercased:
+veya, sadece baş harfini alıp küçük harf olmasını istiyorsanız istiyorsanız:
 
 ```js
-alert( 'Interface'[0].toLowerCase() ); // 'i'
+alert( 'Arayüz'[0].toLowerCase() ); // 'a'
 ```
 
-## Searching for a substring
+## Karakter dizisi içinde başka bir karakter arama
 
-There are multiple ways to look for a substring within a string.
+Bunun için birçok yol bulunmaktadır.
 
 ### str.indexOf
 
-The first method is [str.indexOf(substr, pos)](mdn:js/String/indexOf).
+İlk metod [str.indexOf(aranacak_karakterler, pozisyon)](mdn:js/String/indexOf)
 
-It looks for the `substr` in `str`, starting from the given position `pos`, and returns the position where the match was found or `-1` if nothing can be found.
+Aranmak istenen karakter dizisinde `str` `aranacak_karakterler`'i arar. `Pozisyon` ile istenen pozisyondan aramaya başlar, eğer bu karakter dizisini bulursa bulduğu pozisyonu, bulamaz ise `-1` döndürür.
 
-For instance:
+Örneğin:
 
 ```js run
-let str = 'Widget with id';
+let str = "N`aber Canım - Tavşan";
 
-alert( str.indexOf('Widget') ); // 0, because 'Widget' is found at the beginning
-alert( str.indexOf('widget') ); // -1, not found, the search is case-sensitive
+alert( str.indexOf("N'aber") ); // 0, çünkü N`aber başlangıçta
+alert( str.indexOf("n'aber") ); // -1, bulunamadı, arama büyük/küçük harf duyarlıdır.
 
-alert( str.indexOf("id") ); // 1, "id" is found at the position 1 (..idget with id)
+alert( str.indexOf("Tavşan") ); // 15, "Tavşan" 15. pozisyonda bulunmaktadır.
+```
+İsteğe bağlı olan ikinci parametre aramaya nereden başlanacağının belirtilmesine yarar.
+
+Örneğin `"an"`'ın ilk bulunduğu pozisyon `8`'dir. Bir sonraki denk gelişi ise `19.` pozisyonda olur.
+
+```js run
+let str = "N`aber Canım - Tavşan";
+
+alert( str.indexOf('an', 9) ) // 19
 ```
 
-The optional second parameter allows us to search starting from the given position.
-
-For instance, the first occurrence of `"id"` is at position `1`. To look for the next occurrence, let's start the search from position `2`:
-
-```js run
-let str = 'Widget with id';
-
-alert( str.indexOf('id', 2) ) // 12
-```
-
-
-If we're interested in all occurrences, we can run `indexOf` in a loop. Every new call is made with the position after the previous match:
+Eğer sizin istediğiniz tüm tekrarlar ise, `indexOf`'u döngü içerisinde kullanabilirsiniz. Her yeni çağrı bir önceki pozisyonu tutar:
 
 
 ```js run
-let str = 'As sly as a fox, as strong as an ox';
+let str = 'Bir berber bir berbere gel birader beraber bir berber dükkanı açalım demiş';
 
-let target = 'as'; // let's look for it
+let hedef = 'bir'; 
 
-let pos = 0;
+let poz = 0;
 while (true) {
-  let foundPos = str.indexOf(target, pos);
-  if (foundPos == -1) break;
+  let bulunanPoz = str.indexOf(hedef, poz);
+  if (bulunanPoz == -1) break;
 
-  alert( `Found at ${foundPos}` );
-  pos = foundPos + 1; // continue the search from the next position
+  alert( `Bulunan poz: ${bulunanPoz}` );
+  poz = bulunanPoz + 1; // bir sonraki pozisyondan aramaya devam et.
 }
 ```
 
-The same algorithm can be layed out shorter:
+Aynı algoritma aşağıdaki şekilde daha kısa bir biçimde yazılabilir:
 
 ```js run
-let str = "As sly as a fox, as strong as an ox";
-let target = "as";
+let str = 'Bir berber bir berbere gel birader beraber bir berber dükkanı açalım demiş';
+let hedef = "bir";
+
+
+let poz = -1;
+while ((poz = str.indexOf(hedef, poz + 1)) != -1) {
+  alert( poz );
+}
+```
+
+```smart header="`str.lastIndexOf(poz)`"
+
+Buna benzer başka bir metod daha bulunmaktadır. [str.lastIndexOf(pos)](mdn:js/String/lastIndexOf) bu metod karakter dizisinin sonundan başına doğru arama yapar
+
+Bulduklarını da yine tersten yazar.
+```
+
+`indexOf`'tan daha kullanışsızdır. `if` koşulu olarak aşağıdaki gibi kullanılamaz.
+
+```js run
+let str = "Bin berber bir berbere gel birader beraber bir berber dükkanı açalım demiş";
+
+if (str.lastIndexOf("Bin")) {
+    alert("Buldum!"); // çalışmaz!
+}
+```
+Yukarıdaki `alert`'ün çalışmamasının nedeni `str.lastIndexOf("Bin")`'in `0` döndürmesidir. ( Bu başlangıçta değeri bulmasına rağmen) pozisyon 0 döndüğünden `if` bunu `false` olarak algılar.
+
+Bundan dolayı `-1`'i aşağıdaki gibi kontrol etmek gerekmektedir.
+
+```js run
+let str = "Bin berber bir berbere gel birader beraber bir berber dükkanı açalım demiş";
 
 *!*
-let pos = -1;
-while ((pos = str.indexOf(target, pos + 1)) != -1) {
-  alert( pos );
-}
+if (str.indexOf("Bin") != -1) {
 */!*
-```
-
-```smart header="`str.lastIndexOf(pos)`"
-There is also a similar method [str.lastIndexOf(pos)](mdn:js/String/lastIndexOf) that searches from the end of a string to its beginning.
-
-It would list the occurrences in the reverse order.
-```
-
-There is a slight inconvenience with `indexOf` in the `if` test. We can't put it in the `if` like this:
-
-```js run
-let str = "Widget with id";
-
-if (str.indexOf("Widget")) {
-    alert("We found it"); // doesn't work!
+    alert("Buldum"); // Şimdi oldu!
 }
 ```
 
-The `alert` in the example above doesn't show because `str.indexOf("Widget")` returns `0` (meaning that it found the match at the starting position). Right, but `if` considers `0` to be `false`.
+````smart header="Bitwise NOT cambazlığı"
+Burada kullanılan [bitwise NOT] cambazlığıdır.
+(https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT) `~` operatörü. Sayıyı 32-bit tamsayıya çevirir.(Eğer ondalık bölümü varsa bunu siler. Tüm bitlerin binary(ikili) gösterimlerini tersine çevirir.
 
-So, we should actually check for `-1`, like this:
+32-bit tam sayılar için `~n` tam olarak `-(n+1)`(IEEE-754 formatına göre) demektir.
+
+Örneğin:
 
 ```js run
-let str = "Widget with id";
-
+alert( ~2 ); // -3,  -(2+1) demektir.
+alert( ~1 ); // -2,  -(1+1) demektir.
+alert( ~0 ); // -1,  -(0+1) demektir.
 *!*
-if (str.indexOf("Widget") != -1) {
-*/!*
-    alert("We found it"); // works now!
-}
-```
-
-````smart header="The bitwise NOT trick"
-One of the old tricks used here is the [bitwise NOT](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT) `~` operator. It converts the number to a 32-bit integer (removes the decimal part if exists) and then reverses all bits in its binary representation.
-
-For 32-bit integers the call `~n` means exactly the same as `-(n+1)` (due to IEEE-754 format).
-
-For instance:
-
-```js run
-alert( ~2 ); // -3, the same as -(2+1)
-alert( ~1 ); // -2, the same as -(1+1)
-alert( ~0 ); // -1, the same as -(0+1)
-*!*
-alert( ~-1 ); // 0, the same as -(-1+1)
+alert( ~-1 ); // 0,  -(-1+1) demektir.
 */!*
 ```
+Gördüğünüz üzere, `~n`, sadece `n == -1` olduğu durumda `0` demektir.
 
-As we can see, `~n` is zero only if `n == -1`.
+Bundan dolayı `if( ~str.indexOf("...") )` anca `indexOf` `-1` değilse `true` olur. Diğer bir deyişle arandan değer bulunmuş demektir.
 
-So, the test `if ( ~str.indexOf("...") )` is truthy that the result of `indexOf` is not `-1`. In other words, when there is a match.
-
-People use it to shorten `indexOf` checks:
+Daha kısa bir `indexOf` kullanımı da mevcuttur:
 
 ```js run
-let str = "Widget";
+let str = "Bin berber bir berbere gel birader beraber bir berber dükkanı açalım demiş";
 
-if (~str.indexOf("Widget")) {
-  alert( 'Found it!' ); // works
+if (~str.indexOf("Bin")) {
+  alert( 'Buldum!' ); // Çalıştı
 }
 ```
+Genelde çok açık olmayan dil özellikleri üzerinde cambazlık yapılması önerilmez. Fakat özellikle bu kod parçacığı eski kodların içinde çokça geçmektedir. Bundan dolayı en azından anlamalısınız.
 
-It is usually not recommended to use language features in a non-obvious way, but this particular trick is widely used in old code, so we should understand it.
-
-Just remember: `if (~str.indexOf(...))` reads as "if found".
+Hatırlatma: `if (~str.indexOf(...))`  "eğer bulunursa" diye okunur..
 ````
 
 ### includes, startsWith, endsWith
 
-The more modern method [str.includes(substr, pos)](mdn:js/String/includes) returns `true/false` depending on whether `str` contains `substr` within.
+Modern özelliklerin içerisinde [str.includes(substr, pos)](mdn:js/String/includes) `true/false` döndüren bir metod mulunmaktadır. 
 
-It's the right choice if we need to test for the match, but don't need its position:
-
-```js run
-alert( "Widget with id".includes("Widget") ); // true
-
-alert( "Hello".includes("Bye") ); // false
-```
-
-The optional second argument of `str.includes` is the position to start searching from:
+Eğer sadece aradığınız karakterlerin var olup olmadığını kontrol etmek istiyorsanız ve pozisyonu sizin için önemli değilse bu metod kullanılabilir:
 
 ```js run
-alert( "Midget".includes("id") ); // true
-alert( "Midget".includes("id", 3) ); // false, from position 3 there is no "id"
+alert( "Bin berber bir berbere gel birader beraber bir berber dükkanı açalım demiş".includes("Bin") ); // true
+
+alert( "Merhaba".includes("Güle Güle") ); // false
 ```
 
-The methods [str.startsWith](mdn:js/String/startsWith) and [str.endsWith](mdn:js/String/endsWith) do exactly what they say:
+`str.includes` un isteğe bağlı ikinci argümanı başlanacak pozisyonu belirtmenizi sağlar:
 
 ```js run
-alert( "Widget".startsWith("Wid") ); // true, "Widget" starts with "Wid"
-alert( "Widget".endsWith("get") );   // true, "Widget" ends with "get"
+alert( "birader".includes("ir") ); // true
+alert( "birader".includes("ir", 3) ); // false, 3. pozisyondan sonra `ir` bulunmamaktadır.
 ```
 
-## Getting a substring
+Aynı şekilde [str.startsWith](mdn:js/String/startsWith) ve [str.endsWith](mdn:js/String/endsWith) metodları söyledikleri gibi, aranan karakter dizilerinin başlangıç ve bitişlerine bakarlar.
 
-There are 3 methods in JavaScript to get a substring: `substring`, `substr` and `slice`.
+```js run
+alert( "birader".startsWith("bir") ); // true, "birader" "bir" ile başlar.
+alert( "birader".endsWith("er") );   // true, "birader" "er" ile biter.
+```
 
-`str.slice(start [, end])`
-: Returns the part of the string from `start` to (but not including) `end`.
+## Alt karakter dizisi alma
 
-    For instance:
+Alt karakter dizisi alma JavaScript'te 3 metod ile yapılır: `substring`, `substr` ve `slice`
+
+`str.slice(basla [, bitir])`
+: Karakter dizisinin `başla` ile başlayan `bitir`(dahil değil) ile bitirilen aralıktaki karakterleri alır.
+
+    Örneğin:
 
     ```js run
     let str = "stringify";
-    alert( str.slice(0,5) ); // 'strin', the substring from 0 to 5 (not including 5)
-    alert( str.slice(0,1) ); // 's', from 0 to 1, but not including 1, so only character at 0
+    alert( str.slice(0,5) ); // 'strin',  0 ile 5 arasındaki alt karakter dizisi (5 dahil değil)
+    alert( str.slice(0,1) ); // 's', 0 ile 1, fakat 1 dahil değil, yani sadece 0'ıncı karakter.
     ```
 
-    If there is no second argument, then `slice` goes till the end of the string:
+    Eğer ikinci bir argüman yoksa, `slice` karakter dizisinin sonuna kadar alır:
 
     ```js run
     let str = "st*!*ringify*/!*";
-    alert( str.slice(2) ); // ringify, from the 2nd position till the end
+    alert( str.slice(2) ); // ringify, ikinci pozisyondan sonuna kadar.
     ```
 
-    Negative values for `start/end` are also possible. They mean the position is counted from the string end:
+    `basla/bitir` için negatif değerler kullanmakta mümkündür. Bu pozisyonun karakter bitiminden itibaren çalıştığı anlamına gelir.
+    
 
     ```js run
     let str = "strin*!*gif*/!*y";
 
-    // start at the 4th position from the right, end at the 1st from the right
+    // sağdan 4. pozisyondan başla ve yine sağdan 1. pozisyona kadar al.
     alert( str.slice(-4, -1) ); // gif
     ```
 
 
-`str.substring(start [, end])`
-: Returns the part of the string *between* `start` and `end`.
+`str.substring(basla [, bitir])`
+: `başla` ile `bitir` *arasındaki* karakterleri çevirir.
 
-    This is almost the same as `slice`, but it allows `start` to be greater than `end`.
-
-    For instance:
+    Örneğin:
 
 
     ```js run
     let str = "st*!*ring*/!*ify";
 
-    // these are same for substring
+    // alt karakter dizisi için aynıdır.
     alert( str.substring(2, 6) ); // "ring"
     alert( str.substring(6, 2) ); // "ring"
 
-    // ...but not for slice:
-    alert( str.slice(2, 6) ); // "ring" (the same)
-    alert( str.slice(6, 2) ); // "" (an empty string)
+    // ...fakat slice için farklıdır:
+    alert( str.slice(2, 6) ); // "ring" (aynı)
+    alert( str.slice(6, 2) ); // "" (boş karakter)
 
     ```
+    `slice`'a göre farklı olarak negatif sayılar `0` olarak hesaba katılır.
 
-    Negative arguments are (unlike slice) not supported, they are treated as `0`.
 
-
-`str.substr(start [, length])`
-: Returns the part of the string from `start`, with the given `length`.
-
-    In contrast with the previous methods, this one allows us to specify the `length` instead of the ending position:
+`str.substr(başlangıç [, length])`
+: Verilen uzunluğa bağlı olarak `başlangıç`'tan uzunluk kadar karakter alır.
+    
+    Diğer metoda göre bu `uzunluğu` belirtmemizi sağlar. Diğerleri pozisyonu belirtmemizi sağlıyordu.
 
     ```js run
     let str = "st*!*ring*/!*ify";
-    alert( str.substr(2, 4) ); // ring, from the 2nd position get 4 characters
+    alert( str.substr(2, 4) ); // ring, 2. pozisyondan 4 karakter al.
     ```
 
-    The first argument may be negative, to count from the end:
+    İlk karakter negatif olabilir. Sondan sayarak:
 
     ```js run
     let str = "strin*!*gi*/!*fy";
-    alert( str.substr(-4, 2) ); // gi, from the 4th position get 2 characters
+    alert( str.substr(-4, 2) ); // gi, 4. pozisyondan 2 karakter al.
     ```
 
-Let's recap these methods to avoid any confusion:
+Karışıklığı önlemek adına metodların üzerinden geçersek:
 
 | method | selects... | negatives |
 |--------|-----------|-----------|
-| `slice(start, end)` | from `start` to `end` | allows negatives |
-| `substring(start, end)` | between `start` and `end` | negative values mean `0` |
-| `substr(start, length)` | from `start` get `length` characters | allows negative `start` |
+| `slice(başlangıç, bitiş)` |  `başlangıç`'dan `bitiş`'e kadar | negatif sayılar kullanılabilir. |
+| `substring(başlangıç, bitiş)` | `başlangıç`'dan `bitiş`'e kadar | negatif sayılar `0` demektir |
+| `substr(başlangıç, uzunluk)` | `başlangıç`'dan `uzunluk` kadar karakter | negatif `başlangıç` kullanılabilir |
 
 
-```smart header="Which one to choose?"
-All of them can do the job. Formally, `substr` has a minor drawback: it is described not in the core JavaScript specification, but in Annex B, which covers browser-only features that exist mainly for historical reasons. So, non-browser environments may fail to support it. But in practice it works everywhere.
+```smart header="Hangisi Seçilmeli?"
 
-The author finds himself using `slice` almost all the time.
+Aslında tamamı iş görür. Daha resmi düzeyde bakılırsa: `substr` JavaScript özellik tanımlarında bulunmamaktadır. Fakat Annex B'ye göre sadece tarayıcı tabanlı özellikler içerisinde bulunmaktadır. Bu da tarihi nedenlerden dolayıdır. Bundan dolayı tarayıcı üzerine yazmıyorsanız. Yazdığınız yere bağlı olarak bu kod hata verebilir. Fakat pratikte her yerde çalıştığı görülebilir.
+
+Yazar genelde `slice` kullanmaktadır.
 ```
 
-## Comparing strings
+## Karakterlerin karşılaştırılması
 
-As we know from the chapter <info:comparison>, strings are compared character-by-character in alphabetical order.
+<info:comparison> bölümünden hatırlanacağı üzere, karakterler birbirileri ile karakter karakter karşılaştırılırlar. Bu karşılaştırma alfabetik sıraya göre yapılmaktadır.
 
-Although, there are some oddities.
+Buna rağmen bazı gariplikler de mevcuttur.
 
-1. A lowercase letter is always greater than the uppercase:
+
+1. Küçük harf karakterler her zaman büyük harflerden büyüktürler.
 
     ```js run
     alert( 'a' > 'Z' ); // true
     ```
 
-2. Letters with diacritical marks are "out of order":
+2. Bölgesel karakterler bu sıralamaya girmezler. Yani karşılaştırılamazlar.
 
     ```js run
     alert( 'Österreich' > 'Zealand' ); // true
     ```
 
-    This may lead to strange results if we sort these country names. Usually people would expect `Zealand` to come after `Österreich` in the list.
+    Eğer ülke isimlerini karşılaştırmak istiyorsanız bu garip sonuçlara neden olabilir. Örneğin `Zealand` normalde `Österreich`'ten sonra gelmesi beklenirken önce gelir.
 
-To understand what happens, let's review the internal representation of strings in JavaScript.
+Ne olduğunu anlamak için JavaScript karakter dizilerini nasıl tanımlıyor buna bakmak lazım.
 
-All strings are encoded using [UTF-16](https://en.wikipedia.org/wiki/UTF-16). That is: each character has a corresponding numeric code. There are special methods that allow to get the character for the code and back.
+Tük karakter dizileri [UTF-16](https://en.wikipedia.org/wiki/UTF-16) ile kodlanmıştır. Buna göre: Tüm karakterler sayısal olarak kodlanır. Bu koda göre karakteri geri döndürecek özel metodlar mevcuttur.
 
 `str.codePointAt(pos)`
-: Returns the code for the character at position `pos`:
+: Verilen pozisyondaki karakterin kodunu döndürür:
 
     ```js run
-    // different case letters have different codes
+    // Büyük küçük harflerde farklı kodlar döndürülür.
     alert( "z".codePointAt(0) ); // 122
     alert( "Z".codePointAt(0) ); // 90
     ```
 
 `String.fromCodePoint(code)`
-: Creates a character by its numeric `code`
+: Sayısal değere göre karakter dönderir.
 
     ```js run
     alert( String.fromCodePoint(90) ); // Z
     ```
-
-    We can also add unicode characters by their codes using `\u` followed by the hex code:
+    Ayrıca `\u` ile birlikte kodun hexa decimal değerini kullanarak unicode karakter eklemeniz de mümkündür: 
 
     ```js run
-    // 90 is 5a in hexadecimal system
+    // 90 hexa decimal sistemde 5a ya denk gelmektedir.
     alert( '\u005a' ); // Z
     ```
-
-Now let's see the characters with codes `65..220` (the latin alphabet and a little bit extra) by making a string of them:
+`65..220` arasında sayısal değeri olan ( latin alfabesi ve bunun yanında sayılar vs. ) karakterleri ekrana basalım:
 
 ```js run
 let str = '';
@@ -515,135 +492,127 @@ alert( str );
 // ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
 // ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜ
 ```
+Gördüğünüz gibi önce büyük harfler, sonrasında bir kaç özel harf ve küçük harfler şeklinde yazılmaktadır.
 
-See? Capital characters go first, then a few special ones, then lowercase characters.
+`a > Z` olduğu yukarıda açıkça görülmektedir.
 
-Now it becomes obvious why `a > Z`.
-
-The characters are compared by their numeric code. The greater code means that the character is greater. The code for `a` (97) is greater than the code for `Z` (90).
-
-- All lowercase letters go after uppercase letters because their codes are greater.
-- Some letters like `Ö` stand apart from the main alphabet. Here, it's code is greater than anything from `a` to `z`.
+Karakterler sayısal kodları ile karşılaştırılmaktadır. Kod büyüdükçe karakter de büyür denebilir. `a` için yazılan kod (97) `Z`(90) kodundan büyüktür.
+- Tük küçük harfler büyük harflerden sonra gelir. Bundan dolayı küçük harflerin en küçüğü bile büyük harflerin tamamından büyüktür.
+- `Ö` gibi karakterler alfabaden tamamen farklı düşünmelidir. Bu karakterlerin kodları küçük harflerden büyüktür.
 
 
-### Correct comparisons
+### Doğru Karşılaştırma
 
-The "right" algorithm to do string comparisons is more complex than it may seem, because alphabets are different for different languages. The same-looking letter may be located differently in different alphabets.
+Karakter karşılaştırmasını "doğru" olarak yapmak göründüğünden daha zordur. Çünkü alfabe dilden dile farklılık göstermektedir. Aynı görünüşlü harfler farklı alfabelerde farklı yerlerde yer alırlar.
 
-So, the browser needs to know the language to compare.
+Tarayıcı hangi dil ile karşılaştıracağını bilmeli.
 
-Luckily, all modern browsers (IE10- requires the additional library [Intl.JS](https://github.com/andyearnshaw/Intl.js/)) support the internationalization standard [ECMA 402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf).
+Neyseki tüm modern tarayıcılar(IE10- ek kütüphanelere gerek duymaktadır [Intl.JS](https://github.com/andyearnshaw/Intl.js/) ) uluslararası dil standardına sahiptir [ECMA 402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf).
 
-It provides a special method to compare strings in different languages, following their rules.
+Bu özel bir metod ile farklı dillerde karakterlerin birbirleri ile karşılaştırılabilmesini sağlar. Kuralları şu şekildedir:
 
-The call [str.localeCompare(str2)](mdn:js/String/localeCompare):
+[str.localeCompare(str2)](mdn:js/String/localeCompare) in çağırılması:
 
-- Returns `1` if `str` is greater than `str2` according to the language rules.
-- Returns `-1` if `str` is less than `str2`.
-- Returns `0` if they are equal.
+- Eğer dil kurallarına göre `str` `str2` den büyükse `1` döndürür.
+- Eğer `str` `str2` den küçükse `-1` döndürür.
+- Eğer birbirleri ile eşit ise `0` döndürür.
 
-For instance:
+Örneğin:
 
 ```js run
 alert( 'Österreich'.localeCompare('Zealand') ); // -1
 ```
+Aslında bu metodun [dökümantasyon](mdn:js/String/localeCompare)'da belirtilen iki tane argümanı vardır. Bu argümanlar ile hangi dili kullanmak istediğinizi veya `"a"` ile `"á"`'nın aynı şekilde davranılmasını isteyip istemediğinizi belirtebilirsiniz.
 
-This method actually has two additional arguments specified in [the documentation](mdn:js/String/localeCompare), which allow it to specify the language (by default taken from the environment) and setup additional rules like case sensivity or should `"a"` and `"á"` be treated as the same etc.
+## Unicod ve Internaller.
 
-## Internals, Unicode
+```warn header="İleri derecede bilgiler"
+Bu bölümde karakter dizilerinin daha derin özelliklerine değinilecektir. Bu bilgiler emoji, hiyeroglif veya matematiksel ifadelerde yardımcı olur.
 
-```warn header="Advanced knowledge"
-The section goes deeper into string internals. This knowledge will be useful for you if you plan to deal with emoji, rare mathematical of hieroglyphs characters or other rare symbols.
-
-You can skip the section if you don't plan to support them.
+Eğer bu konuda bir ihtiyacınız yoksa bu bölümü atlayabilirsiniz.
 ```
 
-### Surrogate pairs
+### Vekil Çiftler
 
-Most symbols have a 2-byte code. Letters in most european languages, numbers, and even most hieroglyphs, have a 2-byte representation.
+Çoğu sembol 2-byte kod ile tanımlanır. Çoğu avrupa dili, sayılar ve çoğu hiyeroglifler iki byte ile tanımlanabilir.
 
-But 2 bytes only allow 65536 combinations and that's not enough for every possible symbol. So rare symbols are encoded with a pair of 2-byte characters called "a surrogate pair".
+Fakat iki byte 65536 sembolü tanımlayabilir ve tüm semboller için bu yeterli değildir. Bundan dolayı nadir semboller bir çift 2-byte'lık karakter ile tanımlanır. Buna vekil çiftler veya "surrogate pair" adı verilir.
 
-The length of such symbols is `2`:
+Böyle sembollerin uzunluğu `2`'dir:
+
 
 ```js run
 alert( '𝒳'.length ); // 2, MATHEMATICAL SCRIPT CAPITAL X
 alert( '😂'.length ); // 2, FACE WITH TEARS OF JOY
 alert( '𩷶'.length ); // 2, a rare chinese hieroglyph
 ```
+Bu vekil çiftler JavaScript yaratıldığında meydanda yoktu, bundan dolayı dil tarafından doğru olarak işlenemez.
 
-Note that surrogate pairs did not exist at the time when JavaScript was created, and thus are not correctly processed by the language!
+Tek bir karakter olmasına rağmen `length`(uzunluk) `2` göstermektedir.
 
-We actually have a single symbol in each of the strings above, but the `length` shows a length of `2`.
+`String.fromCodePoint` ve `str.codePointAt` az bilinen ve bu ikili karakterlerle uğraşan iki metoddur. Dile entegreleri yakın zamanda gerçekleşti. Bundan önce sadece [String.fromCharCode](mdn:js/String/fromCharCode) ve [str.charCodeAt](mdn:js/String/charCodeAt) bulunmaktadır. Bu metodlar aslında `fromCodePoint/codePointAt` ile aynıdır fakat ikili karakterler ile çalışmamaktadırlar.
 
-`String.fromCodePoint` and `str.codePointAt` are few rare methods that deal with surrogate pairs right. They recently appeared in the language. Before them, there were only [String.fromCharCode](mdn:js/String/fromCharCode) and [str.charCodeAt](mdn:js/String/charCodeAt). These methods are actually the same as `fromCodePoint/codePointAt`, but don't work with surrogate pairs.
-
-But, for instance, getting a symbol can be tricky, because surrogate pairs are treated as two characters:
-
-```js run
-alert( '𝒳'[0] ); // strange symbols...
-alert( '𝒳'[1] ); // ...pieces of the surrogate pair
-```
-
-Note that pieces of the surrogate pair have no meaning without each other. So the alerts in the example above actually display garbage.
-
-Technically, surrogate pairs are also detectable by their codes: if a character has the code in the interval of `0xd800..0xdbff`, then it is the first part of the surrogate pair. The next character (second part) must have the code in interval `0xdc00..0xdfff`. These intervals are reserved exclusively for surrogate pairs by the standard.
-
-In the case above:
+Örneğin sembolün alınması biraz karmaşıktır, çünkü bu çiftler iki karakterden oluşmaktadırlar.
 
 ```js run
-// charCodeAt is not surrogate-pair aware, so it gives codes for parts
-
-alert( '𝒳'.charCodeAt(0).toString(16) ); // d835, between 0xd800 and 0xdbff
-alert( '𝒳'.charCodeAt(1).toString(16) ); // dcb3, between 0xdc00 and 0xdfff
+alert( '𝒳'[0] ); // garip semboller...
+alert( '𝒳'[1] ); // ...her biri ikilinin parçaları
 ```
 
-You will find more ways to deal with surrogate pairs later in the chapter <info:iterable>. There are probably special libraries for that too, but nothing famous enough to suggest here.
+Dikkat ederseniz çifli karakterler tek başlarına birşey ifade etmezler. Yani yukarıdaki örnekler aslında hiç bir işe yaramaz.
 
-### Diacritical marks and normalization
+Teknik olarak, bu çiftler kodlarına bakılarak ayırt edilebilir: Eğer bir karakter `0xd800..0xdbff` aralığında ise bu çiftin ilk karakteri demektir. İkinci karakter ise `0xd800..0xdbff` aralığında olmalıdır. Bu aralıklar özel olarak çiftler için ayrılmıştır.
 
-In many languages there are symbols that are composed of the base character with a mark above/under it.
+Yukarıdaki duruma göre:
 
-For instance, the letter `a` can be the base character for: `àáâäãåā`. Most common "composite" character have their own code in the UTF-16 table. But not all of them, because there are too many possible combinations.
+```js run
+// charCodeAt çiftlere uygun değildir, bundan dolayı sadece kodlar verilir.
 
-To support arbitrary compositions, UTF-16 allows us to use several unicode characters. The base character and one or many "mark" characters that "decorate" it.
+alert( '𝒳'.charCodeAt(0).toString(16) ); // d835, 0xd800 ile 0xdbff arasında
+alert( '𝒳'.charCodeAt(1).toString(16) ); // dcb3, 0xdc00 ile 0xdfff arasında
+```
+<info:iterable> bölümünde bu çifler ile ilgili daha fazla bilgi bulabilirsiniz. Muhtemelen bunun ile ilgili kütüphaneler de vardır, fakat burada önerecek kadar meşur olan yok henüz.
 
-For instance, if we have `S` followed by the special "dot above" character (code `\u0307`), it is shown as Ṡ.
+### Aksan işaretleri ve normalleştirme
+
+Çoğu dilde temel karakterlerin altına veya üstünü sembol eklenerk oluşturulmuş yeni karakterler mevcuttur.
+
+Örneğin `a`, `àáâäãåā` şeklinde karakterlere sahiptir. Bu birleşik karakterler UTF-16 tablosunda kendine has kodlara sahiptir. Hepsi değil tabi fakat çoğu birleşik karakter bu tabloda yer alır.
+
+Elle bu karakterleri birleştirmek için, UTF-16 bazı unicode karakter kullanmamıza olanak verir. Böylece temel karakterin üzerine bir veya daha fazla "işaret" eklenerek yeni bir karakter "üretilebilir"
+
+Örneğin, `S` harfinin üstüne "nokta" eklemek isterseniz `\u0307` kullanabilirsiniz. Bunu kullandığınızda Ṡ elde etmiş olursunuz.
 
 ```js run
 alert( 'S\u0307' ); // Ṡ
 ```
+Eğer bu karakterin üstüne veya altına farklı işaretler eklemek istiyorsanız gerekli karakterleri istediğiniz gibi ekleyebilirsiniz.
 
-If we need an additional mark above the letter (or below it) -- no problem, just add the necessary mark character.
+Örneğin, eğer "aşağı nokta" kodunu ( `\u0323`) eklerseniz, "S'in altına ve üstüne nokta" demiş olursunuz ve şu şekilde bir karakter elde edersiniz: `Ṩ`
 
-For instance, if we append a character "dot below" (code `\u0323`), then we'll have "S with dots above and below": `Ṩ`.
-
-For example:
+Örneğin:
 
 ```js run
 alert( 'S\u0307\u0323' ); // Ṩ
 ```
+Böylece çok farklı karakterler elde etmek mümkündür, fakat bu bir probleme neden olmaktadır: iki karakter görünüşte birbiri ile aynı olabilir, fakat iki farklı unicode'a sahip olabilir.
 
-This provides great flexibility, but also an interesting problem: two characters may visually look the same, but be represented with different unicode compositions.
-
-For instance:
+Örneğin:
 
 ```js run
-alert( 'S\u0307\u0323' ); // Ṩ, S + dot above + dot below
-alert( 'S\u0323\u0307' ); // Ṩ, S + dot below + dot above
+alert( 'S\u0307\u0323' ); // Ṩ, S + üst nokta + alt nokta
+alert( 'S\u0323\u0307' ); // Ṩ, S + alt nokta + üst nokta 
 
 alert( 'S\u0307\u0323' == 'S\u0323\u0307' ); // false
 ```
+Bunu çözebilmek için "unicode normalleştirme" algoritmaları mevcuttur. Bu karakterleri tek bir "noram" forma çevirir.
 
-To solve this, there exists a "unicode normalization" algorithm that brings each string to the single "normal" form.
-
-It is implemented by [str.normalize()](mdn:js/String/normalize).
+[str.normalize()](mdn:js/String/normalize) şeklinde uygulaması yapılmaktadır.
 
 ```js run
 alert( "S\u0307\u0323".normalize() == "S\u0323\u0307".normalize() ); // true
 ```
-
-It's funny that in our situation `normalize()` actually brings together a sequence of 3 characters to one: `\u1e68` (S with two dots).
+Bizim durumumuzda `normalize()` fonksiyonu aslında 3 karakteri tek bir karakter haline getirir: `\u1e68` ( alt ve üst nokta ile S harfi)
 
 ```js run
 alert( "S\u0307\u0323".normalize().length ); // 1
@@ -651,26 +620,26 @@ alert( "S\u0307\u0323".normalize().length ); // 1
 alert( "S\u0307\u0323".normalize() == "\u1e68" ); // true
 ```
 
-In reality, this is not always the case. The reason being that the symbol `Ṩ` is "common enough", so UTF-16 creators included it in the main table and gave it the code.
-
-If you want to learn more about normalization rules and variants -- they are described in the appendix of the Unicode standard: [Unicode Normalization Forms](http://www.unicode.org/reports/tr15/), but for most practical purposes the information from this section is enough.
+Gerçekte bu durumla çok nadir karşılaşılır. Bu karakter bile `Ṩ` oldukça "yaygın" olduğundan, UTF-16 standart tablosu içerisinde yer almaktadır.
 
 
-## Summary
+Eğer normalizasyon kurallarını ve tiplerini daha derinlemesine öğrenmek istiyorsanız [Unicode Normalization Forms](http://www.unicode.org/reports/tr15/) adresinden inceleyebilirsiniz. Pratikte yukarıda verilen bilgiler yeterli olacaktır.
 
-- There are 3 types of quotes. Backticks allow a string to span multiple lines and embed expressions.
-- Strings in JavaScript are encoded using UTF-16.
-- We can use special characters like `\n` and insert letters by their unicode using `\u...`.
-- To get a character, use: `[]`.
-- To get a substring, use: `slice` or `substring`.
-- To lowercase/uppercase a string, use: `toLowerCase/toUpperCase`.
-- To look for a substring, use: `indexOf`, or `includes/startsWith/endsWith` for simple checks.
-- To compare strings according to the language, use: `localeCompare`, otherwise they are compared by character codes.
+## Özet
 
-There are several other helpful methods in strings:
+- 3 tip tırnak bulunmaktadır. "`" işareti ile birkaç satırdan oluşan karakter dizisi yazmak mümkündür
+- JavaScript'te karakterler UTF-16 ile kodlanmıştır.
+- `\n` gibi özel karakterler veya `\u..` ile unicode kullanılabilir.
+- Karakteri almak için: `[]` kullanılır.
+- Alt karakter kümesi almak için `slice` veya `substring` kullanılır.
+- Küçük/büyük harf değişimi için: `toLowerCase/toUpperCase`.
+- Alt karakter dizisi aramak için : `indexOf` veya `includes/startsWith/endsWith` kullanılabilir.
+- Karakterleri dile göre karşılaştırmak için `localceCompare` kullanılabilir. Diğer türlü karakterler kodlarına göre karşılaştırılırlar.
 
-- `str.trim()` -- removes ("trims") spaces from the beginning and end of the string.
-- `str.repeat(n)` -- repeats the string `n` times.
-- ...and more. See the [manual](mdn:js/String) for details.
+Bunun yanında karakter dizileri için daha başka yardımcı metodlar bulunmaktadır:
 
-Strings also have methods for doing search/replace with regular expressions. But that topic deserves a separate chapter, so we'll return to that later.
+- `str.trim()` -- başlangıç ve bitişteki boşlukları siler.
+- `str.repeat(n)` -- `str`'yi istendiği kadar tekrar eder..
+- ... Daha fazlası için [manual](mdn:js/String)  adresine bakabilirsiniz.
+
+Karakter dizileri bunun yanında arama/değiştirme veya regular expression için metodlar barındırmaktadır. Fakat bu konular ayrı bölümleri hak etmektedir. Bu konulara ilerleyen bölümlerde dönülecektir.

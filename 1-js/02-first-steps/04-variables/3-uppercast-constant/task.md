@@ -1,24 +1,24 @@
-importance: 4
+Önem: 4
 
 ---
 
-# Uppercase const?
+# Büyükharf ile sabit (const) kullanımı
 
-Examine the following code:
+Aşağıdaki koda bir göz atın:
 
 ```js
-const birthday = '18.04.1982';
+const dogumGunu = '18.04.1982';
 
-const age = someCode(birthday);
+const yas = someCode(dogumGunu);
 ```
 
-Here we have a constant `birthday` date and the `age` is calculated from `birthday` with the help of some code (it is not provided for shortness, and because details don't matter here).
+Gördüğünüz gibi `dogumGunu` adında bir tarih sabiti ve `yaş` adında `dogumGunu` değişkeninden hesaplanan bir değişken bulunmakta. ( Örneğin kısa olması açısından `someCode` fonksiyonu tamamlanmamıştır.)
 
-Would it be right to use upper case for `birthday`? For `age`? Or even for both?
+Sizce `dogumGunu` tamamı büyük harf olacak şekilde mi olmalı? yoksa `yaş` değişkeni mi büyük olmalı? Veya her ikisi de mi büyük harf olmalı? 
 
 ```js
-const BIRTHDAY = '18.04.1982'; // make uppercase?
+const DOGUMGUNU = '18.04.1982'; // büyük harf mi olmalı?
 
-const AGE = someCode(BIRTHDAY); // make uppercase?
+const YAS = someCode(DOGUMGUNU); // büyük harf mi olmalı?
 ```
 

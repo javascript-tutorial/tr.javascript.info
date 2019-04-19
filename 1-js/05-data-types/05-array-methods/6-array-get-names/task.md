@@ -1,22 +1,22 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Map to names
+# Map'ten isimlere çevirme.
 
-You have an array of `user` objects, each one has `user.name`. Write the code that converts it into an array of names.
+`kullanici` objelerinden oluşan bir dizinin `kullanici.adi` özelliğinden  dizi yapan kodu yazınız.
 
-For instance:
+Örneğin:
 
 ```js no-beautify
-let john = { name: "John", age: 25 };
-let pete = { name: "Pete", age: 30 };
-let mary = { name: "Mary", age: 28 };
+let ahmet = { adi: "Ahmet", yas: 25 };
+let mehmet = { adi: "Mehmet", yas: 30 };
+let muzaffer = { adi: "Muzaffer", yas: 28 };
 
-let users = [ john, pete, mary ];
+let kullanici = [ ahmet, mehmet, muzaffer ];
 
-let names = /* ... your code */
+let isimler = /* ... kodunuz */
 
-alert( names ); // John, Pete, Mary
+alert( isimler ); // Ahmet, Mehmet, Muzaffer
 ```
 

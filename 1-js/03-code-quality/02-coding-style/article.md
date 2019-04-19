@@ -1,16 +1,16 @@
-# Coding style
+# Kodlama Stili
 
-Our code must be as clean and easy to read as possible.
+Kodunuz olabildiğince okunaklı ve temiz olmalıdır.
 
-That is actually an art of programming -- to take a complex task and code it in a way that is both correct and human-readable.
+Aslında bu programlama sanatıdır -- karmaşık bir görevi alın ve bunu olabildiğince doğru ve okunaklı bir şekile getirin.
 
-One thing to help is the good code style.
+Buna yardımcı olan bir şey de iyi kodlama stilidir.
 
 [cut]
 
-## Syntax
+## Yazım
 
-A cheatsheet with the rules (more details below):
+Kodlar için yazımış bir kopya kağıdı(detayları aşağıda):
 
 ![](code-style.png)
 <!--
@@ -37,28 +37,25 @@ if (n < 0) {
 ```
 
 -->
+Şimdi bu kurallar ve nedenleri hakkında konuşabiliriz.
 
-Now let's discuss the rules and reasons for them in detail.
+Buradaki hiç bir şey kanun değildir. Hepsi sizin zevgine kalmıştır ve değişebilir. Buradaki kodlama kuralları dogmalara dayanmaz.
 
-Nothing is "carved in stone" here. Everything is optional and can be changed: these are coding rules, not religious dogmas.
+### Süslü Parantez
 
-### Figure brackets
+Çoğu JavaScript projesinde süslü parantezler yeni satırda değil de kod ile aynı satırda yazılırlar. Buna "mısırlı" stili denir. Ayrıca süslü parantezin başında aşağıdaki gibi boşluk bırakılır.
 
-In most JavaScript projects figure brackets are written on the same line, not on the new line. A so-called "egyptian" style. There's also a space before an opening bracket.
-
-Like this:
 
 ```js
-if (condition) {
-  // do this
-  // ...and that
-  // ...and that
+if (kosul) {
+  // şunu yap 
+  // ...bunu yap
+  // ...sonra bunu yap
 }
 ```
+Tek satırlı `if` cümlelerinde süslü parantez kullanmalı mı ? Kullanılacaksa nasıl yazılmalı?
 
-A single-line construct is an important edge case. Should we use brackets at all? If yes, then where?
-
-Here are the annotated variants, so you can judge about their readability on your own:
+Burada not düşülerek `if` örnekleri verilmiş. Siz de bu kodların okunabilirliğini yargılayabilirsiniz.
 
 <!--
 ```js no-beautify
@@ -75,47 +72,52 @@ if (n < 0) {
 ```
 -->
 ![](figure-bracket-style.png)
+1. Süslü parantez açma ve kapama aynı satırda yapılmış: Burada süslü paranteze gerek yok.
+2. Ayrı bir satıra süslü parantez olmadan yazılmış. Bu şekilde yazmayın. Bu ileride bazı anlayamadığınız hatalara neden olabilir. Örneğin `if` gövdesine bir satır daha yazarsanız bu satırlardan sonraki yazdığınız çalışmaz.
+3. Süslü parantez olmadan tek satırda işi bitirebilirseniz kabul edilebilir. Ama kısa olması şartıyla.
+4. Bunların içerisindeki en iyisi.
 
-As a summary:
-- For a really short code, one line is acceptable: like `if (cond) return null`.
-- But a separate line for each statement in brackets is usually better.
+Özetle:
+- Çok kısa kodlar için, şu şekilde kullanım kabul edilebilir: `if(koşul) return null`.
+- Eğer ayrı satırlara yazmanız gerekiyorsa kesin süslü parantez kullanın.
 
-### Line length
 
-The maximal line length should be limited. No one likes to eye-follow a long horizontal line. It's better to split it.
+### Satır uzunluğu
 
-The maximal line length is agreed on the team-level. It's usually 80 or 120 characters.
+En uzun satır boyunun bir sınırı olmalı. Kimse yatayda kodu takip etmek istemez. Eğer o kadar uzun ise yeni bir satıra geçmeniz önerilir.
 
-### Indents
+Satır uzunluğu limitine takım seviyesinde karar verilir. Genelde 80-120 karakter arasındadır.
 
-There are two types of indents:
+### Satır başı boşlukları
 
-- **A horizontal indent: 2(4) spaces.**
+İki türlü satır başı standardı vardır.
 
-    A horizontal indentation is made using either 2 or 4 spaces or the "Tab" symbol. Which one to choose is an old holy war. Spaces are more common nowadays.
+- **Yatay boşluklar:2(4) boşluk.**
+    
+    Yatay boşluklar genelde 2 veya 4 veya "Tab" sembolünden oluşur. Bunlardan hangisinin seçilmesi gerektiği bir çeşit savaştır. Bu günlerde boşluk tuşu ile boşluk bırakmak daha fazla kullanılan yöntemdir.
 
-    One advantage of spaces over tabs is that spaces allow more flexible configurations of indents than the "Tab" symbol.
+    Boşluk tuşu ile satıra başlamanın "Tab" a göre üstünlü daha esnek ayarlanabilir olmasından dolayıdır.
 
-    For instance, we can align the arguments with the opening bracket, like this:
+    Örneğin argümanlar şu şekilde hizalanabilir:
 
     ```js no-beautify
-    show(parameters,
-         aligned, // 5 spaces padding at the left  
-         one,
-         after,
-         another
+    goster(parametreler,
+         hizalandı, // soldan 5 boşluk  
+         ilki,
+         sonra,
+         digeri
       ) {
       // ...
     }
     ```
 
-- **A vertical indent: empty lines for splitting code into logical blocks.**
+- **Dikey boşluk: mantıksal blokları ayırlmak için satır arası bırakmak**
 
-    Even a single function can often be divided in logical blocks. In the example below, the initialization of variables, the main loop and returning the result are split vertically:
+    En basit bir fonkiyonda bile mantıksal blokları ayırma ihtiyacınız olabilir. Aşağıdaki örnekte, değişkenlerin tanımlanması ve sonucun dikey olarak ayrılmasına dikkat edin:
 
     ```js
-    function pow(x, n) {
-      let result = 1;
+    function üst(x, n) {
+      let sonuc = 1;
       //              <--
       for (let i = 0; i < n; i++) {
         result *= x;
@@ -125,180 +127,179 @@ There are two types of indents:
     }
     ```
 
-    Insert an extra newline where it helps to make the code more readable. There should not be more than nine lines of code without a vertical indentation.
+    Eğer okunurluluğa etki edecekse yeni bir satır arası vermekten çekinmeyin. Kanıya göre 9 satıdan fazla kod varsa arada kesin bir satır arası olmalıdır.
 
-### A semicolon
+### Noktalı virgül
 
-A semicolon should be present after each statement. Even if it could possibly be skipped.
+Her cümlenin sonuna noktalı virgül konulmalıdır. Tercihli olsa bile tercih her zaman noktalı virgül tarafında olmalıdır.
 
-There are languages where a semicolon is truly optional. It's rarely used there. But in JavaScript there are few cases when a line break is sometimes not interpreted as a semicolon. That leaves a place for programming errors.
+Bazı dillerde noktalı virgül tamamen tercihe bağlıdır. O dilde nadiren kullanılır. Fakat JavaScript için bazı durumlarda yeni satır noktalı virgül olarak algılanmayabilir. Bu da programlama hatasına neden olur.
 
-As you become more mature as a programmer, you may choose a no-semicolon style, like [StandardJS](https://standardjs.com/), but that's only when you know JavaScript well and understand possible pitfalls.
+Eğer sonuçlarını ve nasıl kullanılacağına inancınız tamsa bu durumda noktalı virgül kullanmayabilirsiniz. Fakat başlangıçta kesinlikle kullanmalısınız.
 
-### Nesting levels
+### İç içelik seviyesi
 
-There should not be too many nesting levels.
+Çok fazla iç içe kod yazmamalısınız.
 
-Sometimes it's a good idea to use the ["continue"](info:while-for#continue) directive in the loop to evade extra nesting in `if(..) { ... }`:
+Bazı durumlarda döngü içinde ["continue"](info:while-for#continue) kullanmak iyi bir fikir olabilir.
 
-Instead of:
+Aşağıdaki kullanım yerine:
 
 ```js
 for (let i = 0; i < 10; i++) {
-  if (cond) {
-    ... // <- one more nesting level
+  if (kosul) {
+    ... // <- bir tane daha koşul ( iç içe )
   }
 }
 ```
 
-We can write:
+Bu şekilde yazılabilir:
 
 ```js
 for (let i = 0; i < 10; i++) {
   if (!cond) *!*continue*/!*;
-  ...  // <- no extra nesting level
+  ...  // <- ayrıca bir tane daha iç içe kod yok.
 }
 ```
 
-A similar thing can be done with `if/else` and `return`.
+Aynı şekilde bunun benzeri `if/else` ve `return` için yapılabilir.
 
-For example, two constructs below are identical.
+Örneğin aşağıdaki iki yapı birbiri ile aynı.
 
-The first one:
+
+Birincisi:
 
 ```js
-function pow(x, n) {
+function ust(x, n) {
   if (n < 0) {
-    alert("Negative 'n' not supported");
+    alert("Negatif sayılar desteklenmemektedir");
   } else {
-    let result = 1;
+    let sonuc = 1;
 
     for (let i = 0; i < n; i++) {
-      result *= x;
+      sonuc *= x;
     }
 
-    return result;
+    return sonuc;
   }  
 }
 ```
 
-And this:
+ve ikincisi:
 
 ```js
-function pow(x, n) {
+function ust(x, n) {
   if (n < 0) {
-    alert("Negative 'n' not supported");
+    alert("Negatif sayılar desteklenmemektedir");
     return;
   }
 
-  let result = 1;
+  let sonuc = 1;
 
   for (let i = 0; i < n; i++) {
-    result *= x;
+    sonuc *= x;
   }
 
-  return result;
+  return sonuc;
 }
 ```
 
-...But the second one is more readable, because the "edge case" of `n < 0` is handled early on, and then we have the "main" code flow, without an additional nesting.
+... fakat ikincisi daha okunaklıdır, çünkü `n<0` koşulu ilk önce kontrol edildi ve buna göre aksiyon alındı sonrsında ana kod akışına devam edildi, ayrıca bir `else` yazmaya gerek kalmadı.
 
-## Functions below the code
+## Kodun altında fonksiyonlar
 
-If you are writing several "helper" functions and the code to use them, then there are three ways to place them.
+Eğer bir kaç tane "helper"(yardımcı) fonksiyon yazıyorsanız bunları yerleştirmenin üç farklı yolu var.
 
-1. Functions above the code that uses them:
+1. Kullanan kodun üstünde fonksiyonları tanımlamak:
 
     ```js
     // *!*function declarations*/!*
-    function createElement() {
+    function elementOlustur() {
       ...
     }
 
-    function setHandler(elem) {
+    function isleyiciTanimla(elem) {
       ...
     }
 
-    function walkAround() {
+    function etrafindanDolan() {
       ...
     }
 
-    // *!*the code which uses them*/!*
-    let elem = createElement();
-    setHandler(elem);
-    walkAround();
+    // *!*fonksiyonları kullanan kodlar*/!*
+    let elem = elementOlustur();
+    isleyiciTanimla(elem);
+    etrafindaDolan();
     ```
-2. Code first, then functions
+2. Önce kodu yazıp sonra fonksiyonu yazmak:
 
     ```js
-    // *!*the code which uses the functions*/!*
-    let elem = createElement();
-    setHandler(elem);
-    walkAround();
+    // *!*fonksiyonları kullanan kodlar*/!*
+    let elem = elementOlustur();
+    isleyiciTanimla(elem);
+    etrafindaDolan();
 
-    // --- *!*helper functions*/!* ---
+    // --- *!*yardımcı fonksiyonlar*/!* ---
 
-    function createElement() {
+    function elementOlustur() {
       ...
     }
 
-    function setHandler(elem) {
+    function isleyiciTanimla(elem) {
       ...
     }
 
-    function walkAround() {
+    function etrafindanDolan() {
       ...
     }
     ```
-3. Mixed: a function is described where it's first used.
 
-Most of time, the second variant is preferred.
+3. Karışık: Fonksiyonu kullanıldığı yerde tanımlama.
 
-That's because when reading a code, we first want to know "what it does". If the code goes first, then it provides that information. And then maybe we won't need to read functions at all, especially if their names are adequate to what they're doing.
+Çoğu zaman ikinci yöntem tercih edilmektedir.Çünkü kodu okumaya başladığınızda, öncelik bu kodun "ne yaptığı" olur. Eğer önce kod yazılırsa bu bazı bilgiler verir. Sonrasında belki de fonksiyonları okumamıza hiç gerek kalmayabilir. Özellikle isimlendirme iyi ise buna gerek yoktur.
 
-## Style guides
+## Stil Klavuzu
 
-A style guide contains general rules about "how to write": which quotes to use, how many spaces to indent, where to put line breaks, etc. A lot of minor things.
+Stil klavuzları genel olarak "nasıl yazılmalı" sorusunun cevabını verir: Kaç satır bırakılmalıdırı, nerede yeni satıra geçilmelidir vs. çok küçük küçük şeyler.
 
-In total, when all members of a team use the same style guide, the code looks uniform. No matter who of the team wrote it, it's still the same style.
+Genel olarak tüm takım üyeleri bu kurallara uyduğunda kod tek bir elden çıkmış gibi görünür. Kimin yazdığı önemini yitirir.
 
-Surely, a team may think out a style guide themselves. But as of now, there's no need to. There are many tried, worked-out style guides, which are easy to adopt.
+Tabi takımın kendine ait bir stil klavuzu da olabilir. Fakat çoğu daha önce denendiğinden dolayı yenisini oluşturmaya gerek yoktur. Örneğin:
 
-For instance:
 
 - [Google JavaScript Style Guide](https://google.github.io/styleguide/javascriptguide.xml)
 - [Airbnb JavaScript Style Guide](https://github.com/airbnb/javascript)
 - [Idiomatic.JS](https://github.com/rwaldron/idiomatic.js)
 - [StandardJS](https://standardjs.com/)
-- (there are more)
+- (ve birçoğu)
 
-If you're a novice developer, then you could start with the cheatsheet above in the chapter, and later browse the style guides to pick up the common principles and maybe choose one.
+Eğer kodlamaya yeni başladıysanız, şimdilik yukarıda bahsettiğimiz kopya kağıdından faydalanabilirsiniz. Daha sonra stil klavuzlarına bakarak istediğinizi örnek alabilir ve bir tanesini seçebilirsiniz.
 
-## Automated linters
+## Otomatik Düzenleyiciler
 
-There are tools that can check the code style automatically. They are called "linters".
+Kod stilinizi otomatik olarak denetleyen araçlar bulunmaktadır. Bunlara "düzenleyici" - linter denebilir.
 
-The great thing about them is that style-checking also finds some bugs, like a typo in a variable or function name.
+Bunların en önemli özelliği stili kontrol etmesinin yanında yazımdaki hataları, fonksiyon isimlerindeki problemleri bulur.
 
-So it's recommended to install one, even if you don't want to stick to a "code style". They help to find typos -- and that's already good enough.
+Bundan dolayı bir tanesini kullanmanız öneririli. Sadece kelime hatalarını düzeltmeniz için bile olsa kullanmanız iyidir.
 
-Most well-known tools are:
+En çok bilinen araçlar:
 
-- [JSLint](http://www.jslint.com/) -- one of the first linters.
-- [JSHint](http://www.jshint.com/) -- more settings than JSLint.
-- [ESLint](http://eslint.org/) -- probably the newest one.
+- [JSLint](http://www.jslint.com/) -- ilk düzenleyicilerden
+- [JSHint](http://www.jshint.com/) -- JSLintden daha fazla özelliğe sahip.
+- [ESLint](http://eslint.org/) -- en yenilerinden.
 
-All of them can do the job. The author uses [ESLint](http://eslint.org/).
+Hepside işinizi görür. Yazar  [ESLint](http://eslint.org/) kullanmatadır.
 
-Most linters are integrated with editors: just enable the plugin in the editor and configure the style.
+Çoğu otomatik düzenleyici editör ile entegre çalışır. Sadece plugin'i aktif edin, kod stilini ayarlayın yeterli.
 
-For instance, for ESLint you should do the following:
+Örneğin ESLint için şu adımları yapmalısınız:
 
-1. Install [Node.JS](https://nodejs.org/).
-2. Install ESLint with the command `npm install -g eslint` (npm is Node.JS package installer).
-3. Create a config file named `.eslintrc` in the root of your JavaScript project (in the folder that contains all your files).
+1. [Node.JS](https://nodejs.org/)'i bilgisayarınıza yükleyin.
+2. Komut satırından `npm install -g eslint` ile ESLint'i yükleyin. ( npm NodeJs paket yöneticisidir)
+3. JavaScript projenizin bulunduğu klasöre `.eslintrc` adında bir dosya oluşturun
 
-Here's an example of `.eslintrc`:
+Örnek bir `.eslintrc` dosyası:
 
 ```js
 {
@@ -314,23 +315,24 @@ Here's an example of `.eslintrc`:
   "indent": 2
 }
 ```
+Buradaki `"extends"` normalde `eslint:recommended` i kullanacağımız fakat bunun bazı özelliklerini değiştireceğimizi belirtmektedir.
 
-Here the directive `"extends"` denotes that we base on the "eslint:recommended" set of settings, and then we specify our own.
+Bunun ardından editörünüzde ESLint eklentisini aktif edin. Çoğu editörde bu eklenti bulunmaktadır.
 
-Then install/enable the plugin for your editor that integrates with ESLint. The majority of editors have it.
+Bunun yanında bu stilleri internetten indirip kullanmakta mümkündür. Bunun için 
+<http://eslint.org/docs/user-guide/getting-started> adresine bakabilirsiniz.
 
-It is possible to download style rule sets from the web and extend them instead. See <http://eslint.org/docs/user-guide/getting-started> for more details about installation.
+Bunun yanında otomatik düzenleyici kullanmanın yan etkileri de vardır. Kod düzenleyiciler eğer tanımlanmamış bir değişken kullanılmışsa, bunu anlar ve vurgular. Fakat çoğu defa bunun nedeni yanlış yazımdır. Tabi bunu farkederseniz düzeltmesi de hemen yapılabilir.
 
-Using a linter has a great side-effect: linters catch typos. For instance, when an undefined variable is accessed, a linter detects it and (if integrated with an editor) highlights it. In most cases that's a mistype. So we can fix it right ahead.
+Bundan dolayı eğer stil ile ilgilenmiyorsanız bile kullanmanız şiddetle tavsiye edilir.
 
-For that reason even if you're not concerned about styles, using a linter is highly recommended.
+Ayrıca bazı IDEler bu otomatik düzenleyicileri kendileri doğrudan entegre ederler. Bunlarda iyidir fakat düzenlemesi biraz daha karmaşık olabilir. Bundan dolayı ESLint gibi araçlar kullanmanız önerilir.
 
-Also certain IDEs support built-in linting, that also may be good, but not so tunable as ESLint.
 
-## Summary
+## Özet
 
-All syntax rules from this chapter and the style guides aim to increase readability, so all of them are debatable.
+Bu bölümdeki tüm yazım kurallar ve stil klavuzlarının amacı okunabilrliği artırmaktır. Bundan dolayı tamamı tartışılabilir.
 
-When we think about "how to write better?", the sole criterion is "what makes the code more readable and easier to understand? what helps to evade errors?" That's the main thing to keep in mind when choosing the style or discussing which one is better.
+"Nasıl daha iyi yazarız?" sorusu hakkında düşündüğümüzde, kriter "Nasıl daha iyi okunur kod yazabilir, nasıl yazarken hatalardan kaçabiliriz?" sorularını aklımızda tutmamız gereklidir. Buna göre stil seçip hangisinin daha iyi olduğuna karar verebiliriz.
 
-Read style guides to see the latest ideas about that and follow those that you find the best.
+Stil klavuzlarını okuyun ve son gelişmeler hakkında daha iyi bilgi sahibi olun, buna göre en iyiyi seçebilirsiniz.
