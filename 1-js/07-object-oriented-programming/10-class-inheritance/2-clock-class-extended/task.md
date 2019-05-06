@@ -1,12 +1,12 @@
-importance: 5
+önem: 5
 
 ---
 
-# Extended clock
+# Genişletilmiş clock sınıfı
 
-We've got a `Clock` class. As of now, it prints the time every second.
+`Clock` sınıfımız şu anda saniyede bir zamanı ekrana basmaktadır.
 
-Create a new class `ExtendedClock` that inherits from `Clock` and adds the parameter `precision` -- the number of `ms` between "ticks". Should be `1000` (1 second) by default.
+`ExtendedClock` adında `Clock`'tan türeyen yeni bir sınıf yazın ve buna `precision` -- her saniye atışında kaç `ms` geçtiğini ekrana bassın. Normalde bu `1000` ms ( 1 sn ) olmalıdır.
 
-- Your code should be in the file `extended-clock.js`
-- Don't modify the original `clock.js`. Extend it.
+- Kodlarınız `extended-clock.js` içerisinde olmalıdır.
+- Orjinal `clock.js` üzerinde bir değişiklik yapmayın. Bundan türetin.
