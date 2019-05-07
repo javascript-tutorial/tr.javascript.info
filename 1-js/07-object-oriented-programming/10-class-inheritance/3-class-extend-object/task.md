@@ -1,12 +1,12 @@
-importance: 5
+önem: 5
 
 ---
 
-# Class extends Object?
+# Sınıf Object'i genişletir mi?
 
-As we know, all objects normally inherit from `Object.prototype` and get access to "generic" object methods.
+Bildiğiniz gibi objeler `Object.prototype`'tan kalıtım alır ve "generic" obje metodlarına bu şekilde erişir.
 
-Like demonstrated here:
+Aşağıda gösterildiği gibi:
 
 ```js run
 class Rabbit {
@@ -23,10 +23,9 @@ let rabbit = new Rabbit("Rab");
 alert( rabbit.hasOwnProperty('name') ); // true
 */!*
 ```
+Pek, `"class Rabbit extends Object"` ile `"class Rabbit"` aynımıdır, öyleyse neden?
 
-So, is it correct to say that `"class Rabbit extends Object"` does exactly the same as `"class Rabbit"`, or not?
-
-Will it work?
+Aşağıdaki kod çalışır mı?
 
 ```js
 class Rabbit extends Object {
@@ -39,5 +38,4 @@ let rabbit = new Rabbit("Rab");
 
 alert( rabbit.hasOwnProperty('name') ); // true
 ```
-
-If it won't please fix the code. 
+Eğer çalışmaz ise çalışır hale getiriniz.
