@@ -1,45 +1,35 @@
-<<<<<<< HEAD
 # The Modern JavaScript Tutorial in Turkish
 
 This repository hosts the translation of <https://javascript.info> in Turkish.
-=======
-# The Modern JavaScript Tutorial
 
-This repository hosts the English content of the Modern JavaScript Tutorial, published at [https://javascript.info](https://javascript.info).
->>>>>>> 19223ae762f03cdff4e83f6f963f4f427af93847
 
-Please help us to make the translation better.
+**That's how you can contribute:**
 
 - See the [Turkish Translate Progress](https://github.com/javascript-tutorial/tr.javascript.info/issues/1) issue.
 - Choose an unchecked article you'd like to translate.
-- Add a comment to that issue to inform the maintainer that you're translating it.
+- Add a comment with the article title to the issue, e.g. `An Introduction to JavaScript`.
+    - Our bot will mark it in the issue, for everyone to know that you're translating it.
+    - Your comment should contain only the title.
 - Fork the repository, translate and send a PR when done.
+    - PR title should match article title, the bot will write it's number into the issue.
 
-<<<<<<< HEAD
+Please kindly allow maintainers to review and merge or request changes in your translation.
+   
+If maintainers do not respond, or if you'd like to become a maintainer, write us at the [main repo](https://github.com/javascript-tutorial/en.javascript.info/issues/new).
+    
+**Let others know what you're translating, in message boards or chats in your language. Invite them to join!**
+
 🎉 Thank you!
 
 Your name and the contribution size will appear in the "About project" page when the translation gets published.
 
-P.S. The full list of languages can be found at <https://github.com/javascript-tutorial/translate>.
+P.S. The full list of languages can be found at <https://javascript.info/translate>.
 
 ## Structure
 
 Every chapter, an article or a task resides in its own folder.
 
 The folder is named `N-url`, where `N` – is the number for sorting (articles are ordered), and `url` is the URL-slug on the site.
-=======
-See <https://github.com/javascript-tutorial/translate> for the details.
-
-## Contributions
-
-We'd also like to collaborate on the tutorial with other people.
-
-Something's wrong? A topic is missing? Explain it to people, add as PR 👏
-
-**You can edit the text in any editor.** The tutorial uses enhanced "markdown" format, easy to grasp. And if you want to see how it looks on-site, there's a server to run the tutorial locally at <https://github.com/javascript-tutorial/server>.  
-
-The list of contributors is available at <https://javascript.info/about#contributors>.
->>>>>>> 19223ae762f03cdff4e83f6f963f4f427af93847
 
 The folder has one of files:
 
@@ -53,9 +43,15 @@ Additional resources and examples for the article or the task, are also in the s
 
 ## Translation Tips
 
-The translation doesn't have to be word-by-word precise. It should be technically correct and explain well.
+Please keep line breaks and paragraphs "as is": don't add newlines and don't remove existing ones. Makes it easy to merge future changes from the English version into the translation. 
 
 If you see that the English version can be improved – great, please send a PR to it.
+
+### Terms
+
+- Some specification terms are not to be translated, e.g. "Function Declaration" can be left "as is".
+- For other terms like `resolved promise`, `slash`, `regexp`, and so on look a good glossary, hopefully there's one for your language already.
+    - If there's no dictionary, look for translations in manuals, such as [MDN](https://developer.mozilla.org/en-US/).
 
 ### Text in Code Blocks
 
@@ -106,23 +102,35 @@ Example:
 [JavaScript](https://es.wikipedia.org/wiki/JavaScript) es un lenguaje de programación.
 ```
 
-For links to MDN, that are only partially translated, also use the language-specific version.
+For links to MDN, a partially translated version is ok.
 
 If a linked article has no translated version, leave the link "as is".
 
+### Metadata
+
+Some files, usually tasks, have YAML metadata at the top, delimited by `---`:
+
+```md
+importance: 5
+
+---
+...
+```
+
+Please don't translate "importance" (and other top metadata).
+
+### Anchors
+
+Some headers have `[#anchor]` at the end, e.g.
+
+```md
+## Spread operator [#spread-operator]
+```
+
+Please don't translate or remove the `[#...]` part, it's for URL anchors.
 
 ## Running locally
 
-You can run the tutorial locally, to immediately see the changes on-site.
+You can run the tutorial server locally to see how the translation looks.
 
-<<<<<<< HEAD
-The server is at <https://github.com/javascript-tutorial/server>. 
-=======
-Each of these files starts from the `# Main header`.
-
-It's very easy to add something new.
-
----
-💓  
-Ilya Kantor @iliakan
->>>>>>> 19223ae762f03cdff4e83f6f963f4f427af93847
+The server and install instructions are at <https://github.com/javascript-tutorial/server>. 
