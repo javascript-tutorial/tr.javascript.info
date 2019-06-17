@@ -5,6 +5,7 @@ This repository hosts the translation of <https://javascript.info> in Turkish.
 
 **That's how you can contribute:**
 
+<<<<<<< HEAD
 - See the [Turkish Translate Progress](https://github.com/javascript-tutorial/tr.javascript.info/issues/1) issue.
 - Choose an unchecked article you'd like to translate.
 - Add a comment with the article title to the issue, e.g. `An Introduction to JavaScript`.
@@ -12,6 +13,9 @@ This repository hosts the translation of <https://javascript.info> in Turkish.
     - Your comment should contain only the title.
 - Fork the repository, translate and send a PR when done.
     - PR title should match article title, the bot will write it's number into the issue.
+=======
+See <https://javascript.info/translate> for the details.
+>>>>>>> 027933531e121650120f7e8385f691de99af12d2
 
 Please kindly allow maintainers to review and merge or request changes in your translation.
    
@@ -114,6 +118,7 @@ Some files, usually tasks, have YAML metadata at the top, delimited by `---`:
 importance: 5
 
 ---
+<<<<<<< HEAD
 ...
 ```
 
@@ -134,3 +139,7 @@ Please don't translate or remove the `[#...]` part, it's for URL anchors.
 You can run the tutorial server locally to see how the translation looks.
 
 The server and install instructions are at <https://github.com/javascript-tutorial/server>. 
+=======
+♥  
+Ilya Kantor @iliakan
+>>>>>>> 027933531e121650120f7e8385f691de99af12d2
