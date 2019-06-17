@@ -1,3 +1,3 @@
-# Objects, classes, inheritance
+# Objeler, Sınıflar ve Kalıtım
 
-In this section we return to objects and learn them even more in-depth.
+Bu bölümde objelere geri dönecek ve daha derinlemesine inceleyeceğiz.
