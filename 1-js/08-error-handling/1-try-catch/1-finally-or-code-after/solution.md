@@ -1,8 +1,8 @@
-The difference becomes obvious when we look at the code inside a function.
+Bir fonksiyon içerisinden baktığımızda farklılıklar daha aşikar olmakta.
 
-The behavior is different if there's a "jump out" of `try..catch`.
+"dışarı sıçra" seçeneği olduğunda `try..catch` davranışı daha farklı olmaktadır.
 
-For instance, when there's a `return` inside `try..catch`. The `finally` clause works in case of *any* exit from `try..catch`, even via the `return` statement: right after `try..catch` is done, but before the calling code gets the control.
+Örneğin `try..catch` içerieinde bir `return` olduğunda. `try..catch` bloğunun sonunda her türlü `finally`'e uğramak zorunludur, bu `return` bile olsa.
 
 ```js run
 function f() {
@@ -20,8 +20,7 @@ function f() {
 
 f(); // cleanup!
 ```
-
-...Or when there's a `throw`, like here:
+...Veya aşağıdaki gibi `throw` varsa:
 
 ```js run
 function f() {
@@ -43,5 +42,4 @@ function f() {
 
 f(); // cleanup!
 ```
-
-It's `finally` that guarantees the cleanup here. If we just put the code at the end of `f`, it wouldn't run.
+Burada `finally` temizliğin yapılacağının garantisini verir. Eğer temizlik kodunu `f`'in sonuna koyarsanız çalışmayabilir.
