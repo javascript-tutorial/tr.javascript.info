@@ -2,15 +2,15 @@ importance: 5
 
 ---
 
-# Rewrite 'if' into '?'
+# 'if' ile yazılan koşulu '?' çevirin.
 
-Rewrite this `if` using the ternary operator `'?'`:
+Aşağıdaki `if` cümlesini "üçlü" operatöre `'?`' olarak yazın:
 
 ```js
 if (a + b < 4) {
-  result = 'Below';
+  sonuc = 'Düşük';
 } else {
-  result = 'Over';
+  sonuc = 'Yüksek';
 }
 ```
 

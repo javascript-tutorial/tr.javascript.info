@@ -2,14 +2,13 @@ importance: 2
 
 ---
 
-# Show the sign
+# Cevabı göster
 
-Using `if..else`, write the code which gets a number via `prompt` and then shows in `alert`:
+`if..else` cümlesi kullanarak `prompt` komutu ile soru sorup `alert` ile sonucu gösterin.
 
-- `1`, if the value is greater than zero,
-- `-1`, if less than zero,
-- `0`, if equals zero.
+- `1`, değer sıfırdan büyük ise,
+- `-1`, sıfırdan küçük ise,
+- `0`, sıfır ise.
 
-In this task we assume that the input is always a number.
-
+Bu örnekte kullanıcının gireceği tüm değerlerin sayı olduğunu varsayabilirsiniz.
 [demo src="if_sign"]

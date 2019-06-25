@@ -1,12 +1,12 @@
-**Yes, it will.**
+**Evet gösterecek.**
 
-Any string except an empty one (and `"0"` is not empty) becomes `true` in the logical context.
+Boş karakter dışındaki her karakter `true` döndürecektir.
 
-We can run and check:
+Çalıştırıp deneyebilirsiniz:
 
 ```js run
 if ("0") {
-  alert( 'Hello' );
+  alert( 'Merhaba' );
 }
 ```
 

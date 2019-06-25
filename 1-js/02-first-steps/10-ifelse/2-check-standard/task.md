@@ -2,11 +2,11 @@ importance: 2
 
 ---
 
-# The name of JavaScript
+# JavaScript'in ismi
 
-Using the `if..else` construct, write the code which asks: 'What is the "official" name of JavaScript?'
+`if..else` bloğu kullanarak "JavaScript\'in resmi ismi nedir?" sorusunu sorun. 
 
-If the visitor enters "ECMAScript", then output "Right!", otherwise -- output: "Didn't know? ECMAScript!"
+Eğer kullanıcı "ECMAScript" cevabı verirse "Doğru" diğer türlü "ECMAScript olduğunu bilmiyormusun?" yazısını alarm olarak gösterin.
 
 ![](ifelse_task2.png)
 
