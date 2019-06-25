@@ -1,239 +1,229 @@
-# Functions
+# Fonksiyonlar
 
-Quite often we need to perform a similar action in many places of the script.
+Çoğu zaman kod yazarken belirli bölümleri tekrarlama ihtiyacı duyulur.
 
-For example, we need to show a nice-looking message when a visitor logs in, logs out and maybe somewhere else.
+Örneğin kullanıcı hesabına giriş yaptığında veya çıktığında güzel görünümlü bir mesaj göstermek istenebilir.
 
-Functions are the main "building blocks" of the program. They allow the code to be called many times without repetition.
+Fonksiyonlar programın "yapı taşıdır". Bir çok defa bu fonksiyonlar çağırılarak tekrardan bu kodları yazmaktan kurtulunur.
 
-We've already seen examples of built-in functions, like `alert(message)`, `prompt(message, default)` and `confirm(question)`. But we can create functions of our own as well.
+Aslında var olan `alert(mesaj)`, `prompt(mesaj,varsayilan)` ve `confirm(soru)` gibi fonksiyonları gördük. Fakat artık bunları yazmanın zamanı geldi.
 
-## Function Declaration
+## Fonksiyon Tanımlama
 
-To create a function we can use a *function declaration*.
+Fonksiyon tanımlamak için *function tanım* kullanılır.
 
-It looks like this:
-
+Aşağıdaki gibi görünür:
 ```js
-function showMessage() {
-  alert( 'Hello everyone!' );
+function mesajGoster() {
+  alert( 'Merhaba millet!' );
 }
 ```
 
-The `function` keyword goes first, then goes the *name of the function*, then a list of *parameters* between the parentheses (empty in the example above) and finally the code of the function, also named "the function body", between curly braces.
+`function` kelimesi önce yazılır, ardından *fonksiyonun adı* ve sonra parametlerin yazılacağı parantez açılır ve ihtiyaç duyulan parametreler yazılır, sonrasında ise kapatılıp süslü parantez ile *fonksiyon gövdesi*ne başlanır.
 
 ![](function_basics.png)
 
-Our new function can be called by its name: `showMessage()`.
+Yeni fonksyion ismiyle şu şekilde çağırılır: `mesaGoster()`.
 
-For instance:
+Örneğin:
 
 ```js run
-function showMessage() {
-  alert( 'Hello everyone!' );
+function mesajGoster() {
+  alert( 'Merhaba millet' );
 }
 
 *!*
-showMessage();
-showMessage();
+mesajGoster();
+mesajGoster();
 */!*
 ```
 
-The call `showMessage()` executes the code of the function. Here we will see the message two times.
+`mesajGoster()` fonksiyonu kodu çalıştırır. Bu kod sonrasında `Merhaba millet` uyarsını iki defa göreceksiniz.
 
-This example clearly demonstrates one of the main purposes of functions: to avoid code duplication.
+Bu örnek açıkça fonksiyonların ana amacını gösteriyor: Kod tekrarından kaçınma.
 
-If we ever need to change the message or the way it is shown, it's enough to modify the code in one place: the function which outputs it.
+Eğer mesajı değiştirmek istersek bir yerde değiştirdiğimizde bu fonksiyonu kullanan her yerde değişiklik olacaktır.
 
-## Local variables
+## Yerel değişkenler
 
-A variable declared inside a function is only visible inside that function.
+Fonksiyon içinde tanımlanan değişkene sadece o fonksiyon içerisinde erişilebilir.
 
-For example:
+Örneğin:
 
 ```js run
-function showMessage() {
+function mesajGoster() {
 *!*
-  let message = "Hello, I'm JavaScript!"; // local variable
+  let mesaj = "Merhaba! Ben Javascript"; // Yerel Değişken
 */!*
 
-  alert( message );
+  alert( mesaj );
 }
 
-showMessage(); // Hello, I'm JavaScript!
+mesajGoster(); // Merhaba! Ben Javascript
 
-alert( message ); // <-- Error! The variable is local to the function
+alert( mesaj ); // <-- Hata! Bu değişken `mesajGoster` fonksiyonuna aittir.
 ```
 
-## Outer variables
+## Dış Değişkenler
 
-A function can access an outer variable as well, for example:
+Fonksiyon, kendi dışında oluşturulmuş değişkenlere erişebilir. Örneğin:
 
 ```js run no-beautify
-let *!*userName*/!* = 'John';
+let *!*kullaniciAdi*/!* = 'Adem';
 
-function showMessage() {
-  let message = 'Hello, ' + *!*userName*/!*;
+function mesajGoster() {
+  let mesaj = 'Hello, ' + *!*kullaniciAdi*/!*;
+  alert(mesaj);
+}
+
+mesajGoster(); // Merhaba, Adem
+```
+
+Fonksiyon dışarıda bulunan değişkenlere tam kontrol sağlar. Hatta modifiye edebilir.
+
+Örneğin:
+
+```js run
+let *!*kullaniciAdi*/!* = 'Adem';
+
+function mesajGoster() {
+  *!*kullaniciAdi*/!* = "Yusuf"; // (1) dışarıda bulunan değişkenin değeri değişti.
+
+  let mesaj = 'Merhaba, ' + *!*userName*/!*;
+  alert(mesaj);
+}
+
+alert( mesaj ); // Fonksiyon çağırılmadan  *!*Adem*/!* 
+
+mesajGoster();
+
+alert( kullaniciAdi ); // fonksiyon çağırıldıktan sonra *!*Yusuf*/!*, 
+```
+
+Dışarıda bulunan değişkenler eğer yerel değişken yoksa kullanılırlar. Bazen eğer `let` ile değişken oluşturulmazsa karışıklık olabilir.
+
+Eğer aynı isim ile fonksiyon içerisinde bir değişken oluşturulmuş ise, fonksiyon içerisindeki değişkenin değeri düzenlenebilir.  Örneğin aşağıda yerel bir değişken dıştaki değişken ile aynı isimdedir. Dolayısıyla yerel değişken düzenlenecektir. Dıştaki değişken bundan etkilenmeyecektir.
+
+```js run
+let kullaniciAdi = 'Adem';
+
+function mesajGoster() {
+*!*
+  let kullaniciAdi = "Yusuf"; // yerel değişken tanımla
+*/!*
+
+  let mesaj = 'Merhaba, ' + kullaniciAdi; // *!*Yusuf*/!*
   alert(message);
 }
 
-showMessage(); // Hello, John
+// buradaki fonksiyon kendi değişkenini yaratacak ve onu kullanacak.
+mesajGoster();
+
+alert( userName ); // *!*Adem*/!*, değişmedi!!!, fonksiyon dışarıda bulunan değişkene erişmedi.
 ```
 
-The function has full access to the outer variable. It can modify it as well.
+```smart header="Evrensel(Global) Değişkenler"
 
-For instance:
+Fonksiyonların dışına yazılan her değişken, yukarıda bulunan `kullaniciAdi` gibi, *evrensel* veya  *global* değişken olarak adlandırılırlar.
+
+Global değişkenlere her fonksiyon içerisinden erişilebilir.(Yerel değişkenler tarafından aynı isimle bir değişken tanımlanmamışsa)
+
+Genelde fonksiyonlar yapacakları işe ait tüm değişkenleri tanımlarlara, global değişkenler ise sadece proje seviyesinde bilgi tutarlar, çünkü proje seviyesinde bilgilerin projenin her yerinden erişilebilir olması oldukça önemlidir. Modern kodda az veya hiç global değer olmaz. Çoğu fonksiyona ait değişkenlerdir.
+
+```
+
+## Parametreler
+Paramterelere isteğe bağlı olarak veri paslanabilir. Bunlara *fonksiyon argümanları* da denir.
+
+Aşağıdaki fonksiyon iki tane parametreye sahiptir. `denBeri` ve `metin`
 
 ```js run
-let *!*userName*/!* = 'John';
-
-function showMessage() {
-  *!*userName*/!* = "Bob"; // (1) changed the outer variable
-
-  let message = 'Hello, ' + *!*userName*/!*;
-  alert(message);
-}
-
-alert( userName ); // *!*John*/!* before the function call
-
-showMessage();
-
-alert( userName ); // *!*Bob*/!*, the value was modified by the function
-```
-
-The outer variable is only used if there's no local one.
-
-If a same-named variable is declared inside the function then it *shadows* the outer one. For instance, in the code below the function uses the local `userName`. The outer one is ignored:
-
-```js run
-let userName = 'John';
-
-function showMessage() {
-*!*
-  let userName = "Bob"; // declare a local variable
-*/!*
-
-  let message = 'Hello, ' + userName; // *!*Bob*/!*
-  alert(message);
-}
-
-// the function will create and use its own userName
-showMessage();
-
-alert( userName ); // *!*John*/!*, unchanged, the function did not access the outer variable
-```
-
-```smart header="Global variables"
-Variables declared outside of any function, such as the outer `userName` in the code above, are called *global*.
-
-Global variables are visible from any function (unless shadowed by locals).
-
-It's a good practice to minimize the use of global variables. Modern code has few or no globals. Most variables reside in their functions. Sometimes though, they can be useful to store project-level data.
-```
-
-## Parameters
-
-We can pass arbitrary data to functions using parameters (also called *function arguments*) .
-
-In the example below, the function has two parameters: `from` and `text`.
-
-```js run
-function showMessage(*!*from, text*/!*) { // arguments: from, text
-  alert(from + ': ' + text);
+function mesajGoster(*!*gonderen, metin*/!*) { // argümanlar: gonderen, metin
+  alert(gonderen + ': ' + metin);
 }
 
 *!*
-showMessage('Ann', 'Hello!'); // Ann: Hello! (*)
-showMessage('Ann', "What's up?"); // Ann: What's up? (**)
+mesajGoster('Ahmet', 'Merhaba!'); // Ahmet: Merhaba! (*)
+mesajGoster('Mehmet', "Naber?"); // Mehmet: Naber? (**)
 */!*
 ```
 
-When the function is called in lines `(*)` and `(**)`, the given values are copied to local variables `from` and `text`. Then the function uses them.
+Eğer fonksiyonlar `(*)` ve `(**)` deki gibi yazılırsa doğrudan fonksiyonda `gonderen` ve `metin` yerel değişkenlerine atanırlar. Sonrasında fonksiyon bunları kullanabilir.
 
-Here's one more example: we have a variable `from` and pass it to the function. Please note: the function changes `from`, but the change is not seen outside, because a function always gets a copy of the value:
+Aşağıda `gonderen` değişkeni fonksiyona paslanmakta. Dikkat ederseniz fonksiyon içerisinde `from` değişse bile bu dışarıda bulunan değişkeni etkilememekte. Çünkü fonksiyon bu değişkenin her zaman kopyasını kullanır:
 
 
 ```js run
-function showMessage(from, text) {
+function mesajGoster(gonderen,metin) {
 
 *!*
-  from = '*' + from + '*'; // make "from" look nicer
+  gonderen = '*' + gonderen + '*'; // "gonderen" biraz daha güzel hale getirildi.
 */!*
 
-  alert( from + ': ' + text );
+  alert( gonderen + ': ' + metin );
 }
 
-let from = "Ann";
+let gonderen = "Mahmut";
 
-showMessage(from, "Hello"); // *Ann*: Hello
+mesajGoster(gonderen, "Merhaba"); // *Mahmut*: Merhaba
 
-// the value of "from" is the same, the function modified a local copy
-alert( from ); // Ann
+// "from" değişkeninin değeri sadece fonksiyon içerisinde değişti. Çünkü bu değişken paslandığında fonksiyon yerel bir kopyası üzerinde çalışır
+alert( gonderen ); // Mahmut
 ```
 
-## Default values
+### Varsayılan Değerler
 
-If a parameter is not provided, then its value becomes `undefined`.
+Eğer fonksiyon argümanına bir değer gönderilmemişse fonksiyon içerisinde bu değişken `undefined` olur.
 
-For instance, the aforementioned function `showMessage(from, text)` can be called with a single argument:
+Örneğin `mesajGoster(gonderen,metin)` fonksiyonu tek argüman ile de çağırılabilir.
 
 ```js
-showMessage("Ann");
+mesajGoster("Mahmut");
 ```
+Bu bir hata değildir. Fonksiyon eğer bu şekilde çağırılırsa, yani `metin` yoksa, `metin == undefined` varsayılır. Yukarıdaki fonksiyon çağırıldığında sonuç "Mahmut: undefined" olacaktır.
 
-That's not an error. Such a call would output `"Ann: undefined"`. There's no `text`, so it's assumed that `text === undefined`.
-
-If we want to use a "default" `text` in this case, then we can specify it after `=`:
+Eğer "varsayılan" olarak `metin` değeri atamak istiyorsanız, `=` işareti ile tanımlamanız gerekmekte.
 
 ```js run
-function showMessage(from, *!*text = "no text given"*/!*) {
-  alert( from + ": " + text );
+function mesajGoster(gonderen, *!*metin = "metin gönderilmedi"*/!*) {
+  alert(gonderen + ": " + metin );
 }
 
-showMessage("Ann"); // Ann: no text given
+mesajGoster("Mahmut"); // Mahmut: metin gönderilmedi
 ```
+Eğer `metin` değeri paslanmazsa, `"metin gönderilmedi"` çıktısı alınır.
 
-Now if the `text` parameter is not passed, it will get the value `"no text given"`
-
-Here `"no text given"` is a string, but it can be a more complex expression, which is only evaluated and assigned if the parameter is missing. So, this is also possible:
+`"metin gönderilmedi"` şu anda karakter dizisidir. Fakat daha karmaşık yapılar olabilir. Sadece parametre gönderilmez ise bu değer atanır. Aşağıdaki kullanım da pekala doğrudur.
 
 ```js run
-function showMessage(from, text = anotherFunction()) {
-  // anotherFunction() only executed if no text given
-  // its result becomes the value of text
+function mesajGoster(gonderen, metin = digerFonksiyon()) {
+  // eğer metin gönderilmez ise digerFonksiyon çalışır ve sonucu "metin" değişkenine atanır.
 }
 ```
 
-```smart header="Evaluation of default parameters"
 
-In JavaScript, a default parameter is evaluated every time the function is called without the respective parameter. In the example above, `anotherFunction()` is called every time `showMessage()` is called without the `text` parameter. This is in contrast to some other languages like Python, where any default parameters are evaluated only once during the initial interpretation.
+````smart header="Eski tip varsayılan parametreler"
+Eski tip JavaScript varsayılan parametreleri desteklememekteydi. Bundan dolayı farklı yöntemler geliştirdi. Eğer eskiden yazılmış kodları okursanız bu kodlara rastlayabilirsiniz.
 
-```
-
-
-````smart header="Default parameters old-style"
-Old editions of JavaScript did not support default parameters. So there are alternative ways to support them, that you can find mostly in the old scripts.
-
-For instance, an explicit check for being `undefined`:
-
+Örneğin doğrudan  `undefined` kontrolü:
 ```js
-function showMessage(from, text) {
+function mesajGoster(gonderen, metin) {
 *!*
-  if (text === undefined) {
-    text = 'no text given';
+  if (metin === undefined) {
+    text = 'metin gönderilmedi';
   }
 */!*
 
-  alert( from + ": " + text );
+  alert( gonderen + ": " + metin );
 }
 ```
+...Veya `||` operatörü:
 
-...Or the `||` operator:
 
 ```js
-function showMessage(from, text) {
-  // if text is falsy then text gets the "default" value
-  text = text || 'no text given';
+function mesajGoster(gonderen, metin) {
+  // eğer metin yanlış değer ise( bu durumda undefined yanlış değerdir hatırlarsanız ) 'metin gönderilmedi' ata.
+  text = text || 'metin gönderilmedi';
   ...
 }
 ```
@@ -242,220 +232,221 @@ function showMessage(from, text) {
 ````
 
 
-## Returning a value
+## Değer dönderme
 
-A function can return a value back into the calling code as the result.
+Fonksiyon çağırıldığı yere değer döndürebilir.
 
-The simplest example would be a function that sums two values:
+En basit örnek iki değeri toplayan bir fonksiyon olabilir.
 
 ```js run no-beautify
-function sum(a, b) {
+function toplam(a, b) {
   *!*return*/!* a + b;
 }
 
-let result = sum(1, 2);
-alert( result ); // 3
+let sonuc = toplam(1, 2);
+alert( sonuc ); // 3
 ```
 
-The directive `return` can be in any place of the function. When the execution reaches it, the function stops, and the value is returned to the calling code (assigned to `result` above).
+`return` fonksiyon içerisinde her yerde kullanılabilir. Kod `return` satırına eriştiğinde fonksiyon durur ve değer fonksiyonun çağırıldığı yere geri gönderilir.
 
-There may be many occurrences of `return` in a single function. For instance:
+Bir fonksiyon içerisinde birden fazla `return` fonksiyonu da olabilir.
 
 ```js run
-function checkAge(age) {
-  if (age > 18) {
+function yasKontrolu(yas) {
+  if (yas > 18) {
 *!*
     return true;
 */!*
   } else {
 *!*
-    return confirm('Do you have permission from your parents?');
+    return confirm('Ebevenylerinin izni var mı?');
 */!*
   }
 }
 
-let age = prompt('How old are you?', 18);
+let yas = prompt('Kaç yaşındasın?', 18);
 
-if ( checkAge(age) ) {
-  alert( 'Access granted' );
+if ( yasKontrolu(yas) ) {
+  alert( 'İzin verildi' );
 } else {
-  alert( 'Access denied' );
+  alert( 'Reddedildi' );
 }
 ```
+`return` değer döndermek zorunda değildir. Bu fonksiyondan anında çıkmayı sağlar.
 
-It is possible to use `return` without a value. That causes the function to exit immediately.
-
-For example:
+Örneğin:
 
 ```js
-function showMovie(age) {
-  if ( !checkAge(age) ) {
+function filmGoster(age) {
+  if ( !yasKontrolu(yas) ) {
 *!*
     return;
 */!*
   }
 
-  alert( "Showing you the movie" ); // (*)
+  alert( "Filmleri izleyebilirsin" ); // (*)
   // ...
 }
 ```
+Yukarıdaki kodda  eğer `yasKontrolu(yas)` `false` dönderir ise  `filmGoster` fonksiyonu `alert`e erişemeyecektir.
 
-In the code above, if `checkAge(age)` returns `false`, then `showMovie` won't proceed to the `alert`.
+````smart header="boş veya birşey döndermeyen fonksiyon `undefined` dönderir"
+Eğer bir fonksiyon değer döndermiyor ise bu fonksiyon `undefined` dönderiyor ile aynı anlama gelir.
 
-````smart header="A function with an empty `return` or without it returns `undefined`"
-If a function does not return a value, it is the same as if it returns `undefined`:
 
 ```js run
-function doNothing() { /* empty */ }
+function biseyYapma() { /* boş */ }
 
-alert( doNothing() === undefined ); // true
+alert( biseyYapma() === undefined ); // true
 ```
 
-An empty `return` is also the same as `return undefined`:
+Boş dönderen `return`, `return undefined` ile aynıdır.
 
 ```js run
-function doNothing() {
+function biseyYapma() {
   return;
 }
 
-alert( doNothing() === undefined ); // true
+alert( biseyYapma() === undefined ); // true
 ```
 ````
 
-````warn header="Never add a newline between `return` and the value"
-For a long expression in `return`, it might be tempting to put it on a separate line, like this:
+````warn header="`return` ve `değer` arasına hiç bir zaman satır eklemeyin"
+
+Uzun `return` ifadelerinde, yeni bir satırda yazmak size kullanışlı gelebilir, örneğin aşağıdaki gibi:
 
 ```js
 return
- (some + long + expression + or + whatever * f(a) + f(b))
+ (bazı + uzun + ifade + veya + baska + birsey  * f(a) + f(b))
 ```
-That doesn't work, because JavaScript assumes a semicolon after `return`. That'll work the same as:
+Bu çalışmaz, çünkü JavaScript `return` kelimesinden sonra `;` varsayara ve `undefined` döner. Bu aşağoıdaki ifade ile aynıdır:
 
 ```js
 return*!*;*/!*
- (some + long + expression + or + whatever * f(a) + f(b))
+  (bazı + uzun + ifade + veya + baska + birsey  * f(a) + f(b))
 ```
-So, it effectively becomes an empty return. We should put the value on the same line instead.
+Bundan dolayı, tam olarak boş return olur. Geri döndereceğimiz değer ile return aynı satırda olmalıdır.
+
 ````
 
-## Naming a function [#function-naming]
+## Fonksiyonu isimlendirme [#fonksiyon-isimlendirme]
 
-Functions are actions. So their name is usually a verb. It should be brief, as accurate as possible and describe what the function does, so that someone reading the code gets an indication of what the function does.
+Fonksiyonlar eylemdir. Bundan dolayı isimleri yüklem olmalıdır. Net olmalı ve fonksiyonun ne işe yaradığını ifade edebilmelidir. Böylece kim ki kodu okur, ne yazıldığınına dair bir fikri olur.
 
-It is a widespread practice to start a function with a verbal prefix which vaguely describes the action. There must be an agreement within the team on the meaning of the prefixes.
+Genel itibari ile eylemi tanımlayan önek kullanmak iyi bir yöntemdir. Bu önekler ile ilgili birlikte kod yazdığınız kişiler ile uyum içerisinde olmalısınız. 
 
-For instance, functions that start with `"show"` usually show something.
+Örneğin `"show"` fonksiyonu her zaman birşeyleri `gösterir`.
 
-Function starting with...
+Fonksiyonlar şöyle başlayabilir.
 
-- `"get…"` -- return a value,
-- `"calc…"` -- calculate something,
-- `"create…"` -- create something,
-- `"check…"` -- check something and return a boolean, etc.
+- `"get…"` -- değer dönderir,
+- `"calc…"` -- birşeyler hesaplar,
+- `"create…"` -- birşeyler yaratır,
+- `"check…"` -- birşeyleri kontrol eder ve boolean dönderir.
 
-Examples of such names:
+Böyle isimlere örnek:
+
+Not: ingilizce de bu daha kolay önce eylemi yazıyorlar. Türkçe de fiil genelde sonda olduğundan dolayı sıkıntı yaşanmaktadır. Fonksiyonlarınızı adlandırırken ingilizce adlandırırsanız okunması daha kolay olacaktır.
 
 ```js no-beautify
-showMessage(..)     // shows a message
-getAge(..)          // returns the age (gets it somehow)
-calcSum(..)         // calculates a sum and returns the result
-createForm(..)      // creates a form (and usually returns it)
-checkPermission(..) // checks a permission, returns true/false
+sendMessage(..)     // mesaj gösterir
+getAge(..)          // yaşı dönderir
+calcSum(..)         // toplamı hesaplar ve geri dönderir.
+createForm(..)      // form oluşturur ve genelde geri dönderir.
+checkPermission(..) // izni kontor eder. true/false
+```
+Önek ile fonksiyonlar bir anlamda ipucu verir ve ne tür değerler dönmesi gerektiğini anlatır.
+
+```smart header="Bir fonksiyon -- bir eylem"
+Bir fonksiyon sadece isminin tanımladığı işi yapmalı.
+
+İki birbirinden farklı eylem çoğu zaman iki fonksiyon ile yazılmalıdır, birlikte çağılsalar bile ( bu durumda 3. bir fonksiyon bunları çağırmalıdır )
+
+Bu kurallar şu şekilde bozulabilir:
+
+- `getAge` -- Eğer bu fonksiyon içeride `alert` ile yaş gösteriyor ise yanlış olur. Bu fonksiyonun sadece yaşı alıp döndermesi gerekmekte.
+- `createForm` -- Eğer dökümanı değiştiriyorsa veya forma birşey ekliyorsa yanlış olur. ( Sadece formu yaratmalı ve geri dönmelidir )
+- `checkPermission` -- Eğer `izin verildi/reddedildi` gibi mesajları bu fonksiyon gösterirse yanlış olur. Sadece kontrol etmeli ve geri dönmelidir.
+
+Bu örnekler genel olarak öneklerin nasıl tahmin edilmesi gerektiğini gösterir. Bunların ne anlama geleceği siz ve takımınıza kalmıştır. Belki sizin kodunuz için farklı bir şekilde davranması gayet doğal olabilir. Fakat yine de öneklere ait bir anlamlandırmanız olmalıdır. Ön ek ne yapabilir ne yapamaz vs. Tüm aynı önekli fonksiyonlar sizin koyduğunuz kurala uymalı ve tüm takım bu kuralları biliyor olmalıdır.
 ```
 
-With prefixes in place, a glance at a function name gives an understanding what kind of work it does and what kind of value it returns.
+```smart header="Aşırı derecede kısa fonksiyon isimleri"
 
-```smart header="One function -- one action"
-A function should do exactly what is suggested by its name, no more.
+Çokça kullanılan fonksiyonlar genelde aşırı derece kısa isimlere sahip olurlar. 
 
-Two independent actions usually deserve two functions, even if they are usually called together (in that case we can make a 3rd function that calls those two).
+Örneğin, [jQuery](http://jquery.com) kütüphanesi `$` fonksiyonu ile tanımlanır.  [LoDash](http://lodash.com/) kütüphanesi de keza kendine has fonksiyon `_` kullanır.
 
-A few examples of breaking this rule:
-
-- `getAge` -- would be bad if it shows an `alert` with the age (should only get).
-- `createForm` -- would be bad if it modifies the document, adding a form to it (should only create it and return).
-- `checkPermission` -- would be bad if it displays the `access granted/denied` message (should only perform the check and return the result).
-
-These examples assume common meanings of prefixes. You and your team are free to agree on other meanings, but usually they're not much different. In any case, you should have a firm understanding of what a prefix means, what a prefixed function can and cannot do. All same-prefixed functions should obey the rules. And the team should share the knowledge.
+Bunlar istisnadır. Genel olarak fonksiyon isimleri kısa ve açıklayıcı olmalıdır.
 ```
 
-```smart header="Ultrashort function names"
-Functions that are used *very often* sometimes have ultrashort names.
+## Fonksiyonlar == Yorumlar
 
-For example, the [jQuery](http://jquery.com) framework defines a function with `$`. The [Lodash](http://lodash.com/) library has its core function named `_`.
+Fonksiyonlar kısa olmalı ve sadece birşeyi yapmalıdırlar. Eğer uzun ise bu durumda ayırıp yeni bir fonksiyon yapmanız daha iyi olabilir. Bazen bu kuralı takip etmek zor olabilir. Fakat kesinlikle iyi birşeydir.
 
-These are exceptions. Generally functions names should be concise and descriptive.
-```
+Farklı fonksiyon daha kolay bir şekilde çalışması kontrol edilebilir. Varlığı harika bir yorumdur.
 
-## Functions == Comments
+Örneğin, aşağıdaki iki `asalGoster(n)` fonksiyonunu karşılaştırın. [Asal Sayı](https://tr.wikipedia.org/wiki/Asal_say%C4%B1)
 
-Functions should be short and do exactly one thing. If that thing is big, maybe it's worth it to split the function into a few smaller functions. Sometimes following this rule may not be that easy, but it's definitely a good thing.
-
-A separate function is not only easier to test and debug -- its very existence is a great comment!
-
-For instance, compare the two functions `showPrimes(n)` below. Each one outputs [prime numbers](https://en.wikipedia.org/wiki/Prime_number) up to `n`.
-
-The first variant uses a label:
+İlk tanım label kullanıyor:
 
 ```js
-function showPrimes(n) {
-  nextPrime: for (let i = 2; i < n; i++) {
+function asalGoster(n) {
+  sonrakiAsal: for (let i = 2; i < n; i++) {
 
     for (let j = 2; j < i; j++) {
-      if (i % j == 0) continue nextPrime;
+      if (i % j == 0) continue sonrakiAsal;
     }
 
-    alert( i ); // a prime
+    alert( i ); // asal sayı
   }
 }
 ```
-
-The second variant uses an additional function `isPrime(n)` to test for primality:
+İkinci tip ise `asalMi(n)` adında ikinci bir fonksiyon ile asal olup olmama durumunu kontrol ediyor.
 
 ```js
-function showPrimes(n) {
+function asalGoster(n) {
 
   for (let i = 2; i < n; i++) {
-    *!*if (!isPrime(i)) continue;*/!*
+    *!*if (!asalMi(i)) continue;*/!*
 
-    alert(i);  // a prime
+    alert(i);  // asal sayı
   }
 }
 
-function isPrime(n) {
+function asalMi(n) {
   for (let i = 2; i < n; i++) {
     if ( n % i == 0) return false;
   }
   return true;
 }
 ```
+İkinci örnek anlaşılması daha kolay değil mi? `asalMi` gibi fonksiyon isimleri yerine bazıları buna *kendi kendini açıklayan* demektedir.
 
-The second variant is easier to understand, isn't it? Instead of the code piece we see a name of the action (`isPrime`). Sometimes people refer to such code as *self-describing*.
-
-So, functions can be created even if we don't intend to reuse them. They structure the code and make it readable.
+Fonksiyonlar eğer tekrar kullanmayacağımızı bilsek bile oluşturulabilir. Kodu daha okunabilir yaparlar.
 
 ## Summary
 
-A function declaration looks like this:
-
+Bir fonksiyonun tanımı aşağıdaki gibidir.
 ```js
-function name(parameters, delimited, by, comma) {
+function fonksiyon ismi(parametreler, virgül , ile, ayrilirlar) {
   /* code */
 }
 ```
 
-- Values passed to a function as parameters are copied to its local variables.
-- A function may access outer variables. But it works only from inside out. The code outside of the function doesn't see its local variables.
-- A function can return a value. If it doesn't, then its result is `undefined`.
+- Fonksiyona paslanan parametreler yerel değişken olarak fonksiyon içerisinde kopyalanırlar.
+- Fonksiyon dışarıdaki değişkene erişebilir. Fakat içeride yaratılmış bir değişken dışarıda kullanılamaz.
+- Fonksiyon değer dönderebilir. Eğer döndermezse `undefined`olarak tanımlanır.
 
-To make the code clean and easy to understand, it's recommended to use mainly local variables and parameters in the function, not outer variables.
+Kodun daha anlaşılır ve okunabilir olması için, fonksiyonlar içerisinde yerel değişken kullanılması önerilir. Dış değişkenler kullanılması önerilmez.
 
-It is always easier to understand a function which gets parameters, works with them and returns a result than a function which gets no parameters, but modifies outer variables as a side-effect.
+Eğer fonksiyon parametre ile değer alır ve bu değer üzerinde çalışıp değer geri dönderirse anlaşılırlığı artar. Fakat eğer fonksiyon hiç bir parametre almadan sadece dışarıdaki değişkenleri değiştiriyor ise kodun anlaşılırlığı büyük ölçüde azalır.
 
-Function naming:
+Fonksiyon isimlendirme:
 
-- A name should clearly describe what the function does. When we see a function call in the code, a good name instantly gives us an understanding what it does and returns.
-- A function is an action, so function names are usually verbal.
-- There exist many well-known function prefixes like `create…`, `show…`, `get…`, `check…` and so on. Use them to hint what a function does.
+- Bir isim fonksiyonun ne işe yaradığını açıklayabiliyor olmalıdır. İyi bir isim fonksiyonun okunmadan ne iş yaptığına dair fikir verir.
+- Fonksiyon bir fiili yerine getirdiğinden, fonksiyon isimleri yüklem olmalıdır.
+- Bunlar için ön ek kullanabilirsiniz. Türkçe sondan eklemeli bir dil olduğundan dolayı fonksiyon ekleri sona gelmektedir. Örneğin `asalGoster`, bu tip kullanım aslında okunurluk açısından pekte iyi değil benim kanaatimce. Çünkü okurken önce ne yaptığını anlaşılmıyor. Fakat İngilizce örneğine bakarsanız `showPrime`, burada önce ne yaptığını söylüyor. Farzedin ki bir çok fonksiyonunuz var ve okuduğunuzda önce ne iş yaptığını bilmek bunları filtrelemenizde size yardımcı olacaktır.
+- Örnek kaç tane ek , `create...` , `show...`, `get...`, `check...` vs.
 
-Functions are the main building blocks of scripts. Now we've covered the basics, so we actually can start creating and using them. But that's only the beginning of the path. We are going to return to them many times, going more deeply into their advanced features.
+Fonksiyonlar kod yazarken kullanılan ana yapılardır. Artık temellerini anlaşıldığına göre kullanılmaya başlanabilir. Fakat sadece temellerinin gösterildiğini bilmekte fayda var. ileride defalaraca fonksiyonlar konusuna geri dönülecektir.
