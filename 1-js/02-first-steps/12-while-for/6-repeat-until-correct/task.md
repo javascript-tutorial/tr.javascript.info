@@ -2,12 +2,12 @@ importance: 5
 
 ---
 
-# Repeat until the input is correct
+# Veri girişi doğru olana kadar devam edin.
 
-Write a loop which prompts for a number greater than `100`. If the visitor enters another number -- ask them to input again.
+Kullanıcıya her defasında `100`'den büyük bir sayı girmesi için `prompt` ile veri girmesini isteyin. Eğer farklı bir değer girerse tekrardan değer girmesi talebinde bulunun.
 
-The loop must ask for a number until either the visitor enters a number greater than `100` or cancels the input/enters an empty line.
+Kullanıcı `100` den büyük bir sayı veya boş satıra onay verene kadar döngüye devam edilmelidir. 
 
-Here we can assume that the visitor only inputs numbers. There's no need to implement a special handling for a non-numeric input in this task.
+Burada kullanıcının sadece sayısal değerler gireceğini farzedin. Ayrıca sayısal değerleri kontrol için bir kod yazmak ile uğraşmayın.
 
 [demo]

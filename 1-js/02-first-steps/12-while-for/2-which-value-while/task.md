@@ -2,19 +2,21 @@ importance: 4
 
 ---
 
-# Which values does the while loop show?
+# While hangi değerleri gösterir?
 
-For every loop iteration, write down which value it outputs and then compare it with the solution.
+Her döngü için ekranda gösterilecek değerler nelerdir? Bu değerleri yazın ve sonra cevap ile karşılaştırın.
 
-Both loops `alert` the same values, or not?
+Her iki döngüde de `alert` aynı değerleri mi gösterir?
 
-1. The prefix form `++i`:
+Both loops `alert` same values or not?
+
+1. Önden eklemeli `++i`:
 
     ```js
     let i = 0;
     while (++i < 5) alert( i );
     ```
-2. The postfix form `i++`
+2. Sonradan ekelemeli form `i++`
 
     ```js
     let i = 0;

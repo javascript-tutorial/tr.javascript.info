@@ -1,4 +1,4 @@
-The answer: `1`.
+Cevap: `1`.
 
 ```js run
 let i = 3;
@@ -7,19 +7,18 @@ while (i) {
   alert( i-- );
 }
 ```
+Her defasında döngü `i` dolayısıyla `1` azalır. `while(i)` koşulu `i=0` olduğunda sonlanır.
 
-Every loop iteration decreases `i` by `1`. The check `while(i)` stops the loop when `i = 0`.
-
-Hence, the steps of the loop form the following sequence ("loop unrolled"):
+Döngü aşağıdaki gibi işler:
 
 ```js
 let i = 3;
 
-alert(i--); // shows 3, decreases i to 2
+alert(i--); //  3 gösterir, i 2'ye iner.
 
-alert(i--) // shows 2, decreases i to 1
+alert(i--) // 2 gösterir, i 1'e iner.
 
-alert(i--) // shows 1, decreases i to 0
+alert(i--) // 1 gösterir, i 0'a iner.
 
-// done, while(i) check stops the loop
+// bitti `while(i)` koşulu tekrar kontrol edildi ve i = 0 olduğundan döngüden çıkıldı.
 ```

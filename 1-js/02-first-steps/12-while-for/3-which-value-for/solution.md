@@ -1,4 +1,4 @@
-**The answer: from `0` to `4` in both cases.**
+**Cevap: Her iki drum için de `0` dan `4`'e kadardır**
 
 ```js run
 for (let i = 0; i < 5; ++i) alert( i );
@@ -6,12 +6,12 @@ for (let i = 0; i < 5; ++i) alert( i );
 for (let i = 0; i < 5; i++) alert( i );
 ```
 
-That can be easily deducted from the algorithm of `for`:
+Bu sonuç doğrudan `for` algoritmasına bakarak çıkartılabilir:
 
-1. Execute once `i = 0` before everything (begin).
-2. Check the condition `i < 5`
-3. If `true` -- execute the loop body `alert(i)`, and then `i++`
+1. Başlangıçta öncelikle `i = 0`'ı başlat.
+2. Koşulu kontrol et `i < 5`
+3. Eğer `doğru` dönüyorsa uyarıyı göster `alert(i)` ve sonra `i++`
 
-The increment `i++` is separated from the condition check (2). That's just another statement.
+Artırma `i++` koşul kontrolünden tamamen ayrı bir olaydır(2). Sadece koşulacak ayrı bir cümledir.
 
-The value returned by the increment is not used here, so there's no difference between `i++` and `++i`.
+Artırımdan dönen değer burada kullanılmadı, bundan dolayı `i++` ile `++i` arasında bir fark yoktur.

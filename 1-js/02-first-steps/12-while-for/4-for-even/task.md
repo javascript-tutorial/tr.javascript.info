@@ -2,8 +2,8 @@ importance: 5
 
 ---
 
-# Output even numbers in the loop
+# Döngüde çift sayıların çıktısını yazdırma
 
-Use the `for` loop to output even numbers from `2` to `10`.
+`for` döngüsü kullanarak `2` den `10` a kadar olan çift sayıların çıktısını yazdırıns
 
 [demo]

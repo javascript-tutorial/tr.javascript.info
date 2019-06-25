@@ -8,4 +8,4 @@ for (let i = 2; i <= 10; i++) {
 }
 ```
 
-We use the "modulo" operator `%` to get the remainder and check for the evenness here.
+"modül" operatörü `%` kullanarak kalan değerin çift mi yoksa tek mi olduğunu kontrol edip uyarı verebilirsiniz.

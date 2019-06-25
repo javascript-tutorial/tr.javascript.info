@@ -4,14 +4,12 @@ importance: 3
 
 # Output prime numbers
 
-An integer number greater than `1` is called a [prime](https://en.wikipedia.org/wiki/Prime_number) if it cannot be divided without a remainder by anything except `1` and itself.
+`1` den büyük olup `1` veya kendisi haricinde hiç bir sayıya kalansız bölünemeyen sayılara [asal sayı](https://tr.wikipedia.org/wiki/Asal_say%C4%B1) denir.
 
-In other words, `n > 1` is a prime if it can't be evenly divided by anything except `1` and `n`.
+Örneğin `5` bir asal sayıdır. Çünkü `2`,`3` ve `4` e kalansız bölünemez.
 
-For example, `5` is a prime, because it cannot be divided without a remainder by `2`, `3` and `4`.
+**`2` den `n`e kadar olan asal sayıları bulan kodu yazınız.**
 
-**Write the code which outputs prime numbers in the interval from `2` to `n`.**
+Örneğin `n = 10` için sonuç `2,3,5,7` olacaktır.
 
-For `n = 10` the result will be `2,3,5,7`.
-
-P.S. The code should work for any `n`, not be hard-tuned for any fixed value.
+NOT: Kod her türlü `n` değeri için çalışmalıdır, sabit bir sayı değildir.
