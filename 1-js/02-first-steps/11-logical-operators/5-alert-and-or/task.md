@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# The result of OR AND OR
+# VEYA ve VE'nin sonucu ne olur?
 
-What will the result be?
+Aşağıdaki kodun çıktısı nedir?
 
 ```js
 alert( null || 2 && 3 || 4 );

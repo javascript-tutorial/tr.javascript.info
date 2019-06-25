@@ -1,12 +1,12 @@
-The first variant:
+Birinci şekil:
 
 ```js
-if (!(age >= 14 && age <= 90))
+if (!(yas >= 14 && yas <= 90))
 ```
 
-The second variant:
+İkinci şekil
 
 ```js
-if (age < 14 || age > 90)
+if (yas < 14 || yas > 90)
 ```
 

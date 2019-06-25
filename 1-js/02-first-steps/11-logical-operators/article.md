@@ -1,24 +1,25 @@
-# Logical operators
+# Mantıksal Operatörler
 
-There are three logical operators in JavaScript: `||` (OR), `&&` (AND), `!` (NOT).
+JavaScript dilinde üç tane mantıksal operatör bulunmaktadır: `||` (OR - VEYA ), `&&`(AND - VE ), `!` (NOT - DEĞİL )
 
-Although they are called "logical", they can be applied to values of any type, not only boolean. Their result can also be of any type.
+Mantıksal operatörler olarak adlandırılsalar bile, her tipteki değer için uygulanabilirler. Sadece boolean ( doğru-yanlış) değerleri için değil. Sonuçta her tipte olabilir.
 
-Let's see the details.
 
-## || (OR)
+Detaylarına bakılacak olursa:
 
-The "OR" operator is represented with two vertical line symbols:
+## || (OR - VEYA)
+
+"OR","VEYA" operatörü iki dikey çizgiden oluşur.
 
 ```js
-result = a || b;
+sonuc = a || b;
 ```
 
-In classical programming, the logical OR is meant to manipulate boolean values only. If any of its arguments are `true`, it returns `true`, otherwise it returns `false`.
+Klasik programlamada, mantıksal VEYA sadece boolean verileri değiştirme için kullanılır. Eğer iki değerden biri `true` ise sonuç `true` döner. Diğer türlü sonuç `false` döner.
 
-In JavaScript, the operator is a little bit trickier and more powerful. But first, let's see what happens with boolean values.
+JavaScript'te ise bu biraz daha karmaşık ve daha güçlü. Fakat önce boolean değerlere ne oluyor buna bakalım.
 
-There are four possible logical combinations:
+Dört farklı mantıksal kombinasyon bulunmakta:
 
 ```js run
 alert( true || true );   // true
@@ -26,114 +27,115 @@ alert( false || true );  // true
 alert( true || false );  // true
 alert( false || false ); // false
 ```
+Her iki tarafın da `false` olmadığı her durumda sonuç `true` olmakta.
 
-As we can see, the result is always `true` except for the case when both operands are `false`.
+Eğer operanda yani işleme giren değerler boolean değil ise boolean değere çevrilir.
 
-If an operand is not a boolean, it's converted to a boolean for the evaluation.
-
-For instance, the number `1` is treated as `true`, the number `0` as `false`:
+Örneğin, sayı olan 1 `true` demek sayı olan 0 ise `false` demektir.
 
 ```js run
-if (1 || 0) { // works just like if( true || false )
-  alert( 'truthy!' );
+if (1 || 0) { // ( true || false ) ile aynı anlama gelir
+  alert( 'Doğru!' );
 }
 ```
 
-Most of the time, OR `||` is used in an `if` statement to test if *any* of the given conditions is `true`.
 
-For example:
+Çoğu zaman, VEYA `||` `if` yapısı içerisinde kullanılır. *Herhangi biri* doğruysa yap anlamı taşımaktadır.
+
+Örneğin:
 
 ```js run
-let hour = 9;
+let saat = 9;
 
 *!*
-if (hour < 10 || hour > 18) {
+if (saat < 10 || saat > 18) {
 */!*
-  alert( 'The office is closed.' );
+  alert( 'Ofis Kapalı' );
 }
 ```
-
-We can pass more conditions:
+Bir çok şart cümlesi ile if yapısını kurabilirsiniz.
 
 ```js run
-let hour = 12;
-let isWeekend = true;
+let saat = 12;
+let haftaSonu = true;
 
-if (hour < 10 || hour > 18 || isWeekend) {
-  alert( 'The office is closed.' ); // it is the weekend
+if (saat < 10 || saat > 18 || haftaSonu) {
+  alert( 'Ofis Kapalı.' ); // Haftasonu
 }
 ```
 
-## OR finds the first truthy value
+## VEYA ilk doğru değeri arar
 
-The logic described above is somewhat classical. Now, let's bring in the "extra" features of JavaScript.
+Yukarıda belirtilen mantık klasik mantıktır. JavaScript'in "ekstra" özelliklerine bakılacak olursa
 
-The extended algorithm works as follows.
+Geliştirilmiş algoritma şu şekildedir.
 
-Given multiple OR'ed values:
+Birden fazla VEYA ile yapılmış if yapısı:
+
 
 ```js
-result = value1 || value2 || value3;
+sonuc = deger1 || deger2 || deger3;
 ```
 
-The OR `||` operator does the following:
+VEYA `"||"` operatörü şunları yapar:
 
-- Evaluates operands from left to right.
-- For each operand, converts it to boolean. If the result is `true`, stops and returns the original value of that operand.
-- If all operands have been evaluated (i.e. all were `false`), returns the last operand.
+- Soldan sağa olacak şekilde operandları değerlendirir.
+- Her operandın değerini boolean'a çevirir. Eğer sonuç `doğru` ise durur ve o operandın orjinal değerini döner.
+- Eğer tüm operandlar kontrol edildi ve tamamı yanlış ise son operandı döner.
 
-A value is returned in its original form, without the conversion.
+Eğer VEYA zincirinde bir tane doğru bulunursa o an dönülür. Eğer bulunamazsa sonuncusu döner.
 
-In other words, a chain of OR `"||"` returns the first truthy value or the last one if no truthy value is found.
-
-For instance:
+Örneğin:
 
 ```js run
-alert( 1 || 0 ); // 1 (1 is truthy)
-alert( true || 'no matter what' ); // (true is truthy)
+alert( 1 || 0 ); // 1 (1 doğru)
+alert( true || 'önemsiz' ); // (true doğru)
 
-alert( null || 1 ); // 1 (1 is the first truthy value)
-alert( null || 0 || 1 ); // 1 (the first truthy value)
-alert( undefined || null || 0 ); // 0 (all falsy, returns the last value)
+alert( null || 1 ); // 1 (1 tek doğru veri)
+alert( null || 0 || 1 ); // 1 (1 tek doğru veri)
+alert( undefined || null || 0 ); // 0 (Hepsi yanlış sonuncusunu döner)
 ```
 
-This leads to some interesting usage compared to a "pure, classical, boolean-only OR".
+Bu klasik "boolean" VEYA tanımını aşarak ilginç kullanımlara neden olmaktadır.
 
-1. **Getting the first truthy value from a list of variables or expressions.**
+1. **Değişken veya ifadeler dizisinde ilk doğru(true) değeri bulmak için**
 
-    Imagine we have a list of variables which can either contain data or be `null/undefined`. How can we find the first one with data?
+    Düşünün bir diziniz var ve içinde `null/undefined` değerler barındırmakta. Siz ilk veriyi bulduğunuzda döndermek istiyorsunuz.
 
-    We can use OR `||`:
+    Bunun için `||` kullanabilirsiniz:
 
     ```js run
-    let currentUser = null;
-    let defaultUser = "John";
+    let simdikiKullanici = null;
+    let varsayilanKullanici = "Akif";
 
     *!*
-    let name = currentUser || defaultUser || "unnamed";
+    let isim = simdikiKullanici || varsayilanKullanici || "isimsiz";
     */!*
 
-    alert( name ); // selects "John" – the first truthy value
+    alert( isim ); // "Akif" seçilir – ilk doğru değeri bulduğundan dolayı buradan dönülür ve ekrana "Akif" çıkar.
     ```
+    
+    Eğer `simdikiKullanici` ve `varsayilanKullanici` yanlış(false) olsaydı `"isimsiz"` yazısı ekrana çıkacaktı.
 
-    If both `currentUser` and `defaultUser` were falsy, `"unnamed"` would be the result.
-2. **Short-circuit evaluation.**
+2. **Kısa devre değerlendirmesi**
+    
+    Operantlar sadece değer değil ifade de olabilir. VEYA testlerini soldan sağa doğru yapar. Doğru değer bulunduğunda döndürülür. Bu olaya kısa devre değerlendirmesi denir, çünkü soldan sağa en kısa yoldan gitmektedir.
 
-    Operands can be not only values, but arbitrary expressions. OR evaluates and tests them from left to right. The evaluation stops when a truthy value is reached, and the value is returned. This process is called "a short-circuit evaluation" because it goes as short as possible from left to right.
+    Tabi bunun ifadelere yan etkisi olabilir. Örneğin değer atama
 
-    This is clearly seen when the expression given as the second argument has a side effect like a variable assignment.
+    Aşağıdaki örnek çalıştığında `x`'e değer atanmayacak:
 
-    In the example below, `x` does not get assigned:
-
+    
     ```js run no-beautify
     let x;
 
     *!*true*/!* || (x = 1);
 
-    alert(x); // undefined, because (x = 1) not evaluated
+    alert(x); // tanımsız, çünkü (x = 1) ifadesi çalıştırılmadı
     ```
 
-    If, instead, the first argument is `false`, `||` evaluates the second one, thus running the assignment:
+    Eğer `if` yapısında ilk değer `false` ise bir sonrakine bakılır bu da şu şekilde sonuç verir:
+
 
     ```js run no-beautify
     let x;
@@ -142,22 +144,22 @@ This leads to some interesting usage compared to a "pure, classical, boolean-onl
 
     alert(x); // 1
     ```
+    Gördüğünüz gibi değer atandı. Böyle basit bir durumda yan etki görmezden gelinebilir.
+    
+    Kısa yoldan `if` yapısında olduğu gibi ilk operand boolean'a çevrilir ve eğer yanlışsa ikinci değer çalıştırılır.
+    
+    Çoğu zaman normal `if` yapısını kullanmanız daha iyidir çünkü kod daha anlaşılır olur. Fakat bazen kısa yoldan `if` yapmakta işinize yarayabilir.
+    
 
-    An assignment is a simple case. There may be side effects, that won't show up if the evaluation doesn't reach them.
+## && (AND - VE )
 
-    As we can see, such a use case is a "shorter way of doing `if`". The first operand is converted to boolean. If it's false, the second one is evaluated.
+Ve operatörü iki tane `&` işaretiyle tanımlanmaktadır.
 
-    Most of time, it's better to use a "regular" `if` to keep the code easy to understand, but sometimes this can be handy.
-
-## && (AND)
-
-The AND operator is represented with two ampersands `&&`:
 
 ```js
-result = a && b;
+sonuc = a && b;
 ```
-
-In classical programming, AND returns `true` if both operands are truthy and `false` otherwise:
+Klasik programlamaya göre eğer iki operandda `doğru` ise doğru, diğer türlü `yanlış` döner.
 
 ```js run
 alert( true && true );   // true
@@ -166,138 +168,136 @@ alert( true && false );  // false
 alert( false && false ); // false
 ```
 
-An example with `if`:
+ `if ile bir örnek`:
 
 ```js run
-let hour = 12;
-let minute = 30;
+let saat = 12;
+let dakika = 30;
 
-if (hour == 12 && minute == 30) {
-  alert( 'The time is 12:30' );
+if (saat == 12 && dakika == 30) {
+  alert( 'Saat 12:30' );
+}
+```
+VEYA'da olduğu gibi VE operatörü de her türlü değeri kabul eder.
+
+```js run
+if (1 && 0) { // true && false şeklinde değerlendirilmiştir.
+  alert( "Çalışmaz çünkü sonuç `yanlış` " );
 }
 ```
 
-Just as with OR, any value is allowed as an operand of AND:
+## VE ilk `yanlış` değeri görür
 
-```js run
-if (1 && 0) { // evaluated as true && false
-  alert( "won't work, because the result is falsy" );
-}
-```
-
-
-## AND finds the first falsy value
-
-Given multiple AND'ed values:
+Aşağıda 3 tane AND işlemine sokulmuş değer bulunmaktadır:
 
 ```js
-result = value1 && value2 && value3;
+sonuc = deger1 && deger2 && deger3;
 ```
 
-The AND `&&` operator does the following:
+AND `"&&"` operatörü aşağıdaki gibi çalışır:
 
-- Evaluates operands from left to right.
-- For each operand, converts it to a boolean. If the result is `false`, stops and returns the original value of that operand.
-- If all operands have been evaluated (i.e. all were truthy), returns the last operand.
+- Operandları soldan sağa doğru değerlendir.
+- Her bir operandı boolean değere çevir. Eğer sonuç `yanlış` ise dur ve operatörün orijinal değerini dönder.
+- Eğer diğer operandlara erişim sağlandıysa ( hepsinin doğru olma durumu ) sondaki operandı dönder.
 
-In other words, AND returns the first falsy value or the last value if none were found.
+Yukarıdaki kurallar VEYA kuralları ile benzerlik göstermektedir. Farklılık AND operatörünün ilk `yanlış` bulduğunda dönmesi. OR operatörü ise ilk `doğru` bulduğunda dönmekteydi.
 
-The rules above are similar to OR. The difference is that AND returns the first *falsy* value while OR returns the first *truthy* one.
-
-Examples:
+Örnek:
 
 ```js run
-// if the first operand is truthy,
-// AND returns the second operand:
+// Eğer ilk opedan doğru ise her halükarda ikincinin değeri dönecek.
 alert( 1 && 0 ); // 0
 alert( 1 && 5 ); // 5
 
-// if the first operand is falsy,
-// AND returns it. The second operand is ignored
-alert( null && 5 ); // null
-alert( 0 && "no matter what" ); // 0
-```
 
-We can also pass several values in a row. See how the first falsy one is returned:
+// İlk operand yanlış ise ilk operandı döner ikinci operand pas geçilir.
+
+alert( null && 5 ); // null
+alert( 0 && "önemi yok" ); // 0
+```
+Birden fazla VE'yi if yapısıyla kullanmak mümkündür.
 
 ```js run
 alert( 1 && 2 && null && 3 ); // null
 ```
 
-When all values are truthy, the last value is returned:
+Tüm değerler doğru ise sonuncu değer döner.
 
 ```js run
-alert( 1 && 2 && 3 ); // 3, the last one
+alert( 1 && 2 && 3 ); // 3,  sonuncu değer
 ```
 
-````smart header="Precedence of AND `&&` is higher than OR `||`"
-The precedence of AND `&&` operator is higher than OR `||`.
+````smart header="VE `&&` VEYA'dan `||`  önce çalışır."
 
-So the code `a && b || c && d` is essentially the same as if the `&&` expressions were in parentheses: `(a && b) || (c && d)`.
+VE'nin `&&` önceliği VEYA'ya `||` göre daha yüksektir. Bundan dolayı VEYA'dan önce çalışır.
+
+Aşağıdaki örnekte `1 && 0` önce hesaplanır.
+
+
+```js run
+alert( 5 || 1 && 0 ); // 5
+```
 ````
+VEYA'da olduğu gibi VE'de de operatör bazen `if` yerine kullanılabilir.
 
-Just like OR, the AND `&&` operator can sometimes replace `if`.
+Örneğin:
 
-For instance:
 
 ```js run
 let x = 1;
 
-(x > 0) && alert( 'Greater than zero!' );
+(x > 0) && alert( 'Sıfırdan Büyük' );
 ```
 
-The action in the right part of `&&` would execute only if the evaluation reaches it. That is, only if `(x > 0)` is true.
+Sağ taraftaki bildirim sadece değerlendirme oraya kadar gelebilirse çalışır. Bunun için de `x>0`'ın `doğru` dönmesi gerekmektedir.
 
-So we basically have an analogue for:
+Aslında aşağıdaki ile benzerdir:
 
 ```js run
 let x = 1;
 
 if (x > 0) {
-  alert( 'Greater than zero!' );
+  alert( 'Sıfırdan büyük!' );
 }
 ```
+`&&` ile yazılan çeşidi daha kısa gibi görünse de aslında `if` ile yazılanın daha okunabilir olduğu açıktır.
 
-The variant with `&&` appears shorter. But `if` is more obvious and tends to be a little bit more readable.
+Bundan dolayı her yapıyı amacına göre kullanmanız önerilir. Eğer `if` kullanmak istiyorsanız `if` yazarak kullanın. Eğer VE kullanmak istiyorsnaız `&&` yazarak kullanın.
 
-So we recommend using every construct for its purpose: use `if` if we want if and use `&&` if we want AND.
 
-## ! (NOT)
 
-The boolean NOT operator is represented with an exclamation sign `!`.
+## ! (DEĞİL)
 
-The syntax is pretty simple:
+Boolean değil operatörü `"!"` ile tanımlanmıştır.
+
+Yazımı çok kolaydır:
 
 ```js
 result = !value;
 ```
+Operatör tek operanddan oluşur ve aşağıdaki şekilde çalışır:
 
-The operator accepts a single argument and does the following:
+1. Operand değerini boolean tipine çevir: `true/false`
+2. Tersini geri dönder.
 
-1. Converts the operand to boolean type: `true/false`.
-2. Returns the inverse value.
 
-For instance:
+Örneğin:
 
 ```js run
 alert( !true ); // false
 alert( !0 ); // true
 ```
-
-A double NOT `!!` is sometimes used for converting a value to boolean type:
+Çift DEĞİL işareti değeri boolean tipine çevirmeye yarar:
 
 ```js run
-alert( !!"non-empty string" ); // true
+alert( !!"Boş olmayan karakter dizisi" ); // true
 alert( !!null ); // false
 ```
+Birinci DEĞİL değeri booleana çevirir ve tersini alır. İkincisi ise tersinin tersini alarak değeri orjinal halinin boolean haline çevirir.
 
-That is, the first NOT converts the value to boolean and returns the inverse, and the second NOT inverses it again. In the end, we have a plain value-to-boolean conversion.
-
-There's a little more verbose way to do the same thing -- a built-in `Boolean` function:
+Aynı şeyi `Boolean` fonksiyonu ile de yapmak mümkündür.
 
 ```js run
-alert( Boolean("non-empty string") ); // true
+alert( Boolean("boş olmayan karakter dizisi") ); // true
 alert( Boolean(null) ); // false
 ```
-
-The precedence of NOT `!` is the highest of all logical operators, so it always executes first, before `&&` or `||`.

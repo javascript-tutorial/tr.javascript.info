@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# What is the result of AND?
+# VE'nin sonucu nedir?
 
-What is this code going to show?
+Aşağıdaki kodun çıktısı nedir?
 
 ```js
 alert( 1 && null && 2 );

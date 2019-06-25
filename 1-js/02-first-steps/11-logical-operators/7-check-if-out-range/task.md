@@ -2,8 +2,8 @@ importance: 3
 
 ---
 
-# Check the range outside
+# Aralığın dışındaki değerleri yazınız.
 
-Write an `if` condition to check that `age` is NOT between 14 and 90 inclusively.
+`yaş`'ı 14 ile 90 arasında olmayanları bulan `if` koşulunu yazınız. Not: 14 ve 90 dahil.
 
-Create two variants: the first one using NOT `!`, the second one -- without it.
+Bunu `!` kullanarak ve kullanmayarak iki şekilde yapın.
