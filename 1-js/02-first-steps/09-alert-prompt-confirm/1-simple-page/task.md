@@ -2,8 +2,8 @@ importance: 4
 
 ---
 
-# A simple page
+# Basit bir web sayfası
 
-Create a web-page that asks for a name and outputs it.
+Kullanıcıdan adını isteyen ve bunu ekrana yazan basit bir web sayfası yapın.
 
 [demo]
