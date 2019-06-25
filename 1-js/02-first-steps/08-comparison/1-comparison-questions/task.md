@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# Comparisons
+# Karşılaştırma
 
-What will be the result for these expressions?
+Aşağıdaki ifadelerin sonuçlarını yazınız?
 
 ```js no-beautify
 5 > 4
