@@ -2,7 +2,7 @@ importance: 3
 
 ---
 
-# Giving the right name
+# Doğru isimlendirmeyi yapabilmek 
 
-1. Create a variable with the name of our planet. How would you name such a variable?
-2. Create a variable to store the name of a current visitor to a website. How would you name that variable?
+1. Gezegenimizin isminin tutulacağı bir değişken oluşturun. Bu değişkeni nasıl isimlendirirsiniz?
+2. Şu anda web sitesini ziyaret eden kişinin adının tutulduğu bir değişken oluşturun. Bu değişkeni nasıl isimlendirirsiniz? 

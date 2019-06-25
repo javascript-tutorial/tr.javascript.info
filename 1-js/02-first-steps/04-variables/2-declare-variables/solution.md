@@ -1,21 +1,21 @@
-First, the variable for the name of our planet.
+Önce gezegenimizin isminin tutulduğu değişkeni oluşturun.
 
-That's simple:
-
-```js
-let ourPlanetName = "Earth";
-```
-
-Note, we could use a shorter name `planet`, but it might be not obvious what planet it refers to. It's nice to be more verbose. At least until the variable isNotTooLong.
-
-Second, the name of the current visitor:
+Basit bir şekilde aşağıdaki gibi oluşturabilirsiniz:
 
 ```js
-let currentUserName = "John";
+let gezegenimizinIsmi = "Dünya";
 ```
 
-Again, we could shorten that to `userName` if we know for sure that the user is current.
+Dikkat edin daha kısa olabilirdi. Örneğin kısaca `gezegen` diyebilirdik fakat bu çok açıkça bizim gezegenimizin ismini ifade etmezdi. Değişken çok uzun olmadıkça açık olmakta fayda var.
 
-Modern editors and autocomplete make long variable names easy to write. Don't save on them. A name with 3 words in it is fine.
+İkincisi şu anda siteyi ziyaret eden kullanıcının adı:
 
-And if your editor does not have proper autocompletion, get [a new one](/code-editors).
+
+```js
+let simdikiKullaniciAdi = "Ahmet";
+```
+Tekrardan bunu `kullaniciAdi` olarak tanımlamak mümkün fakat bu durumda bizim kesin olarak şimdiki kullanıcıdan bahsettiğimizi unutmamamız lazım.
+
+Modern kod düzenleyicilerin otomatik tamamlayıcıları oldukça gelişmiş olduğundan uzun değişken isimleri bile bir kaç harften sonra tamamlanabilmektedir. Bundan dolayı değişken isimlerinizi maksimum 3 kelime olacak şekilde ayarlarsanız yeterli olur.
+
+Eğer düzenleyiciniz değişkeniniz otomatik olarak tamamlamıyorsa bu durumda size önerim [yeni bir düzenleyiciye](/code-editors) geçmenizdir.

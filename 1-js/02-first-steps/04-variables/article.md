@@ -1,330 +1,331 @@
-# Variables
+# Değişkenler
 
-Most of the time, a JavaScript application needs to work with information. Here are two examples:
-1. An online shop -- the information might include goods being sold and a shopping cart.
-2. A chat application -- the information might include users, messages, and much more.
+Çoğu zaman JavaScript uygulamaları bilgi ile çalışır. Örnek vermek gerekirse:
+1. Online Mağaza -- satılacak ürün bilgileri.
+2. Sohbet Uygulaması -- Kullanıcı ve mesaj bilgisi.
 
-Variables are used to store this information.
+Değişkenler bu bilgileri tutmak için kullanılırlar.
 
-## A variable
+## Değişken
 
-A [variable](https://en.wikipedia.org/wiki/Variable_(computer_science)) is a "named storage" for data. We can use variables to store goodies, visitors, and other data.
+[Değişken](https://tr.wikipedia.org/wiki/De%C4%9Fi%C5%9Fken)  "isimlendirilmiş hafıza" olarak adlandırılır. Değişkenler ile kullanıcıları, ürünleri ve diğer tipdeki bilgileri tutabiliriz.  
 
-To create a variable in JavaScript, use the `let` keyword.
+JavaScript dilinde değişken `let` kelimesiyle üretilir.
 
-The statement below creates (in other words: *declares* or *defines*) a variable with the name "message":
+Aşağıdaki cümle "mesaj" isminde bir değişken üretir ( diğer bir deyişle *tanımlar* )
+
 
 ```js
-let message;
+let mesaj;
 ```
-
-Now, we can put some data into it by using the assignment operator `=`:
+Artık bunun içerisine bilgi koyulabilir. Bunu atama operatörü ile `=` yapabilirsiniz.
 
 ```js
-let message;
+let mesaj;
 
 *!*
-message = 'Hello'; // store the string
+mesaj = 'Merhaba'; // Merhaba karakter dizisini mesaja atadınız
 */!*
 ```
 
-The string is now saved into the memory area associated with the variable. We can access it using the variable name:
+Artık karakter dizi değişken ile ilintili olan hafıza bölgesine kaydedildi. Artık değişken ismi kullanarak bu değere erişilebilir.
 
 ```js run
-let message;
-message = 'Hello!';
+let mesaj;
+mesaj = 'Hello!';
 
 *!*
-alert(message); // shows the variable content
+alert(mesaj); // değişkenin içeriğini gösterir.
 */!*
 ```
-
-To be concise, we can combine the variable declaration and assignment into a single line:
+Daha açıklayıcı olması açısından değişkeni aynı anda tanımlayıp değer atayabilirsiniz.
 
 ```js run
-let message = 'Hello!'; // define the variable and assign the value
+let mesaj = 'Merhaba!'; // Değişken tanımlandı ve değer atandı
 
-alert(message); // Hello!
+alert(mesaj); // Merhaba!
 ```
-
+Birden fazla değişkeni bir satırda tanımlamak da mümkündür.
 We can also declare multiple variables in one line:
 
 ```js no-beautify
-let user = 'John', age = 25, message = 'Hello';
+let kullanici = 'Ahmet', yas = 25, mesaj = 'Merhaba';
 ```
 
-That might seem shorter, but we don't recommend it. For the sake of better readability, please use a single line per variable.
+Kısa görünse bile yukarıdaki yazım önerilmez. Okunabilirlik açısından her değişkenin bir ayrı bir satırda yazılması daha iyi olacaktır.
 
-The multiline variant is a bit longer, but easier to read:
+Tabi her değişken için ayrı satır kullanırsanız biraz uzun olur fakat okunması açısından daha kolaydır.
 
 ```js
-let user = 'John';
-let age = 25;
-let message = 'Hello';
+let kullanici = 'Ahmet';
+let yas = 25;
+let mesaj = 'Merhaba';
 ```
 
-Some people also define multiple variables in this multiline style:
+Bazı programcılar is şu şekilde kullanmaktadırlar:
+
 ```js no-beautify
-let user = 'John',
+let kullanici = 'Ahmet',
   age = 25,
-  message = 'Hello';
+  mesaj = 'Merhaba';
 ```
 
-...Or even in the "comma-first" style:
+Hatta bazıları şu şekilde kullanır:
 
 ```js no-beautify
-let user = 'John'
-  , age = 25
-  , message = 'Hello';
+let kullanici = 'Ahmet'
+  , yas = 25
+  , mesaj = 'Merhaba';
 ```
 
-Technically, all these variants do the same thing. So, it's a matter of personal taste and aesthetics.
+Teknik olarak bu yazımların hepsi doğrudur. Gerisi sizin yazım tarzınıza kalmış. Her yiğidin yoğurt yiyişi farklıdır.
 
+````smart header=" `let` yerine `var` kullanma"
+Eski kodlarda `let` yerine `var` kullanıldığını görürsünüz.
 
-````smart header="`var` instead of `let`"
-In older scripts, you may also find another keyword: `var` instead of `let`:
 
 ```js
-*!*var*/!* message = 'Hello';
+*!*var*/!* mesaj = 'Merhaba';
 ```
+`var` kelimesi *neredeyse* `let` ile aynı anlama gelmektedir. `var` kelimesi de değişken üretmeye yarar fakat bunu eski tarzda yapar.
 
-The `var` keyword is *almost* the same as `let`. It also declares a variable, but in a slightly different, "old-school" way.
+`let` ile `var` arasında nüans farkı vardır. İkisi de istediğimizi yerine getirir. Bunun ile ilgili detaylı bilgi <info:var> konusuna gelindiğinde verilecektir.
 
-There are subtle differences between `let` and `var`, but they do not matter for us yet. We'll cover them in detail in the chapter <info:var>.
 ````
 
-## A real-life analogy
+## Gerçek hayat ile benzeşim
 
-We can easily grasp the concept of a "variable" if we imagine it as a "box" for data, with a uniquely-named sticker on it.
+"Değişken" konsepti "kutu" olarak tanımlanabilir. Her kutunun üzerinde farklı bir etiket yapıştırılmıştır. 
 
-For instance, the variable `message` can be imagined as a box labeled `"message"` with the value `"Hello!"` in it:
+Örneğin `mesaj` değişkeni üzerinde `"mesaj"` yazısı olan ve değeri `"Merhaba!"` olan bir kutu olarak hayal edilebilir.
 
 ![](variable.png)
 
-We can put any value in the box.
+Kutuya istediğiniz değeri koyabilirsiniz. Ayrıca içerisindeki değeri istediğiniz kadar değiştirebilirsiniz.
 
-We can also change it as many times as we want:
 ```js run
-let message;
+let mesaj;
 
-message = 'Hello!';
+mesaj = 'Merhaba!';
 
-message = 'World!'; // value changed
+mesaj = 'Dünya!'; // değer değişti
 
-alert(message);
+alert(mesaj);
 ```
-
-When the value is changed, the old data is removed from the variable:
+Değer değiştiğinde, değişkenin eski değeri silinir.
 
 ![](variable-change.png)
 
-We can also declare two variables and copy data from one into the other.
+Ayrıca iki değişken tanımlayıp içerilerindeki değerleri bir diğerine aktarabilirsiniz.
+
 
 ```js run
-let hello = 'Hello world!';
+let merhaba = 'Merhaba Dünya!';
 
-let message;
+let mesaj;
 
 *!*
-// copy 'Hello world' from hello into message
-message = hello;
+// merhaba değişkeninin içeriğini mesaj değişkenine aktarın
+mesaj = merhaba;
 */!*
 
 // now two variables hold the same data
-alert(hello); // Hello world!
-alert(message); // Hello world!
+// artık iki değişken de aynı değeri taşır.
+alert(merhaba); // Merhaba Dünya!
+alert(mesaj); // Merhaba Dünya!
 ```
 
-```smart header="Functional languages"
-It's interesting to note that there exist [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages, like [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/) that forbid changing variable values.
+```smart header="Fonksiyonel Diller"
 
-In such languages, once the value is stored "in the box", it's there forever. If we need to store something else, the language forces us to create a new box (declare a new variable). We can't reuse the old one.
+İlginç bir bilgi olarak [Scala](http://www.scala-lang.org/) veya [Erlang](http://www.erlang.org/) gibi [fonksiyonel]https://tr.wikipedia.org/wiki/Fonksiyonel_programlama) diller değişkenin değerinin değiştirilmesine izin vermez.
 
-Though it may seem a little odd at first sight, these languages are quite capable of serious development. More than that, there are areas like parallel computations where this limitation confers certain benefits. Studying such a language (even if you're not planning to use it soon) is recommended to broaden the mind.
+Böyle dillerde değer bir kutunun içerisinde sonsuza kadar saklanır. Eğer farklı bir değer kaydetmek istenirse bu diller bizi yeni bir kutu oluşturmaya iter. Eskisi yeniden kullanıp değeri değiştirilemez.
+
+İlk başta biraz garip gelse de, bu diller genel olarak ciddi işlerin yapılabildiği dillerdir. Değişkenlerin tekrar atanamaması  kodların paralel bir şekilde çalışmasında oldukça etkin öneme sahiptir. Bu diller üzerine çalışmanız programlamaya farklı açılardan bakmanızı sağlar.
 ```
 
-## Variable naming [#variable-naming]
+## Değişken isimlendirme [#degisken-isimlendirme]
 
-There are two limitations on variable names in JavaScript:
+JavaScript dilinde değişken oluştururken iki sınırlama vardır.
 
-1. The name must contain only letters, digits, or the symbols `$` and `_`.
-2. The first character must not be a digit.
+1. Değişken ismi sadece harfler, rakamlar, `$` ve `_` karakterlerindne oluşabilir.
+2. İlk karakter rakam olamaz.
 
-Examples of valid names:
+Geçerli bir kaç örnek şu şekildedir:
 
 ```js
-let userName;
+let kullaniciAdi;
 let test123;
 ```
 
-When the name contains multiple words, [camelCase](https://en.wikipedia.org/wiki/CamelCase) is commonly used. That is: words go one after another, each word except first starting with a capital letter: `myVeryLongName`.
+Eğer isim birden fazla kelime kullanıyorsa [deveHörgücü veya camelCase](https://en.wikipedia.org/wiki/CamelCase)  küçük harfle başlanıp her kelimenin baş harfi büyük olacak şekilde devam etme yöntemine deveHörgücü yöntemi denir. Bu yöntem yaygın bir şekilde kullanılır. Örneğin : benimUzunDegiskenim gibi. 
 
-What's interesting -- the dollar sign `'$'` and the underscore `'_'` can also be used in names. They are regular symbols, just like letters, without any special meaning.
+`'$'` işareti ve `'_'` işareti de isimlerde harf gibi kullanılabilir. Farklı bir anlamı yoktur.
 
-These names are valid:
+Aşağıdaki isimlendirmeler geçerlidir:
 
 ```js run untrusted
-let $ = 1; // declared a variable with the name "$"
-let _ = 2; // and now a variable with the name "_"
+let $ = 1; //  "$" adında bir değişken üret ve değerini 1 yap.
+let _ = 2; // "_" adında bir değişken üret ve değerini 2 yap.
 
 alert($ + _); // 3
 ```
 
-Examples of incorrect variable names:
+Geçersiz isimlendirmeler:
 
 ```js no-beautify
-let 1a; // cannot start with a digit
+let 1a; // Rakam ile başlanılmaz.
 
-let my-name; // hyphens '-' aren't allowed in the name
+let my-name; // isimlendirmede '-' karakteri kullanılamaz.
 ```
 
-```smart header="Case matters"
-Variables named `apple` and `AppLE` are two different variables.
+```smart header="Büyük küçük fark önemli"
+
+`elma` ve `Elma` iki farklı değişken tanımlar. Bu değişkenler birbirlerinden farklıdır.
 ```
 
-````smart header="Non-Latin letters are allowed, but not recommended"
-It is possible to use any language, including cyrillic letters or even hieroglyphs, like this:
+````smart header="İngilizce harici harfler geçerlidir fakat önerilmez."
+Herhangi bir dili kullanmak mümkündür. Hatta aşağıdaki gibi resim yazısı bile kullanabilirsiniz:
 
 ```js
 let имя = '...';
 let 我 = '...';
 ```
-
-Technically, there is no error here, such names are allowed, but there is an international tradition to use English in variable names. Even if we're writing a small script, it may have a long life ahead. People from other countries may need to read it some time.
+Teknik olarak bir hata olmamasına ve bu şekilde kullanıma izin verilesine rağmen genel olarak uluslararası gelenek olarak değişkenler İngilizce isimlendirilirler. En basit bir kod parçasının bile önünde uzun bir hayat olabilir. Diğer ülkedeki insanların bu kodları okuması gerekebilir.
 ````
 
-````warn header="Reserved names"
-There is a [list of reserved words](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Lexical_grammar#Keywords), which cannot be used as variable names because they are used by the language itself.
+````warn header="Saklı tutulan isimler"
+Değişken olarak kullanılamayacak dilin kendisine saklı tuttuğu isimler mevcuttur.
 
-For example: `let`, `class`, `return`, and `function` are reserved.
+Örneğin : `let`, `class`, `return`, `function` gibi kelimeleri değişken ismi olarak adlandıramazsınız.
 
-The code below gives a syntax error:
+Aşağıdaki örnek yazım yanlışı ( syntax error ) verecektir:
 
 ```js run no-beautify
-let let = 5; // can't name a variable "let", error!
-let return = 5; // also can't name it "return", error!
+let let = 5; // değişken ismi "let" verilemez, hata!
+let return = 5; // değişken ismi return verilemez, hata!
 ```
 ````
 
-````warn header="An assignment without `use strict`"
+````warn header="`use strict` kullanmadan değer atama"
 
-Normally, we need to define a variable before using it. But in the old times, it was technically possible to create a variable by a mere assignment of the value without using `let`. This still works now if we don't put `use strict` in our scripts to maintain compatibility with old scripts.
+Normalde değişkeni kullanmak için önce tanımlamanız gerekmektedir. Fakat eski zamanlarda tanımlamadan da , `let` kullanmadan da , değer atamak mümkündü. Eğer `use strict` kullanmıyorsanız hala eskisi gibi kullanabilirsiniz. Bu davranış eski kodlarla uyumluluk açısından olduğu gibi bırakılmıştır.
+
 
 ```js run no-strict
-// note: no "use strict" in this example
+// not: bu örnekte "use strict" kullanılmamıştır
 
-num = 5; // the variable "num" is created if it didn't exist
+num = 5; // eğer "num" değişkeni daha önce yaratılmadıysa yaratılır ve 5 değeri atanır.
 
 alert(num); // 5
 ```
+Bu kötü bir kullanımdır. Eğer sıkı moda geçerseniz hata alırsınız.
 
-This is a bad practice and would cause an error in strict mode:
 
-```js
+```js run untrusted
 "use strict";
 
 *!*
-num = 5; // error: num is not defined
+num = 5; // error: num tanımlanmadı.
 */!*
 ```
+
 ````
+## Sabitler
 
-## Constants
-
-To declare a constant (unchanging) variable, use `const` instead of `let`:
+Sabit(değişmeyen) tanımlamak için `let` yerine `const` kullanabilirsiniz.
 
 ```js
-const myBirthday = '18.04.1982';
+const benimDogumGunum = '18.04.1982';
 ```
 
-Variables declared using `const` are called "constants". They cannot be changed. An attempt to do so would cause an error:
+`const` ile tanımlanan değişkenler "constants" (Sabit) olarak tanımlanır. Bunlar değiştirilemezler, değiştirilmek istendiğinde hata alınır:
+
 
 ```js run
-const myBirthday = '18.04.1982';
+const benimDogumGunum = '18.04.1982';
 
-myBirthday = '01.01.2001'; // error, can't reassign the constant!
+benimDogumGunum = '01.01.2001'; // hata, sabit'in değeri değiştirilemez!
 ```
+Programcı değişkenin değerinin değişmeyeceğine eminse `const` bunu garantiler. Ayrıca bu kodu kullanan herkese bunun garantilendiğini bildirmiş olur.
 
-When a programmer is sure that a variable will never change, they can declare it with `const` to guarantee and clearly communicate that fact to everyone.
+
+### Sabitlerin Büyük Harf İle İsimlendirilmesi
+
+Genel kullanımta sabitler büyük harf ile isimlendirilirler. Eğer birden fazla kelimeden oluşuyorsa "_" ile bu kelimeleri ayırmak mümkündür.
 
 
-### Uppercase constants
-
-There is a widespread practice to use constants as aliases for difficult-to-remember values that are known prior to execution.
-
-Such constants are named using capital letters and underscores.
-
-For instance, let's make constants for colors in so-called "web" (hexadecimal) format:
+Örneğin:
 
 ```js run
-const COLOR_RED = "#F00";
-const COLOR_GREEN = "#0F0";
-const COLOR_BLUE = "#00F";
-const COLOR_ORANGE = "#FF7F00";
+const RENK_KIRMIZI = "#F00";
+const RENK_YESIL = "#0F0";
+const RENK_MAVI = "#00F";
+const RENK_TURUNCU = "#FF7F00";
 
-// ...when we need to pick a color
-let color = COLOR_ORANGE;
-alert(color); // #FF7F00
+// ...Resim seçmek istediğimizde
+let renk = RENK_TURUNCU;
+alert(renk); // #FF7F00
 ```
 
-Benefits:
+Yararları:
 
-- `COLOR_ORANGE` is much easier to remember than `"#FF7F00"`.
-- It is much easier to mistype `"#FF7F00"` than `COLOR_ORANGE`.
-- When reading the code, `COLOR_ORANGE` is much more meaningful than `#FF7F00`.
+- `RENK_TURUNCU` `"#FF7F00"` a göre hatırlanması daha kolaydır.
+- `"#FF7F00"` yazarken yanlış yazma olasılığı `RENK_TURUNCU`'ya göre yüksektir.
+- Kodu okurken `RENK_TURUNCU` `#FF7F00`'dan daha fazla anlam ifade eder.
 
-When should we use capitals for a constant and when should we name it normally? Let's make that clear.
+Sabitler için ne zaman büyük harf kullanılmalı ne zaman kullanılmamalı ? 
 
-Being a "constant" just means that a variable's value never changes. But there are constants that are known prior to execution (like a hexadecimal value for red) and there are constants that are *calculated* in run-time, during the execution, but do not change after their initial assignment.
+"Sabit" değeri hiç değişmeyen demek. Fakat bazı değişkenler örneğin kırmızının hexadecimal karşılığı çalışmadan önce bilinirken bazıları çalışma zamanında hesaplanır fakat sonrasında değişmez.
 
-For instance:
+Örneğin
 ```js
-const pageLoadTime = /* time taken by a webpage to load */;
+const sayfaYuklenmeSuresi = /* Sayfanın yüklenme süresini tutar. */;
 ```
 
-The value of `pageLoadTime` is not known prior to the page load, so it's named normally. But it's still a constant because it doesn't change after assignment.
+`sayfaYuklenmeSuresi` çalışmadan önce değeri bilinmeyen bir değerdir. Bundan dolayı normal isimlendirme kullanılır. Çalıştıktan sonra sadece bir defa tanımlanıp daha da değişmeyen bir değer olduğundan hala "sabit" denilebilir.
 
-In other words, capital-named constants are only used as aliases for "hard-coded" values.  
+Diğer bir deyişle büyük harfle yazılan değişken simleri sadece önceden bilinen değerleri tanımlamak için kullanılır.
 
-## Name things right
+## İsimlendirmeyi doğru yapmak
 
-Talking about variables, there's one more extremely important thing.
+İsimlendirmeden konuşuyorsak düzgün isimlendirmeyi atlamamak gereklidir. Aslında en önemli konu da budur.
+Eğer değişken için isim bulamıyorsanız lütfen biraz daha düşünüp mantıklı bir isim bulun.
 
-A variable name should have a clean, obvious meaning, describe the data that it stores.
+Proje daha karmaşıklaştıkça isimlendirmenin önemi daha da anlaşılır. Değişken isimlerine göre kodun yeni kodlamaya başlayan birisi tarafından mı yoksa tecrübeli birisi tarafından mı yazıldığını anlaşılabilir.
 
-Variable naming is one of the most important and complex skills in programming. A quick glance at variable names can reveal which code was written by a beginner versus an experienced developer.
+Çoğu projede zaman var olan kodların değiştirilmesi, bu kodlardan yeni fonksiyonlar yapılması üzerinedir. Yeni bir şey yapılacağında çoğunlukla eskisinin üzerine yapılır. Eski kodlara baktığınızda değişkenlere bakarak konuyu anlamak daha kolay olacaktır. 
 
-In a real project, most of the time is spent modifying and extending an existing code base rather than writing something completely separate from scratch. When we return to some code after doing something else for a while, it's much easier to find information that is well-labeled. Or, in other words, when the variables have good names.
+Lütfen değişkenleri isimlendirirken iyice düşünün sonrasında çok işinize yarayacak.
 
-Please spend time thinking about the right name for a variable before declaring it. Doing so will repay you handsomely.
+Birkaç kural şu şekildedir:
 
-Some good-to-follow rules are:
+- İnsan-okuyabilir değişken ismi verin `kullaniciAdi` veya `alisverisSepeti` gibi.
+- `a`, `b`, `c` gibi kısaltmaları kullanmayın. Tabi ne yaptığınızı kesin olarak biliyorsanız kullanabilirsiniz.
+- İsimlerin açıklayıcı olmasına önem verin. Örneğin `veri` ve `deger` adindaki değişkenler birşey ifade etmezler. Tabi eğer kod bloğunda bunların bir anlamı var ise kullanılabilir.
+- Bazı tanımları kafanızda takımınızın kullandığı şekil ile uyumlu şekilde oturtun. Örneğin sizeyi ziyaret eden kişi `kullanici` ise kullanıcı ile olan değişkenleri `anlikKullanici` veya `yeniKullanici` gibi kullanın fakat `yeniZiyaretci` veya `yeniCocuk` gibi kullanmayın.
 
-- Use human-readable names like `userName` or `shoppingCart`.
-- Stay away from abbreviations or short names like `a`, `b`, `c`, unless you really know what you're doing.
-- Make names maximally descriptive and concise. Examples of bad names are `data` and `value`. Such names say nothing. It's only okay to use them if the context of the code makes it exceptionally obvious which data or value the variable is referencing.
-- Agree on terms within your team and in your own mind. If a site visitor is called a "user" then we should name related variables `currentUser` or `newUser` instead of `currentVisitor` or `newManInTown`.
+Basit değil mi? Gerçekten öyle, fakat pratikte bu kadar da basit değil. Umarım bunu siz gerçekleştirirsiniz.
 
-Sounds simple? Indeed it is, but creating descriptive and concise variable names in practice is not. Go for it.
+```smart header="Tekrar mı kullanmalı yoksa yeni mi oluşturmalı?"
+Son olarak. Bazı miskin programcılar yeniden değişken yaratmaktansa eskisini kullanmayı yeğlerler.
 
-```smart header="Reuse or create?"
-And the last note. There are some lazy programmers who, instead of declaring new variables, tend to reuse existing ones.
+Sonuç olarak değişken bir kutu gibidir üstüne yapıştırdığınız etiketi değiştirmeden içerisine farklı şeyler atılabilir. Fakat sonunda kutunun içinde ne olduğunu anlamak için tekrar tekrar kontrol etmek gerekir.
 
-As a result, their variables are like boxes into which people throw different things without changing their stickers. What's inside the box now? Who knows? We need to come closer and check.
+Böyle programcılar tanımlarken biraz zaman kazanırlar fakat bunun 10 mislini kodu takip etmek için harcarlar.
 
-Such programmers save a little bit on variable declaration but lose ten times more on debugging.
+Fazladan bir değişken düşman değildir.
 
-An extra variable is good, not evil.
+Modern JavaScript sıkıştırıcılar ve tarayıcılar kodları oldukça iyi optimize etmektedirler. Hatta farklı değerler için farklı değişken isimleri kullanmak JavaScript motorunun optimize etmesine yardımcı bile olabilir.
 
-Modern JavaScript minifiers and browsers optimize code well enough, so it won't create performance issues. Using different variables for different values can even help the engine optimize your code.
 ```
 
-## Summary
+## Özet
 
-We can declare variables to store data by using the `var`, `let`, or `const` keywords.
+Verileri saklamak için değişken tanımlayabilirsiniz. Bu işlemi `var` veya `let` veya `const` ile yapabilirsiniz.
 
-- `let` -- is a modern variable declaration. The code must be in strict mode to use `let` in Chrome (V8).
-- `var` -- is an old-school variable declaration. Normally we don't use it at all, but we'll cover subtle differences from `let` in the chapter <info:var>, just in case you need them.
-- `const` -- is like `let`, but the value of the variable can't be changed.
+- `let` -- modern değişken tanımlama. Chrome üzerinde `let` ile değişken tanımlamak istiyorsanız sıkı modda ( strict mode ) çalışmanız gerekmekte.
+- `var` -- eski tip değişken tanımlama. Normale bu tarz değişken oluşturma hiç kullılmayacka. İleride `let` ile `var` arasındaki nüans farkı <info:var> bölümünde incelenecek.
+- `const` -- bu da `let` gibi fakat değeri değiştirilemez.
 
-Variables should be named in a way that allows us to easily understand what's inside them.
+Değişkenler bulundukları yerdeki anlamlarına göre isimlendirilmelidirler.
