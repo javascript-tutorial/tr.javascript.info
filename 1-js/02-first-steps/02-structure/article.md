@@ -1,44 +1,42 @@
-# Code structure
+# Kod yapısı
 
-The first thing we'll study is the building blocks of code.
+Öğrenilmesi gereken ilk şey kod bloğunun nasıl oluşturulacağıdır.
 
-## Statements
+## İfadeler
 
-Statements are syntax constructs and commands that perform actions.
+İfadeler, komutları oluşturmak için yazdığımız cümlelerdir.
 
-We've already seen a statement, `alert('Hello, world!')`, which shows the message "Hello, world!".
+Şu ana kadar `alert('Merhaba Dünya')` ifadesini gördük ve bunun uyarı mesajı verdiğini biliyorsunuz.
 
-We can have as many statements in our code as we want. Statements can be separated with a semicolon.
+Kodun içerisinde istediğiniz kadar ifadeye. Diğer kod cümlesi bir birinden noktalı virgül ile ayrılır.
 
-For example, here we split "Hello World" into two alerts:
-
-```js run no-beautify
-alert('Hello'); alert('World');
-```
-
-Usually, statements are written on separate lines to make the code more readable:
+Örneğin burada mesaj ikiye ayrılmıştır.
 
 ```js run no-beautify
-alert('Hello');
-alert('World');
+alert('Merhaba'); alert('Dünya');
 ```
+Genelde ifadeler farklı satırlarda yazılırlar. Böylece yazdığınız kod daha okunabilir olacaktır.
 
-## Semicolons [#semicolon]
-
-A semicolon may be omitted in most cases when a line break exists.
-
-This would also work:
 
 ```js run no-beautify
-alert('Hello')
-alert('World')
+alert('Merhaba');
+alert('Dünya');
 ```
 
-Here, JavaScript interprets the line break as an "implicit" semicolon. This is called an [automatic semicolon insertion](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion).
+## Noktalı Virgüller [#semicolon]
+Eğer ifadeleri satır bırakarak yazarsanız noktalı virgül kullanmanıza gerek yoktur.
 
-**In most cases, a newline implies a semicolon. But "in most cases" does not mean "always"!**
+Örneğin aşağıdaki kod bloğu da çalışacaktır
 
-There are cases when a newline does not mean a semicolon. For example:
+```js run no-beautify
+alert('Merhaba')
+alert('Dünya')
+```
+JavaScript dilinde bu şekilde satır bırakarak ifadeyi bitirme olayına "üstü kapalı" noktalı virgül denilmektedir. Ayrıca [otomatik noktalı virgül koyma](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion) da denir
+
+**Çoğu durumda yeni satır noktalı virgül anlamına gelir. Unutulmamalı ki çoğu durum herzaman demek değildir.**
+
+Aşağıdaki örnekte görüleceği üzeri yeni satır noktalı virgül anlamına gelmemektedir.
 
 ```js run no-beautify
 alert(3 +
@@ -46,114 +44,105 @@ alert(3 +
 + 2);
 ```
 
-The code outputs `6` because JavaScript does not insert semicolons here. It is intuitively obvious that if the line ends with a plus `"+"`, then it is an "incomplete expression", so the semicolon is not required. And in this case that works as intended.
+Yukarıdaki bloğun çıktısı `6` olacaktır çünkü JavaScript yeni satırda noktalı virgül eklememiştir. Buradan anlayabilirsiniz ki eğer satır `"+"` ile bitiyorsa ifade bitmiş sayılmaz ve noktalı virgül gereklidir. Bu durumda yukarıdaki kod beklendiği gibi çalışmaktadır.
 
-**But there are situations where JavaScript "fails" to assume a semicolon where it is really needed.**
+**Fakat bazı durumlarda noktalı virgülün otomatik olarak konulması gerekirken JavaScript bunu yapmakta sorun yaşar**
 
-Errors which occur in such cases are quite hard to find and fix.
+Böyle hataları bulmak oldukça zordur.
 
-````smart header="An example of an error"
-If you're curious to see a concrete example of such an error, check this code out:
+````smart header="Hata Örneği"
+Eğer böyle bir hata görmek istiyorsanız, aşağıdaki koda bir bakın
 
 ```js run
 [1, 2].forEach(alert)
 ```
+`[]` veya `forEach` in ne anlama geldiğini bilmenize şimdilik gerek yok daha sonra bu konuyu işleyeceğiz. Şu anda bilmeniz gereken önce 1 uyarısı alacaksınız sonra 2.
 
-No need to think about the meaning of the brackets `[]` and `forEach` yet. We'll study them later. For now, just remember the result of the code: it shows `1` then `2`.
-
-Now, let's add an `alert` before the code and *not* finish it with a semicolon:
+Şimdi bu koddan önce noktalı virgül ile bitmeyen bir uyarı ifadesi yazın.
 
 ```js run no-beautify
-alert("There will be an error")
+alert("Hata alacaksınız")
 
 [1, 2].forEach(alert)
 ```
 
-Now if we run the code, only the first `alert` is shown and then we have an error!
+Eğer yukarıdaki kodu çalıştırısanız sadece ilk uyarı mesajını görecek ve sonrasında hata alacaksınız.
 
-But everything is fine again if we add a semicolon after `alert`:
+Fakat aşağıdaki gibi noktalı virgül kullanırsanız herşeyin beklenen şekilde çalıştığını göreceksiniz:
+
 ```js run
-alert("All fine now");
+alert("Şimdi ise beklendiği gibi hatasız");
 
 [1, 2].forEach(alert)  
 ```
 
-Now we have the "All fine now" message followed by `1` and `2`.
+Now we have the "Şimdi ise beklendiği gibi hatasız" message and then `1` and `2`.
 
+İlk yazdığımız kod bloğunda hata olmasının sebebi JavaScript'in `[...]` den önce noktalı virgül gelmeyeceğini varsaymasından dolayı olmaktadır.
 
-The error in the no-semicolon variant occurs because JavaScript does not assume a semicolon before square brackets `[...]`.
-
-So, because the semicolon is not auto-inserted, the code in the first example is treated as a single statement. Here's how the engine sees it:
+Bundan dolayı noktalı virgül koyulmaz, bu durumda ilk kod bloğunda tüm blok bir ifadesi olarak görülür. JavaScript motoru kodu aşağıdaki gibi görecektir.
 
 ```js run no-beautify
 alert("There will be an error")[1, 2].forEach(alert)
 ```
 
-But it should be two separate statements, not one. Such a merging in this case is just wrong, hence the error. This can happen in other situations.
+Fakat normalde sizinde bildiğiniz gibi bunu iki satır görmesi gerekmektedir. Bu ve bunun gibi hatalar ile kod yazdığınız sürece karşılaşabileceğiniz hatalardır.
 ````
 
-We recommend putting semicolons between statements even if they are separated by newlines. This rule is widely adopted by the community. Let's note once again -- *it is possible* to leave out semicolons most of the time. But it's safer -- especially for a beginner -- to use them.
+Eğer yeni satıra geçmek istiyorsanız önerilen yöntem noktalı virgül kullanmanızdır. Bu kural JavaScript toplumu tarafından benimsenmiştir. Tekrar belitelim JavaScript yazarken noktalı virgül kullanmadan yeni satıra geçmek çoğu zaman -- *mümkündür* -- fakat başlangıçta noktalı virgül kullanmanız daha güvenlidir ve önerilir.
 
-## Comments
 
-As time goes on, programs become more and more complex. It becomes necessary to add *comments* which describe what the code does and why.
+## Yorum Satırları
+Zamanla yazdığınız programlar gittikçe karmaşıklaşır. Neyin ne için yapıldığını belirtmeniz için *yorum* yazmak kaçınılmaz olur.
 
-Comments can be put into any place of a script. They don't affect its execution because the engine simply ignores them.
+Yorum satırları kodun içerisinde herhangi bir yere koyulabilir. Kodun çalışmasını engellemez çünkü JavaScript motoru bu yorumları görmezden gelir.
 
-**One-line comments start with two forward slash characters `//`.**
+**Tek satır olarak yazmak istiyorsanız `//` kullanarak yorum yazabilirsiniz** 
 
-The rest of the line is a comment. It may occupy a full line of its own or follow a statement.
+Kesik çizgi işaretlerinden sonra istediğiniz yorumu yazabilirsiniz.
 
-Like here:
+Örneğin:
 ```js run
-// This comment occupies a line of its own
-alert('Hello');
+// Bu yorum kendi başına bir satırda yer alır
+alert('Merhaba');
 
-alert('World'); // This comment follows the statement
+alert('Dünya'); // Bu yorum ise ifadeyi takip eder
 ```
 
-**Multiline comments start with a forward slash and an asterisk <code>/&#42;</code> and end with an asterisk and a forward slash <code>&#42;/</code>.**
+**Eğer birden çok satırda yorum yazmak istiyorsanız kesik çizgi + yıldız ile ( <code>/&#42;</code> ) yoruma başlayıp yıldız ve kesik çizgi ile bu kod bloğunu bitirebilirsiniz <code>&#42;/</code>.**
 
-Like this:
+Örneğin:
 
 ```js run
-/* An example with two messages.
-This is a multiline comment.
+/* İki satıra yazılmış bir 
+yorum örneği. 
 */
-alert('Hello');
-alert('World');
+alert('Merhaba');
+alert('Dünya');
 ```
-
-The content of comments is ignored, so if we put code inside <code>/&#42; ... &#42;/</code>, it won't execute.
-
-Sometimes it can be handy to temporarily disable a part of code:
-
+Eğer yorumlarınızı <code>/&#42; ... &#42;/</code> arasına yazarsanız bu JavaScript  motoru tarafından görmezden gelinecektir. Bazen geçici olarak yazdığınız kodun bazı bölümlerinin görmezden gelinmesini isteyebilirsiniz. Bu durumda da kodunuzu yorum satırı haline getirebilirsiniz.
 ```js run
-/* Commenting out the code
+/* Kod yorum satırı yapıldı
 alert('Hello');
 */
-alert('World');
+alert('Dünya');
 ```
 
-```smart header="Use hotkeys!"
-In most editors, a line of code can be commented out by pressing the `key:Ctrl+/` hotkey for a single-line comment and something like `key:Ctrl+Shift+/` -- for multiline comments (select a piece of code and press the hotkey). For Mac, try `key:Cmd` instead of `key:Ctrl`.
+```smart header="Klavye kısa yollarını kullanın!"
+
+Çoğu editör `key:Ctrl+/` kısa yolunu kullanarak tek satır veya `key:Ctrl+Shift+/` kullanarak çok satır yorum yapmanıza yardımcı olur. Mac için `key:Cmd` tuşu windows için ise `key:Ctrl` tuşudur.
 ```
 
-````warn header="Nested comments are not supported!"
-There may not be `/*...*/` inside another `/*...*/`.
-
-Such code will die with an error:
+````warn header="Yorum satırı içerisinde ayrı bir yorum satırı yapılamaz!"
+Aşağıdaki yorum satırı yanlış bir kulanımdır. Bu durumda hata alırsınız.
 
 ```js run no-beautify
 /*
-  /* nested comment ?!? */
+  /* yorum içinde yorum ?!? */
 */
-alert( 'World' );
+alert( 'Dünya' );
 ```
 ````
+Lütfen kod yazarken yorum satırı yazmaktan çekinmeyin.
 
-Please, don't hesitate to comment your code.
-
-Comments increase the overall code footprint, but that's not a problem at all. There are many tools which minify code before publishing to a production server. They remove comments, so they don't appear in the working scripts. Therefore, comments do not have negative effects on production at all.
-
-Later in the tutorial there will be a chapter <info:code-quality> that also explains how to write better comments.
+Yorumlar elbette dosyanızın biraz daha büyük olmasına sebek olarabilir fakat bu sorun değildir. Kodunuzu küçültmek için bir çok sıkıştırıcı bulunmaktadır. Bunlar kodunuzu canlı sisteme alırken yorumlardan arındırarak server'a koyarlar böylece yazdığınız kod hiç yer kaplamaz. Daha hazla örneği ve daha iyi nasıl yorum yazabileceğinizi <info:coding-style> bölümünde göreceksiniz.
