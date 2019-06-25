@@ -1,64 +1,59 @@
-# Developer console
+# Geliştirici Konsolu
 
-Code is prone to errors. You will quite likely make errors... Oh, what am I talking about? You are *absolutely* going to make errors, at least if you're a human, not a [robot](https://en.wikipedia.org/wiki/Bender_(Futurama)).
+Kod yazmak hataya meyilli bir iştir. Bu süreç içerisinde muhtemelen hatalar yapacaksınız. Pardon! Kesinlikle hata yapacaksınız, en azından [robot](<https://tr.wikipedia.org/wiki/Bender_(Futurama)>) değilseniz.
 
-But in the browser, users don't see errors by default. So, if something goes wrong in the script, we won't see what's broken and can't fix it.
+Kullanıcı, tarayıcıda meydana gelen hataları göremez. Eğer yazdığınız kodda bir yanlışlık varsa, hatalı kısımları göremez ve bunu düzeltemezsiniz.
 
-To see errors and get a lot of other useful information about scripts, "developer tools" have been embedded in browsers.
+Hataları ve diğer kullanışlı bilgileri görebilmek için tarayıcılara entegre edilmiş "Geliştirici Araçları"'nı kullanmalısınız.
 
-Most developers lean towards Chrome or Firefox for development because those browsers have the best developer tools. Other browsers also provide developer tools, sometimes with special features, but are usually playing "catch-up" to Chrome or Firefox. So most developers have a "favorite" browser and switch to others if a problem is browser-specific.
+Genelde geliştiriciler Chrome veya Firefox'a yoğunlaşmaktadırlar çünkü ikisinin de geliştirme aracı çok iyidir. Diğer tarayıcılar da geliştirme araçları sunarlar, bazen daha farklı özelliklerle bile olsa genelde amaçları Chrome veya Firefox'u yakalamaktır.  Bundan dolayı çoğu kişi "favori" tarayıcıya sahiptir ve eğer tarayıcı tabanlı bir problemle karşılaşırsa diğer tarayıcıyı kontrol eder.
 
-Developer tools are potent; they have many features. To start, we'll learn how to open them, look at errors, and run JavaScript commands.
+Geliştirici araçları gerçekten güçlüdür ve birçok farklı özelliği bünyesinde barındırır. Öncelikle bu araçların nasıl açılacağını ve hataları nasıl inceleyeceğimizi göreceğiz. Tabi bunlar için JavaScript kodları da çalıştıracağız.
 
 ## Google Chrome
 
-Open the page [bug.html](bug.html).
+[bug.html](bug.html) sayfasını açın.
 
-There's an error in the JavaScript code on it. It's hidden from a regular visitor's eyes, so let's open developer tools to see it.
+Bu sayfada bulunan JavaScript kodunda bir hata var. Kullanıcı bunu göremiyor, öyleyse geliştirici araçlarından bakıp bu hatayı tanımlayabilirsiniz.
 
-Press `key:F12` or, if you're on Mac, then `key:Cmd+Opt+J`.
+`key:F12`'ye veya `key:Cmd+Opt+J`'ye basarak geliştirici araçlarını açabilirsiniz.
 
-The developer tools will open on the Console tab by default.
-
-It looks somewhat like this:
+Geliştirici araçları konsol paneliyle açılacaktır. Aşağıdaki ekranda ilk hatanızı göreceksiniz:
 
 ![chrome](chrome.png)
 
-The exact look of developer tools depends on your version of Chrome. It changes from time to time but should be similar.
+Chrome'un geliştirme aracı versiyona göre değişiklik gösterecektir. Fakat genel hatları itibariyle bu anda gördüğünüze benzeyecektir.
 
-- Here we can see the red-colored error message. In this case, the script contains an unknown "lalala" command.
-- On the right, there is a clickable link to the source `bug.html:12` with the line number where the error has occurred.
+- Konsol panelinde kırmızı renk ile hatayı görebilirsiniz. Bu durumda kodunuz bilinmeyen "lalala" komutunda hata vermiş.
 
-Below the error message, there is a blue `>` symbol. It marks a "command line" where we can type JavaScript commands. Press `key:Enter` to run them (`key:Shift+Enter` to input multi-line commands).
+- Sağ tarafında hatanın hangi satırda olduğunu görebilirsiniz. Bu alan tıklanabilirdir. Şu anda hata `bug.html:12`'de bulunmaktadır.
 
-Now we can see errors, and that's enough for a start. We'll come back to developer tools later and cover debugging more in-depth in the chapter <info:debugging-chrome>.
+Hatanın altında `>` sembolünü görebilirsiniz. Bu "komut satırı"'nı işaret eder. Komutunuzu yazdıktan sonra `key:Enter`'a basarak o satırdaki komutu çalıştırabilirsiniz. Birden fazla satır kod yazabilmek için ise `key:Shift+Enter` tuş kombinasyonunu kullanabilirsiniz.
+
+Başlangıç için hataları görmek yeterli olacaktır. Daha sonra geliştirme aracını <info:debugging-chrome> bölümünde derinlemesine öğreneceksiniz.
 
 
-## Firefox, Edge, and others
+## Firefox, Edge ve diğerleri
 
-Most other browsers use `key:F12` to open developer tools.
+Çoğu tarayıcı geliştirme aracını `key:F12` tuşu ile açar.
 
-The look & feel of them is quite similar. Once you know how to use one of these tools (you can start with Chrome), you can easily switch to another.
+Görüntü ve kullanım olarak çoğu birbirine benzer. Bir tanesini öğrendiğinizde diğerine geçişiniz oldukça kolay olur.
 
 ## Safari
 
-Safari (Mac browser, not supported by Windows/Linux) is a little bit special here. We need to enable the "Develop menu" first.
-
-Open Preferences and go to the "Advanced" pane. There's a checkbox at the bottom:
+Safari (sadece macOS için desteklenmektedir) biraz özeldir. Geliştirici araçlarını kullanabilmek için önce "Geliştirici Menüsü"'nü aktif hale getirmeniz gerekmektedir. Bunun için özellikler sayfasını açıp "Gelişmiş" panelinden aşağıdaki gibi "Show Develop menu in menu bar"'ı işaretlemelisiniz.
 
 ![safari](safari.png)
 
-Now `key:Cmd+Opt+C` can toggle the console. Also, note that the new top menu item named "Develop" has appeared. It has many commands and options.
+Bu işlemi yaptıktan sonra `key:Cmd+Opt+C` ile geliştirici konsolunu açıp kapatabilirsiniz. Ayrıca dikkat ederseniz üst menüde "Develop" adında yeni bir başlık göreceksiniz. Buradan da birçok komutu çalıştırabilirsiniz.
+
 
 ## Multi-line input
 
-Usually, when we put a line of code into the console, and then press `key:Enter`, it executes.
+Genelde konsol ekranında `key:Enter` yaparsanız bulunduğu satırı çalıştırır. Birden fazla satırı yazmak istiyorsanız `key:Shift+Enter` kullanabilirsiniz.
 
-To insert multiple lines, press `key:Shift+Enter`.
+## Özet
+- Geliştirici araçları hataları görmenizi, komutları çalıştırmanızı, değişkenleri takip etmenizi sağlar.
+- Windows işletim sisteminde `key:f12` tuşu ile açılır (Çoğu tarayıcıda bu tuş çalışır). macOS işletim sistemi için ise Google Chrome: `key:Cmd+Opt+J`  ile Safari ise: `key:Cmd+Opt+C` tuşu ile açılır (Safari'de geliştirici modunu açmanız gerekmekte).
 
-## Summary
-
-- Developer tools allow us to see errors, run commands, examine variables, and much more.
-- They can be opened with `key:F12` for most browsers on Windows. Chrome for Mac needs `key:Cmd+Opt+J`, Safari: `key:Cmd+Opt+C` (need to enable first).
-
-Now we have the environment ready. In the next section, we'll get down to JavaScript.
+Artık çalışma ortamınızı da ayarladığınıza göre JavaScript öğrenmeye başlayabilirsiniz.

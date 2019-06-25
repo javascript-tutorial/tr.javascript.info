@@ -1,45 +1,49 @@
-# Code editors
+# Kod Düzenleyiciler
 
-A code editor is the place where programmers spend most of their time.
+Kod düzenleyiciler programcıların evi sayılabilir.
 
-There are two main types of code editors: IDEs and lightweight editors. Many people use one tool of each type.
+İki farklı düzenleyici bulunmaktadır. Bunlardan ilki IDE (Integrated Development Environment - Tümleşik Geliştirme Ortamı), ikincisi ise hafif düzenleyicilerdir. Genelde çoğu kişi her iki tipten de kendine uygun bir araç seçer.
 
-## IDE
+## TGO (Tümleşik Geliştirme Ortamı)
 
-The term [IDE](https://en.wikipedia.org/wiki/Integrated_development_environment) (Integrated Development Environment) refers to a powerful editor with many features that usually operates on a "whole project." As the name suggests, it's not just an editor, but a full-scale "development environment."
+[TGO](https://tr.wikipedia.org/wiki/T%C3%BCmle%C5%9Fik_geli%C5%9Ftirme_ortam%C4%B1) (Tümleşik Geliştirme Ortamı) birçok özelliği içerisinde barındıran düzenleyici olarak adlandırılabilir. Genelde "tüm proje" üzerine işlemler yapılabilecek bir "geliştirme ortamı"dır.
 
-An IDE loads the project (which can be many files), allows navigation between files, provides autocompletion based on the whole project (not just the open file), and integrates with a version management system (like [git](https://git-scm.com/)), a testing environment, and other "project-level" stuff.
+TGO birçok dosyayı yükleyebilir ve bu dosyalar arasında geçişleri sağlar, projenin tamamında otomatik tamamlama özelliği sunar. Versiyon kontrol sistemleri ile entegre çalışır (Örneğin [git](https://git-scm.com/)), test ortamı olarak çalıştırılabilir ve diğer "proje-seviyesinde" işlemler yapılabilir.
 
-If you haven't selected an IDE yet, consider the following options:
+Eğer henüz TGO seçmediyseniz aşağıdakilere göz atabilirsiniz:
 
-- [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
-- [WebStorm](http://www.jetbrains.com/webstorm/) (cross-platform, paid).
+- IntelliJ Düzenleyicileri: [WebStorm](http://www.jetbrains.com/webstorm/) ön yüz geliştirmek için [PHPStorm (PHP)](http://www.jetbrains.com/phpstorm/), [IDEA (Java)](http://www.jetbrains.com/idea/), [RubyMine (Ruby)](http://www.jetbrains.com/ruby/) ve diğer programlama dilleri için olanları bulunmaktadır.
+- Eğer .NET Geliştiricisiyseniz Visual Studio iyi bir seçimdir. Ücretsiz versiyonunu [Visual Studio Community](https://www.visualstudio.com/vs/community/) adresinden indirebilirsiniz.
+- Eclipse tabanlı ürünler; örneğin [Aptana](http://www.aptana.com/) ve Zend Studio.
+- [Komodo IDE](http://www.activestate.com/komodo-ide) ücretsiz olan versiyonu sisteminize pek yük olmaz [Komodo Edit](http://www.activestate.com/komodo-edit).
+- [Netbeans](http://netbeans.org/).
 
-For Windows, there's also "Visual Studio", not to be confused with "Visual Studio Code". "Visual Studio" is a paid and mighty Windows-only editor, well-suited for the .NET platform. It's also good at JavaScript. There's also a free version [Visual Studio Community](https://www.visualstudio.com/vs/community/).
+Yukarıda bahsedilen tüm TGO'lar Windows ve macOS işletim sistemlerinde çalışmaktadır. Visual Studio haricindekiler ise Linux üzerinde de çalışabilmektedir.
 
-Many IDEs are paid, but have a trial period. Their cost is usually negligible compared to a qualified developer's salary, so just choose the best one for you.
+Çoğu ücretli olmasına rağmen deneme süresi mevcuttur. Bahsedilen TGO'ların nitelikli bir geliştiricinin maaşına kıyasla görmezden gelinebilecek kadar az olduğu söylenebilir. Bundan dolayı size en uygun olanını seçmelisiniz.
 
-## Lightweight editors
+## Hafif Düzenleyiciler
 
-"Lightweight editors" are not as powerful as IDEs, but they're fast, elegant and simple.
+"Hafif Düzenleyiciler" TGO'lar kadar güçlü olmasa da hızlı ve basittirler.
 
-They are mainly used to open and edit a file instantly.
+Genelde bir dosyayı hızlıca açıp düzenleme amacıyla kullanılırlar.
 
-The main difference between a "lightweight editor" and an "IDE" is that an IDE works on a project-level, so it loads much more data on start, analyzes the project structure if needed and so on. A lightweight editor is much faster if we need only one file.
+"Hafif Düzenleyici" ile TGO arasındaki ana fark TGO'nun proje seviyesinde çalışması ve daha fazla dosyayı başlangıçta yüklemesi, analiz etmesidir. Eğer tek dosya üzerinde çalışacaksanız "hafif düzenleyiciler" daha hızlı çalışacaktır.
 
-In practice, lightweight editors may have a lot of plugins including directory-level syntax analyzers and autocompleters, so there's no strict border between a lightweight editor and an IDE.
+Pratikte hafif düzenleyiciler birçok eklenti ile klasör bazında yazım, otomatik tamamlayıcı özelliklerine erişebilirler. Bundan dolayı TGO ile hafif düzenleyici arasındaki sınır çok belirgin değildir.
 
-The following options deserve your attention:
+Aşağıdaki hafif düzenleyiciler ilginizi çekebilir:
 
-- [Atom](https://atom.io/) (cross-platform, free).
-- [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
-- [Notepad++](https://notepad-plus-plus.org/) (Windows, free).
-- [Vim](http://www.vim.org/) and [Emacs](https://www.gnu.org/software/emacs/) are also cool if you know how to use them.
+- [Visual Studio Code](https://code.visualstudio.com/) (tüm işletim sistemlerinde çalışır, ücretsiz).
+- [Atom](https://atom.io/) (tüm işletim sistemlerinde çalışır, ücretsiz).
+- [Sublime Text](http://www.sublimetext.com) (tüm işletim sistemlerinde çalışır, ücretli).
+- [Notepad++](https://notepad-plus-plus.org/) (sadece Windows'ta çalışır, ücretsiz).
+- Vim and Emacs gibi düzenleyiciler de oldukça iyidir fakat öğrenme süresi diğerler hafif düzenleyicilere göre daha uzundur.
 
-## Let's not argue
+## Lütfen Tartışmayalım!
 
-The editors in the lists above are those that either I or my friends whom I consider good developers have been using for a long time and are happy with.
+Yukarıda yazan düzenleyicileri ben veya birçok profesyonel arkadaşım mutlu bir şekilde kullanmaktayız.
 
-There are other great editors in our big world. Please choose the one you like the most.
+Tabi bunlar haricinde nice harika editörler mevcuttur. Lütfen en çok hoşunuza gideni seçin.
 
-The choice of an editor, like any other tool, is individual and depends on your projects, habits, and personal preferences.
+Editör seçimi de diğer araç seçimleri gibi kişisel, projeye göre, alışkanlıklara göre, kişisel tercihlere göre farklılık gösterebilir.
