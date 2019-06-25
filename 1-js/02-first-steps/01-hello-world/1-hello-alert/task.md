@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Show an alert
+# Alarm(Alert) Gösterme
 
-Create a page that shows a message "I'm JavaScript!".
+"Merhaba Ben JavaScript!" yazan bir alarm kutusu gösterin.
 
-Do it in a sandbox, or on your hard drive, doesn't matter, just ensure that it works.
+Bunu konsol üzerinde veya bilgisayarınıza oluşturduğunuz bir dosya ile yapabilirsiniz, sadece çalıştığına emin olun.
 
 [demo src="solution"]
 

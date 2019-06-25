@@ -1,8 +1,8 @@
-The HTML code:
+HTML Kodu:
 
 [html src="index.html"]
 
-For the file `alert.js` in the same folder:
+Aynı klasörde bulunan `alert.js` içeriği:
 
 [js src="alert.js"]
 
