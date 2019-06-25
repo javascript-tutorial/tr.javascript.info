@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# Type conversions
+# Tip Dönüştürme
 
-What are results of these expressions?
+Aşağıdaki ifadelerin sonuçları nedir?
 
 ```js no-beautify
 "" + 1 + 0
@@ -17,10 +17,10 @@ true + false
 "4" - 2
 "4px" - 2
 7 / 0
-"  -9  " + 5
-"  -9  " - 5
+"  -9\n" + 5
+"  -9\n" - 5
 null + 1
 undefined + 1
 ```
 
-Think well, write down and then compare with the answer.
+İyice düşünün, bir yere yazın ve sonra sonucunuzu doğru cevap ile karşılaştırın.
