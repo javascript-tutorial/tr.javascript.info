@@ -2,25 +2,25 @@ importance: 5
 
 ---
 
-# Rewrite the "switch" into an "if"
+# "Switch" ile yazılmış kodu "if" cümlesine çeviriniz
 
-Write the code using `if..else` which would correspond to the following `switch`:
+Aşağıdaki kodu `if..else` şekline çeviriniz.
 
 ```js
-switch (browser) {
+switch (tarayici) {
   case 'Edge':
-    alert( "You've got the Edge!" );
+    alert( "Edge browser kullanıyorsun" );
     break;
 
   case 'Chrome':
   case 'Firefox':
   case 'Safari':
   case 'Opera':
-    alert( 'Okay we support these browsers too' );
+    alert( 'Tamam bunları destekliyoruz.' );
     break;
 
   default:
-    alert( 'We hope that this page looks ok!' );
+    alert( 'Umarım sayfanız güzel görünüyordur' );
 }
 ```
 

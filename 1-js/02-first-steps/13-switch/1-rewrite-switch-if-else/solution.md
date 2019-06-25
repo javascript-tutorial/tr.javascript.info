@@ -1,20 +1,20 @@
-To precisely match the functionality of `switch`, the `if` must use a strict comparison `'==='`.
+`switch` cümlesini bire bir karşılamak için `if` sıkı karşılaştırma `===` yapmalıdır.
 
-For given strings though, a simple `'=='` works too.
+Şu anki durumuyla `'=='` karakter karşılaştırma da aynı sonucu verecektir.
 
 ```js no-beautify
-if(browser == 'Edge') {
-  alert("You've got the Edge!");
-} else if (browser == 'Chrome'
- || browser == 'Firefox'
- || browser == 'Safari'
- || browser == 'Opera') {
-  alert( 'Okay we support these browsers too' );
+if(tarayici == 'Edge') {
+  alert("Edge browser kullanıyorsun");
+} else if (tarayici == 'Chrome'
+ || tarayici == 'Firefox'
+ || tarayici == 'Safari'
+ || tarayici == 'Opera') {
+  alert( 'Tamam bunları destekliyoruz.' );
 } else {
-  alert( 'We hope that this page looks ok!' );
+  alert( 'Umarım sayfanız güzel görünüyordur' );
 }
 ```
 
-Please note: the construct `browser == 'Chrome' || browser == 'Firefox' …` is split into multiple lines for better readability.
+Dikkat edecek olursanız `tarayici=='Chrome' || tarayici == 'Firefox'` birçok satıra ayrılmış. Bunun nedeni daha kolay okunabilirlikten dolayıdır.
 
-But the `switch` construct is still cleaner and more descriptive.
+`switch` hali daha temiz ve açıklayıcı duruyor.
