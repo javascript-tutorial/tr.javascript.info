@@ -1,5 +1,5 @@
-The answer is:
+Cevap:
 
-- `a = 4` (multiplied by 2)
-- `x = 5` (calculated as 1 + 4)
+- `a = 4` (2 ile çarpıldı)
+- `x = 5` (1 + 4 olarak hesaplandı)
 

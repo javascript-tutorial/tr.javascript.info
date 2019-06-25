@@ -1,15 +1,17 @@
-# Operators
+# Operatörler
 
-We know many operators from school. They are things like addition `+`, multiplication `*`, subtraction `-`, and so on.
+Çoğu operatörü okuldan hatırlarsınız. Toplama `+`, çarpma `*`, çıkarma `-` vs. 
 
-In this chapter, we'll concentrate on aspects of operators that are not covered by school arithmetic.
+Bu bölümde okulda görmediğiniz aritmediği işleyeceğiz.
 
-## Terms: "unary", "binary", "operand"
+## Tanımlamalar: "unary", "binary", "operand"
 
-Before we move on, let's grasp some common terminology.
+Başlamadan önce terminolojiyi öğrenmekte fayda var.
 
-- *An operand* -- is what operators are applied to. For instance, in the multiplication of `5 * 2` there are two operands: the left operand is `5` and the right operand is `2`. Sometimes, people call these "arguments" instead of "operands".
-- An operator is *unary* if it has a single operand. For example, the unary negation `-` reverses the sign of a number:
+- *Operand* operatörlerin uygulandığı(+,-,* vs.) değerlerdir. Örneğin çarpma işlemi için `5*2` örneğinden gidersek. İki tane operand vardır. Bunlardan solda olan `5` ve sağ operand `2`. Bunlara argüman da denebilir.
+
+- Eğer tek operanddan oluşursa bu operatör *unary* olarak adlandırılır. Örneğin, `"-"` sayının işaretini değiştirir:
+
 
     ```js run
     let x = 1;
@@ -17,67 +19,61 @@ Before we move on, let's grasp some common terminology.
     *!*
     x = -x;
     */!*
-    alert( x ); // -1, unary negation was applied
+    alert( x ); // -1, unary işlemi gerçekleşti
     ```
-- An operator is *binary* if it has two operands. The same minus exists in binary form as well:
+- Eğer operatörün iki tane operandı var ise buna binary operand denir. Örneğin çıkarma işlemi aşağıda bu formda bulunur.
 
     ```js run no-beautify
     let x = 1, y = 3;
-    alert( y - x ); // 2, binary minus subtracts values
+    alert( y - x ); // 2, iki sayının çıkarılması binary operand işlemidir.
     ```
+    
+    Şeklen, iki operatörden konuşuyoruz. `unary` çıkarma ( tek operand işareti değiştirir) ve binary çıkarma ( iki operatör çıkarma )
 
-    Formally, we're talking about two different operators here: the unary negation (single operand: reverses the sign) and the binary subtraction (two operands: subtracts).
+## Karakter dizisi birleştirme, binary +
 
-## String concatenation, binary +
+JavaScript'te operatörlerin özel durumlarından birisi karakter dizilerinin `+` işareti ile birleştirilebilmesidir.
 
-Now, let's see special features of JavaScript operators that are beyond school arithmetics.
+Böylece `+` işaretinin amacının ötesinde bir işlem yapabildiğinin farkına varmış olmalısınız.
 
-Usually, the plus operator `+` sums numbers.
-
-But, if the binary `+` is applied to strings, it merges (concatenates) them:
+Normalde `+` iki sayıyı toplamaya yararken eğer bir taraf karakter dizisi ise bu durumda birleştirmeye yarar.
 
 ```js
 let s = "my" + "string";
 alert(s); // mystring
 ```
 
-Note that if one of the operands is a string, the other one is converted to a string too.
+Dikkat edin eğer iki operand'dan birisi karakter dizisi ise diğeri ne olursan olsun karakter dizisine çevrilir.
 
-For example:
+Örneğin:
 
 ```js run
 alert( '1' + 2 ); // "12"
 alert( 2 + '1' ); // "21"
 ```
 
-See, it doesn't matter whether the first operand is a string or the second one. The rule is simple: if either operand is a string, the other one is converted into a string as well.
+Gördüğünüz gibi, ilk operand veya ikinci operandın karakter dizisi olması birşeyi değiştirmiyor. Kural basit, her iki taraftan birisi karakter dizisi ise diğerini de karakter dizisine çevir ve birleştir.
 
-However, note that operations run from left to right. If there are two numbers followed by a string, the numbers will be added before being converted to a string:
+Yani `"+"` işlemi hem birleştirme hem de tip değiştirme yapmaktadır. Bu sadece `"+"` operatörüne has bir olaydır.
 
-
-```js run
-alert(2 + 2 + '1' ); // "41" and not "221"
-```
-
-String concatenation and conversion is a special feature of the binary plus `+`. Other arithmetic operators work only with numbers and always convert their operands to numbers.
-
-For instance, subtraction and division:
+Örneğin çıkarma ve çarpmanın davranışı farklıdır:
 
 ```js run
 alert( 2 - '1' ); // 1
 alert( '6' / '2' ); // 3
 ```
 
-## Numeric conversion, unary +
+## Sayısal değer dönüştürme, unary + 
 
-The plus `+` exists in two forms: the binary form that we used above and the unary form.
+`+` iki formda bulunur. Yukarıda kullandığımız binary form(iki tane operand olma olayı) veya unary form(tek operand olması).
 
-The unary plus or, in other words, the plus operator `+` applied to a single value, doesn't do anything to numbers. But if the operand is not a number, the unary plus converts it into a number.
+Eğer unary `+` veya tek bir değerle kullanılan `+` işareti sayılar ile birşey yapmaz. Fakat eğer bu bir sayı değilse sayıya çevrilir.
 
-For example:
+
+Örneğin:
 
 ```js run
-// No effect on numbers
+// Sayılara bir etkisi yoktur
 let x = 1;
 alert( +x ); // 1
 
@@ -85,78 +81,76 @@ let y = -2;
 alert( +y ); // -2
 
 *!*
-// Converts non-numbers
+// Sayı olmayan değerleri çevirir
 alert( +true ); // 1
 alert( +"" );   // 0
 */!*
 ```
+Aslında `Number(...)` işlemini yapar. Fakat daha kısa biçimyle.
 
-It actually does the same thing as `Number(...)`, but is shorter.
+Karakter dizilerini sayılara çevirme gerekliliği sıklıkla önünüze gelir. Örneğin HTML form değerlerini alırken sadece karakter dizisi kullanır. Fakat ya siz bunları toplamak istiyorsanız ?
 
-The need to convert strings to numbers arises very often. For example, if we are getting values from HTML form fields, they are usually strings.
+Bildiğiniz gibi iki karakter dizisini `+` işareti ile toplarsanız birleştirme işlemi yapar:
 
-What if we want to sum them?
-
-The binary plus would add them as strings:
 
 ```js run
-let apples = "2";
-let oranges = "3";
+let elma = "2";
+let portakal = "3";
 
-alert( apples + oranges ); // "23", the binary plus concatenates strings
+alert( elma + portakal ); // "23",  binary toplama iki karakter dizisini birleştiriyor
 ```
+Eğer sayı olarak kullanmak istiyorsanız, önce dönüştürme işlemini yapıp sonra toplayabilirsiniz.
 
-If we want to treat them as numbers, we need to convert and then sum them:
 
 ```js run
-let apples = "2";
-let oranges = "3";
+let elma = "2";
+let portakal = "3";
 
 *!*
-// both values converted to numbers before the binary plus
-alert( +apples + +oranges ); // 5
+// her iki değer de binary toplama işleminden önce sayıya çevrilmişlerdi
+alert( +elma + +portakal ); // 5
 */!*
 
-// the longer variant
+// Daha uzun bi şekilde bu işlemi yapmak istiyorsanız
 // alert( Number(apples) + Number(oranges) ); // 5
+
+// şeklinde yapabilirsiniz.
 ```
+Olaya bir matematikçi gözünden bakarsanız `+` kullanımı garip gelebilir. Fakat bir programcının gözünden özel bir olay yok aslında: operand'ı bir tane olan(unary) toplama işlemi önce uygulanıyor ve karakter dizisini sayıya çeviriyor. Daha sonra iki tane operandlı ( binary) toplama işlemi bunları topluyor.
 
-From a mathematician's standpoint, the abundance of pluses may seem strange. But from a programmer's standpoint, there's nothing special: unary pluses are applied first, they convert strings to numbers, and then the binary plus sums them up.
+Neden önce "unary" işlemi gerçekleşiyor da "binary" işlemi gerçekleşmiyor? Buna *yüksek öncelik* diyebiliriz.
 
-Why are unary pluses applied to values before the binary ones? As we're going to see, that's because of their *higher precedence*.
+## Operatör Öncelikleri
 
-## Operator precedence
+Eğer bir ifade birden fazla operatör içeriyorsa. Bu ifade çalıştırılırken tanımlı *önceliklere* göre çalıştırılır, bir başka ifade ile öncelik sırasına göre çalıştırılır.
 
-If an expression has more than one operator, the execution order is defined by their *precedence*, or, in other words, the implicit priority order of operators.
+Okuldan hepinizin hatırlayacağı gibi çarpma işlemi toplamadan önce yapılır `1 + 2 * 2`. Aslında *öncelik* tam olarakta budur. Çarpma işlemi toplama işleminden daha *yüksek önceliğe* sahiptir.
 
-From school, we all know that the multiplication in the expression `1 + 2 * 2` should be calculated before the addition. That's exactly the precedence thing. The multiplication is said to have *a higher precedence* than the addition.
+Parantez, bu öncelikleri çiğner ve eğer bu *önceliklerden* memnun değilseniz bunları tekrar tanımlamanıza olanak verir. Örneğin `(1 + 2 ) * 2`
 
-Parentheses override any precedence, so if we're not satisfied with the implicit order, we can use them to change it. For example: `(1 + 2) * 2`.
+JavaScript' dilinde birçok operatör vardır. Her operatörün de bir önceliği. Yüksek öncelik sayısına sahip operatör mnce çalışır. Eğer öncelik değerleri eşit ise soldan sağa doğru çalışır.
 
-There are many operators in JavaScript. Every operator has a corresponding precedence number. The one with the larger number executes first. If the precedence is the same, the execution order is from left to right.
+[öncelik tablosu](https://developer.mozilla.org/en/JavaScript/Reference/operators/operator_precedence) ( Ezberlemenize gerek yok sadece unary operatörlerin binary olanlara göre daha üstün olduğunu hatırlayın yeter). Yani `+elma + +portakal` işleminde önce unary ile `elma`'nın değerini sayı yapar sonra `portakal`'ın değerini sayı yapar ve en sonunda toplar.
 
-Here's an extract from the [precedence table](https://developer.mozilla.org/en/JavaScript/Reference/operators/operator_precedence) (you don't need to remember this, but note that unary operators are higher than corresponding binary ones):
 
-| Precedence | Name | Sign |
+| Öncelik | Adı | İşareti |
 |------------|------|------|
 | ... | ... | ... |
-| 16 | unary plus | `+` |
-| 16 | unary negation | `-` |
-| 14 | multiplication | `*` |
-| 14 | division | `/` |
-| 13 | addition | `+` |
-| 13 | subtraction | `-` |
+| 16 | unary toplama | `+` |
+| 16 | unary çıkarma | `-` |
+| 14 | çarpma | `*` |
+| 14 | bölme | `/` |
+| 13 | toplama | `+` |
+| 13 | çıkarma | `-` |
 | ... | ... | ... |
-| 3 | assignment | `=` |
+| 3 | atama | `=` |
 | ... | ... | ... |
 
-As we can see, the "unary plus" has a priority of `16` which is higher than the `13` of "addition" (binary plus). That's why, in the expression `"+apples + +oranges"`, unary pluses work before the addition.
+Görüleceği üzere "unary toplama" `16` ile normal toplama işlemi(binary toplama) `13` ün öncesindedir. 
 
-## Assignment
+## Atama
 
-Let's note that an assignment `=` is also an operator. It is listed in the precedence table with the very low priority of `3`.
-
-That's why, when we assign a variable, like `x = 2 * 2 + 1`, the calculations are done first and then the `=` is evaluated, storing the result in `x`.
+Atama operatörü `=` dir. Öncelik sırasında en altlarda yer almaktadır. Böylece `x = 2 * 2 + 1` ifadesi çalıştığında önce tüm işlemler yapılır ardından "=" çalıştırılarak sonuç `x` içerisinde tutulur.
 
 ```js
 let x = 2 * 2 + 1;
@@ -164,7 +158,7 @@ let x = 2 * 2 + 1;
 alert( x ); // 5
 ```
 
-It is possible to chain assignments:
+Zincirleme atama yapmak şu şekilde mümkündür:
 
 ```js run
 let a, b, c;
@@ -177,16 +171,16 @@ alert( a ); // 4
 alert( b ); // 4
 alert( c ); // 4
 ```
+Zincirleme atama sağdan sola doğru olur. Önce en sağdaki değişkene değer atanır. `2+2` değeri önce `c`'ye ardından `b` ve son olarakta `a` ya atanır. En sonunda tüm değişkenler tek bir değeri alırlar.
 
-Chained assignments evaluate from right to left. First, the rightmost expression `2 + 2` is evaluated and then assigned to the variables on the left: `c`, `b` and `a`. At the end, all the variables share a single value.
 
-````smart header="The assignment operator `\"=\"` returns a value"
-An operator always returns a value. That's obvious for most of them like addition `+` or multiplication `*`. But the assignment operator follows this rule too.
+````smart header="`\"=\"` operatörü değer dönderir"
 
-The call `x = value` writes the `value` into `x` *and then returns it*.
+Operatör her zaman değer dönderir. Toplama `+` veya çarpma için `*` bu çok açıktır. Fakat ya atama ? Atama operatörü de aslında değer dönderir. 
 
-Here's a demo that uses an assignment as part of a more complex expression:
+Aşağıdaki gibi bir işlem yaptığınızda `value` x'in içine yazılır ve sonra dönderilir.
 
+Daha karmaşık bir örnek şu şekilde yapılabilir:
 ```js run
 let a = 1;
 let b = 2;
@@ -199,87 +193,85 @@ alert( a ); // 3
 alert( c ); // 0
 ```
 
-In the example above, the result of `(a = b + 1)` is the value which is assigned to `a` (that is `3`). It is then used to subtract from `3`.
+Yukarıdaki örnekte, `(a = b+1)` in sonucu `a` ya atandıktan sonra(3) 3'den çıkarmak için kullanılıyor.
 
-Funny code, isn't it? We should understand how it works, because sometimes we see it in 3rd-party libraries, but shouldn't write anything like that ourselves. Such tricks definitely don't make code clearer or readable.
+Komik bi kod değil mi? Nasıl çalıştığını anlamanız lazım, bazen başka kütüphaneler kullandığınızda böyle şeyleri sizin yazmanız beklenmez. Böyle olaylar aslında kodun okunaklılığını azaltır.
+
 ````
 
-## Remainder %
+## Kalan: %
 
-The remainder operator `%`, despite its appearance, is not related to percents.
+Kalan `%` operatörü yüzde ile alakası olmayan bir operatördür.
 
-The result of `a % b` is the remainder of the integer division of `a` by `b`.
+`a % b` a'nın b'ye bölümünden kalan değeri verir.
 
-For instance:
-
+Örneğin:
 ```js run
-alert( 5 % 2 ); // 1 is a remainder of 5 divided by 2
-alert( 8 % 3 ); // 2 is a remainder of 8 divided by 3
-alert( 6 % 3 ); // 0 is a remainder of 6 divided by 3
+alert( 5 % 2 ); // 5'in 2 ile bölümünden kalan 1'dir.
+alert( 8 % 3 ); // 8'in 3 ile bölümünden kalan 2'dir.
+alert( 6 % 3 ); // 6'nın 3 ile bölümünden kalan 0'dır.
 ```
 
-## Exponentiation **
+## Üs alma **
 
-The exponentiation operator `**` is a recent addition to the language.
+Üs alma operatörü JavaScript diline sonradan eklenen bir operatördür.
 
-For a natural number `b`, the result of `a ** b` is `a` multiplied by itself `b` times.
+Doğal sayı olan `b` değeri için `a ** b` `a`'nın `b` defa kendisiyle çarpılması demektir.
 
-For instance:
+Örneğin:
 
 ```js run
 alert( 2 ** 2 ); // 4  (2 * 2)
 alert( 2 ** 3 ); // 8  (2 * 2 * 2)
 alert( 2 ** 4 ); // 16 (2 * 2 * 2 * 2)
 ```
+Integer olmayan değerler için de aynı işlemi yapmak mümkün örneğin:
 
-The operator works for non-integer numbers as well.
-
-For instance:
 
 ```js run
-alert( 4 ** (1/2) ); // 2 (power of 1/2 is the same as a square root, that's maths)
-alert( 8 ** (1/3) ); // 2 (power of 1/3 is the same as a cubic root)
+alert( 4 ** (1/2) ); // 2 ( 1/2 üstü karekökü anlamına da gelir.)
+alert( 8 ** (1/3) ); // 2 (1/3 üstü ise küp kök anlamına gelir. )
 ```
+## Artırma/Azaltma
 
-## Increment/decrement
+<!-- Başlıkta -- kullanılamıyor çünkü parser bunu – e çeviriyor -->
 
-<!-- Can't use -- in title, because built-in parse turns it into – -->
+Bir sayıyı artırmak veya azlatmak sayısal operasyonlarda önemli sayılabilecek bir düzeydedir.
 
-Increasing or decreasing a number by one is among the most common numerical operations.
+Bunun için özel bir operatör yapılmıştır:
 
-So, there are special operators for it:
-
-- **Increment** `++` increases a variable by 1:
+- **Artırma** `++` değişkenin değerini 1 artırır:
 
     ```js run no-beautify
-    let counter = 2;
-    counter++;      // works the same as counter = counter + 1, but is shorter
-    alert( counter ); // 3
+    let sayac = 2;
+    sayac++;      // sayac =  sayac + 1 ile aynı, fakat daha kısa
+    alert( sayac ); // 3
     ```
-- **Decrement** `--` decreases a variable by 1:
+- **Azaltma** `--` değişkenin değerini bir azaltır:
 
     ```js run no-beautify
-    let counter = 2;
-    counter--;      // works the same as counter = counter - 1, but is shorter
-    alert( counter ); // 1
+    let sayac = 2;
+    sayac--;      //  sayac =  sayac - 1 ile aynı, fakat daha kısa
+    alert( sayac ); // 1
     ```
 
 ```warn
-Increment/decrement can only be applied to variables. Trying to use it on a value like `5++` will give an error.
+Artırma/Azaltma sadece değişkenlere uygulanabilirler. `5++` gibi bir kullanım hata verecektir.
 ```
 
-The operators `++` and `--` can be placed either before or after a variable.
+`++` ve `--` operatörleri değişkenden önce veya sonra kullanılabilirler.
 
-- When the operator goes after the variable, it is in "postfix form": `counter++`.
-- The "prefix form" is when the operator goes before the variable: `++counter`.
 
-Both of these statements do the same thing: increase `counter` by `1`.
+- When the operator goes after the variable, it is called a "postfix form": `counter++`.
+- The "prefix form" is when the operator stands before the variable: `++counter`.
+
+Both of these records do the same: increase `counter` by `1`.
 
 Is there any difference? Yes, but we can only see it if we use the returned value of `++/--`.
 
-Let's clarify. As we know, all operators return a value. Increment/decrement is no exception. The prefix form returns the new value while the postfix form returns the old value (prior to increment/decrement).
+Let's clarify. As we know, all operators return a value. Increment/decrement is not an exception here. The prefix form returns the new value, while the postfix form returns the old value (prior to increment/decrement).
 
-To see the difference, here's an example:
+To see the difference, here's the example:
 
 ```js run
 let counter = 1;
@@ -288,9 +280,9 @@ let a = ++counter; // (*)
 alert(a); // *!*2*/!*
 ```
 
-In the line `(*)`, the *prefix* form `++counter` increments `counter` and returns the new value, `2`. So, the `alert` shows `2`.
+Here in the line `(*)` the prefix call `++counter` increments `counter` and returns the new value that is `2`. So the `alert` shows `2`.
 
-Now, let's use the postfix form:
+Now let's use the postfix form:
 
 ```js run
 let counter = 1;
@@ -299,11 +291,11 @@ let a = counter++; // (*) changed ++counter to counter++
 alert(a); // *!*1*/!*
 ```
 
-In the line `(*)`, the *postfix* form `counter++` also increments `counter` but returns the *old* value (prior to increment). So, the `alert` shows `1`.
+In the line `(*)` the *postfix* form `counter++` also increments `counter`, but returns the *old* value (prior to increment). So the `alert` shows `1`.
 
 To summarize:
 
-- If the result of increment/decrement is not used, there is no difference in which form to use:
+- If the result of increment/decrement is not used, then there is no difference in which form to use:
 
     ```js run
     let counter = 0;
@@ -311,13 +303,13 @@ To summarize:
     ++counter;
     alert( counter ); // 2, the lines above did the same
     ```
-- If we'd like to increase a value *and* immediately use the result of the operator, we need the prefix form:
+- If we'd like to increase the value *and* use the result of the operator right now, then we need the prefix form:
 
     ```js run
     let counter = 0;
     alert( ++counter ); // 1
     ```
-- If we'd like to increment a value but use its previous value, we need the postfix form:
+- If we'd like to increment, but use the previous value, then we need the postfix form:
 
     ```js run
     let counter = 0;
@@ -325,7 +317,7 @@ To summarize:
     ```
 
 ````smart header="Increment/decrement among other operators"
-The operators `++/--` can be used inside expressions as well. Their precedence is higher than most other arithmetical operations.
+Operators `++/--` can be used inside an expression as well. Their precedence is higher than most other arithmetical operations.
 
 For instance:
 
@@ -341,11 +333,11 @@ let counter = 1;
 alert( 2 * counter++ ); // 2, because counter++ returns the "old" value
 ```
 
-Though technically okay, such notation usually makes code less readable. One line does multiple things -- not good.
+Though technically allowable, such notation usually makes the code less readable. One line does multiple things -- not good.
 
-While reading code, a fast "vertical" eye-scan can easily miss something like `counter++` and it won't be obvious that the variable increased.
+While reading the code, a fast "vertical" eye-scan can easily miss such `counter++`, and it won't be obvious that the variable increases.
 
-We advise a style of "one line -- one action":
+The "one line -- one action" style is advised:
 
 ```js run
 let counter = 1;
@@ -370,7 +362,7 @@ The list of operators:
 - RIGHT SHIFT ( `>>` )
 - ZERO-FILL RIGHT SHIFT ( `>>>` )
 
-These operators are used very rarely. To understand them, we need to delve into low-level number representation and it would not be optimal to do that right now, especially since we won't need them any time soon. If you're curious, you can read the [Bitwise Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) article on MDN. It would be more practical to do that when a real need arises.
+These operators are used very rarely. To understand them, we should delve into low-level number representation, and it would not be optimal to do that right now. Especially because we won't need them any time soon. If you're curious, you can read the [Bitwise Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) article in MDN. It would be more practical to do that when a real need arises.
 
 ## Modify-in-place
 
