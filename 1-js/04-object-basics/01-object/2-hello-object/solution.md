@@ -1,10 +1,10 @@
 
 
 ```js
-let user = {};
-user.name = "John";
-user.surname = "Smith";
-user.name = "Pete";
-delete user.name;
+let kullanici = {};
+kullanici.isim = "Mazlum";
+kullanici.soyisim = "Mülaim";
+kullanici.isim = "Kemal";
+delete user.isim;
 ```
 

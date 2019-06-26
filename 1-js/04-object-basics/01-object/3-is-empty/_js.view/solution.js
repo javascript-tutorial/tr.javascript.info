@@ -1,6 +1,6 @@
-function isEmpty(obj) {
+function bosMu(obj) {
   for (let key in obj) {
-    // if the loop has started, there is a property
+    // döngü başladıysa obje içinde bir özellik var demektir.
     return false;
   }
   return true;

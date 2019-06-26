@@ -1,740 +1,721 @@
 
-# Objects
+# Objeler
 
-As we know from the chapter <info:types>, there are seven data types in JavaScript. Six of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
+<info:types> bölümünde hatırlanacağı üzere, JavaScript'te yedi tane farklı tip olduğundan bahsedilmşiti. Altı tanesi "basit" tipler, değerleri sadece tek birşeye eşit olabilir. ( karakter dizisi, sayı vs.)
 
-In contrast, objects are used to store keyed collections of various data and more complex entities. In JavaScript, objects penetrate almost every aspect of the language. So we must understand them first before going in-depth anywhere else.
+Buna karşın objeler anahtar bilgileri ile değerlerini tutar ve daha karmaşık veri yapıları oluşturabilirler. JavaScript'te bu objeler dilin neredeyse her alanına etki etmiş durumdadır. Bundan dolayı daha derinlere inmeden nasıl çalıştıklarının öğrenilmesi gerekmekte.
 
-An object can be created with figure brackets `{…}` with an optional list of *properties*. A property is a "key: value" pair, where `key` is a string (also called a "property name"), and `value` can be anything.
+[cut]
 
-We can imagine an object as a cabinet with signed files. Every piece of data is stored in its file by the key. It's easy to find a file by its name or add/remove a file.
+Obje `{...}` işareti ile yaratılabilir. Objenin kendine has *özellikleri* mevcuttur. Bir özellik anahtar:değer ikilisinden oluşur. `key`( anahtar) genelde karakter dizisi olur ve "özellik ismi" olarak adlandırılır. Değer ise herhangi bir tip olabilir.
+
+Obje bir dolap gibi düşünülebilir. Bu dolabın içindeki her klasörün bir ismi var ve bu isme göre içinde değerler mevcut. Bu `key`(anahtar) değerine göre dosyayı bulmak, eklemek ve silmek daha kolay olacaktır.
 
 ![](object.png)
 
-An empty object ("empty cabinet") can be created using one of two syntaxes:
+Boş obje ( boş dolap ) iki türlü oluşturulabilir.
 
 ```js
-let user = new Object(); // "object constructor" syntax
-let user = {};  // "object literal" syntax
+let kullanici = new Object(); 
+let kullanici = {}; 
 ```
 
 ![](object-user-empty.png)
 
-Usually, the figure brackets `{...}` are used. That declaration is called an *object literal*.
+Genelde `{...}` kullanılmaktadır. Bu şekilde tanımlamaya **obje kelimesi**
 
-## Literals and properties
+## **kelimeler** ve özellikler
 
-We can immediately put some properties into `{...}` as "key: value" pairs:
+Doğrudan `{...}` içerisine "anahtar:değer" ikilisi ile özellik eklemek mümkündür:
 
 ```js
-let user = {     // an object
-  name: "John",  // by key "name" store value "John"
-  age: 30        // by key "age" store value 30
+let kullanici = {     // obje
+  isim: "Mahsun",  // isim anahtarı, Mahsun değerini tutar.
+  yas: 30        // yaş anahtarı 30 değerini tutar.
 };
 ```
+Özellik obje anahtarı ve değerden oluşur. Obje anahtarı (tanımlayıcısı) `":"`'den önce tanımlanmalı değeri ise `":"` den sonra.
 
-A property has a key (also known as "name" or "identifier") before the colon `":"` and a value to the right of it.
+`kullanici` objesinde iki tip özellik vardır.
 
-In the `user` object, there are two properties:
+1. İlk özellik `"isim"` anahtarına sahiptir ve değeri `"Mahsun"`'dur.
+2. İkinci özellik ise `"yaş"` anahtarına sahiptir ve değeri `30` dur.
 
-1. The first property has the name `"name"` and the value `"John"`.
-2. The second one has the name `"age"` and the value `30`.
+`kullanici` objesi bir dolap ve içinde "isim" ve "yaş" değerlerinin olduğu iki klasör olarak hayal edilebilir.
 
-The resulting `user` object can be imagined as a cabinet with two signed files labeled "name" and "age".
+![kullanici objesi](object-user.png)
 
-![user object](object-user.png)
+Bu klasörleri istediğimiz zaman okuyabilir, yazabilir ve silebiliriz.
 
-We can add, remove and read files from it any time.
-
-Property values are accessible using the dot notation:
+Özellik değerlerine `.` yazımı ile ulaşılabilir.
 
 ```js
-// get fields of the object:
-alert( user.name ); // John
-alert( user.age ); // 30
+// objenin özellikleri:
+alert( kullanici.isim ); // Mahsun
+alert( kullanici.yas ); // 30
+```
+Değer her tipten olabilir. Boolean değeri aşağıdaki gibi eklenebilir :
+
+```js
+kullanici.adminMi = true;
 ```
 
-The value can be of any type. Let's add a boolean one:
+![kullanici objesi 2](object-user-isadmin.png)
+
+`delete` operatörü ile bir özellik silinebilir:
 
 ```js
-user.isAdmin = true;
+delete kullanici.yas;
 ```
 
-![user object 2](object-user-isadmin.png)
+![kullanici objesi 3](object-user-delete.png)
 
-To remove a property, we can use `delete` operator:
-
-```js
-delete user.age;
-```
-
-![user object 3](object-user-delete.png)
-
-We can also use multiword property names, but then they must be quoted:
+Birkaç kelimeden oluşan özellik ismi yazabilirsiniz. Fakat bu durumda anahtar çift tırnak içine alınmalıdır:
 
 ```js
-let user = {
-  name: "John",
-  age: 30,
-  "likes birds": true  // multiword property name must be quoted
+let kullanici = {
+  isim: "Mahsun",
+  yas: 30,
+  "Nemrudun Kızı": true  // birkaç kelimeden oluştuğunda görüldüğü üzere tırnak içine alınması gerekmektedir.
 };
 ```
 
 ![](object-user-props.png)
 
 
-The last property in the list may end with a comma:
+````smart header="Virgül"
+Her özellikten sonra virgül konulmalıdır. Son özellikten sonra virgül ile bitirilebilir.
+
 ```js
-let user = {
-  name: "John",
+let kullanici = {
+  name: "Mahsun",
   age: 30*!*,*/!*
 }
 ```
-That is called a "trailing" or "hanging" comma. Makes it easier to add/remove/move around properties, because all lines become alike.
+Bu vigüle "bekletme" virgülü denir. Böylece yeni özellik ekleme veya silme daha kolay olur. Çünkü tüm satırlar aynıdır.
+````
 
-## Square brackets
+## Köşeli parantez
 
-For multiword properties, the dot access doesn't work:
-
-```js run
-// this would give a syntax error
-user.likes birds = true
-```
-
-That's because the dot requires the key to be a valid variable identifier. That is: no spaces and other limitations.
-
-There's an alternative "square bracket notation" that works with any string:
-
+Eğer özellik anahtarı birkaç kelimeden oluşuyorsa nokta ile bu özelliğe erişilemez:
 
 ```js run
-let user = {};
+// yazım hatası
+kullanici.Nemrudun Kızı = true
+```
+Çünkü `.` aslında bir değişken ismi beklemektedir. Değişken tanımlarken boşluk ve başka sınırlamalar aynen `.` yazımı için de geçerlidir.
 
-// set
-user["likes birds"] = true;
+Bunun yerine köşeli parantez yazımı ile bunu çözebilirsiniz:
 
-// get
-alert(user["likes birds"]); // true
+```js run
+let kullanici = {};
 
-// delete
-delete user["likes birds"];
+// değer ata
+kullanici["Nemrudun Kızı"] = true;
+
+// değer al
+alert(kullanici["Nemrudun Kızı"]); // true
+
+// sil
+delete kullanici["Nemrudun Kızı"];
 ```
 
-Now everything is fine. Please note that the string inside the brackets is properly quoted (any type of quotes will do).
+Herşey beklendiği gibi çalışıyor. Dikkat ederseniz köşeli parantez içerisindeki kelimeler tırnak içerisinde yazılır, tek tırnak veya çift tırnak önemli değildir. Her ikisi de aynı görevi görür.
 
-Square brackets also provide a way to obtain the property name as the result of any expression -- as opposed to a literal string -- like from a variable as follows:
+Bunun yanında aşağıdaki gibi değişken üzerinden de gidilebilir:
 
 ```js
-let key = "likes birds";
+let anahtar = "Nemrudun Kızı";
 
-// same as user["likes birds"] = true;
-user[key] = true;
+// kullanici["Nemrudun Kızı"] = true; //ile aynı
+kullanici[anahtar] = true;
 ```
+Burada `anahtar` çalışma anında veya kullanıcının gireceği değere göre atanır. Sonrasında istenen özelliğe erişmek için kullanılabilir. Nokta yazımı köşeli parantez kadar etkin değildir. Köşeli parantez esneklik sağlar.
 
-Here, the variable `key` may be calculated at run-time or depend on the user input. And then we use it to access the property. That gives us a great deal of flexibility. The dot notation cannot be used in a similar way.
-
-For instance:
+Örneğin:
 
 ```js run
-let user = {
-  name: "John",
-  age: 30
+let kullanici = {
+  isim: "Mahsun",
+  yas: 30
 };
 
-let key = prompt("What do you want to know about the user?", "name");
+let anahtar = prompt("Kullanıcı hakkında ne bilmek istiyorsun?", "isim");
 
-// access by variable
-alert( user[key] ); // John (if enter "name")
+// değişkene göre değer alınır.
+alert( kullanici[key] ); // Mahsun (eğer "isim" girerse )
 ```
 
 
-### Computed properties
+### Hesaplanmış Özellikler
 
-We can use square brackets in an object literal. That's called *computed properties*.
+Obje tanımında da köşeli parantez kullanabiliriz. Buna **Hesaplanmış Özellikler** ( Computed Properties ) denir.
 
-For instance:
+Örneğin:
 
 ```js run
-let fruit = prompt("Which fruit to buy?", "apple");
+let meyve = prompt("Hangi meyveyi istersin?", "elma");
 
-let bag = {
+let poset = {
 *!*
-  [fruit]: 5, // the name of the property is taken from the variable fruit
+  [meyve]: 5, // meyve değişkeninden objenin anahtarı alınıyor.
 */!*
 };
 
-alert( bag.apple ); // 5 if fruit="apple"
+alert( poset.elma ); // eğer meyve "elma" girildiyse 5 değeri döner.
 ```
 
-The meaning of a computed property is simple: `[fruit]` means that the property name should be taken from `fruit`.
+Hesaplanmış özelliklerin anlamı basittir: `[meyve]`, özellik isminin `meyve` değişkeninden alınması gerektiğini bildirir.
 
-So, if a visitor enters `"apple"`, `bag` will become `{apple: 5}`.
+Öyleyse eğer kullanıcı `"elma"` değerini girerse `poset` `{elma:5}` olacaktır.
+
+Aslında aşağıdaki ile aynı şekilde çalışacaktır.
 
 Essentially, that works the same as:
 ```js run
-let fruit = prompt("Which fruit to buy?", "apple");
-let bag = {};
+let meyve = prompt("Hangi meyveyi istersin?", "elma");
+let poset = {};
 
-// take property name from the fruit variable
-bag[fruit] = 5;
+// meyve değişkeninden objenin anahtarı alınıyor.
+poset[meyve] = 5;
 ```
 
-...But looks nicer.
+...fakat biraz daha iyi görünür.
 
-We can use more complex expressions inside square brackets:
+Köşeli parantez içerisinde daha karmaşık ifadeler de kullanabilirsiniz:
 
 ```js
-let fruit = 'apple';
-let bag = {
-  [fruit + 'Computers']: 5 // bag.appleComputers = 5
+let meyve = 'elma';
+let poset = {
+  [meyve + 'Yedim']: 5 // poset.elmaYedim = 5
 };
 ```
+Köşeli parantez nokta yazımına göre çok daha güçlüdür. Her türlü özellik ismini ve değişkeni desteklerler. Fakat yazımı biraz  gariptir.
 
-Square brackets are much more powerful than the dot notation. They allow any property names and variables. But they are also more cumbersome to write.
+Eğer özellik isimleri tek kelime ise çoğunlukla nokta yazımı kullanılır. Eğer daha karmaşık ise bu durumda köşeli parantez kullanılır.
 
-So most of the time, when property names are known and simple, the dot is used. And if we need something more complex, then we switch to square brackets.
+````smart header="JavaScript dili için ayrılmış kelimeler obje içerisinde kullanılabilir."
 
+Değişken ismi  `for`,`let`,`return` gibi dil için ayrılmış kelimelerden oluşamaz. 
 
-
-````smart header="Reserved words are allowed as property names"
-A variable cannot have a name equal to one of language-reserved words like "for", "let", "return" etc.
-
-But for an object property, there's no such restriction. Any name is fine:
+Fakat obje özellikleri için böyle bir sınırlama yoktur. Değişken her türlü adlandırılabilir.
 
 ```js run
 let obj = {
   for: 1,
   let: 2,
   return: 3
-};
+}
 
 alert( obj.for + obj.let + obj.return );  // 6
 ```
-
-Basically, any name is allowed, but there's a special one: `"__proto__"` that gets special treatment for historical reasons. For instance, we can't set it to a non-object value:
+Temelde tüm isimlere izin verilir, fakat bir tane özel isim vardır `"__proto__"` bu özel bir davranış sergiler. Örneğin obje olmayan değeri atayamazsınız:
 
 ```js run
 let obj = {};
 obj.__proto__ = 5;
-alert(obj.__proto__); // [object Object], didn't work as intended
+alert(obj.__proto__); // [object Object], beklendiği gibi çalışmadı.
 ```
+Kodda göründüğü üzere, 5, ilkel bir tip olduğundan dolayı atanamadı ve görmezden gelindi.
 
-As we see from the code, the assignment to a primitive `5` is ignored.
+Bundan dolayı eğer kullanıcıya `anahtar` tanımlattırılırsa bu aslında hatalara ve güvenlik açıklarına neden olabilir.
 
-That can become a source of bugs and even vulnerabilities if we intend to store arbitrary key-value pairs in an object, and allow a visitor to specify the keys.
+Böyle bir durumda kullanıcı "__proto__" seçerse tüm mantık yukarıdaki gibi çalışmaz hale gelir.
 
-In that case the visitor may choose "__proto__" as the key, and the assignment logic will be ruined (as shown above).
+`__proto__`'yu normal özellik olarak tanıtma yöntemi de bulunmaktadır, bunu ilerleyen zamanlarda işlenecektir. 
 
-There is a way to make objects treat `__proto__` as a regular property, which we'll cover later, but first we need to know more about objects.
-There's also another data structure [Map](info:map-set-weakmap-weakset), that we'll learn in the chapter <info:map-set-weakmap-weakset>, which supports arbitrary keys.
+Farklı bir veri yapısı daha vardır  [Map](info:map-set-weakmap-weakset). Bu <info:map-set-weakmap-weakset> bölümünden incelenebilir, ki bu her türlü anahtarı kabul eder.
 ````
 
 
-## Property value shorthand
+## Özellik değeri kısaltması
 
-In real code we often use existing variables as values for property names.
+Kod yazarken genelde var olan değişkenleri özelliklere isim olarak atarız.
 
-For instance:
+Örneğin:
 
 ```js run
-function makeUser(name, age) {
+function kullaniciOlustur(isim, yas) {
   return {
-    name: name,
-    age: age
-    // ...other properties
+    isim: isim,
+    yas: yas
+    // ...diğer özellikler
   };
 }
 
-let user = makeUser("John", 30);
-alert(user.name); // John
+let kullanici = kullaniciOlustur("Mazlum", 30);
+alert(kullanici.isim); // Mazlum
 ```
 
-In the example above, properties have the same names as variables. The use-case of making a property from a variable is so common, that there's a special *property value shorthand* to make it shorter.
-
-Instead of `name:name` we can just write `name`, like this:
+Yukarıdaki örnekte özellikler değişkenler ile aynı isme sahipler. Bu çeşit kullanım çok yaygındır, hatta bundan dolayı *kısaltma* bile yapılmıştır.
+`isim:isim` yazmak yerine sadece `isim` yazılabilir:
 
 ```js
-function makeUser(name, age) {
+function kullaniciOlustur(isim, yas) {
 *!*
   return {
-    name, // same as name: name
-    age   // same as age: age
+    isim, //  isim: name ile aynı
+    yas   // age: age ile aynı
     // ...
   };
 */!*
 }
 ```
-
-We can use both normal properties and shorthands in the same object:
+Aynı obje içerisinde kısaltma ve normal versiyonu kullanılabilir:
 
 ```js
-let user = {
-  name,  // same as name:name
-  age: 30
+let kullanici = {
+  isim,  // isim:isim ile aynı.
+  yas: 30
 };
 ```
 
-## Existence check
+## Varlık kontrolü
 
-A notable objects feature is that it's possible to access any property. There will be no error if the property doesn't exist! Accessing a non-existing property just returns `undefined`. It provides a very common way to test whether the property exists -- to get it and compare vs undefined:
+Bir objedeki her özellik erişilebilirdir. Eğer o özellik olmasa bile hata vemez!!! Olmayan bir özelliğe ulaşmaya çalıştığınızda `undefined` değeri döner. Bu da kolayca o özelliğin olup olmadığını kontrol etmenizi sağlar.
 
 ```js run
-let user = {};
+let kullanici = {};
 
-alert( user.noSuchProperty === undefined ); // true means "no such property"
+alert( kullanici.olmayanOzellik === undefined ); // true "böyle bir özellik yok" demektir.
 ```
+Ayrıca bunu kontrol için `"in"` operatörü de kullanılabilir.
 
-There also exists a special operator `"in"` to check for the existence of a property.
-
-The syntax is:
+Yazımı:
 ```js
-"key" in object
+"anahtar" in obje
 ```
 
-For instance:
+Örneğin:
 
 ```js run
-let user = { name: "John", age: 30 };
+let kullanici = { isim: "Mazlum", yas: 30 };
 
-alert( "age" in user ); // true, user.age exists
-alert( "blabla" in user ); // false, user.blabla doesn't exist
+alert( "yas" in kullanici ); // true, kullanici.age özelliği mevcut.
+alert( "blabla" in kullanici ); // false, kullanici.blabla namevcut.
 ```
 
-Please note that on the left side of `in` there must be a *property name*. That's usually a quoted string.
+Yazıma dikkat edersenin `in` in sol tarafında *özellik ismi* tırnak içinde yazılır.
 
-If we omit quotes, that would mean a variable containing the actual name will be tested. For instance:
+Eğer tırnağı unutursanız bu durumda değişkenin değerini obje içinde arar halbuki bizim amacımız değişkenin isminin obje içinde aranmasıydı.
+
+Örneğin:
 
 ```js run
-let user = { age: 30 };
+let kullanici = { yas: 30 };
 
-let key = "age";
-alert( *!*key*/!* in user ); // true, takes the name from key and checks for such property
+let anahtar = "yas";
+alert( *!*anahtar*/!* in kullanici ); // true, değişkenden değerini alır ve kontrol eder.
 ```
 
-````smart header="Using \"in\" for properties that store `undefined`"
-Usually, the strict comparison `"=== undefined"` check works fine. But there's a special case when it fails, but `"in"` works correctly.
+````smart header="Özellik undefined dönderiyorsa nasıl kontrol edilmeli?"
+Genelde sıkı karşılaştırma `"=== undefined"` doğru çalışır. Fakat burada özel bir durum mevcuttur ve sıkı karşılaştırma da başarısız olur, fakat bu durumda bile `"in"` doğru çalışır.
 
-It's when an object property exists, but stores `undefined`:
+Bu olay objenin özelliğinin var olduğu fakat `undefined` döndürdüğü durumda meydana gelir.
 
 ```js run
 let obj = {
   test: undefined
 };
 
-alert( obj.test ); // it's undefined, so - no such property?
+alert( obj.test ); // undefined - yani böyle bir özellik yok mu?
 
-alert( "test" in obj ); // true, the property does exist!
+alert( "test" in obj ); // true, özellik mevcut!
 ```
+Yukarıdaki örnekte `obj.test` teknik olarak mevcut. Bundan dolayı `in` operatörü doğru bir şekilde çalışır.
 
-
-In the code above, the property `obj.test` technically exists. So the `in` operator works right.
-
-Situations like this happen very rarely, because `undefined` is usually not assigned. We mostly use `null` for "unknown" or "empty" values. So the `in` operator is an exotic guest in the code.
+Bu türde olaylar çok nadir yaşanır, çünkü bir özelliğe neredeyse kimse `undefined` atamaz. Genelde `bilinmeyen` için `null` veya boş değer kullanılır. Bundan dolayı `in` operatörü kodda yabancı görünür.
 ````
 
 
-## The "for..in" loop
+## "for..in" döngüsü
 
-To walk over all keys of an object, there exists a special form of the loop: `for..in`. This is a completely different thing from the `for(;;)` construct that we studied before.
+Objenin içindeki `anahtarlar` içini adım adım gezen `for..in` döngüsü bulunmaktadır. Bu `for(;;)` döngüsünden tamamen farklıdır.
 
-The syntax:
+Yazım:
 
 ```js
-for (key in object) {
-  // executes the body for each key among object properties
+for(anahtar in object) {
+  // her anahtar için döngü gövdesini çalıştırır.
 }
 ```
-
-For instance, let's output all properties of `user`:
+Örneğin, `kullanici` objesinin tüm özelliklerinin çıktısını alalım:
 
 ```js run
-let user = {
-  name: "John",
-  age: 30,
-  isAdmin: true
+let kullanici = {
+  isim: "Mazlum",
+  yas: 30,
+  mazlumuGetirin: true
 };
 
-for (let key in user) {
-  // keys
-  alert( key );  // name, age, isAdmin
-  // values for the keys
-  alert( user[key] ); // John, 30, true
+for(let anahtar in kullanici) {
+  // anahtarlar
+  alert( anahtar );  // isim, yas, mazlumuGetirin
+  // anahtarlara göre değerler
+  alert( kullanici[anahtar] ); // Mazlum, 30, true
 }
 ```
 
-Note that all "for" constructs allow us to declare the looping variable inside the loop, like `let key` here.
+Dikkat ederseniz, "for" yapısına göre döngü içerisinde `let anahtar` tanımı yapılabilir.
 
-Also, we could use another variable name here instead of `key`. For instance, `"for (let prop in obj)"` is also widely used.
+Elbette `anahtar` yerine istediğiniz herhangi bir değişken ismini koyabilirsiniz. Örneğin `key` veya `property` 
 
+### Obje sıralaması
 
-### Ordered like an object
+Objeler sıralı mıdır? Diğer bir deyişle, eğer döngü içerisinde obje yazdırılırsa bu objeye yerleştirme sırasına göre mi yazılır?
 
-Are objects ordered? In other words, if we loop over an object, do we get all properties in the same order they were added? Can we rely on this?
+Kısa cevap: "özel bir şekilde sıralanır", eğer tamsayı ise değerlerine göre, diğer türlü objeye eklenme sırasına göre sıralanır. 
 
-The short answer is: "ordered in a special fashion": integer properties are sorted, others appear in creation order. The details follow.
-
-As an example, let's consider an object with the phone codes:
+Örneğin telefon kodları:
 
 ```js run
-let codes = {
-  "49": "Germany",
-  "41": "Switzerland",
-  "44": "Great Britain",
+let kodlar = {
+  "49": "Almanya",
+  "41": "İsveç",
+  "44": "İngiltere",
   // ..,
-  "1": "USA"
+  "1": "Amerika Birleşik Devletleri"
 };
 
 *!*
-for (let code in codes) {
-  alert(code); // 1, 41, 44, 49
+for(let kod in kodlar) {
+  alert(kod); // 1, 41, 44, 49
 }
 */!*
 ```
+Bu obje belki açılan kutu içerisinde kullanılacaktı, Alman kullanıcılar düşünülerek yapılmış olabilir. Onun için Almanya birinci sıraya konulmuş fakat gördüğünüz üzere anahtar `49` olduğundan ilk değil de sonuncu sırada.
 
-The object may be used to suggest a list of options to the user. If we're making a site mainly for German audience then we probably want `49` to be the first.
+Kodu çalıştırdığınızda:
 
-But if we run the code, we see a totally different picture:
+- Amerika Birleşik Devletleri 1. sırada
+- Sonra İsveç vs.
 
-- USA (1) goes first
-- then Switzerland (41) and so on.
+Telefon kodları tam sayı olduğundan dolayı bu sıraya göre dizilmişlerdir.
 
-The phone codes go in the ascending sorted order, because they are integers. So we see `1, 41, 44, 49`.
 
-````smart header="Integer properties? What's that?"
-The "integer property" term here means a string that can be converted to-and-from an integer without a change.
+````smart header="Özellik anahtarları nasıl tam sayı olabilir ?"
 
-So, "49" is an integer property name, because when it's transformed to an integer number and back, it's still the same. But "+49" and "1.2" are not:
-
-```js run
-// Math.trunc is a built-in function that removes the decimal part
-alert( String(Math.trunc(Number("49"))) ); // "49", same, integer property
-alert( String(Math.trunc(Number("+49"))) ); // "49", not same "+49" ⇒ not integer property
-alert( String(Math.trunc(Number("1.2"))) ); // "1", not same "1.2" ⇒ not integer property
-```
+Burada "tam sayı" aslında sayı tipinde değil de karakter tipinde sayı olmakta. Sıralama yapılacağı sırada sayısal olarak çevriliyor ve buna göre sıralanıyor.
 ````
 
-...On the other hand, if the keys are non-integer, then they are listed in the creation order, for instance:
+...Diğer yandan, eğer anahtarlar tam sayı değilse bu durumda objeye eklenme sırasına göre çıktı alınır:
 
 ```js run
-let user = {
-  name: "John",
-  surname: "Smith"
+let kullanici = {
+  isim: "İhsan",
+  soyisim: "Mümtaz"
 };
-user.age = 25; // add one more
+kullanici.yas = 25; // yeni bir özellik ekledik
 
 *!*
-// non-integer properties are listed in the creation order
+// tam sayı olaman anahtarlar objeye eklenme sırasına göre gelir.
 */!*
-for (let prop in user) {
-  alert( prop ); // name, surname, age
+for (let ozellik in kullanici) {
+  alert( ozellik ); // isim, soyisim, yas
 }
 ```
+Peki telefon kodları ( tam sayı değerleri) nasıl eklenme sırasına göre kullanılabilir? Bunun için her koddan önce `"+"` işaretini kullanmak yeterli olacaktır.
 
-So, to fix the issue with the phone codes, we can "cheat" by making the codes non-integer. Adding a plus `"+"` sign before each code is enough.
-
-Like this:
+Şu şekilde:
 
 ```js run
-let codes = {
-  "+49": "Germany",
-  "+41": "Switzerland",
-  "+44": "Great Britain",
+let kodlar = {
+  "49": "Almanya",
+  "41": "İsveç",
+  "44": "İngiltere",
   // ..,
-  "+1": "USA"
+  "1": "Amerika Birleşik Devletleri"
 };
 
-for (let code in codes) {
-  alert( +code ); // 49, 41, 44, 1
+for(let kod in kodlar) {
+  alert( +kod ); // 49, 41, 44, 1
 }
 ```
 
-Now it works as intended.
+Olması gerektiği gibi çalışır.
 
-## Copying by reference
+## Referans İle Kopyalama
 
-One of the fundamental differences of objects vs primitives is that they are stored and copied "by reference".
+Objeler ile ilkel tipler ( karakter dizisi, sayı, boolean vs.) arasındaki temel fark objelerin saklanması ve kopyalanması "referans" ile olur.
 
-Primitive values: strings, numbers, booleans -- are assigned/copied "as a whole value".
+Fakat ilkel tipler tamamen kopyalanır.
 
-For instance:
+Örneğin:
 
 ```js
-let message = "Hello!";
-let phrase = message;
+let mesaj = "Merhaba!";
+let karsilama = mesaj;
 ```
-
-As a result we have two independent variables, each one is storing the string `"Hello!"`.
+Sonuç olarak birbirinden bağımsız iki değişken de `"Merhaba!"` değerini tutar.
 
 ![](variable-copy-value.png)
 
-Objects are not like that.
+Objeler bu şekilde çalışmaz:
 
-**A variable stores not the object itself, but its "address in memory", in other words "a reference" to it.**
+**Obje değişkeni objenin kendisini değil hafızadaki adresini tutar. Diğer bir deyişle referansını tutar.**
 
-Here's the picture for the object:
+Bir objenin resmi aşağıdaki gibidir:
 
 ```js
-let user = {
-  name: "John"
+let kullanici = {
+  isim: "Mümtaz"
 };
 ```
 
 ![](variable-contains-reference.png)
 
-Here, the object is stored somewhere in memory. And the variable `user` has a "reference" to it.
+Obje hafızada herhangi bir yerde saklandı ve `kullanici` değişkeni buna "referans" oldu.
 
-**When an object variable is copied -- the reference is copied, the object is not duplicated.**
+**Obje değişkeni kopyalandığında aslında objenin referansı kopyalanır hafızadaki obje kopyalanmaz**
 
-If we imagine an object as a cabinet, then a variable is a key to it. Copying a variable duplicates the key, but not the cabinet itself.
+Yine objeyi bir dolap olarak düşünürseniz değişken bu dolabın anahtarıdır. Kopyaladığınız zaman dolabı değil de anahtarı kopyalamış olursunuz.
 
-For instance:
+Örneğin:
 
 ```js no-beautify
-let user = { name: "John" };
+let kullanici = { isim: "Mümtaz" };
 
-let admin = user; // copy the reference
+let yonetici = kullanici; // referansı kopyalar.
 ```
-
-Now we have two variables, each one with the reference to the same object:
+Artık iki tane değişken var ve ikisi de aynı objeye referans oldu:
 
 ![](variable-copy-reference.png)
 
-We can use any variable to access the cabinet and modify its contents:
+Bu iki değişkenden birini kullanarak objenin içeriği değiştirilebilir:
 
 ```js run
-let user = { name: 'John' };
+let kullanici = { isim: 'Mümtaz' };
 
-let admin = user;
+let yonetici = kullanici;
 
 *!*
-admin.name = 'Pete'; // changed by the "admin" reference
+yonetici.isim = 'İhsan'; // yonetici referansı kullanılarak değiştirildi.
 */!*
 
-alert(*!*user.name*/!*); // 'Pete', changes are seen from the "user" reference
+alert(*!*kullanici.isim*/!*); // 'İhsan', değişikliği kullanici referansında da etkili oldu. `Mümtaz` değişerek `İhsan` oldu.
 ```
 
-The example above demonstrates that there is only one object. As if we had a cabinet with two keys and used one of them (`admin`) to get into it. Then, if we later use the other key (`user`) we would see changes.
+Bu örnekten de anlaşılacağı üzere sadece bir tane obje var. Bir dolabın iki anahtarı olması gibi. Bu anahtarlardan biri `yonetici` diğeri `kullanici` dır. Yonetici ile dolabı açıp bir şey değiştirip daha sonra `kullanici` anahtarı ile açtığınızda dolabın içindeki değişikliği görebilirsiniz.
 
-### Comparison by reference
+### Referansların karşılaştırılması
 
-The equality `==` and strict equality `===` operators for objects work exactly the same.
+Eşitlik `==` ve sıkı eşitlik `===` operatörleri aynı şekilde çalışmaktadır.
 
-**Two objects are equal only if they are the same object.**
 
-For instance, two variables reference the same object, they are equal:
+**İki obje anca aynı objeler ise eşittir.**
+
+Örneğin iki değişken aynı objeyi referans alırsa bu durumda eşit olurlar:
 
 ```js run
 let a = {};
-let b = a; // copy the reference
+let b = a; // referansı kopyala
 
-alert( a == b ); // true, both variables reference the same object
+alert( a == b ); // true, iki değişken de aynı objeyi referans almaktadır.
 alert( a === b ); // true
 ```
-
-And here two independent objects are not equal, even though both are empty:
+İki tane farklı objenin nasıl davrandığına bakılırsa:
 
 ```js run
 let a = {};
-let b = {}; // two independent objects
+let b = {}; // iki tane bağımsız obje
 
 alert( a == b ); // false
 ```
+Dikkat ederseniz ikisi de boş olsa bile birbirinden farklı objelerdir.
 
-For comparisons like `obj1 > obj2` or for a comparison against a primitive `obj == 5`, objects are converted to primitives. We'll study how object conversions work very soon, but to tell the truth, such comparisons are necessary very rarely and usually are a result of a coding mistake.
+`obj1 > obj2` gibi karşılaştırmalar veya ilkel tipler ile karşılaştırmalar `obj == 5` mümkündür. Fakat objeler bu durumda ilkel tiplere dönüşür, nasıl çevirildiğini az sonra göreceksiniz. Fakat söylemek gerekir ki böyle karşılaştırmalar nadiren kullanılır ve kullandığında genelde kodlama hatasına neden olur.
 
-### Const object
+### Sabit Objeler
 
-An object declared as `const` *can* be changed.
+Sabit (`const`) olarak tanımlanan objeler *değiştirilebilir* .
 
-For instance:
-
+Örneğin:
 ```js run
-const user = {
-  name: "John"
+const kullanici = {
+  isim: "Mümtaz"
 };
 
 *!*
-user.age = 25; // (*)
+kullanici.yas = 25; // (*)
 */!*
 
-alert(user.age); // 25
+alert(kullanici.yas); // 25
 ```
+`(*)` satırında hata alınacakmış gibi dursa da hata alınmaz ve bir sorun olmadan çalışır. Bunun nedeni `const`'un referansının değişmediğinde sorun yaratmamasıdır. Daha önce de `kullanici` aynı objeye referans gösteriyordu, daha sonra da. *içinde* ne olduğu `const`'u ilgilendirmez. Tekrar atama yapmadığınız sürece bir sorun teşkil etmez.
 
-It might seem that the line `(*)` would cause an error, but no, there's totally no problem. That's because `const` fixes the value of `user` itself. And here `user` stores the reference to the same object all the time. The line `(*)` goes *inside* the object, it doesn't reassign `user`.
-
-The `const` would give an error if we try to set `user` to something else, for instance:
+Örneğin `const` aşağıdaki gibi bir kullanımda, yani `kullanici` değişkenine başka bir obje referans etmeye çalıştığımızda hata verir:
 
 ```js run
-const user = {
-  name: "John"
+const kullanici = {
+  isim: "Mümtaz"
 };
 
 *!*
-// Error (can't reassign user)
+// Hata (kullanici'ya tekrar atama yapılamaz)
 */!*
-user = {
-  name: "Pete"
+kullanici = {
+  isim : "İhsan"
 };
 ```
+... Peki ya objenin özellikleri nasıl sabit yapılabilir? Yani `kullanici.yas = 25` yazıldığında hata vermesi nasıl sağlanır? Bunu 
+<info:property-descriptors> bölümüne geldiğinizde göreceksiniz.
 
-...But what if we want to make constant object properties? So that `user.age = 25` would give an error. That's possible too. We'll cover it in the chapter <info:property-descriptors>.
+## Klonlama, birleştirme, Object.assign
 
-## Cloning and merging, Object.assign
+Obje kopyalanınca sadece yeni bir referans yaratıldığını söylemiştik. Peki ya objeyi kopyalamak istiyorsanız? Yani aynı dolaptan bir tane daha yapmak istiyorsanız ne yapmalısınız?
 
-So, copying an object variable creates one more reference to the same object.
+Bu elbette mümkün, bunun için JavaScript metodları bulunmaktadır. Fakat çok az ihtiyaç duyulur. Sadece referansı kopyalamak çoğu zaman yeterli olur.
 
-But what if we need to duplicate an object? Create an independent copy, a clone?
+Fakat bunu gerçekten istiyorsanız, yeni bir obje yaratmak ve kopyalanacak objenin yapısını adım adım kopyalamak zorundasınız.
 
-That's also doable, but a little bit more difficult, because there's no built-in method for that in JavaScript. Actually, that's rarely needed. Copying by reference is good most of the time.
-
-But if we really want that, then we need to create a new object and replicate the structure of the existing one by iterating over its properties and copying them on the primitive level.
-
-Like this:
+Örneğin:
 
 ```js run
-let user = {
-  name: "John",
-  age: 30
+let kullanici = {
+  isim: "Mümtaz",
+  yas: 30
 };
 
 *!*
-let clone = {}; // the new empty object
+let klon = {}; // yeni obje
 
-// let's copy all user properties into it
-for (let key in user) {
-  clone[key] = user[key];
+// tüm özelliklerin bunun içine kopyalanması gerekmekte.
+for (let anahtar in kullanici) {
+  klon[anahtar] = kullanici[anahtar];
 }
 */!*
 
-// now clone is a fully independent clone
-clone.name = "Pete"; // changed the data in it
+// şu anda klonu tamamen bağımsız durumda
+koln.isim = "İhsan"; // İçindeki veri değiştirildi.
 
-alert( user.name ); // still John in the original object
+alert( kolon.isim ); // orninal objede bu hala Mümtaz olarak durmakta.
 ```
 
-Also we can use the method [Object.assign](mdn:js/Object/assign) for that.
+Bunun yanında [Object.assign](mdn:js/Object/assign) metodu da kullanılabilir.
 
-The syntax is:
+Yazımı:
 
 ```js
-Object.assign(dest, [src1, src2, src3...])
+Object.assign(hedef[, kaynak1, kaynak2, kaynak3...])
 ```
 
-- Arguments `dest`, and `src1, ..., srcN` (can be as many as needed) are objects.
-- It copies the properties of all objects `src1, ..., srcN` into `dest`. In other words, properties of all arguments starting from the 2nd are copied into the 1st. Then it returns `dest`.
+- `hedef` ve `kaynak1,....,kaynak2,...., kaynakN` istenildiği kadar olabilir.
+- `kaynak1,...,kaynakN` e kadar olan tüm objelerin özelliklerini `hedef` e kopyalar. Diğer bir deyişle, 2. argümandan itibaren tüm değerler birinci argümana kopyalanır, sonra `hedef` döndürülür.
 
-For instance, we can use it to merge several objects into one:
+Örneğin, birkaç tane objeyi bir objeye indirgemek için bu metod kullanılabilir.
+
 ```js
-let user = { name: "John" };
+let kullanici = { isim: "Mümtaz" };
 
-let permissions1 = { canView: true };
-let permissions2 = { canEdit: true };
+let izin1 = { okuma: true };
+let izin2 = { duzenleme: true };
 
 *!*
-// copies all properties from permissions1 and permissions2 into user
-Object.assign(user, permissions1, permissions2);
+// bu özellikleri kullanıcıya kopyalamak için
+Object.assign(kullanici, izin1, izin2 );
 */!*
 
-// now user = { name: "John", canView: true, canEdit: true }
+// kullanıcının şimdiki özellikleri,  kullanici = { name: "Mümtaz", okuma: true, duzenleme: true }
 ```
+Eğer obje(`kullanici`) aynı isimde özelliğe sahipse bu özelliklerin üstüne yazılır.
 
-If the receiving object (`user`) already has the same named property, it will be overwritten:
 
 ```js
-let user = { name: "John" };
+let kullanici = { isim: "Mümtaz" };
 
-// overwrite name, add isAdmin
-Object.assign(user, { name: "Pete", isAdmin: true });
+// ismin üstüne yazılır, ve yonetici eklenir.
+Object.assign(kullanici, { isim: "Pete", yonetici: true });
 
-// now user = { name: "Pete", isAdmin: true }
+// şu anda: kullanici = { isim: "Müntaz", yonetici: true }
 ```
-
-We also can use `Object.assign` to replace the loop for simple cloning:
+`Object.assign`ile basit bir objeyi kolayca klonlamak da mümkündür:
 
 ```js
-let user = {
-  name: "John",
-  age: 30
+let kullanici = {
+  isim: "Mümtaz",
+  yas: 30
 };
 
 *!*
-let clone = Object.assign({}, user);
+let klon = Object.assign({}, kullanici);
 */!*
 ```
+`kullanici` objesinin tüm özelliklerini boş bir objeye kopyalar ve bu objeyi döndürür. Aslında daha önce yapılan döngünün aynısı, fakat daha kısa.
 
-It copies all properties of `user` into the empty object and returns it. Actually, the same as the loop, but shorter.
+Şimdiye kadar `kullanici` objesinin tüm özelliklerinin ilkel olduğunu varsayıldı. Fakat özellikler içlerinde başka obje barındırabilirler.
 
-Until now we assumed that all properties of `user` are primitive. But properties can be references to other objects. What to do with them?
+Örneğin:
 
-Like this:
 ```js run
-let user = {
-  name: "John",
-  sizes: {
-    height: 182,
-    width: 50
+let kullanici = {
+  isim: "Mümtaz",
+  beden: {
+    boy: 182,
+    en: 50
   }
 };
 
-alert( user.sizes.height ); // 182
+alert( kullanici.beden.boy ); // 182
 ```
+Artık eskisi gibi `klon.beden = kullanici.beden` demek yeterli olmayacaktır. Çünkü `kullanici.beden` artık bir objedir, objelerin referansları kopyalanır. Öyleyse `klon` ve `kullanici` aynı beden objesini kullanırlar.
 
-Now it's not enough to copy `clone.sizes = user.sizes`, because the `user.sizes` is an object, it will be copied by reference. So `clone` and `user` will share the same sizes:
-
-Like this:
+Şu şekilde:
 ```js run
-let user = {
-  name: "John",
-  sizes: {
-    height: 182,
-    width: 50
+let kullanici = {
+  isim: "Mümtaz",
+  beden: {
+    boy: 182,
+    en: 50
   }
 };
 
-let clone = Object.assign({}, user);
+let klon = Object.assign({}, kullanici);
 
-alert( user.sizes === clone.sizes ); // true, same object
+alert( kullanici.beden === klon.beden ); // true, doğru aynı obje
 
-// user and clone share sizes
-user.sizes.width++;       // change a property from one place
-alert(clone.sizes.width); // 51, see the result from the other one
+// diyelim ki kullanicida değişiklik yaptınız
+kullanici.boyut.en++;       // change a property from one place
+alert(klon.boyut.en); // 51, gördüğünüz üzere birinde yaptığınız değişiklik diğerini de etkiledi.
 ```
 
-To fix that, we should use the cloning loop that examines each value of `user[key]` and, if it's an object, then replicate its structure as well. That is called a "deep cloning".
+Bunu düzeltmek için klonlarken eğer obje ise içteki objenin yapısının da kopyalanması gerekmektedir. Buna derinlemesine klonlama denir.
 
-There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](http://w3c.github.io/html/infrastructure.html#safe-passing-of-structured-data). In order not to reinvent the wheel, we can use a working implementation of it from the JavaScript library [lodash](https://lodash.com), the method is called [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+Bu derin klonlama için kullanılan [Structured cloning algorithm](https://w3c.github.io/html/infrastructure.html#internal-structured-cloning-algorithm) adında bir algoritma bulunmaktadır. Tekeri tekrar bulmaya gerek olmadığından , uygulaması olan [lodash](https://lodash.com) kütüphanesinde bulunan 
+[Structured cloning algorithm][_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) metodu kullanılabilir.
 
 
 
-## Summary
+## Özet
 
-Objects are associative arrays with several special features.
+Objeler ilişkisel dizilerdir. Bunun haricinde bir kaç tane de kendine has özellikleri vardır.
 
-They store properties (key-value pairs), where:
-- Property keys must be strings or symbols (usually strings).
-- Values can be of any type.
+Özellikleri anahtar-değer şeklinde tutarlar:
+- Anahtarlar karakter veya sembol olabilir, genelde karakter kullanılır.
+- Değerler ise herhangi bir veri tipinde olabilir.
 
-To access a property, we can use:
-- The dot notation: `obj.property`.
-- Square brackets notation `obj["property"]`. Square brackets allow to take the key from a variable, like `obj[varWithKey]`.
+Özelliğe erişebilmek için :
+- Nokta yazımı:`obj.ozellik`
+- Köşeli parantez yazımı: `obj["özellik"]`. Köşeli parantez ayrıca değişkenden anahtar değerini de alabilir. Örn:`obj[varWithKey]`
 
-Additional operators:
-- To delete a property: `delete obj.prop`.
-- To check if a property with the given key exists: `"key" in obj`.
-- To iterate over an object: `for (let key in obj)` loop.
+Ek operatörler:
+- Özelliği silmek için: `delete obj.ozellik`
+- Varlığını kontrol etmek için `"anahtar" in obj`
+- Döngüde kullanmak için `for(let anahtar in obj)` kullanılır.
 
-Objects are assigned and copied by reference. In other words, a variable stores not the "object value", but a "reference" (address in memory) for the value. So copying such a variable or passing it as a function argument copies that reference, not the object. All operations via copied references (like adding/removing properties) are performed on the same single object.
 
-To make a "real copy" (a clone) we can use `Object.assign` or  [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+Objeler değer değil de referans tutarlar, yani verilerin hafızadaki adresini. Bundan dolayı Obje değişkenini kopyalamak, veya bir parametreye göndermek demek aslında onun referansını kopyalamak veya referansını bir parametreye göndermek demektir. Tüm olaylar aslında aynı veri üzerinde olur. Bunlar özelliklerin eklenmesi veya silinmesi olabilir.
 
-What we've studied in this chapter is called a "plain object", or just `Object`.
+Eğer objenin "gerçek kopyası" , veya diğer bir deyişle `klonu` yapılmak istenirse `Object.assign` veya  [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) kullanılabilir.
 
-There are many other kinds of objects in JavaScript:
+Bu bölümde "basit obje" veya `Obje` konusunu işlendi.
 
-- `Array` to store ordered data collections,
-- `Date` to store the information about the date and time,
-- `Error` to store the information about an error.
-- ...And so on.
+JavaScript'te bir çok çeşit obje bulunmaktadır:
 
-They have their special features that we'll study later. Sometimes people say something like "Array type" or "Date type", but formally they are not types of their own, but belong to a single "object" data type. And they extend it in various ways.
+- `Dizi` sıralı olarak verileri tutar.,
+- `Date` Tarih ve saat bilgilerini tutar.,
+- `Error` Hata hakkındaki bilgileri tutar..
+- ...ve daha bir çoğu.
 
-Objects in JavaScript are very powerful. Here we've just scratched the surface of a topic that is really huge. We'll be closely working with objects and learning more about them in further parts of the tutorial.
+Bunların kendilerine has özellikler ileride işlenecektir. Bazen okursunuz "Dizi tipinde" veya "Tarih tipinde" diye, halbuki `array` veya `Date` diye bir tip yoktur. Bunlar aslında bir objeden türemiştir.
+
+JavaScript dilinde objeler çok güçlüdür. Şu ana kadar anlatılanlar sadece başlangıç seviyesindedir. Objelere daha yakından bakılacak ve ilerleyen bölümlerde daha fazla örnek verilecektir.

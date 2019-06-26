@@ -1,19 +1,18 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Sum object properties
+# Obje özelliklerinin toplanması
 
-We have an object storing salaries of our team:
+Aşağıdaki objede takımın maaşları tutulmaktadır:
 
 ```js
-let salaries = {
-  John: 100,
-  Ann: 160,
-  Pete: 130
+let maaslar = {
+  Ahmet: 100,
+  Ali: 160,
+  Mazlum: 130
 }
 ```
+Tüm maaşları toplayan ve `toplam` adında bir değişkene atayan bir fonksiyon yazınız. Yukarıdaki örnek için değer `390` olmalıdır.
 
-Write the code to sum all salaries and store in the variable `sum`. Should be `390` in the example above.
-
-If `salaries` is empty, then the result must be `0`.
+Eğer `maaslar` bos ise bu durumda sonuç `0` olmalı.
