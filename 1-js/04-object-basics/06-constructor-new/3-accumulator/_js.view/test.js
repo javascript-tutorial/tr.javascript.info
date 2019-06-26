@@ -1,30 +1,30 @@
-describe("Accumulator", function() {
+describe("Toplayici", function () {
 
-  beforeEach(function() {
+  beforeEach(function () {
     sinon.stub(window, "prompt")
   });
 
-  afterEach(function() {
+  afterEach(function () {
     prompt.restore();
   });
 
-  it("initial value is the argument of the constructor", function() {
-    let accumulator = new Accumulator(1);
+  it("Yapıcı fonksiyona argüman olarak başlangıç değeri eklenir", function () {
+    let toplayici = new Toplayici(1);
 
-    assert.equal(accumulator.value, 1);
+    assert.equal(toplayici.deger, 1);
   });
 
-  it("after reading 0, the value is 1", function() {
-    let accumulator = new Accumulator(1);
+  it("Eğer 0 girilirse değer bir olmalıdır.", function () {
+    let toplayici = new Toplayici(1);
     prompt.returns("0");
-    accumulator.read();
-    assert.equal(accumulator.value, 1);
+    toplayici.oku();
+    assert.equal(toplayici.deger, 1);
   });
 
-  it("after reading 1, the value is 2", function() {
-    let accumulator = new Accumulator(1);
+  it("Eğer bir girilirse sonuç 2 olmalıdır.", function () {
+    let toplayici = new Toplayici(1);
     prompt.returns("1");
-    accumulator.read();
-    assert.equal(accumulator.value, 2);
+    toplayici.oku();
+    assert.equal(toplayici.deger, 2);
   });
 });

@@ -1,17 +1,17 @@
 
 
 ```js run demo
-function Accumulator(startingValue) {
-  this.value = startingValue;
+function Toplayici(baslangicDegeri) {
+  this.deger = baslangicDegeri;
 
-  this.read = function() {
-    this.value += +prompt('How much to add?', 0);
+  this.oku = function() {
+    this.deger += +prompt('Kaç eklemek istersiniz?', 0);
   };
 
 }
 
-let accumulator = new Accumulator(1);
-accumulator.read();
-accumulator.read();
-alert(accumulator.value);
+let toplayici = new Toplayici(1);
+toplayici.oku();
+toplayici.oku();
+alert(toplayici.deger);
 ```

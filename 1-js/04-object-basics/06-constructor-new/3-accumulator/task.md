@@ -2,24 +2,25 @@ importance: 5
 
 ---
 
-# Create new Accumulator
+# new Toplayici fonksiyonunu yazınız
 
-Create a constructor function `Accumulator(startingValue)`.
+Toplayici(baslangicDegeri) yapıcı fonksiyonunu yazınız.
 
-Object that it creates should:
+Yaratacağı obje:
+- `deger` icerisinde o anki değeri tutmalı, başlangıç değeri `baslangicDegeri` argümanı ile sağlanacaktır.
+- `oku()` metodu kullanıcıdan `prompt` ile bilgi almalı ve bunu `deger`'e eklemelidir.
 
-- Store the "current value" in the property `value`. The starting value is set to the argument of the constructor `startingValue`.
-- The `read()` method should use `prompt` to read a new number and add it to `value`.
 
-In other words, the `value` property is the sum of all user-entered values with the initial value  `startingValue`.
+Diğer bir deyişle `deger` özelliği tüm kullanıcıların girdiği değerlerin `baslangicDegeri` ile toplamıdır.
 
-Here's the demo of the code:
+Aşağıda bir demosunu görmektesiniz:
 
 ```js
-let accumulator = new Accumulator(1); // initial value 1
-accumulator.read(); // adds the user-entered value
-accumulator.read(); // adds the user-entered value
-alert(accumulator.value); // shows the sum of these values
+let toplayici = new Toplayici(1); // toplayıcıya  1 ile başla.
+toplayici.oku(); // kullanıcının girdiği değeri toplar.
+toplayici.oku(); // kullanıcının girdiği değeri toplar.
+alert(toplayici.deger); // toplamı gösterir.
 ```
 
 [demo]
+

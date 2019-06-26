@@ -1,8 +1,8 @@
-Yes, it's possible.
+Evet mümkün.
 
-If a function returns an object then `new` returns it instead of `this`.
+Eğer bir fonksiyon obje döndürüyorsa `this` yerine o objeyi döndürebilir.
 
-So they can, for instance, return the same externally defined object `obj`:
+Öyleyse, iki fonksiyon da dışarıda yaratılmış aynı objeyi dönderirse bu durumda aynı olur:
 
 ```js run no-beautify
 let obj = {};

@@ -1,231 +1,217 @@
-# Constructor, operator "new"
+# Yapıcı, "new" operatörü
 
-The regular `{...}` syntax allows to create one object. But often we need to create many similar objects, like multiple users or menu items and so on.
+`{ ... }` yazımı bir objenin yaratılmasına yarar. Fakat bir objenin benzeri farklı objeler yaratmak istenebilir. Örneğin farklı kullanıcılar, farklı menü değerleri.
 
-That can be done using constructor functions and the `"new"` operator.
+Bu yapıcı fonksiyon ve `"new"` operatörü ile yapılabilir.
 
-## Constructor function
+[cut]
 
-Constructor functions technically are regular functions. There are two conventions though:
+## Yapıcı fonksiyon
 
-1. They are named with capital letter first.
-2. They should be executed only with `"new"` operator.
+Yapıcı fonksiyonlar(Constructor) teknik olarak normal fonksiyonlardır. Tabi bazı farklılıkları vardır:
 
-For instance:
+1. Büyük harfle başlayarak adlandırılırlar.
+2. Sadece `"new"` operatörü kullanıldığında çalışırlar.
+
+Örneğin:
 
 ```js run
-function User(name) {
-  this.name = name;
-  this.isAdmin = false;
+function Kullanici(isim) {
+  this.isim = isim;
+  this.yoneticiMi = false;
 }
 
 *!*
-let user = new User("Jack");
+let kullanici = new Kullanici("İhsan");
 */!*
 
-alert(user.name); // Jack
-alert(user.isAdmin); // false
+alert(kullanici.isim); // İhsan
+alert(kullanici.yoneticiMi); // false
 ```
+Fonksiyon `new Kullanici(...)` şeklinde çalıştığında, aşağıdaki adımlar izlenir:
 
-When a function is executed as `new User(...)`, it does the following steps:
+1. Yeni bir obje yaratılır ve `this` bu obje olur.
+2. Fonksiyon gövdesi çalışır. Genelde `this` modifiye edilir ve yeni özellikler eklenir.
+3. `this` değeri dönderilir.
 
-1. A new empty object is created and assigned to `this`.
-2. The function body executes. Usually it modifies `this`, adds new properties to it.
-3. The value of `this` is returned.
-
-In other words, `new User(...)` does something like:
+Diğer bir deyişle, `new Kullanici(...)` şöyle yapar:
 
 ```js
-function User(name) {
+function Kullanici(isim) {
 *!*
-  // this = {};  (implicitly)
+  // this = {};  (üstü kapalı)
 */!*
 
-  // add properties to this
-  this.name = name;
-  this.isAdmin = false;
+  // bu objeye yeni özellikler ekle
+  this.isim = isim;
+  this.yoneticiMi = false;
 
 *!*
-  // return this;  (implicitly)
+  // return this;  (üstü kapalı)
 */!*
 }
 ```
 
-So the result of `new User("Jack")` is the same object as:
+Öyleyse `new Kullanici("İhsan") objesi aşağıdaki gibidir:
 
 ```js
-let user = {
-  name: "Jack",
-  isAdmin: false
+let kullanici = {
+  isim: "Jack",
+  yoneticiMi: false
 };
 ```
+Eğer başka bir kullanici oluşturmak istiyorsanız, yapmanız gereken `new Kullanici("Macide")`, `new Kullanici("Muzaffer")` gibi kullanmaktır. Doğrudan her defasında obje tanımlamaktan daha kısa ve anlaşılması kolaydır.
 
-Now if we want to create other users, we can call `new User("Ann")`, `new User("Alice")` and so on. Much shorter than using literals every time, and also easy to read.
+Yapıcı fonksiyonların amacı  -- tekrar kullanılabilecek objeleri yaratan kodun uygulanmasıdır.
 
-That's the main purpose of constructors -- to implement reusable object creation code.
-
-Let's note once again -- technically, any function can be used as a constructor. That is: any function can be run with `new`, and it will execute the algorithm above. The "capital letter first" is a common agreement, to make it clear that a function is to be run with `new`.
+Dikkat edecek olursanız, herhangi bir fonksiyon yapıcı fonksiyon olarabilir. Her fonksiyon `new`  ile çalıştırılabilir, ve yukarda anlatılan algoritmaya göre çalışır. "Yapıcı fonksiyon isimleri büyük harfle başlamalıdır" aslında genel bir ittifaktır, bunu daha da açıklayıcı yapmak için bu fonksiyonlar `new` ile çağırılmalıdır.
 
 ````smart header="new function() { ... }"
-If we have many lines of code all about creation of a single complex object, we can wrap them in constructor function, like this:
+Eğer birçok satırdan oluşan kodda amacınız sadece karmaşık bir obje yapmak ise, bunları yapıcı fonksiyon içine aşağıdaki gibi almak mümkündür:
 
 ```js
-let user = new function() {
-  this.name = "John";
-  this.isAdmin = false;
+let kullanici = new function() {
+  this.isim = "İhsan";
+  this.yonetici = false;
 
-  // ...other code for user creation
-  // maybe complex logic and statements
-  // local variables etc
+  // diğer karmaşık yapılar
+  // mantıklar veya yerel değişkenler
 };
 ```
-
-The constructor can't be called again, because it is not saved anywhere, just created and called. So this trick aims to encapsulate the code that constructs the single object, without future reuse.
+Yapıcı fonksiyon tekrar çağırılamaz çünkü hiç bir yere kayıt edilmemiştir, sadece yaratılır ve çağırılır. Böylece yapıcı metod ilerde tekrar kullanılmayacağına garanti verir.
 ````
 
-## Constructor mode test: new.target
+## Yapıcı modu testi: new.target
 
 ```smart header="Advanced stuff"
 The syntax from this section is rarely used, skip it unless you want to know everything.
 ```
 
-Inside a function, we can check whether it was called with `new` or without it, using a special `new.target` property.
+Fonksiyon içinde, bu fonksiyon `new` ile mi yoksa `new` olmadan mı çağırılmış bu `new.target` özelliği kullanılarak anlaşılabilir.
 
-It is empty for regular calls and equals the function if called with `new`:
+Normal çağrılarda bunun içerisi boştur fakat `new` ile çağrılırsa:
 
 ```js run
-function User() {
+function Kullanici() {
   alert(new.target);
 }
 
-// without "new":
-*!*
-User(); // undefined
-*/!*
+// new kullanılmadan:
+User(); // new.target undefined döndürür.
 
-// with "new":
-*!*
-new User(); // function User { ... }
-*/!*
+// new kullanılarak:
+new User(); // function Kullanici { ... } gibi ekrana fonksiyonu yazar
 ```
 
-That can be used inside the function to know whether it was called with `new`, "in constructor mode", or without it, "in regular mode".
-
-We can also make both `new` and regular calls to do the same, like this:
+That can be used to allow both `new` and regular syntax to work the same:
 
 ```js run
-function User(name) {
-  if (!new.target) { // if you run me without new
-    return new User(name); // ...I will add new for you
+function Kullanici(isim) {
+  if (!new.target) { // eğer çart yerine getirilmezse
+    return new Kullanici(isim); // ...yeni birisi eklenir.
   }
 
-  this.name = name;
+  this.isim = isim;
 }
 
-let john = User("John"); // redirects call to new User
-alert(john.name); // John
+let ihsan = Kullanici("John"); // çağrıyı new Kullanici(isim) fonksiyonuna yönlendirir.
+alert(ihsan.isim); // İhsan
 ```
+Bu yaklaşım bazı kütüphanelerde yazımı daha esnek yapabilmek amacıyla kullanılır.  Her yerde kullanılması o kadar da iyi değildir. Çünkü `new` ne olup bittiği hakkında bilgi vermektedir. `new` ile yeni bir obje yaratıldığını anlayabiliyorsunuz ki bu da iyi birşeydir.
 
-This approach is sometimes used in libraries to make the syntax more flexible. So that people may call the function with or without `new`, and it still works.
+## Yapıcı metodun return sözcüğü
 
-Probably not a good thing to use everywhere though, because omitting `new` makes it a bit less obvious what's going on. With `new` we all know that the new object is being created.
+Genelde yapıcı metodların `return` sözcüğü yoktur. Amaçları gerekli olan bilgileri `this` içine yazmaktır ve bu da otomatik olarak sonuçtur.
 
-## Return from constructors
+Fakat `return` sözcüğü var ise kurallar basittir:
 
-Usually, constructors do not have a `return` statement. Their task is to write all necessary stuff into `this`, and it automatically becomes the result.
+- Eğer `return` obje ile çağırılırsa `this` yerine bu obje döndürülür.
+- Eğer `return` ilkel bir obje il çağırılırsa görmezden gelinir.
 
-But if there is a `return` statement, then the rule is simple:
+Diğer bir deyişle, obje ile `return` kullanıldığında obje döner, diğer tüm hallerde `this` döner.
 
-- If `return` is called with object, then it is returned instead of `this`.
-- If `return` is called with a primitive, it's ignored.
-
-In other words, `return` with an object returns that object, in all other cases `this` is returned.
-
-For instance, here `return` overrides `this` by returning an object:
+Örneğin aşağıda `return` edilen obje `this` yerine dönderilir.
 
 ```js run
-function BigUser() {
+function BuyukKullanici() {
 
-  this.name = "John";
+  this.isim = "İhsan";
 
-  return { name: "Godzilla" };  // <-- returns an object
+  return { isim: "Muhsin" };  // <-- obje dönderir
 }
 
-alert( new BigUser().name );  // Godzilla, got that object ^^
+alert( new BuyukKullanici().isim );  // Muhsin, objeyi aldık ^^
 ```
-
-And here's an example with an empty `return` (or we could place a primitive after it, doesn't matter):
+Şimdi ise boş bir `return` cümlesi yazalım( eğer ilkel bir tipte kullanılsa birşey değiştirmez)
 
 ```js run
-function SmallUser() {
+function KucukKullanici() {
 
-  this.name = "John";
+  this.isim = "İhsan";
 
-  return; // finishes the execution, returns this
-
-  // ...
+  return; // çalışmayı bitirir ve `this`'i döndürür.
 
 }
 
-alert( new SmallUser().name );  // John
+alert( new KucukKullanici().isim );  // İhsan
 ```
+Genelde yapıcılar `return` sözcüğü kullanmazlar. Buarada amaç bütünlüğün sağlanması için geçerli olan özel bir davranıştır.
 
-Usually constructors don't have a `return` statement. Here we mention the special behavior with returning objects mainly for the sake of completeness.
+````smart header="Parantezlerin yazılmaması"
 
-````smart header="Omitting parentheses"
-By the way, we can omit parentheses after `new`, if it has no arguments:
+Bu arada `new`'den sonra eğer bir argüman yoksa parantez kullanmasanız da olur:
 
 ```js
-let user = new User; // <-- no parentheses
-// same as
-let user = new User();
+let kullanici = new Kullanici; // <-- parantez yok
+// aynı şey.
+let kullanici = new Kullanici();
 ```
-
-Omitting parentheses here is not considered a "good style", but the syntax is permitted by specification.
+Parantezleri yazmamak "iyi yazım stili" değildir. Fakat bu şekilde yazım da mümkündür.
 ````
 
-## Methods in constructor
+## Yapıcı içerisinde metod
 
-Using constructor functions to create objects gives a great deal of flexibility. The constructor function may have parameters that define how to construct the object, and what to put in it.
+Yapıcı fonksiyon kullanmak objeye mükemmel esneklik sağlar. Yapıcı fonksiyon parametreleri tanımlar ve objenin nasıl yapılacağını, ne konulması gerektiğini belirtir.
 
-Of course, we can add to `this` not only properties, but methods as well.
+Tabiki `this`'e sadece özelliklerde değil metodlar içerisinde de ekleme yapılabilir.
 
-For instance, `new User(name)` below creates an object with the given `name` and the method `sayHi`:
+Örneğin, aşağıdaki `new User(isim)` verilen `isim` ile yeni bir obje oluşturur. Bu obje `selamVer` metoduna sahiptir.
 
 ```js run
-function User(name) {
-  this.name = name;
+function Kullanici(isim) {
+  this.isim = isim;
 
-  this.sayHi = function() {
-    alert( "My name is: " + this.name );
+  this.selamVer = function() {
+    alert( "Benim adım: " + this.isim );
   };
 }
 
 *!*
-let john = new User("John");
+let ihsan = new User("İhsan");
 
-john.sayHi(); // My name is: John
+ihsan.selamVer(); // Benim adım: İhsan
 */!*
 
 /*
-john = {
-   name: "John",
-   sayHi: function() { ... }
+ihsan = {
+   name: "İhsan",
+   selamVer: function() { ... }
 }
 */
 ```
 
-## Summary
+## Özet
 
-- Constructor functions or, briefly, constructors, are regular functions, but there's a common agreement to name them with capital letter first.
-- Constructor functions should only be called using `new`. Such a call implies a creation of empty `this` at the start and returning the populated one at the end.
+- Yapıcı fonksiyonlar, veya kısaca yapıcılar, normal fonksiyonlardır. Fakat baş haflerinin büyük olmasıyla ilgili ortak bir kullanım vardır.
+- Bu fonksiyonlar sadece `new` kullanılarak çağırılmalıdır. Böyle çağrılar önce boş bir `this` yaratır ve buna değerler eklendikten sonra bu `this`'i geri gönderir.
 
-We can use constructor functions to make multiple similar objects.
 
-JavaScript provides constructor functions for many built-in language objects: like `Date` for dates, `Set` for sets and others that we plan to study.
+Yapıcılar ile benzer objeler yapmak mümkündür.
 
-```smart header="Objects, we'll be back!"
-In this chapter we only cover the basics about objects and constructors. They are essential for learning more about data types and functions in the next chapters.
+JavaScript kendi içerisindeki objeler için yapıcı fonksiyon desteği verir. Örneğin: Tarihler için `Date`, setler için `Set` vs.
 
-After we learn that, we return to objects and cover them in-depth in the chapters <info:prototypes> and <info:classes>.
+```smart header="Objelere tekrar dönülecektir!"
+Bu bölümde basitçe yapıcılar nasıl yaratılır bunlar hakkında konuşuldu. Bir sonraki bölümde daha fazla veri tipi ve fonksiyonlar hakkında bilgi verilecektir.
+
+<info:object-oriented-programming> bölümde objelere geri dönülmiş ve derinlemesine incelenmiştir.
 ```
