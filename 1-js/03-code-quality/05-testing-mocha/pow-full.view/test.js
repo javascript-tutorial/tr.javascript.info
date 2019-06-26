@@ -1,26 +1,26 @@
-describe("pow", function() {
+describe("pow", function () {
 
-  describe("raises x to power 3", function() {
+  describe("n'in x'inci kuvvetini bulur", function () {
 
-    function makeTest(x) {
-      let expected = x * x * x;
-      it(`${x} in the power 3 is ${expected}`, function() {
-        assert.equal(pow(x, 3), expected);
+    function testEt(x) {
+      let beklenen = x * x * x;
+      it(`${x} in 3. kuvveti ${bekenen} dir`, function () {
+        assert.equal(us(x, 3), beklenen);
       });
     }
 
     for (let x = 1; x <= 5; x++) {
-      makeTest(x);
+      testEt(x);
     }
 
   });
 
-  it("if n is negative, the result is NaN", function() {
-    assert.isNaN(pow(2, -1));
+  it("Eğer n negatif ise NaN döndürmelidir", function () {
+    assert.isNaN(us(2, -1));
   });
 
-  it("if n is not integer, the result is NaN", function() {
-    assert.isNaN(pow(2, 1.5));
+  it("Eğer n tam sayı değilse NaN döndürmelidir", function () {
+    assert.isNaN(us(2, 1.5));
   });
 
 });

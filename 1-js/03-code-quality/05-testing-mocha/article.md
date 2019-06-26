@@ -1,279 +1,276 @@
-# Automated testing with mocha
+# Mocha ile otomatik test yazma.
 
-Automated testing will be used in further tasks.
+Bundan sonraki görevlerde otomatik test kullanılacak.
 
 It's actually a part of the "educational minimum" of a developer.
 
-## Why we need tests?
+## Neden teste ihtiyac var?
 
-When we write a function, we can usually imagine what it should do: which parameters give which results.
+Fonksiyon yazıldığında, genelde ne olması gerektiğini düşünürüz: hangi parametre hangi sonucu verecek gibi.
 
-During development, we can check the function by running it and comparing the outcome with the expected one. For instance, we can do it in the console.
+Geliştirme yaparken, bu fonksiyonun çıktısı ile bekleneni birbiri ile karşılaştırılabilir. Örneğin bu konsolda yapılabilir.
 
-If something is wrong -- then we fix the code, run again, check the result -- and so on till it works.
+Eğer birşey yanlışsa kod değiştirilir ve tekrar çalıştırılır, taki doğru çalışana dek.
 
-But such manual "re-runs" are imperfect.
+Fakat bunları tekrar tekrar çalıştırmak iyi bir yöntem değildir.
 
-**When testing a code by manual re-runs, it's easy to miss something.**
+**Bu tekrarları yaparken, birşeyleri onutmak çokça karşılaşılan bir durumdur**
 
-For instance, we're creating a function `f`. Wrote some code, testing: `f(1)` works, but `f(2)` doesn't work. We fix the code and now `f(2)` works. Looks complete? But we forgot to re-test `f(1)`. That may lead to an error.
+Örneğin, `f` diye bir fonksiyon yazılırken. Test: `f(1)` çalışır fakat `f(2)` çalışmaz. Kod düzeltildi, şimdi  `f(2)`çalışmakta. Tamamlandı mı? Fakat `f(1)` tekrar test edilmedi. Bu bir hataya neden olabilir.
 
-That's very typical. When we develop something, we keep a lot of possible use cases in mind. But it's hard to expect a programmer to check all of them manually after every change. So it becomes easy to fix one thing and break another one.
+Bu çok tipiktir. Birşey geliştirirken çoğu zaman muhtemel olan durumları aklımızda tutarız. Fakat programcıların bu durumların tamamını aklında tutması beklenemez. Bundan dolayı bir tanesini düzeltirken diğerini kırmak çokça yaşanılan bir durumdur.
 
-**Automated testing means that tests are written separately, in addition to the code. They can be executed easily and check all the main use cases.**
 
-## Behavior Driven Development (BDD)
+**Otomatik testlerin koddan ayrı yazılması demektir. Kolayca çalıştırılır ve tüm durumları kontrol edebilir**
 
-Let's use a technique named [Behavior Driven Development](http://en.wikipedia.org/wiki/Behavior-driven_development) or, in short, BDD. That approach is used among many projects. BDD is not just about testing. That's more.
+## Davranışa Yönelik Geliştirme  - Behaviour Driven Development(BDD)
 
-**BDD is three things in one: tests AND documentation AND examples.**
+Diyelim ki [Davranışa Yönelik Geliştirme](http://en.wikipedia.org/wiki/Behavior-driven_development) tekniğini kullandınız, BDD sadece test için değil, bundan daha fazlasıdır.
 
-Enough words. Let's see the example.
+**BDD üç şeyin içiçe bulunmasıdır. Bunlar: test,dökümantasyon ve örneklerdir.**
 
-## Development of "pow": the spec
+Yeteri kadar konuştuk. Şimdi örneklere geçebiliriz.
 
-Let's say we want to make a function `pow(x, n)` that raises `x` to an integer power `n`. We assume that `n≥0`.
+## Üs fonksiyonunun geliştirilmesi: Özellikler
 
-That task is just an example: there's the `**` operator in JavaScript that can do that, but here we concentrate on the development flow that can be applied to more complex tasks as well.
+Diyelimki `us(x,n)` adında bir fonksiyon yazmak isteyelim. Bu `x`i üssü olan `n` kadar artırsın. Ayrıca `n≥0` olduğunu varsayalım.
 
-Before creating the code of `pow`, we can imagine what the function should do and describe it.
+Bu görev sadece örnektir: Bunun yaptığını yapan `**` operatörü vardır ve aynı işi yapar. Burada bizim konsantre olacağımız olay bunun geliştirilmesi sürecidir. Bu daha karmaşık görevlerde de aynı şekilde kullanılabilir.
 
-Such description is called a *specification* or, in short, a spec, and looks like this:
+`us` fonksiyonunu yaratmadan önce, fonksiyonun ne yapacağını tanımlamanız gerekmektedir.
+
+Bu tanımlamaya *ayrıntılar* veya *özellikler* diyebilirsiniz. Kısaca bu aşağıdaki gibidir:
 
 ```js
-describe("pow", function() {
+describe("us", function() {
 
-  it("raises to n-th power", function() {
-    assert.equal(pow(2, 3), 8);
+  it("n. kuvvetini alir", function() {
+    assert.equal(us(2, 3), 8);
   });
 
 });
 ```
+Bu özelliğin 3 ana bölümü vardır:
 
-A spec has three main building blocks that you can see above:
 
-`describe("title", function() { ... })`
-: What functionality we're describing. Uses to group "workers" -- the `it` blocks. In our case we're describing the function `pow`.
+`describe("baslik", function() { ... })`
+: Fonksiyonun neyi tanımladığı yazılır. Bizim durumumuzda bu üs'tür.
 
-`it("title", function() { ... })`
-: In the title of `it` we *in a human-readable way* describe the particular use case, and the second argument is a function that tests it.
+`it("baslik", function() { ... })`
+: `it` bölümünde ise daha okunaklı bir şekilde, hangi koşulda ne yaptığı açıklanır. ikinci argüman ise bunu test eder.
+
 
 `assert.equal(value1, value2)`
-: The code inside `it` block, if the implementation is correct, should execute without errors.
+: `it` bloğunun içindeki ko eğer doğru ise hatasız döner.
 
-    Functions `assert.*` are used to check whether `pow` works as expected. Right here we're using one of them -- `assert.equal`, it compares arguments and yields an error if they are not equal. Here it checks that the result of `pow(2, 3)` equals `8`.
+    `assert*` fonksiyonu `us`'ün beklendiği gibi çalışıp çalışmadığını kontrol eder. Burada `assert.equal`'ı kullanılmaktadır. Argümanları karşılaştırarak eşitlik olmadığı durumda hata verir. Burada `us(2,3)`, `8` e eşit mi diye bakılır
 
-    There are other types of comparisons and checks that we'll see further.
+    İleki dönemlerde farklı karşılaştırmaları göreceksiniz.
 
-## The development flow
 
-The flow of development usually looks like this:
+## Geliştirme akışı
 
-1. An initial spec is written, with tests for the most basic functionality.
-2. An initial implementation is created.
-3. To check whether it works, we run the testing framework [Mocha](http://mochajs.org/) (more details soon) that runs the spec. Errors are displayed. We make corrections until everything works.
-4. Now we have a working initial implementation with tests.
-5. We add more use cases to the spec, probably not yet supported by the implementations. Tests start to fail.
-6. Go to 3, update the implementation till tests give no errors.
-7. Repeat steps 3-6 till the functionality is ready.
+Genelde akış şu şekildedir:
 
-So, the development is *iterative*. We write the spec, implement it, make sure tests pass, then write more tests, make sure they work etc. At the end we have both a working implementation and tests for it.
+1. Başlangıçta en basit fonksiyonalite test edilir.
+2. Bunun uygulaması yapılmıştır.
+3. Çalışıp çalışmadığını  [Mocha](http://mochajs.org/) kullanarak yapabilirsiniz. Hata alındığında kod tekrar düzeltilmeli, taki herşey düzgün şekilde çalışana kadar.
+4. Şu anda çalışan ve uygulaması yapılmmış bir testiniz var.
+5. Daha fazla koşul ekleyerek bunların uygulamasını yazdığınızda testlerde hata almaya başlarsınız.
+6. Üçüncü adıma dönüp bu testlerin hatalarını düzeltene kadar hata almaya devam edersiniz.
+7. 3-6 arasını düzelterek tüm fonksiyonalite hazır oluncaya kadar devam edin.
 
-In our case, the first step is complete: we have an initial spec for `pow`. So let's make an implementation. But before that let's make a "zero" run of the spec, just to see that tests are working (they will all fail).
+Öyleyse geliştirme süreklilik tekrar bu işlemler üzerinden geçerek devam eder. *Özellikleri* yazıldıktan sonra, bunların uygulaması yapılır, sonra daha fazla test yazılır ve çalıştığına emin olunur.
 
-## The spec in action
+Bizim durumumuzda ilk adım tamamlandı. Başlangıçta `us` için özelliği tanımladık. Şimdi bunun uygulamasını yapmaya geldi. Fakat öncesinde bir defa kodu çalıştıralım bakalım testler uygulamasını yazmadan çalışacak mı? ( hepsinin hata vermesi lazım )
 
-Here in the tutorial we'll be using the following JavaScript libraries for tests:
 
-- [Mocha](http://mochajs.org/) -- the core framework: it provides common testing functions including `describe` and `it` and the main function that runs tests.
-- [Chai](http://chaijs.com) -- the library with many assertions. It allows to use a lot of different assertions, for now we need only `assert.equal`.
-- [Sinon](http://sinonjs.org/) -- a library to spy over functions, emulate built-in functions and more, we'll need it much later.
+## Özelliklerin uygulaması
 
-These libraries are suitable for both in-browser and server-side testing. Here we'll consider the browser variant.
+Test için aşağıdaki JavaScript kütüphaneleri kullanılacaktır:
 
-The full HTML page with these frameworks and `pow` spec:
+- [Mocha](http://mochajs.org/) -- çekirdek çatı: `describe` , `it` gibi test fonksiyonlarını ve bunları çalıştıracak fonksiyonları içerir.
+- [Chai](http://chaijs.com) -- birçok assertion kullanmamıza neden olur. Assertion ( sav, iddia ) şimdilik sadece `assert.equal` kullanılacak.
+- [Sinon](http://sinonjs.org/) -- var olan fonksiyonların taklidini yapabilir. Buna daha sonra ihtiyaç duyulacak.
+
+Bu kütüphaneler hem tarayıcı, hemde sunucu tabanlı testlerde kullanılabilir. Burada tarayıcı versiyonunu kullanılacaktır.
+
+HTML sayfasının tamamı bu çatılar ve `us` özellikleri ile:
 
 ```html src="index.html"
 ```
+Bu sayfa dört bölüme ayrılabilir:
+1. `<head>` - burada üçüncü parti kütüphaneler, stiller ve testler tanımlanır.
+2. `<script>` burada test edilecek fonksiyonlar tanımlanır -- bizim için bu `us` fonksiyonu.
+3. Testler -- bizim için `test.js` bizim entegre etmemiz gereken dosyadır. Bu dosya `descript("us",...)` gibi fonksiyonları içerir.
+4. `<div id="mocha">` HTML elementi Mocha'nın çıktısını vermek için kullanılacaktır.
+5. Testler `mocha.run()` komutuyla başlar.
 
-The page can be divided into five parts:
-
-1. The `<head>` -- add third-party libraries and styles for tests.
-2. The `<script>` with the function to test, in our case -- with the code for `pow`.
-3. The tests -- in our case an external script `test.js` that has `describe("pow", ...)` from above.
-4. The HTML element `<div id="mocha">` will be used by Mocha to output results.
-5. The tests are started by the command `mocha.run()`.
-
-The result:
+Sonuc:
 
 [iframe height=250 src="pow-1" border=1 edit]
 
-As of now, the test fails, there's an error. That's logical: we have an empty function code in `pow`, so `pow(2,3)` returns `undefined` instead of `8`.
+Şu anda hata olduğundan testler başarısız oldu. Şu anda `us` boş olduğundan dolayı `us(2,3)` `undefined` döndürdü halbuki test `8` cevabı beklemekteydi.
 
-For the future, let's note that there are advanced test-runners, like [karma](https://karma-runner.github.io/) and others. So it's generally not a problem to setup many different tests.
+Daha gelişmiş test çalıştırıcılar da bulunmaktadır,  örneğin [karma](https://karma-runner.github.io/) vs. Bundan dolayı farklı testler yapmak sorun değildir.
 
-## Initial implementation
+## İlk uygulama
 
-Let's make a simple implementation of `pow`, for tests to pass:
+En basitinden `us` fonksiyonunun uygulamasını yapacak olursak:
 
 ```js
-function pow(x, n) {
-  return 8; // :) we cheat!
+function pow() {
+  return 8; // :) şakacı seni!
 }
 ```
-
-Wow, now it works!
+Şimdi tekrar kontrol edin, çalıştığını göreceksiniz.
 
 [iframe height=250 src="pow-min" border=1 edit]
 
-## Improving the spec
+## Özellikleri geliştirmek
+Yaptığımız hilekarlık. Fonksiyon çalışmıyor, örneğin `us(3,4)` hata verir, fakat testten geçti şimdilik.
 
-What we've done is definitely a cheat. The function does not work: an attempt to calculate `pow(3,4)` would give an incorrect result, but tests pass.
+... Aslında bu pratikte de olabilir. Yani testten geçebilir, fakat fonksiyon yanlış çalışır. Bu tanımlamalar, özellikler mükemmel değildir. Daha fazla kontrol eklemeniz gerekir.
 
-...But the situation is quite typical, it happens in practice. Tests pass, but the function works wrong. Our spec is imperfect. We need to add more use cases to it.
+ `pow(3,4)=81` ekleyelim
 
-Let's add one more test to see if `pow(3, 4) = 81`.
+ İki farklı şekilde testleri organize edebilirsiniz:
 
-We can select one of two ways to organize the test here:
-
-1. The first variant -- add one more `assert` into the same `it`:
+1. Birinci yöntem -- aynı `it` tanımı içerisine bir tane daha `assert` ekleyin.
 
     ```js
-    describe("pow", function() {
+    describe("us", function() {
 
-      it("raises to n-th power", function() {
-        assert.equal(pow(2, 3), 8);
+      it("n. kuvvetini alir", function() {
+        assert.equal(us(2, 3), 8);
     *!*
-        assert.equal(pow(3, 4), 81);
+        assert.equal(us(3, 4), 81);
     */!*
       });
 
     });
     ```
-2. The second -- make two tests:
+2. İkinci yöntem -- iki tane farklı test yazın:
 
     ```js
-    describe("pow", function() {
+    describe("us", function() {
 
-      it("2 raised to power 3 is 8", function() {
+      it("ikinin üçüncü kuvveti sekizdir.", function() {
         assert.equal(pow(2, 3), 8);
       });
 
-      it("3 raised to power 3 is 27", function() {
+      it("üçün üçüncü kuvveti yirmi yedidir", function() {
         assert.equal(pow(3, 3), 27);
       });
 
     });
     ```
 
-The principal difference is that when `assert` triggers an error, the `it` block immediately terminates. So, in the first variant if the first `assert` fails, then we'll never see the result of the second `assert`.
+Birbiri arasındaki fark eğer birinci `it` içindeki `assert` de hata varsa doğrudan teste son verilir. Bundan dolayı ikinci `it` hiç çalışmaz.
 
-Making tests separate is useful to get more information about what's going on, so the second variant is better.
+Testleri ayrı ayrı yazmak ne olup bittiğini anlamak için daha iyidir, yani ikinci yöntem.
 
-And besides that, there's one more rule that's good to follow.
+Bunun haricinde bir takip edebileceğiniz ayrı bir kural da, **bir test birşeyi kontrol eder** mantığıdır. Eğer teste baktığınızda aslında kontrol edilmesi gereken iki şey vardır. Bundan dolayı ikiye ayırırsanız daha iyi olur.
 
-**One test checks one thing.**
+İkinci yöntem ile devam edecek olursak:
 
-If we look at the test and see two independent checks in it, it's better to split it into two simpler ones.
-
-So let's continue with the second variant.
-
-The result:
+Sonuç:
 
 [iframe height=250 src="pow-2" edit border="1"]
 
-As we could expect, the second test failed. Sure, our function always returns `8`, while the `assert` expects `27`.
+Beklendiği üzre ikinci test başarısız oldu. Bizim fonksiyonumuz her zaman `8` dönderiyordu, ikincide ise `assert` `27` cevaını bekledi.
 
-## Improving the implementation
 
-Let's write something more real for tests to pass:
+## Test uygulamalarını geliştirme.
+
+Daha gerçekçi bir test yazacak olursak
 
 ```js
-function pow(x, n) {
-  let result = 1;
+function us(x, n) {
+  let sonuc = 1;
 
   for (let i = 0; i < n; i++) {
-    result *= x;
+    sonuc *= x;
   }
 
-  return result;
+  return sonuc;
 }
 ```
-
-To be sure that the function works well, let's test it for more values. Instead of writing `it` blocks manually, we can generate them in `for`:
+Fonksiyonun doğruluğunu kontrol etme amaçlı, `it` bloğunu otomatik olarak `for` dönügüsü kontrol etsin.
 
 ```js
-describe("pow", function() {
+describe("us", function() {
 
-  function makeTest(x) {
-    let expected = x * x * x;
-    it(`${x} in the power 3 is ${expected}`, function() {
-      assert.equal(pow(x, 3), expected);
+  function testEt(x) {
+    let beklenen = x * x * x;
+    it(`${x} in 3. kuvveti ${bekenen} dir`, function() {
+      assert.equal(us(x, 3), beklenen);
     });
   }
 
   for (let x = 1; x <= 5; x++) {
-    makeTest(x);
+    testEt(x);
   }
 
 });
 ```
 
-The result:
+Sonuc:
 
 [iframe height=250 src="pow-3" edit border="1"]
 
-## Nested describe
+## İçiçe tanımlama
 
-We're going to add even more tests. But before that let's note that the helper function `makeTest` and `for` should be grouped together. We won't need `makeTest` in other tests, it's needed only in `for`: their common task is to check how `pow` raises into the given power.
+Daha fazla test ekleyeceğiz. Fakat bunu gerçekleştirmeden önce `testEt` ve `for` u grup haline getirin. `testEt` fonksiyonu başka testler için kullanılmayacaktır. Sadece `for` için gerekli.
 
-Grouping is done with a nested `describe`:
+Gruplama iç içe tanımlama `describe` ile olur:
 
 ```js
-describe("pow", function() {
+describe("us", function() {
 
 *!*
-  describe("raises x to power 3", function() {
+  describe("x'in n. kuvvetini alir", function() {
 */!*
 
-    function makeTest(x) {
-      let expected = x * x * x;
-      it(`${x} in the power 3 is ${expected}`, function() {
-        assert.equal(pow(x, 3), expected);
+    function testEt(x) {
+      let beklenen = x * x * x;
+      it(`${x} in 3. kuvveti ${bekenen} dir`, function() {
+        assert.equal(pow(x, 3), beklenen);
       });
     }
 
     for (let x = 1; x <= 5; x++) {
-      makeTest(x);
+      testEt(x);
     }
 
 *!*
   });
 */!*
 
-  // ... more tests to follow here, both describe and it can be added
+  // ... buraya daha fazla `describe` ve `it` eklenebilir.
 });
 ```
+İç içe `describe` olduğunda testlerde yeni bir tanım olur "subgroup" adındaki bu tanımla içe boşluklar halinde değerleri görebilirsiniz.
 
-The nested `describe` defines a new "subgroup" of tests. In the output we can see the titled indentation:
 
 [iframe height=250 src="pow-4" edit border="1"]
 
-In the future we can add more `it` and `describe` on the top level with helper functions of their own, they won't see `makeTest`.
+İleride daha fazla `it` ve `describe` eklendiğinde kendine air yardımcı fonksiyonlar da yazabilirsiniz. Bu fonksiyonlar `testEt`e erişemezler.
+
 
 ````smart header="`before/after` and `beforeEach/afterEach`"
-We can setup `before/after` functions that execute before/after running tests, and also `beforeEach/afterEach` functions that execute before/after *every* `it`.
+`before/after` ( Önce/Sonra) fonksiyonları ekleyerek test çalışmadan veya çalıştıktan sonra farklı fonksiyonlar çalıştırılabilir. Ayrıca `beforeEach/afterEach` ile **her** `it` ile yazılandan önce ve sonrası amaçlanmaktadır.
 
-For instance:
+Örneğin:
 
 ```js no-beautify
 describe("test", function() {
 
-  before(() => alert("Testing started – before all tests"));
-  after(() => alert("Testing finished – after all tests"));
+  before(() => alert("Testler başlayacak - tüm testlerden önce"));
+  after(() => alert("Testler bitti – tüm testlerden sonra"));
 
-  beforeEach(() => alert("Before a test – enter a test"));
-  afterEach(() => alert("After a test – exit a test"));
+  beforeEach(() => alert("Testten önce – teste giriyor"));
+  afterEach(() => alert("Testten sonra – testten çıktı"));
 
   it('test 1', () => alert(1));
   it('test 2', () => alert(2));
@@ -281,78 +278,79 @@ describe("test", function() {
 });
 ```
 
-The running sequence will be:
+Çalışması şu şekilde olacaktır:
 
 ```
-Testing started – before all tests (before)
-Before a test – enter a test (beforeEach)
+Testler başlayacak - tüm testlerden önce (before)
+Testten önce – teste giriyor (beforeEach)
 1
-After a test – exit a test   (afterEach)
-Before a test – enter a test (beforeEach)
+Testten sonra – testten çıktı   (afterEach)
+Testten önce – teste giriyor (beforeEach)
 2
-After a test – exit a test   (afterEach)
-Testing finished – after all tests (after)
+Testten sonra – testten çıktı   (afterEach)
+Testler bitti – tüm testlerden sonra (after)
 ```
 
-[edit src="beforeafter" title="Open the example in the sandbox."]
+[edit src="beforeafter" title="Örneği sandbox'ta çalıştır"]
 
-Usually, `beforeEach/afterEach` (`before/after`) are used to perform initialization, zero out counters or do something else between the tests (or test groups).
+Genelde `beforeEach/afterEach` (`before/each`) başlangıçta ösellikleri ayarlama, sayacı sıfırlama veya testler arasında birşey yapma gibi aksiyonları gerçekleştirir.
 ````
 
-## Extending the spec
+## Özellikleri geliştirme
 
-The basic functionality of `pow` is complete. The first iteration of the development is done. When we're done celebrating and drinking champagne -- let's go on and improve it.
+`us` fonksiyonunun temel fonksiyonları tamamlandı. Geliştirmenin birinci turunu tamamladınız. Şimdi özellikleri geliştirme sırası.
 
-As it was said, the function `pow(x, n)` is meant to work with positive integer values `n`.
+Belirtildiği üzere `us(x,y)` üs olarak sadece pozitif değerler alabilir. 
 
-To indicate a mathematical error, JavaScript functions usually return `NaN`. Let's do the same for invalid values of `n`.
+Matematiksel hata için JavaScript fonksiyonları genelde `NaN` ( not a number ) dönderiyor. `n` in yanlış değerleri için `NaN` döndürülebilir. 
 
-Let's first add the behavior to the spec(!):
+Öncelikle bu davranışı özelliklere ekleyin:
 
 ```js
-describe("pow", function() {
+describe("us", function() {
 
   // ...
 
-  it("for negative n the result is NaN", function() {
+  it("Negatif sayılar için NaN dönmesi lazım", function() {
 *!*
-    assert.isNaN(pow(2, -1));
+    assert.isNaN(us(2, -1));
 */!*
   });
 
-  it("for non-integer n the result is NaN", function() {
+  it("Tam sayı değilse NaN dönmesi lazım", function() {
 *!*
-    assert.isNaN(pow(2, 1.5));    
+    assert.isNaN(us(2, 1.5));    
 */!*
   });
 
 });
 ```
 
-The result with new tests:
+Testin sonucu:
 
 [iframe height=530 src="pow-nan" edit border="1"]
 
-The newly added tests fail, because our implementation does not support them. That's how BDD is done: first we write failing tests, and then make an implementation for them.
+Yeni eklenen testler başarısız oldu çünkü daha uygulamasını yapılmadı. BDD( Behaviour Driven Development) bu şekilde yapılır. Önce başarısız testler yazılır sonra bu testlerin uygulamaları yazılır.
 
-```smart header="Other assertions"
+```smart header="Diğer iddialar(assertion)"
 
-Please note the assertion `assert.isNaN`: it checks for `NaN`.
+Dikkat ederseniz `assert.isNaN`: `NaN`'ı kontrol eder.
 
-There are other assertions in Chai as well, for instance:
+Chai içinde daha farklı iddialar da bulunmaktadır bunlardan bazıları:
 
-- `assert.equal(value1, value2)` -- checks the equality  `value1 == value2`.
-- `assert.strictEqual(value1, value2)` -- checks the strict equality `value1 === value2`.
-- `assert.notEqual`, `assert.notStrictEqual` -- inverse checks to the ones above.
-- `assert.isTrue(value)` -- checks that `value === true`
-- `assert.isFalse(value)` -- checks that `value === false`
-- ...the full list is in the [docs](http://chaijs.com/api/assert/)
+
+
+- `assert.equal(deger1, deger2)` -- iki sayının birbirine eşit olup olmamasını kontrol eder. `deger1 == deger2`
+- `assert.strictEqual(deger1, deger2)` -- sıkı eşitliği kontrol eder `deger1 === deger2`.
+- `assert.notEqual`, `assert.notStrictEqual` -- yukarıdakilerin tersini test eder.
+- `assert.isTrue(value)` --  `value === true` değerini kontrol eder.
+- `assert.isFalse(value)` --  `value === false` değerini kontrol eder.
+- ...bu listenin tamamına [dökümantasyondan](http://chaijs.com/api/assert/) bakabilirsiniz.
 ```
-
-So we should add a couple of lines to `pow`:
+Demekki `us` fonksiyonuna bazı yeni kodlar eklemeniz lazım:
 
 ```js
-function pow(x, n) {
+function us(x, n) {
 *!*
   if (n < 0) return NaN;
   if (Math.round(n) != n) return NaN;
@@ -367,46 +365,45 @@ function pow(x, n) {
   return result;
 }
 ```
-
-Now it works, all tests pass:
+Şu anda bu çalışır ve tüm testlerden geçer:
 
 [iframe height=300 src="pow-full" edit border="1"]
 
 [edit src="pow-full" title="Open the full final example in the sandbox."]
 
-## Summary
+## Özet
+BDD'de önce özellikler yazılır sonra bunların uygulamaları yapılır. Sonunda hem özellikler hemde çalışan kod yazılmış olur.
 
-In BDD, the spec goes first, followed by implementation. At the end we have both the spec and the code.
+Özellikler üç farklı şekilde kullanılabilir:
 
-The spec can be used in three ways:
+1. **Testler** kodun çalıştığını garanti eder.
+2. **Dökümantasyon** -- `describe` ve `it` bize aslında fonksiyonun ne iş yaptığını söyler.
+3. **Örnekler** -- testler aslında çalışan örneklerdir. Bize fonksiyonun nasıl çağırılması gerektiğini gösterir.
 
-1. **Tests** guarantee that the code works correctly.
-2. **Docs** -- the titles of `describe` and `it` tell what the function does.
-3. **Examples** -- the tests are actually working examples showing how a function can be used.
 
-With the spec, we can safely improve, change, even rewrite the function from scratch and make sure it still works right.
+Özelliklere bakarak, güvenli bir şekilde kod geliştirilebilir, değiştirilebilir hatta fonksiyonlar yeniden yazılabilir.
 
-That's especially important in large projects when a function is used in many places. When we change such a function, there's just no way to manually check if every place that uses it still works right.
+Bu aslında büyük projeler için daha önemlidir. Örneğin fonksiyonda bir yeri değiştirdiniz ve bir çok yerde aynı fonksiyon kullanılmış olsun. Bunu kullanan her yeri teker teker kontrol etmek oldukça zahmetli bir iştir. Fakat eğer test başarılı ise istediğinizi elde etmişsiniz demektir.
 
-Without tests, people have two ways:
+Testler olmazsa geliştiriciler iki şekilde devam edebilir:
 
-1. To perform the change, no matter what. And then our users meet bugs and report them. If we can afford that.
-2. Or people become afraid to modify such functions, if the punishment for errors is harsh. Then it becomes old, overgrown with cobwebs, no one wants to get into it, and that's not good.
+1. Değişiklik ne olursa olsun yapılır. Sonrasında kullanıcılar bug bulur ve bunları bize bildirir. Tabi bu sizin için normal birşeyse eğer. 
+2. Veya geliştiriciler bu fonksiyona dokunmaya çekinir, eğer gerçekten önemli bir fonksiyonsa bunun altından kalkılamayabilir. Bundan dolayı fonksiyonlara dokunmaya dokunmaya bir çok fonksiyon yazılır ve herkes kendine ait kodu kullanır.
 
-**Automatically tested code is contrary to that!**
+**Otomatik test edilmiş kod ise bunun tam anlamıyla zıttıdır**
 
-If the project is covered with tests, there's just no such problem. We can run tests and see a lot of checks made in a matter of seconds.
+Eğer projede testler yazılmış olsaydı, böyle problemler olmazdı. Testleri çalıştırır ve yaptığınız değişikliklerin herhangi bir yeri etkileyip etkilemediğini anında görebilirdiniz.
 
-**Besides, a well-tested code has better architecture.**
+**Ayrıca iyi test edilmiş kodun mimarisi daha iyidir**
 
-Naturally, that's because it's easier to change and improve it. But not only that.
+Çünkü değiştirmek ve geliştirmek daha kolaydır. Sadece bu değil
 
-To write tests, the code should be organized in such a way that every function has a clearly described task, well-defined input and output. That means a good architecture from the beginning.
+Kod öyle bir organize edilmelidir ki her fonksiyonun açık bir şekilde ne yapacağı belli olmalıdır. Hangi değerleri alacağı hangi değerler döneceği. Bu başlangıçtan itibaren iyi bir mimariye sahip olduğunun kanıtıdır.
 
-In real life that's sometimes not that easy. Sometimes it's difficult to write a spec before the actual code, because it's not yet clear how it should behave. But in general writing tests makes development faster and more stable.
+Gerçek hayatta bu bazen kolay olmayabilir. Bazen gerçekten özellikleri yazmak gerçek kodu yazmadan önce çok zor olabilir. Çünkü fonksiyonun nasıl davranacağı tam olarak kesitirilemeyebilir. Fakat genel olarak bakılacak olursa test yazma geliştirmeyi hızlandırır ve daha istikrarlı kılar.
 
-## What now?
+## Sırada ne var?
 
-Later in the tutorial you will meet many tasks with tests baked-in. So you'll see more practical examples.
+Bu ders sonunda bir çok test ile iç içi görev bulacaksınız. Böylece daha pratiğe dayalı örnekler yapabileceksiniz.
 
-Writing tests requires good JavaScript knowledge. But we're just starting to learn it. So, to settle down everything, as of now you're not required to write tests, but you should already be able to read them even if they are a little bit more complex than in this chapter.
+Test yazmak iyi JavaScript bilgisi gerektirir. Fakat siz daha yeni öğrenmeye başladınız. Bundan dolayı şimdilik bu kadar yeterli, bundan sonra test yazmanıza gerek yok. Eğer daha karmaşık olsalar bile bu derste gördüğünüz örneklerden yola çıkarak bunları okuyabilirsiniz.

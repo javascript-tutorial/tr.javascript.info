@@ -2,27 +2,28 @@ importance: 4
 
 ---
 
-# Bad style
+# Kötü Stil
 
-What's wrong with the code style below?
+Aşağıdaki kodun stilinde ne yanlışları vardır?
+
 
 ```js no-beautify
-function pow(x,n)
+function ust(x,n)
 {
-  let result=1;
-  for(let i=0;i<n;i++) {result*=x;}
-  return result;
+  let sonuc=1;
+  for(let i=0;i<n;i++) {sonuc*=x;}
+  return sonuc;
 }
 
 let x=prompt("x?",''), n=prompt("n?",'')
 if (n<=0)
 {
-  alert(`Power ${n} is not supported, please enter an integer number greater than zero`);
+  alert(`${n} üssü alınamadı, kullandığınız sayı 0'dan küçük olamaz. Lütfen doğal sayıları kullanınız.`);
 }
 else
 {
-  alert(pow(x,n))
+  alert(sonuc(x,n))
 }
 ```
 
-Fix it.
+Düzeltin!

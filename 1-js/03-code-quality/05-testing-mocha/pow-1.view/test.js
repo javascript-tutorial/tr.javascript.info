@@ -1,7 +1,7 @@
-describe("pow", function() {
+describe("us", function () {
 
-  it("raises to n-th power", function() {
-    assert.equal(pow(2, 3), 8);
+  it("n'inci kuvvetini alır", function () {
+    assert.equal(us(2, 3), 8);
   });
 
 });

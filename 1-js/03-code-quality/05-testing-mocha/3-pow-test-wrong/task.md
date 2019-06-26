@@ -2,23 +2,23 @@ importance: 5
 
 ---
 
-# What's wrong in the test?
+# Testteki hatayı bulun?
 
-What's wrong in the test of `pow` below?
+Aşağıdaki `üs` fonksiyonunda ne hatası vardır?
+
 
 ```js
-it("Raises x to the power n", function() {
+it("x'in n. kuvvetini alir", function() {
   let x = 5;
 
   let result = x;
-  assert.equal(pow(x, 1), result);
+  assert.equal(us(x, 1), result);
 
   result *= x;
-  assert.equal(pow(x, 2), result);
+  assert.equal(us(x, 2), result);
 
   result *= x;
-  assert.equal(pow(x, 3), result);
+  assert.equal(us(x, 3), result);
 });
 ```
-
-P.S. Syntactically the test is correct and passes.
+Not: Yazım olarak test doğrudur.

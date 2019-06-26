@@ -1,18 +1,19 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <!-- add mocha css, to show results -->
+  <!-- sonuçları göstermek için mocha css eklendi -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.css">
-  <!-- add mocha framework code -->
+  <!-- mocha çatısı eklendi -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/mocha/3.2.0/mocha.js"></script>
   <script>
-    // enable bdd-style testing
+    // bdd stili test aktif edildi.
     mocha.setup('bdd');
   </script>
-  <!-- add chai -->
+  <!-- chai ekle -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/chai/3.5.0/chai.js"></script>
   <script>
-    // chai has a lot of stuff, let's make assert global
+    // chai birçok özelliğe sahiptir bunun yerine assert'i global yaparak kullanabilirsiniz.
     let assert = chai.assert;
   </script>
 </head>
@@ -20,22 +21,22 @@
 <body>
 
   <script>
-    function pow(x, n) {
-      let result = 1;
+    function us(x, n) {
+      let sonuc = 1;
       for (let i = 0; i < n; i++) {
-        result *= x;
+        sonuc *= x;
       }
-      return result;
+      return sonuc;
     }
   </script>
 
-  <!-- the script with tests (describe, it...) -->
+  <!-- test kodları -->
   <script src="test.js"></script>
 
-  <!-- the element with id="mocha" will contain test results -->
+  <!-- id="mocha" elementi sonuçları gösterir.-->
   <div id="mocha"></div>
 
-  <!-- run tests! -->
+  <!-- testi çalıştır! -->
   <script>
     mocha.run();
   </script>

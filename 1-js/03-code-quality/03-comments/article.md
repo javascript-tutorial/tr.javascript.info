@@ -1,40 +1,40 @@
-# Comments
+# Yorumlar
 
-As we know from the chapter <info:structure>, comments can be single-line: starting with `//` and multiline: `/* ... */`.
+<info:structure> bölümünden de bildiğiniz üzre, yorumlar tek satır `//` olabileceği gibi birden çok satır da olabilir `/* .. */`.
+Genelde  yorum satırları kodun nasıl ve niçin çalıştığını anlatmak için kullanılır.
 
-We normally use them to describe how and why the code works.
+İlk görüşte yorum yapmanın gereklilik olduğu aşikardır. Fakat programlama yeni başlayanlayanlar bunu ilk önce genelde yanlış anlamaktadırlar.
 
-From the first sight, commenting might be obvious, but novices in programming usually get it wrong.
+## Kötü Yorum
 
-## Bad comments
-
-Novices tend to use comments to explain "what is going on in the code". Like this:
+Programlamaya yeni başlayanlar yorumları genelde "kodda ne oluyor"'u anlatmak için kullanırlar. Örneğin:
 
 ```js
-// This code will do this thing (...) and that thing (...)
-// ...and who knows what else...
-very;
-complex;
-code;
+// Bu kodu bunu şunu yapacak  vs. vs.
+// ...vs. vs. vs.
+aşırı;
+karmaşık;
+kod;
 ```
 
-But in good code the amount of such "explanatory" comments should be minimal. Seriously, code should be easy to understand without them.
+Fakat iyi kod aslında kendi kendini açıklayan koddur. Yorum satırlarının olabildiğince az olması beklenir. Gerçekten, kod yorum satırı olmadan da kolayca anlaşılabilir olmalı.
 
-There's a great rule about that: "if the code is so unclear that it requires a comment, then maybe it should be rewritten instead".
+Bunun için harika bir kural var: "Eğer bir kod yorum yapmayı gerektirecek kadar karmaşıksa, kodu tekrar yazmanızda yarar var"
 
-### Recipe: factor out functions
+### Çözüm: Fonksiyonları dışarıya atın.
 
-Sometimes it's beneficial to replace a code piece with a function, like here:
+Bazen kod parçalarını fonksiyonlarla değiştirmek yarar sağlar, örneğin:
+
 
 ```js
-function showPrimes(n) {
-  nextPrime:
+function asalSayilariGoster(n) {
+  sonrakiAsal:
   for (let i = 2; i < n; i++) {
 
 *!*
-    // check if i is a prime number
+    // i asal mı kontrol et
     for (let j = 2; j < i; j++) {
-      if (i % j == 0) continue nextPrime;
+      if (i % j == 0) continue sonrakiAsal;
     }
 */!*
 
@@ -42,21 +42,20 @@ function showPrimes(n) {
   }
 }
 ```
-
-The better variant, with a factored out function `isPrime`:
+Daha iyisi bu fonksiyonun dışına `asalMi` diye ayri bir fonksiyon yazmak:
 
 
 ```js
-function showPrimes(n) {
+function asalSayilariGoster(n) {
 
   for (let i = 2; i < n; i++) {
-    *!*if (!isPrime(i)) continue;*/!*
+    *!*if (!asalMi(i)) continue;*/!*
 
     alert(i);  
   }
 }
 
-function isPrime(n) {
+function asalMi(n) {
   for (let i = 2; i < n; i++) {
     if (n % i == 0) return false;
   }
@@ -64,117 +63,113 @@ function isPrime(n) {
   return true;
 }
 ```
+Böylece kodu daha kolay bir şekilde anlayabilirsiniz. Fonksiyonun kendisi aslında yorum oldu. Bu tür fonksiyonlara *kendi kendini açıklayan* fonksiyon denir.
 
-Now we can understand the code easily. The function itself becomes the comment. Such code is called *self-descriptive*.
+### Çözüm: yeni fonksiyon yaz
 
-### Recipe: create functions
+Eğer aşağıdaki gibi uzun bir kod sayfanız varsa:
 
-And if we have a long "code sheet" like this:
 
 ```js
 // here we add whiskey
 for(let i = 0; i < 10; i++) {
-  let drop = getWhiskey();
-  smell(drop);
-  add(drop, glass);
+  let damla = ayranDoldur();
+  kokla(damla);
+  ekle(damla, bardak);
 }
 
 // here we add juice
 for(let t = 0; t < 3; t++) {
-  let tomato = getTomato();
-  examine(tomato);
-  let juice = press(tomato);
-  add(juice, glass);
+  let domates = domatesDoldur();
+  kontrolEt(domates);
+  let domatesSuyu = bastir(domates);
+  ekle(domatesSuyu, bardak);
 }
 
 // ...
 ```
-
-Then it might be a better variant to refactor it into functions like:
-
+Bu fonksiyonları yeniden düzenlemek daha iyi bir yöntem olabilir.
 ```js
-addWhiskey(glass);
-addJuice(glass);
+ayranEkle(bardak);
+domatesEkle(bardak);
 
-function addWhiskey(container) {
+function ayranEkle(kap) {
   for(let i = 0; i < 10; i++) {
-    let drop = getWhiskey();
+    let damla = ayranDoldur();
     //...
   }
 }
 
-function addJuice(container) {
+function addJuice(kap) {
   for(let t = 0; t < 3; t++) {
-    let tomato = getTomato();
+    let domates = domatesDoldur();
     //...
   }
 }
 ```
+Tekrardan söylemek gerekirse nelerin olup bittiğini yorum değil, fonksiyonun kendisi söylemeli.Ayrıca kod yapısı fonksiyonlar şeklinde ayrık olduğunda daha düzgün olur. Her fonksiyonun ne argüman aldığı ne geri döndürdüğü bellidir.
 
-Once again, functions themselves tell what's going on. There's nothing to comment. And also the code structure is better when split. It's clear what every function does, what it takes and what it returns.
+Gerçekte neyin olup bittiğini söyleyen yorumu tamamen çıkarmak olanaksızdır. Bazen karmaşık algorimalara olabilir. Bazen akıllıca yapılmış kısa yollar olabilir. Fakat genel olarak kod basit ve kendi kendini açıklayıcı olmalı.
 
-In reality, we can't totally avoid "explanatory" comments. There are complex algorithms. And there are smart "tweaks" for purposes of optimization. But generally we should try to keep the code simple and self-descriptive.
 
-## Good comments
+## İyi yorum
 
-So, explanatory comments are usually bad. Which comments are good?
+Peki, fonksiyonun ne yaptığını anlatan yorumlar kötü ise, hangi yorumlar iyi?
 
-Describe the architecture
-: Provide a high-level overview of components, how they interact, what's the control flow in various situations... In short -- the bird's eye view of the code. There's a special diagram language [UML](http://wikipedia.org/wiki/Unified_Modeling_Language) for high-level architecture diagrams. Definitely worth studying.
+Mimariyi tanımla
+: Üst seviyede bileşenlere genel bakış, nasıl birbirleriyle iletişim kurdukları, farklı durumlarda akışın nasıl değişeceği gibi konular anlatılmalıdır. Kusaca kuş bakışı kodun ne yaptığını anlatmalısınız. Bununla ilgili şema diline [UML](https://tr.wikipedia.org/wiki/UML) bakabilirsiniz. Kesinlikle üstünde çalışılmaya değer.
 
-Document a function usage
-: There's a special syntax [JSDoc](http://en.wikipedia.org/wiki/JSDoc) to document a function: usage, parameters, returned value.
+Fonksiyon kullanımını dökümante etme
+: Fonksiyonu dökümante edebilmek için standart özel bir yazım vardır[JSDoc](http://tr.wikipedia.org/wiki/JSDoc). Fonksiyon: kullım, parametreler, dönen değer.
 
-    For instance:
+    Örneğin:
     ```js
     /**
-     * Returns x raised to the n-th power.
+     * X'in n'inci üssünü hesaplayıp geri döner.
      *
-     * @param {number} x The number to raise.
-     * @param {number} n The power, must be a natural number.
-     * @return {number} x raised to the n-th power.
+     * @param {number} x üssü bulunacak sayı.
+     * @param {number} n üs değeri doğal sayı olmalı.
+     * @return {number} x üssün hesaplanmış hali.
      */
-    function pow(x, n) {
+    function ushesapla(x, n) {
       ...
     }
     ```
+    Bu yorumlar gize bu fonksiyonun amacının ne olduğunu koda bakmadan anlatır.
 
-    Such comments allow us to understand the purpose of the function and use it the right way without looking in its code.
+    Bu arada [WebStorm](https://www.jetbrains.com/webstorm/) gibi editörler size JSDoc yazma konusunda yardımcı olur. Otomatik olarak kodu kontrol edebilir.
 
-    By the way, many editors like [WebStorm](https://www.jetbrains.com/webstorm/) can understand them as well and use them to provide autocomplete and some automatic code-checking.
+    Ayrıca  [JSDoc 3](https://github.com/jsdoc3/jsdoc) gibi araçlar doğrudan HTML formatında dökümantasyon yapmanızı sağlar. Daha fazla bilgiyi <http://usejsdoc.org/> adresinden okuyabilirsiniz.
 
-    Also, there are tools like [JSDoc 3](https://github.com/jsdoc3/jsdoc) that can generate HTML-documentation from the comments. You can read more information about JSDoc at <http://usejsdoc.org/>.
+Neden bu yöntemle çözüldü?
+: Ne yazıldığı önemlidir. Fakat ne *yazılmadığı* nelerin olup bittiği hakkında belki daha önemlidir. Bu problem neden bu şekilde çözüldü? Size bunun cevabını kod veremez.
 
-Why is the task solved this way?
-: What's written is important. But what's *not* written may be even more important to understand what's going on. Why is the task solved exactly this way? The code gives no answer.
+    Eğer problemi çözmek için birçok yol varsa neden bu yolu seçtiniz? Özellikle cevabın açık olmadığı durumlarda bu soru önemli.
 
-    If there are many ways to solve the task, why this one? Especially when it's not the most obvious one.
+    Böyle yorumların yapılmadığı durumlarda aşağıdakiler meydana gelebilir:
+    1. Siz ( veya arkadaşınız ) editörü açtığında, yazılan kodun vasat olduğunu görebilir düşünebilir.
+    2. Şöyle düşünebilirsiniz: "O zaman da ne salakmışım, şimdi akıllandım harikayim artık" ve kodu tekrar daha iyi ve doğru şekilde yazarsınız.
+    3. ... Tekrar yazma isteği iyidir. Fakat "daha açık ve doğru" çözüm aslında eksiktir. Daha önce zaten en iyi şekilde yazmaya çalışmıştın. Bunu yaparken zaman harcadın ve şimdi bu süre çöpe gitti.
 
-    Without such comments the following situation is possible:
-    1. You (or your colleague) open the code written some time ago, and see that it's "suboptimal".
-    2. You think: "How stupid I was then, and how much smarter I'm now", and rewrite using the "more obvious and correct" variant.
-    3. ...The urge to rewrite was good. But in the process you see that the "more obvious" solution is actually lacking. You even dimly remember why, because you already tried it long ago. You revert to the correct variant, but the time was wasted.
+    Çözümü açıklayan yorumlar gerçekten çok önemlidir. Geliştirmeyi doğru yoldan yapmanıza büyük katkı sağlar.
 
-    Comments that explain the solution are very important. They help to continue development the right way.
+Eğer kodda nerede kullanıldığına veya özelliklerine dair ipuçları bulmak zor ise yorum yapmak gerçekten emeğe değerdir.
 
-Any subtle features of the code? Where they are used?
-: If the code has anything subtle and counter-intuitive, it's definitely worth commenting.
+## Özet
 
-## Summary
+İyi programcının en önemli özelliklerinden biri yorumlarının varlığı, hatta yokluğudur.
 
-An important sign of a good developer is comments: their presence and even their absence.
+İyi yorumlar kodun bakımının düzgün bir şekilde yapılmasını sağlar. Daha sonra geri dönüldüğünde her şeye daha etkin bir şekilde başlanır.
 
-Good comments allow us to maintain the code well, come back to it after a delay and use it more effectively.
+**Bunları yorum olarak yazın:**
 
-**Comment this:**
+- Genel mimari, ince detayına kadar değil sadece kuş bakışı
+- Fonksiyon kullanımı.
+- Önemli çözümler, özellikle çözüm çok açık değilse
 
-- Overall architecture, high-level view.
-- Function usage.
-- Important solutions, especially when not immediately obvious.
+**Bunlar için yorum yazmayın:**
 
-**Avoid comments:**
+- Kodun "nasıl çalıştığını", "ne yaptığını" anlatmak için
+- Sadece eğer yorum yazmadan fonksiyon kendisini anlatamıyorsa bunları yazın.
 
-- That tell "how code works" and "what it does".
-- Put them only if it's impossible to make the code so simple and self-descriptive that it doesn't require those.
-
-Comments are also used for auto-documenting tools like JSDoc3: they read them and generate HTML-docs (or docs in another format).
+Yorumlar ayrıca otomatik bir dökümantasyon oluşturmanızda yardımcı olur. Örneğin JsDoc3 aracı ile yorumlarınızdan HTML dökümantasyonu çıktısı alabilirsiniz. ( diğer formatları da destekler )

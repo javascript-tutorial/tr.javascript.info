@@ -1,19 +1,20 @@
-describe("pow", function() {
+describe("us", function () {
 
-  describe("raises x to power 3", function() {
+  describe("n'in x'inci kuvvetini bulur", function () {
 
-    function makeTest(x) {
-      let expected = x * x * x;
-      it(`${x} in the power 3 is ${expected}`, function() {
-        assert.equal(pow(x, 3), expected);
+    function testEt(x) {
+      let beklenen = x * x * x;
+      it(`${x} in 3. kuvveti ${bekenen} dir`, function () {
+        assert.equal(us(x, 3), beklenen);
       });
     }
 
     for (let x = 1; x <= 5; x++) {
-      makeTest(x);
+      testEt(x);
     }
 
   });
 
-  // ... more tests to follow here, both describe and it can be added
+
+  // ... buraya daha fazla `describe` ve `it` gelebilir.
 });
