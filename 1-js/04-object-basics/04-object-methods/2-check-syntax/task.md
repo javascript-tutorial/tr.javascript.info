@@ -2,18 +2,17 @@ importance: 2
 
 ---
 
-# Syntax check
+# Yazım Kontrolü
 
-What is the result of this code?
+Aşağıdaki kodun çıktısı nedir?
 
 
 ```js no-beautify
-let user = {
-  name: "John",
-  go: function() { alert(this.name) }
+let kullanici = {
+  isim: "İhsan",
+  selamVer: function() { alert(this.isim) }
 }
 
-(user.go)()
+(kullanici.selamVer)()
 ```
-
-P.S. There's a pitfall :)
+Not: Dikkatli düşün :)

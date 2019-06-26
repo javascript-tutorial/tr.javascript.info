@@ -1,37 +1,36 @@
-**Error**!
+**Hata**!
 
-Try it:
+Deneyebilirsiniz:
 
 ```js run
-let user = {
-  name: "John",
-  go: function() { alert(this.name) }
+let kullanici = {
+  isim: "John",
+  selamVer: function() { alert(this.isim) }
 }
 
-(user.go)() // error!
+(kullanici.selamVer)() // error!
 ```
+Tarayıcıların çoğundaki hata mesajının anlaşılmaz.
 
-The error message in most browsers does not give understanding what went wrong.
+**The error appears because a semicolon is missing after `kullanici = {...}`.**
 
-**The error appears because a semicolon is missing after `user = {...}`.**
-
-JavaScript does not auto-insert a semicolon before a bracket `(user.go)()`, so it reads the code like:
+JavaScript parantezden önce noktalı virgül koymaz. Bu durumda kod aşağıdaki gibi çalışacaktır:
 
 ```js no-beautify
-let user = { go:... }(user.go)()
+let kullanici = { selamVer:... }(kullanici.selamVer)()
 ```
 
-Then we can also see that such a joint expression is syntactically a call of the object `{ go: ... }` as a function with the argument `(user.go)`. And that also happens on the same line with `let user`, so the `user` object has not yet even been defined, hence the error.
+Bu şekilde çağırıldığında, `let kullanici` ile çağrı aynı satırda yapılmış olur. Ayrıca bu tanımlanan fonksiyon `(kullanici.selamVer)` şeklinde aynı satırda argüman olarak kullanılmıştır. Bundan dolayı da hata oluşmaktadır.
 
-If we insert the semicolon, all is fine:
+Eğer noktalı virgül koyarsanız herşey beklediğiniz gibi çalışır:
 
 ```js run
-let user = {
-  name: "John",
-  go: function() { alert(this.name) }
+let kullanici = {
+  isim: "İhsan",
+  selamVer: function() { alert(this.isim) }
 }*!*;*/!*
 
-(user.go)() // John
+(kullanici.selamVer)() // John
 ```
 
-Please note that brackets around `(user.go)` do nothing here. Usually they setup the order of operations, but here the dot `.` works first anyway, so there's no effect. Only the semicolon thing matters.
+`(kullanici.selamVer)` etrafındaki parantez bir işe yaramaz. Sadece sıralamayı belirtir. Bu soruda `;` önemliydi.

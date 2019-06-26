@@ -1,15 +1,16 @@
 
-let ladder = {
-  step: 0,
-  up: function() { 
-    this.step++;
+let merdiven = {
+  adim: 0,
+  yukari: function () {
+    this.adim++;
     return this;
   },
-  down: function() { 
-    this.step--;
+  asagi: function () {
+    this.adim--;
     return this;
   },
-  showStep: function() { 
-    alert(this.step);
+  adimiGoster: function () {
+    alert(this.adim);
   }
 };
+

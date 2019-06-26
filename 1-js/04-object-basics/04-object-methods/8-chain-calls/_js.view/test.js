@@ -1,40 +1,40 @@
 
-describe('Ladder', function() {
-  before(function() {
+describe('merdiven', function () {
+  before(function () {
     window.alert = sinon.stub(window, "alert");
   });
-  
-  beforeEach(function() {
-    ladder.step = 0;
+
+  beforeEach(function () {
+    merdiven.adim = 0;
   });
 
-  it('up() should return this', function() {
-    assert.equal(ladder.up(), ladder);
+  it('yukari() bunu dondermeli', function () {
+    assert.equal(merdiven.yukari(), merdiven);
   });
 
-  it('down() should return this', function() {
-    assert.equal(ladder.down(), ladder);
+  it('asagi() bunu dondurmeli', function () {
+    assert.equal(merdiven.asagi(), merdiven);
   });
 
-  it('showStep() should call alert', function() {
-    ladder.showStep();
+  it('adimiGoster() alert ile uyarı vermeli.', function () {
+    merdiven.adimiGoster();
     assert(alert.called);
   });
 
-  it('up() should increase step', function() {
-    assert.equal(ladder.up().up().step, 2);
+  it('yukari() adimi artırmalı', function () {
+    assert.equal(merdiven.yukari().yukari().adim, 2);
   });
 
-  it('down() should decrease step', function() {
-    assert.equal(ladder.down().step, -1);
+  it('asagi() adimi azaltmalı', function () {
+    assert.equal(merdiven.asagi().adim, -1);
   });
 
-  it('down().up().up().up() ', function() {
-    assert.equal(ladder.down().up().up().up().step, 2);
+  it('asagi().yukari().yukari().yukari() ', function () {
+    assert.equal(merdiven.asagi().yukari().yukari().yukari().adim, 2);
   });
-  
-  after(function() {
-    ladder.step = 0;
-    alert.restore();
+
+  after(function () {
+    merdiven.adim = 0;
+    alert.kaydet();
   });
 });

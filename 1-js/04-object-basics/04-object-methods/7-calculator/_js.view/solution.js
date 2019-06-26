@@ -1,13 +1,13 @@
-let calculator = {
-  sum() {
+let hesapMakinesi = {
+  toplam() {
     return this.a + this.b;
   },
 
-  mul() {
+  carpim() {
     return this.a * this.b;
   },
 
-  read() {
+  oku() {
     this.a = +prompt('a?', 0);
     this.b = +prompt('b?', 0);
   }

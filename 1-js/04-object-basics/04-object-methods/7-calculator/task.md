@@ -2,22 +2,22 @@ importance: 5
 
 ---
 
-# Create a calculator
+# Hesap Makinesi kodunu yazınız.
 
-Create an object `calculator` with three methods:
+`hesapMakinesi` objesini aşağıdaki üç metod ile oluşturunuz:
 
-- `read()` prompts for two values and saves them as object properties.
-- `sum()` returns the sum of saved values.
-- `mul()` multiplies saved values and returns the result.
+- `oku()` veri giriş ekranı gösterir ve iki değeri objenin özelliklerine kaydeder.
+- `topla()` kaydedilen değerlerin toplamını döner.
+- `carp()` kaydedilen değerlerin çarpımını döner.
 
 ```js
-let calculator = {
-  // ... your code ...
+let hesapMakinesi = {
+  // ... sizin kodunuz ...
 };
 
-calculator.read();
-alert( calculator.sum() );
-alert( calculator.mul() );
+hesapMakinesi.oku();
+alert( hesapMakinesi.topla() );
+alert( hesapMakinesi.carp() );
 ```
 
 [demo]
