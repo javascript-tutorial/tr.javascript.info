@@ -1,1 +1,1 @@
-# Objects: the basics
+# Objeler: Temel bilgiler
