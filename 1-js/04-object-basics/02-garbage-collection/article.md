@@ -1,212 +1,213 @@
-# Garbage collection
+# Çöp Toplama ( Garbage collection )
 
-Memory management in JavaScript is performed automatically and invisibly to us. We create primitives, objects, functions... All that takes memory.
+JavaScript dilinde hafıza yönetimi otomatik olarak gerçekleşir. Objeler, fonksiyonlar, değişkenler vs. hepsi hafızada yer alır.
 
-What happens when something is not needed any more? How does the JavaScript engine discover it and clean it up?
+Peki ya ihtiyaç yoksa ne yapılır? JavaScript motoru bunları nasıl temizler?
 
-## Reachability
+## Erişilebilirlik
 
-The main concept of memory management in JavaScript is *reachability*.
+JavaScript'te hafıza yönetimi *erişilebilirlik* konsepti üzerinden olur.
 
-Simply put, "reachable" values are those that are accessible or usable somehow. They are guaranteed to be stored in memory.
+Basit bir şekilde; *erişilebilir* değerler yararlıdır mantığı vardır. Bunlar kesinlikle hafızada yer alır.
 
-1. There's a base set of inherently reachable values, that cannot be deleted for obvious reasons.
+1. Başlangıçta varsayılan olarak var olan *erişilebilir* değerler bulunmaktadır bunlar hiç bir zaman silinemez.
 
-    For instance:
+    Örneğin:
+    - O anda içinde bulunulan fonksiyonların yerel değişkenleri.
+    - Birbirini çağıran fonksiyonların arasında gönderdikleri parametreler, değişkenler.
+    - Global değişkenler.
+    - (dahili değişkenler.)
 
-    - Local variables and parameters of the current function.
-    - Variables and parameters for other functions on the current chain of nested calls.
-    - Global variables.
-    - (there are some other, internal ones as well)
+    Bu değerlere *kökler* veya *roots* denir.
+    
+2. Eğer kökten herhangi bir değişkene erişilebiliyorsa, bu zincirleme referanslarla veya referanslarla olabilir, bu durumda o değişken *erişilebilir*dir.
 
-    These values are called *roots*.
+    Örneğin, yerel bir obje özellikleri içinde başka bir obje kullanırsa, o kullandığı obje de erişilibilir olmaktadır. Eğer referans verilen obje de başka bir objeye referans verirse o da erişilebilir olur. Detaylı bir örneği aşağıdaki gibidir. 
 
-2. Any other value is considered reachable if it's reachable from a root by a reference or by a chain of references.
+JavaScript arka planda [Çöp Toplama](https://tr.wikipedia.org/wiki/%C3%87%C3%B6p_toplama_(bilgisayar_bilimi)) işlemini çalıştırır. Bu tüm erişelemeyen objeleri silme işini yapar.
 
-    For instance, if there's an object in a local variable, and that object has a property referencing another object, that object is considered reachable. And those that it references are also reachable. Detailed examples to follow.
+## Basit bir örnek
 
-There's a background process in the JavaScript engine that is called [garbage collector](https://en.wikipedia.org/wiki/Garbage_collection_(computer_science)). It monitors all objects and removes those that have become unreachable.
-
-## A simple example
-
-Here's the simplest example:
+En basit örnek şu şekildedir:
 
 ```js
-// user has a reference to the object
-let user = {
-  name: "John"
+// kullanici obje için referansa sahiptir.
+let kullanici = {
+  isim: "İhsan"
 };
 ```
 
 ![](memory-user-john.png)
 
-Here the arrow depicts an object reference. The global variable `"user"` references the object `{name: "John"}` (we'll call it John for brevity). The `"name"` property of John stores a primitive, so it's painted inside the object.
+Bu görselde ok obje referansını gösterir. Global değişken olan `"kullanici"` `{isim:"İhsan"}` objesinin referansına sahiptir. Bu objenin `"isim"` özelliği ilkel bir tip tutar. Doğal olarak obje dışına referans verilmemiştir.
 
-If the value of `user` is overwritten, the reference is lost:
+Eğer `kullanici` değerinin üstüne yazılırsa, bu referans kaybolur.
 
 ```js
-user = null;
+kullanici = null;
 ```
 
 ![](memory-user-john-lost.png)
 
-Now John becomes unreachable. There's no way to access it, no references to it. Garbage collector will junk the data and free the memory.
+Şu anda `İhsan` ulaşılamaz oldu. Buna erişmenin bir yolu yok çünkü ona referans olan bir değişken yok. Bu durumda Çöp Toplama bunları hafızadan siler.
 
-## Two references
+## İki referans
 
-Now let's imagine we copied the reference from `user` to `admin`:
+Diyelim ki `kullanici` değişkeni kopyalandı yani referans kopyalandı.
 
 ```js
-// user has a reference to the object
-let user = {
-  name: "John"
+// kullanici objeye referans olur
+let kullanici = {
+  isim: "İhsan"
 };
 
 *!*
-let admin = user;
+let yonetici = isim;
 */!*
 ```
 
 ![](memory-user-john-admin.png)
 
-Now if we do the same:
+Eğer bir önceki örneğin aynısı yapılırsa:
 ```js
-user = null;
+kullanici = null;
 ```
+... Obje hala `yonetici` vasıtasıyla erişilebilir durumdadır. Öyleyse Çöp Toplama(Garbage Collector) bu objeyi silmeyecektir. Fakat `yonetici` değişkeninin de üzerine yazılırsa bu durumda objeye refans kalmayacağından hafızadan silinecektir.
 
-...Then the object is still reachable via `admin` global variable, so it's in memory. If we overwrite `admin` too, then it can be removed.
+## Birbirine bağlı objeler.
 
-## Interlinked objects
-
-Now a more complex example. The family:
+Şimdiki örnek ise biraz daha karmaşık:
 
 ```js
-function marry(man, woman) {
-  woman.husband = man;
-  man.wife = woman;
+function evlilik(erkek, kadin) {
+  kadin.bey = erkek;
+  erkek.kadin = hanim;
 
   return {
-    father: man,
-    mother: woman
+    baba: erkek,
+    anne: kadin
   }
 }
 
-let family = marry({
-  name: "John"
+let aile = evlilik({
+  name: "İhsan"
 }, {
-  name: "Ann"
+  name: "Macide"
 });
 ```
+`evlilik` fonksiyonu verilen iki objeyi evlendirir ve bir obje yapar.
 
-Function `marry` "marries" two objects by giving them references to each other and returns a new object that contains them both.
-
-The resulting memory structure:
+Son tahlilde hafıza haritası şu şekildedir:
 
 ![](family.png)
 
-As of now, all objects are reachable.
+Şu anda tüm objeler erişilebilir durumdadır.
 
-Now let's remove two references:
+İki referans silinirse:
 
 ```js
-delete family.father;
-delete family.mother.husband;
+delete aile.baba;
+delete aile.anne.bey;
 ```
 
 ![](family-delete-refs.png)
 
-It's not enough to delete only one of these two references, because all objects would still be reachable.
+Bu referanslardan yalnız birisi sildiğinizde tüm objeler hala erişilebilir durumdadır.
 
-But if we delete both, then we can see that John has no incoming reference any more:
+Fakat ikisini birden silerseniz, İhsan'a erişilemez:
 
 ![](family-no-father.png)
 
-Outgoing references do not matter. Only incoming ones can make an object reachable. So, John is now unreachable and will be removed from the memory with all its data that also became unaccessible.
+Dışarı giden referanslar önemli değildir. Sadece içeri gelenler o objeyi *ulaşılabilir* yapar. Öyleyse artık İhsan erişilemez ve hafızadan silinecektir. Ayrıca hiç bir verisine de erişilemez.
 
-After garbage collection:
+Çöp toplmaa işleminden sonra:
 
 ![](family-no-father-2.png)
 
-## Unreachable island
+## Erişilemez Ada
 
-It is possible that the whole island of interlinked objects becomes unreachable and is removed from the memory.
+Biribirine bağlı objelerden bir bölümünün hafızadan tamamen silinmesi mümküdür.
 
-The source object is the same as above. Then:
+Aşağıdaki örneğe bakarsanız:
 
 ```js
-family = null;
+aile = null;
 ```
-
-The in-memory picture becomes:
+Hafızadaki görüntüsü şu şekilde olur:
 
 ![](family-no-family.png)
 
-This example demonstrates how important the concept of reachability is.
+Bu örnek erişilebilirliğin ne kadar önemli bir konsept olduğunu gösterir.
 
-It's obvious that John and Ann are still linked, both have incoming references. But that's not enough.
+`İhsan` ve `Macide`'nin hala birbirine bağlantısı vardır. Fakat bunlar sadece kendi aralarındadır ve yeterli değildir. 
 
-The former `"family"` object has been unlinked from the root, there's no reference to it any more, so the whole island becomes unreachable and will be removed.
+Önceki `"aile"` objesi `ana kaynak`'tan silinmiştir. Bundan dolayı artık obje içinde ne olursa olsun referanslarını kaybetmişlerdir.
 
-## Internal algorithms
+## Dahili Algoritmalar
 
-The basic garbage collection algorithm is called "mark-and-sweep".
+Temelde Çöp Toplama algoritması "mark-and-sweep" algoritmasıdır.
 
-The following "garbage collection" steps are regularly performed:
+Aşağıdaki Çöp Toplama işlemleri düzenli olarak yapılır:
 
-- The garbage collector takes roots and "marks" (remembers) them.
-- Then it visits and "marks" all references from them.
-- Then it visits marked objects and marks *their* references. All visited objects are remembered, so as not to visit the same object twice in the future.
-- ...And so on until there are unvisited references (reachable from the roots).
-- All objects except marked ones are removed.
+- Çöp toplayıcı kökleri işaretler(hatırlar).
+- Sonra bunlardan tüm referansları işaretler.
+- Sonrasında bunlardan objeleri ve objelerin referanslarını işaretler. Tüm erişilenler hatırlanır, bundan dolayı aynı objeyi ikinci defa ziyaret etmez.
+- ... Bu şekilde ziyaret edilmemiş ziyaret edilmemiş referanslar bulunur.
+- İşaretlenmemiş olanlar silinir.
 
-For instance, let our object structure look like this:
+Diyelimki obje yapısı aşağıdaki gibi olsun:
+
 
 ![](garbage-collection-1.png)
 
-We can clearly see an "unreachable island" to the right side. Now let's see how "mark-and-sweep" garbage collector deals with it.
+"Ulaşılamayan ada" sağ tarafta açıkça görülebilir. "mark-and-sweep" adım adım şu şekilde çalışır:
 
-The first step marks the roots:
+İlk adım kökleri işaretlemek:
 
 ![](garbage-collection-2.png)
 
-Then their references are marked:
+Sonra bunların referansları:
+
 
 ![](garbage-collection-3.png)
 
-...And their references, while possible:
+...Sonra eğer mümkün ise referansların referansları:
 
 ![](garbage-collection-4.png)
 
-Now the objects that could not be visited in the process are considered unreachable and will be removed:
+Son adım olarak ziyaret edilmeyen objeler "ulaşılamaz" addedilip silinir:
 
 ![](garbage-collection-5.png)
 
-That's the concept of how garbage collection works.
+JavaScript motoru bunu hızlıca çalıştırmak ve kodun çalışmasını etkilememek için bir çok optimizsyon yapar.
 
-JavaScript engines apply many optimizations to make it run faster and not affect the execution.
 
-Some of the optimizations:
+Bazı Optimizasyonlar:
 
-- **Generational collection** -- objects are split into two sets: "new ones" and "old ones". Many  objects appear, do their job and die fast, they can be cleaned up aggressively. Those that survive for long enough, become "old" and are examined less often.
-- **Incremental collection** -- if there are many objects, and we try to walk and mark the whole object set at once, it may take some time and introduce visible delays in the execution. So the engine tries to split the garbage collection into pieces. Then the pieces are executed one by one, separately. That requires some extra bookkeeping between them to track changes, but we have many tiny delays instead of a big one.
-- **Idle-time collection** -- the garbage collector tries to run only while the CPU is idle, to reduce the possible effect on the execution.
+- **Jenerason Koleksiyonu** -- objeler iki kümeye ayrılır: "yeni olanlar" ve "eski olanlar". Çoğu obje birden var olur, işini hızlı bir şekilde yapar ve hızlıca ölür, bunların hemen silinmesi gerekir. Eğer silinemediler ise bu defa eskiler kümesine girerler ve daha az sıklıkla silinirler.
 
-There are other optimizations and flavours of garbage collection algorithms. As much as I'd like to describe them here, I have to hold off, because different engines implement different tweaks and techniques. And, what's even more important, things change as engines develop, so going deeper "in advance", without a real need is probably not worth that. Unless, of course, it is a matter of pure interest, then there will be some links for you below.
 
-## Summary
+- **Artımlı Koleksiyon** -- Eğer çok fazla sayıda obje varsa bu objeleri bir seferde dolaşmak çok fazla zaman alacaktır. Kod çalışırken belki biraz yavaşlamaya neden olabilir. Bundan dolayı motorlar genelde çöp toplama işini bölümlere ayırırlar. Bu bölümleri ayrı ayrı çalışır. Tabi kendileri arasında bir şekilde değişiklikleri bildirmeleri gerekir, fakat bir tane büyük yerine bu şekilde küçük küçük işlemler hızı artırmaktadık.
 
-The main things to know:
+- **Boş zaman Koleksiyonu** -- Çöp toplayıcı genelde CPU kullanılmadığı zamanlarda çalışır, böylece kodun çalışmasına olan etki en aza iner.
 
-- Garbage collection is performed automatically. We cannot force or prevent it.
-- Objects are retained in memory while they are reachable.
-- Being referenced is not the same as being reachable (from a root): a pack of interlinked objects can become unreachable as a whole.
+Bunlarla birlikte başka optimizasyon ve çöp toplama algoritmaları bulunmaktadır. Her motor kendine göre farklı optimizasyonu beraberinde getirir. Daha da önemlisi motor geliştikçe bakış açıları değişir. Analizler artar. Eğer gerçekten ilginizi çekiyorsa bu konu aşağıdaki linkler size yol gösterecektir.
 
-Modern engines implement advanced algorithms of garbage collection.
 
-A general book "The Garbage Collection Handbook: The Art of Automatic Memory Management" (R. Jones et al) covers some of them.
+## Özet
 
-If you are familiar with low-level programming, the more detailed information about V8 garbage collector is in the article [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection).
+Bilinmesi gereken temeller:
 
-[V8 blog](https://v8.dev/) also publishes articles about changes in memory management from time to time. Naturally, to learn the garbage collection, you'd better prepare by learning about V8 internals in general and read the blog of [Vyacheslav Egorov](http://mrale.ph) who worked as one of V8 engineers. I'm saying: "V8", because it is best covered with articles in the internet. For other engines, many approaches are similar, but garbage collection differs in many aspects.
+- Çöp toplama otomatik olarak yapılır. Engellenemez veya korunulamaz.
+- Objeler erişilebilir olduğu müddetçe hafızada kalırlar.
+- Referans edilmiş olmak erişilebilir olmak değildir: birbiri içinde bağlantılı olan bir obje tamamen erişilemez hale getirilebilir.
 
-In-depth knowledge of engines is good when you need low-level optimizations. It would be wise to plan that as the next step after you're familiar with the language.  
+Modern JavaScript motorları çöp toplama için çok gelişmiş algoritmalar kullanmaktadır.
+
+Genel bir kitap önerisi olarak "The Garbage Collection Handbook: The Art of Automatic Memory Management" ( R.Jones et al)  algoritmaların bazılarını kapsamaktadır.
+
+Eğer alt seviye diller ile aranız iyi ise, daha derinlemesine bilgiyi aşağıdaki makaleden edinebilirsiniz: [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection).
+
+[V8 blog](http://v8project.blogspot.com/) Arada bir hafıza yönetimi hakkında belge yayınlamaktadır. Doğal olarak, çöp toplama hakkında bilgi sahibi olunmak isteniyorsa dahili yapıların bilinmesi gerekmektedir. Bu yapılar [Vyacheslav Egorov](http://mrale.ph) takip edilerek öğrenilebilir. Kendisi "V8" motoru mühendislerindendir. "V8"in önerilmesinin nedeni internette hakkında çokça bilgi bulunabilmesinden dolayıdır. Diğer motorlar için çoğu yaklaşım benzerdir fakat çöp toplama bir çok yönden farklılık gösterir.
+
+Alt-seviye optimizasyonu istendiğinde derinlemesine bilgi sahibi olunması gerekmektedir. JavaScript dilini öğrendikten sonra bu yolda ilerlenmesi daha mantıklı olur.
