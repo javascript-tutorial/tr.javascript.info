@@ -2,13 +2,13 @@ importance: 4
 
 ---
 
-# Extract the money
+# Para işaretlerini metinden çıkarın
 
-We have a cost in the form `"$120"`. That is: the dollar sign goes first, and then the number.
+Formda `"$120"` ücret bulunmaktadır. Önce dolar işareti ardından sayı gelmektedir.
 
-Create a function `extractCurrencyValue(str)` that would extract the numeric value from such string and return it. 
+Öyle bir fonksiyon yazın ki `extractCurrencyValue(str)` bu fonksiyon sadece sayısal değeri döndersin.
 
-The example:
+Örnek:
 
 ```js
 alert( extractCurrencyValue('$120') === 120 ); // true

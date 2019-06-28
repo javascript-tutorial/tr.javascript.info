@@ -1,27 +1,27 @@
-We can't "replace" the first character, because strings in JavaScript are immutable.
+İlk karakteri "değiştiremeyiz" çünkü JavaScript'te karakter dizileri değiştirilemez.
 
-But we can make a new string based on the existing one, with the uppercased first character:
+Fakat var olan ile yeni bir karakter dizisi yapmak ve ilk karakteri büyük başlamak mümkündür:
 
 ```js
-let newStr = str[0].toUpperCase() + str.slice(1);
+let yeniDizi = str[0].toUpperCase() + str.slice(1);
 ```
 
-There's a small problem though. If `str` is empty, then `str[0]` is undefined, so we'll get an error.
+Burada küçük bir problem var. Eğer `str` boş ise, `str[0]` undefined olur ve hata döner.
 
-There are two variants here:
+Bunun iki türlü çözümü bulunmaktadır.
 
-1. Use `str.charAt(0)`, as it always returns a string (maybe empty).
-2. Add a test for an empty string.
+1. `str.charAt(0)`, kullanarak ilk satırdaki karakteri kontrol etmek.
+2. Boş karakterler için kontrol yazmak
 
-Here's the 2nd variant:
+İkinci türü ise:
 
-```js run demo
+```js run
 function ucFirst(str) {
   if (!str) return str;
 
   return str[0].toUpperCase() + str.slice(1);
 }
 
-alert( ucFirst("john") ); // John
+alert( ucFirst("ahmet") ); // Ahmet
 ```
 

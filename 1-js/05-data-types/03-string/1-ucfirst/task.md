@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Uppercast the first character
 
-Write a function `ucFirst(str)` that returns the string `str` with the uppercased first character, for instance:
+# İlk karakteri büyük harf yapma
+
+`ucFirst(str)` adında bir fonksiyon yazın bu fonksiyon verilen `str` değişkeninin ilk karakterini büyük harf yapıp dönsün, örneğin:
 
 ```js
-ucFirst("john") == "John";
+ucFirst("ahmet") == "Ahmet";
 ```
-

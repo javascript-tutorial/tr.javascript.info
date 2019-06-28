@@ -1,6 +1,6 @@
-describe("extractCurrencyValue", function() {
+describe("extractCurrencyValue", function () {
 
-  it("for the string $120 returns the number 120", function() {
+  it("Eğer gelen değer $120 ise 120 döndürmesi gerekmekte", function () {
     assert.strictEqual(extractCurrencyValue('$120'), 120);
   });
 
