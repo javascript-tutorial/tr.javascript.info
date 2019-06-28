@@ -2,13 +2,13 @@ importance: 5
 
 ---
 
-# Repeat until the input is a number
+# Girilen değer sayı olana kadar devam edin.
 
-Create a function `readNumber` which prompts for a number until the visitor enters a valid numeric value.
+`sayiOku` adında bir fonksiyon oluşturun. Bu fonksiyon kullanıcı sayı girene kadar `prompt` ile değer alsın.
 
-The resulting value must be returned as a number.
+Sonuç sayı döndürmelidir.
 
-The visitor can also stop the process by entering an empty line or pressing "CANCEL". In that case, the function should return `null`.
+Ziyaretci boş değer girerek veya "İPTAL" tuşuna basarak programı durdurabilir. Bu durumda fonksiyon `null` döndürmelidir.
 
 [demo]
 

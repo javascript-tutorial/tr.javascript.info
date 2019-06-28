@@ -1,12 +1,11 @@
 
 
 ```js run demo
-let a = +prompt("The first number?", "");
-let b = +prompt("The second number?", "");
+let a = +prompt("İlk numara", "");
+let b = +prompt("İkinci numara?", "");
 
 alert( a + b );
 ```
+`prompt` öncesi koyulan `+` işareti alınan değeri doğrudan sayıya çevirir.
 
-Note the unary plus `+` before `prompt`. It immediately converts the value to a number.
-
-Otherwise, `a` and `b` would be string their sum would be their concatenation, that is: `"1" + "2" = "12"`.
+Diğer türlü girilen değerler string olarak algılanır toplama yerine birleştirilir: `"1" + "2" = "12"`

@@ -1,6 +1,6 @@
-That's because `i` would never equal `10`.
+Çünkü `i` hiç bir zaman `10` olmaz.
 
-Run it to see the *real* values of `i`:
+Aşağıdaki kodu çalıştırın ve gerçek `i` değerini görün:
 
 ```js run
 let i = 0;
@@ -9,9 +9,8 @@ while (i < 11) {
   if (i > 9.8 && i < 10.2) alert( i );
 }
 ```
+Hiç birisi tam olarak `10` olmayacaktır.
 
-None of them is exactly `10`.
+Bunun olmasının nedeni `0.2` eklediğimizde kesinlik kaybı olur.
 
-Such things happen because of the precision losses when adding fractions like `0.2`.
-
-Conclusion: evade equality checks when working with decimal fractions.
+Sonuç: Eğer ondalıklı sayılar ise çalışıyorsanız eşitlik kontrolünü iyice kontrol edin.

@@ -1,20 +1,18 @@
 importance: 2
 
 ---
+# Min ve Max arasında rasgele tam sayı üretmek.
 
-# A random integer from min to max
+`randomInteger(min,max)` adında bir fonksiyon yazın. Bu fonksiyon sadece `min` ve `max` değerleri arasında *tam sayı* döndürsün.(min ve max ikisi de dahil)
 
-Create a function `randomInteger(min, max)` that generates a random *integer* number from `min` to `max` including both `min` and `max` as possible values.
+Her defasında `min..max` aynı olasılıkla seçilmelidir.
 
-Any number from the interval `min..max` must appear with the same probability.
-
-
-Examples of its work:
+Örnek:
 
 ```js
-alert( randomInteger(1, 5) ); // 1
-alert( randomInteger(1, 5) ); // 3
-alert( randomInteger(1, 5) ); // 5
+alert( random(1, 5) ); // 1
+alert( random(1, 5) ); // 3
+alert( random(1, 5) ); // 5
 ```
 
-You can use the solution of the [previous task](info:task/random-min-max) as the base.
+ [Bir önceki görevi](info:task/random-min-max) temel alabilirsiniz.

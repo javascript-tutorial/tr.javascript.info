@@ -1,6 +1,6 @@
-# The simple but wrong solution
+# Basit fakat yanlış çözüm
 
-The simplest, but wrong solution would be to generate a value from `min` to `max` and round it:
+Basit yöntem, `min` ile `max` arasında `rasgele` bir değer bulup bunu yuvarlamaktır.
 
 ```js run
 function randomInteger(min, max) {
@@ -10,29 +10,27 @@ function randomInteger(min, max) {
 
 alert( randomInteger(1, 3) );
 ```
+Fonksiyon çalışır fakat yanlıştır. `min` ve `max` ın kenar değerlerinin seçilmesi diğer değerlere göre iki kat azdır.
 
-The function works, but it is incorrect. The probability to get edge values `min` and `max` is two times less than any other.
+Eğer yukarıdaki örneği birçok defa çalıştırırsanız en fazla `2` nin döndüğünü göreceksiniz.
 
-If you run the example above many times, you would easily see that `2` appears the most often.
-
-That happens because `Math.round()` gets random numbers from the interval `1..3` and rounds them as follows:
+Bu böyle olur çünkü `Math.round()` , `1..3` arasında rasgele değerler alır ve aşağıdaki gibi bunları yuvarlar:
 
 ```js no-beautify
-values from 1    ... to 1.4999999999  become 1
-values from 1.5  ... to 2.4999999999  become 2
-values from 2.5  ... to 2.9999999999  become 3
+ 1    ... ile 1.4999999999  arası  1
+ 1.5  ... ile 2.4999999999  arası 2
+ 2.5  ... ile 2.9999999999  arası 3
 ```
+Gördüğünüz gibi `1`'in `2`ye göre seçilme olasılı 2 defa daha azdır. `3` için de aynıdır.
 
-Now we can clearly see that `1` gets twice less values than `2`. And the same with `3`.
+# Doğru çözüm
 
-# The correct solution
-
-There are many correct solutions to the task. One of them is to adjust interval borders. To ensure the same intervals, we can generate values from `0.5 to 3.5`, thus adding the required probabilities to the edges:
+Aslında birçok doğru çözüm vardır. Bir tanesi, aralık sınırlarının ayarlanmasıdır. Her defasında aynı aralık seçildiğinden emin olunmalıdır. `0.5 ile 2.5` arasında değerler üretilebilir. Bu şekilde kenarlara olasılık için ağırlık eklenmiş olur.
 
 ```js run
 *!*
 function randomInteger(min, max) {
-  // now rand is from  (min-0.5) to (max+0.5)
+  // (min-0.5) ile (max+0.5) arasında
   let rand = min - 0.5 + Math.random() * (max - min + 1);
   return Math.round(rand);
 }
@@ -41,12 +39,12 @@ function randomInteger(min, max) {
 alert( randomInteger(1, 3) );
 ```
 
-An alternative way could be to use `Math.floor` for a random number from `min` to `max+1`:
+Diğer bir alternatif ise `Math.floor` kullanılarak `min` ile `max+1` aralığından rasgele bir sayı seçilmesidr.
 
 ```js run
 *!*
 function randomInteger(min, max) {
-  // here rand is from min to (max+1)
+  // rasgele min ile (max+1) arasındadır.
   let rand = min + Math.random() * (max + 1 - min);
   return Math.floor(rand);
 }
@@ -55,12 +53,11 @@ function randomInteger(min, max) {
 alert( randomInteger(1, 3) );
 ```
 
-Now all intervals are mapped this way:
+Şimdi ise aralıklar şu şekilde haritalanır:
 
 ```js no-beautify
-values from 1  ... to 1.9999999999  become 1
-values from 2  ... to 2.9999999999  become 2
-values from 3  ... to 3.9999999999  become 3
+1  ... ile 1.9999999999  arası 1 olur
+2  ... ile 2.9999999999  arası 2 olur
+3  ... ile 3.9999999999  arası 3 olur
 ```
-
-All intervals have the same length, making the final distribution uniform.
+Tüm aralıklar aynı boyutlara sahiptir. Son tahlilde hepsi aynı olasılığa sahiptir.

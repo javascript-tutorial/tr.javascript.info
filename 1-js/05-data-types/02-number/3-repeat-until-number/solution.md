@@ -1,23 +1,18 @@
-
 ```js run demo
-function readNumber() {
-  let num;
+function sayiOku() {
+  let sayi;
 
   do {
-    num = prompt("Enter a number please?", 0);
-  } while ( !isFinite(num) );
+    sayi = prompt("Lütfen bir sayı giriniz?", 0);
+  } while ( !isFinite(sayi) );
 
-  if (num === null || num === '') return null;
+  if (sayi === null || sayi === '') return null;
   
-  return +num;
+  return +saui;
 }
 
-alert(`Read: ${readNumber()}`);
+alert(`Oku: ${sayiOku()}`);
 ```
+Kod `null`/boş değer kontrolünden dolayı biraz garip görünebilir.
 
-The solution is a little bit more intricate that it could be because we need to handle `null`/empty lines.
-
-So we actually accept the input until it is a "regular number". Both `null` (cancel) and empty line also fit that condition, because in numeric form they are `0`.
-
-After we stopped, we need to treat `null` and empty line specially (return `null`), because converting them to a number would return `0`.
-
+"sayı" gelene kadar değerler kontrol edilmelidir. `null` ve boş satır `true` döndürür. Çünkü numerik olarak bu değerler `0`'dır.
