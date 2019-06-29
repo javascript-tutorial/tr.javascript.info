@@ -1,6 +1,6 @@
-The call `arr[2]()` is syntactically the good old `obj[method]()`, in the role of `obj` we have `arr`, and in the role of `method` we have `2`.
+Yazım olarak `arr[2]()` bilinen obje hali ile `obj[method]()` ile aynıdır. Buradaki `obj` yerine `dizi` ve `method` yerine ise `2` bulunur.
 
-So we have a call of the function `arr[2]` as an object method. Naturally, it receives `this` referencing the object `arr` and outputs the array:
+Bundan dolayı `arr[2]` `this` referansını alır ve bu referans `arr`'i gösterir. Bundan dolayı sonuç:
 
 ```js run
 let arr = ["a", "b"];
@@ -11,5 +11,4 @@ arr.push(function() {
 
 arr[2](); // "a","b",function
 ```
-
-The array has 3 values: initially it had two, plus the function. 
+Dizinin 3 değeri bulunmaktadır: Başlangıçta tanımlanan 2 tanesi ve üstüne eklenen bir fonksiyon.

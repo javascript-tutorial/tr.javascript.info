@@ -1,28 +1,27 @@
-Please note the subtle, but important detail of the solution. We don't convert `value` to number instantly after `prompt`, because after `value = +value` we would not be able to tell an empty string (stop sign) from the zero (valid number). We do it later instead.
+Önemli bir detay ile başlamak gerekirse. `prompt`'tan alınan `deger` doğrudan sayıya çevirilmez. Çünkü `deger = +deger` gelen değerin boş karaktermi ( dur işareti ) yoksa 0 ( geçerli sayı ) olup olmadığını söyleyemez. Bu daha sonra yapılacaktır.
 
 
 ```js run demo
 function sumInput() {
  
-  let numbers = [];
+  let sayilar = [];
 
   while (true) {
 
-    let value = prompt("A number please?", 0);
+    let deger = prompt("Lütfen bir sayı giriniz?", 0);
 
-    // should we cancel?
-    if (value === "" || value === null || !isFinite(value)) break;
+    // İptal edilmeli mi?
+    if (deger === "" || deger === null || !isFinite(deger)) break;
 
-    numbers.push(+value);
+    sayilar.push(+deger);
   }
 
-  let sum = 0;
-  for (let number of numbers) {
-    sum += number;
+  let toplam = 0;
+  for (let sayi of sayilar) {
+    sayilar += sayi;
   }
-  return sum;
+  return toplam;
 }
 
 alert( sumInput() ); 
 ```
-

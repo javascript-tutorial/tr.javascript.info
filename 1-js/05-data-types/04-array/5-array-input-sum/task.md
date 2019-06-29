@@ -2,14 +2,14 @@ importance: 4
 
 ---
 
-# Sum input numbers
+# Girilen değerleri toplama
 
-Write the function `sumInput()` that:
+`sumInput()` fonksiyonunu aşağıdaki şekilde yazınız:
 
-- Asks the user for values using `prompt` and stores the values in the array.
-- Finishes asking when the user enters a non-numeric value, an empty string, or presses "Cancel".
-- Calculates and returns the sum of array items.
+- `prompt` ile kullanıcının değer girmesini sağlayın.
+- Eğer kullanıcı boşluk karakteri girerse veya "İptal" tuşuna basar ise işlemi bitirin.
+- Tüm girilen değerlerin toplamını hesaplayın.
 
-P.S. A zero `0` is a valid number, please don't stop the input on zero.
+Not: `0` bir sayıdır, eğer giriş sıfır ise lütfen programı durdurmayın.
 
 [demo]

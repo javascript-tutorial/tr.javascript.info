@@ -1,17 +1,16 @@
 The result is `4`:
 
-
 ```js run
-let fruits = ["Apples", "Pear", "Orange"];
+let meyveler = ["Elma", "Armut", "Portakal"];
 
-let shoppingCart = fruits;
+let sepet = meyveler;
 
-shoppingCart.push("Banana");
+sepet.push("Muz");
 
 *!*
-alert( fruits.length ); // 4
+alert( sepet.length ); // 4
 */!*
 ```
 
-That's because arrays are objects. So both `shoppingCart` and `fruits` are the references to the same array.
+Diziler obje olduklarından dolayı `sepet` ve `meyveler` aynı diziye referans verirler.
 
