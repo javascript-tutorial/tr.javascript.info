@@ -2,23 +2,23 @@ importance: 5
 
 ---
 
-# Sum the properties
+# Özellikleri toplayınız
 
-There is a `salaries` object with arbitrary number of salaries. 
+`maaslar` objesindeki maaşları toplayınız.
 
-Write the function `sumSalaries(salaries)` that returns the sum of all salaries using `Object.values` and the `for..of` loop.
+`toplamMaas(maaslar)` aında bir fonksiyon yazınız ve bu `Object.values` ve `for..of` döngüsü kullanarak tüm maaşların toplamını dönsün.
 
-If `salaries` is empty, then the result must be `0`.
+Eğer `maaslar` boş ise sonuç `0` olmalıdır.
 
-For instance:
+Örneğin:
 
 ```js
-let salaries = {
-  "John": 100,
-  "Pete": 300,
-  "Mary": 250
+let maaslar = {
+  "Ahmet": 100,
+  "Mehmet": 300,
+  "Muzaffer": 700
 };
 
-alert( sumSalaries(salaries) ); // 650
+alert( toplamMaas(maaslar) ); // 1100
 ```
 

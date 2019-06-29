@@ -1,72 +1,74 @@
 
 # Object.keys, values, entries
 
-Let's step away from the individual data structures and talk about the iterations over them.
+Veri yapılarından biraz uzaklaşıp bunların döngülerinden bahsedecek olursak;
 
-In the previous chapter we saw methods `map.keys()`, `map.values()`, `map.entries()`.
+Bir önceki bölümde `map.keys()`, `map.values()`, `map.entries()` gibi metodlar vardı.
 
-These methods are generic, there is a common agreement to use them for data structures. If we ever create a data structure of our own, we should implement them too.
+Bu metodlar `generi`c metorlardır. Bunların veri yapılarında kullanılması çoğu dilde ortaktır. Eğer yenei bir veri yapısı yapmak istiyorsanız siz de bunların uygulamasını yapmalısınız.
 
-They are supported for:
-
+Bunlar:
 - `Map`
 - `Set`
-- `Array` (except `arr.values()`)
+- `Array` ( `arr.values()` hariç)
 
-Plain objects also support similar methods, but the syntax is a bit different.
+... için desteklenir.
+
+Basit objeler de aynı metodları destekler aslında, fakat yazımları biraz daha fazladır.
 
 ## Object.keys, values, entries
 
-For plain objects, the following methods are available:
+Basit objeler için aşağıdaki metodlar kullanılabilir.
 
-- [Object.keys(obj)](mdn:js/Object/keys) -- returns an array of keys.
-- [Object.values(obj)](mdn:js/Object/values) -- returns an array of values.
-- [Object.entries(obj)](mdn:js/Object/entries) -- returns an array of `[key, value]` pairs.
+- [Object.keys(obj)](mdn:js/Object/keys) -- anahtarları dizi şeklinde dönderir.
+- [Object.values(obj)](mdn:js/Object/values) -- değerleri dizi şeklinde dönderir
+- [Object.entries(obj)](mdn:js/Object/entries) --  `[anahtar, değer]` çiftini dizi şeklinde dönderir.
 
-...But please note the distinctions (compared to map for example):
+... Farklılıklarına dikkat edin. ( aşağıda map örneği gösterilmiştir):
 
 |             | Map              | Object       |
 |-------------|------------------|--------------|
-| Call syntax | `map.keys()`  | `Object.keys(obj)`, but not `obj.keys()` |
-| Returns     | iterable    | "real" Array                     |
+| Çağırma | `map.keys()`  | `Object.keys(obj)`, fakat `obj.keys()` değil |
+| Döner     | sıralı döngü objesi    | "gerçek" dizi                     |
 
-The first difference is that we have to call `Object.keys(obj)`, and not `obj.keys()`.
+İlk farklılık `obj.keys()` değil de `Object.keys(obj)` dönmeniz gerekmektedir.
 
-Why so? The main reason is flexibility. Remember, objects are a base of all complex structures in JavaScript. So we may have an object of our own like `order` that implements its own `order.values()` method. And we still can call `Object.values(order)` on it.
+Peki neden? Ana neden esnekliktir. Hatırlarsanız, objeler tüm karmaşık yapıların temelidir. Bundan dolayı kendimize ait `order` gibi bir objeniz ve bunun kendine ait bir `order.values()` metodu olabilir. Yine de bunun üzerinde `Object.values(order)`'ı çağırabilmeniz gerekir.
 
-The second difference is that `Object.*` methods return "real" array objects, not just an iterable. That's mainly for historical reasons.
+Diğer bir farklılık ise `Object.*` metodları "gerçek" dizi döner. Sadece sıralı döngü objesi değil. Bu da tarihsel nedenlerden dolayıdır aslında.
 
-For instance:
+Örneğin:
 
 ```js
-let user = {
-  name: "John",
-  age: 30
+let kullanici = {
+  adi: "Ahmet",
+  yasi: 30
 };
 ```
 
-- `Object.keys(user) = ["name", "age"]`
-- `Object.values(user) = ["John", 30]`
-- `Object.entries(user) = [ ["name","John"], ["age",30] ]`
+- `Object.keys(kullanici) = [adi, yasi]`
+- `Object.values(kullanici) = ["Ahmet", 30]`
+- `Object.entries(kullanici) = [ ["adi","Ahmet"], ["yasi",30] ]`
 
-Here's an example of using `Object.values` to loop over property values:
+Burada ise `Object.values`'un özelliklerinin döngüde kullanımı gösterilmektedir:
 
 ```js run
-let user = {
-  name: "John",
-  age: 30
+let kullanici = {
+  adi: "Ahmet",
+  yasi: 30
 };
 
-// loop over values
-for (let value of Object.values(user)) {
-  alert(value); // John, then 30
+//  değerler üzerinden döngü
+for(let deger of Object.values(kullanici)) {
+  alert(deger); // Ahmet,sonrasında 30
 }
 ```
 
-```warn header="Object.keys/values/entries ignore symbolic properties"
-Just like a `for..in` loop, these methods ignore properties that use `Symbol(...)` as keys.
+```warn header="Object.keys/values/entries symbol özelliklerini görmezden gelir"
 
-Usually that's convenient. But if we want symbolic keys too, then there's a separate method [Object.getOwnPropertySymbols](mdn:js/Object/getOwnPropertySymbols) that returns an array of only symbolic keys. Also, there exist a method [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) that returns *all* keys.
+`for..in` döngüsünde olduğu gibi, bu metodlar `Symbol(...)`'ü anahtar olarak kullanan özellikleri pas geçerler.
+
+Bu baya işe yarar bir özelliktir. Fakat symbol özelliklerini almak istiyorsanız [Object.getOwnPropertySymbols](mdn:js/Object/getOwnPropertySymbols) metodunu kullanabilirsiniz. Ayrıca [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) *tüm* anahtarları döner.
 ```
 
 ## Object.fromEntries to transform objects
