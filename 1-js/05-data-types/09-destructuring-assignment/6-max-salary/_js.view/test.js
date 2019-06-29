@@ -1,15 +1,14 @@
-describe("topSalary", function() {
-  it("returns top-paid person", function() {
-    let salaries = {
-      "John": 100,
-      "Pete": 300,
-      "Mary": 250
+describe("azamiMaas", function () {
+  it("En yüksek maaş alan kişileri döndür", function () {
+    let maaslar = {
+      "Ahmet": 100,
+      "Mehmet": 300,
+      "Muzaffer": 250
     };
-
-    assert.equal( topSalary(salaries), "Pete" );
+    assert.equal(azamiMaas(maaslar), "Mehmet");
   });
 
-  it("returns null for the empty object", function() {
-    assert.isNull( topSalary({}) );
+  it("Eğer obje boş ise null döndür", function () {
+    assert.isNull(azamiMaas({}));
   });
 });

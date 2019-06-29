@@ -2,32 +2,31 @@ importance: 5
 
 ---
 
-# Destructuring assignment
+# Ayrıştırma ve atama
 
-We have an object:
+Aşağıdaki gibi bir obje:
 
 ```js
-let user = {
-  name: "John",
-  years: 30
+let kullanici = {
+  adi: "Ahmet",
+  yasi: 30
 };
 ```
+Ayrıştırmasını şu şekilde tanımlayınız:
 
-Write the destructuring assignment that reads:
+- `adi` özelliği `ismi` değişkenine atanacak.
+- `yasi`  özelliği `yili` değişkenine atanacak.
+- `adminMi` özelliği `adminMi` değişkenine atanacak, eğer bu özellik yoksa `false` kabul edilecek.
 
-- `name` property into the variable `name`.
-- `years` property into the variable `age`.
-- `isAdmin` property into the variable `isAdmin` (false, if no such property)
-
-Here's an example of the values after your assignment:
+Değişkenler atandıktan sonra:
 
 ```js
-let user = { name: "John", years: 30 };
+let kullanici = { adi: "Ahmet", yasi: 30 };
 
-// your code to the left side:
-// ... = user
+// sol tarafta yazacağınız kod:
+// ... = kullanici
 
-alert( name ); // John
-alert( age ); // 30
-alert( isAdmin ); // false
+alert( ismi ); // Ahmet
+alert( yili ); // 30
+alert( adminMi ); // false
 ```

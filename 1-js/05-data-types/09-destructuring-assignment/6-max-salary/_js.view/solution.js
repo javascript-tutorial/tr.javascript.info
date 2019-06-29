@@ -1,12 +1,12 @@
-function topSalary(salaries) {
+function azamiMaas(maaslar) {
 
   let max = 0;
   let maxName = null;
 
-  for(const [name, salary] of Object.entries(salaries)) {
-    if (max < salary) {
-      max = salary;
-      maxName = name;
+  for (let [isim, maas] of Object.entries(maaslar)) {
+    if (max < maas) {
+      max = maas;
+      maxName = isim;
     }
   }
 

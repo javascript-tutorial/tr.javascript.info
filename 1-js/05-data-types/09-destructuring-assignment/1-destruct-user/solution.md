@@ -1,13 +1,13 @@
 
 ```js run
-let user = {
-  name: "John",
-  years: 30
+let kullanici = {
+  adi: "Ahmet",
+  yasi: 30
 };
 
-let {name, years: age, isAdmin = false} = user;
+let {adi:ismi, yasi: yili, adminMi = false} = kullanici;
 
-alert( name ); // John
-alert( age ); // 30
-alert( isAdmin ); // false
+alert( ismi ); // John
+alert(yili ); // 30
+alert( adminMi ); // false
 ```
