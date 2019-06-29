@@ -1,13 +1,13 @@
 ```js run
 
-let john = { name: "John", age: 25 };
-let pete = { name: "Pete", age: 30 };
-let mary = { name: "Mary", age: 28 };
+let ahmet = { adi: "Ahmet", yas: 25 };
+let mehmet = { adi: "Mehmet", yas: 30 };
+let muzaffer = { adi: "Muzaffer", yas: 28 };
 
-let users = [ john, pete, mary ];
+let kullanici = [ ahmet, mehmet, muzaffer ];
 
-let names = users.map(item => item.name);
+let isimler = kullanici.map(eleman => eleman.adi);
 
-alert( names ); // John, Pete, Mary
+alert( isimler ); //  Ahmet, Mehmet, Muzaffer
 ```
 

@@ -1,14 +1,14 @@
 ```js run
-function getAverageAge(users) {
-  return users.reduce((prev, user) => prev + user.age, 0) / users.length;
+function ortalamaYasAl(kullanicilar) {
+  return kullanicilar.reduce((onceki, kullanici) => onceki + kullanici.yas, 0) / kullanicilar.length;
 }
 
-let john = { name: "John", age: 25 };
-let pete = { name: "Pete", age: 30 };
-let mary = { name: "Mary", age: 29 };
+let muzaffer = { adi: "Muzaffer", yas: 25 };
+let mehmet = { adi: "Mehmet",yas: 30 };
+let ahmet = { adi: "Ahmet", yas: 29 };
 
-let arr = [ john, pete, mary ];
+let arr = [   muzaffer , mehmet, ahmet ];
 
-alert( getAverageAge(arr) ); // 28
+alert( ortalamaYasAl(arr) ); // 28
 ```
 

@@ -1,18 +1,18 @@
-describe("camelize", function() {
+describe("camelize", function () {
 
-  it("leaves an empty line as is", function() {
+  it("Boş satırı olduğu gibi bırakır", function () {
     assert.equal(camelize(""), "");
   });
 
-  it("turns background-color into backgroundColor", function() {
+  it("background-color'u backgroundColor haline getirir.", function () {
     assert.equal(camelize("background-color"), "backgroundColor");
   });
 
-  it("turns list-style-image into listStyleImage", function() {
+  it("list-style-image'u listStyleImage haline getirir.", function () {
     assert.equal(camelize("list-style-image"), "listStyleImage");
   });
 
-  it("turns -webkit-transition into WebkitTransition", function() {
+  it("-webkit-transition'u WebkitTransition haline getirir", function () {
     assert.equal(camelize("-webkit-transition"), "WebkitTransition");
   });
 

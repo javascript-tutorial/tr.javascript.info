@@ -2,22 +2,24 @@ importance: 4
 
 ---
 
-# Filter unique array members
+# Benzersiz dizi elemanlarını bulan fonksiyonu yazınız.
 
-Let `arr` be an array.
 
-Create a function `unique(arr)` that should return an array with unique items of `arr`.
+Diyelim ki `arr`  adında bir diziniz var.
 
-For instance:
+`benzersiz(arr)` adında bir fonksiyon yazın ve bu fonksiyon `arr` içinde bulunan benzersiz elemanları dönsün.
+
+
+Örneğin:
 
 ```js
-function unique(arr) {
+function benzersiz(arr) {
   /* your code */
 }
 
-let strings = ["Hare", "Krishna", "Hare", "Krishna",
-  "Krishna", "Krishna", "Hare", "Hare", ":-O"
+let kullanicilar = ["Emine", "Muzaffer", "Fatma", "Kanako",
+  "Kanako", "Muzaffer", "Fatma", "Kanako", ":-O"
 ];
 
-alert( unique(strings) ); // Hare, Krishna, :-O
+alert( benzersiz(kullanicilar) ); // Emine, Muzaffer, Fatma, Kanako, :-O
 ```

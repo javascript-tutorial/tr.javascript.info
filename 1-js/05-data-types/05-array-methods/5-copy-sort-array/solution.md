@@ -1,4 +1,5 @@
-We can use `slice()` to make a copy and run the sort on it:
+`slice()` fonksiyonunu kullanarak bir kopyasını yaratabilir ve sonrasında bunu sıralayabilirsiniz:
+
 
 ```js run
 function copySorted(arr) {

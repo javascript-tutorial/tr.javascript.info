@@ -1,24 +1,24 @@
-importance: 5
+Önem: 5
 
 ---
 
-# Sort users by age
+# Objelerin sıralanması
 
-Write the function `sortByAge(users)` that gets an array of objects with the `age` property and sorts them by `age`.
+`name` özelliğine sahip obje dizisini alan ve `sortByName(kullanicilar)` sıralayan fonksiyonu yazınız.
 
-For instance:
+Örneğin:
 
 ```js no-beautify
-let john = { name: "John", age: 25 };
-let pete = { name: "Pete", age: 30 };
-let mary = { name: "Mary", age: 28 };
+let muzaffer = { adi: "Muzaffer", yas: 25 };
+let mehmet = { adi: "Mehmet",yas: 30 };
+let ahmet = { adi: "Ahmet", yas: 28 };
 
-let arr = [ pete, john, mary ];
 
-sortByAge(arr);
+let arr = [   muzaffer , mehmet, ahmet ];
 
-// now: [john, mary, pete]
-alert(arr[0].name); // John
-alert(arr[1].name); // Mary
-alert(arr[2].name); // Pete
+sortByName(arr);
+
+// şimdi: [ahmet, mehmet, muzaffer]
+alert(arr[1].adi) // Mehmet
 ```
+
