@@ -2,8 +2,8 @@ importance: 5
 
 ---
 
-# Create a date
+# Tarih oluştur
 
-Create a `Date` object for the date: Feb 20, 2012, 3:12am. The time zone is local.
+Yerel saat diliminde Feb 20, 2012, 3:12am için bir `Date` objesi oluşturun.
 
-Show it using `alert`.
+`alert` ile ekrana basın.

@@ -2,14 +2,14 @@ importance: 5
 
 ---
 
-# How many seconds has passed today?
+# Şu anda bu günün başlangıcından itibaren kaç saniye geçti?
 
-Write a function `getSecondsToday()` that returns the number of seconds from the beginning of today.
+`bugundenSaniye()` adında bir fonksiyon yazın ve bu fonksiyon günün başlangıcından itibaren geçen saniyeyi dönsün.
 
-For instance, if now `10:00 am`, and there was no daylight savings shift, then:
+Örneğin eğer şimdi `10:00 am` ise ve gün ışığından yararlanılmıyor ise:
 
 ```js
 getSecondsToday() == 36000 // (3600 * 10)
 ```
 
-The function should work in any day. That is, it should not have a hard-coded value of "today".
+Fonksiyon her gün çalışabilmelidir. Bu demek oluyor ki elle bu günün değerini almamalısınız.

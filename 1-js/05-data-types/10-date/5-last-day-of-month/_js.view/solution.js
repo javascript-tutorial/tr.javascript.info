@@ -1,4 +1,4 @@
-function getLastDayOfMonth(year, month) {
-  let date = new Date(year, month + 1, 0);
-  return date.getDate();
+function ayinSonGunu(yil, ay) {
+  let tarih = new Date(yil, ay + 1, 0);
+  return tarih.getDate();
 }

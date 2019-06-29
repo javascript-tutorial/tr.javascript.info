@@ -1,26 +1,25 @@
-To get the time from `date` till now -- let's substract the dates.
+`tarih`'ten şimdiye kadar geçen süre -- tarihleri birbirinden çıkar.
+```js run
+function formatTarih(tarih) {
+  let fark = new Date() - tarih; // Farkın ms. cinsinden değeri
 
-```js run demo
-function formatDate(date) {
-  let diff = new Date() - date; // the difference in milliseconds
-
-  if (diff < 1000) { // less than 1 second
-    return 'right now';
+  if (fark < 1000) { // 1 saniye önce
+    return 'Şimdi';
   }
 
-  let sec = Math.floor(diff / 1000); // convert diff to seconds
+  let sn = Math.floor(fark / 1000); // farkı saniyeye çevir.
 
-  if (sec < 60) {
-    return sec + ' sec. ago';
+  if (sn < 60) {
+    return sn + ' saniye önce';
   }
 
-  let min = Math.floor(diff / 60000); // convert diff to minutes
-  if (min < 60) {
-    return min + ' min. ago';
+  let dk = Math.floor(fark / 60000); // farkı dakika çevir
+  if (dk < 60) {
+    return dk + ' dakika önce';
   }
 
-  // format the date
-  // add leading zeroes to single-digit day/month/hours/minutes
+  // tarihi formatla
+  // ve geri kalan tek basamakları iki basamak haline getir.
   let d = date;
   d = [
     '0' + d.getDate(),
@@ -28,20 +27,20 @@ function formatDate(date) {
     '' + d.getFullYear(),
     '0' + d.getHours(),
     '0' + d.getMinutes()
-  ].map(component => component.slice(-2)); // take last 2 digits of every component
+  ].map(component => component.slice(-2)); // Her bileşenin son iki hanesini al.
 
-  // join the components into date
+  // bileşenleri tarihe ekle
   return d.slice(0, 3).join('.') + ' ' + d.slice(3).join(':');
 }
 
-alert( formatDate(new Date(new Date - 1)) ); // "right now"
+alert( formatTarih(new Date(new Date - 1)) ); // "Şimdi"
 
-alert( formatDate(new Date(new Date - 30 * 1000)) ); // "30 sec. ago"
+alert( formatTarih(new Date(new Date - 30 * 1000)) ); // "30 saniye önce"
 
-alert( formatDate(new Date(new Date - 5 * 60 * 1000)) ); // "5 min. ago"
+alert( formatTarih(new Date(new Date - 5 * 60 * 1000)) ); // "5 dakika önce"
 
-// yesterday's date like 31.12.2016, 20:00
-alert( formatDate(new Date(new Date - 86400 * 1000)) );
+// dünün günü şu şekilde: 31.12.2016, 20:00
+alert( formatTarih(new Date(new Date - 86400 * 1000)) );
 ```
 
 Alternative solution:

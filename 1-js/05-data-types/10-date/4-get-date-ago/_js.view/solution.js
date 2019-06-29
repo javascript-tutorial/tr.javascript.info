@@ -1,6 +1,6 @@
-function getDateAgo(date, days) {
-  let dateCopy = new Date(date);
+function kacGunOnce(tarih, gun) {
+  let tarihKopyasi = new Date(tarih);
 
-  dateCopy.setDate(date.getDate() - days);
-  return dateCopy.getDate();
+  tarihKopyasi.setDate(tarih.getDate() - gun);
+  return tarihKopyasi.getDate();
 }

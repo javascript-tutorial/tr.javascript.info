@@ -2,13 +2,13 @@ importance: 5
 
 ---
 
-# Last day of month?
+# Ayın son günü?
 
-Write a function `getLastDayOfMonth(year, month)` that returns the last day of month. Sometimes it is 30th, 31st or even 28/29th for Feb.
+`ayinSonGunu(yil,ay)` adlı bir metod yazın ve bu metod ayın son gününün dönsün. Bazen bu 30, bazen 31 hatta 28/29 bile olabilir ( Şubat )
 
-Parameters:
+Parametreler:
 
-- `year` -- four-digits year, for instance 2012.
-- `month` -- month, from 0 to 11.
+- `yil` -- 4 basamaklı format ile yıl bilgisi.
+- `ay` -- 0'dan başlayacak şekilde ayın indeksi.
 
-For instance, `getLastDayOfMonth(2012, 1) = 29` (leap year, Feb).
+Örneğin, `ayinSonGunu(2012, 1) = 29` (artık yıldır).

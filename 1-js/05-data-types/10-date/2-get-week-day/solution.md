@@ -1,14 +1,14 @@
-The method `date.getDay()` returns the number of the weekday, starting from sunday.
+`date.getDay()` pazardan başlayarak haftanın günlerini dönmektedir.
 
-Let's make an array of weekdays, so that we can get the proper day name by its number:
+Eğer günler için bir dizi yapılırsa bu diziye göre günü dönmek mümkün olur:
 
-```js run demo
-function getWeekDay(date) {
-  let days = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+```js run
+function haftaninGunleriniAl(date) {
+  let gunler = ['PT', 'SA', 'ÇA', 'PR', 'CM', 'CT', 'PZ' ];
 
-  return days[date.getDay()];
+  return gunler[tarih.getDay()];
 }
 
-let date = new Date(2014, 0, 3); // 3 Jan 2014
-alert( getWeekDay(date) ); // FR
+let tarih = new Date(2014, 0, 3); // 3 Jan 2014
+alert( haftaninGunleriniAl(tarih) ); // CM
 ```
