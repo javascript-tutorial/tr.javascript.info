@@ -1,15 +1,15 @@
 
-To store a date, we can use `WeakMap`:
+Date ( tarih ) objesini tutmak için yine `WeakMap` kullanabilirsiniz.
 
 ```js
-let messages = [
-    {text: "Hello", from: "John"},
-    {text: "How goes?", from: "John"},
-    {text: "See you soon", from: "Alice"}
+let mesajlar = [
+    {metin: "Merhaba", kimden: "Ahmet"},
+    {metin: "Nasıl Gidiyor?", kimden: "Ahmet"},
+    {metin: "Sonra görüşürüz", kimden: "Mehmet"}
 ];
 
 let readMap = new WeakMap();
 
 readMap.set(messages[0], new Date(2017, 1, 1));
-// Date object we'll study later
+// Date(tarih) objesini ilerleyen konularda göreceksiniz.
 ```

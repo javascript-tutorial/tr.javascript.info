@@ -1,19 +1,18 @@
 
-That's because `map.keys()` returns an iterable, but not an array.
+Çünkü `map.keys()` sıralı erişim objesi ( iterable ) döndürüyor. `push` metodu `dizi`'lere ait bir metoddur.
 
-We can convert it into an array using `Array.from`:
-
+`Array.from` ile bunu diziye çevirebilirsiniz:
 
 ```js run
 let map = new Map();
 
-map.set("name", "John");
+map.set("adi", "Abdullah");
 
 *!*
 let keys = Array.from(map.keys());
 */!*
 
-keys.push("more");
+keys.push("daha fazla");
 
-alert(keys); // name, more
+alert(keys); // adi, daha fazla
 ```

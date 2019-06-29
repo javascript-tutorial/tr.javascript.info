@@ -1,22 +1,21 @@
-To find all anagrams, let's split every word to letters and sort them. When letter-sorted, all anagrams are same.
+Tüm anagramları bulmak için öncelikle kelimeleri harflerine ayırıp sonrasında sıralamak gerekmektedir.
 
-For instance:
+Örneğin:
 
 ```
-nap, pan -> anp
-ear, era, are -> aer
-cheaters, hectares, teachers -> aceehrst
+aks, ask, kas, sak
+alim, amil, ilam, imal, imla, mail, mali 
+açlık, akçıl, çakıl, çalık, çalkı, kaçlı, kalıç, lakç
 ...
 ```
-
-We'll use the letter-sorted variants as map keys to store only one value per each key:
+Harf sıralı tipler map anahtarları olacak şekilde kaydedilir.
 
 ```js run
-function aclean(arr) {
+function atemiz(dizi) {
   let map = new Map();
 
-  for (let word of arr) {
-    // split the word by letters, sort them and join back
+  for(let word of dizi) {
+    // kelimeyi harflere ayır, sonrasında birleştir.
 *!*
     let sorted = word.toLowerCase().split('').sort().join(''); // (*)
 */!*
@@ -26,52 +25,50 @@ function aclean(arr) {
   return Array.from(map.values());
 }
 
-let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+let arr = ["aks", "alim", "açlık", "ask", "ilam", "çalık"];
 
-alert( aclean(arr) );
+alert( atemiz(arr) );
 ```
 
-Letter-sorting is done by the chain of calls in the line `(*)`.
+Harflerin sıralanması `(*)`'da gösterilen zincirleme çağrılar ile yapılır.
 
-For convenience let's split it into multiple lines:
+Daha kolay anlaşılabilmesi için bunu satırlara ayıralım:
 
 ```js
-let sorted = arr[i] // PAN
-  .toLowerCase() // pan
-  .split('') // ['p','a','n']
-  .sort() // ['a','n','p']
-  .join(''); // anp
+let sorted = arr[i] // AKS
+  .toLowerCase() // aks
+  .split('') // ['a','k','s']
+  .sort() // ['a','k','s']
+  .join(''); // aks
 ```
+İki farklı kelime `'AKS'` ve `'ASK'` sıralandığında ikisi de `'AKS'` olmaktadır.
 
-Two different words `'PAN'` and `'nap'` receive the same letter-sorted form `'anp'`.
-
-The next line put the word into the map:
+Bir sonraki satır bu kelimeleri map'e eklemeye yarar:
 
 ```js
 map.set(sorted, word);
 ```
+Eğer aynı karakterlere sahip kelime ile tekrar karşılaşılırsa, map olduğundan dolayı bir öncekinin üzerine yazılacaktır. Bundan dolayı her zaman bir karakter-form'u için maksimum bir tane kelimeye sahip olacağız.
 
-If we ever meet a word the same letter-sorted form again, then it would overwrite the previous value with the same key in the map. So we'll always have at maximum one word per letter-form.
+Sonunda `Array.from(map.values())` bu map değerleri üzerinden döngü yapılmasını sağlar.
 
-At the end `Array.from(map.values())` takes an iterable over map values (we don't need keys in the result) and returns an array of them.
+Burada `Map` yerine normal obje de kullanılabilirdi. Çünkü anahtarlar karakter dizisi olacak.
 
-Here we could also use a plain object instead of the `Map`, because keys are strings.
+Bu durumda çözüm şu şekilde olabilir:
 
-That's how the solution can look:
-
-```js run demo
-function aclean(arr) {
+```js run
+function atemiz(dizi) {
   let obj = {};
 
-  for (let i = 0; i < arr.length; i++) {
-    let sorted = arr[i].toLowerCase().split("").sort().join("");
-    obj[sorted] = arr[i];
+  for (let i = 0; i < dizi.length; i++) {
+    let sorted = dizi[i].toLowerCase().split("").sort().join("");
+    obj[sorted] = dizi[i];
   }
 
-  return Object.values(obj);
+  return Array.from(Object.values(obj));
 }
 
-let arr = ["nap", "teachers", "cheaters", "PAN", "ear", "era", "hectares"];
+let arr = ["aks", "alim", "açlık", "ask", "ilam", "çalık"];
 
-alert( aclean(arr) );
+alert( atemiz(arr) );
 ```
