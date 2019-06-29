@@ -2,41 +2,41 @@ importance: 5
 
 ---
 
-# Exclude backreferences
+# Dairesel Referansları Engellemek
 
-In simple cases of circular references, we can exclude an offending property from serialization by its name.
+Basit dairesel referanslarda özelliğin ismi verilip seri hale getirilirken görmezden gelme işlemi yapılabilir.
 
-But sometimes there are many backreferences. And names may be used both in circular references and normal properties.
+Fakat bazen çok fazla dairesel referans olabilir. Ayrıca isimleri hem dairesel referanslarda hem de normal özelliklerde kullanılabilir.
 
-Write `replacer` function to stringify everything, but remove properties that reference `meetup`:
+`degistirici` fonksiyonu ile herşeyi karaktere çevirin, fakat `tanisma`'ya referans veren özellikleri silin:
 
 ```js run
-let room = {
-  number: 23
+let oda = {
+  sayi: 23
 };
 
-let meetup = {
-  title: "Conference",
-  occupiedBy: [{name: "John"}, {name: "Alice"}],
-  place: room
+let tanisma = {
+  baslik: "Konferans",
+  dolduruldu: [{adi: "Ahmet"}, {adi: "Mehmet"}],
+  yer: oda
 };
 
 *!*
-// circular references 
-room.occupiedBy = meetup;
-meetup.self = meetup;
+
+// dairesel referanslar 
+oda.dolduruldu = tanisma;
+tanisma.self = tanisma;
 */!*
 
-alert( JSON.stringify(meetup, function replacer(key, value) {
-  /* your code */
+alert( JSON.stringify(meetup, function degistirici(key, value) {
+  /* Kodunuz */
 }));
 
-/* result should be:
+/* Sonuç şu şekilde olmalıdır:
 {
-  "title":"Conference",
-  "occupiedBy":[{"name":"John"},{"name":"Alice"}],
-  "place":{"number":23}
+  "baslik":"Konferans",
+  "dolduruldu":[{"adi":"Ahmet"},{"adi":"Mehmet"}],
+  "yer":{"sayi":23}
 }
 */
 ```
-
