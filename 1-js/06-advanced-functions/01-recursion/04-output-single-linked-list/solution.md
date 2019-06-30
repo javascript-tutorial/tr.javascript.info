@@ -1,88 +1,86 @@
-# Loop-based solution
+# Döngü-tabanlı Çözüm
 
-The loop-based variant of the solution:
+Döngü tabanlı çözüm aşağıdaki gibidir:
 
 ```js run
 let list = {
-  value: 1,
-  next: {
-    value: 2,
-    next: {
-      value: 3,
-      next: {
-        value: 4,
-        next: null
+  deger: 1,
+  sonraki: {
+    deger: 2,
+    sonraki: {
+      deger: 3,
+      sonraki: {
+        deger: 4,
+        sonraki: null
       }
     }
   }
 };
 
-function printList(list) {
+function listeYaz(list) {
   let tmp = list;
 
   while (tmp) {
-    alert(tmp.value);
-    tmp = tmp.next;
+    alert(tmp.deger);
+    tmp = tmp.sonraki;
   }
 
 }
 
-printList(list);
+listeYaz(list);
 ```
-
-Please note that we use a temporary variable `tmp` to walk over the list. Technically, we could use a function parameter `list` instead:
+Dikkat ederseniz `tmp` adında geçici bir değişken tutarak listeni üzerinden geçildi. Bunun yerine `list` fonksiyon parametresi de kullanılabilir:
 
 ```js
-function printList(list) {
+function listeYaz(list) {
 
   while(*!*list*/!*) {
-    alert(list.value);
-    list = list.next;
+    alert(list.deger);
+    list = list.sonraki;
   }
 
 }
 ```
+... Fakat çok akıllıca bir yöntem değil. İleride fonksiyonu genişletmek gerekebilir. Liste ile birşeyler yapmak gerekebilir. Eğer `list` değişirse bu gerekliliklerin hiç biri yerine getirilemez.
 
-...But that would be unwise. In the future we may need to extend a function, do something else with the list. If we change `list`, then we loose such ability.
+Değişken isimlerinden konuşmak gerekirse `list` burada liste'nin kendisidir, `ilk` elemanıdır ve öyle kalmalıdır. Temiz ve güvenilir.
 
-Talking about good variable names, `list` here is the list itself. The first element of it. And it should remain like that. That's clear and reliable.
+Diğer taraftan `tmp` liste için aynı `i`'nin `for` için gerekliliği gibidir.
 
-From the other side, the role of `tmp` is exclusively a list traversal, like `i` in the `for` loop.
+# Öz çağrı çözümü
 
-# Recursive solution
-
-The recursive variant of `printList(list)` follows a simple logic: to output a list we should output the current element `list`, then do the same for `list.next`:
+`listeYaz(list)`'in öz çağrı çözümü şu mantığa dayanır: Liste'nin çıktısını almak için o anki `list` elemanının çıktısı basılmalıdır. Sonra diğer `list.sonraki` elemanlarının yapılmalıdır.
 
 ```js run
 let list = {
-  value: 1,
-  next: {
-    value: 2,
-    next: {
-      value: 3,
-      next: {
-        value: 4,
-        next: null
+  deger: 1,
+  sonraki: {
+    deger: 2,
+    sonraki: {
+      deger: 3,
+      sonraki: {
+        deger: 4,
+        sonraki: null
       }
     }
   }
 };
 
-function printList(list) {
+function listeYaz(list) {
 
-  alert(list.value); // output the current item
+  alert(list.deger); // elemanın çıktısını bas
 
-  if (list.next) {
-    printList(list.next); // do the same for the rest of the list
+  if (list.sonraki) {
+    listeYaz(list.sonraki); // listenin geri kalan elemanları için de aynısını yap
   }
 
 }
 
-printList(list);
+listeYaz(list);
 ```
 
-Now what's better?
+Hangisi daha iyi?
 
-Technically, the loop is more effective. These two variants do the same, but the loop does not spend resources for nested function calls.
+Teknik olarak döngü versiyonu daha etkilidir. İki yöntem de aynı işi yapar, fakat döngü versiyonu iç içe fonksiyonlar için kaynak harcamaz.
 
-From the other side, the recursive variant is shorter and sometimes easier to understand.
+Diğer taraftan özçağrı versiyonu daha kısa ve bazen anlaşılması daha kolaydır.
