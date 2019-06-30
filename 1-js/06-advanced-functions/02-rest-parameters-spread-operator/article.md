@@ -235,4 +235,4 @@ Kalıpların kullanılması:
 
 Birlikte parametrelerin dizisi ve listesi arasında dolanırlar.
 
-Tüm argümanlar `arguments` içerisinde de yer alır s
+Tüm argümanlar `arguments` içerisinde de yer alır.
