@@ -1,122 +1,137 @@
 
-# The "new Function" syntax
+# "new Function" yazımı
 
-There's one more way to create a function. It's rarely used, but sometimes there's no alternative.
+Çok az kullanılsa da bir çeşit daha fonksiyon yaratma şekli vardır. Çok az kullanılsa da bazen alternatifsizdirler.
 
-## Syntax
+## Yazım
 
-The syntax for creating a function:
+Fonksiyon yaratmak için:
 
 ```js
-let func = new Function ([arg1, arg2, ...argN], functionBody);
+let func = new Function('a', 'b', 'return a + b');
 ```
 
-The function is created with the arguments `arg1...argN` and the given `functionBody`.
+`new Function`'ın tüm argümanları karakter dizisidir. Parametreler önce, en son olarak yazılır.
 
-It's easier to understand by looking at an example. Here's a function with two arguments:
+Örneğin:
 
 ```js run
-let sum = new Function('a', 'b', 'return a + b');
+let sum = new Function('arg1', 'arg2', 'return arg1 + arg2');
 
 alert( sum(1, 2) ); // 3
 ```
 
-And here there's a function without arguments, with only the function body:
+Eğer argüman yok ise, sadece gövde ile fonksiyon yaratılır:
 
 ```js run
-let sayHi = new Function('alert("Hello")');
+let selamVer = new Function('alert("Selam")');
 
-sayHi(); // Hello
+selamVer(); // Selam
 ```
 
-The major difference from other ways we've seen is that the function is created literally from a string, that is passed at run time.
+Diğer yöntemlere göre en büyük farklılık -- fonksiyon gerçektende sadece karakter dizisinden oluşuyor, bu çalışma anında gerçekleşiyor.
 
-All previous declarations required us, programmers, to write the function code in the script.
+Diğer tüm tanımlamalar programcıların kod yazmasını gerektirir.
 
-But `new Function` allows to turn any string into a function. For example, we can receive a new function from a server and then execute it:
+Fakat `new Function` herhangi bir metini fonksiyona çevirebilir. Örneğin sunucudan metin olarak bir fonksiyon alıp bunu çalıştırmak mümkündür.
 
 ```js
-let str = ... receive the code from a server dynamically ...
+let str = ... Serverdan dinamik olarak gelen metin...
 
 let func = new Function(str);
 func();
 ```
 
-It is used in very specific cases, like when we receive code from a server, or to dynamically compile a function from a template, in complex web-applications.
+Tabi bunlar çok özel haller, örneğin sunucudan bir metini alıp çalıştırmak, veya temadan dinamik olarak derleme. Bunun gibi ihtiyaçlar genelde geliştirmenin ileriki safhalarında karşılaşılır.
 
 ## Closure
 
-Usually, a function remembers where it was born in the special property `[[Environment]]`. It references the Lexical Environment from where it's created.
+Fonksiyon genelde doğduğu yeri hatırlar `[[Ortam]]`. Bulunduğu Sözcüksel Ortama yaratıldığı yerden referans verir.
 
-But when a function is created using `new Function`, its `[[Environment]]` references not the current Lexical Environment, but instead the global one.
-
-So, such function doesn't have access to outer variables, only to the global ones.
+Bir fonksiyon `new Function` ile yaratıldığında `[[Ortam]]` referansı o anki bulunduğu ortamı değil de evrensel ortama referans verir.
 
 ```js run
 
-function getFunc() {
-  let value = "test";
+function FonkAl() {
+  let deger = "test";
 
 *!*
-  let func = new Function('alert(value)');
+  let func = new Function('alert(deger)');
 */!*
 
   return func;
 }
 
-getFunc()(); // error: value is not defined
+FonkAl()(); // hata: deger tanımlı değildir.
 ```
 
-Compare it with the regular behavior:
+Normal davranış şu şekildedir:
 
-```js run
-function getFunc() {
-  let value = "test";
+```js run 
+function FonkAl() {
+  let deger = "test";
 
 *!*
-  let func = function() { alert(value); };
+  let func = function() { alert(deger); };
 */!*
 
   return func;
 }
 
-getFunc()(); // *!*"test"*/!*, from the Lexical Environment of getFunc
+getFunc()(); // *!*"test"*/!*, FonkAl'ın sözcüksel ortamından.
 ```
 
-This special feature of `new Function` looks strange, but appears very useful in practice.
+`new Function` özelliği biraz garip dursa da çok kullanışlı ve pratiktir.
 
-Imagine that we must create a function from a string. The code of that function is not known at the time of writing the script (that's why we don't use regular functions), but will be known in the process of execution. We may receive it from the server or from another source.
+Düşününkü gerçekten de karakter dizisinden fonksiyon yaratmanız gerekti. O fonksiyonun ne olduğu hangi kodları ihtiva ettiği baştan belli olmayacaktı ( bundan dolayı normal fonksiyonlar kullanılamaz ), fakat çalışma anında fonksiyon yaratılacak. Bu fonksiyon sunucudan veya diğer bir kaynaktan alınabilir.
 
-Our new function needs to interact with the main script.
+Yeni fonksiyon ana kod akışı ile etkileşime geçme ihtiyacında olabilir.
 
-What if it could access the outer variables?
+Belki dışta bulunan yerel değişkene erişmek gerekmektedir.
 
-The problem is that before JavaScript is published to production, it's compressed using a *minifier* -- a special program that shrinks code by removing extra comments, spaces and -- what's important, renames local variables into shorter ones.
+Fakat burada şöyle bir problem var. JavaScript canlı ortama çıkmadan *sıkıştırıcı* (minifier) kullanılır ve böylece gereksiz boşluklar vs kaldırılır. Fakat daha da önemlisi, yerel değişkenler kısaltılarak işlenir.
 
-For instance, if a function has `let userName`, minifier replaces it `let a` (or another letter if this one is occupied), and does it everywhere. That's usually a safe thing to do, because the variable is local, nothing outside the function can access it. And inside the function, minifier replaces every mention of it. Minifiers are smart, they analyze the code structure, so they don't break anything. They're not just a dumb find-and-replace.
+Örneğin bir fonksiyon `let kullaniciAdi` diye bir fonksiyona sahip olsa, *sıkıştırıcı* bunu `let k` şeklinde veya bu değişken daha önce kullanılmışsa başka küçük bir değişken ile tutar. Bu aslında mantıklı olandır. Değişken zaten yerel bir değişkendir ve dışarıdan buna erişilemez. Bundan dolayı fonksiyonun içerisinde kullanılan her `kullaniciAdi` yeni değişken ismiyle değiştirilir. *Sıkıştırıcılar* kodu ve kod yapısını analiz ederler sadece bul ve değiştir işlemi yapmazlar.
 
-So if `new Function` had access to outer variables, it would be unable to find renamed  `userName`.
+Fakat `new Function` dıştaki değişkenlere erişebilir olsa isi bu defa `kullaniciAdi`'nı bulamazdı.
 
-**If `new Function` had access to outer variables, it would have problems with minifiers.**
+**Dış fonksiyonlara erişilme mümkün olsa bile `new Function` sıkıştırıcılar ile problem yaşardı**
 
-To pass something to a function, created as `new Function`, we should use its arguments.
+`new Function`'ın bir özelliği bizi hata yapmaktan kurtarır ve daha iyi kod yazmamıza yardımcı olur.
 
-## Summary
+Eğer `new Function` ile yazılmış bir fonksiyona argüman göndermek istiyorsanız, bunu argümanları birer birer belirterek yapmanız gerekmektedir.
 
-The syntax:
+"topla" fonksiyonu aslında bunu doğru bir şekilde yapmaktadır:
+
+```js run 
+*!*
+let topla = new Function('a', 'b', ' return a + b; ');
+*/!*
+
+let a = 1, b = 2;
+
+*!*
+// Dış değerler argüman olarak gönderilmiştir.
+alert( topla(a, b) ); // 3
+*/!*
+```
+
+## Özet
+
+Yazım:
 
 ```js
-let func = new Function ([arg1, arg2, ...argN], functionBody);
+let func = new Function(arg1, arg2, ..., govde);
 ```
 
-For historical reasons, arguments can also be given as a comma-separated list.
+Eski kodlara uyumluluktan dolayı argümanlar virgül ile ayrılmış liste olarak da verilebilir.
 
-These three lines mean the same:
+Aşağıdaki üç örnekte birbiri ile aynıdır:
 
-```js
-new Function('a', 'b', 'return a + b'); // basic syntax
-new Function('a,b', 'return a + b'); // comma-separated
-new Function('a , b', 'return a + b'); // comma-separated with spaces
+```js 
+new Function('a', 'b', ' return a + b; '); // basit yazım
+new Function('a,b', ' return a + b; '); // virgül ile ayrılmış yazım
+new Function('a , b', ' return a + b; '); //virgül ve boşluk ile ayrılmış yazım.
 ```
 
-Functions created with `new Function`, have `[[Environment]]` referencing the global Lexical Environment, not the outer one. Hence, they cannot use outer variables. But that's actually good, because it saves us from errors. Passing parameters explicitly is a much better method architecturally and causes no problems with minifiers.
+`new Function` kullanılarak yaratılan fonksiyonlar, `[[Ortam]]` olarak Evrensel Sözcük Ortamını referans verir, dış değil. Bundan dolayı dıştaki değişkeni kullanamazlar. Fakat bu aslında iyi birşeydir, bizi hatalardan korur. Bire bir parametre gönderme de mimari olarak çok başarılır. Ayrıca *sıkıştırıcı* ile de probleme neden olmamaktadır.
