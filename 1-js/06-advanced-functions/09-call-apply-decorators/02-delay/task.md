@@ -2,25 +2,25 @@ importance: 5
 
 ---
 
-# Delaying decorator
+# Geciktirici dekoratör.
 
-Create a decorator `delay(f, ms)` that delays each call of `f` by `ms` milliseconds.
+`delay(f,ms)` adında bir dekoratör yazın ve bu dekoratör her `f` in çağırılmasında `ms` milisaniye kadar geciktirilsin.
 
-For instance:
+Örneğin:
 
 ```js
 function f(x) {
   alert(x);
 }
 
-// create wrappers
+// Saklayıcı 
 let f1000 = delay(f, 1000);
 let f1500 = delay(f, 1500);
 
-f1000("test"); // shows "test" after 1000ms
-f1500("test"); // shows "test" after 1500ms
+f1000("test"); // "test" yazısı 1000ms sonra gelir.
+f1500("test"); // "test" yazısı 1500ms sonra gelir.
 ```
 
-In other words, `delay(f, ms)` returns a "delayed by `ms`" variant of `f`.
+Diğer bir deyişle `delay(f, ms)` `f` fonksiyonunun  `ms` kadar geciktirilmiş versiyonunu döner.
 
-In the code above, `f` is a function of a single argument, but your solution should pass all arguments and the context `this`.
+Yukarıdaki kodda, `f` tek argümanlı bir fonksiyondur. Fakat sizin çözümünüzde bu tüm argümanların ve kaynağın `this` şeklinde fonksiyona iletilmesi gerekmektedir.

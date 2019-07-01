@@ -1,6 +1,6 @@
-The solution:
+Çözüm:
 
-```js run demo
+```js
 function delay(f, ms) {
 
   return function() {
@@ -8,25 +8,19 @@ function delay(f, ms) {
   };
 
 }
-
-let f1000 = delay(alert, 1000);
-
-f1000("test"); // shows "test" after 1000ms
 ```
+Yukarıda ok fonksiyonunun nasıl kullanıldığına dikkat edin. Bildiğiniz gibi, ok fonksiyonlarında `this` ve `arguments` bulunmaz, bunun için `f.apply(this, arguments)` , `this` ve `arguments`'ı saklayıcıdan(wrapper) alır.
 
-Please note how an arrow function is used here. As we know, arrow functions do not have own `this` and `arguments`, so `f.apply(this, arguments)` takes `this` and `arguments` from the wrapper.
-
-If we pass a regular function, `setTimeout` would call it without arguments and `this=window` (assuming we're in the browser).
-
-We still can pass the right `this` by using an intermediate variable, but that's a little bit more cumbersome:
+Eğer sıradan bir fonksiyon paslarsanız, `setTimeout` bunu argümansız `this=window` ( tarayıcıda ) olacak şekilde çağırır, bundan dolayı saklayıcıdan bu değerleri iletebilmek için biraz daha kod yazmalıyız:
 
 ```js
 function delay(f, ms) {
 
+  // `this` ve diğer argümanların setTimeout içerisindeki saklayıcıdan iletilmesini sağlar.
   return function(...args) {
-    let savedThis = this; // store this into an intermediate variable
+    let savedThis = this;
     setTimeout(function() {
-      f.apply(savedThis, args); // use it here
+      f.apply(savedThis, args);
     }, ms);
   };
 
