@@ -2,9 +2,9 @@ importance: 5
 
 ---
 
-# Bound function as a method
+# Fonksiyonu metod olarak bağla.
 
-What will be the output?
+Aşağıdaki kodun çıktısı nedir?
 
 ```js
 function f() {
@@ -17,4 +17,3 @@ let user = {
 
 user.g();
 ```
-

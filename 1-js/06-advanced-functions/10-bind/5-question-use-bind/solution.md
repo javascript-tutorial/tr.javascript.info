@@ -1,9 +1,9 @@
 
-The error occurs because `ask` gets functions `loginOk/loginFail` without the object.
+Nedeni `ask`'ın `loginOk/loginFail` fonksiyonlarını obje olmadan almasıdır.
 
-When it calls them, they naturally assume `this=undefined`.
+Bunları çağırdığında doğal olarak `this=undefined` olarak çalışacaktır.
 
-Let's `bind` the context:
+Kaynağı `bağlar` isek:
 
 ```js run
 function askPassword(ok, fail) {
@@ -29,15 +29,12 @@ let user = {
 askPassword(user.loginOk.bind(user), user.loginFail.bind(user));
 */!*
 ```
+Şimdi çalışacaktır.
 
-Now it works.
-
-An alternative solution could be:
+Alternatif çözüm şu şekilde olabilir:
 ```js
 //...
 askPassword(() => user.loginOk(), () => user.loginFail());
 ```
+Genelde bu da çalışır. Fakat daha karmaşık durumlarda `user`'ın soru ve `() => user.loginOk()` arasında üzerine yazılabilir.
 
-Usually that also works and looks good.
-
-It's a bit less reliable though in more complex situations where `user` variable might change *after* `askPassword` is called, but *before* the visitor answers and calls `() => user.loginOk()`. 

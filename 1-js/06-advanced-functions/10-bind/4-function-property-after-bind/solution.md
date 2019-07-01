@@ -1,4 +1,3 @@
-The answer: `undefined`.
+Cevap: `undefined`.
 
-The result of `bind` is another object. It does not have the `test` property.
-
+`bind`'ın sonucu başka bir objedir. Bu objenin `test` özelliği bulunmamaktadır.

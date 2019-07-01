@@ -2,13 +2,13 @@ importance: 5
 
 ---
 
-# Fix a function that loses "this"
+# Soru `this`'i kaybediyor.
 
-The call to `askPassword()` in the code below should check the password and then call `user.loginOk/loginFail` depending on the answer.
+`askPassword()` çağrısı şifreyi kontrol etmeli ve buna göre `user.loginOk` veya `user.loginFail`'i çağırmalıdır.
 
-But it leads to an error. Why?
+Fakat bu bir hataya neden oluyor. Neden?
 
-Fix the highlighted line for everything to start working right (other lines are not to be changed).
+Sadece üstü çizili satırda değişiklik yaparak herşeyin doğru çalışmasını sağlayınız. ( diğer satırlarda değişiklik yapılmamalıdır)
 
 ```js run
 function askPassword(ok, fail) {
