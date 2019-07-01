@@ -93,7 +93,14 @@ alert( 'N\'aber canım - Tavşan !' ); // N'aber canım - Tavşan !
 ```
 Gördüğünüz gibi `\'` kullanarak karakter dizisinin bitmesi engellendi.
 
+<<<<<<< HEAD
 Tabi bu sadece başlangıç karakteri `'` ise geçerli. Daha düzgün bir çözüm çift tırnak kullanmak olacaktır:
+=======
+As you can see, we have to prepend the inner quote by the backslash `\'`, because otherwise it would indicate the string end.
+
+Of course, that refers only to the quotes that are the same as the enclosing ones. So, as a more elegant solution, we could switch to double quotes or backticks instead:
+
+>>>>>>> 6bbe0b4313a7845303be835d632ef8e5bc7715cd
 ```js run
 alert( "N'aber canım - Tavşan!" ); // N'aber canım - Tavşan!
 ```

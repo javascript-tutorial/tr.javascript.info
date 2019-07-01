@@ -40,8 +40,13 @@ Yeni bir `Date` objesi yaratmak için `new Date()` aşağıdaki argümanların b
     alert(tarih); // Thu Jan 26 2017 ...
     ```
 
+<<<<<<< HEAD
 `new Date(yıl, ay, gün, saat, dakika, saniye, milisaniye)`
 : Yerel zamanda `Date` objesi oluşturmak için sadece ilk iki argüman zorunludur.
+=======
+`new Date(year, month, date, hours, minutes, seconds, ms)`
+: Create the date with the given components in the local time zone. Only the first two arguments are obligatory.
+>>>>>>> 6bbe0b4313a7845303be835d632ef8e5bc7715cd
 
     Not:
 
