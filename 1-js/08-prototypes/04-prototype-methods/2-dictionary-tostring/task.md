@@ -2,30 +2,30 @@ importance: 5
 
 ---
 
-# Add toString to the dictionary
+# `dictionary` objesine toString'i ekleyin
 
-There's an object `dictionary`, created as `Object.create(null)`, to store any `key/value` pairs.
+`Object.create(null)` olarak yaratılan ve her türlü `anahtar/değer` ikilisini tutan `dictionary` adında bir obje bulunmaktadır.
 
-Add method `dictionary.toString()` into it, that should return a comma-delimited list of keys. Your `toString` should not show up in `for..in` over the object.
+Buna `dictionary.toString()` metodu ekleyin, bu anahtarların virgül ile ayrılmış halini dönsün. Ama `toString` metodu `for..in` ile objenin keylerini dönerken görünmemelidir.
 
-Here's how it should work:
+Şu şekilde çalışmalıdır:
 
 ```js
 let dictionary = Object.create(null);
 
 *!*
-// your code to add dictionary.toString method
+//  dictionary.toString metodunu ekleyeceğiniz yer
 */!*
 
-// add some data
+// biraz veri ekleyin
 dictionary.apple = "Apple";
-dictionary.__proto__ = "test"; // __proto__ is a regular property key here
+dictionary.__proto__ = "test"; // __proto__ burada normal özellik olarak kullanılmıştır
 
-// only apple and __proto__ are in the loop
+// sadece apple ve __proto__ yazmalı
 for(let key in dictionary) {
-  alert(key); // "apple", then "__proto__"
+  alert(key); // "apple", sonra "__proto__"
 }  
 
-// your toString in action
+// Artık sizin yazacağınız toString metodu burada çalışmalıdır.
 alert(dictionary); // "apple,__proto__"
 ```
