@@ -1,1 +1,1 @@
-# Prototypes, inheritance
+# Prototipler ve kalıtım
