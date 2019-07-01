@@ -2,34 +2,33 @@ importance: 5
 
 ---
 
-# Army of functions
+# Ordu fonksiyonları
 
-The following code creates an array of `shooters`.
+Aşağıdaki kod `nisancilar` dizisi olusturmaktadır.
 
-Every function is meant to output its number. But something is wrong...
+Her fonksiyon kendi numara çıktısını verir. Fakat bir hata var...
+
 
 ```js run
-function makeArmy() {
-  let shooters = [];
+function orduYap() {
+  let nisancilar = [];
 
   let i = 0;
   while (i < 10) {
-    let shooter = function() { // shooter function
-      alert( i ); // should show its number
+    let nisanci = function() { // Nişancılar fonksiyonu
+      alert( i ); // numara göstermeli
     };
-    shooters.push(shooter);
+    nisancilar.push(nisanci);
     i++;
   }
 
-  return shooters;
+  return nisancilar;
 }
 
-let army = makeArmy();
+let ordu = orduYap();
 
-army[0](); // the shooter number 0 shows 10
-army[5](); // and number 5 also outputs 10...
-// ... all shooters show 10 instead of their 0, 1, 2, 3...
+ordu[0](); // nisanci 0 fakat 10 gösteriyor.
+ordu[5](); // nisancı 5 fakat yine 10 gösteriyor.
+// ... tüm nişancılar kendi numaraları yerine 10 gösteriyorlar.
 ```
-
-Why all shooters show the same? Fix the code so that they work as intended.
-
+Neden tüm nişancılar aynı? Kodu olması gerektiği duruma getiriniz.

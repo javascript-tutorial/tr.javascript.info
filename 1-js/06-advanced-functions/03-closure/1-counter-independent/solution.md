@@ -1,5 +1,6 @@
-The answer: **0,1.**
+Cevap: **0,1.**
 
-Functions `counter` and `counter2` are created by different invocations of `makeCounter`.
+`sayac` ve `sayac2` `sayacUret`'in farklı zamanlarda çağırılmasıyla oluşmuştur.
 
-So they have independent outer Lexical Environments, each one has its own `count`.
+Bundan dolayı birbirinden bağımsız dış sözcüksel çevrelere sahiptirler. Yani her ikisi kendisine ait `say` değişkenine sahiptir.
+

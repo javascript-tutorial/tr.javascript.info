@@ -1,24 +1,23 @@
 
-Surely it will work just fine.
+Kesinlikle çalışır
 
-Both nested functions are created within the same outer Lexical Environment, so they share access to the same `count` variable:
+İçte bulunan fonksiyonlar aynı dış Sözcüksel Çevreye sahip olduklarından dolayı aynı `say` değişkenine erişirler:
 
 ```js run
-function Counter() {
-  let count = 0;
+function Sayac() {
+  let say = 0;
 
-  this.up = function() {
-    return ++count;
+  this.yukselt = function() {
+    return ++say;
   };
-  
-  this.down = function() {
-    return --count;
+  this.alcalt = function() {
+    return --say;
   };
 }
 
-let counter = new Counter();
+let sayac = new Sayac();
 
-alert( counter.up() ); // 1
-alert( counter.up() ); // 2
-alert( counter.down() ); // 1
+alert( sayac.yukselt() ); // 1
+alert( sayac.yukselt() ); // 2
+alert( sayac.alcalt() ); // 1
 ```

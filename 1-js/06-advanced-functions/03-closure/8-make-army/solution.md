@@ -1,17 +1,19 @@
 
-Let's examine what's done inside `makeArmy`, and the solution will become obvious.
+`orduYap` fonksiyonunun içine bakılacak olursa sonuç daha açık bir şekilde görülecektir.
 
-1. It creates an empty array `shooters`:
+
+1. Boş `nisancilar` dizisi yaratır.
 
     ```js
-    let shooters = [];
+    let nisancilar = [];
     ```
-2. Fills it in the loop via `shooters.push(function...)`.
 
-    Every element is a function, so the resulting array looks like this:
+2. `nisancilar.push(function..)` döngüsü ile doldurur.
 
+    Her bir elemanı fonksiyondur, buna göre sonuç dizisi aşağıdaki gibi olacaktır:
+    
     ```js no-beautify
-    shooters = [
+    nisancilar = [
       function () { alert(i); },
       function () { alert(i); },
       function () { alert(i); },
@@ -25,25 +27,25 @@ Let's examine what's done inside `makeArmy`, and the solution will become obviou
     ];
     ```
 
-3. The array is returned from the function.
+3. En nihayetinde dizi fonksiyondan döner.
 
-Then, later, the call to `army[5]()` will get the element `army[5]` from the array (it will be a function) and call it.
+Sonrasında `ordu[5]()` çalıştığında diziden `ordu[5]` elemanı alınır ( fonksiyon olacaktır ) ve çağırılır.
 
-Now why all such functions show the same?
+Peki neden tüm fonksiyonlar aynı şeyi gösterir?
 
-That's because there's no local variable `i` inside `shooter` functions. When such a function is called, it takes `i` from its outer lexical environment.
+Bunun nedeni `nisancilar` fonksiyonunun içinde `i` değişkeninin olmamasıdır. Böyle bir i fonksiyonu çağırıldığında `i` değeri dış ortamdan alınır.
 
-What will be the value of `i`?
+`i`'nin değeri nedir ?
 
-If we look at the source:
+Yine kaynak koda bakılacak olursa:
 
 ```js
-function makeArmy() {
+function orduYap() {
   ...
   let i = 0;
   while (i < 10) {
-    let shooter = function() { // shooter function
-      alert( i ); // should show its number
+    let nisanci = function() { // nisanci fonksiyonu
+      alert( i ); // numarayı yazmalı
     };
     ...
   }
@@ -51,70 +53,70 @@ function makeArmy() {
 }
 ```
 
-...We can see that it lives in the lexical environment associated with the current `makeArmy()` run. But when `army[5]()` is called, `makeArmy` has already finished its job, and `i` has the last value: `10` (the end of `while`).
+...Sizin de görebilecğeiniz gibi `orduYap()` ile aynı sözcüksel ortamda bulunmaktadır. Fakat `ordu[5]()` çağırıldığında, `orduYap()` işini bitirmiş ve son değeri olan `10`'u almış oluyor.( `while`'ın sonu `10` olmaktadır.
 
-As a result, all `shooter` functions get from the outer lexical envrironment the same, last value `i=10`.
+Sonuç olarak tüm `nisanci` fonksiyonları dış sözcüksel ortamdan `i=10` değerini alırlar.
 
-We can fix it by moving the variable definition into the loop:
+Bu basit bir şekilde düzeltilebilir:
 
-```js run demo
-function makeArmy() {
+```js run
+function orduYap() {
 
-  let shooters = [];
+  let nisancilar = [];
 
 *!*
   for(let i = 0; i < 10; i++) {
 */!*
-    let shooter = function() { // shooter function
-      alert( i ); // should show its number
+    let nisanci = function() { // nisanci fonksiyonu
+      alert( i ); // numarayı yazmalı
     };
-    shooters.push(shooter);
+    nisancilar.push(shooter);
   }
 
-  return shooters;
+  return nisancilar;
 }
 
-let army = makeArmy();
+let ordu = orduYap();
 
-army[0](); // 0
-army[5](); // 5
+ordu[0](); // 0
+ordu[5](); // 5
 ```
 
-Now it works correctly, because every time the code block in `for (let i=0...) {...}` is executed, a new Lexical Environment is created for it, with the corresponding variable `i`.
+Şimdi doğru çalışmaktadır çünkü `for(...){...}` bloğu her çalıştığında yeni bir Sözcüksel Ortam yaratılır ve o ortama ait `i` değeri tanımlanır.
 
-So, the value of `i` now lives a little bit closer. Not in `makeArmy()` Lexical Environment, but in the Lexical Environment that corresponds the current loop iteration. That's why now it works.
+Artık `i` değeri daha yakındır. `orduYap()` Sözcüksel Ortamından ayrılmışır, döngünün her adımında kendine has bir Sözcüksel Çevreye sahiptir. Her bir `nisanci`'da yaratıldığı ortamdaki değerlere bakar.
 
 ![](lexenv-makearmy.png)
 
-Here we rewrote `while` into `for`.
+`while` döngüsünü `for`'a çevirerek bu problemi çözmüş olduk.
 
-Another trick could be possible, let's see it for better understanding of the subject:
+Bunu sağlayan başka bir yöntem daha vardır:
+
 
 ```js run
-function makeArmy() {
-  let shooters = [];
+function orduYap() {
+  let nisancilar = [];
 
   let i = 0;
   while (i < 10) {
 *!*
     let j = i;
 */!*
-    let shooter = function() { // shooter function
-      alert( *!*j*/!* ); // should show its number
+    let nisanci = function() { // nisanci fonksiyonu
+      alert( *!*j*/!* ); //  numarayı yazmalı
     };
-    shooters.push(shooter);
+    nisancilar.push(shooter);
     i++;
   }
 
-  return shooters;
+  return nisancilar;
 }
 
-let army = makeArmy();
+let ordu = orduYap();
 
-army[0](); // 0
-army[5](); // 5
+ordu[0](); // 0
+ordu[5](); // 5
 ```
+`while` döngüsü değişkedi fakat `for` döngüsünde olduğu gibi değerler her döngüde oluşan Sözcüksel Ortama atanacak şekilde ayarlandı. Böylece her `nisanci` çağırıldığında doğru değeri alması garantilendi.
 
-The `while` loop, just like `for`, makes a new Lexical Environment for each run. So here we make sure that it gets the right value for a `shooter`.
-
-We copy `let j = i`. This makes a loop body local `j` and copies the value of `i` to it. Primitives are copied "by value", so we actually get a complete independent copy of `i`, belonging to the current loop iteration.
+`let j = i` ile `i` nin yerel bir kopyasını oluşturmuş olduk. İlkel değişkenler "değer ile" kopyalandığından dolayı artık `i` den tamamen farklı bir değişkene sahip olduk.

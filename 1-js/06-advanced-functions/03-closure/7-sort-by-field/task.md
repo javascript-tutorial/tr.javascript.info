@@ -2,35 +2,33 @@ importance: 5
 
 ---
 
-# Sort by field
+# Alana göre sıralama
 
-We've got an array of objects to sort:
+Sıralanacak obje dizisi bulunmaktadır:
 
 ```js
-let users = [
-  { name: "John", age: 20, surname: "Johnson" },
-  { name: "Pete", age: 18, surname: "Peterson" },
-  { name: "Ann", age: 19, surname: "Hathaway" }
+let kullanicilar = [
+  { ad: "Ahmet", yas: 20, soyad: "Zurnacı" },
+  { ad: "Hideo", yas: 18, surname: "Konami" },
+  { ad: "Jane", yas: 19, surname: "Hathaway" }
 ];
 ```
 
-The usual way to do that would be:
+Bunu yapmanın en yaygın yolu:
 
 ```js
-// by name (Ann, John, Pete)
-users.sort((a, b) => a.name > b.name ? 1 : -1);
+// ad'a göre (Ann, Hideo, Jane)
+kullanicilar.sort((a, b) => a.ad > b.ad ? 1 : -1);
 
-// by age (Pete, Ann, John)
-users.sort((a, b) => a.age > b.age ? 1 : -1);
+// yaşa göre (Hideo, Jane, Ahmet)
+kullanicilar.sort((a, b) => a.yas > b.yas ? 1 : -1);
 ```
-
-Can we make it even less verbose, like this?
+Aşağıdaki şekle çevirmek mümkün mü?
 
 ```js
-users.sort(byField('name'));
-users.sort(byField('age'));
+kullaniclar.sort(alanIle('ad'));
+kullaniclar.sort(alanIle('yas'));
 ```
+Böylece fonksiyon yazmak yerine sadece `alanIle(alanAdı)` yazılabilir.
 
-So, instead of writing a function, just put `byField(fieldName)`.
-
-Write the function `byField` that can be used for that.
+`alanIle` fonksiyonunu yazınız.

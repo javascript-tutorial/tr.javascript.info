@@ -1,13 +1,14 @@
-function makeArmy() {
 
-  let shooters = [];
+function orduYap() {
 
-  for(let i = 0; i < 10; i++) {
-    let shooter = function() { // shooter function
-      alert( i ); // should show its number
+  let nisancilar = [];
+
+  for (let i = 0; i < 10; i++) {
+    let nisanci = function () { // nisanci fonksiyonu
+      alert(i); // numarayı yazmalı
     };
-    shooters.push(shooter);
+    nisancilar.push(shooter);
   }
 
-  return shooters;
+  return nisancilar;
 }

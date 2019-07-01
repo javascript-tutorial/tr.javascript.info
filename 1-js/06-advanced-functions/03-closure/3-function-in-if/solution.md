@@ -1,3 +1,4 @@
-The result is **an error**.
 
-The function `sayHi` is declared inside the `if`, so it only lives inside it. There is no `sayHi` outside.
+Sonuç **hata** olacaktır.
+
+`selamVer` fonksiyonu `if`'in içerisinde oluşturulmuştur. Bundan dolayı sadece içerisinde yaşar. Dışında `selamVer` diye bir fonksiyon bulunmamaktadır.

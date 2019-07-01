@@ -1,24 +1,24 @@
-describe("army", function() {
+describe("ordu", function () {
 
-  let army;
-  
-  before(function() {
-    army = makeArmy();
+  let ordu;
+
+  before(function () {
+    army = orduYap();
     window.alert = sinon.stub(window, "alert");
   });
 
-  it("army[0] shows 0", function() {
+  it("ordu[0]  0 gösterir", function () {
     army[0]();
     assert(alert.calledWith(0));
   });
 
 
-  it("army[5] shows 5", function() {
+  it("ordu[5]  5 gösterir", function () {
     army[5]();
     assert(alert.calledWith(5));
   });
 
-  after(function() {
+  after(function () {
     window.alert.restore();
   });
 

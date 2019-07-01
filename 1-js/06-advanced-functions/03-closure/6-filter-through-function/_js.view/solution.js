@@ -1,8 +1,8 @@
 
-function inArray(arr) {
+function diziIcinde(arr) {
   return x => arr.includes(x);
 }
 
-function inBetween(a, b) {
+function arasinda(a, b) {
   return x => (x >= a && x <= b);
 }
