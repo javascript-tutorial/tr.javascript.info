@@ -1,13 +1,13 @@
-function makeCounter() {
-  let count = 0;
+function sayacUret() {
+  let sayac = 0;
 
-  function counter() {
-    return count++;
+  function sayac() {
+    return sayac++;
   }
 
-  counter.set = value => count = value;
+  sayac.set = deger => sayac = deger;
 
-  counter.decrease = () => count--;
+  sayac.azalt = () => sayac--;
 
-  return counter;
+  return sayac;
 }

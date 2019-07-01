@@ -1,2 +1,1 @@
-
-The solution uses `count` in the local variable, but addition methods are written right into the `counter`. They share the same outer lexical environment and also can access the current `count`.
+Çözüm `sayac` yerel değişkenini kullanmaktadır, buna ek olarak metodlar doğrudan `sayac`'in icerisine yazılmıştır. Aynı dış ortamı paylaştıklarından dolayı var olan `sayac` değişkenine erişebilirler.

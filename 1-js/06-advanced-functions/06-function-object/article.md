@@ -1,85 +1,79 @@
 
-# Function object, NFE
+# Fonksiyon Objeleri, NFE
 
-As we already know, functions in JavaScript are values.
+Bildiğiniz gibi JavaScript'te fonksiyonlar deperdir.
 
-Every value in JavaScript has a type. What type is a function?
+Her değerin bir tipi olduğuna göre fonksiyonun tipi nedir?
 
-In JavaScript, functions are objects.
+JavaScript'te fonksiyon bir objedir.
 
-A good way to imagine functions is as callable "action objects". We can not only call them, but also treat them as objects: add/remove properties, pass by reference etc.
+Daha iyi görselleyebilmek adına fonksiyonlara "aksiyon objeleri" denebilir. Sadece çağırarak değil, obje olarak da davranabilirsiniz: özellik ekleme çıkarma, referans paslama vs.
 
+## "name" özelliği
 
-## The "name" property
+Fonksiyon objelerinin kullanışlı özellikleri bulunmaktadır.
 
-Function objects contain a few useable properties.
-
-For instance, a function's name is accessible as the "name" property:
+Örneğin, fonksiyonun ismi "name" özelliği ile alınabilir.
 
 ```js run
-function sayHi() {
-  alert("Hi");
+function selamVer() {
+  alert("Selam");
 }
 
-alert(sayHi.name); // sayHi
+alert(selamVer.name); // selamVer
 ```
-
-What's more funny, the name-assigning logic is smart. It also assigns the correct name to functions that are used in assignments:
+"name" özelliği atama o kadar akıllıdır ki, fonksiyon tanımlama ifadelerindeki ismi bile doğru alır.
 
 ```js run
-let sayHi = function() {
-  alert("Hi");
+let selamVer = function() {
+  alert("Selam");
 }
 
-alert(sayHi.name); // sayHi (works!)
+alert(selamVer.name); // selamVer 
 ```
-
-It also works if the assignment is done via a default value:
+Hatta atama varsayılan değer ile yapıldığında bile çalışır:
 
 ```js run
-function f(sayHi = function() {}) {
-  alert(sayHi.name); // sayHi (works!)
+function f(selamVer = function() {}) {
+  alert(selamVer.name); // selamVer (çalıştı!)
 }
 
 f();
 ```
+Tanımda bu özelliğe "bağlamsal isim" denir. Eğer fonksiyonda böyle birşey yoksa, tanımlama bunu içerikten alır.
 
-In the specification, this feature is called a "contextual name". If the function does not provide one, then in an assignment it is figured out from the context.
-
-Object methods have names too:
-
+Object metodlarının da isimleri vardır:
 ```js run
-let user = {
+let kullanici = {
 
-  sayHi() {
+  selamVer() {
     // ...
   },
 
-  sayBye: function() {
+  yolcuEt: function() {
     // ...
   }
 
 }
 
-alert(user.sayHi.name); // sayHi
-alert(user.sayBye.name); // sayBye
+alert(kullanici.selamVer.name); // Merhaba
+alert(kullanici.yolcuEt.name); // Güle güle
 ```
+Burada bir sihir yoktur. İsmin çıkarılamadığı birçok durum meydana gelebilir.
 
-There's no magic though. There are cases when there's no way to figure out the right name. In that case, the name property is empty, like here:
+Böyle durumlarda aşağıdaki gibi boş dönerler:
 
 ```js
-// function created inside array
+// Dizinin içerisinde fonksiyon yaratılması
 let arr = [function() {}];
 
-alert( arr[0].name ); // <empty string>
-// the engine has no way to set up the right name, so there is none
+alert( arr[0].name ); // <boş>
+// motorun doğru ismi bulmasına imkan yok bundna dolayı boş dönüyor.
 ```
+Pratikte çoğu fonksiyonun ismi bulunmaktadır.
 
-In practice, however, most functions do have a name.
-
-## The "length" property
-
-There is another built-in property "length" that returns the number of function parameters, for instance:
+## "length" özelliği 
+"length" adında ayrı bir özellik daha bulunmaktadır. Bu özellik fonksiyon parametrelerinin sayısını döndürür:
 
 ```js run
 function f1(a) {}
@@ -90,78 +84,74 @@ alert(f1.length); // 1
 alert(f2.length); // 2
 alert(many.length); // 2
 ```
+Gördüğünüz gibi geriye kalan parametresi `...` sayılmamaktadır.
 
-Here we can see that rest parameters are not counted.
+`length` özelliği bazen diğer fonksiyonların üzerinde çalışan fonksiyonlara bir iç bakış oluşturur.
 
-The `length` property is sometimes used for introspection in functions that operate on other functions.
+Mesela, aşağıdaki kodda `sor`fonksiyonu `soru` parametresi alır ve belirli olmayan sayıda `isleyici` fonksiyonunu çağırır.
 
-For instance, in the code below the `ask` function accepts a `question` to ask and an arbitrary number of `handler` functions to call.
+Kullanıcı cevap verdiğinde `isleyici`(handler) çağırılır. İki türlü işleyici gönderilebilir:
 
-Once a user provides their answer, the function calls the handlers. We can pass two kinds of handlers:
+- Argümansız fonksiyon, sadece pozitif cevaplarda çağırılır.
+- Argümanlı fonksiyonlar, cevap alınan her durumda çağırılır.
 
-- A zero-argument function, which is only called when the user gives a positive answer.
-- A function with arguments, which is called in either case and returns an answer.
+Mantık şu şekildedir; cevap pozisit olduğunda argüman almayan isleyici calisir, fakat evrensel isleyiciye de izin verir.
 
-The idea is that we have a simple, no-arguments handler syntax for positive cases (most frequent variant), but are able to provide universal handlers as well.
-
-To call `handlers` the right way, we examine the `length` property:
+`isleyici`'lerin doğru çalışması için, `length` özelliğinden faydalanılabilir.
 
 ```js run
-function ask(question, ...handlers) {
-  let isYes = confirm(question);
+function sor(soru, ...isleyiciler) {
+  let dogruMu = confirm(soru);
 
-  for(let handler of handlers) {
-    if (handler.length == 0) {
-      if (isYes) handler();
+  for(let isleyici of isleyiciler) {
+    if (isleyici.length == 0) {
+      if (dogruMu) isleyici();
     } else {
-      handler(isYes);
+      isleyici(dogruMu);
     }
   }
 
 }
 
-// for positive answer, both handlers are called
-// for negative answer, only the second one
-ask("Question?", () => alert('You said yes'), result => alert(result));
+// Olumlu cevap için, her ikisi çalışırken
+// Olumsuz cevap için sadece ikincisi çalışmaktadır.
+sor("Soru?", () => alert('Evet dedin'), sonuc => alert(sonuc));
 ```
+Bu duruma [polymorphism](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)) denilmektedir. Bu argümanlara tiplerine göre farklı davranma olayıdır. Bu bizim durumumuzda `length`'e bağlıdır. Bu fikir  JavaScript  kütüphanelerinde de kullanılmaktadır.
 
-This is a particular case of so-called [polymorphism](https://en.wikipedia.org/wiki/Polymorphism_(computer_science)) -- treating arguments differently depending on their type or, in our case depending on the `length`. The idea does have a use in JavaScript libraries.
+## Özelleştirilmiş özellikler
 
-## Custom properties
-
-We can also add properties of our own.
-
-Here we add the `counter` property to track the total calls count:
+Kendi özelliğinizi eklemek de mümkündür.
+Örneğin aşağıda `counter` özelliği ile toplan çağrı sayısı tutulmaktadır:
 
 ```js run
-function sayHi() {
-  alert("Hi");
+function selamVer() {
+  alert("Selam");
 
   *!*
-  // let's count how many times we run
+  // Kaç defa çağırıldığını tutar.
   sayHi.counter++;
   */!*
 }
-sayHi.counter = 0; // initial value
+sayHi.counter = 0; // ilk değer
 
-sayHi(); // Hi
-sayHi(); // Hi
+selamVer(); // Selam
+selamVer(); // Selam
 
-alert( `Called ${sayHi.counter} times` ); // Called 2 times
+alert( `selamVer ${selamVer.counter} defa çağırılmıştır` ); // selamVer 2 defa çağırılmıştır.
 ```
 
-```warn header="A property is not a variable"
-A property assigned to a function like `sayHi.counter = 0` does *not* define a local variable `counter` inside it. In other words, a property `counter` and a variable `let counter` are two unrelated things.
+```warn header="Özellik değişken değildir"
+Fonksiyona atanan `selamVer.counter = 0` selamVer fonksiyonunun içerisinde `counter` değişkenini tanımlamaz. Diğer bir deyişle `counter` özelliği ile `let counter` birbirinden tamamen farklı şeylerdir.
 
-We can treat a function as an object, store properties in it, but that has no effect on its execution. Variables are not function properties and vice versa. These are just parallel worlds.
+Fonksiyona obje gibi davranıp özellik eklenebilir. Bu çalışmasında bir etki yaratmaz. Değişkenler fonksiyon özelliklerini kullanmaz, keza fonksiyon özellikleri de değişkenleri kullanmaz.
 ```
 
-Function properties can replace closures sometimes. For instance, we can rewrite the counter function example from the chapter <info:closure> to use a function property:
+Fonksiyon özellikleri closure kullanılarak tekrardan yazılabilir. Örneğin yukarıdaki sayaç örneğini <info:closure> kullanarak tekrardan yazacak olursak:
 
 ```js run
 function makeCounter() {
-  // instead of:
-  // let count = 0
+    // let count = 0 yazmak yerine
 
   function counter() {
     return counter.count++;
@@ -176,12 +166,12 @@ let counter = makeCounter();
 alert( counter() ); // 0
 alert( counter() ); // 1
 ```
+`count` artık fonksiyonun içerisinde bulunur, dış ortamda değil.
 
-The `count` is now stored in the function directly, not in its outer Lexical Environment.
+Closure kullanmak iyi mi kötü mü?
 
-Is it better or worse than using a closure?
+Eğer `sayac`'ın değeri dışarıdaki değişkende bulunuyorsa, dışta bulunan kod buna erişemez. Sadece içteki fonksiyon bunu modifiye edebilir. Bu da anca fonksiyona bağlıysa gerçekleşebilir:
 
-The main difference is that if the value of `count` lives in an outer variable, then external code is unable to access it. Only nested functions may modify it. And if it's bound to a function, then such a thing is possible:
 
 ```js run
 function makeCounter() {
@@ -203,150 +193,142 @@ alert( counter() ); // 10
 */!*
 ```
 
-So the choice of implementation depends on our aims.
+Bundan dolayı asıl önemli olan sizin hangi şekilde kullanmak istediğiniz.
 
-## Named Function Expression
+## İsimlendirilmiş Fonksiyon İfadeleri ( Named Function Expression - NFE ) 
 
-Named Function Expression, or NFE, is a term for Function Expressions that have a name.
+İsimlendirilmiş fonksiyon ifadeleri , NFE, daha önce kullandığımız Fonksiyon İfadelerinin isimlendirilmiş halidir.
 
-For instance, let's take an ordinary Function Expression:
-
-```js
-let sayHi = function(who) {
-  alert(`Hello, ${who}`);
-};
-```
-
-And add a name to it:
+Örneğin, sıradan bir Fonksiyon İfadesi incelenecek olursa:
 
 ```js
-let sayHi = function *!*func*/!*(who) {
-  alert(`Hello, ${who}`);
+let selamVer = function(kim) {
+  alert(`Selam, ${kim}`);
 };
 ```
-
-Did we achieve anything here? What's the purpose of that additional `"func"` name?
-
-First let's note, that we still have a Function Expression. Adding the name `"func"` after `function` did not make it a Function Declaration, because it is still created as a part of an assignment expression.
-
-Adding such a name also did not break anything.
-
-The function is still available as `sayHi()`:
-
-```js run
-let sayHi = function *!*func*/!*(who) {
-  alert(`Hello, ${who}`);
-};
-
-sayHi("John"); // Hello, John
-```
-
-There are two special things about the name `func`:
-
-1. It allows the function to reference itself internally.
-2. It is not visible outside of the function.
-
-For instance, the function `sayHi` below calls itself again with `"Guest"` if no `who` is provided:
-
-```js run
-let sayHi = function *!*func*/!*(who) {
-  if (who) {
-    alert(`Hello, ${who}`);
-  } else {
-*!*
-    func("Guest"); // use func to re-call itself
-*/!*
-  }
-};
-
-sayHi(); // Hello, Guest
-
-// But this won't work:
-func(); // Error, func is not defined (not visible outside of the function)
-```
-
-Why do we use `func`? Maybe just use `sayHi` for the nested call?
-
-
-Actually, in most cases we can:
+... isimlendirilirse:
 
 ```js
-let sayHi = function(who) {
-  if (who) {
-    alert(`Hello, ${who}`);
-  } else {
-*!*
-    sayHi("Guest");
-*/!*
-  }
+let selamVer = function *!*func*/!*(kim) {
+  alert(`Merhaba, ${kim}`);
 };
 ```
+Peki buradaki mantık ne? Ayrıca bir `"func"` eklemenin ne anlamı var?
 
-The problem with that code is that the value of `sayHi` may change. The function may go to another variable, and the code will start to give errors:
+Tekrar etmek gerekirse, hala bir Fonksiyon İfadeniz var. Fonksiyon ifadesine `"function"` 'dan sonra `"func"` eklemek bu fonksiyonu Fonksiyon Tanımı haline getirmez çünkü hala bir atama operasyonu ile tanımlanmıştır.
+
+Böyle bir isim eklemek hiç bir soruna neden olmaz. 
+
+Fonksiyon hala `selamVer()` şeklinde kullanılabilir:
 
 ```js run
-let sayHi = function(who) {
-  if (who) {
-    alert(`Hello, ${who}`);
-  } else {
-*!*
-    sayHi("Guest"); // Error: sayHi is not a function
-*/!*
-  }
+let selamVer = function *!*func*/!*(kim) {
+  alert(`Selam, ${kim}`);
 };
 
-let welcome = sayHi;
-sayHi = null;
-
-welcome(); // Error, the nested sayHi call doesn't work any more!
+selamVer("Ahmet"); // Selam, Ahmet
 ```
+`func` ismine ait iki tane özellik vardır:
 
-That happens because the function takes `sayHi` from its outer lexical environment. There's no local `sayHi`, so the outer variable is used. And at the moment of the call that outer `sayHi` is `null`.
+1.Bu şekilde fonksiyonun kendisine içerisinden referans vermek mümkündür.
+2. Fonksiyonun dışından erişilemez.
 
-The optional name which we can put into the Function Expression is meant to solve exactly these kinds of problems.
-
-Let's use it to fix our code:
+Örneğin, `selamVer` fonksiyonu eğer bir parametre olmadan çağırılırsa kendisini `"Misafir"` ile tekrardan çağırabilir.
 
 ```js run
-let sayHi = function *!*func*/!*(who) {
-  if (who) {
-    alert(`Hello, ${who}`);
+let selamVer = function *!*func*/!*(kim) {
+  if (kim) {
+    alert(`Selam, ${kim}`);
   } else {
 *!*
-    func("Guest"); // Now all fine
+    func("Misafir"); // kendisni yeniden çağırabilir.
 */!*
   }
 };
 
-let welcome = sayHi;
-sayHi = null;
+selamVer(); // Selam, Misafir
 
-welcome(); // Hello, Guest (nested call works)
+// Fakat aşağıdaki çalışmayacaktır:
+func(); // func tanımlı değildir. ( Fonksiyonun dışından erişilemez.)
+```
+Peki neden `func` kullanıyoruz? Sadece `selamVer` kullansak olmaz mı?
+
+Aslında çoğu durumda olur:
+
+```js
+let selamVer = function(kim) {
+  if (kim) {
+    alert(`Selam, ${kim}`);
+  } else {
+*!*
+    selamVer("Misafir");
+*/!*
+  }
+};
+```
+Buradaki problem `selamVer`'in değeri değişebilir. Fonksiyon diğer bir değişkene gidebilir ardından hatalar vermeye başlar.
+
+```js run
+let selamVer = function(kim) {
+  if (kim) {
+    alert(`Selam, ${kim}`);
+  } else {
+*!*
+    selamVer("Misafir");
+*/!*
+  }
+};
+
+let hosGeldin = selamVer;
+selamVer = null;
+
+hosGeldin(); //Artık selamVer çağırılamaz.
+```
+Bunun olmasının nedeni fonksiyonun `selamVer`'i dış ortamdan alıyor olmasıdır. Yerel bir `selamVer` bulunmadığından dıştaki değişken kullanılmaktadır. O anda da dışta bulunan `selamVer` `null`'dur.
+
+Opsiyonel olarak konulan isim tam olarak Fonksiyon İfadesinin bu problemini çözer.
+
+Bunu kullanarak kod şu şekilde düzeltilebilir:
+
+```js run
+let selamVer = function *!*func*/!*(kim) {
+  if (who) {
+    alert(`Selam, ${kim}`);
+  } else {
+*!*
+    func("Misafir"); // Şimdi hepsi doğru şekilde çalışır.
+*/!*
+  }
+};
+
+let hosGeldin = selamVer;
+selamVer = null;
+
+hosGeldin(); // Selam, Misafir (iç çağrı çalışır)
 ```
 
-Now it works, because the name `"func"` is function-local. It is not taken from outside (and not visible there). The specification guarantees that it will always reference the current function.
+Şimdi çalışır, bunun nedeni `"func"`'in lokal fonksiyon olmasındandır. Dışarıdan alınmaz ( dışarıdan görünmez de ). Bu şekilde yazıldığında var olan fonksiyonu referans vereceği garantidir.
 
-The outer code still has it's variable `sayHi` or `welcome`. And `func` is an "internal function name", how the function can call itself internally.
+Dışta bulunan kod hala `selamVer` veya `hosGeldin` değişkenlerine sahiptir. Dıştaki değişkenlere birşey olsa bile `func`"iç fonksiyon ismi"'dir. Kendisini gizli biçimde çağırabilir.
 
-```smart header="There's no such thing for Function Declaration"
-The "internal name" feature described here is only available for Function Expressions, not to Function Declarations. For Function Declarations, there's just no syntax possibility to add a one more "internal" name.
+```smart header="Fonksiyon Tanımı diye birşey yoktur."
+"içsel isim" olarak tanımlanan özellik sadece Fonksiyon İfadeleri için geçerlidir. Fonksiyon Tanımlarında çalışmaz. Fonksiyon tanımları için "içsel" bir isim ekleme yöntemi yoktur.
 
-Sometimes, when we need a reliable internal name, it's the reason to rewrite a Function Declaration to Named Function Expression form.
+Bazen güvenli bir isme ihtiyaç duyulduğunda Fonksiyon Tanımı tekrardan İsimlendirilmiş Fonksiyon İfadesi şekline getirilir.
 ```
 
-## Summary
+## Özet
+Fonksiyonlar objedir.
 
-Functions are objects.
+Özellikleri şu şekildedir:
 
-Here we covered their properties:
+- `name` -- Fonksiyon ismi. Sadece fonksiyon tanımlama da değil, atamalar ve obje özellikleri için.
+- `length`  -- Fonksiyon tanımındaki argüman sayısı, geriye kalan parametreleri ( ... ) sayılmaz.
 
-- `name` -- the function name. Usually taken from the function definition, but if there's none, JavaScript tries to guess it from the context (e.g. an assignment).
-- `length` -- the number of arguments in the function definition. Rest parameters are not counted.
+Eğer fonksiyon Fonksiyon Tanımı yöntemi ile ( ana akışta olmayan ) tanımlanmışsa ve isim taşıyorsa buna İsimlendirilmiş Fonksiyon Tanımı denir. İsim içersiinde veya recursive çağrılarda kullanılabilir.
 
-If the function is declared as a Function Expression (not in the main code flow), and it carries the name, then it is called a Named Function Expression. The name can be used inside to reference itself, for recursive calls or such.
+Fonksiyonlar ayrıca başka özelliklerde taşıyabilirler. Çoğu bilinen JavaScript kütüpyanesi bu özelliği ziyadesiyle kullanır.
 
-Also, functions may carry additional properties. Many well-known JavaScript libraries make great use of this feature.
+Genelde bir "ana" fonksiyon ve bu fonksiyona bağlı birçok "yardımcı" fonksiyon tanımlarlar. Örneğin [jquery](https://jquery.com) `$` adında bir fonksiyon oluşturur. [lodash](https://lodash.com) fonksiyonu `_` adında bir fonksiyon oluşturu. Ardıncan `_.clone`, `_.keyBy` gibi özellikleri ekler. [Dökümantasyon](https://lodash.com/docs)'u inceleyebilirsiniz.  Aslında, global alanda baya temiz çalışırlar. Böylece bir kütüphane bir tane global değişken vermiş olur. Bu da isimlerin birbiriyle çakışmasını engeller.
 
-They create a "main" function and attach many other "helper" functions to it. For instance, the [jquery](https://jquery.com) library creates a function named `$`. The [lodash](https://lodash.com) library creates a function `_`. And then adds `_.clone`, `_.keyBy` and other properties to (see the [docs](https://lodash.com/docs) when you want learn more about them). Actually, they do it to lessen their pollution of the global space, so that a single library gives only one global variable. That reduces the possibility of naming conflicts.
-
-So, a function can do a useful job by itself and also carry a bunch of other functionality in properties.
+Bundan dolayı bir fonksiyon kendince bir iş yapabilir ve özellikleri vasıtasıyla başka fonksiyonalitelere de sahip olabilir.

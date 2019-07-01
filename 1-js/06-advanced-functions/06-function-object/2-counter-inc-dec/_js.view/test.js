@@ -1,39 +1,39 @@
-describe("counter", function() {
+describe("sayac", function() {
 
-  it("increases from call to call", function() {
+  it("her çağrıda bir artar", function() {
 
-    let counter = makeCounter();
+    let sayac = sayacUret();
 
-    assert.equal( counter(), 0 ); 
-    assert.equal( counter(), 1 ); 
-    assert.equal( counter(), 2 ); 
+    assert.equal( sayac(), 0 ); 
+    assert.equal( sayac(), 1 ); 
+    assert.equal( sayac(), 2 ); 
   });
 
   
-  describe("counter.set", function() {
-    it("sets the count", function() {
+  describe("sayac.set", function() {
+    it("sayacın değerini ayarlamaya yarar", function() {
 
-      let counter = makeCounter();
+      let sayac = sayacUret();
 
-      counter.set(10);
+      sayac.set(10);
 
-      assert.equal( counter(), 10 ); 
-      assert.equal( counter(), 11 ); 
+      assert.equal( sayac(), 10 ); 
+      assert.equal( sayac(), 11 ); 
     });
   });
   
-  describe("counter.decrease", function() {
-    it("decreases the count", function() {
+  describe("sayac.azalt", function() {
+    it("Sayacın değerini azaltır", function() {
 
-      let counter = makeCounter();
+      let sayac = sayacUret();
 
-      counter.set(10);
+      sayac.set(10);
 
-      assert.equal( counter(), 10 ); 
+      assert.equal( sayac(), 10 ); 
 
-      counter.decrease();
+      sayac.azalt();
 
-      assert.equal( counter(), 10 ); 
+      assert.equal( sayac(), 10 ); 
 
     });
   });

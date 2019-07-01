@@ -2,16 +2,16 @@ importance: 2
 
 ---
 
-# Sum with an arbitrary amount of brackets
+# Belli olmayan parantez sayısını toplama
 
-Write function `sum` that would work like this:
+`topla` adında bir fonksiyon yazın ve aşağıdaki gibi çalışsın:
 
 ```js
-sum(1)(2) == 3; // 1 + 2
-sum(1)(2)(3) == 6; // 1 + 2 + 3
-sum(5)(-1)(2) == 6
-sum(6)(-1)(-2)(-3) == 0
-sum(0)(1)(2)(3)(4)(5) == 15
+topla(1)(2) == 3; // 1 + 2
+topla(1)(2)(3) == 6; // 1 + 2 + 3
+topla(5)(-1)(2) == 6
+topla(6)(-1)(-2)(-3) == 0
+topla(0)(1)(2)(3)(4)(5) == 15
 ```
 
-P.S. Hint: you may need to setup custom object to primitive conversion for your function.
+Not: İlkel tipe dönüştürmek için ayrıca özel bir obje yaratmanıza gerek yok.
