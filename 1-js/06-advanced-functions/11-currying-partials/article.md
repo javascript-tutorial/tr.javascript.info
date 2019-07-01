@@ -3,21 +3,24 @@ libs:
 
 ---
 
-# Currying and partials
 
-Until now we have only been talking about binding `this`. Let's take it a step further.
+# Tımarlama ve kısmi fonksiyonlar
 
-We can bind not only `this`, but also arguments. That's rarely done, but sometimes can be handy.
+Şimdiye kadar fonksiyon bağlar iken sadece `this` hakkında konuşmuştuk. Bunu bir adım ileri götürme vakti geldi.
 
-The full syntax of `bind`:
+Aslında sadece `this` değil argümanları da bağlamak mümkün. Çok nadir yapılan bir teknik fakat bilmekte fayda var.
+
+[cut]
+
+`bind`'ın yazımı:
 
 ```js
 let bound = func.bind(context, arg1, arg2, ...);
 ```
 
-It allows to bind context as `this` and starting arguments of the function.
+Bu kaynağı `this` olarak bağlamaya ve ardından argümanları tanımlaya olanak verir.
 
-For instance, we have a multiplication function `mul(a, b)`:
+Örneğin çarpma fonksiyonu `mul(a,b)`:
 
 ```js
 function mul(a, b) {
@@ -25,13 +28,9 @@ function mul(a, b) {
 }
 ```
 
-Let's use `bind` to create a function `double` on its base:
+Bunun iki katını almak için `double` fonksiyonunu şu şekilde bağlayarak yaratabiliriz:
 
 ```js run
-function mul(a, b) {
-  return a * b;
-}
-
 *!*
 let double = mul.bind(null, 2);
 */!*
@@ -41,19 +40,15 @@ alert( double(4) ); // = mul(2, 4) = 8
 alert( double(5) ); // = mul(2, 5) = 10
 ```
 
-The call to `mul.bind(null, 2)` creates a new function `double` that passes calls to `mul`, fixing `null` as the context and `2` as the first argument. Further arguments are passed "as is".
+`mul.bind(null,2)` ile `double` fonksiyonu yaratılır. Bu fonksiyon `mul`'a kaynağı `null` yaparak fakat ilk argüman 2 olacak şekilde iletilir. Bundan sonraki argümanlar da "olduğu gibi" iletilir.
 
-That's called [partial function application](https://en.wikipedia.org/wiki/Partial_application) -- we create a new function by fixing some parameters of the existing one.
+Bu olaya [kısmi fonksiyon uygulaması](https://en.wikipedia.org/wiki/Partial_application) denir -- var olan fonksiyonun parametrelerini değiştirerek yeni bir fonksiyon yaratma olayı.
 
-Please note that here we actually don't use `this` here. But `bind` requires it, so we must put in something like `null`.
+Dikkat ederseniz aslında biz burada `this`'i hiç kullanmıyoruz. Fakat `bind`'ın buna ihtiyacı var bundan dolayı `null` gibi bir değer koymak zorundayız.
 
-The function `triple` in the code below triples the value:
+Üç ile çarpma olayını ( `triple` ) ise şu şekilde yazabiliriz 
 
 ```js run
-function mul(a, b) {
-  return a * b;
-}
-
 *!*
 let triple = mul.bind(null, 3);
 */!*
@@ -63,23 +58,23 @@ alert( triple(4) ); // = mul(3, 4) = 12
 alert( triple(5) ); // = mul(3, 5) = 15
 ```
 
-Why do we usually make a partial function?
+Neden kısmi fonksiyon kullanıyoruz? 
 
-The benefit is that we can create an independent function with a readable name (`double`, `triple`). We can use it and not provide first argument of every time as it's fixed with `bind`.
+Burada amaç var olan fonksiyon üzerinden okunabilir bağımsız bir fonksiyon yaratmaktır ( `double`, `triple`) Böylece bunu kullanabilir ve her defasında ilk argümanı yazmak zorunda kalmayız çünkü `bind` ile bu sabitlenmiş olur.
 
-In other cases, partial application is useful when we have a very generic function and want a less universal variant of it for convenience.
+Diğer bir durumda kısmı uygulamalar jenerik fonksiyon yaratmada oldukça yararlıdır, ayrıca daha genel fonksiyondan özele doğru inmeye yarar. Kullanışlılık böylece artar.
 
-For instance, we have a function `send(from, to, text)`. Then, inside a `user` object we may want to use a partial variant of it: `sendTo(to, text)` that sends from the current user.
+Örneğin, `send(from, to, text)` adında bir fonksiyonumuz olsun. `user` objesinin içerisinde bunun bir farklı versiyonu olan ve o anki kullanıcıyı gönderen `sendTo(to,text)` kullanmak isteyelim.
 
-## Going partial without context
+## İçerik olmadan kısmı fonksiyon kullanımı
 
-What if we'd like to fix some arguments, but not bind `this`?
+Diyelim ki bazı argümanları düzeltmek istiyorsunuz fakat `this` ile bağlamak istemiyorsunuz?
 
-The native `bind` does not allow that. We can't just omit the context and jump to arguments.
+Bildiğiniz gibi `bind` buna izin vermez. Doğrudan kaynağı atlayıp argümanları yazamazsınız.
 
-Fortunately, a `partial` function for binding only arguments can be easily implemented.
+Neyseki sadece argümanları bağlayabilen bir `kısmi` fonksiyon çok kolay bir şekilde yazılabilir.
 
-Like this:
+Şu şekilde:
 
 ```js run
 *!*
@@ -90,7 +85,7 @@ function partial(func, ...argsBound) {
 }
 */!*
 
-// Usage:
+// kullanımı:
 let user = {
   firstName: "John",
   say(time, phrase) {
@@ -98,45 +93,44 @@ let user = {
   }
 };
 
-// add a partial method that says something now by fixing the first argument
+// herhangi bir şey söyleyen kısmi bir metod ile ilk argümanı düzeltebilirsiniz.
 user.sayNow = partial(user.say, new Date().getHours() + ':' + new Date().getMinutes());
 
-user.sayNow("Hello");
-// Something like:
-// [10:00] John: Hello!
+user.sayNow("Hello"); // kaynak bulunmamakta 
+// Aşağıdaki gibi:
+// [10:00] Hello, John!
 ```
 
-The result of `partial(func[, arg1, arg2...])` call is a wrapper `(*)` that calls `func` with:
-- Same `this` as it gets (for `user.sayNow` call it's `user`)
-- Then gives it `...argsBound` -- arguments from the `partial` call (`"10:00"`)
-- Then gives it `...args` -- arguments given to the wrapper (`"Hello"`)
+`partial(func[, arg1, arg2...])` saklayıcıyı çağırıyor ve `(*)` fonksiyonu `func`'ı aşağıdaki bilgiler ile çağırıyor.
 
-So easy to do it with the spread operator, right?
+- `this` burada ( `user.sayNow` , `user`'ı çağırır)
+- Sonra `...argsBound` -- `kısmi` fonksiyondan gelen değer (`"10:00"`)
+- Sonra `...args` -- saklayıcıya gönderilen argüman (`"Hello"`)
 
-Also there's a ready [_.partial](https://lodash.com/docs#partial) implementation from lodash library.
+Yayma operatörü ile oldukça kolay değil mi?
 
-## Currying
+Bu olayın hazır halini [_.partial](https://lodash.com/docs#partial) lodash kütüphanesinde bulabilirsiniz.
 
-Sometimes people mix up partial function application mentioned above with another thing named "currying". That's another interesting technique of working with functions that we just have to mention here.
+## Tımarlamak
 
-[Currying](https://en.wikipedia.org/wiki/Currying) is a transformation of functions that translates a function from callable as `f(a, b, c)` into callable as `f(a)(b)(c)`. In JavaScript, we usually make a wrapper to keep the original function.
+Bazen programcılar kısmı fonksiyonlar ile tımarlama olayını karıştırmaktadırlar. Tımarlama fonksiyonlar ile yapılabilecek ilginç bir tekniktir. Burada bahsetmekte fayda var.
 
-Currying doesn't call a function. It just transforms it.
+[Tımarlama](https://en.wikipedia.org/wiki/Currying) `f(a, b, c)` olarak çağırılan bir fonksiyonu `f(a)(b)(c)` şeklinde çağırılabilmesini sağlayan bir tekniktir.
 
-Let's create a helper `curry(f)` function that performs currying for a two-argument `f`. In other words, `curry(f)` for two-argument `f(a, b)` translates it into `f(a)(b)`
+Binary fonksiyonunu tımarlamala işlemi aşağıdaki gibi yapılır. Bu fonksiyon `f(a, b)`'yı `f(a)(b)` şekline getirir:
 
 ```js run
 *!*
-function curry(f) { // curry(f) does the currying transform
+function curry(func) {
   return function(a) {
     return function(b) {
-      return f(a, b);
+      return func(a, b);
     };
   };
 }
 */!*
 
-// usage
+// kullanımı
 function sum(a, b) {
   return a + b;
 }
@@ -145,32 +139,29 @@ let carriedSum = curry(sum);
 
 alert( carriedSum(1)(2) ); // 3
 ```
+Gördüğünüz gibi aslında birçok saklayıcının ard arda uygulanmasından meydana gelmektedir.
 
-As you can see, the implementation is a series of wrappers.
+- `curry(func)`'ın sonucu `function(a)`'nın saklanmasıdır.
+- `sum(1)` gibi bir çağrı yapıldığında arüman sözcük ortamına kaydedilir, ve yeni bir saklayıcı `function(b)` döndürürlür.
+- Sonrasında `sum(1)(2)` en sonunda `function(b)`'i `2` değeri ile çağırır,  çağrıyı argümanların hepsi ile `sum` fonksiyonuna iletir.
 
-- The result of `curry(func)` is a wrapper `function(a)`.
-- When it is called like `sum(1)`, the argument is saved in the Lexical Environment, and a new wrapper is returned `function(b)`.
-- Then `sum(1)(2)` finally calls `function(b)` providing `2`, and it passes the call to the original multi-argument `sum`.
-
-More advanced implementations of currying like [_.curry](https://lodash.com/docs#curry) from lodash library do something more sophisticated. They return a wrapper that allows a function to be called normally when all arguments are supplied *or* returns a partial otherwise.
+Tımarlamanın daha gelişmiş bir versiyonu [_.curry](https://lodash.com/docs#curry) lodash kütüpyanesinde uygulanmıştır. Bu fonksiyonlar tüm argümanlar sağlandığında bir fonksiyonun normal olarak çalışmasını sağlayan saklayıcı fonksiyonu döndürür. Eğer tüm argümanlar sağlanmaz ise kısmı fonksiyon döndürür.
 
 ```js
 function curry(f) {
-  return function(...args) {
-    // if args.length == f.length (as many arguments as f has),
-    //   then pass the call to f
-    // otherwise return a partial function that fixes args as first arguments
+  return function(..args) {
+    // if args.length == f.length (f'in sahip olduğu kadar argüman var ise),
+    //   çağrıyı f'e ilet.
+    // diğer türlü args'ı ilk argüman olarak sabitleyen kısmı fonksiyon döndürülür.
   };
 }
 ```
 
-## Currying? What for?
+## Tımarlama? Neden yapılmalı?
 
-To understand the benefits we definitely need a worthy real-life example.
+Tımarlayarak hem fonksiyon normal olarak çağırılabilir  hem de kısmi olarak alınabilir. Yararını anlayabilmek için gerçekten de iyi bir örneğe gerek var.
 
-Advanced currying allows the function to be both callable normally and partially.
-
-For instance, we have the logging function `log(date, importance, message)` that formats and outputs the information. In real projects such functions also have many other useful features like sending logs over the network, here we just use `alert`:
+Örneğin, bir loglama fonksiyonu olsun `log(data, importance, message)` gelen veriye göre çıktıyı formatlayabilsin. Projelerde böyle fonksiyonlar bunun yanında bir çok özelliğe sahip olabilir. Örneğin bunları ağ üzerinden iletmek veya filtrelemek gibi.
 
 ```js
 function log(date, importance, message) {
@@ -178,48 +169,48 @@ function log(date, importance, message) {
 }
 ```
 
-Let's curry it!
+Hadi tımarlayalım!
 
 ```js
 log = _.curry(log);
 ```
-
-After that `log` work both the normal way and in the curried form:
+Bu `log` işleminden sonra hala normal olarak çalışır:
 
 ```js
-log(new Date(), "DEBUG", "some debug"); // log(a,b,c)
+log(new Date(), "DEBUG", "some debug");
+```
+... Bunun yanında tımarlı şekilde çağırılabilir:
+
+```js
 log(new Date())("DEBUG")("some debug"); // log(a)(b)(c)
 ```
-
-Now we can easily make a convenience function for current logs:
+Bu günün loglarını daha kolay bir şekilde alabileceğimiz bir fonksiyon yazalım:
 
 ```js
-// currentLog will be the partial of log with fixed first argument
-let logNow = log(new Date());
+// todayLog bu günün değeri sabit olacak şekilde oluşturulmuş bir kısmi fonksiyondur
+let todayLog = log(new Date());
 
-// use it
-logNow("INFO", "message"); // [HH:mm] INFO message
+// kullanımı
+todayLog("INFO", "message"); // [HH:mm] INFO message
+```
+Şimdi ise bu günün Debug değerlerini alabileceğimiz diğer bir fonksiyon yapalım:
+
+```js
+let todayDebug = todayLog("DEBUG");
+
+todayDebug("message"); // [HH:mm] DEBUG message
 ```
 
-And here's a convenience function for current debug messages:
+Sonuç olarak:
+1. Tımarladıktan sonra `log` fonksiyonundan birşey kaybetmedik. Hala aynı şekilde çağırabiliriz.
+2. Kısmi fonksiyonlar ile işimize yarar birçok yeni fonksiyon geliştirebiliriz.
 
-```js
-let debugNow = logNow("DEBUG");
 
-debugNow("message"); // [HH:mm] DEBUG message
-```
+## İleri Tımarlama Uygulamaları
 
-So:
-1. We didn't lose anything after currying: `log` is still callable normally.
-2. We were able to generate partial functions such as for today's logs.
+Bu konuyu daha "derinlemesine" incelemek istiyorsanız aşağıda daha önceki yazdığımız kodun gelişmiş vesiyonunu bulabilirsiniz.
 
-## Advanced curry implementation
-
-In case you'd like to get in details (not obligatory!), here's the "advanced" curry implementation that we could use above.
-
-It's pretty short:
-
-```js
+```js run
 function curry(func) {
 
   return function curried(...args) {
@@ -233,28 +224,28 @@ function curry(func) {
   };
 
 }
-```
 
-Usage examples:
-
-```js
 function sum(a, b, c) {
   return a + b + c;
 }
 
 let curriedSum = curry(sum);
 
-alert( curriedSum(1, 2, 3) ); // 6, still callable normally
-alert( curriedSum(1)(2,3) ); // 6, currying of 1st arg
-alert( curriedSum(1)(2)(3) ); // 6, full currying
+// normal şekilde çağırılabilir.
+alert( curriedSum(1, 2, 3) ); // 6
+
+// önce curried(1) ile kısmı fonksiyon alınır sonra diğer iki argüman ile çağırılır.
+alert( curriedSum(1)(2,3) ); // 6
+
+// tamamı tımarlanmış hali.
+alert( curriedSum(1)(2)(3) ); // 6
 ```
+Yeni yazdığımız `tımar` fonksiyonu karmaşık görünebilir, fakat aslında anlaması oldukça kolay.
 
-The new `curry` may look complicated, but it's actually easy to understand.
-
-The result of `curry(func)` is the wrapper `curried` that looks like this:
+`curr(func)`'ın sonucu `curried`'ın saklayıcısıdır ve aşağıdaki gibi görünür:
 
 ```js
-// func is the function to transform
+// func dönüştürülecek fonksiyondur.
 function curried(...args) {
   if (args.length >= func.length) { // (1)
     return func.apply(this, args);
@@ -265,40 +256,38 @@ function curried(...args) {
   }
 };
 ```
+İki farklı şekilde çalışabilir:
+1. Anlık çağrı: Eğer `args` sayısı orjinal fonksiyon tanımıyla aynıysa ( `func.length` )  veya uzunsa, sadece çağrıyı ilet.
+2. Kısmi al: Diğer türlü, `func` henüz çağırılmamış olur. Bunun yerine `pass` döner. Bu tekrar bir önceki argümanları yeni fonksiyona iletirek `tımarlama` yapar. Yeni bir çağrıda yeniden (yeteri kadar argüman yoksa ) kısmı fonksiyon alır veya ( argüman tam ise ) sonucu alır
 
-When we run it, there are two branches:
+`sum(a, b, c)` şeklinde üç argümanlı bir çağrı durumunda nasıl çalışacağına bakalım:
 
-1. Call now: if passed `args` count is the same as the original function has in its definition (`func.length`) or longer, then just pass the call to it.
-2. Get a partial: otherwise, `func` is not called yet. Instead, another wrapper `pass` is returned, that will re-apply `curried` providing previous arguments together with the new ones. Then on a new call, again, we'll get either a new partial (if not enough arguments) or, finally, the result.
+`curried(1)(2)(3)` çağrısı için:
 
-For instance, let's see what happens in the case of `sum(a, b, c)`. Three arguments, so `sum.length = 3`.
+1. İlk `curried(1)` çağrısı `1`'i kendi sözcük çevresinde hatırlar ve `pass` adında bir saklayıcı döner.
+2. `pass` saklayıcısı `(2)` ile çağırılır: bir önceki argüman ( `1`)'i alır ve `(2)` ile birleştirir. Böylece çağrı `curred(1,2)` şeklini alır.
 
-For the call `curried(1)(2)(3)`:
+    Argüman sayısı hala 3'den az olduğundan `curry` yine `pass` döndürür.
+3. `pass` bu defa `(3)` ile tekrar çağırılır, bir sonraki çağrıda `pass(3)` bir önceki argümanları (`1`,`2`) alır ve bunlara `3` ekler. Böylece çağrı `curried(1, 2, 3)` şeklini alır. En sonunda 3 tane değişken oldu ve artık bu değerler orjinal fonksiyona gönderilir.
 
-1. The first call `curried(1)` remembers `1` in its Lexical Environment, and returns a wrapper `pass`.
-2. The wrapper `pass` is called with `(2)`: it takes previous args (`1`), concatenates them with what it got `(2)` and calls `curried(1, 2)` with them together.
+Eğer hala açık değil ise çağrıları bir kağıt üzerinde veya kafanızda sıralı şekilde takip edin.
 
-    As the argument count is still less than 3, `curry` returns `pass`.
-3. The wrapper `pass` is called again with `(3)`,  for the next call `pass(3)` takes previous args (`1`, `2`) and adds `3` to them, making the call `curried(1, 2, 3)` -- there are `3` arguments at last, they are given to the original function.
-
-If that's still not obvious, just trace the calls sequence in your mind or on the paper.
-
-```smart header="Fixed-length functions only"
-The currying requires the function to have a known fixed number of arguments.
+```smart header="Sadece belirli uzunluktaki fonksiyonlar"
+Tımarlama için fonksiyonların belirli bir sayıda argümanı olması gerekir.
 ```
 
-```smart header="A little more than currying"
-By definition, currying should convert `sum(a, b, c)` into `sum(a)(b)(c)`.
+```smart header="Tımarlamanın biraz ötesi"
+Tanım olarak tımarlama `sum(a, b, c)` yi `sum(a)(b)(c)` şekline sokmalıdır.
 
-But most implementations of currying in JavaScript are advanced, as described: they also keep the function callable in the multi-argument variant.
+Fakat tımarlamanın çoğu uygulaması daha önce anlatıldığı gibi ileri seviyedir: Fonksiyonların birkaç farklı argüman çeşidi ile çağırılabilir olması.
 ```
 
-## Summary
+## Özet
 
-- When we fix some arguments of an existing function, the resulting (less universal) function is called *a partial*. We can use `bind` to get a partial, but there are other ways also.
+- Var olan bir fonksiyonun argümanlarını düzeltirsek, sonuçtaki fonksiyon *kısmi* fonksiyon olur. `bind` kullanarak kısmi bölüm alınabilir, fakat farklı yolları da vardır.
 
-    Partials are convenient when we don't want to repeat the same argument over and over again. Like if we have a `send(from, to)` function, and `from` should always be the same for our task, we can get a partial and go on with it.
+    Kısmi fonksiyonlar aynı argümanın defalarca tekrarlanması istenmediğinde kullanışlı olur. Örneğin `send(from, to)` diye bir fonksiyonumuz olsun ve bizim yapacağımız işte `from`'un her zaman aynı olduğunu varsayarsak bunun için fonksiyonun kısmi bölümünü alıp bunun ile devam edebiliriz.
+    
+- *Tımarlama* `f(a, b, c)`'yi çağırılabilir `f(a)(b)(c)` şekline getirmektir. Javascript versiyonu hem fonksiyonu normal şekilde çağırılabilir tutarken hep de argüman sayısı yeterli olmadığında kısmi olarak geri dönderir.
 
-- *Currying* is a transform that makes `f(a,b,c)` callable as `f(a)(b)(c)`. JavaScript implementations usually both keep the function callable normally and return the partial if arguments count is not enough.
-
-    Currying is great when we want easy partials. As we've seen in the logging example: the universal function `log(date, importance, message)` after currying gives us partials when called with one argument like `log(date)` or two arguments `log(date, importance)`.  
+    Tımarlama kolay bir şekilde kısmileştirmek istediğimizde harikadır. Loglama örneğinde gördüğünüz gibi: `log(date, importance, message)` gibi bir global fonksiyon tek bir argüman ile `log(date)` veya iki argüman ile `log(date, importance) çağırıldığında kısmilerini döner.
