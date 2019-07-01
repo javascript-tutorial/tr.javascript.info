@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Working with prototype
+# Prototip ile çalışmak
 
-Here's the code that creates a pair of objects, then modifies them.
+Aşağıda birkaç obje üreten ve bunlar üzerinde değişiklikler yapan kod bulunmaktadır.
 
-Which values are shown in the process?
+Bu işlem süresince hangi değerler gösterilir?
 
 ```js
 let animal = {
@@ -28,4 +28,4 @@ delete animal.jumps;
 alert( rabbit.jumps ); // ? (3)
 ```
 
-There should be 3 answers.
+3 tane cevap bulunmaktadır
