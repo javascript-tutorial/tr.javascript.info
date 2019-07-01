@@ -2,11 +2,11 @@ importance: 5
 
 ---
 
-# Changing "prototype"
+# "prototype"'i değiştirme
 
-In the code below we create `new Rabbit`, and then try to modify its prototype.
+Aşağıdaki kodda `new Rabbit`ile yeni bir `Rabbit` oluşturulmuş sonra prototype'ı değiştirilmeye çalışılmıştır.
 
-In the start, we have this code:
+Başlangıçta aşağıdaki koda sahibiz:
 
 ```js run
 function Rabbit() {}
@@ -19,8 +19,7 @@ let rabbit = new Rabbit();
 alert( rabbit.eats ); // true
 ```
 
-
-1. We added one more string (emphasized), what `alert` shows now?
+1. Bir tane daha karakter dizisi ekledik, `alert` ne gösterir?
 
     ```js
     function Rabbit() {}
@@ -36,8 +35,7 @@ alert( rabbit.eats ); // true
 
     alert( rabbit.eats ); // ?
     ```
-
-2. ...And if the code is like this (replaced one line)?
+2. ...Eğer kod aşağıdaki gibi değiştirilirse ne olur ( bir satır değiştirildi )?
 
     ```js
     function Rabbit() {}
@@ -54,7 +52,7 @@ alert( rabbit.eats ); // true
     alert( rabbit.eats ); // ?
     ```
 
-3. Like this (replaced one line)?
+3. Ya böyle ? ( bir satır değiştirildi )
 
     ```js
     function Rabbit() {}
@@ -70,8 +68,7 @@ alert( rabbit.eats ); // true
 
     alert( rabbit.eats ); // ?
     ```
-
-4. The last variant:
+4. Son şekli:
 
     ```js
     function Rabbit() {}
