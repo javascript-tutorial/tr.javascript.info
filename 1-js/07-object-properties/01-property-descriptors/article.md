@@ -1,40 +1,38 @@
 
-# Property flags and descriptors
+# Özellik bayrakları ve tanımlayıcılar
 
-As we know, objects can store properties.
+Objelerin özellikleri saklayabildiğini biliyorsunuz.
 
-Till now, a property was a simple "key-value" pair to us. But an object property is actually a more flexible and powerful thing.
+Şimdiye kadar özellik basit "anahtar-değer" ikilisiydi. Fakat objenin özelliği aslında bundan daha karmaşık ve daha farklılaştırılabilir özellikler taşımaktadır.
 
-In this chapter we'll study additional configuration options, and in the next we'll see how to invisibly turn them into getter/setter functions.
+## Özellik Bayrakları
 
-## Property flags
+Obje özellikleri **`değer`** dışında, 3 özelliğe sahiptir ( bunlara "bayraklar" denir. )
 
-Object properties, besides a **`value`**, have three special attributes (so-called "flags"):
+- **`yazılabilir`** -- eğer `true` ise değiştirilebilir aksi halde sadece okunabilir.
+- **`sayılabilir`** -- eğer `true` ise döngü içinde listelenmiştir, aksi halde listelenmemiştir.
+- **`ayarlanabilir`** -- eğer `true` ise özellik silinebilir ve nitelikler ( attributes ) değiştirilebilir, diğer türlü değiştirilemez.
 
-- **`writable`** -- if `true`, can be changed, otherwise it's read-only.
-- **`enumerable`** -- if `true`, then listed in loops, otherwise not listed.
-- **`configurable`** -- if `true`, the property can be deleted and these attributes can be modified, otherwise not.
+Bunları henüz görmediniz, genel olarak da zaten pek gösterilmezler. Bir özellik yarattığınızda "normal yolla" bu değerlerin tümü `true` olarak ayarlanır. Fakat biz bunları istediğimiz zaman değiştirebiliriz.
 
-We didn't see them yet, because generally they do not show up. When we create a property "the usual way", all of them are `true`. But we also can change them anytime.
+İlk önce bu bayraklar nasıl alınır buna bakalım:
 
-First, let's see how to get those flags.
+[Object.getOwnPropertyDescriptor](mdn:js/Object/getOwnPropertyDescriptor) metodu bir özellik hakkındaki *tüm* bilgilerin sorgulanabilmesini sağlar.
 
-The method [Object.getOwnPropertyDescriptor](mdn:js/Object/getOwnPropertyDescriptor) allows to query the *full* information about a property.
-
-The syntax is:
+Yazımı:
 ```js
 let descriptor = Object.getOwnPropertyDescriptor(obj, propertyName);
 ```
 
 `obj`
-: The object to get information from.
+: Bilgi alınacak obje
 
 `propertyName`
-: The name of the property.
+: Özelliğin ismi
 
-The returned value is a so-called "property descriptor" object: it contains the value and all the flags.
+Buradan dönen bir değer döner buna "özellik tanımlayıcısı" denir. Bu obje tüm bayrak bilgilerini içerir.
 
-For instance:
+Örneğin:
 
 ```js run
 let user = {
@@ -53,24 +51,24 @@ alert( JSON.stringify(descriptor, null, 2 ) );
 }
 */
 ```
+Bayrakları değiştirmek için [Object.defineProperty](mdn:js/Object/defineProperty) kullanılabilir.
 
-To change the flags, we can use [Object.defineProperty](mdn:js/Object/defineProperty).
+Yazımı:
 
-The syntax is:
 
 ```js
 Object.defineProperty(obj, propertyName, descriptor)
 ```
 
 `obj`, `propertyName`
-: The object and property to work on.
+: Üzerinde çalışılacak obje ve özellik.
 
 `descriptor`
-: Property descriptor to apply.
+: Uygulanacak özellik tanımlayıcı
 
-If the property exists, `defineProperty` updates its flags. Otherwise, it creates the property with the given value and flags; in that case, if a flag is not supplied, it is assumed `false`.
+Eğer özellik var ise `defineProperty` bu özelliğin bayraklarını günceller. Diğer türlü, bu özelliği yaratır ve verilen bayrakları ayarlar. Bu durumda eğer bayrak verilmemiş ise `false` kabul edilir.
 
-For instance, here a property `name` is created with all falsy flags:
+Örneğin, aşağıda tüm bayrakları `false` olarak tanımlanmış bir `name` özelliğini görmektesiniz.
 
 ```js run
 let user = {};
@@ -95,14 +93,13 @@ alert( JSON.stringify(descriptor, null, 2 ) );
 }
  */
 ```
+Bunu "normal yoll" yaratılmış `user.name` ile karşılaştırdığınızda tüm bayrakların `false` olduğunu görebilirsiniz. Eğer bizim istediğimiz bu değilse bunları `true` yapmakta fayda var.
 
-Compare it with "normally created" `user.name` above: now all flags are falsy. If that's not what we want then we'd better set them to `true` in `descriptor`.
+Şimdi bu bayrakların etkilerini inceleyebiliriz.
 
-Now let's see effects of the flags by example.
+## Salt Oku
 
-## Read-only
-
-Let's make `user.name` read-only by changing `writable` flag:
+`user.name`'i sadece okunabilir yapmak için `writable` bayrağının değiştirilmesi gerekir.
 
 ```js run
 let user = {
@@ -116,13 +113,12 @@ Object.defineProperty(user, "name", {
 });
 
 *!*
-user.name = "Pete"; // Error: Cannot assign to read only property 'name'...
+user.name = "Pete"; // Error: Salt okunur özelliğe değer atanamaz.
 */!*
 ```
+Artık kimse kendi `defineProperty` metodunu yazmadıkça kullanıcının ismini değiştiremez. 
 
-Now no one can change the name of our user, unless they apply their own `defineProperty` to override ours.
-
-Here's the same operation, but for the case when a property doesn't exist:
+Aynı işlem bir `özellik` olmadığı durumda:
 
 ```js run
 let user = { };
@@ -130,7 +126,7 @@ let user = { };
 Object.defineProperty(user, "name", {
 *!*
   value: "Pete",
-  // for new properties need to explicitly list what's true
+  // yeni özellikler için neyin doğru olduğu  özellikle belirtilmelidir.
   enumerable: true,
   configurable: true
 */!*
@@ -143,9 +139,9 @@ user.name = "Alice"; // Error
 
 ## Non-enumerable
 
-Now let's add a custom `toString` to `user`.
+Şimdi `user`'a `toString` metodu ekleyelim.
 
-Normally, a built-in `toString` for objects is non-enumerable, it does not show up in `for..in`. But if we add `toString` of our own, then by default it shows up in `for..in`, like this:
+Normalde `toString` objeler için non-enumerable'dır yani for ile objenin özelliklerini dönerken görünmez. Fakat bu özellikği kendiniz eklerseniz `for..in` içeriisnde görünür. Şu şekilde:
 
 ```js run
 let user = {
@@ -155,11 +151,10 @@ let user = {
   }
 };
 
-// By default, both our properties are listed:
-for (let key in user) alert(key); // name, toString
+// Varsayılan olarak, var olan özelliklerimiz görünecektir. 
+for(let key in user) alert(key); // name, toString
 ```
-
-If we don't like it, then we can set `enumerable:false`. Then it won't appear in `for..in` loop, just like the built-in one:
+Eğer beğenmiyorsanız, `enumerable:false`'u ayarlayabilirsiniz. Böylece `for..in` döngüsünün içerisinde normalde olduğu gibi görünmez olur:
 
 ```js run
 let user = {
@@ -176,24 +171,22 @@ Object.defineProperty(user, "toString", {
 });
 
 *!*
-// Now our toString disappears:
+// Artık toString görünmeyecektir:
 */!*
-for (let key in user) alert(key); // name
+for(let key in user) alert(key); // name
 ```
-
-Non-enumerable properties are also excluded from `Object.keys`:
+Non-enumerable özellikler de `Object.keys`'den çıkarılacaktır:
 
 ```js
 alert(Object.keys(user)); // name
 ```
 
-## Non-configurable
+## Non-configurable ( Ayarlanamaz )
 
-The non-configurable flag (`configurable:false`) is sometimes preset for built-in objects and properties.
+`configurable:false` bayrağı bazen varsayılan objeler ve özellikler için standart olarak gelir.
 
-A non-configurable property can not be deleted or altered with `defineProperty`.
-
-For instance, `Math.PI` is read-only, non-enumerable and non-configurable:
+Bir ayarlanamayan özellik silinemez veya `defineProperty` ile değiştirilemez.
+Örneğin, `MATH.PI` hem sadece okunabilir, hem döngü içinde görünmez ( non-enumerable) hem de değiştirilemez:
 
 ```js run
 let descriptor = Object.getOwnPropertyDescriptor(Math, 'PI');
@@ -208,17 +201,16 @@ alert( JSON.stringify(descriptor, null, 2 ) );
 }
 */
 ```
-So, a programmer is unable to change the value of `Math.PI` or overwrite it.
+Öyleyse, `Math.PI` hem değiştirilemez hem de üzerine yazılamaz.
 
 ```js run
-Math.PI = 3; // Error
+Math.PI = 3; // Hatta
 
-// delete Math.PI won't work either
+// delete Math.PI 'de çalışmayacaktır.
 ```
+Bir özelliği değiştirilemez yapmak tek yönlü bir yoldu. Bunu geri çeviremeyiz çünkü `defineProperty` ayarlanamaz özellikler üzerinde çalışmaz.
 
-Making a property non-configurable is a one-way road. We cannot change it back, because `defineProperty` doesn't work on non-configurable properties.
-
-Here we are making `user.name` a "forever sealed" constant:
+Burada `user.name` tamamen mühürlü bir sabit yapılmaktadır:
 
 ```js run
 let user = { };
@@ -230,8 +222,8 @@ Object.defineProperty(user, "name", {
 });
 
 *!*
-// won't be able to change user.name or its flags
-// all this won't work:
+// user.name veya bayrağı değiştirilemez. 
+// hiçbiri çalışmayacaktır:
 //   user.name = "Pete"
 //   delete user.name
 //   defineProperty(user, "name", ...)
@@ -239,15 +231,15 @@ Object.defineProperty(user, "name", {writable: true}); // Error
 */!*
 ```
 
-```smart header="Errors appear only in use strict"
-In the non-strict mode, no errors occur when writing to read-only properties and such. But the operation still won't succeed. Flag-violating actions are just silently ignored in non-strict.
+```smart header="Hatalar sadece use strict ile görünür."
+Sıkı olmayan modda, sadece okunabilir özelliklerin üzerine yazarsanız bir hata görmezsiniz. Fakat yine de işleminiz başarılı olmaz. Yapmamanız gereken bir aksiyonda sadece görmezden gelinir.
 ```
 
 ## Object.defineProperties
 
-There's a method [Object.defineProperties(obj, descriptors)](mdn:js/Object/defineProperties) that allows to define many properties at once.
+[Object.defineProperties(obj, descriptors)](mdn:js/Object/defineProperties) metodu birçok metodun tek bir seferde tanımlanmasını sağlar. 
 
-The syntax is:
+Yazımı:
 
 ```js
 Object.defineProperties(obj, {
@@ -256,8 +248,7 @@ Object.defineProperties(obj, {
   // ...
 });
 ```
-
-For instance:
+Örneğin:
 
 ```js
 Object.defineProperties(user, {
@@ -266,54 +257,53 @@ Object.defineProperties(user, {
   // ...
 });
 ```
-
-So, we can set many properties at once.
+Öyleyse, birçok özelliği tek bir seferde tanımlayabiliriz.
 
 ## Object.getOwnPropertyDescriptors
 
-To get all property descriptors at once, we can use the method [Object.getOwnPropertyDescriptors(obj)](mdn:js/Object/getOwnPropertyDescriptors).
+Tüm özelliklerin tanımlarını bir defada almak için [Object.getOwnPropertyDescriptors(obj)](mdn:js/Object/getOwnPropertyDescriptors) metodunu kullanabilirsiniz.
 
-Together with `Object.defineProperties` it can be used as a "flags-aware" way of cloning an object:
+`Object.defineProperties` ile birlikte "bayrak-farkında" olacak şekilde objenin klonlanması için kullanılabilir:
 
 ```js
 let clone = Object.defineProperties({}, Object.getOwnPropertyDescriptors(obj));
 ```
-
-Normally when we clone an object, we use an assignment to copy properties, like this:
+Normalde obje klonlandığında, atama ile özellikler aşağıdaki gibi kopyalanmalıdır:
 
 ```js
-for (let key in user) {
+for(let key in user) {
   clone[key] = user[key]
 }
 ```
 
-...But that does not copy flags. So if we want a "better" clone then `Object.defineProperties` is preferred.
+...Fakat bu bayrakları kopyalamaz. Eğer "daha iyi" bir klon istenirse `Object.defineProperties` tercih edilmelidir.
 
-Another difference is that `for..in` ignores symbolic properties, but `Object.getOwnPropertyDescriptors` returns *all* property descriptors including symbolic ones.
+Diğer bir fark ise `for..in` sembolik özellikleri görmezden gelir. Fakat `Object.getOwnPropertyDescriptors` *tüm* özellikleri, sembolik olanlar dahil, dönderir.
 
-## Sealing an object globally
+## Objeleri globalde kilitlemek
 
-Property descriptors work at the level of individual properties.
+Özellik tanımları tekil özellikler seviyesinde çalışır.
 
-There are also methods that limit access to the *whole* object:
+Bunun ile birlikte *tüm* objeyi limitleyen metodlar bulunmaktadır:
 
 [Object.preventExtensions(obj)](mdn:js/Object/preventExtensions)
-: Forbids the addition of new properties to the object.
+: Objeye özelliklerin eklenmesini engeller.
 
 [Object.seal(obj)](mdn:js/Object/seal)
-: Forbids adding/removing of properties. Sets `configurable: false` for all existing properties.
+: Özellikleri ekleme ve silmeyi engeller. Var olan tüm özellikler için `configurable: false` olarak ayarlar.
 
 [Object.freeze(obj)](mdn:js/Object/freeze)
-: Forbids adding/removing/changing of properties. Sets `configurable: false, writable: false` for all existing properties.
-And also there are tests for them:
+: Özellikerin eklenmesini, silinmesini ve değiştirilmesini engeller, var olan tüm özellikler için `configurable:false, writable:false` ayarlanır.
+
+Bunlar için testsler vardır:
 
 [Object.isExtensible(obj)](mdn:js/Object/isExtensible)
-: Returns `false` if adding properties is forbidden, otherwise `true`.
+: Eğer özellik engellenmiş ise `false` aksi halde `true` dönderilir.
 
 [Object.isSealed(obj)](mdn:js/Object/isSealed)
-: Returns `true` if adding/removing properties is forbidden, and all existing properties have `configurable: false`.
+: Eğer özellik ekleme/silme engellenmiş ise `true`, tüm var olan özellikler `configurable: false`'e sahipse.
 
 [Object.isFrozen(obj)](mdn:js/Object/isFrozen)
-: Returns `true` if adding/removing/changing properties is forbidden, and all current properties are `configurable: false, writable: false`.
+: Eüer özellik ekleme/silme/değiştirme engellenmiş ve tüm özellikler `configurable:false, writable:false` ise `true` döndür.
 
-These methods are rarely used in practice.
+Bu metodlar pratikte çok az kullanılır.
