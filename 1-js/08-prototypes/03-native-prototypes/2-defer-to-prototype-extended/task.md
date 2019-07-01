@@ -2,18 +2,18 @@ importance: 4
 
 ---
 
-# Add the decorating "defer()" to functions
+# Fonksiyonlara Düzenleyici ( Decorator ) ekleyiniz.
 
-Add to the prototype of all functions the method `defer(ms)`, that returns a wrapper, delaying the call by `ms` milliseconds.
+Tüm fonksiyonların prototiplerini `defer(ms)` metodunu ekleyiniz. Bu metod çağrılan fonksiyonu `ms` kadar geciktiren bir kapsayıcıdır.
 
-Here's an example of how it should work:
+Şu şekilde çalışmalıdır:
 
 ```js
 function f(a, b) {
   alert( a + b );
 }
 
-f.defer(1000)(1, 2); // shows 3 after 1 second
+f.defer(1000)(1, 2); // 1 sn sonra 3 görünür.
 ```
 
-Please note that the arguments should be passed to the original function.
+Argümanların orjinal fonksiyona iletilmesi gerektiğini unutmayın.
