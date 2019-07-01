@@ -5,7 +5,7 @@ let i = 0;
 
 let start = Date.now();
 
-let timer = setInterval(count);
+let timer = setInterval(count, 0);
 
 function count() {
 
@@ -14,8 +14,8 @@ function count() {
   }
 
   if (i == 1000000000) {
-    alert("Done in " + (Date.now() - start) + 'ms');
-    clearInterval(timer);
+    alert((Date.now() - start) + 'ms içerisinde tamamlandı');
+    cancelInterval(timer);
   }
 
 }

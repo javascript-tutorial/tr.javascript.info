@@ -1,12 +1,11 @@
 importance: 4
 
 ---
+# setTimeout şeklinde verilen fonksiyonu setInterval'e çevirin.
 
-# Rewrite setTimeout with setInterval
+Aşağıda `setTimeout` ile  bir görevi parçalara ayıran bir fonksiyon bulunmaktadır.
 
-Here's the function that uses nested `setTimeout` to split a job into pieces.
-
-Rewrite it to `setInterval`:
+Bu fonksiyonu `setInterval` ile tekrar yazınız:
 
 ```js run
 let i = 0;
@@ -18,10 +17,10 @@ function count() {
   if (i == 1000000000) {
     alert("Done in " + (Date.now() - start) + 'ms');
   } else {
-    setTimeout(count);
+    setTimeout(count, 0);
   }
 
-  // a piece of heavy job
+  // zorlu bir görev
   for(let j = 0; j < 1000000; j++) {
     i++;
   }
