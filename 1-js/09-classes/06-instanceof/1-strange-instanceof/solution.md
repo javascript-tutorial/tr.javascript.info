@@ -1,7 +1,7 @@
-Yeah, looks strange indeed.
+Gerçekten de garip.
 
-But `instanceof` does not care about the function, but rather about its `prototype`, that it matches against the prototype chain.
+Fakat `instanceof` aslında fonksiyonu umursamaz, bunun yerine bunun `prototype`'ını umursar ve bu prototip zinciriyle karşılaştırılır.
 
-And here `a.__proto__ == B.prototype`, so `instanceof` returns `true`.
+Burada `a.__proto__ == B.prototype`, bundan dolayı `instanceof`, `true` dönecektir.
 
-So, by the logic of `instanceof`, the `prototype` actually defines the type, not the constructor function.
+Öyleyse, `instanceof` mantığına göre asıl tipi gelirleyen `prototiptir`, yapıcı fonksiyon değil.
