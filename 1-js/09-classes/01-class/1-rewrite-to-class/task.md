@@ -2,8 +2,8 @@ importance: 5
 
 ---
 
-# Rewrite to class
+# Sınıfı tekrar yaz
 
-The `Clock` class is written in functional style. Rewrite it the "class" syntax.
+`Clock` sınıfını prototipten normal "class" yazımına çeviriniz
 
-P.S. The clock ticks in the console, open it to see.
+Not: Konsolu açıp saatin değiştiğini görebilirsiniz.
