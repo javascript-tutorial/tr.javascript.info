@@ -1,1 +1,1 @@
-# Error handling
+# Hataların İdare Edilmesi
