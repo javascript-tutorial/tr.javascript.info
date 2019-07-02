@@ -1,22 +1,22 @@
-# Mixins
+# Mixinler
 
-In JavaScript we can only inherit from a single object. There can be only one `[[Prototype]]` for an object. And a class may extend only one other class.
+JavaScript sadece bir objeden kalıtım yapmaya izin verir. Bir obje için sadece bir tane `[[Prototype]]` olabilir. Ayrıca bir sınıf sadece bir sınıfı genişletebilir.
 
-But sometimes that feels limiting. For instance, I have a class `StreetSweeper` and a class `Bicycle`, and want to make a `StreetSweepingBicycle`.
+Bu bizi sınırlandırabilir. Örneğin, `StreetSweeper` ve `Bycicle` adında iki tane sınıfınız var ve bunlardan `StreetSweepingBycicle` adında bir sınıf yaratmak istiyorsunuz.
 
-Or, talking about programming, we have a class `User` and a class `EventEmitter` that implements event generation, and we'd like to add the functionality of `EventEmitter` to `User`, so that our users can emit events.
+Veya programlama hakkında konuşacak olursak, `Renderer`adında şablonu uygulayan ve `EventEmitter` adında olayları işleyen bir sınıfımız olsun, ve bu fonksiyonaliteyi birlikte `Page` adında bir sınıfta kullanmak istiyoruz. Böylece page hem şabloları kullanabiliecek hemde hemde olayları yayacak(emit).
 
-There's a concept that can help here, called "mixins".
+Burada bize `mixin` konsepti yardımcı olabilir.
 
-As defined in Wikipedia, a [mixin](https://en.wikipedia.org/wiki/Mixin) is a class that contains methods for use by other classes without having to be the parent class of those other classes.
+Wikipedia'da şu şekilde tanımlanmıştır: [mixin](https://en.wikipedia.org/wiki/Mixin) sınıfı diğer sınıflar tarafından kullanılacak metodları olan ve bunun için bir üst sınıfa ihtiyaç duymayan yapıdır.
 
-In other words, a *mixin* provides methods that implement a certain behavior, but we do not use it alone, we use it to add the behavior to other classes.
+Diğer bir deyişle *mixin* belirli davranışları uygulayan metodları sağlar, fakat bunu tek başına kullanmayız, bunu diğer sınıflara başka davranışlar eklemek için kullanırız.
 
-## A mixin example
+## Mixin örneği
 
-The simplest way to make a mixin in JavaScript is to make an object with useful methods, so that we can easily merge them into a prototype of any class.
+JavaScript mixini yapmak için en kolay yol kullanışlı metodlarla donatılmış bir objedir. Böylece kolayca birleştirebilir ve herhangi bir sınıfın prototipine koyabiliriz.
 
-For instance here the mixin `sayHiMixin` is used to add some "speech" for `User`:
+Örneğin aşağoda `sayHiMixin`, `User` için "speech" metodunu ekler:
 
 ```js run
 *!*
@@ -24,10 +24,10 @@ For instance here the mixin `sayHiMixin` is used to add some "speech" for `User`
 */!*
 let sayHiMixin = {
   sayHi() {
-    alert(`Hello ${this.name}`);
+    alert("Hello " + this.name);
   },
   sayBye() {
-    alert(`Bye ${this.name}`);
+    alert("Bye " + this.name);
   }
 };
 
@@ -43,11 +43,11 @@ class User {
 // copy the methods
 Object.assign(User.prototype, sayHiMixin);
 
-// now User can say hi
-new User("Dude").sayHi(); // Hello Dude!
+// Artık User sayHi metodunu çağırabilir
+new User("Dude").sayHi(); // Hi Dude!
 ```
 
-There's no inheritance, but a simple method copying. So `User` may inherit from another class and also include the mixin to "mix-in" the additional methods, like this:
+Burada gördüğünüz gibi kalıtım yoktur. Yapılan sadece basit metod kopyalamadır. `User` diğer sınıfları genişletebilir, hatta bu sınıflar da kendi içerilerinde mixin'lere sahip olabilirler. Örnek vermek gerekirse:
 
 ```js
 class User extends Person {
@@ -56,10 +56,9 @@ class User extends Person {
 
 Object.assign(User.prototype, sayHiMixin);
 ```
+Mixinler kendi içlerinde kalıtım benzeri yapılar oluşturabilirler.
 
-Mixins can make use of inheritance inside themselves.
-
-For instance, here `sayHiMixin` inherits from `sayMixin`:
+Örneğin `sayHiMixin`, `sayMixin`'ten kalıtılmıştır:
 
 ```js run
 let sayMixin = {
@@ -69,16 +68,16 @@ let sayMixin = {
 };
 
 let sayHiMixin = {
-  __proto__: sayMixin, // (or we could use Object.create to set the prototype here)
+  __proto__: sayMixin, // (veya Object.create ile de prototipi ayarlayabilirdik)
 
   sayHi() {
     *!*
     // call parent method
     */!*
-    super.say(`Hello ${this.name}`);
+    super.say("Hello " + this.name);
   },
   sayBye() {
-    super.say(`Bye ${this.name}`);
+    super.say("Bye " + this.name);
   }
 };
 
@@ -88,41 +87,39 @@ class User {
   }
 }
 
-// copy the methods
+// metodları kopyala
 Object.assign(User.prototype, sayHiMixin);
 
-// now User can say hi
+// artık kullanıcı sayHi'yi çağırabilir.
 new User("Dude").sayHi(); // Hello Dude!
 ```
 
-Please note that the call to the parent method `super.say()` from `sayHiMixin` looks for the method in the prototype of that mixin, not the class.
+Dikkat ederseniz `sayHiMixin` içinde `super.say() çağırıldığında o mixin'in prototipindeki metoduna bakar, sınıfın değil.
 
 ![](mixin-inheritance.png)
 
-That's because methods `sayHi` and `sayBye` were initially created in `sayHiMixin`. So their `[[HomeObject]]` internal property references `sayHiMixin`, as shown on the picture above.
-
-As `super` looks for parent methods in `[[HomeObject]].[[Prototype]]`, that means it searches `sayHiMixin.[[Prototype]]`, not `User.[[Prototype]]`.
+Çünkü `sayHiMixin` metodları `[[HomeObject]]`'e ayarlanmıştır. Bundan dolayı `super` aslında `User.__proto__` değil de `sayHiMixin.__proto__` anlamına gelir.
 
 ## EventMixin
 
-Now let's make a mixin for real life.
+Artık gerçek olaylar için mixin yapabiliriz.
 
-The important feature of many browser objects (not only) can generate events. Events is a great way to "broadcast information" to anyone who wants it. So let's make a mixin that allows to easily add event-related functions to any class/object.
+Çoğu objenin en önemli özelliği olaylar(event) çalışabilmesidir.
 
-- The mixin will provide a method `.trigger(name, [...data])` to "generate an event" when something important happens to it. The `name` argument is a name of the event, optionally followed by additional arguments with event data.
-- Also the method `.on(name, handler)` that adds `handler` function as the listener to events with the given name. It will be called when an event with the given `name` triggers, and get the arguments from `.trigger` call.
-- ...And the method `.off(name, handler)` that removes `handler` listener.
+Bir obje önemli bir olay olduğunda "olay" yaratacak metoda sahip olmalıdır. Diğer objeler ise böyle bir olayı "dinlemeli"'dir.
 
-After adding the mixin, an object `user` will become able to generate an event `"login"` when the visitor logs in. And another object, say, `calendar` may want to listen to such events to load the calendar for the logged-in person.
+Bir olay isme sahip olmalıdır, bunun ile birlikte ek verileri de barındırabilir.
 
-Or, a `menu` can generate the event `"select"` when a menu item is selected, and other objects may assign handlers to react on that event. And so on.
+Örneğin `user` objesi kullanıcı giriş yapacağı zaman `"login"` olayını oluşturabilir. Diğer bir `calendar` objesi ise bu olayı alıp giriş yapan kullanıcı için takvimi doldurabilir.
 
-Here's the code:
+Veya bir `menu` `"select"` adında menüden seçim yapıldığında oluşturulan bir olay yaratabilir, diğer objeler bilgi alabilir ve bu olaya göre işlem yapabilir.
+
+Olaylar "bilgileri paylaşmak" için bir yöntemdir. Bunlar her sınıfta kullanışlı olabilir, bir örnek yapalım:
 
 ```js run
 let eventMixin = {
   /**
-   * Subscribe to event, usage:
+   * Olaya kayıt olma, kullanımı:
    *  menu.on('select', function(item) { ... }
   */
   on(eventName, handler) {
@@ -134,73 +131,73 @@ let eventMixin = {
   },
 
   /**
-   * Cancel the subscription, usage:
+   * Olaydan kaydı silme, kullanımı:
    *  menu.off('select', handler)
    */
   off(eventName, handler) {
     let handlers = this._eventHandlers && this._eventHandlers[eventName];
     if (!handlers) return;
-    for (let i = 0; i < handlers.length; i++) {
-      if (handlers[i] === handler) {
+    for(let i = 0; i < handlers.length; i++) {
+      if (handlers[i] == handler) {
         handlers.splice(i--, 1);
       }
     }
   },
 
   /**
-   * Generate an event with the given name and data
+   * Olay yarat ve buna veri ekle
    *  this.trigger('select', data1, data2);
    */
   trigger(eventName, ...args) {
     if (!this._eventHandlers || !this._eventHandlers[eventName]) {
-      return; // no handlers for that event name
+      return; // Bu olayın ismi ile başka kotarıcı yok.
     }
 
-    // call the handlers
+    // kotarıcıyı çağır.
     this._eventHandlers[eventName].forEach(handler => handler.apply(this, args));
   }
 };
 ```
 
+Burada 3 tane metod var:
 
-- `.on(eventName, handler)` -- assigns function `handler` to run when the event with that name happens. Technically, there's `_eventHandlers` property, that stores an array of handlers for each event name. So it just adds it to the list.
-- `.off(eventName, handler)` -- removes the function from the handlers list.
-- `.trigger(eventName, ...args)` -- generates the event: all handlers from `_eventHandlers[eventName]` are called, with a list of arguments `...args`.
+1. `.on(eventName, handler)` `handler`(kotarıcı)'da belirtilen isimle bir olay çalışırsa kotarıcıyı ata. Kotarıcılar `_eventHandlers` özelliğinde saklanır.
+2. `.off(eventName, handler)` -- kotarıcı listesinden fonksiyon siler.
+3. `.trigger(eventName, ...args)` -- olay yaratır; tüm kotarıcılar çağırılır ve `args` bunlara argüman olarak iletilir.
 
-Usage:
+Kullanım:
 
 ```js run
-// Make a class
+// Sınıf yap
 class Menu {
   choose(value) {
     this.trigger("select", value);
   }
 }
-// Add the mixin with event-related methods
+// mixin ekle
 Object.assign(Menu.prototype, eventMixin);
 
 let menu = new Menu();
 
-// add a handler, to be called on selection:
+// seçildiğinde kotarıcıyı çağır.
 *!*
-menu.on("select", value => alert(`Value selected: ${value}`));
+menu.on("select", value => alert("Value selected: " + value));
 */!*
 
-// triggers the event => the handler above runs and shows:
-// Value selected: 123
-menu.choose("123");
+// olayı çalıştır ->  Value selected: 123 gösterilir
+menu.choose("123"); // value selected
 ```
 
-Now if we'd like any code to react on menu selection, we can listen to it with `menu.on(...)`.
+Artık kullanıcının seçimine farklılık gösteren bir kodumuz var ise bunu `menu.on(...)` ile kullanabiliriz.
 
-And `eventMixin` mixin makes it easy to add such behavior to as many classes as we'd like, without interfering with the inheritance chain.
+`eventMix` böyle bir davranışa istediğimiz kadar sınıfa eklenebilir bunu yaparken de kalıtım zincirine dokunulmamış olur.
 
-## Summary
+## Özet
 
-*Mixin* -- is a generic object-oriented programming term: a class that contains methods for other classes.
+*Mixin* -- geniş bir nesne tabanlı programlama deyimidir buna göre; bir sınıf diğer sınıflar için metodlar içerebilir.
 
-Some other languages like e.g. Python allow to create mixins using multiple inheritance. JavaScript does not support multiple inheritance, but mixins can be implemented by copying methods into prototype.
+Python gibi bazı diller birden fazla kalıtım ile mixin yaratmaya izin verir. JavaScript bunu desteklemez, fakat mixinleri prototipe kopyalayarak uygulanmasına izin verir.
 
-We can use mixins as a way to augment a class by multiple behaviors, like event-handling as we have seen above.
+Ayrıca mixinleri kullanarak bir sınıfın davranışlarını genişletebiliriz, bunu yukarıdaki olay-kotarıcı'da görmekteyiz.
 
-Mixins may become a point of conflict if they occasionally overwrite existing class methods. So generally one should think well about the naming methods of a mixin, to minimize the probability of that.
+Mixinler gerçek sınıfın metodlarının üzerine yazılarak çatışmaya neden olabilir. Bundan dolayı genellikle mixinleri isimlendirirken dikkatli olmalı ve problemi en aza indirmelisiniz.
