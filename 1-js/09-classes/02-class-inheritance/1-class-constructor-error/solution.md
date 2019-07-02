@@ -1,6 +1,5 @@
-That's because the child constructor must call `super()`.
-
-Here's the corrected code:
+Çünkü Rabbit sınıfındaki yapıcı super'i yani ebeveny sınıfını çağırmalıdır.
+Düzeltilmiş kodu aşağıda görebilirsiniz:
 
 ```js run
 class Animal {

@@ -1,14 +1,14 @@
-First, let's see why the latter code doesn't work.
+Cevap iki parçadan oluşmaktadır
 
-The reason becomes obvious if we try to run it. An inheriting class constructor must call `super()`. Otherwise `"this"` won't be "defined".
+Birinci bölüm, kolay olan kalıtım yapan sınıf yapıcı metodda `super()`'i çağırmalıdır. Diğer türlü `"this"` "tanımsız" olacaktır.
 
-So here's the fix:
+Çözümü şu şekildedir:
 
 ```js run
 class Rabbit extends Object {
   constructor(name) {
 *!*
-    super(); // need to call the parent constructor when inheriting
+    super(); // kalıtım yapıldığında üst sınıf çağırılmalıdır.
 */!*
     this.name = name;
   }
@@ -18,17 +18,17 @@ let rabbit = new Rabbit("Rab");
 
 alert( rabbit.hasOwnProperty('name') ); // true
 ```
+Fakat henüz bitmedi.
 
-But that's not all yet.
+Bu problem düzeltildikten sonra bile, `"class Rabbit extends Object"` ile `class Rabbit` arasında önemli bir fark vardır.
 
-Even after the fix, there's still important difference in `"class Rabbit extends Object"` versus `class Rabbit`.
+Bildiğiniz gibi "extends" yazımı iki prototip kurar:
 
-As we know, the "extends" syntax sets up two prototypes:
 
-1. Between `"prototype"` of the constructor functions (for methods).
-2. Between the constructor functions itself (for static methods).
+1. Yapıcı fonksiyonların `"prototype"` ları arasında ( metodlar için )
+2. Yapıcı fonksiyonların kendileri arasında ( statik metodlar için ) 
 
-In our case, for `class Rabbit extends Object` it means:
+Bizim durumumuzda `class Rabbit extends Object`:
 
 ```js run
 class Rabbit extends Object {}
@@ -36,46 +36,51 @@ class Rabbit extends Object {}
 alert( Rabbit.prototype.__proto__ === Object.prototype ); // (1) true
 alert( Rabbit.__proto__ === Object ); // (2) true
 ```
+anlamına gelir.
 
-So `Rabbit` now provides access to static methods of `Object` via `Rabbit`, like this:
+`Object`'in statik metodlarına `Rabbit` ile şu şekilde erişebiliriz:
 
 ```js run
 class Rabbit extends Object {}
 
 *!*
-// normally we call Object.getOwnPropertyNames
+// normlade Object.getOwnPropertyNames'i çağırırız.
 alert ( Rabbit.getOwnPropertyNames({a: 1, b: 2})); // a,b
 */!*
 ```
+Eğer `extends` kullanılmaz ise `class Rabbit` ikinci referansı alamaz.
 
-But if we don't have `extends Object`, then `Rabbit.__proto__` is not set to `Object`.
-
-Here's the demo:
+Aşağıdaki ile karşılaştırabilirsiniz:
 
 ```js run
 class Rabbit {}
 
 alert( Rabbit.prototype.__proto__ === Object.prototype ); // (1) true
 alert( Rabbit.__proto__ === Object ); // (2) false (!)
-alert( Rabbit.__proto__ === Function.prototype ); // as any function by default
 
 *!*
-// error, no such function in Rabbit
-alert ( Rabbit.getOwnPropertyNames({a: 1, b: 2})); // Error
+// hata, Rabbit diye bir fonksiyon bulunmamaktadır.
+alert ( Rabbit.getOwnPropertyNames({a: 1, b: 2})); // Hata
 */!*
 ```
 
-So `Rabbit` doesn't provide access to static methods of `Object` in that case.
+Basit `class Rabbit` için `Rabbit` fonksiyonu aynı prototipe sahiptir.
 
-By the way, `Function.prototype` has "generic" function methods, like `call`, `bind` etc. They are ultimately available in both cases, because for the built-in `Object` constructor, `Object.__proto__ === Function.prototype`.
+```js run
+class Rabbit {}
 
-Here's the picture:
+// (2) yerine kullanılır. Rabbit için doğrudur. (diğer fonksiyonlar için de)
+alert( Rabbit.__proto__ === Function.prototype );
+```
+Bu arada `Function.prototype`'ın "generic" fonksiyonları bulunmaktadır. Bunlar, `call`, `bind` vs gibi metodlardır. Her iki durumda da bunlar mevcuttur çünkü `Object` yapısında varsayılan olarak bulunmaktadır. `Object.__proto__ === Function.prototype` 
+
+Son tahlilde görüntü şu şekildedir:
 
 ![](rabbit-extends-object.png)
 
-So, to put it short, there are two differences:
+Özetlersek:
 
 | class Rabbit | class Rabbit extends Object  |
 |--------------|------------------------------|
-| --             | needs to call `super()` in constructor |
+| --             | yapıcı metodda `super()` çağırılmalıdır. |
 | `Rabbit.__proto__ === Function.prototype` | `Rabbit.__proto__ === Object` |
