@@ -36,6 +36,7 @@ Yeni bir `Date` objesi yaratmak için `new Date()` aşağıdaki argümanların b
 : Eğer bir argüman var ve bu da karakter dizisi ise, `Date.parse` algoritmasına göre bakılır ve uygunsa tarih oluşturulur.
 
     ```js run
+<<<<<<< HEAD
     let tarih = new Date("2017-01-26");
     alert(tarih); // Thu Jan 26 2017 ...
     ```
@@ -44,6 +45,20 @@ Yeni bir `Date` objesi yaratmak için `new Date()` aşağıdaki argümanların b
 : Yerel zamanda `Date` objesi oluşturmak için sadece ilk iki argüman zorunludur.
 
     Not:
+=======
+    let date = new Date("2017-01-26");
+    alert(date);
+    // The time is not set, so it's assumed to be midnight GMT and
+    // is adjusted according to the timezone the code is run in
+    // So the result could be
+    // Thu Jan 26 2017 11:00:00 GMT+1100 (Australian Eastern Daylight Time)
+    // or
+    // Wed Jan 25 2017 16:00:00 GMT-0800 (Pacific Standard Time)
+    ```
+
+`new Date(year, month, date, hours, minutes, seconds, ms)`
+: Create the date with the given components in the local time zone. Only the first two arguments are obligatory.
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
     - `yıl` 4 basamaktan oluşmalıdır. `2013` olur, `98` olmaz.
     - `ay` sıfırdan başlar. Yani `0` Ocak, `11` Aralıktır.
@@ -65,7 +80,11 @@ Yeni bir `Date` objesi yaratmak için `new Date()` aşağıdaki argümanların b
 
 ## Tarih bileşenlerine erişim
 
+<<<<<<< HEAD
 `Date` objesinde yıla, aya vs. erişim için birçok metod bulunmaktadır. Fakat bunlar kaegorilere ayrılırsa hatırlanması daha kolay olacaktır.
+=======
+There are methods to access the year, month and so on from the `Date` object:
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 [getFullYear()](mdn:js/Date/getFullYear)
 : Yılı döner (4 basamaklı)
@@ -211,21 +230,33 @@ alert(+tarih); // date.getTime() ile aynı şekilde milisaniye döner.
 Bu iki tarih arasındaki zamanı ölçmek için kullanılabilir:
 
 ```js run
+<<<<<<< HEAD
 let baslangic = new Date(); // saymaya başla!
+=======
+let start = new Date(); // start measuring time
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 // işi yap
 for (let i = 0; i < 100000; i++) {
   let doSomething = i * i * i;
 }
 
+<<<<<<< HEAD
 let bitis = new Date(); // bitt
+=======
+let end = new Date(); // end measuring time
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 alert( `Döngü ${bitis - baslangic} ms` );
 ```
 
 ## Date.now()
 
+<<<<<<< HEAD
 Eğer sadece zaman farkını ölçmek istiyorsanız, `Date` objesine ihtiyacınız yok.
+=======
+If we only want to measure time, we don't need the `Date` object.
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 Bunun için `Date.now()` adında bir obje bulunmakta.
 
@@ -258,6 +289,8 @@ Eğer çok ağır yüklü işlemler için kıyaslama yapılıyorsa, dikkatli olu
 
 Örneğin, iki tarih arasındaki farkı hesaplayan iki fonksiyondan hangisinin daha hızlı olduğunu inceleyelim
 
+Such performance measurements are often called "benchmarks".
+
 ```js
 // tarih1 ve tarih2, hangisi işlemi daha hızlı tamamlar.
 function cikarma(tarih1, tarih2) {
@@ -273,7 +306,11 @@ Yukarıdaki iki fonksiyon aynı işlemi yapar, fakat bir tanesi `date.getTime()`
 
 Öyleyse hangisi daha hızlı?
 
+<<<<<<< HEAD
 Bunu ölçmek için fonksiyonları birçok defa çalıştırıp aradaki farkı öyle kontrol etmektir.
+=======
+The first idea may be to run them many times in a row and measure the time difference. For our case, functions are very simple, so we have to do it at least 100000 times.
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 Ölçülecek olursa:
 
@@ -303,9 +340,13 @@ alert( 'tarihFarki islemi ile: ' + karsilastirma(tarihFarki) + 'ms' );
 
 Bir değer aldık fakat bu henüz iyi bir karşılaştırma olmadı.
 
+<<<<<<< HEAD
 Diyelim ki`karsilastirma(cikarma)` çalışırken işlemci paralelde başka birşeyler ile uğraşıyor olsun. Bu uğraştığı işlemler `karsilastirma(tarihFarki)` zamanında bitsin.
 
 Bu aslında oldukça gerçekçi bir senaryodur.
+=======
+Imagine that at the time of running `bench(diffSubtract)` CPU was doing something in parallel, and it was taking resources. And by the time of running `bench(diffGetTime)` that work has finished.
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 A pretty real scenario for a modern multi-process OS.
 
@@ -361,7 +402,12 @@ for (let i = 0; i < 10; i++) {
 }
 ```
 
+<<<<<<< HEAD
 ```warn header="Mikro seviyede karşılaştırma yaparken daha dikkatli olunmalıdır."
+=======
+```warn header="Be careful doing microbenchmarking"
+Modern JavaScript engines perform many optimizations. They may tweak results of "artificial tests" compared to "normal usage", especially when we benchmark something very small, such as how an operator works, or a built-in function. So if you seriously want to understand performance, then please study how the JavaScript engine works. And then you probably won't need microbenchmarks at all.
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 Modern JavaScript motorları kod üzerinde birçok iyileştirme yaparlar. Normal kullanımdan ziyade yapay test sonuçları üzerinde değişikliklere neden olabilirler. Özellikle çok küçük karşılaştırmalarda. Bundan dolayı eğer performan sizin için çok ciddi bir konu ise, JavaScript motorlarının nasıl çalıştığını öğrenmeniz gerekmektedir. Öğrendiğinizde mikro seviyede bir karşılaştırmaya ihtiyacınız kalmayacaktır.
 
@@ -408,7 +454,13 @@ alert(tarih);
 
 Diğer sistemlerin aksine, zaman damgası javascripte saniye değil sarise cinsindendir.
 
+<<<<<<< HEAD
 Eğer daha ayrıntılı zaman bilgisine erişmek istiyorsanız. JavaScript desteklemese bile çoğu sistem microsaniyeye destek verir ( saniyenin milyonda biri ). Örneğin [performance.now()](mdn:api/Performance/now) sayfanın yüklenme süresini mikrosaniye cinsinden verir.
+=======
+Note that unlike many other systems, timestamps in JavaScript are in milliseconds, not in seconds.
+
+Sometimes we need more precise time measurements. JavaScript itself does not have a way to measure time in microseconds (1 millionth of a second), but most environments provide it. For instance, browser has [performance.now()](mdn:api/Performance/now) that gives the number of milliseconds from the start of page loading with microsecond precision (3 digits after the point):
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 ```js run
 alert(`Yüklemeye 4731.26000000001ms önce başladı`);

@@ -74,8 +74,12 @@ Yeni başlayan arkadaşlar bazen yanlışlıkla fonksiyonun sonuna `()` ekleyebi
 // yanlış!
 setTimeout(selamVer(), 1000);
 ```
+<<<<<<< HEAD
 
 Bu çalışmaz, çünkü `setTimeout` referans bir fonksiyon beklemektedir. Burada `selamVer()` derseniz fonksiyonu çalıştırırsınız ve *bunun sonucu* `setTimeout` fonksiyonu tarafından kullanılır. Bizim durumumuzda `selamVer()` `undefined` döndürür. ( fonksiyon ile alakalı bir sorun yok ) bundan dolayı hiç birşey zamanlanmaz.
+=======
+That doesn't work, because `setTimeout` expects a reference to a function. And here `sayHi()` runs the function, and the *result of its execution* is passed to `setTimeout`. In our case the result of `sayHi()` is `undefined` (the function returns nothing), so nothing is scheduled.
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 ````
 
 ### clearTimeout fonksiyonu ile iptal etme
@@ -240,7 +244,7 @@ setTimeout(function() {...}, 100);
 Bunun yan etkisi ise, dışarıdaki fonksiyondan veri almak isteyen bir fonksiyon sürekli çağırılır ve ayakta kalırsa dışarıdaki değişkenlerin de sürekliliği devam eder. Asıl bu fonksiyonun kendisinden bile fazla hafıza kaplayabilir. Öyleyse zamanlayıcı ile işiniz bittiğinde en iyisi iptal etmektir. Bu fonksiyonunuz küçük olsa bile yapılması gereken bir işlemdir.
 ````
 
-## setTimeout(...,0)
+## Zero delay setTimeout
 
 `setTimeOut`'un farklı bir kullanım şekli daha bulunmakta: `setTimeout(func, 0)`
 
@@ -258,6 +262,7 @@ alert("Merhaba");
 
 İlk satırda "çağrıyı 0ms sonra sıraya koy" demektir. Fakat zamanlayıcı bunu "önce sırayı kontrol et"'ten sonra bakar yani o anki kodu çalıştırdıktan sonra. Bundan dolayı `"Merhaba"` önce yazılır `"Dünya"` sonra.
 
+<<<<<<< HEAD
 ### CPU-aç görevlerin parçalanması
 
 `setTimeout` ile CPU-aç görevlerin kullanılabilmesi şöyle bir yöntem kullanılabilir.
@@ -368,6 +373,14 @@ Tarayıcıda, iç içe zamanlayıcıların kullanımına ait bir limit bulunmakt
 
 Bunu aşağıdaki bulunan örnekte gösterelim. `setTimeout` çağrısı kendisini `0ms` sonra tekrarn çağırıyor. Her bir çağrı bir öncekinin zamanını `times` dizisinden hatırlıyor. Gecikme nasıl olacak bakalım:
 
+=======
+There are also advanced browser-related use cases of zero-delay timeout, that we'll discuss in the chapter <info:event-loop>.
+
+````smart header="Zero delay is in fact not zero (in a browser)"
+In the browser, there's a limitation of how often nested timers can run. The [HTML5 standard](https://html.spec.whatwg.org/multipage/timers-and-user-prompts.html#timers) says: "after five nested timers, the interval is forced to be at least 4 milliseconds.".
+
+Let's demonstrate what it means with the example below. The `setTimeout` call in it re-schedules itself with zero delay. Each call remembers the real time from the previous one in the `times` array. What do the real delays look like? Let's see:
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 ```js run
 let start = Date.now();
@@ -384,10 +397,17 @@ setTimeout(function run() {
 // 1,1,1,1,9,15,20,24,30,35,40,45,50,55,59,64,70,75,80,85,90,95,100
 ```
 
+<<<<<<< HEAD
 İlk zamanlayıcılar anında çalışacaktır ( dökümantasyonda yazdığı gibi ) bundan dosnra gecikmeler oyuna dahil olur. `9, 15, 20, 24...`
+=======
+First timers run immediately (just as written in the spec), and then we see `9, 15, 20, 24...`. The 4+ ms obligatory delay between invocations comes into play.
+
+The similar thing happens if we use `setInterval` instead of `setTimeout`: `setInterval(f)` runs `f` few times with zero-delay, and afterwards with 4+ ms delay.
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 Bu limitasyonların nedeni de yine eski zamanlara dayanmaktadır. Çoğu kod bu prensibe göre çalıştığından dolayı bu kurallar devam etmektedir.
 
+<<<<<<< HEAD
 Sunucu tabanlı JavaScript için ise bu kısıtlama geçerli değildir. Ayrıca anlık olarak asenkronron işlerin zamanlaması amacıyla başka yollar da bulunmaktadır. Örneğin [process.nextTick](https://nodejs.org/api/process.html) ve [setImmediate](https://nodejs.org/api/timers.html) gibi. Yani buradaki kısıtlamanın tarayıcı bazlı olduğu sonucunu çıkarabilirsiniz.
 ````
 
@@ -459,6 +479,18 @@ Artık `<div>` `i` nin yükselen değerini gösterecektir.
 `setTimeout(...,0)`'ın bazı kullanım durumları:
 - CPU-aç görevleri parçalara ayırmak için, böylece kod sürekli tepki verebilir.
 - Böylece görev devam ederken tarayıcının başka işlere ( ilerleme çubuğu ) zaman ayırır.
+=======
+For server-side JavaScript, that limitation does not exist, and there exist other ways to schedule an immediate asynchronous job, like [setImmediate](https://nodejs.org/api/timers.html) for Node.js. So this note is browser-specific.
+````
+
+## Summary
+
+- Methods `setInterval(func, delay, ...args)` and `setTimeout(func, delay, ...args)` allow to run the `func` regularly/once after `delay` milliseconds.
+- To cancel the execution, we should call `clearInterval/clearTimeout` with the value returned by `setInterval/setTimeout`.
+- Nested `setTimeout` calls is a more flexible alternative to `setInterval`. Also they can guarantee the minimal time *between* the executions.
+- Zero delay scheduling with `setTimeout(func, 0)` (the same as `setTimeout(func)`) is used to schedule the call "as soon as possible, but after the current code is complete".
+- The browsere ensures that for five or more nested call of `setTimeout`, or for zero-delay `setInterval`, the real delay between calls is at least 4ms. That's for historical reasons.
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 Tüm zamanlama metodları tam olarak gecikmeyi *garantilemez*. Zamanlayıcıda bu varsayımın üzerine birşey inşa etmeyin.
 
@@ -467,4 +499,8 @@ Tüm zamanlama metodları tam olarak gecikmeyi *garantilemez*. Zamanlayıcıda b
 - Tarayıcının tab'ı arka plana alındıysa.
 - Laptop batarya ile çalışıyorsa.
 
+<<<<<<< HEAD
 Bunların hepsi tarayıcı zamanına etki eder. Aralardaki gecikme 300ms ile 1000ms arasında değişebilir. Tabi tarayıcı ve özellikleri de bu konuda etkin rol oynar.
+=======
+All that may increase the minimal timer resolution (the minimal delay) to 300ms or even 1000ms depending on the browser and OS-level performance settings.
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af

@@ -202,12 +202,17 @@ Yazım: Kodda neyin ne olduğunu görme.
 
 Daha ince bir değişiklik ise fonksiyonun JavaScript motorunda ne zaman yaratılacağıdır.
 
+<<<<<<< HEAD
 **Fonksiyon ifadesi kod çalışırken fonksiyona geldikten sonra kullılır**
+=======
+**A Function Expression is created when the execution reaches it and is usable only from that moment.**
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 Çalışma atamanın sağ tarafaını geçince `let sum = function...`, bu noktadan sonra fonksiyon artık yaratıldı. Bundan böyle çağırılabilir veya başka bir değişkene atanabilir.
 
 Fonksiyon tanımlama ise farklıdır.
 
+<<<<<<< HEAD
 **Fonksiyon tanımlama tüm kod bloğu içerisinde kullanılabilir**
 
 Diğer bir deyişle, JavaScript kod bloğunu çalıştırmaya *hazırlandığında*, önce fonksiyon tanımlamalarına bakar ve fonksiyonları yaratır. Bunu bir "başlatma evresi* olarak görmek mümkündür.
@@ -215,6 +220,16 @@ Diğer bir deyişle, JavaScript kod bloğunu çalıştırmaya *hazırlandığın
 Tüm Fonksiyon tanımlamaları tamamlandıktan sonra çalışmaya devam eder.
 
 Sonuç olarak, fonksiyon tanımı ile bu tanımdan önce çağırılabilir.
+=======
+**A Function Declaration can be called earlier than it is defined.**
+
+For example, a global Function Declaration is visible in the whole script, no matter where it is.
+
+That's due to internal algorithms. When JavaScript prepares to run the script, it first looks for global Function Declarations in it and creates the functions. We can think of it as an "initialization stage".
+
+And after all Function Declarations are processed, the code is executed. So it has access to these functions.
+
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 Örnek verecek olursak:
 
@@ -232,6 +247,10 @@ Fonksiyon Tanımı olan `selamVer` JavaScript'in hazırlanma evresinde tanımlan
 
 Eğer bu bir Fonksiyon tanımı olsaydı, çalışmazdı.
 
+<<<<<<< HEAD
+=======
+...If it were a Function Expression, then it wouldn't work:
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 ```js run refresh untrusted
 *!*
@@ -244,13 +263,23 @@ let selamVer = function(adi) {  // (*) büyü ortadan kalktı
 ```
 Fonksiyon tanımı kendisine ulaştığında çalışır. Yani `(*)`'gelmeden tanımlanmış olmalıydı ki `selamVer("Ahmet")` çalışabilsin.
 
+<<<<<<< HEAD
 **Fonksiyon tanımı eğer kod bloğunun içerisinde tanımlanırsa o bloğun içerisinde her yerde kullanılabilir. Fakat dışarıda kullanılamaz.**
 
 Bazen sadece blok içinde o blokta kullanılacak yerel bir fonksiyon yaratmak daha kolay gelebilir. Fakat bu özellik problem yaratabilir.
+=======
+Function Expressions are created when the execution reaches them. That would happen only in the line `(*)`. Too late.
+
+**In strict mode, when a Function Declaration is within a code block, it's visible everywhere inside that block. But not outside of it.**
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 Örneğin, `hosgeldin()` fonksiyonunu `yas` değişkenine göre tanımlayalım. Böylece sonradan kullanılacak hale getirmiş oluruz.
 
+<<<<<<< HEAD
 Aşağıdaki kod çalışmayacaktır:
+=======
+If we use Function Declaration, it won't work as intended:
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 ```js run
 let yas = prompt("Kaç yaşındasın?", 18);
@@ -353,11 +382,21 @@ merhaba(); // artık çalışır.
 ```
 
 
+<<<<<<< HEAD
 ```smart header="Ne zaman Fonksiyon Tanımı, ne zaman Fonksiyon İfadesi kullanılmalıdır?"
 
 Öncelikle eğer fonksiyon tanımlamak istiyorsanız Fonksiyon Tanımı yazımını düşünmeniz gerekmekte. Kodunuzu düzenlemeniz için size özgürlük sağlar. Çünkü fonksiyon tanımından önce fonksiyonu çağırmak mümkündür.
 
 Ayrıca fonksiyon içerisinde `function f(...){}` ile araştırmak `let f= function(....){..}`e göre daha kolaydır. Fonksiyon Tanımı daha fazla göze batar.
+=======
+```smart header="When to choose Function Declaration versus Function Expression?"
+As a rule of thumb, when we need to declare a function, the first to consider is Function Declaration syntax. It gives more freedom in how to organize our code, because we can call such functions before they are declared.
+
+That's also better for readability, as it's easier to look up `function f(…) {…}` in the code than `let f = function(…) {…}`. Function Declarations are more "eye-catching".
+
+...But if a Function Declaration does not suit us for some reason, or we need a conditional declaration (we've just seen an example), then Function Expression should be used.
+```
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 Fakat eğer Fonksiyon Tanımı işimize yaramaz ise(yukarıda örnğin Fonksiyon ifadesini kullandık), bu durumda Fonksiyon İfadesi yöntemi kullanılmalıdır.
 ```

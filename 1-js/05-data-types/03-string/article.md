@@ -78,13 +78,22 @@ Unicode örnekleri:
 
 ```js run
 alert( "\u00A9" ); // ©
+<<<<<<< HEAD
 alert( "\u{20331}" ); // 佫, Uzun bir çince hiyerograf (uzun unicode)
 alert( "\u{1F60D}"); // 😍, gülen yüz sembolü (uzun unicode)
+=======
+alert( "\u{20331}" ); // 佫, a rare Chinese hieroglyph (long unicode)
+alert( "\u{1F60D}" ); // 😍, a smiling face symbol (another long unicode)
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 ```
 
 Tüm özel karakterler her zaman `\` karakteri ile başlarlar. Karakterler normal akışında giderken başka bir iş yapması için var olan işlemi kesmesinden dolayı "kesme karakteri" denebilir..
 
+<<<<<<< HEAD
 Karakter dizisine ünlem işareti koyulmak istendiğinde yine bu kesme işareti kullanılır.
+=======
+We might also use it if we wanted to insert a quote into the string.
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 Örneğin:
 
@@ -93,7 +102,14 @@ alert( 'N\'aber canım - Tavşan !' ); // N'aber canım - Tavşan !
 ```
 Gördüğünüz gibi `\'` kullanarak karakter dizisinin bitmesi engellendi.
 
+<<<<<<< HEAD
 Tabi bu sadece başlangıç karakteri `'` ise geçerli. Daha düzgün bir çözüm çift tırnak kullanmak olacaktır:
+=======
+As you can see, we have to prepend the inner quote by the backslash `\'`, because otherwise it would indicate the string end.
+
+Of course, that refers only to the quotes that are the same as the enclosing ones. So, as a more elegant solution, we could switch to double quotes or backticks instead:
+
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 ```js run
 alert( "N'aber canım - Tavşan!" ); // N'aber canım - Tavşan!
 ```
@@ -287,9 +303,15 @@ if (str.indexOf("Bin") != -1) {
 }
 ```
 
+<<<<<<< HEAD
 ````smart header="Bitwise NOT cambazlığı"
 Burada kullanılan [bitwise NOT] cambazlığıdır.
 (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT) `~` operatörü. Sayıyı 32-bit tamsayıya çevirir.(Eğer ondalık bölümü varsa bunu siler. Tüm bitlerin binary(ikili) gösterimlerini tersine çevirir.
+=======
+#### The bitwise NOT trick
+
+One of the old tricks used here is the [bitwise NOT](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators#Bitwise_NOT) `~` operator. It converts the number to a 32-bit integer (removes the decimal part if exists) and then reverses all bits in its binary representation.
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 32-bit tam sayılar için `~n` tam olarak `-(n+1)`(IEEE-754 formatına göre) demektir.
 
@@ -305,7 +327,13 @@ alert( ~-1 ); // 0,  -(-1+1) demektir.
 ```
 Gördüğünüz üzere, `~n`, sadece `n == -1` olduğu durumda `0` demektir.
 
+<<<<<<< HEAD
 Bundan dolayı `if( ~str.indexOf("...") )` anca `indexOf` `-1` değilse `true` olur. Diğer bir deyişle arandan değer bulunmuş demektir.
+=======
+As we can see, `~n` is zero only if `n == -1` (that's for any 32-bit signed integer `n`).
+
+So, the test `if ( ~str.indexOf("...") )` is truthy only if the result of `indexOf` is not `-1`. In other words, when there is a match.
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 Daha kısa bir `indexOf` kullanımı da mevcuttur:
 
@@ -318,8 +346,18 @@ if (~str.indexOf("Bin")) {
 ```
 Genelde çok açık olmayan dil özellikleri üzerinde cambazlık yapılması önerilmez. Fakat özellikle bu kod parçacığı eski kodların içinde çokça geçmektedir. Bundan dolayı en azından anlamalısınız.
 
+<<<<<<< HEAD
 Hatırlatma: `if (~str.indexOf(...))`  "eğer bulunursa" diye okunur..
 ````
+=======
+It is usually not recommended to use language features in a non-obvious way, but this particular trick is widely used in old code, so we should understand it.
+
+Just remember: `if (~str.indexOf(...))` reads as "if found".
+
+Technically speaking, numbers are truncated to 32 bits by `~` operator, so there exist other big numbers that give `0`, the smallest is `~4294967295=0`. That makes such check is correct only if a string is not that long.
+
+Right now we can see this trick only in the old code, as modern JavaScript provides `.includes` method (see below).
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 ### includes, startsWith, endsWith
 
@@ -534,7 +572,11 @@ Eğer bu konuda bir ihtiyacınız yoksa bu bölümü atlayabilirsiniz.
 
 ### Vekil Çiftler
 
+<<<<<<< HEAD
 Çoğu sembol 2-byte kod ile tanımlanır. Çoğu avrupa dili, sayılar ve çoğu hiyeroglifler iki byte ile tanımlanabilir.
+=======
+All frequently used characters have 2-byte codes. Letters in most european languages, numbers, and even most hieroglyphs, have a 2-byte representation.
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 Fakat iki byte 65536 sembolü tanımlayabilir ve tüm semboller için bu yeterli değildir. Bundan dolayı nadir semboller bir çift 2-byte'lık karakter ile tanımlanır. Buna vekil çiftler veya "surrogate pair" adı verilir.
 
@@ -544,7 +586,7 @@ Böyle sembollerin uzunluğu `2`'dir:
 ```js run
 alert( '𝒳'.length ); // 2, MATHEMATICAL SCRIPT CAPITAL X
 alert( '😂'.length ); // 2, FACE WITH TEARS OF JOY
-alert( '𩷶'.length ); // 2, a rare chinese hieroglyph
+alert( '𩷶'.length ); // 2, a rare Chinese hieroglyph
 ```
 Bu vekil çiftler JavaScript yaratıldığında meydanda yoktu, bundan dolayı dil tarafından doğru olarak işlenemez.
 
@@ -600,8 +642,13 @@ Böylece çok farklı karakterler elde etmek mümkündür, fakat bu bir probleme
 Örneğin:
 
 ```js run
+<<<<<<< HEAD
 alert( 'S\u0307\u0323' ); // Ṩ, S + üst nokta + alt nokta
 alert( 'S\u0323\u0307' ); // Ṩ, S + alt nokta + üst nokta 
+=======
+alert( 'S\u0307\u0323' ); // Ṩ, S + dot above + dot below
+alert( 'S\u0323\u0307' ); // Ṩ, S + dot below + dot above
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 alert( 'S\u0307\u0323' == 'S\u0323\u0307' ); // false
 ```
@@ -620,7 +667,11 @@ alert( "S\u0307\u0323".normalize().length ); // 1
 alert( "S\u0307\u0323".normalize() == "\u1e68" ); // true
 ```
 
+<<<<<<< HEAD
 Gerçekte bu durumla çok nadir karşılaşılır. Bu karakter bile `Ṩ` oldukça "yaygın" olduğundan, UTF-16 standart tablosu içerisinde yer almaktadır.
+=======
+In reality, this is not always the case. The reason being that the symbol `Ṩ` is "common enough", so UTF-16 creators included it in the main table and gave it the code.
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 
 Eğer normalizasyon kurallarını ve tiplerini daha derinlemesine öğrenmek istiyorsanız [Unicode Normalization Forms](http://www.unicode.org/reports/tr15/) adresinden inceleyebilirsiniz. Pratikte yukarıda verilen bilgiler yeterli olacaktır.

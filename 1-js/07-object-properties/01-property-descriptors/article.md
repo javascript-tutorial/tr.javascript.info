@@ -118,7 +118,17 @@ user.name = "Pete"; // Error: Salt okunur özelliğe değer atanamaz.
 ```
 Artık kimse kendi `defineProperty` metodunu yazmadıkça kullanıcının ismini değiştiremez. 
 
+<<<<<<< HEAD
 Aynı işlem bir `özellik` olmadığı durumda:
+=======
+Now no one can change the name of our user, unless they apply their own `defineProperty` to override ours.
+
+```smart header="Errors appear only in use strict"
+In the non-strict mode, no errors occur when writing to read-only properties and such. But the operation still won't succeed. Flag-violating actions are just silently ignored in non-strict.
+```
+
+Here's the same operation, but for the case when a property doesn't exist:
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 ```js run
 let user = { };
@@ -231,10 +241,13 @@ Object.defineProperty(user, "name", {writable: true}); // Error
 */!*
 ```
 
+<<<<<<< HEAD
 ```smart header="Hatalar sadece use strict ile görünür."
 Sıkı olmayan modda, sadece okunabilir özelliklerin üzerine yazarsanız bir hata görmezsiniz. Fakat yine de işleminiz başarılı olmaz. Yapmamanız gereken bir aksiyonda sadece görmezden gelinir.
 ```
 
+=======
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 ## Object.defineProperties
 
 [Object.defineProperties(obj, descriptors)](mdn:js/Object/defineProperties) metodu birçok metodun tek bir seferde tanımlanmasını sağlar. 

@@ -342,9 +342,16 @@ Bu ok fonksiyonlarının bir özelliğidir. Ayrı bir `this` kullanmak yerine he
 - Metodlar objelerin `obje.biseylerYap()` seklinde çalışabilmesini sağlar.
 - Metodlar objelere `this` şekline referans verebilir.
 
+<<<<<<< HEAD
 `this`'in değeri çalışma zamanında tanımlanır.
 - Fonksiyon tanımlanırken `this` kullanabilir, fakat `this` bu metod çalışmadığı müddetçe bir anlam ifade etmez.
 - O fonksiyon objeler arasında kopyalanabilir.
 - Fonksiyon metod yazım şekliyle çağırıldığında `obje.metod()`, `this`'in değeri bu çağrı boyunca `obje`'dir.
+=======
+The value of `this` is defined at run-time.
+- When a function is declared, it may use `this`, but that `this` has no value until the function is called.
+- A function can be copied between objects.
+- When a function is called in the "method" syntax: `object.method()`, the value of `this` during the call is `object`.
+>>>>>>> b300836f00536a5eb9a716ad2cbb6b8fe97c25af
 
 Ok fonksiyonlarında `this` bulunmamaktadır. Eğer bu fonksiyonlar içerisinde `this` çağırılırsa bunun değeri dışarıdan alınır.

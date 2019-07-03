@@ -7,7 +7,7 @@ importance: 4
 
 Örneğin, eğer bu gün 20'si ise, `kacGunOnce(new Date(),1)` size 19 döndürmeli. Yine `kacGunOnce(new Date(),2)` size 18 döndermeli.
 
-Should also work over months/years reliably:
+Should work reliably for `days=365` or more:
 
 ```js
 let tarih = new Date(2015, 0, 2);
