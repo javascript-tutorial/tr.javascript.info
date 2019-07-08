@@ -49,7 +49,11 @@ alert( arr instanceof Object ); // true
 
 Dikkat edin `arr` ayrıca `Object` sınıfına da aittir. Çünkü `Array` prototipi `Object`'ten kalıtım alır.
 
+<<<<<<< HEAD
 `instanceof` operatörü prototip zincirini kontrol eder. `Symbol.hasInstance` statik metodu ile daha performanslı yapılabilir.
+=======
+The `instanceof` operator examines the prototype chain for the check, but we can set a custom logic in the static method `Symbol.hasInstance`.
+>>>>>>> 5e9eca374f644ea85c7d548bbe344fd30e5fb89d
 
 `obj instanceof Class` algoritması kabaca aşağıdaki gibi çalışır:
 
