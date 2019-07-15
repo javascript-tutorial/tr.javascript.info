@@ -289,7 +289,11 @@ Harici modüllerin iki belirgin farkı vardır:
     <script type="module" src="my.js"></script>
     ```
 
+<<<<<<< HEAD
 2. Farklı bir alan adından ulaşılan harici programlar [CORS](mdn:Web/HTTP/CORS) üstbilgisini gerektirir. Başka bir deyişle, eğer modüle başka bir alan adından ulaşılıyorsa, bu erişime izin verildiğini belirtmek açısından uzak sunucu bir `Access-Control-Allow-Origin: *` üstbilgisini sağlamalıdır (`*` yerine ulaşılan alan adının ismi kullanılabilir).
+=======
+2. External scripts that are fetched from another origin (e.g. another site) require [CORS](mdn:Web/HTTP/CORS) headers, as described in the chapter <info:fetch-crossorigin>. In other words, if a module script is fetched from another origin, the remote server must supply a header `Access-Control-Allow-Origin: *` (may use site domain instead of `*`) to indicate that the fetch is allowed.
+>>>>>>> be342e50e3a3140014b508437afd940cd0439ab7
     ```html
     <!-- another-site.com Access-Control-Allow-Origin sağlamalıdır-->
     <!-- aksi halde, program çalışmayacaktır -->

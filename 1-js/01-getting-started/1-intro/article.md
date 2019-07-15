@@ -106,7 +106,11 @@ Bundan dolayı yakın zamanda bir sürü yeni *transpiled* yani çevirilmiş dil
 
 Bu dillere örnek vermek gerekirse:
 
+<<<<<<< HEAD
 - [CofeeScript](http://coffeescript.org) JavaScript için "şeker yazım" denebilecek bir dildir. Yazılımı daha kısadır ve daha temiz kod yazmaya yardımcı olur. Genellikle [Ruby](https://www.ruby-lang.org/tr/) geliştiriciler bunu sever.
+=======
+Examples of such languages:
+>>>>>>> be342e50e3a3140014b508437afd940cd0439ab7
 
 - [Typescript](http://www.typescriptlang.org/) durağan veri yapıları ile JavaScript yazılmasını sağlar. Karmaşık programlar geliştirmeyi kolaylaştırır. Microsoft tarafından geliştirilmiştir.
 

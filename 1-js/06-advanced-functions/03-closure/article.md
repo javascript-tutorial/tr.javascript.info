@@ -581,8 +581,13 @@ Sözcüksel Ortam objeleri aynı normal değerler gibi hafıza yönetimine konu 
 
       function g() { alert(value); }
 
+<<<<<<< HEAD
       return g;
     }
+=======
+let g = f(); // while g is alive
+// their corresponding Lexical Environment lives
+>>>>>>> be342e50e3a3140014b508437afd940cd0439ab7
 
     let g = f(); // g canlı olursa
     ona karşılık gelen Sözcüksel Ortam'da hayatta kalır.

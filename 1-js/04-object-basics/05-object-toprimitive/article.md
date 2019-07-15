@@ -4,7 +4,11 @@ Objeler `obj1 + obj2` gibi toplanırsa, `obj1 - obj2` gibi çıkarılırsa veya 
 
 Objeler içerisinde bu çevirimi yapan özel metodlar bulunmaktadır.
 
+<<<<<<< HEAD
 <info:type-conversions> bölümünde sayısal, karakter ve boolean çevrimleri gösterildi. Fakat objeler için daha sonra değilineceği söylendi. Şimdi objeler ve semboller hakkında bilginiz olduğuna göre bunu anlaması daha da kolay olacaktır.
+=======
+In that case, objects are auto-converted to primitives, and then the operation is carried out.
+>>>>>>> be342e50e3a3140014b508437afd940cd0439ab7
 
 [cut]
 Objeler için boolean çevirimi bulunmamaktadır çünkü tüm objeler boolean dahilinde `true`'dur. Bundan dolayı sadece sayısal ve karakter çevrimleri mevcuttur.
@@ -141,8 +145,12 @@ alert(+kullanici); // valueOf -> 1000
 alert(kullanici + 500); // valueOf -> 1500
 ```
 
+<<<<<<< HEAD
 Genelde tek bir "hepsini yakala" metodu ile tüm çeviriler yapılmak istenir. Bu durumda `toString` metodu kullanılabilir:
 
+=======
+Often we want a single "catch-all" place to handle all primitive conversions. In this case, we can implement `toString` only, like this:
+>>>>>>> be342e50e3a3140014b508437afd940cd0439ab7
 
 ```js run
 let kullanici = {

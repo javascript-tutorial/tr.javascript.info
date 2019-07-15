@@ -5,7 +5,11 @@ Genelde  yorum satırları kodun nasıl ve niçin çalıştığını anlatmak i�
 
 İlk görüşte yorum yapmanın gereklilik olduğu aşikardır. Fakat programlama yeni başlayanlayanlar bunu ilk önce genelde yanlış anlamaktadırlar.
 
+<<<<<<< HEAD
 ## Kötü Yorum
+=======
+At first sight, commenting might be obvious, but novices in programming usually get it wrong.
+>>>>>>> be342e50e3a3140014b508437afd940cd0439ab7
 
 Programlamaya yeni başlayanlar yorumları genelde "kodda ne oluyor"'u anlatmak için kullanırlar. Örneğin:
 
@@ -17,9 +21,13 @@ karmaşık;
 kod;
 ```
 
+<<<<<<< HEAD
 Fakat iyi kod aslında kendi kendini açıklayan koddur. Yorum satırlarının olabildiğince az olması beklenir. Gerçekten, kod yorum satırı olmadan da kolayca anlaşılabilir olmalı.
 
 Bunun için harika bir kural var: "Eğer bir kod yorum yapmayı gerektirecek kadar karmaşıksa, kodu tekrar yazmanızda yarar var"
+=======
+But in good code, the amount of such "explanatory" comments should be minimal. Seriously, the code should be easy to understand without them.
+>>>>>>> be342e50e3a3140014b508437afd940cd0439ab7
 
 ### Çözüm: Fonksiyonları dışarıya atın.
 

@@ -3,17 +3,29 @@
 
 Bu kitap aslında bir *eğitim süreci*'dir. Amacı size kademeli olarak JavaScript öğrenmenizi sağlamaktır. Önce temellere alıştıktan sonra diğer kaynaklar üzerinde durulacaktır.
 
+<<<<<<< HEAD
 ## Şartname
 
 **ECMA-262 şartnamesi** JavaScript için olabilecek en derin bilgilerin bulunduğu kaynaktır. Dili tanımlar.
+=======
+## Specification
+>>>>>>> be342e50e3a3140014b508437afd940cd0439ab7
 
 Fakat formal bir dil kullanıldığından dolayı ilk seferde anlaması zordur. Eğer en güvenilir kaynak neredir diye soracak olursanız bunun cevabı **ECMA-262 Şarnamesi**'dir. Fakat her an gidip kolayca bilgi alabileceğiniz bir kaynak değildir.
 
+<<<<<<< HEAD
 Son taslağına <https://tc39.es/ecma262/> adresinden erişebilirsiniz.
+=======
+But being that formalized, it's difficult to understand at first. So if you need the most trustworthy source of information about the language details, the specification is the right place. But it's not for everyday use.
+>>>>>>> be342e50e3a3140014b508437afd940cd0439ab7
 
 Daha geniş kitleler tarafından kullanılmayan yeni özelliklere ve önerilere <https://github.com/tc39/proposals> adresinden erişebilirsiniz.
 
+<<<<<<< HEAD
 Ayrıca, tarayıcı için geliştirme yapıyorsanız, ikinci [second part](info:browser-environment) bölümünden farklı eğitimlere bakabilirsiniz.
+=======
+To read about new bleeding-edge features, that are "almost standard", see proposals at <https://github.com/tc39/proposals>.
+>>>>>>> be342e50e3a3140014b508437afd940cd0439ab7
 
 ## Kılavuz
 - **MDN (Mozilla) JavaScript Reference** örnek ve kılavuzların yeraldığı bir diğer kaynaktır. İstediğiniz konular derinlemesine incelemek için harika bir kaynaktır.
