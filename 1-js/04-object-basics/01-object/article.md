@@ -50,9 +50,15 @@ Bu klasörleri istediğimiz zaman okuyabilir, yazabilir ve silebiliriz.
 Özellik değerlerine `.` yazımı ile ulaşılabilir.
 
 ```js
+<<<<<<< HEAD
 // objenin özellikleri:
 alert( kullanici.isim ); // Mahsun
 alert( kullanici.yas ); // 30
+=======
+// get property values of the object:
+alert( user.name ); // John
+alert( user.age ); // 30
+>>>>>>> 4a8d8987dfc3256045e6b4a3bd8810ad3b25d1b3
 ```
 Değer her tipten olabilir. Boolean değeri aşağıdaki gibi eklenebilir :
 
@@ -105,7 +111,13 @@ kullanici.Nemrudun Kızı = true
 ```
 Çünkü `.` aslında bir değişken ismi beklemektedir. Değişken tanımlarken boşluk ve başka sınırlamalar aynen `.` yazımı için de geçerlidir.
 
+<<<<<<< HEAD
 Bunun yerine köşeli parantez yazımı ile bunu çözebilirsiniz:
+=======
+That's because the dot requires the key to be a valid variable identifier. That is: no spaces and other limitations.
+
+There's an alternative "square bracket notation" that works with any string:
+>>>>>>> 4a8d8987dfc3256045e6b4a3bd8810ad3b25d1b3
 
 ```js run
 let kullanici = {};
@@ -132,7 +144,13 @@ kullanici[anahtar] = true;
 ```
 Burada `anahtar` çalışma anında veya kullanıcının gireceği değere göre atanır. Sonrasında istenen özelliğe erişmek için kullanılabilir. Nokta yazımı köşeli parantez kadar etkin değildir. Köşeli parantez esneklik sağlar.
 
+<<<<<<< HEAD
 Örneğin:
+=======
+Here, the variable `key` may be calculated at run-time or depend on the user input. And then we use it to access the property. That gives us a great deal of flexibility.
+
+For instance:
+>>>>>>> 4a8d8987dfc3256045e6b4a3bd8810ad3b25d1b3
 
 ```js run
 let kullanici = {
@@ -146,6 +164,17 @@ let anahtar = prompt("Kullanıcı hakkında ne bilmek istiyorsun?", "isim");
 alert( kullanici[key] ); // Mahsun (eğer "isim" girerse )
 ```
 
+The dot notation cannot be used in a similar way:
+
+```js run
+let user = {
+  name: "John",
+  age: 30
+};
+
+let key = "name";
+user.key // undefined
+```
 
 ### Hesaplanmış Özellikler
 
@@ -222,9 +251,17 @@ Bundan dolayı eğer kullanıcıya `anahtar` tanımlattırılırsa bu aslında h
 
 Böyle bir durumda kullanıcı "__proto__" seçerse tüm mantık yukarıdaki gibi çalışmaz hale gelir.
 
+<<<<<<< HEAD
 `__proto__`'yu normal özellik olarak tanıtma yöntemi de bulunmaktadır, bunu ilerleyen zamanlarda işlenecektir. 
 
 Farklı bir veri yapısı daha vardır  [Map](info:map-set-weakmap-weakset). Bu <info:map-set-weakmap-weakset> bölümünden incelenebilir, ki bu her türlü anahtarı kabul eder.
+=======
+In that case the visitor may choose `__proto__` as the key, and the assignment logic will be ruined (as shown above).
+
+There is a way to make objects treat `__proto__` as a regular property, which we'll cover later, but first we need to know more about objects.
+
+There's also another data structure [Map](info:map-set-weakmap-weakset), that we'll learn in the chapter <info:map-set-weakmap-weakset>, which supports arbitrary keys.
+>>>>>>> 4a8d8987dfc3256045e6b4a3bd8810ad3b25d1b3
 ````
 
 

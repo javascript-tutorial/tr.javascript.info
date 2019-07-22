@@ -106,7 +106,11 @@ Artık gerçek olaylar için mixin yapabiliriz.
 
 Çoğu objenin en önemli özelliği olaylar(event) çalışabilmesidir.
 
+<<<<<<< HEAD
 Bir obje önemli bir olay olduğunda "olay" yaratacak metoda sahip olmalıdır. Diğer objeler ise böyle bir olayı "dinlemeli"'dir.
+=======
+An important feature of many browser objects (for instance) is that they can generate events. Events is a great way to "broadcast information" to anyone who wants it. So let's make a mixin that allows to easily add event-related functions to any class/object.
+>>>>>>> 4a8d8987dfc3256045e6b4a3bd8810ad3b25d1b3
 
 Bir olay isme sahip olmalıdır, bunun ile birlikte ek verileri de barındırabilir.
 

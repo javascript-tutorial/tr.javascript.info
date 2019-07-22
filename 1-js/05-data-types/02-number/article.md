@@ -12,7 +12,13 @@ Diyelim ki 1 milyar yazmak istiyorsunuz. Şu şekilde:
 let milyar = 1000000000;
 ```
 
+<<<<<<< HEAD
 Fakat gerçek hayatta bu kadar 0 yan yana yazdığınızda karışma şansı olduğundan bunun yerine `1milyar` veya `7.3milyar` gibi yazılabilmektedir. Aynı özellik JavaScript için de geçerli. Fakat bu defa sayıdaki 0 sayısı  `"e"` ile birlikte kullanılmalıdır: 
+=======
+But in real life, we usually avoid writing a long string of zeroes as it's easy to mistype. Also, we are lazy. We will usually write something like `"1bn"` for a billion or `"7.3bn"` for 7 billion 300 million. The same is true for most large numbers.
+
+In JavaScript, we shorten a number by appending the letter `"e"` to the number and specifying the zeroes count:
+>>>>>>> 4a8d8987dfc3256045e6b4a3bd8810ad3b25d1b3
 
 ```js run
 let milyar = 1e9;  // 1 milyar 1 ve 9 sıfırdan oluşmaktadır.

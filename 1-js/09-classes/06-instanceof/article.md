@@ -49,7 +49,11 @@ alert( arr instanceof Object ); // true
 
 Dikkat edin `arr` ayrıca `Object` sınıfına da aittir. Çünkü `Array` prototipi `Object`'ten kalıtım alır.
 
+<<<<<<< HEAD
 `instanceof` operatörü prototip zincirini kontrol eder. `Symbol.hasInstance` statik metodu ile daha performanslı yapılabilir.
+=======
+The `instanceof` operator examines the prototype chain for the check, but we can set a custom logic in the static method `Symbol.hasInstance`.
+>>>>>>> 4a8d8987dfc3256045e6b4a3bd8810ad3b25d1b3
 
 `obj instanceof Class` algoritması kabaca aşağıdaki gibi çalışır:
 
@@ -67,7 +71,11 @@ Dikkat edin `arr` ayrıca `Object` sınıfına da aittir. Çünkü `Array` proto
     alert(obj instanceof Animal); // true: Animal[Symbol.hasInstance](obj) çağırıldı.
     ```
 
+<<<<<<< HEAD
 2. Çoğu sınıf `Symbol.hasInstance`'a sahip değildir. Bu durumda eğer `Class.prototype` `obj`'nin bir prototipine zincirde olup olmadığını kontrol eder.
+=======
+2. Most classes do not have `Symbol.hasInstance`. In that case, the standard logic is used: `obj instanceOf Class` checks whether `Class.prototype` equals to one of prototypes in the `obj` prototype chain.
+>>>>>>> 4a8d8987dfc3256045e6b4a3bd8810ad3b25d1b3
 
     Diğer bir deyişle:
     ```js
