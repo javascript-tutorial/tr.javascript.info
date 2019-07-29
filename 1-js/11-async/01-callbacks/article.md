@@ -1,10 +1,10 @@
 
 
-# Introduction: callbacks
+# Callback fonksiyonlarına giriş
 
-Many actions in JavaScript are *asynchronous*.
+Çoğu JavaScript eylemleri *asenkron*'dur
 
-For instance, take a look at the function `loadScript(src)`:
+Aşağıdaki `loadScript(src)` fonksiyonuna bakacak olursanız:
 
 ```js
 function loadScript(src) {
@@ -13,41 +13,39 @@ function loadScript(src) {
   document.head.append(script);
 }
 ```
+Bu fonksiyonun amacı yeni kodu yüklemektir. `<script src="...">`'yi dökümana ekler ve çalıştırır.
 
-The purpose of the function is to load a new script. When it adds the `<script src="…">` to the document, the browser loads and executes it.
-
-We can use it like this:
+Aşağıdaki gibi kullanılabilir.
 
 ```js
-// loads and executes the script
+// kodu yükler ve çalıştırır.
 loadScript('/my/script.js');
 ```
+Bu fonksiyon "asenkron" olarak adlandırılır, çünkü işlerini hemen değil de daha sonra bitirir.
 
-The function is called "asynchronously," because the action (script loading) finishes not now, but later.
+Çağrı ile script yüklenmeye başlar ve sonrasında çalıştırılır. Yüklerken aşağıdaki kod çalışmayı bitirebilir ve eğer bu yükleme zaman alırsa aynı anda diğer kodlar da çalışabilir.
 
-The call initiates the script loading, then the execution continues. While the script is loading, the code below may finish executing, and if the loading takes time, other scripts may run meanwhile too.
 
 ```js
 loadScript('/my/script.js');
-// the code below loadScript doesn't wait for the script loading to finish
+// loadScript altındaki kodlar loadScript'in bitmesini beklemeden çalışmaktadır.
 // ...
 ```
 
-Now let's say we want to use the new script when it loads. It probably declares new functions, so we'd like to run them.
+Diyelimki kod yüklendikten sonra yeni kodu kullanmak istiyor olalım. Yeni fonksiyonlar yaratılmışsa bunları kullanacağımızı varsaylım.
 
-But if we do that immediately after the `loadScript(…)` call, that wouldn't work:
+Eğer bunu doğrudan `loadScript(…)` çağrısı sonrasına yaparsanız çalışmaz:
 
 ```js
-loadScript('/my/script.js'); // the script has "function newFunction() {…}"
+loadScript('/my/script.js'); //  "function newFunction() {…}" a sahip olduğunu varsayalım
 
 *!*
-newFunction(); // no such function!
+newFunction(); // böyle bir fonksiyon bulunmamaktadır.
 */!*
 ```
+Doğal olarak, tarayıcı kodu yükleyecek zaman bulamadı. Bundan dolayı doğrudan yeni fonksiyonu çağırdığında hata meydana geldi. Bundan sonra `loadScript` fonksiyonu yüklemenin ne durumda olduğunu bildiremez. Script en nihayetinde yüklenir ve sonrasında çalıştırılır, bu kadar. Fakat biz bunun ne zaman olduğunu bilmek istiyoruz. Yüklenen koddaki fonksiyonlar ve değişkenleri kullanmak istiyoruz.
 
-Naturally, the browser probably didn't have time to load the script. So the immediate call to the new function fails. As of now, the `loadScript` function doesn't provide a way to track the load completion. The script loads and eventually runs, that's all. But we'd like to know when it happens, to use new functions and variables from that script.
-
-Let's add a `callback` function as a second argument to `loadScript` that should execute when the script loads:
+`callback` fonksiyonunu ikinci bir parametre olarak `loadScript` e ekleyelim, bu kod yüklendiğinde çalışması lazım.
 
 ```js
 function loadScript(src, *!*callback*/!*) {
@@ -61,20 +59,18 @@ function loadScript(src, *!*callback*/!*) {
   document.head.append(script);
 }
 ```
-
-Now if we want to call new functions from the script, we should write that in the callback:
+Eğer kod içerisindeki bir fonksiyonu çağırmak istiyorsak, callback içerisine yazmalıyız:
 
 ```js
 loadScript('/my/script.js', function() {
-  // the callback runs after the script is loaded
-  newFunction(); // so now it works
+  // callback kod yüklendikten sonra çalışacaktır.
+  newFunction(); // artık çalışır.
   ...
 });
 ```
+Fikir: ikinci argüman bir fonksiyondur (genelde isimsiz ) ve eylem tamamlandıktan sonra çalışır.
 
-That's the idea: the second argument is a function (usually anonymous) that runs when the action is completed.
-
-Here's a runnable example with a real script:
+Aşağıda kodun çalıştırılabilir hali bulunmaktadır:
 
 ```js run
 function loadScript(src, callback) {
@@ -87,14 +83,13 @@ function loadScript(src, callback) {
 *!*
 loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', script => {
   alert(`Cool, the ${script.src} is loaded`);
-  alert( _ ); // function declared in the loaded script
+  alert( _ ); // yüklenmiş kodlar içerisinde bu fonksiyon tanımlı.
 });
 */!*
 ```
+Buna "callback-tabanlı" asenkron programlama tipi denir. Bir fonksiyon asenkron olarak bir iş yapıyorsa `callback`'i de sunmalıdır. Böylece bundan sonra neyin çalışacağına karar verebiliriz.
 
-That's called a "callback-based" style of asynchronous programming. A function that does something asynchronously should provide a `callback` argument where we put the function to run after it's complete.
-
-Here we did it in `loadScript`, but of course, it's a general approach.
+Burada `loadScript` için bunu yaptık, fakat bu genel bir yaklaşımdır.
 
 ## Callback in callback
 
