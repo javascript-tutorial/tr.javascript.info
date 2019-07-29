@@ -68,7 +68,11 @@ us(x, n) =
 
 Buna `us` *öz çağrı ile* kendisini `n==1` olana kadar çağırır diyebiliriz.
 
+<<<<<<< HEAD
 ![özçağrı diyagramı](recursion-pow.png)
+=======
+![recursive diagram of pow](recursion-pow.svg)
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 
 `us(2,4)`'ü hesaplayabilmek için *özçağrı* şu adımları gerçekleştirir:
@@ -385,7 +389,11 @@ Aşağıda ise bu çağrının diyagramı bulunmaktadır.
 
 ![Özçağrı ile maaşlar](recursive-salaries.png)
 
+<<<<<<< HEAD
 Prensip basitçe şu şekilde açıklanabilir: Obje için `{...}` altçağrıları yapılır, `[...]` ise özçağrı ağacının "yapraklarıdır", anında sonucu dönerler.
+=======
+![recursive salaries](recursive-salaries.svg)
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 Kodun akıllı özellikler kullandığına dikkat edin, bunlar daha önceki kolarda işlenmişti:
 
@@ -458,7 +466,7 @@ let list = {
 Bu listenin grafiksel gösterimi şu şekildedir:
 
 
-![linked list](linked-list.png)
+![linked list](linked-list.svg)
 
 Bu yapıyı yaratmanın alternatif yolu şu şekildedir:
 
@@ -477,7 +485,11 @@ let ikinciList = list.next.next;
 list.next.next = null;
 ```
 
+<<<<<<< HEAD
 ![linked list ayırma](linked-list-split.png)
+=======
+![linked list split](linked-list-split.svg)
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 Birleştirme:
 
@@ -500,7 +512,11 @@ list = { deger: "yeni eleman", sonraki: list };
 */!*
 ```
 
+<<<<<<< HEAD
 ![linked list](linked-list-0.png) 
+=======
+![linked list](linked-list-0.svg)
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 Yine ortalardan bir yerden veri silineceği zaman `sonraki`'nin bir öncekine getirilmesi gerekri.
 
@@ -508,7 +524,7 @@ Yine ortalardan bir yerden veri silineceği zaman `sonraki`'nin bir öncekine ge
 list.sonraki = list.sonraki.sonraki;
 ```
 
-![linked list](linked-list-remove-1.png)
+![linked list](linked-list-remove-1.svg)
 
 `list.sonraki`'nin değeri `1`'den `2`'ye geçirildi. `1` değeri artık zincirden çıkarıldı. Eğer bu değer başka bir yerde tutulmuyor ise, bu değer ileride otomatik olarak hafızadan silinecektir.
 

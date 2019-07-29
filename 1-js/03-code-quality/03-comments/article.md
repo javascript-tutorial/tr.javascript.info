@@ -5,7 +5,11 @@ Genelde  yorum satırları kodun nasıl ve niçin çalıştığını anlatmak i�
 
 İlk görüşte yorum yapmanın gereklilik olduğu aşikardır. Fakat programlama yeni başlayanlayanlar bunu ilk önce genelde yanlış anlamaktadırlar.
 
+<<<<<<< HEAD
 ## Kötü Yorum
+=======
+At first sight, commenting might be obvious, but novices in programming often use them wrongly.
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 Programlamaya yeni başlayanlar yorumları genelde "kodda ne oluyor"'u anlatmak için kullanırlar. Örneğin:
 
@@ -17,9 +21,13 @@ karmaşık;
 kod;
 ```
 
+<<<<<<< HEAD
 Fakat iyi kod aslında kendi kendini açıklayan koddur. Yorum satırlarının olabildiğince az olması beklenir. Gerçekten, kod yorum satırı olmadan da kolayca anlaşılabilir olmalı.
 
 Bunun için harika bir kural var: "Eğer bir kod yorum yapmayı gerektirecek kadar karmaşıksa, kodu tekrar yazmanızda yarar var"
+=======
+But in good code, the amount of such "explanatory" comments should be minimal. Seriously, the code should be easy to understand without them.
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 ### Çözüm: Fonksiyonları dışarıya atın.
 
@@ -116,11 +124,19 @@ Gerçekte neyin olup bittiğini söyleyen yorumu tamamen çıkarmak olanaksızd�
 
 Peki, fonksiyonun ne yaptığını anlatan yorumlar kötü ise, hangi yorumlar iyi?
 
+<<<<<<< HEAD
 Mimariyi tanımla
 : Üst seviyede bileşenlere genel bakış, nasıl birbirleriyle iletişim kurdukları, farklı durumlarda akışın nasıl değişeceği gibi konular anlatılmalıdır. Kusaca kuş bakışı kodun ne yaptığını anlatmalısınız. Bununla ilgili şema diline [UML](https://tr.wikipedia.org/wiki/UML) bakabilirsiniz. Kesinlikle üstünde çalışılmaya değer.
 
 Fonksiyon kullanımını dökümante etme
 : Fonksiyonu dökümante edebilmek için standart özel bir yazım vardır[JSDoc](http://tr.wikipedia.org/wiki/JSDoc). Fonksiyon: kullım, parametreler, dönen değer.
+=======
+Describe the architecture
+: Provide a high-level overview of components, how they interact, what's the control flow in various situations... In short -- the bird's eye view of the code. There's a special language [UML](http://wikipedia.org/wiki/Unified_Modeling_Language) to build high-level architecture diagrams explaining the code. Definitely worth studying.
+
+Document function parameters and usage
+: There's a special syntax [JSDoc](http://en.wikipedia.org/wiki/JSDoc) to document a function: usage, parameters, returned value.
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
     Örneğin:
     ```js

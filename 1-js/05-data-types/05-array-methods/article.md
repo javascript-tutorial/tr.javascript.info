@@ -516,7 +516,7 @@ Detaylarına bakılacak olursa:
 
 Hesaplama akışı:
 
-![](reduce.png)
+![](reduce.svg)
 
 Form tablosunda bunu daha açık bir şekilde görebilirsiniz. Satırlar fonksiyon çağrılarını göstermektedir.
 

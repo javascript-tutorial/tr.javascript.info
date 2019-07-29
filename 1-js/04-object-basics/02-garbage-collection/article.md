@@ -37,7 +37,7 @@ let kullanici = {
 };
 ```
 
-![](memory-user-john.png)
+![](memory-user-john.svg)
 
 Bu görselde ok obje referansını gösterir. Global değişken olan `"kullanici"` `{isim:"İhsan"}` objesinin referansına sahiptir. Bu objenin `"isim"` özelliği ilkel bir tip tutar. Doğal olarak obje dışına referans verilmemiştir.
 
@@ -47,7 +47,7 @@ Eğer `kullanici` değerinin üstüne yazılırsa, bu referans kaybolur.
 kullanici = null;
 ```
 
-![](memory-user-john-lost.png)
+![](memory-user-john-lost.svg)
 
 Şu anda `İhsan` ulaşılamaz oldu. Buna erişmenin bir yolu yok çünkü ona referans olan bir değişken yok. Bu durumda Çöp Toplama bunları hafızadan siler.
 
@@ -66,7 +66,7 @@ let yonetici = isim;
 */!*
 ```
 
-![](memory-user-john-admin.png)
+![](memory-user-john-admin.svg)
 
 Eğer bir önceki örneğin aynısı yapılırsa:
 ```js
@@ -99,7 +99,7 @@ let aile = evlilik({
 
 Son tahlilde hafıza haritası şu şekildedir:
 
-![](family.png)
+![](family.svg)
 
 Şu anda tüm objeler erişilebilir durumdadır.
 
@@ -110,19 +110,19 @@ delete aile.baba;
 delete aile.anne.bey;
 ```
 
-![](family-delete-refs.png)
+![](family-delete-refs.svg)
 
 Bu referanslardan yalnız birisi sildiğinizde tüm objeler hala erişilebilir durumdadır.
 
 Fakat ikisini birden silerseniz, İhsan'a erişilemez:
 
-![](family-no-father.png)
+![](family-no-father.svg)
 
 Dışarı giden referanslar önemli değildir. Sadece içeri gelenler o objeyi *ulaşılabilir* yapar. Öyleyse artık İhsan erişilemez ve hafızadan silinecektir. Ayrıca hiç bir verisine de erişilemez.
 
 Çöp toplmaa işleminden sonra:
 
-![](family-no-father-2.png)
+![](family-no-father-2.svg)
 
 ## Erişilemez Ada
 
@@ -135,7 +135,7 @@ aile = null;
 ```
 Hafızadaki görüntüsü şu şekilde olur:
 
-![](family-no-family.png)
+![](family-no-family.svg)
 
 Bu örnek erişilebilirliğin ne kadar önemli bir konsept olduğunu gösterir.
 
@@ -158,26 +158,26 @@ Aşağıdaki Çöp Toplama işlemleri düzenli olarak yapılır:
 Diyelimki obje yapısı aşağıdaki gibi olsun:
 
 
-![](garbage-collection-1.png)
+![](garbage-collection-1.svg)
 
 "Ulaşılamayan ada" sağ tarafta açıkça görülebilir. "mark-and-sweep" adım adım şu şekilde çalışır:
 
 İlk adım kökleri işaretlemek:
 
-![](garbage-collection-2.png)
+![](garbage-collection-2.svg)
 
 Sonra bunların referansları:
 
 
-![](garbage-collection-3.png)
+![](garbage-collection-3.svg)
 
 ...Sonra eğer mümkün ise referansların referansları:
 
-![](garbage-collection-4.png)
+![](garbage-collection-4.svg)
 
 Son adım olarak ziyaret edilmeyen objeler "ulaşılamaz" addedilip silinir:
 
-![](garbage-collection-5.png)
+![](garbage-collection-5.svg)
 
 JavaScript motoru bunu hızlıca çalıştırmak ve kodun çalışmasını etkilememek için bir çok optimizsyon yapar.
 

@@ -125,7 +125,11 @@ switch (a) {
     break;
 
 *!*
+<<<<<<< HEAD
   case 3:                    // (*) iki "case" gruplandı
+=======
+  case 3: // (*) grouped two cases
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
   case 5:
     alert('Yanlış!');
     alert("Neden matematik dersi almıyorsun?");

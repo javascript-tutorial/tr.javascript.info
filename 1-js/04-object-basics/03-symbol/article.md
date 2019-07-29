@@ -177,9 +177,13 @@ alert( obj[0] ); // test (aynı özellik)
 
 ## Global Semboller
 
+<<<<<<< HEAD
 Görüldüğü üzere semboller her zaman, isimleri aynı olsa bile, birbirinden farklıdır. Bazen durumlarda aynı isimdeki sembolün aynı anlama gelmesi istenebilir.
 
 Örneğin, uygulamnın bir yerinde `"id"` isminde bir sembol oluşturdunuz, başka bir yerinde ise aynı bu objeye erişmek istiyorsunuz.
+=======
+As we've seen, usually all symbols are different, even if they have the same name. But sometimes we want same-named symbols to be same entities. For instance, different parts of our application want to access symbol `"id"` meaning exactly the same property.
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 Bunu yapabilmek için *global sembol kaydı* kullanılabilir. Sembolleri bunun içinde yaratılabilir ve sonra kullanılabilir. Bu aynı isme sahip sembollerin aynı değeri döndereceğini garantiler.
 
@@ -215,22 +219,46 @@ Global semboller için `Symbol.for(anahtar)` sembolü ismiyle çağırır, bunun
 Örneğin:
 
 ```js run
+<<<<<<< HEAD
 let sym = Symbol.for("isim");
 let sym2 = Symbol.for("id");
 
 // sembolden ismi al
 alert( Symbol.keyFor(sym) ); // isim
+=======
+// get symbol by name
+let sym = Symbol.for("name");
+let sym2 = Symbol.for("id");
+
+// get name by symbol
+alert( Symbol.keyFor(sym) ); // name
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 alert( Symbol.keyFor(sym2) ); // id
 ```
 
 `Symbol.keyFor` sembol kayıt bölümünde bulunan sembolleri aramak için kullanılır. Bu da global olmayanlarda arama yapılamaz demektir. Eğer sembol global olarak tanımlanamaz ise `undefined` döndürür.
 
+<<<<<<< HEAD
 Örneğin:
 
 ```js run
 alert( Symbol.keyFor(Symbol.for("isim")) ); // isim, global sembol
 
 alert( Symbol.keyFor(Symbol("isim2")) ); // tanımsız, bu argüman sembol kayıtlarında bulunamadı.
+=======
+That said, any symbols have `description` property.
+
+For instance:
+
+```js run
+let globalSymbol = Symbol.for("name");
+let localSymbol = Symbol("name");
+
+alert( Symbol.keyFor(globalSymbol) ); // name, global symbol
+alert( Symbol.keyFor(localSymbol) ); // undefined, not global
+
+alert( localSymbol.description ); // name
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 ```
 
 ## System sembolleri
@@ -270,4 +298,8 @@ Sembollerin iki kullanım yeri vardır:
 2. JavaScript birçok sistem sembolüne sahiptir. Bunlara `Symbol.*` altından erişilebilir. Varolan davranışlar üzerinde değişiklik yapmak için kullanılır. Örneğin [iterables](inf:iterable) içinde `Symbol.iterator` kullanılmıştır, veya objeden ilkel tiplere çevrilirken `Symbol.toPrimitive` kullanılabilir. [object-to-primitive conversion](info:object-toprimitive)
 
 
+<<<<<<< HEAD
 Teknik olarak semboller %100 gizli değillerdir. [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) ile tüm semboller alınabilir. Ayrıca tüm sembolik anahtarları çevirmek için [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys)  fonksiyonu kullanılabilir. Gördüğünüz gibi aslında tam da gizli sayılmaz. Fakat yine de çoğu kütüphane bunları ortak bir anlaşma varmışçasına kullanmaktadır.
+=======
+Technically, symbols are not 100% hidden. There is a built-in method [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) that allows us to get all symbols. Also there is a method named [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) that returns *all* keys of an object including symbolic ones. So they are not really hidden. But most libraries, built-in functions and syntax constructs don't use these methods.
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74

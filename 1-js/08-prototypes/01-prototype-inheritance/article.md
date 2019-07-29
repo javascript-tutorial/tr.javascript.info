@@ -10,7 +10,11 @@ Programlarken genelde bir şeyi alır ve bunu genişletmek isteriz.
 
 Javascript objeleri gizli bir özellik olan `[[Prototype]]` özelliğine sahiptirler. Bu `null` olabilir veya başka objeye referans verebilir.  Referans verilen obje "prototip" olarak adlandırılır.
 
+<<<<<<< HEAD
 ![prototip](object-prototype-empty.png)
+=======
+![prototype](object-prototype-empty.svg)
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 `[[Prototip]]`'in "büyülü" bir anlamı bulunmaktadır. Objeden bir özellik okunmak istendiğinde, ve bu obje bulunamadığında JavaScript bunu otomatik olarak prototip'ten alır. Programlamada buna `prototip kalıtımı` denir. Birçok dil özelliği ve programlama tekniği bunun üzerine kuruludur.
 
@@ -60,7 +64,7 @@ alert( rabbit.jumps ); // true
 
 Sonrasında `alert` `rabbit.eats` `(**)`'i okur. Bu `rabbit`'te olmadığından JavaScript `[[Prototype]]`'ı takip eder ve bunu `animal`'in içerinde bulur.
 
-![](proto-animal-rabbit.png)
+![](proto-animal-rabbit.svg)
 
 Böylece "`animal`" `rabbit`'in prototip'i veya "`rabbit` prototipsel olarak `animal` kalıtımını almıştır" diyebiliriz.
 
@@ -91,8 +95,14 @@ rabbit.walk(); // Animal walk
 ```
 Metod prototipten otomatik olarak şu şekilde alınmıştır:
 
+<<<<<<< HEAD
 ![](proto-animal-rabbit-walk.png)
 Prototip zinciri daha da uzun olabilir:
+=======
+![](proto-animal-rabbit-walk.svg)
+
+The prototype chain can be longer:
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 
 ```js run
@@ -118,7 +128,7 @@ longEar.walk(); // Animal walk
 alert(longEar.jumps); // true (rabbit'ten gelmekte)
 ```
 
-![](proto-animal-rabbit-chain.png)
+![](proto-animal-rabbit-chain.svg)
 
 Aslında iki tane kısıtlama bulunmaktadır:
 
@@ -160,7 +170,7 @@ rabbit.walk(); // Rabbit! Bounce-bounce!
 ```
 Artık `rabbit.wal()` metodu doğrudan kendi içerisinde bulur ve çalıştırır. Prototip kullanmaz:
 
-![](proto-animal-rabbit-walk-2.png)
+![](proto-animal-rabbit-walk-2.svg)
 
 Alıcı/Ayarlayıcı için ise eğer özellik okunursa bu doğrudan prototipte okunur ve uyarılır.
 
@@ -235,9 +245,73 @@ alert(animal.isSleeping); // undefined (prototipte böyle bir özellik bulunmama
 ```
 Sonuç görseli:
 
-![](proto-animal-rabbit-walk-3.png)
+![](proto-animal-rabbit-walk-3.svg)
 
+<<<<<<< HEAD
 Eğer `bird`, `sname` gibi `animal`'dan miras alan objelere sahip olsaydık bunlar da `animal`'in metodlarına erişebilirlerdi. Fakat her metoddaki `this` bağlı bulunduğu objeye göre çalışırdı. Yani noktadan önceki metoda göre, `animal`'e göre değil. Bundan dolayı ne zaman `this`'e veri yazılsa o objelerin içerisine yazılır.
+=======
+If we had other objects like `bird`, `snake` etc inheriting from `animal`, they would also gain access to methods of `animal`. But `this` in each method would be the corresponding object, evaluated at the call-time (before dot), not `animal`. So when we write data into `this`, it is stored into these objects.
+
+As a result, methods are shared, but the object state is not.
+
+## for..in loop
+
+The `for..in` loops over inherited properties too.
+
+For instance:
+
+```js run
+let animal = {
+  eats: true
+};
+
+let rabbit = {
+  jumps: true,
+  __proto__: animal
+};
+
+*!*
+// Object.keys only return own keys
+alert(Object.keys(rabbit)); // jumps
+*/!*
+
+*!*
+// for..in loops over both own and inherited keys
+for(let prop in rabbit) alert(prop); // jumps, then eats
+*/!*
+```
+
+If that's not what we want, and we'd like to exclude inherited properties, there's a built-in method [obj.hasOwnProperty(key)](mdn:js/Object/hasOwnProperty): it returns `true` if `obj` has its own (not inherited) property named `key`.
+
+So we can filter out inherited properties (or do something else with them):
+
+```js run
+let animal = {
+  eats: true
+};
+
+let rabbit = {
+  jumps: true,
+  __proto__: animal
+};
+
+for(let prop in rabbit) {
+  let isOwn = rabbit.hasOwnProperty(prop);
+
+  if (isOwn) {
+    alert(`Our: ${prop}`); // Our: jumps
+  } else {
+    alert(`Inherited: ${prop}`); // Inherited: eats
+  }
+}
+```
+
+Here we have the following inheritance chain: `rabbit` inherits from `animal`, that inherits from `Object.prototype` (because `animal` is a literal object `{...}`, so it's by default), and then `null` above it:
+
+![](rabbit-animal-object.svg)
+
+Note, there's one funny thing. Where is the method `rabbit.hasOwnProperty` coming from? We did not define it. Looking at the chain we can see that the method is provided by `Object.prototype.hasOwnProperty`. In other words, it's inherited.
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 Sonuç olarak metodlar paylaşılsa bile objelerin durumları paylaşılmaz.
 

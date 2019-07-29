@@ -96,7 +96,7 @@ new User("Dude").sayHi(); // Hello Dude!
 
 Dikkat ederseniz `sayHiMixin` içinde `super.say() çağırıldığında o mixin'in prototipindeki metoduna bakar, sınıfın değil.
 
-![](mixin-inheritance.png)
+![](mixin-inheritance.svg)
 
 Çünkü `sayHiMixin` metodları `[[HomeObject]]`'e ayarlanmıştır. Bundan dolayı `super` aslında `User.__proto__` değil de `sayHiMixin.__proto__` anlamına gelir.
 
@@ -106,7 +106,11 @@ Artık gerçek olaylar için mixin yapabiliriz.
 
 Çoğu objenin en önemli özelliği olaylar(event) çalışabilmesidir.
 
+<<<<<<< HEAD
 Bir obje önemli bir olay olduğunda "olay" yaratacak metoda sahip olmalıdır. Diğer objeler ise böyle bir olayı "dinlemeli"'dir.
+=======
+An important feature of many browser objects (for instance) is that they can generate events. Events is a great way to "broadcast information" to anyone who wants it. So let's make a mixin that allows to easily add event-related functions to any class/object.
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 Bir olay isme sahip olmalıdır, bunun ile birlikte ek verileri de barındırabilir.
 

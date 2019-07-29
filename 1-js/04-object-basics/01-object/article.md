@@ -11,7 +11,7 @@ Obje `{...}` işareti ile yaratılabilir. Objenin kendine has *özellikleri* mev
 
 Obje bir dolap gibi düşünülebilir. Bu dolabın içindeki her klasörün bir ismi var ve bu isme göre içinde değerler mevcut. Bu `key`(anahtar) değerine göre dosyayı bulmak, eklemek ve silmek daha kolay olacaktır.
 
-![](object.png)
+![](object.svg)
 
 Boş obje ( boş dolap ) iki türlü oluşturulabilir.
 
@@ -20,7 +20,7 @@ let kullanici = new Object();
 let kullanici = {}; 
 ```
 
-![](object-user-empty.png)
+![](object-user-empty.svg)
 
 Genelde `{...}` kullanılmaktadır. Bu şekilde tanımlamaya **obje kelimesi**
 
@@ -43,16 +43,26 @@ let kullanici = {     // obje
 
 `kullanici` objesi bir dolap ve içinde "isim" ve "yaş" değerlerinin olduğu iki klasör olarak hayal edilebilir.
 
+<<<<<<< HEAD
 ![kullanici objesi](object-user.png)
+=======
+![user object](object-user.svg)
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 Bu klasörleri istediğimiz zaman okuyabilir, yazabilir ve silebiliriz.
 
 Özellik değerlerine `.` yazımı ile ulaşılabilir.
 
 ```js
+<<<<<<< HEAD
 // objenin özellikleri:
 alert( kullanici.isim ); // Mahsun
 alert( kullanici.yas ); // 30
+=======
+// get property values of the object:
+alert( user.name ); // John
+alert( user.age ); // 30
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 ```
 Değer her tipten olabilir. Boolean değeri aşağıdaki gibi eklenebilir :
 
@@ -60,7 +70,11 @@ Değer her tipten olabilir. Boolean değeri aşağıdaki gibi eklenebilir :
 kullanici.adminMi = true;
 ```
 
+<<<<<<< HEAD
 ![kullanici objesi 2](object-user-isadmin.png)
+=======
+![user object 2](object-user-isadmin.svg)
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 `delete` operatörü ile bir özellik silinebilir:
 
@@ -68,7 +82,11 @@ kullanici.adminMi = true;
 delete kullanici.yas;
 ```
 
+<<<<<<< HEAD
 ![kullanici objesi 3](object-user-delete.png)
+=======
+![user object 3](object-user-delete.svg)
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 Birkaç kelimeden oluşan özellik ismi yazabilirsiniz. Fakat bu durumda anahtar çift tırnak içine alınmalıdır:
 
@@ -80,7 +98,7 @@ let kullanici = {
 };
 ```
 
-![](object-user-props.png)
+![](object-user-props.svg)
 
 
 ````smart header="Virgül"
@@ -105,7 +123,13 @@ kullanici.Nemrudun Kızı = true
 ```
 Çünkü `.` aslında bir değişken ismi beklemektedir. Değişken tanımlarken boşluk ve başka sınırlamalar aynen `.` yazımı için de geçerlidir.
 
+<<<<<<< HEAD
 Bunun yerine köşeli parantez yazımı ile bunu çözebilirsiniz:
+=======
+That's because the dot requires the key to be a valid variable identifier. That is: no spaces and other limitations.
+
+There's an alternative "square bracket notation" that works with any string:
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 ```js run
 let kullanici = {};
@@ -132,7 +156,13 @@ kullanici[anahtar] = true;
 ```
 Burada `anahtar` çalışma anında veya kullanıcının gireceği değere göre atanır. Sonrasında istenen özelliğe erişmek için kullanılabilir. Nokta yazımı köşeli parantez kadar etkin değildir. Köşeli parantez esneklik sağlar.
 
+<<<<<<< HEAD
 Örneğin:
+=======
+Here, the variable `key` may be calculated at run-time or depend on the user input. And then we use it to access the property. That gives us a great deal of flexibility.
+
+For instance:
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 ```js run
 let kullanici = {
@@ -146,6 +176,17 @@ let anahtar = prompt("Kullanıcı hakkında ne bilmek istiyorsun?", "isim");
 alert( kullanici[key] ); // Mahsun (eğer "isim" girerse )
 ```
 
+The dot notation cannot be used in a similar way:
+
+```js run
+let user = {
+  name: "John",
+  age: 30
+};
+
+let key = "name";
+user.key // undefined
+```
 
 ### Hesaplanmış Özellikler
 
@@ -222,9 +263,17 @@ Bundan dolayı eğer kullanıcıya `anahtar` tanımlattırılırsa bu aslında h
 
 Böyle bir durumda kullanıcı "__proto__" seçerse tüm mantık yukarıdaki gibi çalışmaz hale gelir.
 
+<<<<<<< HEAD
 `__proto__`'yu normal özellik olarak tanıtma yöntemi de bulunmaktadır, bunu ilerleyen zamanlarda işlenecektir. 
 
 Farklı bir veri yapısı daha vardır  [Map](info:map-set-weakmap-weakset). Bu <info:map-set-weakmap-weakset> bölümünden incelenebilir, ki bu her türlü anahtarı kabul eder.
+=======
+In that case the visitor may choose `__proto__` as the key, and the assignment logic will be ruined (as shown above).
+
+There is a way to make objects treat `__proto__` as a regular property, which we'll cover later, but first we need to know more about objects.
+
+There's also another data structure [Map](info:map-set-weakmap-weakset), that we'll learn in the chapter <info:map-set-weakmap-weakset>, which supports arbitrary keys.
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 ````
 
 
@@ -308,8 +357,13 @@ let anahtar = "yas";
 alert( *!*anahtar*/!* in kullanici ); // true, değişkenden değerini alır ve kontrol eder.
 ```
 
+<<<<<<< HEAD
 ````smart header="Özellik undefined dönderiyorsa nasıl kontrol edilmeli?"
 Genelde sıkı karşılaştırma `"=== undefined"` doğru çalışır. Fakat burada özel bir durum mevcuttur ve sıkı karşılaştırma da başarısız olur, fakat bu durumda bile `"in"` doğru çalışır.
+=======
+````smart header="Using \"in\" for properties that store `undefined`"
+Usually, the strict comparison `"=== undefined"` check the property existance just fine. But there's a special case when it fails, but `"in"` works correctly.
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 Bu olay objenin özelliğinin var olduğu fakat `undefined` döndürdüğü durumda meydana gelir.
 
@@ -327,8 +381,12 @@ Yukarıdaki örnekte `obj.test` teknik olarak mevcut. Bundan dolayı `in` operat
 Bu türde olaylar çok nadir yaşanır, çünkü bir özelliğe neredeyse kimse `undefined` atamaz. Genelde `bilinmeyen` için `null` veya boş değer kullanılır. Bundan dolayı `in` operatörü kodda yabancı görünür.
 ````
 
+<<<<<<< HEAD
 
 ## "for..in" döngüsü
+=======
+## The "for..in" loop
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 Objenin içindeki `anahtarlar` içini adım adım gezen `for..in` döngüsü bulunmaktadır. Bu `for(;;)` döngüsünden tamamen farklıdır.
 
@@ -448,7 +506,7 @@ let karsilama = mesaj;
 ```
 Sonuç olarak birbirinden bağımsız iki değişken de `"Merhaba!"` değerini tutar.
 
-![](variable-copy-value.png)
+![](variable-copy-value.svg)
 
 Objeler bu şekilde çalışmaz:
 
@@ -462,7 +520,7 @@ let kullanici = {
 };
 ```
 
-![](variable-contains-reference.png)
+![](variable-contains-reference.svg)
 
 Obje hafızada herhangi bir yerde saklandı ve `kullanici` değişkeni buna "referans" oldu.
 
@@ -479,7 +537,7 @@ let yonetici = kullanici; // referansı kopyalar.
 ```
 Artık iki tane değişken var ve ikisi de aynı objeye referans oldu:
 
-![](variable-copy-reference.png)
+![](variable-copy-reference.svg)
 
 Bu iki değişkenden birini kullanarak objenin içeriği değiştirilebilir:
 
@@ -504,7 +562,11 @@ Eşitlik `==` ve sıkı eşitlik `===` operatörleri aynı şekilde çalışmakt
 
 **İki obje anca aynı objeler ise eşittir.**
 
+<<<<<<< HEAD
 Örneğin iki değişken aynı objeyi referans alırsa bu durumda eşit olurlar:
+=======
+For instance, if two variables reference the same object, they are equal:
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 ```js run
 let a = {};
@@ -543,7 +605,13 @@ alert(kullanici.yas); // 25
 ```
 `(*)` satırında hata alınacakmış gibi dursa da hata alınmaz ve bir sorun olmadan çalışır. Bunun nedeni `const`'un referansının değişmediğinde sorun yaratmamasıdır. Daha önce de `kullanici` aynı objeye referans gösteriyordu, daha sonra da. *içinde* ne olduğu `const`'u ilgilendirmez. Tekrar atama yapmadığınız sürece bir sorun teşkil etmez.
 
+<<<<<<< HEAD
 Örneğin `const` aşağıdaki gibi bir kullanımda, yani `kullanici` değişkenine başka bir obje referans etmeye çalıştığımızda hata verir:
+=======
+It might seem that the line `(*)` would cause an error, but no, there's totally no problem. That's because `const` fixes only value of `user` itself. And here `user` stores the reference to the same object all the time. The line `(*)` goes *inside* the object, it doesn't reassign `user`.
+
+The `const` would give an error if we try to set `user` to something else, for instance:
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 ```js run
 const kullanici = {

@@ -8,7 +8,7 @@ A host environment provides platform-specific objects and functions additional t
 
 Here's a bird's-eye view of what we have when JavaScript runs in a web-browser:
 
-![](windowObjects.png)
+![](windowObjects.svg)
 
 There's a "root" object called `window`. It has two roles:
 
@@ -22,7 +22,7 @@ function sayHi() {
   alert("Hello");
 }
 
-// global functions are accessible as properties of window
+// global functions are methods of the global object:
 window.sayHi();
 ```
 

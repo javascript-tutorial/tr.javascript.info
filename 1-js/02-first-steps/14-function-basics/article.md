@@ -19,9 +19,17 @@ function mesajGoster() {
 }
 ```
 
+<<<<<<< HEAD
 `function` kelimesi önce yazılır, ardından *fonksiyonun adı* ve sonra parametlerin yazılacağı parantez açılır ve ihtiyaç duyulan parametreler yazılır, sonrasında ise kapatılıp süslü parantez ile *fonksiyon gövdesi*ne başlanır.
+=======
+The `function` keyword goes first, then goes the *name of the function*, then a list of *parameters* between the parentheses (comma-separated, empty in the example above) and finally the code of the function, also named "the function body", between curly braces.
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
-![](function_basics.png)
+```js
+function name(parameters) {
+  ...body...
+}
+```
 
 Yeni fonksyion ismiyle şu şekilde çağırılır: `mesaGoster()`.
 
@@ -201,6 +209,17 @@ function mesajGoster(gonderen, metin = digerFonksiyon()) {
 }
 ```
 
+<<<<<<< HEAD
+=======
+```smart header="Evaluation of default parameters"
+In JavaScript, a default parameter is evaluated every time the function is called without the respective parameter. In the example above, `anotherFunction()` is called every time `showMessage()` is called without the `text` parameter.
+
+This is in contrast to some other languages like Python, where any default parameters are evaluated only once during the initial interpretation.
+```
+
+````smart header="Default parameters old-style"
+Old editions of JavaScript did not support default parameters. So there are alternative ways to support them, that you can find mostly in the old scripts.
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 ````smart header="Eski tip varsayılan parametreler"
 Eski tip JavaScript varsayılan parametreleri desteklememekteydi. Bundan dolayı farklı yöntemler geliştirdi. Eğer eskiden yazılmış kodları okursanız bu kodlara rastlayabilirsiniz.

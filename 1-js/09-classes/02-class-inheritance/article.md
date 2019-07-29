@@ -6,7 +6,57 @@ Diğer bir sınıftan kalıtım sağlamak için `"extends"` ile belirtmek gerekm
 
 [cut]
 
+<<<<<<< HEAD
 Aşağıda `Animal`'dan kalıtım alan `Rabbit` sınıfı gösterilmektedir:
+=======
+```js
+class Animal {
+  constructor(name) {
+    this.speed = 0;
+    this.name = name;
+  }
+  run(speed) {
+    this.speed += speed;
+    alert(`${this.name} runs with speed ${this.speed}.`);
+  }
+  stop() {
+    this.speed = 0;
+    alert(`${this.name} stopped.`);
+  }
+}
+
+let animal = new Animal("My animal");
+```
+
+![](rabbit-animal-independent-animal.svg)
+
+
+...And `Rabbit`:
+
+```js
+class Rabbit {
+  constructor(name) {
+    this.name = name;
+  }
+  hide() {
+    alert(`${this.name} hides!`);
+  }
+}
+
+let rabbit = new Rabbit("My rabbit");
+```
+
+![](rabbit-animal-independent-rabbit.svg)
+
+
+Right now they are fully independent.
+
+But we'd want `Rabbit` to extend `Animal`. In other words, rabbits should be based on animals, have access to methods of `Animal` and extend them with its own methods.
+
+To inherit from another class, we should specify `"extends"` and the parent class before the braces `{..}`.
+
+Here `Rabbit` inherits from `Animal`:
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 ```js run
 class Animal {
@@ -45,7 +95,7 @@ rabbit.hide(); // White Rabbit hides!
 
 `extends` kelimesi aslında  `Rabbit.prototype`'dan referans alıp bunun  `[[Prototype]]`'ını `Animal.prototype`'a ekler. Aynen daha önce de gördüğümüz gibi.
 
-![](animal-rabbit-extends.png)
+![](animal-rabbit-extends.svg)
 
 Artık `rabbit` hem kendi metodlarına hem de `Animal` metodlarına erişebilir.
 
@@ -334,7 +384,7 @@ Bu çok açık olmayabilir, fakat `longEar.eat()` in hata kodlarını takip eder
 
 Aşağıda ne olduğunu daha iyi anlatan bir görsel bulunmakta:
 
-![](this-super-loop.png)
+![](this-super-loop.svg)
 
 1. `longEar.eat()` içerisinde `(**)` satırı `rabbit.eat`'i `this=longEar` olarak çağırmakta.
     ```js
@@ -477,7 +527,7 @@ The reason is simple:
 - So its `[[HomeObject]]` is `rabbit`, as it was created in `rabbit`. There's no way to change `[[HomeObject]]`.
 - The code of `tree.sayHi()` has `super.sayHi()` inside. It goes up from `rabbit` and takes the method from `animal`.
 
-![](super-homeobject-wrong.png)
+![](super-homeobject-wrong.svg)
 
 ### Methods, not function properties
 

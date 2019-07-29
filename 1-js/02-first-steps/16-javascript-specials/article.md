@@ -139,11 +139,19 @@ Aritmetiksel
 Değer atama
 : Basit bir şekilde `a = b` şeklinde kullanılabilir. Veya birleşik olarak  `a *= 2` gibi de kullanıma sahiptir.
 
+<<<<<<< HEAD
 Bit seviyesi işlemler
 : Bit seviye operatörleri şu şekilde kullanılabilir: [docs](mdn:/JavaScript/Reference/Operators/Bitwise_Operators)
 
 Üçlü operatör
 : Üç tane paremetreden oluşur: `koşul ? sonucA : sonucB`. Eğer `koşul` doğru ise `sonucA` döndürür, yanlış ise `sonucB` 
+=======
+Bitwise
+: Bitwise operators work with 32-bit integers at the lowest, bit-level: see the [docs](mdn:/JavaScript/Reference/Operators/Bitwise_Operators) when they are needed.
+
+Conditional
+: The only operator with three parameters: `cond ? resultA : resultB`. If `cond` is truthy, returns `resultA`, otherwise `resultB`.
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 Mantıksal operatörler:
 : Mantıksal VE `&&`, VEYA `||` operatörleri ile bu işlemler yapılabilir.
@@ -234,8 +242,13 @@ Detaylı bilgi için: <info:switch>.
     let toplam = function(a, b) {
       let sonuc = a + b;
 
+<<<<<<< HEAD
       return sonuc;
     }
+=======
+      return result;
+    };
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
     ```
     Fonksiyon ifadesi bir `isme` sahip olabilir fakat bu `isim` sadece bu fonksiyon içinde kullanılabilir. Örneğin = `toplam = function isim(a,b)` gibi.
 
@@ -266,8 +279,13 @@ Detaylı bilgi için: <info:switch>.
 
 | Fonksiyon Tanımlama | Fonksiyon ifadesi |
 |----------------------|---------------------|
+<<<<<<< HEAD
 | Tüm kod bloğunda görünür | kodların çalışması kendisine ulaşırsa çalışır |
 |   - | isme sahip olabilir, sadece fonksiyon içerisinde çalışır |
+=======
+| visible in the whole code block/script | created when the execution reaches it |
+|    | can have a name, visible only inside the function |
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 Dahası için: <info:function-basics>, <info:function-expressions-arrows>. 
 

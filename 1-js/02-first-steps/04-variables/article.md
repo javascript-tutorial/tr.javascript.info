@@ -99,7 +99,7 @@ Eski kodlarda `let` yerine `var` kullanıldığını görürsünüz.
 
 Örneğin `mesaj` değişkeni üzerinde `"mesaj"` yazısı olan ve değeri `"Merhaba!"` olan bir kutu olarak hayal edilebilir.
 
-![](variable.png)
+![](variable.svg)
 
 Kutuya istediğiniz değeri koyabilirsiniz. Ayrıca içerisindeki değeri istediğiniz kadar değiştirebilirsiniz.
 
@@ -114,7 +114,7 @@ alert(mesaj);
 ```
 Değer değiştiğinde, değişkenin eski değeri silinir.
 
-![](variable-change.png)
+![](variable-change.svg)
 
 Ayrıca iki değişken tanımlayıp içerilerindeki değerleri bir diğerine aktarabilirsiniz.
 
@@ -324,8 +324,14 @@ Modern JavaScript sıkıştırıcılar ve tarayıcılar kodları oldukça iyi op
 
 Verileri saklamak için değişken tanımlayabilirsiniz. Bu işlemi `var` veya `let` veya `const` ile yapabilirsiniz.
 
+<<<<<<< HEAD
 - `let` -- modern değişken tanımlama. Chrome üzerinde `let` ile değişken tanımlamak istiyorsanız sıkı modda ( strict mode ) çalışmanız gerekmekte.
 - `var` -- eski tip değişken tanımlama. Normale bu tarz değişken oluşturma hiç kullılmayacka. İleride `let` ile `var` arasındaki nüans farkı <info:var> bölümünde incelenecek.
 - `const` -- bu da `let` gibi fakat değeri değiştirilemez.
+=======
+- `let` -- is a modern variable declaration.
+- `var` -- is an old-school variable declaration. Normally we don't use it at all, but we'll cover subtle differences from `let` in the chapter <info:var>, just in case you need them.
+- `const` -- is like `let`, but the value of the variable can't be changed.
+>>>>>>> 34e9cdca3642882bd36c6733433a503a40c6da74
 
 Değişkenler bulundukları yerdeki anlamlarına göre isimlendirilmelidirler.
