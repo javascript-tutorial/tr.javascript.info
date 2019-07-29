@@ -203,7 +203,7 @@ setTimeout(function run() {
 
 `setInterval` `func(i)` fonksiyonunu her 100ms'de bir çalıştırır.
 
-![](setinterval-interval.png)
+![](setinterval-interval.svg)
 
 Dikkatinizi çekti mi?...
 
@@ -220,7 +220,7 @@ Bu durumda ile karşılaşıldığında fonksiyon hiç beklemeden sürekli çal�
 
 Aşağıda ise kendini çağıran `setTimeout` gösterilmiştir:
 
-![](settimeout-interval.png)
+![](settimeout-interval.svg)
 
 **Kendini çağıran `setTimeout` arada geçen sürenin aynı olmasını garanti eder.(burada 100ms).**
 

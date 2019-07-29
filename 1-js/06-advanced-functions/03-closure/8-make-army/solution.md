@@ -86,7 +86,7 @@ ordu[5](); // 5
 
 Artık `i` değeri daha yakındır. `orduYap()` Sözcüksel Ortamından ayrılmışır, döngünün her adımında kendine has bir Sözcüksel Çevreye sahiptir. Her bir `nisanci`'da yaratıldığı ortamdaki değerlere bakar.
 
-![](lexenv-makearmy.png)
+![](lexenv-makearmy.svg)
 
 `while` döngüsünü `for`'a çevirerek bu problemi çözmüş olduk.
 

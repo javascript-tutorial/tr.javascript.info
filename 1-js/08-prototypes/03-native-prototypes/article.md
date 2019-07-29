@@ -19,11 +19,11 @@ alert( obj ); // "[object Object]" ?
 
 Aşağıdaki gibi( Tamamı gömülüdür):
 
-![](object-prototype.png)
+![](object-prototype.svg)
 
 `new Object()` çağrıldığında ( veya `{...}` ile yaratıldığında ) Objenin `[[Prototype]]`'i  bir önceki bölümde bahsettiğimiz gibi `Object.prototype`'a ayarlanır.
 
-![](object-prototype-1.png)
+![](object-prototype-1.svg)
 
 Sonrasında `obj.toString()` çaprıldığında -- Bu metod `Object.prototype`'tan alınır.
 
@@ -52,7 +52,7 @@ Tanım gereği, tüm gömülü prototipler üstünde `Object.prototype`'a sahip 
 
 Aşağıda bunun etraflı bir görselini görebilirsiniz. 
 
-![](native-prototypes-classes.png)
+![](native-prototypes-classes.svg)
 
 Prototipleri inceleyecek olursak:
 
@@ -79,7 +79,7 @@ alert(arr); // 1,2,3 <--  Array.prototype.toString'in sonucu
 Daha önce de gördüğümüz gibi, `Object.prototype`'ın `toString` metodu bulunmaktadır fakat `Array.prototype` bu zincirlemede daha yakındır ve bundan dolayı diziler bunu kullanır.
 
 
-![](native-prototypes-array-tostring.png)
+![](native-prototypes-array-tostring.svg)
 
 
 Chrome Developer Tools konsolunda da bu kalıtımı ( console.dir  kullanarak görebilirsiniz ) 

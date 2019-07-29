@@ -92,7 +92,7 @@ let meyveler = [
 - `shift` ile başlangıçtan eleman alındığında ikinci eleman birinci olmalı.
 
 
-![](queue.png)
+![](queue.svg)
 
 Diziler bu iki işlemi de destekler.
 
@@ -110,7 +110,7 @@ Bundan dolayı yeni elemanlar her zaman sondan alınır veya sona eklenir.
 
 Yığın bir deste kart olarak düşünülebilir: yeni kartlar eklendiğinde en üste konulur veya en üstten alınır.
 
-![](stack.png)
+![](stack.svg)
 
 Yığına en son eklenen eleman ilk olarak alınır, Buna LIFO(Last-In-First-Out) Son giren ilk çıkar prensibi denir. Kuyruklar için ise FIFO(First-In-First-Out) yani ilk giren ilk çıkar prensibi kullanılır.
 
@@ -230,7 +230,7 @@ Dizileri sıralı şekilde veri tutan özel bir yapı olarak düşünün. Bunun 
 
 `push/pop` metodları hızlı çalışır, `shift/unshift` ise yavaş
 
-![](array-speed.png)
+![](array-speed.svg)
 
 Peki neden dizinin başlangıcı ile bitişine eleman eklemek arasında hız farkı olmaktadır? Çalışma anında neler oluyor bakalım:
 
@@ -245,7 +245,7 @@ meyveler.shift(); // Başlangıçtan bir eleman al
 2. Tüm elemanların sola kaydırılması, indekslerin tekrar numaralandırılması `1`'den `0`'a, `2`'den `1`'e vs.
 3. `uzunluk` özelliğini güncelle.
 
-![](array-shift.png)
+![](array-shift.svg)
 
 **Daha fazla elaman, daha falza taşınma süresi , daha fazla hafıza içi işlem demektir**
 
@@ -259,7 +259,7 @@ Peki `push/pop` için böyle işlemlere gerek yokmu? Sondaki elemanı alabilmek 
 fruits.pop(); // Sondan bir eleman al
 ```
 
-![](array-pop.png)
+![](array-pop.svg)
 
 **`pop` hiç birşey taşımaz çünkü diğer elemanların `index`'i değişmez. Bundan dolayı aşırı derecede hızlıdır**
 

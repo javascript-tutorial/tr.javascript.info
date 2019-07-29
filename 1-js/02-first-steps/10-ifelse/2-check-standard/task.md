@@ -8,7 +8,7 @@ importance: 2
 
 Eğer kullanıcı "ECMAScript" cevabı verirse "Doğru" diğer türlü "ECMAScript olduğunu bilmiyormusun?" yazısını alarm olarak gösterin.
 
-![](ifelse_task2.png)
+![](ifelse_task2.svg)
 
 [demo src="ifelse_task2"]
 

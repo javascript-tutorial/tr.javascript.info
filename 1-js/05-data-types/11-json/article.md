@@ -165,7 +165,7 @@ JSON.stringify(meetup); // Hata: Dairesel yapı JSON'a çevrilememiştir.
 ```
 Çeviri yapılırken hata olmasının nedeni: `oda.dolduruldu` `tanisma`'ya referans olurken. `tanisma.yeri` `oda`'ya referans verir.
 
-![](json-meetup.png)
+![](json-meetup.svg)
 
 
 ## Hariç tutmak ve dönüştürmek: yer değiştirici ( replacer )

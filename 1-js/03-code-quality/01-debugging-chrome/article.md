@@ -16,13 +16,13 @@ Geliştirici özellikleri en iyi olan tarayıcı Chrome olduğundan bu tarayıc�
 
 Eğer ilk defa bu işlemi yapıyorsanız görmeniz gereken ekran şudur:
 
-![](chrome-open-sources.png)
+![](chrome-open-sources.svg)
 
 Sol tarafta bulunan açma kapama butonu  <span class="devtools" style="background-position:-168px -76px"></span> size dosyaları gösteren bir tab açar.
 
 Bu panelde `hello.js` i seçtiğinizde aşağıdaki gibi bir ekran görmeniz gerekir.
 
-![](chrome-tabs.png)
+![](chrome-tabs.svg)
 
 Bu bölüm üçe ayrılmıştır:
 1. **Kaynak bölgesi**: Html, javascript, css ve diğer dosyalar görseller de dahil olmak üzere açılan sayfaya iat olan kaynakları gösterir. Chrome eklentileri de burada yer alabilir.
@@ -39,7 +39,7 @@ Komut çalıştıktan sonra sonucunu hemen altında gösterir.
 
 Örneğin burada `1+2` `3`  çıktısını verir. `hello("debugger")` dediğinizde hiç birşey bulamadığından `undefined` döndürür.
 
-![](chrome-sources-console.png)
+![](chrome-sources-console.svg)
 
 ## Kesme Noktası
 
@@ -49,7 +49,7 @@ Tebrikler artık ilk kesme noktanızı oluşturdunuz. Lütfen `8` e de tıklayı
 
 Aşağıdaki gibi görünmeli. (tıkladığınız yerler mavi olmalı)
 
-![](chrome-sources-breakpoint.png)
+![](chrome-sources-breakpoint.svg)
 
 *kesme noktası* JavaScript çalışırken çalışmasını o noktada durdurmasını sağlar.
 
@@ -91,7 +91,7 @@ Yaptığımız örnekte `merhaba()` sayfa yüklenirken çalışmaktadır. Bundan
 
 Kesme noktasını kodda belirlediğinizden dolayı 4. satırda JavaScript çalışmayı durduracaktır.
 
-![](chrome-sources-debugger-pause.png)
+![](chrome-sources-debugger-pause.svg)
 
 Lütfen bilgilerin görüneceği dropdownları sağ panelden açınız. Bu bölümler oklar ile gösterilmiştir. Bu bölümler kesme anındaki değişkenlerin değerleri ve kod durumunu incelemeye yarar.
 
@@ -123,7 +123,7 @@ Sağ panelin üstünde sadece bu işe has butonlar bulunmaktadır.
 
     Üzerine bir defa tıkladığınızda aşağıdaki gibi olur.
 
-    ![](chrome-sources-debugger-trace-1.png)
+    ![](chrome-sources-debugger-trace-1.svg)
 
     Çalışmaya devam edildi, `yaz()` fonksiyonunun içerisinde tekrar durdu. Dikkat ederseniz "Call stack" çağrısını bu işlem bir artırdı.
 

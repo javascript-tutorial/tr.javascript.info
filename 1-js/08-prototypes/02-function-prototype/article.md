@@ -42,7 +42,7 @@ alert( rabbit.eats ); // true
 
 Sonuç şu şekildedir:
 
-![](proto-constructor-animal-rabbit.png)
+![](proto-constructor-animal-rabbit.svg)
 
 Görselde  `"prototip"` yataydaki oktur, sıranda bir özelliktir. `[[Prototype]]` ise dikeydir ve `rabbit`'in `animal`'dan miras aldığını ifade eder.
 
@@ -62,7 +62,7 @@ Rabbit.prototype = { constructor: Rabbit };
 */
 ```
 
-![](function-prototype-constructor.png)
+![](function-prototype-constructor.svg)
 
 Şu şekilde kontrol edebiliriz:
 
@@ -86,7 +86,7 @@ let rabbit = new Rabbit(); //  {constructor: Rabbit}'dan miras alır.
 alert(rabbit.constructor == Rabbit); // true (prototype'tan gelir)
 ```
 
-![](rabbit-prototype-constructor.png)
+![](rabbit-prototype-constructor.svg)
 
 Eğer `constructor` özelliğini kullarak varolan yapıcı ile aynı şekilde bir obje yapabiliriz.
 

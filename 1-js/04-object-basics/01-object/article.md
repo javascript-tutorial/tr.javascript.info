@@ -11,7 +11,7 @@ Obje `{...}` işareti ile yaratılabilir. Objenin kendine has *özellikleri* mev
 
 Obje bir dolap gibi düşünülebilir. Bu dolabın içindeki her klasörün bir ismi var ve bu isme göre içinde değerler mevcut. Bu `key`(anahtar) değerine göre dosyayı bulmak, eklemek ve silmek daha kolay olacaktır.
 
-![](object.png)
+![](object.svg)
 
 Boş obje ( boş dolap ) iki türlü oluşturulabilir.
 
@@ -20,7 +20,7 @@ let kullanici = new Object();
 let kullanici = {}; 
 ```
 
-![](object-user-empty.png)
+![](object-user-empty.svg)
 
 Genelde `{...}` kullanılmaktadır. Bu şekilde tanımlamaya **obje kelimesi**
 
@@ -43,7 +43,7 @@ let kullanici = {     // obje
 
 `kullanici` objesi bir dolap ve içinde "isim" ve "yaş" değerlerinin olduğu iki klasör olarak hayal edilebilir.
 
-![kullanici objesi](object-user.png)
+![kullanici objesi](object-user.svg)
 
 Bu klasörleri istediğimiz zaman okuyabilir, yazabilir ve silebiliriz.
 
@@ -60,7 +60,7 @@ Değer her tipten olabilir. Boolean değeri aşağıdaki gibi eklenebilir :
 kullanici.adminMi = true;
 ```
 
-![kullanici objesi 2](object-user-isadmin.png)
+![kullanici objesi 2](object-user-isadmin.svg)
 
 `delete` operatörü ile bir özellik silinebilir:
 
@@ -68,7 +68,7 @@ kullanici.adminMi = true;
 delete kullanici.yas;
 ```
 
-![kullanici objesi 3](object-user-delete.png)
+![kullanici objesi 3](object-user-delete.svg)
 
 Birkaç kelimeden oluşan özellik ismi yazabilirsiniz. Fakat bu durumda anahtar çift tırnak içine alınmalıdır:
 
@@ -80,7 +80,7 @@ let kullanici = {
 };
 ```
 
-![](object-user-props.png)
+![](object-user-props.svg)
 
 
 ````smart header="Virgül"
@@ -448,7 +448,7 @@ let karsilama = mesaj;
 ```
 Sonuç olarak birbirinden bağımsız iki değişken de `"Merhaba!"` değerini tutar.
 
-![](variable-copy-value.png)
+![](variable-copy-value.svg)
 
 Objeler bu şekilde çalışmaz:
 
@@ -462,7 +462,7 @@ let kullanici = {
 };
 ```
 
-![](variable-contains-reference.png)
+![](variable-contains-reference.svg)
 
 Obje hafızada herhangi bir yerde saklandı ve `kullanici` değişkeni buna "referans" oldu.
 
@@ -479,7 +479,7 @@ let yonetici = kullanici; // referansı kopyalar.
 ```
 Artık iki tane değişken var ve ikisi de aynı objeye referans oldu:
 
-![](variable-copy-reference.png)
+![](variable-copy-reference.svg)
 
 Bu iki değişkenden birini kullanarak objenin içeriği değiştirilebilir:
 

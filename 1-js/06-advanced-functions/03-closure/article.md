@@ -76,7 +76,7 @@ Bu "Sözcüksel Ortam" iki bölümden oluşur:
 
 Örneğin, aşağıdaki kodda sadece bir tane Sözcüksel Ortam bulunmaktadır:
 
-![Sözcüksel Ortam](lexical-environment-global.png)
+![Sözcüksel Ortam](lexical-environment-global.svg)
 
 Buna evrensel sözcük ortamı denilmektedir, kodun tamamıyla alakalıdır. Tüm tarayıcılarda `<script>` etiketleri aynı evrensel ortamı paylaşır.
 
@@ -84,7 +84,7 @@ Yukarıdaki görselde, dikdörtgen ile gösterilen Çevresel Kayıt ( değişken
 
 Aşağıda `let` değişkenlerinin nasıl çalıştığı görsel ile açıklanmıştır:
 
-![Sözcüksel Ortam](lexical-environment-global-2.png)
+![Sözcüksel Ortam](lexical-environment-global-2.svg)
 
 Sağ tarafta bulunan dikdörtgenler evrensel Sözcük Ortamının çalışırkenki değişikliklerini gösterir.
 
@@ -108,7 +108,7 @@ Fonksiyon tanımları özeldir. `let` değişkenlerine nazaran çalıştırıld�
 
 Aşağıdaki kodda Sözcüksel Ortam başlangıçta boş değildir. `say`'e sahiptir çünkü bu bir fonksiyon tanımıdır. Sonrasında `ifade` alır ve bunu `let` ile tanımlar:
 
-![Sözcüksel Ortam](lexical-environment-global-3.png)
+![Sözcüksel Ortam](lexical-environment-global-3.svg)
 
 ### İç ve dış Sözcüksel Ortamlar
 
@@ -129,7 +129,7 @@ say("Ahmet"); // Merhaba, Ahmet
 -->
 `say("Ahmet")` fonksiyonu çalıştığı sırada Sözcüksel Ortam aşağıdaki gibi olur:
 
-![Sözcüksel Çevre](lexical-environment-simple.png)
+![Sözcüksel Çevre](lexical-environment-simple.svg)
 
 Fonksiyon çağrıldığında ise iki tane sözcüksel ortam bulunmaktadır: içte olan(fonksiyon çağrısı için) ve dışta olan(evrensel):
 
@@ -147,7 +147,7 @@ Arama olayı bizim yazdığımız kodlarda nasıl işliyor buna bakalım:
 - `say` içindeki `alert` `adi` değişkenine erişmek istediğinde, anında Sözcük Ortamında bulabilir.
 - `ifade`'ye erişmek istediğinde önce fonksiyonun içine bakar fakat orada da bulamayacağından `outer` referansı takip ederek evrensel sözcük ortamından bu değişkene erişebilir.
 
-![Sözcüksel İfade Araması](lexical-environment-simple-lookup.png)
+![Sözcüksel İfade Araması](lexical-environment-simple-lookup.svg)
 
 Şimdi bölümün ilk başında sorulan sorulara cevap bulunabilir.
 
@@ -258,7 +258,7 @@ Peki sayaç içeride nasıl çalışmakta?
 
 İçteki fonksiyon çalıştığında `sayac++` içeriden dışarıya kadar `sayac` değişkenini arar. Yukarıdaki örneğe bakılacak olursa, sıralama şu şekilde olacaktır:
 
-![](lexical-search-order.png)
+![](lexical-search-order.svg)
 
 1. İçte bulunan fonksiyonun yerel değişkenleri.
 2. Dışta bulunan fonksiyonların değişkenleri.
@@ -311,7 +311,7 @@ Aşağıda `sayacUret` fonksiyonunun adımları gösterilmektedir, herşeyi anla
 
 1. Kod çalışmaya başkadığında sadece bir tane Sözcüksel Ortam bulunmaktadır:
 
-    ![](lexenv-nested-makecounter-1.png)
+    ![](lexenv-nested-makecounter-1.svg)
 
     Başlangıçta sadece `sayacUret` fonksiyonu bulunmaktadır, çünkü bu fonksiyon tanımıdır. Henüz çalışmadı.
 
@@ -323,7 +323,7 @@ Aşağıda `sayacUret` fonksiyonunun adımları gösterilmektedir, herşeyi anla
     
 2. Sonrasında kod `sayacUret()` çağrısını yapıyor. Aşağıda `sayacUret()`'in ilk satırı çalıştığındaki durumu gösterilmektedir.
 
-    ![](lexenv-nested-makecounter-2.png)
+    ![](lexenv-nested-makecounter-2.svg)
 
     `sayacUret()` fonksiyonu çağrıldığında, bu fonksiyonun değişkenlerini ve argümanlarını tutmak için Sözcüksel Ortam yaratılır.
 
@@ -340,20 +340,20 @@ Aşağıda `sayacUret` fonksiyonunun adımları gösterilmektedir, herşeyi anla
     
     İçte olan yeni fonksiyon için `[[Environment]]` dğeişkeni var olan `sayacUret`'in Sözcüksel Ortamıdır.( Doğduğu yer )
 
-    ![](lexenv-nested-makecounter-3.png)
+    ![](lexenv-nested-makecounter-3.svg)
 
     Dikkat ederseniz bu basamakta iç fonksiyon yaratıldı fakat çağırılmadı. İçindeki kod `function() { return sayac++; }` çalışmadı, bu kod döndürülecek.
 
 
 4. Çalışma devam ettiğinde `sayacUret()` biter, sonuc olarak ( küçük iç fonksiyon ) global `counter` değişkenine atanıyor.
 
-    ![](lexenv-nested-makecounter-4.png)
+    ![](lexenv-nested-makecounter-4.svg)
 
     Bu fonksiyonun sadece bir satır kodu var: `return sayac++`, sadece bu çalışacaktır.
     
 5. `sayac()` çağrıldığında, "boş" bir Sözcüksel Ortam yaratılır. Hiç bir yerel değişkeni yoktur. Fakat `sayac`'ın `[[Environment]]`'i dış referans olarak kullanılır. Bundan dolayı, daha önceden yapılan `sayacUret()`'in değişkenlerine erişebilir. Oluşturulduğu yerder:
 
-    ![](lexenv-nested-makecounter-5.png)
+    ![](lexenv-nested-makecounter-5.svg)
 
     Değişkene erişmesi gerekirse önce kendi yerel sözcüksel ortamına(boş), sonra daha önce çağrılan `sayacUret()`'in sözcüksel ortamına, en son evrensel ortama bakar.
     
@@ -366,7 +366,7 @@ Aşağıda `sayacUret` fonksiyonunun adımları gösterilmektedir, herşeyi anla
 
 6. `sayac()` sadece `sayac` değişkenini döndürmekle kalmaz, artırırda. Dikkat ederseniz değişiklik sadece "olduğu yerde" yapıldı. Var olan `sayac` değişkeni bulunduğu ortamda değiştirildi.
 
-    ![](lexenv-nested-makecounter-6.png)
+    ![](lexenv-nested-makecounter-6.svg)
 
     Öyleyse bir önceki adıma tek değişiklikle geri dönülmektedir -- `sayac`'ın yeni değeri. Devam eden çağrılar da aynı şekilde çalışırlar.
 
@@ -376,7 +376,7 @@ Başlangıçta sorulan ikinci sorunun cevabı şimdi açıklık kazanmış olmal
 
 Aşağıda `isim` özelliği `calisanUret()` fonksiyonu tarafından bulunduğu ortamdan kullanılmıştır: 
 
-![](lexenv-nested-work.png)
+![](lexenv-nested-work.svg)
 
 Sonuç görüşdüğü gibi `"Pete"` olacaktır.
 
@@ -414,7 +414,7 @@ alert(kullanici); // Hata, böyle bir değişken bulunamamakta!
 ```
 -->
 
-![](lexenv-if.png)
+![](lexenv-if.svg)
 
 Yeni sözcüksel ortam bilgileri dış çevreden alabilir, bundan dolayı `ifade` erişilebilirdir. Fakat `if` içerisindeki tüm değişkenler ve Fonksiyonel ifadeler kendi Sözcüksel Çevresinden erişilebilir, dışarıdan erişilemez.
 

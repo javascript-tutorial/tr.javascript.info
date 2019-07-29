@@ -27,7 +27,7 @@ fib(4) = fib(3) + fib(2)
 Görüldüğü gibi burada `fib(3)`, `fib(4)` ve `fib(5)` için gereklidir. Bundan dolayı `fib(5)` iki defa bir birinden bağımsız olarak çalışacaktır.
 
 Aşağıda tüm özçağrı ağacını görebilirsiniz.
-![Öz çağrı ağacı](fibonacci-recursion-tree.png)
+![Öz çağrı ağacı](fibonacci-recursion-tree.svg)
 
 Gördüğünüz gibi `fib(3)` iki defa `fib(2)` ise üç defa çalıştırılır. Toplamda hesaplama `n` den daha hızlı bir şekilde büyür. `n=77` için bu sayı çok büyük olur.
 

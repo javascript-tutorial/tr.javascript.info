@@ -68,7 +68,7 @@ us(x, n) =
 
 Buna `us` *öz çağrı ile* kendisini `n==1` olana kadar çağırır diyebiliriz.
 
-![özçağrı diyagramı](recursion-pow.png)
+![özçağrı diyagramı](recursion-pow.svg)
 
 
 `us(2,4)`'ü hesaplayabilmek için *özçağrı* şu adımları gerçekleştirir:
@@ -383,7 +383,7 @@ Kod oldukça kısa ve anlaması kolay(umarım). Burada özçağrının gücünde
 
 Aşağıda ise bu çağrının diyagramı bulunmaktadır.
 
-![Özçağrı ile maaşlar](recursive-salaries.png)
+![Özçağrı ile maaşlar](recursive-salaries.svg)
 
 Prensip basitçe şu şekilde açıklanabilir: Obje için `{...}` altçağrıları yapılır, `[...]` ise özçağrı ağacının "yapraklarıdır", anında sonucu dönerler.
 
@@ -458,7 +458,7 @@ let list = {
 Bu listenin grafiksel gösterimi şu şekildedir:
 
 
-![linked list](linked-list.png)
+![linked list](linked-list.svg)
 
 Bu yapıyı yaratmanın alternatif yolu şu şekildedir:
 
@@ -477,7 +477,7 @@ let ikinciList = list.next.next;
 list.next.next = null;
 ```
 
-![linked list ayırma](linked-list-split.png)
+![linked list ayırma](linked-list-split.svg)
 
 Birleştirme:
 
@@ -500,7 +500,7 @@ list = { deger: "yeni eleman", sonraki: list };
 */!*
 ```
 
-![linked list](linked-list-0.png) 
+![linked list](linked-list-0.svg) 
 
 Yine ortalardan bir yerden veri silineceği zaman `sonraki`'nin bir öncekine getirilmesi gerekri.
 
@@ -508,7 +508,7 @@ Yine ortalardan bir yerden veri silineceği zaman `sonraki`'nin bir öncekine ge
 list.sonraki = list.sonraki.sonraki;
 ```
 
-![linked list](linked-list-remove-1.png)
+![linked list](linked-list-remove-1.svg)
 
 `list.sonraki`'nin değeri `1`'den `2`'ye geçirildi. `1` değeri artık zincirden çıkarıldı. Eğer bu değer başka bir yerde tutulmuyor ise, bu değer ileride otomatik olarak hafızadan silinecektir.
 

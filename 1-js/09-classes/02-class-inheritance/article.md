@@ -45,7 +45,7 @@ rabbit.hide(); // White Rabbit hides!
 
 `extends` kelimesi aslında  `Rabbit.prototype`'dan referans alıp bunun  `[[Prototype]]`'ını `Animal.prototype`'a ekler. Aynen daha önce de gördüğümüz gibi.
 
-![](animal-rabbit-extends.png)
+![](animal-rabbit-extends.svg)
 
 Artık `rabbit` hem kendi metodlarına hem de `Animal` metodlarına erişebilir.
 
@@ -334,7 +334,7 @@ Bu çok açık olmayabilir, fakat `longEar.eat()` in hata kodlarını takip eder
 
 Aşağıda ne olduğunu daha iyi anlatan bir görsel bulunmakta:
 
-![](this-super-loop.png)
+![](this-super-loop.svg)
 
 1. `longEar.eat()` içerisinde `(**)` satırı `rabbit.eat`'i `this=longEar` olarak çağırmakta.
     ```js
@@ -477,7 +477,7 @@ The reason is simple:
 - So its `[[HomeObject]]` is `rabbit`, as it was created in `rabbit`. There's no way to change `[[HomeObject]]`.
 - The code of `tree.sayHi()` has `super.sayHi()` inside. It goes up from `rabbit` and takes the method from `animal`.
 
-![](super-homeobject-wrong.png)
+![](super-homeobject-wrong.svg)
 
 ### Methods, not function properties
 

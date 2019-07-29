@@ -10,7 +10,7 @@ Programlarken genelde bir şeyi alır ve bunu genişletmek isteriz.
 
 Javascript objeleri gizli bir özellik olan `[[Prototype]]` özelliğine sahiptirler. Bu `null` olabilir veya başka objeye referans verebilir.  Referans verilen obje "prototip" olarak adlandırılır.
 
-![prototip](object-prototype-empty.png)
+![prototip](object-prototype-empty.svg)
 
 `[[Prototip]]`'in "büyülü" bir anlamı bulunmaktadır. Objeden bir özellik okunmak istendiğinde, ve bu obje bulunamadığında JavaScript bunu otomatik olarak prototip'ten alır. Programlamada buna `prototip kalıtımı` denir. Birçok dil özelliği ve programlama tekniği bunun üzerine kuruludur.
 
@@ -60,7 +60,7 @@ alert( rabbit.jumps ); // true
 
 Sonrasında `alert` `rabbit.eats` `(**)`'i okur. Bu `rabbit`'te olmadığından JavaScript `[[Prototype]]`'ı takip eder ve bunu `animal`'in içerinde bulur.
 
-![](proto-animal-rabbit.png)
+![](proto-animal-rabbit.svg)
 
 Böylece "`animal`" `rabbit`'in prototip'i veya "`rabbit` prototipsel olarak `animal` kalıtımını almıştır" diyebiliriz.
 
@@ -91,7 +91,7 @@ rabbit.walk(); // Animal walk
 ```
 Metod prototipten otomatik olarak şu şekilde alınmıştır:
 
-![](proto-animal-rabbit-walk.png)
+![](proto-animal-rabbit-walk.svg)
 Prototip zinciri daha da uzun olabilir:
 
 
@@ -118,7 +118,7 @@ longEar.walk(); // Animal walk
 alert(longEar.jumps); // true (rabbit'ten gelmekte)
 ```
 
-![](proto-animal-rabbit-chain.png)
+![](proto-animal-rabbit-chain.svg)
 
 Aslında iki tane kısıtlama bulunmaktadır:
 
@@ -160,7 +160,7 @@ rabbit.walk(); // Rabbit! Bounce-bounce!
 ```
 Artık `rabbit.wal()` metodu doğrudan kendi içerisinde bulur ve çalıştırır. Prototip kullanmaz:
 
-![](proto-animal-rabbit-walk-2.png)
+![](proto-animal-rabbit-walk-2.svg)
 
 Alıcı/Ayarlayıcı için ise eğer özellik okunursa bu doğrudan prototipte okunur ve uyarılır.
 
@@ -235,7 +235,7 @@ alert(animal.isSleeping); // undefined (prototipte böyle bir özellik bulunmama
 ```
 Sonuç görseli:
 
-![](proto-animal-rabbit-walk-3.png)
+![](proto-animal-rabbit-walk-3.svg)
 
 Eğer `bird`, `sname` gibi `animal`'dan miras alan objelere sahip olsaydık bunlar da `animal`'in metodlarına erişebilirlerdi. Fakat her metoddaki `this` bağlı bulunduğu objeye göre çalışırdı. Yani noktadan önceki metoda göre, `animal`'e göre değil. Bundan dolayı ne zaman `this`'e veri yazılsa o objelerin içerisine yazılır.
 

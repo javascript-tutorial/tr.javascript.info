@@ -99,7 +99,7 @@ Eski kodlarda `let` yerine `var` kullanıldığını görürsünüz.
 
 Örneğin `mesaj` değişkeni üzerinde `"mesaj"` yazısı olan ve değeri `"Merhaba!"` olan bir kutu olarak hayal edilebilir.
 
-![](variable.png)
+![](variable.svg)
 
 Kutuya istediğiniz değeri koyabilirsiniz. Ayrıca içerisindeki değeri istediğiniz kadar değiştirebilirsiniz.
 
@@ -114,7 +114,7 @@ alert(mesaj);
 ```
 Değer değiştiğinde, değişkenin eski değeri silinir.
 
-![](variable-change.png)
+![](variable-change.svg)
 
 Ayrıca iki değişken tanımlayıp içerilerindeki değerleri bir diğerine aktarabilirsiniz.
 

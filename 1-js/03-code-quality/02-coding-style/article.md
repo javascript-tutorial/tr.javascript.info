@@ -11,7 +11,7 @@ Buna yardımcı olan bir şey de iyi kodlama stilidir.
 
 Kodlar için yazımış bir kopya kağıdı(detayları aşağıda):
 
-![](code-style.png)
+![](code-style.svg)
 <!--
 ```js
 function pow(x, n) {

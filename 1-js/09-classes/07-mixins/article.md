@@ -96,7 +96,7 @@ new User("Dude").sayHi(); // Hello Dude!
 
 Dikkat ederseniz `sayHiMixin` içinde `super.say() çağırıldığında o mixin'in prototipindeki metoduna bakar, sınıfın değil.
 
-![](mixin-inheritance.png)
+![](mixin-inheritance.svg)
 
 Çünkü `sayHiMixin` metodları `[[HomeObject]]`'e ayarlanmıştır. Bundan dolayı `super` aslında `User.__proto__` değil de `sayHiMixin.__proto__` anlamına gelir.
 

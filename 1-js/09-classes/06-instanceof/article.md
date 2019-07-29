@@ -95,7 +95,7 @@ Dikkat edin `arr` ayrıca `Object` sınıfına da aittir. Çünkü `Array` proto
 
 Aşağıda `rabbit instanceof Animal`'ın `Animal.prototype`a karşılaştırılması gösterilmiştir.
 
-![](instanceof.png)
+![](instanceof.svg)
 
 Ayrıca [objA.isPrototypeOf(objB)](mdn:js/object/isPrototypeOf) metodu ile eğer `objA` `objB`'nin prototip zincirinin herhangi bir yerindeyse `true` döner. `obj instanceof Class` şu şekilde de yazılabilir `Class.prototype.isPrototypeOf(obj)`
 

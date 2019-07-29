@@ -106,7 +106,7 @@ Fakat burada bize `Obje` yardımcı olabilir, çünkü dili yaratıcılar bu kon
 
 `__proto__` objenin bir özelliği değildir. Fakat `Object.prototype`'a erişimsağlar( accessor ):
 
-![](object-prototype-2.png)
+![](object-prototype-2.svg)
 
 Bundan dolayı, Eğer `obj.__proto__` okunur veya atanırsa, ilgili alıcı/ayarlayıcı prototipten çağırılır, böylece `[[Prototoy]]` alınır/ayarlanır.
 
@@ -127,7 +127,7 @@ alert(obj[key]); // "some value"
 
 `Object.create(null)`  prototip'i olmayan boş bir obje yaratır.(`[[Prototype]]` null'dur):
 
-![](object-prototype-null.png)
+![](object-prototype-null.svg)
 
 Bundan dolayı `__proto__`  için atadan kalan alıcı/ayarlayıcı bulunmamaktadır. Artık sıradan bir veri özelliği olarak işlenir, bundan dolayı yukarıdaki örnek doğru bir şekilde çalışır.
 
@@ -221,7 +221,7 @@ for(let prop in rabbit) {
 ```
 Şu şekilde kalıtım zinciri oluşmuştur: `rabbit`, sonra `animal` ve en son `Object.prototype` ( çünkü `animal` tam objedir {..} ), sonra bunun üzerine `null`:
 
-![](rabbit-animal-object.png)
+![](rabbit-animal-object.svg)
 
 
 Zincire bakarsanız `rabbit.hasOwnProperty` nereden geliyor görebilirsiniz. `Object.prototype.hasOwnPropery`, diğer bir deyişle kalıtılmış.

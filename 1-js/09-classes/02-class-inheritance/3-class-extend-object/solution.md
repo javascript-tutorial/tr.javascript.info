@@ -76,7 +76,7 @@ Bu arada `Function.prototype`'ın "generic" fonksiyonları bulunmaktadır. Bunla
 
 Son tahlilde görüntü şu şekildedir:
 
-![](rabbit-extends-object.png)
+![](rabbit-extends-object.svg)
 
 Özetlersek:
 
