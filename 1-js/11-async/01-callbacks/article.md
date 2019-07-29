@@ -91,11 +91,11 @@ Buna "callback-tabanlı" asenkron programlama tipi denir. Bir fonksiyon asenkron
 
 Burada `loadScript` için bunu yaptık, fakat bu genel bir yaklaşımdır.
 
-## Callback in callback
+## Callback içinde callback
 
-How can we load two scripts sequentially: the first one, and then the second one after it?
+Aynı anda iki kod parçasını sıralı olarak nasıl yükleyebiliriz: ilk önce birincisini, bittikten sonra ikincisini.
 
-The natural solution would be to put the second `loadScript` call inside the callback, like this:
+Doğal olan ikinci `loadScript`'i callback içine aşağıdaki gibi koymaktır:
 
 ```js
 loadScript('/my/script.js', function(script) {
@@ -110,10 +110,9 @@ loadScript('/my/script.js', function(script) {
 
 });
 ```
+Dıştaki `loadScript` tamamlandıktan sonra, içteki çalışmaya başlar.
 
-After the outer `loadScript` is complete, the callback initiates the inner one.
-
-What if we want one more script...?
+Eğer bir tane daha istersek ...?
 
 ```js
 loadScript('/my/script.js', function(script) {
@@ -122,7 +121,7 @@ loadScript('/my/script.js', function(script) {
 
 *!*
     loadScript('/my/script3.js', function(script) {
-      // ...continue after all scripts are loaded
+      // ...tüm kodlar yüklendikten sonra devam eder.
     });
 */!*
 
@@ -130,8 +129,7 @@ loadScript('/my/script.js', function(script) {
 
 });
 ```
-
-So, every new action is inside a callback. That's fine for few actions, but not good for many, so we'll see other variants soon.
+Böylece, her yeni eylem callback içerisinde kalır. Bu birkaç aksiyon için sorun olmaz fakat daha çok ise sorun yaratacaktır.
 
 ## Handling errors
 
