@@ -1,3 +1,3 @@
-# Object properties configuration
+# Obje özelliklerinin düzenlenmesi
 
-In this section we return to objects and study their properties even more in-depth.
+Bu bölümde objelere geri dönülerek özellikleri daha detaylı incelenecektir.
