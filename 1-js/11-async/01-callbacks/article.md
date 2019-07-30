@@ -89,7 +89,7 @@ loadScript('https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js', s
 ```
 Buna "callback-tabanlı" asenkron programlama tipi denir. Bir fonksiyon asenkron olarak bir iş yapıyorsa `callback`'i de sunmalıdır. Böylece bundan sonra neyin çalışacağına karar verebiliriz.
 
-Burada `loadScript` için bunu yaptık, fakat bu genel bir yaklaşımdır.
+Burada `loadScript` için kullandık, fakat bu genel bir yaklaşımdır.
 
 ## Callback içinde callback
 
@@ -131,11 +131,11 @@ loadScript('/my/script.js', function(script) {
 ```
 Böylece, her yeni eylem callback içerisinde kalır. Bu birkaç aksiyon için sorun olmaz fakat daha çok ise sorun yaratacaktır.
 
-## Handling errors
+## Hataları İşlemek
 
-In the above examples we didn't consider errors. What if the script loading fails? Our callback should be able to react on that.
+Yukarıdaki örnekte hataları düşünmedik. Ya kod hata verirse? Callback fonksiyonu buna göre hareket edebilmelidir.
 
-Here's an improved version of `loadScript` that tracks loading errors:
+Aşağıda `loadScript`'in hataları takip eden, geliştirilmiş versiyonu yer almaktadır:
 
 ```js run
 function loadScript(src, callback) {
@@ -150,10 +150,9 @@ function loadScript(src, callback) {
   document.head.append(script);
 }
 ```
+Eğer başarılı bir şekilde çalışırsa `callback(null, script)`, hata alırsa `callback(error)` çağırılır.
 
-It calls `callback(null, script)` for successful load and `callback(error)` otherwise.
-
-The usage:
+Kullanımı:
 ```js
 loadScript('/my/script.js', function(error, script) {
   if (error) {
@@ -163,14 +162,14 @@ loadScript('/my/script.js', function(error, script) {
   }
 });
 ```
+Yine bu yöntemin genel bir kullanım olduğunu söyleyebiliriz. Buna "error-first callback" stili denilmektedir.
 
-Once again, the recipe that we used for `loadScript` is actually quite common. It's called the "error-first callback" style.
+Düzen şu şekildedir:
 
-The convention is:
-1. The first argument of the `callback` is reserved for an error if it occurs. Then `callback(err)` is called.
-2. The second argument (and the next ones if needed) are for the successful result. Then `callback(null, result1, result2…)` is called.
+1. `callback`'in ilk argümanı hata için ayrılır. Sonra `callback(err)` çağırılır.
+2. İkinci argüman ise başarılı bir sonuçta gönderilir. Sonra `callback(null, result1, result2...)` çağrılır.
 
-So the single `callback` function is used both for reporting errors and passing back results.
+Böylece tek bir `callback` fonksiyonu ile hem hata gönderilebilir, hem de cevap dönülebilir.
 
 ## Pyramid of Doom
 
