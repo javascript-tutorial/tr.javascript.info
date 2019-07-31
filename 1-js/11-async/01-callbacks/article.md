@@ -171,11 +171,11 @@ Düzen şu şekildedir:
 
 Böylece tek bir `callback` fonksiyonu ile hem hata gönderilebilir, hem de cevap dönülebilir.
 
-## Pyramid of Doom
+## Kıyamet pramidi
 
-From the first look, it's a viable way of asynchronous coding. And indeed it is. For one or maybe two nested calls it looks fine.
+İlk bakıldığında asenkron kodlama mantıklı gelebilir. Gerçekten de öyle. Bir veya iki çağrılar fena görünmüyor.
 
-But for multiple asynchronous actions that follow one after another we'll have code like this:
+Fakat birden çok asenkron iş için kod aşağıdaki gibi olacaktır:
 
 ```js
 loadScript('1.js', function(error, script) {
@@ -194,7 +194,7 @@ loadScript('1.js', function(error, script) {
             handleError(error);
           } else {
   *!*
-            // ...continue after all scripts are loaded (*)
+            // ...tüm kodlar yüklendikten sonra devam et (*)
   */!*
           }
         });
@@ -205,22 +205,22 @@ loadScript('1.js', function(error, script) {
 });
 ```
 
-In the code above:
-1. We load `1.js`, then if there's no error.
-2. We load `2.js`, then if there's no error.
-3. We load `3.js`, then if there's no error -- do something else `(*)`.
+Yukarıdaki kodda:
+1. Önce `1.js`'yi yükledik. 
+2. Hata yoksa `2.js`'yi yükle.
+3. Hata yoksa `3.js`'yi ve en sonda da `(*)` çalıştırılır.
 
-As calls become more nested, the code becomes deeper and increasingly more difficult to manage, especially if we have a real code instead of `...`, that may include more loops, conditional statements and so on.
+Çağrılar çoğaldıkça kod daha derinlere inmekte ve bunun yönetimi de zorlaşmaktadır, özellikle içerisinde `...` yerine gerçek kod varsa bu bir çok döngüye, koşula sahip olacaktır.
 
-That's sometimes called "callback hell" or "pyramid of doom."
+Bunun için "callback cehennemi" veya "Kıyamet piramidi" denilebilir.
 
 ![](callback-hell.svg)
 
-The "pyramid" of nested calls grows to the right with every asynchronous action. Soon it spirals out of control.
+"Piramit" her bir çağrıda sağa doğru büyüyecek ve kontrolden çıkacaktır.
 
-So this way of coding isn't very good.
+Bu şekliyle kodlamak pek de iyi görünmemekte.
 
-We can try to alleviate the problem by making every action a standalone function, like this:
+Bunu her çağrıyı ayrı birer fonksiyon yaparak çözmeye çalışırsak:
 
 ```js
 loadScript('1.js', step1);
@@ -251,13 +251,12 @@ function step3(error, script) {
   }
 };
 ```
+Gördüğünüz gibi aynısı, fakat iç içe yazılmış derinelemesine bir fonksiyon yok. Her iş ayrı bir fonksiyonda tamamlanıyor.
 
-See? It does the same, and there's no deep nesting now because we made every action a separate top-level function.
+Tamamdır. Artık çalışıyor fakat ayrı ayrı bir tablo gibi duruyor. Okuması oldukça zor, sizin de farkedeceğiniz gibi okurken sürekli ileri geri kodları inceliyorsunuz. Bu kullanışsız bir yöntem oldu, hele ki kod okumayla pek uğraşmayanlar nereye zıplayacaklarını anlayamayacaklardır.
 
-It works, but the code looks like a torn apart spreadsheet. It's difficult to read, and you probably noticed that one needs to eye-jump between pieces while reading it. That's inconvenient, especially if the reader is not familiar with the code and doesn't know where to eye-jump.
+Ayrıca `step*` fonksiyonu tek kullanımlık oldu. Amaç sadece "kıyamet piramidi"'nden korunmak. Bu fonksiyonları başka kimse kullanmayacaktır. Böylece boş bir sürü isim kullandık ve çöplüğe çevirdik.
 
-Also, the functions named `step*` are all of single use, they are created only to avoid the "pyramid of doom." No one is going to reuse them outside of the action chain. So there's a bit of a namespace cluttering here.
+Bu problemi çözmek için daha iyi bir yöntem mevcut.
 
-We'd like to have something better.
-
-Luckily, there are other ways to avoid such pyramids. One of the best ways is to use "promises," described in the next chapter.
+Bunun için kullanılacak en iyi yöntemlerden biri "promises" kullanmaktır. Bir sonraki bölümde bu konuya değineceğiz.
