@@ -1,15 +1,17 @@
 
-# Animated circle with callback
+# Callback ile hareketli çember
 
-In the task <info:task/animate-circle> an animated growing circle is shown.
 
-Now let's say we need not just a circle, but to show a message inside it. The message should appear *after* the animation is complete (the circle is fully grown), otherwise it would look ugly.
+<info:task/animate-circle> görevinde hareketli bir şekilde büyüyen bir çember görünmektedir.
 
-In the solution of the task, the function `showCircle(cx, cy, radius)` draws the circle, but gives no way to track when it's ready.
+Diyelim ki sadece çember değil, bunun içinde mesaj da olsun. Mesaj animasyon *tamamlandıktan* sonra ( çemberin en büyük halinde ) görünmelidir. Aksi halde çirkin görünecektir.
 
-Add a callback argument: `showCircle(cx, cy, radius, callback)` to be called when the animation is complete. The `callback` should receive the circle `<div>` as an argument.
 
-Here's the example:
+Görevin çözümünde, `showCircle(cx, cy, radius)` çemberi çizmektedir, fakat hazır olup olmadığına dair hiç bir bilgi vermemektedir.
+
+Yeni bir callback argümanı ekle: `showCircle(cx, cy, radius, callback)` animasyon tamamlandığında çağırılmalıdır. `callback` çemberin `<div>`'ini argüman olarak almalı.
+
+Örneğin:
 
 ```js
 showCircle(150, 150, 100, div => {
@@ -22,4 +24,4 @@ Demo:
 
 [iframe src="solution" height=260]
 
-Take the solution of the task <info:task/animate-circle> as the base.
+<info:task/animate-circle> çözümünü temel alınız.
