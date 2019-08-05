@@ -32,7 +32,11 @@ try {
 
 ![](try-catch-flow.svg)
 
+<<<<<<< HEAD
 Öyleyse `try {...}` içerisindeki kod doğrudan sona eremez, bize `catch` içerisinde bunu idare etmemiz için olanak sağlar.
+=======
+![](try-catch-flow.svg)
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 Bir kaç örnek ile daha da pekiştirelim:
 

@@ -43,7 +43,12 @@ for(let key in count) {
   alert(`${key}: ${count[key]}`);
 }
 ```
+<<<<<<< HEAD
 ( Temmuz 2017 itibari ile sonuçlar aşağıdaki gibidir.)
+=======
+
+An example result (depends on JS engine):
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 ```js
 123: 250706

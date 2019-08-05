@@ -2,7 +2,11 @@
 
 JavaScript'te tüm sayılar 64-bit formatında tutulur [IEEE-754](http://en.wikipedia.org/wiki/IEEE_754-1985), buna "double precision" da denir.
 
+<<<<<<< HEAD
 Sayılar ile ilgili bilinenlerin üzerinden tekrar geçecek olunursa.
+=======
+Let's expand upon what we currently know about them.
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 ## Sayıyı yazmanın bir çok yolu
 
@@ -12,7 +16,13 @@ Diyelim ki 1 milyar yazmak istiyorsunuz. Şu şekilde:
 let milyar = 1000000000;
 ```
 
+<<<<<<< HEAD
 Fakat gerçek hayatta bu kadar 0 yan yana yazdığınızda karışma şansı olduğundan bunun yerine `1milyar` veya `7.3milyar` gibi yazılabilmektedir. Aynı özellik JavaScript için de geçerli. Fakat bu defa sayıdaki 0 sayısı  `"e"` ile birlikte kullanılmalıdır: 
+=======
+But in real life, we usually avoid writing a long string of zeroes as it's easy to mistype. Also, we are lazy. We will usually write something like `"1bn"` for a billion or `"7.3bn"` for 7 billion 300 million. The same is true for most large numbers.
+
+In JavaScript, we shorten a number by appending the letter `"e"` to the number and specifying the zeroes count:
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 ```js run
 let milyar = 1e9;  // 1 milyar 1 ve 9 sıfırdan oluşmaktadır.
@@ -196,7 +206,11 @@ Sayı hafızada binary formatta tutulur. Fakat ondalık bölümleri `0.1`, `0.2`
 
 Aslında *0.1* veya *0.2* tam olarak saklanamaz, tıpkı `1/3`'ün tam olarak saklanamaması gibi.
 
+<<<<<<< HEAD
 IEEE-754 bunu en yakın değere yuvarlayarak çözmektedir. Bu kurallar bizim "küçük küsürleri" görmemizi engeller.
+=======
+The numeric format IEEE-754 solves this by rounding to the nearest possible number. These rounding rules normally don't allow us to see that "tiny precision loss", but it exists.
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 Örneğin:
 ```js run

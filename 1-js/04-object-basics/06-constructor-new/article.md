@@ -200,10 +200,16 @@ ihsan = {
 */
 ```
 
+<<<<<<< HEAD
 ## Özet
 
 - Yapıcı fonksiyonlar, veya kısaca yapıcılar, normal fonksiyonlardır. Fakat baş haflerinin büyük olmasıyla ilgili ortak bir kullanım vardır.
 - Bu fonksiyonlar sadece `new` kullanılarak çağırılmalıdır. Böyle çağrılar önce boş bir `this` yaratır ve buna değerler eklendikten sonra bu `this`'i geri gönderir.
+=======
+To create complex objects, there's a more advanced syntax, [classes](info:classes), that we'll cover later.
+
+## Summary
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 
 Yapıcılar ile benzer objeler yapmak mümkündür.

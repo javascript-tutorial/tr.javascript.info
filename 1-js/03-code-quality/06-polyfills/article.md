@@ -26,7 +26,13 @@ Babel iki bölümden oluşmaktadır:
 
     Transpiler kodu yazdı, yazım özellikleri tamam fakat yeni fonksiyonlar eklendiğinde özel kod yazarak bunların uygulamasını yapmanız gerekir. JavaScript çok dinamik bir dildir. Kodlar sadece yeni fonksiyonları değil var olanları da değiştirir, anca böyle modern standartlara göre kod yazılır.
 
+<<<<<<< HEAD
     "polyfill" ,"doldurma" anlamına gelir ve eksik uygulamaları bizim için uygular.
+=======
+    Two interesting polyfills are:
+    - [core js](https://github.com/zloirock/core-js) that supports a lot, allows to include only needed features.
+    - [polyfill.io](http://polyfill.io) service that provides a script with polyfills, depending on the features and user's browser.
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
     Polyfill'e örnek verecek olursak:
     - [babel polyfill](https://babeljs.io/docs/usage/polyfill/) çoğu özelliği destekler. Fakat dosya boyutu büyüktür.

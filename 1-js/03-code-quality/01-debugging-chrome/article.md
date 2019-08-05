@@ -2,9 +2,15 @@
 
 Daha karmaşık kodlara geçmeden, hata ayıklama hakkında konuşmamız gerekmekte.
 
+<<<<<<< HEAD
 Çoğu modern tarayıcı "hata ayıklama"(debugging) özelliğine sahiptir -- bu özel arayüz kod yazarken hata bulunmasını ve düzeltilmesini kolaylaştırır.
 
 Geliştirici özellikleri en iyi olan tarayıcı Chrome olduğundan bu tarayıcı ile çalışacağız.
+=======
+All modern browsers and most other environments support "debugging" -- a special UI in developer tools that makes finding and fixing errors much easier. It also allows to trace the code step by step to see what exactly is going on.
+
+We'll be using Chrome here, because it has enough features, most other browsers have a similar process`.
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 ## "Kaynak" paneli 
 
@@ -41,7 +47,11 @@ Komut çalıştıktan sonra sonucunu hemen altında gösterir.
 
 ![](chrome-sources-console.svg)
 
+<<<<<<< HEAD
 ## Kesme Noktası
+=======
+![](chrome-sources-console.svg)
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 [Örnek Kod](debugging/index.html) içerisinde ne olduğunu incelenecek olursa. `hello.js` içerisinde `4.` satıra tıklayın. Evet `4` e tıklayın koda değil.
 
@@ -51,7 +61,11 @@ Aşağıdaki gibi görünmeli. (tıkladığınız yerler mavi olmalı)
 
 ![](chrome-sources-breakpoint.svg)
 
+<<<<<<< HEAD
 *kesme noktası* JavaScript çalışırken çalışmasını o noktada durdurmasını sağlar.
+=======
+![](chrome-sources-breakpoint.svg)
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 Kod durdurulduğunda, o anki değişken değerlerini inceleyebilir veya konsoldan kod çalıştırabilirsiniz. Diğer bir deyişle *hata ayıklayabilirsiniz*
 
@@ -69,7 +83,11 @@ Belirli değişken değerlerine veya parametre değerlerine göre çalışma dur
 
 ## Debugger komutu
 
+<<<<<<< HEAD
 Ayrıca  `debugger` kodu ile de hata ayıklama işlemini yapmak mümkündür.
+=======
+We can also pause the code by using the `debugger` command in it, like this:
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 ```js
 function merhaba(adi) {
@@ -89,11 +107,19 @@ Bu kod, siz editörde kod yazarken tekrar tarayıcıya geçip, kodu bulup kesme 
 
 Yaptığımız örnekte `merhaba()` sayfa yüklenirken çalışmaktadır. Bundan dolayı hata ayıklayıcıyı çalıştırmanın en kolay yolu sayfayı yenilemektir. Bunun için `key:F5` (Windows, Linux) veya `key:Cmd+R` ile sayfanın yenileyiniz.
 
+<<<<<<< HEAD
 Kesme noktasını kodda belirlediğinizden dolayı 4. satırda JavaScript çalışmayı durduracaktır.
+=======
+In our example, `hello()` is called during the page load, so the easiest way to activate the debugger (after we've set the breakpoints) is to reload the page. So let's press `key:F5` (Windows, Linux) or `key:Cmd+R` (Mac).
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 ![](chrome-sources-debugger-pause.svg)
 
+<<<<<<< HEAD
 Lütfen bilgilerin görüneceği dropdownları sağ panelden açınız. Bu bölümler oklar ile gösterilmiştir. Bu bölümler kesme anındaki değişkenlerin değerleri ve kod durumunu incelemeye yarar.
+=======
+![](chrome-sources-debugger-pause.svg)
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 1. **`Watch` -- herhangi bir ifadenin o anki değerini gösterir.**
     `+` işaretine basarak ifade girebilirsiniz. Bu ifadenin değerini kod ayıklayıcı her halükarda gösterir. Kod çalışırken bu değerleri her adımda kontrol eder ve sonucunu yazar.
@@ -109,7 +135,12 @@ Lütfen bilgilerin görüneceği dropdownları sağ panelden açınız. Bu böl�
 
     `Global` global değişkenler. Yani fonksiyon dışında tanımlanmış değerleri görebilirsiniz.
 
+<<<<<<< HEAD
     Bunların yanında `this` anahtar kelimesi de vardır. Fakat bu konu üzerinden geçmedik.
+=======
+    If you click on a stack item (e.g. "anonymous"), the debugger jumps to the corresponding code, and all its variables can be examined as well.
+3. **`Scope` -- current variables.**
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 ## Çalışma izini sürme
 
@@ -127,8 +158,12 @@ Sağ panelin üstünde sadece bu işe has butonlar bulunmaktadır.
 
     Çalışmaya devam edildi, `yaz()` fonksiyonunun içerisinde tekrar durdu. Dikkat ederseniz "Call stack" çağrısını bu işlem bir artırdı.
 
+<<<<<<< HEAD
 <span class="devtools" style="background-position:-137px -76px"></span> -- adım at (bir sonraki komutu çalıştır), fakat *fonksiyonun içine girme*,  `key:F10`.
 : Eğer buna şimdi tıklarsanız `alert` çalışır. Önemli olan şey `alert` yerine farklı bir fonksiyon da olsa çalışma bu fonksiyonun içinde ne yaptığına önem vermez ve "üstünden atlar".
+=======
+    ![](chrome-sources-debugger-trace-1.svg)
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 <span class="devtools" style="background-position:-72px -76px"></span> -- adım at, `key:F11`.
 : Bir öncekinin aynısı, bir adım gider fakat bu defa eğer bir fonksiyon varsa onun "içine girer"(step into).
@@ -141,18 +176,41 @@ Sağ panelin üstünde sadece bu işe has butonlar bulunmaktadır.
 <span class="devtools" style="background-position:-264px -4px"></span> -- Hata olduğu anda otomatik olarak durdurmayı açma kapama butonu
 : Etkinleştirildiğinde, kodda herhangi bir hata olduğunda çalışma otomatik olarak durdurulur. Bu noktada analizlerinizi yapabilirsiniz. Eğer hata varsa hata ayıklama ekranını açabilir ve bu özelliği etkinleştirerek hatanın nerede olduğunu bulabilirsiniz.
 
+<<<<<<< HEAD
 ```smart header="Buradan devam edin"
 Satır numaralarına sağ tıklayıp "Buradan devam et" özelliği ile kodu bir kaç adım ileriden devam etmesini sağlayabilirsiniz. Böylece yeniden bir kesme noktası oluşturmanıza gerek kalmaz.
+=======
+<span class="devtools" style="background-position:-7px -28px"></span> -- enable/disable all breakpoints.
+: That button does not move the execution. Just a mass on/off for breakpoints.
+
+<span class="devtools" style="background-position:-264px -4px"></span> -- enable/disable automatic pause in case of an error.
+: When enabled, and the developer tools is open, a script error automatically pauses the execution. Then we can analyze variables to see what went wrong. So if our script dies with an error, we can open debugger, enable this option and reload the page to see where it dies and what's the context at that moment.
+
+```smart header="Continue to here"
+Right click on a line of code opens the context menu with a great option called "Continue to here".
+
+That's handy when we want to move multiple steps forward to the line, but we're too lazy to set a breakpoint.
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 ```
 
 ## Loglama
 
+<<<<<<< HEAD
 Konsola basit birşey yazdıracağınız zaman `console.log` fonksiyonunu kullanabilirsiniz. Aşağıdaki örnekte ekrana 0 ile 4 arasındaki değerler yazılır.
+=======
+To output something to console from our code, there's `console.log` function.
+
+For instance, this outputs values from `0` to `4` to console:
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 ```js run
 // çalışmasını görmek için lütfen geliştirici konsolunu açınız.
 for (let i = 0; i < 5; i++) {
+<<<<<<< HEAD
   console.log("deger", i);
+=======
+  console.log("значение", i);
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 }
 ```
 Normal kullanıcı bu çıktıyı ekranda göremez, bunun için geliştirici konsoluna girmesi gerekir.
@@ -166,10 +224,18 @@ Bahsettiğimiz gibi çalışan kodu durdurmanın üç farklı yönü vardır. Bu
 2. `debugger` kelimesi ile durdurma
 3. Eğer hata olduğunda aç/kapa butonu aktifse çalışmada hata olduğunda  <span class="devtools" style="background-position:-264px -4px"></span> durdurma
 
+<<<<<<< HEAD
 Bunların sonucunda çalışmada ne gibi hatalar olduğunu görebilirsiniz. 
+=======
+When paused, we can debug - examine variables and trace the code to see where the execution goes wrong.
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 Bunlara ek olarak <https://developers.google.com/web/tools/chrome-devtools> adresinden daha geniş ve yeni bilgilere ulaşabilirsiniz.
 
 Bu bölümdeki bilgiler sizin hata ayıklama işlemine başlamanızda yardımcı olacaktır. Fakat tarayıcı ile alakalı çok fazla işlem yapıyorsanız bu durumda geliştirici  derinlemesine incelemeniz gerekmektedir.
 
+<<<<<<< HEAD
 Tabi bunun yanında deneme yanılma yöntemiy ile de geliştirici araçlarının özelliklerini keşfedebilirsiniz. Unutmayın sağ tıklayarak farklı bölgelerde farklı fonksiyonları görebilirsiniz.
+=======
+Oh, and also you can click at various places of dev tools and just see what's showing up. That's probably the fastest route to learn dev tools. Don't forget about the right click and context menus!
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a

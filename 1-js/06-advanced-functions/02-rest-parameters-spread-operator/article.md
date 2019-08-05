@@ -8,7 +8,11 @@
 - `Object.assign(dest, src1, ..., srcN)` -- `src1..N`'in özelliklerini `dest`'e kopyalar.
 - ...vs.
 
+<<<<<<< HEAD
 Bu bölümde biz fonksiyonlarımızda bunları nasıl kullanabiliriz konusu üzerinde durulacaktır. Daha da önemlisi böyle fonksiyonlar ile nasıl rahat bir şekilde çalışılabilir bu gösterilecektir.
+=======
+In this chapter we'll learn how to do the same. And also, how to pass arrays to such functions as parameters.
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 ## Gerisi Parametreleri `...`
 
@@ -96,9 +100,13 @@ showName("Julius", "Caesar");
 showName("Ahmet");
 ```
 
+<<<<<<< HEAD
 Önceden, geriye kalanlar parametresi eklenmemişti, `arguments` değişkeni tüm argümanların alınacağı yegane yöntemdi.
 
 Hala çalışmakta ve eski şekliyle kullanılabilir.
+=======
+In old times, rest parameters did not exist in the language, and using `arguments` was the only way to get all arguments of the function. And it still works, we can find it in the old code.
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 Fakat olumsuz tarafı, tam olarak dizi olmamasından dolayı dizilere ait bazi fonksiyonlar çağırılamaz. Örneğin `arguments.map(...)` mümkün değildir.
 
@@ -120,7 +128,14 @@ function f() {
 
 f(1); // 1
 ```
+<<<<<<< HEAD
 Hatırlayacaksınız ok fonksiyonlarının kendisine ait `this`'i bulunmamaktadır. Şimdi `arguments`'in olmadığını da biliyorsunuz.
+=======
+
+As we remember, arrow functions don't have their own `this`. Now we know they don't have the special `arguments` object either.
+````
+
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 ````
 

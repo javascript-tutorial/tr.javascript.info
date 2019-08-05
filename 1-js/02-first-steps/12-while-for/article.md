@@ -17,7 +17,11 @@ while (koşul) {
 }
 ```
 
+<<<<<<< HEAD
 `koşul` `doğru` iken(while), `döngü gövdesinde` bulunan kod çalıştırılır.
+=======
+While the `condition` is truthy, the `code` from the loop body is executed.
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 Örneğin, aşağıdaki kod `i < 3` `iken` çalışır.
 
@@ -82,7 +86,11 @@ Bu şekilde döngü yazımı çok nadir olarak kullanılır. Kullanılmasının 
 
 ## "for" döngüsü
 
+<<<<<<< HEAD
 `for` döngüsü en fazla kullanılan döngüdür.
+=======
+The `for` loop is more complex, but it's also the most commonly used loop.
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 Aşağıdaki şekilde kullanıma sahiptir:
 
@@ -109,6 +117,11 @@ Bölüm bölüm inceleyecek olursak
 
 Genel döngü algoritması aşağıdaki gibidir:
 
+<<<<<<< HEAD
+=======
+The general loop algorithm works like this:
+
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 ```
 Çalışmaya başlar
 → (if koşul → gövdeyi çalıştır ve adımı çalıştır.)
@@ -117,9 +130,15 @@ Genel döngü algoritması aşağıdaki gibidir:
 → ...
 ```
 
+<<<<<<< HEAD
 Eğer döngüleri yeni görüyorsanız, belki geri dönüp bu olanları sırasıyla kağıda yazarak takip ederseniz sizin için daha iyi olacaktır.
 
 Yukarıdaki kodda tam olarak ne oluyor peki:
+=======
+That is, `begin` executes once, and then it iterates: after each `condition` test, `body` and `step` are executed.
+
+If you are new to loops, it could help to go back to the example and reproduce how it runs step-by-step on a piece of paper.
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 
 ```js
@@ -278,9 +297,13 @@ Yukarıdaki döngü `?` ile yazılacak olursa:
 (i > 5) ? alert(i) : *!*continue*/!*; // `continue` burada kullanılamaz!!!
 ```
 
+<<<<<<< HEAD
 ... sonrasında çalışmayı durdurur. Böyle kodlar yazım hatası verir.
 
 Bu da `'?'` işaretini `if` yerine kullanmamak için ayrı bir neden.
+=======
+...it stops working: there's a syntax error.
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 ````
 
@@ -349,13 +372,22 @@ for (let i = 0; i < 3; i++) { ... }
 
 `continue` talimatı da etiket ile kullanılabilir. Bu durumda etiketin yazılı olduğu yere atlar.
 
+<<<<<<< HEAD
+=======
+````warn header="Labels do not allow to \"jump\" anywhere"
+Labels do not allow us to jump into an arbitrary place in the code.
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 ````warn header="Etiketler \"goto\" değildir."
 Etiketler ile kodun herhangi bir yerine atlamak mümkün değildir.
 
 Örneğin aşağıdaki kod çalışmaz.
 ```js
+<<<<<<< HEAD
 break etiket;  // etikete atlar değil mi?.
+=======
+break label; // doesn't jumps to the label below
+>>>>>>> fb38a13978f6e8397005243bc13bc1a20a988e6a
 
 etiket: for (...)
 ```
