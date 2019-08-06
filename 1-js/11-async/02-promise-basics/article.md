@@ -1,124 +1,120 @@
-# Promise
+# Promise ( Söz )
 
-Imagine that you're a top singer, and fans ask day and night for your upcoming single.
+Diyelim ki çok iyi bir sanatçısınız ve fanlarınız size sabah akşam ne zaman yeni şarkılarınızın geleceğini soruyor.
 
-To get some relief, you promise to send it to them when it's published. You give your fans a list to which they can subscribe for updates. They can fill in their email addresses, so that when the song becomes available, all subscribed parties instantly receive it. And even if something goes very wrong, say, if plans to publish the song are cancelled, they will still be notified.
+Siz de biraz rahatlamak için yeni şarkı yayınladığınızda onlara göndereceğinize söz verdiniz. Onlara bir liste verdiniz ve güncellemeleri buradan yayınlayacağınızı söylediniz. Böylece onlar da kendi email adreslerini yazar ve yeni şarkılar geldiğinde hemen bunları görebilir. Diyelimki birşey yanış gitti ve yeni şarkıyı yayınlayamadınız bu şekliyle bile onlara bildirim gider.
 
-Everyone is happy, because the people don't crowd you anymore, and fans, because they won't miss the single.
+Böylece herkes mutlu, sizi artık kimse darlamayacak, ve hiç bir yeni şarkınızı kaçırmayacaklar.
 
-This is a real-life analogy for things we often have in programming:
+Bu programlamada karşılaştığımız olayların gerçek-hayattaki analojisi:
 
-1. A "producing code" that does something and takes time. For instance, the code loads data over a network. That's a "singer".
-2. A "consuming code" that wants the result of the "producing code" once it's ready. Many functions  may need that result. These are the "fans".
-3. A *promise* is a special JavaScript object that links the "producing code" and the "consuming code" together. In terms of our analogy: this is the "subscription list". The "producing code" takes whatever time it needs to produce the promised result, and the "promise" makes that result available to all of the subscribed code when it's ready.
+1. Zaman alan "Kod üretme". Örneğin ağ üzerinden veri yükleyen bir uygulama, yani "Şarkıcı"
+2. Üretilen kodu hazır olduğunda "tüketmek isteyen" kod. Bir çok fonksiyon bu sonuca ihtiyaç duyabilir. Bu da "fanlar"'dır.
+3. *promise*(söz) bir çeşif özel JavaScript objesidir. Bu obje "üreten kod" ile "tüketen kod'u" birleştirir. Bizim kurduğumuz analoji'de bu "üyelik listesi"'ne denk gelir. "Kod üreten"'in ne kadar sürede üreteceği belli değildir.  Bu söz hazır olduğunda tüm üyelere bunu bildirir.
 
-The analogy isn't terribly accurate, because JavaScript promises are more complex than a simple subscription list: they have additional features and limitations. But it's fine to begin with.
+Bu analoji tam olarak doğru değildir, aslında JavaScript promise'leri üyelik listesinden çok daha karmaşıktır: Bazı ek özellikleri ve sınırlılıkları mevcuttur. Fakat başlangıç olarak iyi diyebiliriz.
 
-The constructor syntax for a promise object is:
+Promise objesinin yapıcı yazımı şu şekildedir:
 
 ```js
 let promise = new Promise(function(resolve, reject) {
-  // executor (the producing code, "singer")
+  // çalıştırıcı (üretici kod, "şarkıcı")
 });
 ```
+`new Promise`'e gönderilen fonksiyona *çalıştırıcı*. Promise üretildiğinde, bu çalıştırıcı otomatik olarak başlar. Bu üretici kodu kapsar, sonrasında sonuç üretilir. Yukarıdaki analojiye göre: çalıştırıcı "şarkıcı"'dır.
 
-The function passed to `new Promise` is called the *executor*. When the promise is created, this executor function runs automatically. It contains the producing code, that should eventually produce a result. In terms of the analogy above: the executor is the "singer".
+Sonuçlanan `promise` objesinin dahili özellikleri şu şekildedir:
 
-The resulting `promise` object has internal properties:
+- `durum` - ilk önce "bekleniyor ( pending )" sonrasında "yerine getirildi" veya "red edildi" durumuna getirilir.
+- `sonuç` - ilk başlangıçta `undefined`'dır.
 
-- `state` — initially "pending", then changes to either "fulfilled" or "rejected",
-- `result` — an arbitrary value, initially `undefined`.
+Çalıştırıcı işini bitirdiğinde, aşağıdaki fonksiyonları belirtilen argümanlar ile çağırmalıdır:
 
-When the executor finishes the job, it should call one of the functions that it gets as arguments:
-
-- `resolve(value)` — to indicate that the job finished successfully:
-    - sets `state` to `"fulfilled"`,
-    - sets `result` to `value`.
-- `reject(error)` — to indicate that an error occurred:
-    - sets `state` to `"rejected"`,
-    - sets `result` to `error`.
+- `resolve(value)` — işin başarılı bir şekilde bittiğini belirtir:
+    -  `state`'i `"fulfilled"`'e ayarlar,
+    - `result`'ı  `value`'a ayarlar.
+- `reject(error)` — bir hata olduğunu belirtir:
+    -  `state`'i  `"rejected"`'e ayarlar,
+    -  `result`'ı `error`'a ayarlar.
 
 ![](promise-resolve-reject.svg)
 
-Later we'll see how these changes become known to "fans".
+Sonra bu değişikliklerin "fanlara" nasıl bildirildiğini göreceğiz.
 
-Here's an example of a Promise constructor and a simple executor function with its "producing code" (the `setTimeout`):
+Aşağıda basit bir Promise yapıcısı ve "üretici kod"'lu bir çalıştırıcı göreceksiniz ( `setTimeout` )
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
-  // the function is executed automatically when the promise is constructed
-
-  // after 1 second signal that the job is done with the result "done"
+  // Fonksiyon Promise oluşturulduğunda otomatik olarak başlar.
+  // Başladıktan bir sn sonra "done" yazarak işi bitirir.
   setTimeout(() => *!*resolve("done")*/!*, 1000);
 });
 ```
+Yukarıdaki kodun çalışması hakkında iki şey söyleyebiliriz:
+1. Çalıştırıcı otomatik olarak çağrıldı ve hemen başladı.
+2. Çalıştırıcı `resolve` ve `reject` adında iki argüman alır. Bu fonksiyonlar JavaScript motoru tarafından ön tanımlıdır. Bunları tekrar oluşturmaya gerek yok. Sadece hazır olduğunda çağırmamız yeterlidir.
 
-We can see two things by running the code above:
-
-1. The executor is called automatically and immediately (by the `new Promise`).
-2. The executor receives two arguments: `resolve` and `reject` — these functions are pre-defined by the JavaScript engine. So we don't need to create them. We only should call one of them when ready.
-
-After one second of "processing" the executor calls `resolve("done")` to produce the result:
+"işliyor" durumundan bir sn sonra çalıştırıcı "resolve("done")`'ı çağırır ve sonucu üretir:
 
 ![](promise-resolve-1.svg)
 
-That was an example of a successful job completion, a "fulfilled promise".
+İşlem başarılı bir şekilde tamamlandığındna dolayı, "söz yerine getirildi".
 
-And now an example of the executor rejecting the promise with an error:
+Aşağıda ise sözü hata ile reddeden bir çalıştırıcı örneği görülmektedir:
 
 ```js
 let promise = new Promise(function(resolve, reject) {
-  // after 1 second signal that the job is finished with an error
+  // çalışmaya başladıktan bir sn sonra iş hata ile sonuçlandı.
   setTimeout(() => *!*reject(new Error("Whoops!"))*/!*, 1000);
 });
 ```
 
 ![](promise-reject-1.svg)
 
-To summarize, the executor should do a job (something that takes time usually) and then call `resolve` or `reject` to change the state of the corresponding Promise object.
+Özetlemek gerekirse çalıştırıcı ( bir süre alabilir ) işi bittikten sonra `resolve` veya `reject`'i çağırarak gerekli Promise objesinin durumunu değiştirir.
 
-The Promise that is either resolved or rejected is called "settled", as opposed to a initially "pending" Promise.
+`resolve` edilmiş veya `reject` edilmiş Promise(Söz) objesine "yerleşmiş" denilir. Daha öncesinde ise bu durum "pending"(askıda) idi.
 
-````smart header="There can be only a single result or an error"
-The executor should call only one `resolve` or one `reject`. The promise's state change is final.
+````smart header="Sadece tek bir sonuç veya hata olabilir"
+Çalıştırıcı sadece bir `çözüm` veya bir `red`'i çağırmalıdır. Söz'ün durumu değişikliği son olur.
 
-All further calls of `resolve` and `reject` are ignored:
+Bundan sonraki her türlü `çözüm` veya `red` görmezden gelinir:
+
 
 ```js
 let promise = new Promise(function(resolve, reject) {
   resolve("done");
 
-  reject(new Error("…")); // ignored
-  setTimeout(() => resolve("…")); // ignored
+  reject(new Error("…")); // önemsenmez
+  setTimeout(() => resolve("…")); // önemsenmez
 });
 ```
+Buradaki fikir çalıştırıcının sadece bir tane sonuç veya bir tane hata dönmesi üzerinedir.
 
-The idea is that a job done by the executor may have only one result or an error.
-
-Also, `resolve`/`reject` expect only one argument (or none) and will ignore additional arguments.
+Ayrıca `çözüm`/`red` sadece bir tane (veya hiç) argüman kabul eder ve geri kalanlarını önemsemez.
 ````
 
 ```smart header="Reject with `Error` objects"
 In case something goes wrong, we can call `reject` with any type of argument (just like `resolve`). But it is recommended to use `Error` objects (or objects that inherit from `Error`). The reasoning for that will soon become apparent.
 ```
 
-````smart header="Immediately calling `resolve`/`reject`"
-In practice, an executor usually does something asynchronously and calls `resolve`/`reject` after some time, but it doesn't have to. We also can call `resolve` or `reject` immediately, like this:
+````smart header="Anında `çözüm`/`reject` objelerinin çağırılması"
+Prakikte, çalıştırıcı genelde asenkron çalışır ve `çözüm`/`red`'den bir tanesini bir süre sonra çağırır, aslında çağırmasa da olur. Bunun yerine doğrudan `çözüm` veya `redded` çağrılabilir. Örneğin:
 
 ```js
 let promise = new Promise(function(resolve, reject) {
-  // not taking our time to do the job
-  resolve(123); // immediately give the result: 123
+  // Hiç zaman almadan 
+  resolve(123); // Anında sonucu bu şekilde verebiliriz
 });
 ```
 
-For instance, this might happen when we start to do a job but then see that everything has already been completed and  cached.
+Bu durum işe başladığınızda fakat sonrasında değişen birşey olmadığının görünüp hiç çalışmadan gönderilmek istendiğinde gerçekleştirilebilir.
 
-That's fine. We immediately have a resolved promise.
+Bu aslında iyi bir çözüm. Böylece söz hemen çözülmüş olur.
 ````
 
-```smart header="The `state` and `result` are internal"
-The properties `state` and `result` of the Promise object are internal. We can't directly access them from our "consuming code". We can use the methods `.then`/`.catch`/`.finally` for that. They are described below.
+```smart header="`state`(durum) ve `result`(sonuç) dahilidir"
+Promise objesinin `durum` ve `sonuç` özellikleri dahilidir. Bundan dolayı "tüketici kod" içerisinden doğrudan erişemeyiz. Bunun yerine `.then`/`.catch`/`.finally` gibi metodları kullanırız. Aşağıda bunlar açıklanmaktadır.
 ```
 
 ## Consumers: then, catch, finally
