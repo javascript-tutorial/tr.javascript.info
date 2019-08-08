@@ -1,13 +1,13 @@
 
-# Delay with a promise
+# Söz ile gecikme
 
-The built-in function `setTimeout` uses callbacks. Create a promise-based alternative.
+Gömülü olarak gelen `setTimeout` fonksiyonu callback kullanmaktadır. Bunun söz-temelli alternatifini yazınız.
 
-The function `delay(ms)` should return a promise. That promise should resolve after `ms` milliseconds, so that we can add `.then` to it, like this:
+`delay(ms)` fonksiyonu söz döndürmelidir. Bu söz `ms` saniye sonra çözülmelidir. Böylece `.then` ekleyebiliriz. Örneğin:
 
 ```js
 function delay(ms) {
-  // your code
+  // Kodunuz
 }
 
 delay(3000).then(() => alert('runs after 3 seconds'));
