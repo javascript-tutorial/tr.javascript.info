@@ -1,9 +1,8 @@
 
-# Animated circle with promise
+# Söz ile hareketli çember.
+<info:task/animate-circle-callback> görevindeki `showCircle` fonksiyonu callback yerine söz döndürerek tekrar yazınız.
 
-Rewrite the `showCircle` function in the solution of the task <info:task/animate-circle-callback> so that it returns a promise instead of accepting a callback.
-
-The new usage:
+Yeni kullanım:
 
 ```js
 showCircle(150, 150, 100).then(div => {
@@ -11,5 +10,4 @@ showCircle(150, 150, 100).then(div => {
   div.append("Hello, world!");
 });
 ```
-
-Take the solution of the task <info:task/animate-circle-callback> as the base.
+<info:task/animate-circle-callback> çözümünü temel varsayın.
