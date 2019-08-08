@@ -1,8 +1,7 @@
 
-# Re-resolve a promise?
+# Bir sözü tekrar çözme?
 
-
-What's the output of the code below? 
+Aşağıdaki kodun çıktısı nedir?
 
 ```js
 let promise = new Promise(function(resolve, reject) {
