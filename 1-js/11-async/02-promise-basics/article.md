@@ -94,8 +94,8 @@ Buradaki fikir çalıştırıcının sadece bir tane sonuç veya bir tane hata d
 Ayrıca `çözüm`/`red` sadece bir tane (veya hiç) argüman kabul eder ve geri kalanlarını önemsemez.
 ````
 
-```smart header="Reject with `Error` objects"
-In case something goes wrong, we can call `reject` with any type of argument (just like `resolve`). But it is recommended to use `Error` objects (or objects that inherit from `Error`). The reasoning for that will soon become apparent.
+```smart header="`Error` objesi ile reddetme"
+Bazı durumlar beklenmediği gibi gidebilir. Böyle durumlarda `reject`'i bir argüman ile çağırabiliriz. `Error` objesini kullanmanız daha iyi olacaktır. Bunun nedeni ileride daha açık olacaktır.
 ```
 
 ````smart header="Anında `çözüm`/`reject` objelerinin çağırılması"
@@ -117,68 +117,65 @@ Bu aslında iyi bir çözüm. Böylece söz hemen çözülmüş olur.
 Promise objesinin `durum` ve `sonuç` özellikleri dahilidir. Bundan dolayı "tüketici kod" içerisinden doğrudan erişemeyiz. Bunun yerine `.then`/`.catch`/`.finally` gibi metodları kullanırız. Aşağıda bunlar açıklanmaktadır.
 ```
 
-## Consumers: then, catch, finally
+## Tüketiciler: then, catch, finally
 
-A Promise object serves as a link between the executor (the "producing code" or "singer") and the consuming functions (the "fans"), which will receive the result or error. Consuming functions can be registered (subscribed) using methods `.then`, `.catch` and `.finally`.
+Promise(Söz objesi) çalıştırıcı("üretici kod", "şarkıcı") ve tüketici("fanlar") arasında bir bağ oluşturur, bu sonuç veya hata objesi bekler. Tüketici fonksiyonlar `.then`, `.catch` ve `.finally` ile kayıt olabilirler.
 
 ### then
 
-The most important, fundamental one is `.then`.
+En önemli ve temel olan `then`'dir.
 
-The syntax is:
+Yazımı:
 
 ```js
 promise.then(
-  function(result) { *!*/* handle a successful result */*/!* },
-  function(error) { *!*/* handle an error */*/!* }
+  function(result) { *!*/* başarılı bir sonucu işle */*/!* },
+  function(error) { *!*/* hayatı işle */*/!* }
 );
 ```
+`.then`'in ilk argümanı:
 
-The first argument of `.then` is a function that:
+1. Promise sonuca ulaştığında çalışır.
+2. Sonucu alır.
 
-1. runs when the promise is resolved, and
-2. receives the result.
+İkinci argümanı:
 
-The second argument of `.then` is a function that:
+1. Söz reddedildiğinde
+2. Hata alır.
 
-1. runs when the promise is rejected, and
-2. receives the error.
-
-For instance, here's a reaction to a successfully resolved promise:
+Örneğin, aşağıdaki başarılı bir şekilde çözülen söz örneği:
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
   setTimeout(() => resolve("done!"), 1000);
 });
 
-// resolve runs the first function in .then
+// çözüm .then'in ilk fonksiyonunda çalışır.
 promise.then(
 *!*
-  result => alert(result), // shows "done!" after 1 second
+  result => alert(result), //  1 sn sonra "done!" ekrana basılır
 */!*
-  error => alert(error) // doesn't run
+  error => alert(error) // çalışmaz
 );
 ```
+İlk fonksiyon çalıştı.
 
-The first function was executed.
-
-And in the case of a rejection -- the second one:
+Red durumunda ikincisi çalışır:
 
 ```js run
 let promise = new Promise(function(resolve, reject) {
   setTimeout(() => reject(new Error("Whoops!")), 1000);
 });
 
-// reject runs the second function in .then
+// red .then'in ikinci fonksiyonunda çalışır.
 promise.then(
-  result => alert(result), // doesn't run
+  result => alert(result), // çalışmaz
 *!*
-  error => alert(error) // shows "Error: Whoops!" after 1 second
+  error => alert(error) //  "Error: Whoops!" 1 sn sonra ekrana basılır.
 */!*
 );
 ```
-
-If we're interested only in successful completions, then we can provide only one function argument to `.then`:
+Sadece başarılı bir şekilde tamamlanması ile ilgileniyorsanız, `.then`'e sadece bir tane fonksiyon vermeniz yeterlidir:
 
 ```js run
 let promise = new Promise(resolve => {
@@ -186,13 +183,12 @@ let promise = new Promise(resolve => {
 });
 
 *!*
-promise.then(alert); // shows "done!" after 1 second
+promise.then(alert); // 1 sn sonra "done!" ekrana basılır.
 */!*
 ```
 
 ### catch
-
-If we're interested only in errors, then we can use `null` as the first argument: `.then(null, errorHandlingFunction)`. Or we can use `.catch(errorHandlingFunction)`, which is exactly the same:
+Sadece hatalar ile ilgileniyorsanız, ilk argüman için `null` kullanabilirsiniz: `.then(null, errorHandlingFunction)`. Veya `.catch(errorHandlingFunction)`'da kullanabilirsiniz, bu da şu şekilde olur:
 
 
 ```js run
@@ -201,84 +197,79 @@ let promise = new Promise((resolve, reject) => {
 });
 
 *!*
-// .catch(f) is the same as promise.then(null, f)
-promise.catch(alert); // shows "Error: Whoops!" after 1 second
+// .catch(f) ile promise.then(null, f) aynıdır
+promise.catch(alert); // 1 sn sonra "Error: Whoops!" ekrana basılır.
 */!*
 ```
-
-The call `.catch(f)` is a complete analog of `.then(null, f)`, it's just a shorthand.
+`.catch(f)` ile `.then(null, f)` aynı anlama gelmektedir. Birincisi sadece  kısa yazım.
 
 ### finally
 
-Just like there's a `finally` clause in a regular `try {...} catch {...}`, there's `finally` in promises.
+`try{...} catch {...}`'de `finally` olduğu gibi sözlerde de `finally` bulunmaktadır.
 
-The call `.finally(f)` is similar to `.then(f, f)` in the sense that it always runs when the promise is settled: be it resolve or reject.
+`.finally(f)` çağrısı `.then(f,f)`'ye benzemektedir. Söz yerine getirildiğinde, ister çözüm veya ret olsun, bu fonksiyon çalışır.
 
-`finally` is a good handler for performing cleanup, e.g. stopping our loading indicators, as they are not needed anymore, no matter what the outcome is.
+`finally` temizlik için oldukça iyi bir işleyicidir. Örneğin yükleniyor belirtecinin durdurulması gibi. En nihayetinde olumlu veya olumsuz olarak söz tamamlanmıştır.
 
-Like this:
+Aşağıdaki gibi:
 
 ```js
 new Promise((resolve, reject) => {
-  /* do something that takes time, and then call resolve/reject */
+  /* zaman alan bir iş yap ve çözüm/red'i çağır. */
 })
 *!*
-  // runs when the promise is settled, doesn't matter successfully or not
+  // Söz herhangi bir şekilde tamamlandığında çalıştır.
   .finally(() => stop loading indicator)
 */!*
   .then(result => show result, err => show error)
 ```
 
-It's not exactly an alias of `then(f,f)` though. There are several important differences:
+Aslında doğrudan `then(f,f)` ile aynı diyemeyiz. Bazı önemli farklılıklar bulunmaktadır:
 
-1. A `finally` handler has no arguments. In `finally` we don't know whether the promise is successful or not. That's all right, as our task is usually to perform "general" finalizing procedures.
-2. A `finally` handler passes through results and errors to the next handler.
+1. `finally` işleyicisinin argümanı bulunmamaktadır. `finally` bloğunda sözün başarılı veya başarısız olduğunu bilemeyiz. Bu bir problem değil çünkü en sonunda "genel" bir bitirme prosedürü gerçekleştirmek yeterlidir.
+2. `finally` işleyicisi sonuç veya hata işleyicisine geçirgendir
 
-    For instance, here the result is passed through `finally` to `then`:
+    Örneğin aşağıda `finally`'den `then`'e geçmiş bir sonuç görülmektedir:
     ```js run
     new Promise((resolve, reject) => {
       setTimeout(() => resolve("result"), 2000)
     })
       .finally(() => alert("Promise ready"))
-      .then(result => alert(result)); // <-- .then handles the result
+      .then(result => alert(result)); // <-- .then sonuçları işler
     ```
-
-    And here there's an error in the promise, passed through `finally` to `catch`:
-
+    Burada ise sözde bir problem meydana gelmektedir, `finally`'den `catch` bloğuna geçmektedir:
+    
     ```js run
     new Promise((resolve, reject) => {
       throw new Error("error");
     })
       .finally(() => alert("Promise ready"))
-      .catch(err => alert(err));  // <-- .catch handles the error object
+      .catch(err => alert(err));  // <-- .catch hata objesini işler.
     ```  
+    Aslında bu çok uygun, çünkü `finally` içerisinde sözün sonucunu işleme gibi bir niyetimiz yok. Bunları üzerinden geçirse yeterli.
+    
+    Promiseler ve bunların zincirlemesi hakkında ilerleyen konularda daha derin bilgi verilecektir.
+    
+3. `finally(f)` kullanmak yazım olarak `.then(f,f)`'den daha uygundur çünkü `f` fonksiyonunu tekrar yazmanıza gerek kalmaz.
 
-    That's very convenient, because `finally` is not meant to process a promise result. So it passes it through.
-
-    We'll talk more about promise chaining and result-passing between handlers in the next chapter.
-
-3. Last, but not least, `.finally(f)` is a more convenient syntax than `.then(f, f)`: no need to duplicate the function `f`.
-
-````smart header="On settled promises handlers runs immediately"
-If a promise is pending, `.then/catch/finally` handlers wait for the result. Otherwise, if a promise has already settled, they execute immediately:
+````smart header="Bitmiş sözün işleyicilerini anında çalıştırtırma"
+Eğer bir söz bekleme durumunda ise `.then/catch/finally` işleyicileri sonuç için beklerler. Diğer türlü, söz bittiğinde, anında çalıştırılır:
 
 ```js run
-// an immediately resolved promise
+// anında biten söz
 let promise = new Promise(resolve => resolve("done!"));
 
-promise.then(alert); // done! (shows up right now)
+promise.then(alert); // done! (hemen görünür)
 ```
-
-The good thing is: a `.then` handler is guaranteed to run whether the promise takes time or settles it immediately.
+`.then` işleyicisi her türlü çalışır, söz zaman alsa da anında bitse de önemli değil.
 ````
+Bir sonraki bölümde, sözlerin nasıl asenkron kod yazarken işimize yarayabileceği üzerinde duralım.
 
-Next, let's see more practical examples of how promises can help us to write asynchronous code.
+## Örnek: loadScript [#loadscript]
 
-## Example: loadScript [#loadscript]
+Bir önceki bölümden kodu yükleyen `loadScript` kodunu alalım.
 
-We've got the `loadScript` function for loading a script from the previous chapter.
-
-Here's the callback-based variant, just to remind us of it:
+Aşağıda callback fonksiyonu ile yazılmış versiyonu hatırlama amaçlı aşağıya yazılmıştır:
 
 ```js
 function loadScript(src, callback) {
@@ -291,10 +282,9 @@ function loadScript(src, callback) {
   document.head.append(script);
 }
 ```
+Söz kullanarak bunları tekrar yazmaya çalışalım.
 
-Let's rewrite it using Promises.
-
-The new function `loadScript` will not require a callback. Instead, it will create and return a Promise object that resolves when the loading is complete. The outer code can add handlers (subscribing functions) to it using `.then`:
+Yeni `loadScript` fonksiyonu callback'e ihtiyaç duymayacaktır. Bunun yerine yüklenme tamamlandığında Promise objesi dönecektir. Dıştaki kod `.then` kullanarak başka işleyiciler ekleyebilir:
 
 ```js run
 function loadScript(src) {  
@@ -310,7 +300,7 @@ function loadScript(src) {
 }
 ```
 
-Usage:
+Kullanım:
 
 ```js run
 let promise = loadScript("https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js");
@@ -322,13 +312,11 @@ promise.then(
 
 promise.then(script => alert('One more handler to do something else!'));
 ```
-
-We can immediately see a few benefits over the callback-based pattern:
-
+callback tarzı yazmadan daha iyi olan bir kaç özellik hemen görülebilir:
 
 | Promises | Callbacks |
 |----------|-----------|
-| Promises allow us to do things in the natural order. First, we run `loadScript(script)`, and `.then` we write what to do with the result. | We must have a `callback` function at our disposal when calling `loadScript(script, callback)`. In other words, we must know what to do with the result *before* `loadScript` is called. |
-| We can call `.then` on a Promise as many times as we want. Each time, we're adding a new "fan", a new subscribing function, to the "subscription list". More about this in the next chapter: [](info:promise-chaining). | There can be only one callback. |
+| Söz ile işlemler doğal sırası dahilinde gerçekleşir. Önce `loadScript(script)` çalıştırılır, sonra `then` ile sonuç işlenir. | `loadScript` çalışmadan önce sonuç ile ne yapılacağı bilinmelidir. |
+| `.then` fonksiyonunu bir sözde istediğimiz kadar kullanabiliriz. Her defasında listeye "yeni fan" eklenebilir.Bunun ile ilgili bir sonraki bölüme bakılabilir: [](info:promise-chaining). | Sadece bir tane callback olmalı. |
 
-So Promises give us better code flow and flexibility. But there's more. We'll see that in the next chapters.
+Söz bize daha iyi bir akış ve esneklik sağlamaktadır.Bir sonraki bölümde diğer yararlarını da göreceğiz.
