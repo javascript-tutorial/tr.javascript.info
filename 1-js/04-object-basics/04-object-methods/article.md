@@ -113,7 +113,12 @@ let kullanici = {
 
   selamVer() {
 *!*
+<<<<<<< HEAD
     alert(this.isim);
+=======
+    // "this" is the "current object"
+    alert(this.name);
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 */!*
   }
 
@@ -176,7 +181,11 @@ function selamVer() {
 }
 ```
 
+<<<<<<< HEAD
 `this`'in değeri çalışma anında değerlendirilir. Herşey olabilir.
+=======
+The value of `this` is evaluated during the run-time, depending on the context.
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 Örneğin `this` farklı objelerden çağırıldıklarında değerler alabilirler:
 
@@ -255,7 +264,13 @@ kullanici.selamVer(); // Basit metod beklendiği gibi çalışır
 */!*
 ```
 
+<<<<<<< HEAD
 Son satırda kullanıcı ismine göre `kullanici.selamVer` veya `kullanici.yolcuEt` cagrilir. `kullanici.selamVer` `()` ile çağrıldığında çalışmaz. 
+=======
+On the last line there is a conditional operator that chooses either `user.hi` or `user.bye`. In this case the result is `user.hi`.
+
+Then the method is immediately called with parentheses `()`. But it doesn't work correctly!
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 Bunun nedeni çağrı içerisinde `this`'in `undefined` olmasıdır.
 
@@ -342,9 +357,16 @@ Bu ok fonksiyonlarının bir özelliğidir. Ayrı bir `this` kullanmak yerine he
 - Metodlar objelerin `obje.biseylerYap()` seklinde çalışabilmesini sağlar.
 - Metodlar objelere `this` şekline referans verebilir.
 
+<<<<<<< HEAD
 `this`'in değeri çalışma zamanında tanımlanır.
 - Fonksiyon tanımlanırken `this` kullanabilir, fakat `this` bu metod çalışmadığı müddetçe bir anlam ifade etmez.
 - O fonksiyon objeler arasında kopyalanabilir.
 - Fonksiyon metod yazım şekliyle çağırıldığında `obje.metod()`, `this`'in değeri bu çağrı boyunca `obje`'dir.
+=======
+The value of `this` is defined at run-time.
+- When a function is declared, it may use `this`, but that `this` has no value until the function is called.
+- A function can be copied between objects.
+- When a function is called in the "method" syntax: `object.method()`, the value of `this` during the call is `object`.
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 Ok fonksiyonlarında `this` bulunmamaktadır. Eğer bu fonksiyonlar içerisinde `this` çağırılırsa bunun değeri dışarıdan alınır.

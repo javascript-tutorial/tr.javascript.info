@@ -1,7 +1,11 @@
 
 # Fonksiyon Objeleri, NFE
 
+<<<<<<< HEAD
 Bildiğiniz gibi JavaScript'te fonksiyonlar deperdir.
+=======
+As we already know, a function in JavaScript is a value.
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 Her değerin bir tipi olduğuna göre fonksiyonun tipi nedir?
 
@@ -13,7 +17,13 @@ Daha iyi görselleyebilmek adına fonksiyonlara "aksiyon objeleri" denebilir. Sa
 
 Fonksiyon objelerinin kullanışlı özellikleri bulunmaktadır.
 
+<<<<<<< HEAD
 Örneğin, fonksiyonun ismi "name" özelliği ile alınabilir.
+=======
+Function objects contain some useable properties.
+
+For instance, a function's name is accessible as the "name" property:
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 ```js run
 function selamVer() {
@@ -22,6 +32,7 @@ function selamVer() {
 
 alert(selamVer.name); // selamVer
 ```
+<<<<<<< HEAD
 "name" özelliği atama o kadar akıllıdır ki, fonksiyon tanımlama ifadelerindeki ismi bile doğru alır.
 
 ```js run
@@ -30,6 +41,17 @@ let selamVer = function() {
 }
 
 alert(selamVer.name); // selamVer 
+=======
+
+What's kind of funny, the name-assigning logic is smart. It also assigns the correct name to a function even if it's created without one, and then immediately assigned:
+
+```js run
+let sayHi = function() {
+  alert("Hi");
+};
+
+alert(sayHi.name); // sayHi (there's a name!)
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 ```
 Hatta atama varsayılan değer ile yapıldığında bile çalışır:
 
@@ -86,7 +108,13 @@ alert(many.length); // 2
 ```
 Gördüğünüz gibi geriye kalan parametresi `...` sayılmamaktadır.
 
+<<<<<<< HEAD
 `length` özelliği bazen diğer fonksiyonların üzerinde çalışan fonksiyonlara bir iç bakış oluşturur.
+=======
+Here we can see that rest parameters are not counted.
+
+The `length` property is sometimes used for [introspection](https://en.wikipedia.org/wiki/Type_introspection) in functions that operate on other functions.
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 Mesela, aşağıdaki kodda `sor`fonksiyonu `soru` parametresi alır ve belirli olmayan sayıda `isleyici` fonksiyonunu çağırır.
 
@@ -95,9 +123,15 @@ Kullanıcı cevap verdiğinde `isleyici`(handler) çağırılır. İki türlü i
 - Argümansız fonksiyon, sadece pozitif cevaplarda çağırılır.
 - Argümanlı fonksiyonlar, cevap alınan her durumda çağırılır.
 
+<<<<<<< HEAD
 Mantık şu şekildedir; cevap pozisit olduğunda argüman almayan isleyici calisir, fakat evrensel isleyiciye de izin verir.
 
 `isleyici`'lerin doğru çalışması için, `length` özelliğinden faydalanılabilir.
+=======
+To call `handler` the right way, we examine the `handler.length` property.
+
+The idea is that we have a simple, no-arguments handler syntax for positive cases (most frequent variant), but are able to support universal handlers as well:
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 ```js run
 function sor(soru, ...isleyiciler) {
@@ -230,8 +264,15 @@ selamVer("Ahmet"); // Selam, Ahmet
 ```
 `func` ismine ait iki tane özellik vardır:
 
+<<<<<<< HEAD
 1.Bu şekilde fonksiyonun kendisine içerisinden referans vermek mümkündür.
 2. Fonksiyonun dışından erişilemez.
+=======
+There are two special things about the name `func`, that are the reasons for it:
+
+1. It allows the function to reference itself internally.
+2. It is not visible outside of the function.
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 Örneğin, `selamVer` fonksiyonu eğer bir parametre olmadan çağırılırsa kendisini `"Misafir"` ile tekrardan çağırabilir.
 
@@ -266,7 +307,12 @@ let selamVer = function(kim) {
   }
 };
 ```
+<<<<<<< HEAD
 Buradaki problem `selamVer`'in değeri değişebilir. Fonksiyon diğer bir değişkene gidebilir ardından hatalar vermeye başlar.
+=======
+
+The problem with that code is that `sayHi` may change in the outer code. If the function gets assigned to another variable instead, the code will start to give errors:
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 ```js run
 let selamVer = function(kim) {
@@ -329,6 +375,10 @@ Eğer fonksiyon Fonksiyon Tanımı yöntemi ile ( ana akışta olmayan ) tanıml
 
 Fonksiyonlar ayrıca başka özelliklerde taşıyabilirler. Çoğu bilinen JavaScript kütüpyanesi bu özelliği ziyadesiyle kullanır.
 
+<<<<<<< HEAD
 Genelde bir "ana" fonksiyon ve bu fonksiyona bağlı birçok "yardımcı" fonksiyon tanımlarlar. Örneğin [jquery](https://jquery.com) `$` adında bir fonksiyon oluşturur. [lodash](https://lodash.com) fonksiyonu `_` adında bir fonksiyon oluşturu. Ardıncan `_.clone`, `_.keyBy` gibi özellikleri ekler. [Dökümantasyon](https://lodash.com/docs)'u inceleyebilirsiniz.  Aslında, global alanda baya temiz çalışırlar. Böylece bir kütüphane bir tane global değişken vermiş olur. Bu da isimlerin birbiriyle çakışmasını engeller.
+=======
+They create a "main" function and attach many other "helper" functions to it. For instance, the [jQuery](https://jquery.com) library creates a function named `$`. The [lodash](https://lodash.com) library creates a function `_`. And then adds `_.clone`, `_.keyBy` and other properties to (see the [docs](https://lodash.com/docs) when you want learn more about them). Actually, they do it to lessen their pollution of the global space, so that a single library gives only one global variable. That reduces the possibility of naming conflicts.
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 Bundan dolayı bir fonksiyon kendince bir iş yapabilir ve özellikleri vasıtasıyla başka fonksiyonalitelere de sahip olabilir.

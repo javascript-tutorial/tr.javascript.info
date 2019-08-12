@@ -6,9 +6,15 @@ JavaScript fonksiyonlar ile uğraşırken inanılmaz derecede esneklik sağlamak
 
 Diyelim ki `slow(x)` diye yoğun işlemci gücüne ihtiyaç duyan bir fonksiyonunuz olsun, buna rağmen sonucları beklediğiniz şekilde vermekte.
 
+<<<<<<< HEAD
 Eğer bu fonksiyon sık sık çağırılıyor ise farklı x'ler için sonucu saklamak bizi tekrar hesaplamadan kurtarabilir.
 
 Fakat bunu `slow()` fonksiyonunun içine yazmak yerine yeni bir wrapper yazmak daha iyi olacaktır. Göreceğiniz üzere size oldukça fazla yardımı olacaktır.
+=======
+If the function is called often, we may want to cache (remember) the results to avoid spending extra-time on recalculations.
+
+But instead of adding that functionality into `slow()` we'll create a wrapper function, that adds caching. As we'll see, there are many benefits of doing so.
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 Kod aşağıdaki gibidir:
 
@@ -23,6 +29,7 @@ function cachingDecorator(func) {
   let cache = new Map();
 
   return function(x) {
+<<<<<<< HEAD
     if (cache.has(x)) { // eğer sonuç map içerisinde ise 
       return cache.get(x); // değeri gönder
     }
@@ -30,6 +37,15 @@ function cachingDecorator(func) {
     let result = func(x); // aksi halde hesap yap
 
     cache.set(x, result); // sonra sonucu sakla 
+=======
+    if (cache.has(x)) {    // if there's such key in cache
+      return cache.get(x); // read the result from it
+    }
+
+    let result = func(x);  // otherwise call func
+
+    cache.set(x, result);  // and cache (remember) the result
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
     return result;
   };
 }
@@ -49,6 +65,7 @@ Aslında her bir fonksiyon için `cachingDecorator` çağrılabilir ve o da sakl
 
 Saklama olayını ana fonksiyonldan ayırarak aslında daha temiz bir yapıya da geçmiş olduk.
 
+<<<<<<< HEAD
 Detayına inmeye başlayabiliriz.
 
 `cachingDecorator(func)` bir çeşit "wrapper(saklayıcı)"'dır. Bu işlem `func(x)` i "saklama" işine yarar.
@@ -56,6 +73,13 @@ Detayına inmeye başlayabiliriz.
 ![](decorator-makecaching-wrapper.svg)
 
 Gördüğünüz gibi, saklayıcı `func(x)`'ı olduğu gibi dönderir. Saklayıcının dışındaki `yavaş` olan fonksiyon hala aynı şekilde çalışır. Aslında davranışın üstüne sadece saklama(caching) mekanizması gelmiştir.
+=======
+The result of `cachingDecorator(func)` is a "wrapper": `function(x)` that "wraps" the call of `func(x)` into caching logic:
+
+![](decorator-makecaching-wrapper.svg)
+
+From an outside code, the wrapped `slow` function still does the same. It just got a caching aspect added to its behavior.
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 Özetlersek, ayrı bir `cachingDecorator` kullanmanın faydaları şu şekildedir:
 
@@ -228,13 +252,18 @@ let worker = {
 worker.slow = cachingDecorator(worker.slow);
 ```
 
+<<<<<<< HEAD
 Burada çözmemiz gereken iki problem bul
 
 İlki `min` ve `max` değerlerinin bu `bellek` haritasında anahtar olarak nasıl tutulacağı. Önceki konuda tek `x` argümanı için `cache.set(x,result)` şeklinde sonucu belleğe kaydetmiş ve sonra `cache.get(x)` şeklinde almıştık. Fakat şimdi sonucu *argümanların birleşimi* şeklinde hatırlamak gerekmektedir. Normalde `Map` anahtarı tek değer olarak almaktadır.
+=======
+Previously, for a single argument `x` we could just `cache.set(x, result)` to save the result and `cache.get(x)` to retrieve it. But now we need to remember the result for a *combination of arguments* `(min,max)`. The native `Map` takes single value only as the key.
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 
 Bu sorunun çözümü için bazı çözümler şu şekildedir:
 
+<<<<<<< HEAD
 1. Map-benzeri bir yapı kurarak birkaç anahtarı kullanabilen bir veri yapısı oluşturmak.
 2. İç içe map kullanarak; Örneğin `cache.set(min)` aslında `(max, result)`'ı tutmaktadır. Böylece `result` `cache.get(min).get(max)` şeklinde alınabilir.
 3. İki değeri teke indirerek. Bizim durumumuzda bu `"min,max"` şeklinde bir karakter dizisini `Map`'in anahtarı yapmak olabilir. Ayrıca *hashing fonksiyonu*'u dekoratöre sağlayabiliriz. Bu fonksiyon da birçok değerden bir değer yapabilir.
@@ -311,6 +340,13 @@ Buna *çağrı iletme* denir. Saklayıcı sahip olduğu herşeyi iletir: `this` 
 Böyle bir saklayıcı kod çağırıldığında içerideki orjinal fonksiyon çağıran tarafından ayrıştırılamaz.
 
 Şimdi bunları daha güçlü `cachingDecoratır`'da işleyelim:
+=======
+For many practical applications, the 3rd variant is good enough, so we'll stick to it.
+
+Also we need to replace `func.call(this, x)` with `func.call(this, ...arguments)`, to pass all arguments to the wrapped function call, not just the first one.
+
+Here's a more powerful `cachingDecorator`:
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 ```js run
 let worker = {
@@ -331,7 +367,7 @@ function cachingDecorator(func, hash) {
     }
 
 *!*
-    let result = func.apply(this, arguments); // (**)
+    let result = func.call(this, ...arguments); // (**)
 */!*
 
     cache.set(key, result);
@@ -350,10 +386,59 @@ alert( "Again " + worker.slow(3, 5) ); // same (cached)
 ```
 Şimdi saklayıcı(wrapper) birçok argüman ile çalışabilir.
 
+<<<<<<< HEAD
 İki tane değişiklik oldu:
 
 - `(*)` satırında bir `has` ile argümanlardan tek bir anahtar meydana getirildi. Bunun için basit "birleştirme" fonksiyonu kullanılmıştır. `(3,5)` `"3,5"` şekline getirildi. Tabi başka hash fonksiyonları için daha karmaşık bir yapı gerekebilir. 
 - `(**)` satırında ise `func.apply` ile hem kaynak ( this ) hem de saklayıcı argümanları (ne kadar olduğu önemli değil) orjinal fonksiyona iletilmiştir.
+=======
+Now it works with any number of arguments.
+
+There are two changes:
+
+- In the line `(*)` it calls `hash` to create a single key from `arguments`. Here we use a simple "joining" function that turns arguments `(3, 5)` into the key `"3,5"`. More complex cases may require other hashing functions.
+- Then `(**)` uses `func.call(this, ...arguments)` to pass both the context and all arguments the wrapper got (not just the first one) to the original function.
+
+Instead of `func.call(this, ...arguments)` we could use `func.apply(this, arguments)`.
+
+The syntax of built-in method [func.apply](mdn:js/Function/apply) is:
+
+```js
+func.apply(context, args)
+```
+
+It runs the `func` setting `this=context` and using an array-like object `args` as the list of arguments.
+
+The only syntax difference between `call` and `apply` is that `call` expects a list of arguments, while `apply` takes an array-like object with them.
+
+So these two calls are almost equivalent:
+
+```js
+func.call(context, ...args); // pass an array as list with spread operator
+func.apply(context, args);   // is same as using apply
+```
+
+There's only a minor difference:
+
+- The spread operator `...` allows to pass *iterable* `args` as the list to `call`.
+- The `apply` accepts only *array-like* `args`.
+
+So, these calls complement each other. Where we expect an iterable, `call` works, where we expect an array-like, `apply` works.
+
+And for objects that are both iterable and array-like, like a real array, we technically could use any of them, but `apply` will probably be faster, because most JavaScript engines internally optimize it better.
+
+Passing all arguments along with the context to another function is called *call forwarding*.
+
+That's the simplest form of it:
+
+```js
+let wrapper = function() {
+  return func.apply(this, arguments);
+};
+```
+
+When an external code calls such `wrapper`, it is indistinguishable from the call of the original function `func`.
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 ## Metod Ödünç Alma  [#method-borrowing]
 
@@ -438,9 +523,15 @@ Genelde gerçek fonksiyonu dekoratör ile değiştirmek güvenlidir, bir olay ha
 ```js
 let wrapper = function() {
   return original.apply(this, arguments);
-}
+};
 ```
 
+<<<<<<< HEAD
 Ayrıca *metod ödünç alma*'yı da gördük. Bir metotdan obje alındığında ve bu diğer objenin kaynağında(context) `çağırıldığında` gerçekleşir. Dizi metodlarını alıp argümanlara uygulama çokça kullanılır. Bunun alternatifi `geriye kalan` parametre objelerini kullanmaktır. Bunlar gerçek dizilerdir.
 
 Araştırırsanız birçok dekoratör görebilirsiniz. Bu bölümdeki görevleri çözerekte kendinizi geliştirebilirsiniz.
+=======
+We also saw an example of *method borrowing* when we take a method from an object and `call` it in the context of another object. It is quite common to take array methods and apply them to `arguments`. The alternative is to use rest parameters object that is a real array.
+
+There are many decorators there in the wild. Check how well you got them by solving the tasks of this chapter.
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca

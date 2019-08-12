@@ -90,8 +90,14 @@ Aslında `Number(...)` işlemini yapar. Fakat daha kısa biçimyle.
 
 Karakter dizilerini sayılara çevirme gerekliliği sıklıkla önünüze gelir. Örneğin HTML form değerlerini alırken sadece karakter dizisi kullanır. Fakat ya siz bunları toplamak istiyorsanız ?
 
+<<<<<<< HEAD
 Bildiğiniz gibi iki karakter dizisini `+` işareti ile toplarsanız birleştirme işlemi yapar:
 
+=======
+The need to convert strings to numbers arises very often. For example, if we are getting values from HTML form fields, they are usually strings. What if we want to sum them?
+
+The binary plus would add them as strings:
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 ```js run
 let elma = "2";
@@ -124,11 +130,19 @@ Neden önce "unary" işlemi gerçekleşiyor da "binary" işlemi gerçekleşmiyor
 
 Eğer bir ifade birden fazla operatör içeriyorsa. Bu ifade çalıştırılırken tanımlı *önceliklere* göre çalıştırılır, bir başka ifade ile öncelik sırasına göre çalıştırılır.
 
+<<<<<<< HEAD
 Okuldan hepinizin hatırlayacağı gibi çarpma işlemi toplamadan önce yapılır `1 + 2 * 2`. Aslında *öncelik* tam olarakta budur. Çarpma işlemi toplama işleminden daha *yüksek önceliğe* sahiptir.
+=======
+If an expression has more than one operator, the execution order is defined by their *precedence*, or, in other words, the default priority order of operators.
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 Parantez, bu öncelikleri çiğner ve eğer bu *önceliklerden* memnun değilseniz bunları tekrar tanımlamanıza olanak verir. Örneğin `(1 + 2 ) * 2`
 
+<<<<<<< HEAD
 JavaScript' dilinde birçok operatör vardır. Her operatörün de bir önceliği. Yüksek öncelik sayısına sahip operatör mnce çalışır. Eğer öncelik değerleri eşit ise soldan sağa doğru çalışır.
+=======
+Parentheses override any precedence, so if we're not satisfied with the default order, we can use them to change it. For example, write `(1 + 2) * 2`.
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 [öncelik tablosu](https://developer.mozilla.org/en/JavaScript/Reference/operators/operator_precedence) ( Ezberlemenize gerek yok sadece unary operatörlerin binary olanlara göre daha üstün olduğunu hatırlayın yeter). Yani `+elma + +portakal` işleminde önce unary ile `elma`'nın değerini sayı yapar sonra `portakal`'ın değerini sayı yapar ve en sonunda toplar.
 
@@ -193,9 +207,16 @@ alert( a ); // 3
 alert( c ); // 0
 ```
 
+<<<<<<< HEAD
 Yukarıdaki örnekte, `(a = b+1)` in sonucu `a` ya atandıktan sonra(3) 3'den çıkarmak için kullanılıyor.
 
 Komik bi kod değil mi? Nasıl çalıştığını anlamanız lazım, bazen başka kütüphaneler kullandığınızda böyle şeyleri sizin yazmanız beklenmez. Böyle olaylar aslında kodun okunaklılığını azaltır.
+=======
+In the example above, the result of expression `(a = b + 1)` is the value which was assigned to `a` (that is `3`). It is then used for further evaluations.
+
+Funny code, isn't it? We should understand how it works, because sometimes we see it in JavaScript libraries, but shouldn't write anything like that ourselves. Such tricks definitely don't make code clearer or readable.
+````
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
 
 ````
 
@@ -243,16 +264,28 @@ Bunun için özel bir operatör yapılmıştır:
 - **Artırma** `++` değişkenin değerini 1 artırır:
 
     ```js run no-beautify
+<<<<<<< HEAD
     let sayac = 2;
     sayac++;      // sayac =  sayac + 1 ile aynı, fakat daha kısa
     alert( sayac ); // 3
+=======
+    let counter = 2;
+    counter++;        // works the same as counter = counter + 1, but is shorter
+    alert( counter ); // 3
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
     ```
 - **Azaltma** `--` değişkenin değerini bir azaltır:
 
     ```js run no-beautify
+<<<<<<< HEAD
     let sayac = 2;
     sayac--;      //  sayac =  sayac - 1 ile aynı, fakat daha kısa
     alert( sayac ); // 1
+=======
+    let counter = 2;
+    counter--;        // works the same as counter = counter - 1, but is shorter
+    alert( counter ); // 1
+>>>>>>> 5cb9760abb8499bf1e99042d866c3c1db8cd61ca
     ```
 
 ```warn
@@ -419,10 +452,10 @@ Here, the first expression `1 + 2` is evaluated and its result is thrown away. T
 ```smart header="Comma has a very low precedence"
 Please note that the comma operator has very low precedence, lower than `=`, so parentheses are important in the example above.
 
-Without them: `a = 1 + 2, 3 + 4` evaluates `+` first, summing the numbers into `a = 3, 7`, then the assignment operator `=` assigns    `a = 3`, and finally the number after the comma, `7`, is not processed so it's ignored.
+Without them: `a = 1 + 2, 3 + 4` evaluates `+` first, summing the numbers into `a = 3, 7`, then the assignment operator `=` assigns `a = 3`, and the rest is ignored. It's like `(a = 1 + 2), 3 + 4`.
 ```
 
-Why do we need an operator that throws away everything except the last part?
+Why do we need an operator that throws away everything except the last expression?
 
 Sometimes, people use it in more complex constructs to put several actions in one line.
 
@@ -435,4 +468,4 @@ for (*!*a = 1, b = 3, c = a * b*/!*; a < 10; a++) {
 }
 ```
 
-Such tricks are used in many JavaScript frameworks. That's why we're mentioning them. But, usually, they don't improve code readability so we should think well before using them.
+Such tricks are used in many JavaScript frameworks. That's why we're mentioning them. But usually they don't improve code readability so we should think well before using them.
