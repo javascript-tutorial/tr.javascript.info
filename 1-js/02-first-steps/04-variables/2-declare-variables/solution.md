@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 Önce gezegenimizin isminin tutulduğu değişkeni oluşturun.
+=======
+## The variable for our planet
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 Basit bir şekilde aşağıdaki gibi oluşturabilirsiniz:
 
@@ -10,6 +14,10 @@ Dikkat edin daha kısa olabilirdi. Örneğin kısaca `gezegen` diyebilirdik faka
 
 İkincisi şu anda siteyi ziyaret eden kullanıcının adı:
 
+<<<<<<< HEAD
+=======
+## The name of the current visitor
+>>>>>>> 852ee189170d9022f67ab6d387aeae76810b5923
 
 ```js
 let simdikiKullaniciAdi = "Ahmet";
