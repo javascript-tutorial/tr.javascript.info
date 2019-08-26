@@ -61,7 +61,11 @@ Object.defineProperty(obj, propertyName, descriptor)
 ```
 
 `obj`, `propertyName`
+<<<<<<< HEAD
 : Üzerinde çalışılacak obje ve özellik.
+=======
+: The object and its property to apply the descriptor.
+>>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
 
 `descriptor`
 : Uygulanacak özellik tanımlayıcı
@@ -113,29 +117,47 @@ Object.defineProperty(user, "name", {
 });
 
 *!*
+<<<<<<< HEAD
 user.name = "Pete"; // Error: Salt okunur özelliğe değer atanamaz.
+=======
+user.name = "Pete"; // Error: Cannot assign to read only property 'name'
+>>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
 */!*
 ```
 Artık kimse kendi `defineProperty` metodunu yazmadıkça kullanıcının ismini değiştiremez. 
 
+<<<<<<< HEAD
 Aynı işlem bir `özellik` olmadığı durumda:
+=======
+Now no one can change the name of our user, unless they apply their own `defineProperty` to override ours.
+
+```smart header="Errors appear only in strict mode"
+In the non-strict mode, no errors occur when writing to read-only properties and such. But the operation still won't succeed. Flag-violating actions are just silently ignored in non-strict.
+```
+
+Here's the same example, but the property is created from scratch:
+>>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
 
 ```js run
 let user = { };
 
 Object.defineProperty(user, "name", {
 *!*
+<<<<<<< HEAD
   value: "Pete",
   // yeni özellikler için neyin doğru olduğu  özellikle belirtilmelidir.
+=======
+  value: "John",
+  // for new properties need to explicitly list what's true
+>>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
   enumerable: true,
   configurable: true
 */!*
 });
 
-alert(user.name); // Pete
-user.name = "Alice"; // Error
+alert(user.name); // John
+user.name = "Pete"; // Error
 ```
-
 
 ## Non-enumerable
 
@@ -231,10 +253,13 @@ Object.defineProperty(user, "name", {writable: true}); // Error
 */!*
 ```
 
+<<<<<<< HEAD
 ```smart header="Hatalar sadece use strict ile görünür."
 Sıkı olmayan modda, sadece okunabilir özelliklerin üzerine yazarsanız bir hata görmezsiniz. Fakat yine de işleminiz başarılı olmaz. Yapmamanız gereken bir aksiyonda sadece görmezden gelinir.
 ```
 
+=======
+>>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
 ## Object.defineProperties
 
 [Object.defineProperties(obj, descriptors)](mdn:js/Object/defineProperties) metodu birçok metodun tek bir seferde tanımlanmasını sağlar. 

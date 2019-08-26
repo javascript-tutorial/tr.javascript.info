@@ -5,7 +5,11 @@ Bazı durumlarda koşula göre farklı eylemler yapmak isteyebilirsiniz.
 
 `"?"` operatörü veya `if` cümlesi bu koşulları kontrol etmenizi sağlar. 
 
+<<<<<<< HEAD
 ## "if" cümlesi
+=======
+The `if(...)` statement evaluates a condition in parentheses and, if the result is `true`, executes a block of code.
+>>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
 
 "if" cümlesi koşulu alır ve kontrol eder sonucunda `true` ise kodu çalıştırır.
 
@@ -215,7 +219,11 @@ Koşula göre `firma =='Netscap'`, soru işaretinden sonra birinci bölüm veya 
 Sonucu bir değere atanmamıştır. Amaç duruma göre doğrudan kodu çalıştırmak.
 
 
+<<<<<<< HEAD
 **Soru işaretinin bu amaç doğrultusunda kullanılması önerilmez.**
+=======
+**It's not recommended to use the question mark operator in this way.**
+>>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
 
 Yazımı if yazımından daha kısa olsa bile daha az okunabilir durumdadır.
 Aşağıda `if` ile yazımını görmektesiniz.

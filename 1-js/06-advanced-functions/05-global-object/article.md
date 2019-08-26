@@ -1,12 +1,17 @@
 
 # Evrensel Objeler
 
+<<<<<<< HEAD
 JavaScript dili yazılırken "evren obje" diye bir obje fikri vardı. Bu obje tüm değişken ve fonksiyonları içinde barındırark tarayıcıda bulunan kodların evrensel obje yardımıyla değişkenleri paylaşabileceği düşünülmüştü.
+=======
+The global object provides variables and functions that are available anywhere. By default, those that are built into the language or the environment.
+>>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
 
 Tabi o zamandan beri JavaScript çok değişti, artık evrensel obje göze batar oldu. Modern JavaScript'te bu objenin yerini module yapısı aldı.
 
 Global obje hala dil içerisinde yer almaktadır.
 
+<<<<<<< HEAD
 Tarayıcıc için bu "window" ve NodeJs için ise "global"'dir. Diğer ortamlar da kendine ait evrensel objelere sahiptirler.
 
 İki şeyi yapmaktadır:
@@ -16,6 +21,19 @@ Tarayıcıc için bu "window" ve NodeJs için ise "global"'dir. Diğer ortamlar 
 
     ```js run
     alert("Merhaba");
+=======
+We'll use `window` here, assuming that our environment is a browser. If your script may run in other environments, it's better to use `globalThis` instead.
+
+All properties of the global object can be accessed directly:
+
+```js run
+alert("Hello");
+// is the same as
+window.alert("Hello");
+```
+
+In a browser, global functions and variables declared with `var` (not `let/const`!) become the property of the global object:
+>>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
 
     // aynısı 
     window.alert("Merhaba");
@@ -24,6 +42,7 @@ Tarayıcıc için bu "window" ve NodeJs için ise "global"'dir. Diğer ortamlar 
 
 2. Global `var` değişkeni tanımlamaya olanak tanır. `window` özellikleri ile okuma ve yazma sağlanabilir. Çrneğin
 
+<<<<<<< HEAD
     <!-- no-strict to move variables out of eval -->
     ```js untrusted run no-strict refresh
     var selam = "Merhaba";
@@ -31,6 +50,11 @@ Tarayıcıc için bu "window" ve NodeJs için ise "global"'dir. Diğer ortamlar 
     function selamVer() {
       alert(selam);
     }
+=======
+Please don't rely on that! This behavior exists for compatibility reasons. Modern scripts use [JavaScript modules](info:modules) where such thing doesn't happen.
+
+If we used `let` instead, such thing wouldn't happen:
+>>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
 
     // window'dan okunabilir
     alert( window.terim ); // Merhaba (global var)
@@ -52,6 +76,7 @@ alert(window.kullanici); // tanımsız, let ile tanımlama yapılamaz.
 alert("kullanici" in window); // false
 ```
 
+<<<<<<< HEAD
 ```smart header="Global Obje global ortam kaydı değildir"
 ECMAScript ES-2015 öncesi `let/const` değişkenleri bulunmamaktaydı, sadece `var` değişkeni vardı. Global objeler global ortam kaydı olarak kullanılıyordu.
 
@@ -163,6 +188,9 @@ Bazen, `this`'in değeri tamamen evrensel obje olur. Bu çok nadir de olsa bazı
     ```
 
     Tanım gereği, `this` bu durumda evrensel obje olmalı, Node.JS ortamında olmasa bile `this` evrensel objedir. Bu eski kodlar ile uyumluluk amacıyladır, sıkı modda `this` tanımsız olabilir.
+=======
+That said, using global variables is generally discouraged. There should be as few global variables as possible. The code design where a function gets "input" variables and produces certain "outcome" is clearer, less prone to errors and easier to test than if it uses outer or global variables.
+>>>>>>> 8c30654f694fe8682f5631809980be931ee4ed72
 
 ## Using for polyfills
 
