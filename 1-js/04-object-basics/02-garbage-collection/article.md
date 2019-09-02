@@ -101,7 +101,11 @@ Son tahlilde hafıza haritası şu şekildedir:
 
 ![](family.svg)
 
+<<<<<<< HEAD
 Şu anda tüm objeler erişilebilir durumdadır.
+=======
+![](family.svg)
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 İki referans silinirse:
 
@@ -147,7 +151,11 @@ Bu örnek erişilebilirliğin ne kadar önemli bir konsept olduğunu gösterir.
 
 Temelde Çöp Toplama algoritması "mark-and-sweep" algoritmasıdır.
 
+<<<<<<< HEAD
 Aşağıdaki Çöp Toplama işlemleri düzenli olarak yapılır:
+=======
+![](family-no-family.svg)
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 - Çöp toplayıcı kökleri işaretler(hatırlar).
 - Sonra bunlardan tüm referansları işaretler.
@@ -168,23 +176,43 @@ Diyelimki obje yapısı aşağıdaki gibi olsun:
 
 Sonra bunların referansları:
 
+<<<<<<< HEAD
+=======
+![](garbage-collection-1.svg)
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 ![](garbage-collection-3.svg)
 
 ...Sonra eğer mümkün ise referansların referansları:
 
+<<<<<<< HEAD
 ![](garbage-collection-4.svg)
+=======
+![](garbage-collection-2.svg)
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 Son adım olarak ziyaret edilmeyen objeler "ulaşılamaz" addedilip silinir:
 
+<<<<<<< HEAD
 ![](garbage-collection-5.svg)
+=======
+![](garbage-collection-3.svg)
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 JavaScript motoru bunu hızlıca çalıştırmak ve kodun çalışmasını etkilememek için bir çok optimizsyon yapar.
 
+<<<<<<< HEAD
+=======
+![](garbage-collection-4.svg)
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 Bazı Optimizasyonlar:
 
+<<<<<<< HEAD
 - **Jenerason Koleksiyonu** -- objeler iki kümeye ayrılır: "yeni olanlar" ve "eski olanlar". Çoğu obje birden var olur, işini hızlı bir şekilde yapar ve hızlıca ölür, bunların hemen silinmesi gerekir. Eğer silinemediler ise bu defa eskiler kümesine girerler ve daha az sıklıkla silinirler.
+=======
+![](garbage-collection-5.svg)
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 
 - **Artımlı Koleksiyon** -- Eğer çok fazla sayıda obje varsa bu objeleri bir seferde dolaşmak çok fazla zaman alacaktır. Kod çalışırken belki biraz yavaşlamaya neden olabilir. Bundan dolayı motorlar genelde çöp toplama işini bölümlere ayırırlar. Bu bölümleri ayrı ayrı çalışır. Tabi kendileri arasında bir şekilde değişiklikleri bildirmeleri gerekir, fakat bir tane büyük yerine bu şekilde küçük küçük işlemler hızı artırmaktadık.

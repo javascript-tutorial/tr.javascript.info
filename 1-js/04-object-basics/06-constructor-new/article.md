@@ -137,10 +137,17 @@ function BuyukKullanici() {
 
   this.isim = "İhsan";
 
+<<<<<<< HEAD
   return { isim: "Muhsin" };  // <-- obje dönderir
 }
 
 alert( new BuyukKullanici().isim );  // Muhsin, objeyi aldık ^^
+=======
+  return { name: "Godzilla" };  // <-- returns this object
+}
+
+alert( new BigUser().name );  // Godzilla, got that object
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 ```
 Şimdi ise boş bir `return` cümlesi yazalım( eğer ilkel bir tipte kullanılsa birşey değiştirmez)
 
@@ -149,8 +156,12 @@ function KucukKullanici() {
 
   this.isim = "İhsan";
 
+<<<<<<< HEAD
   return; // çalışmayı bitirir ve `this`'i döndürür.
 
+=======
+  return; // <-- returns this
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 }
 
 alert( new KucukKullanici().isim );  // İhsan
@@ -200,10 +211,16 @@ ihsan = {
 */
 ```
 
+<<<<<<< HEAD
 ## Özet
 
 - Yapıcı fonksiyonlar, veya kısaca yapıcılar, normal fonksiyonlardır. Fakat baş haflerinin büyük olmasıyla ilgili ortak bir kullanım vardır.
 - Bu fonksiyonlar sadece `new` kullanılarak çağırılmalıdır. Böyle çağrılar önce boş bir `this` yaratır ve buna değerler eklendikten sonra bu `this`'i geri gönderir.
+=======
+To create complex objects, there's a more advanced syntax, [classes](info:classes), that we'll cover later.
+
+## Summary
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 
 Yapıcılar ile benzer objeler yapmak mümkündür.

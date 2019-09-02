@@ -19,9 +19,17 @@ function mesajGoster() {
 }
 ```
 
+<<<<<<< HEAD
 `function` kelimesi önce yazılır, ardından *fonksiyonun adı* ve sonra parametlerin yazılacağı parantez açılır ve ihtiyaç duyulan parametreler yazılır, sonrasında ise kapatılıp süslü parantez ile *fonksiyon gövdesi*ne başlanır.
+=======
+The `function` keyword goes first, then goes the *name of the function*, then a list of *parameters* between the parentheses (comma-separated, empty in the example above) and finally the code of the function, also named "the function body", between curly braces.
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
-![](function_basics.png)
+```js
+function name(parameters) {
+  ...body...
+}
+```
 
 Yeni fonksyion ismiyle şu şekilde çağırılır: `mesaGoster()`.
 
@@ -201,6 +209,17 @@ function mesajGoster(gonderen, metin = digerFonksiyon()) {
 }
 ```
 
+<<<<<<< HEAD
+=======
+```smart header="Evaluation of default parameters"
+In JavaScript, a default parameter is evaluated every time the function is called without the respective parameter.
+
+In the example above, `anotherFunction()` is called every time `showMessage()` is called without the `text` parameter.
+```
+
+````smart header="Default parameters old-style"
+Old editions of JavaScript did not support default parameters. So there are alternative ways to support them, that you can find mostly in the old scripts.
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 ````smart header="Eski tip varsayılan parametreler"
 Eski tip JavaScript varsayılan parametreleri desteklememekteydi. Bundan dolayı farklı yöntemler geliştirdi. Eğer eskiden yazılmış kodları okursanız bu kodlara rastlayabilirsiniz.
@@ -325,8 +344,24 @@ Bu çalışmaz, çünkü JavaScript `return` kelimesinden sonra `;` varsayara ve
 return*!*;*/!*
   (bazı + uzun + ifade + veya + baska + birsey  * f(a) + f(b))
 ```
+<<<<<<< HEAD
 Bundan dolayı, tam olarak boş return olur. Geri döndereceğimiz değer ile return aynı satırda olmalıdır.
 
+=======
+
+So, it effectively becomes an empty return.
+
+If we want the returned expression to wrap across multiple lines, we should start it at the same line as `return`. Or at least put the opening parentheses there as follows:
+
+```js
+return (
+  some + long + expression
+  + or +
+  whatever * f(a) + f(b)
+  )
+```
+And it will work just as we expect it to.
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 ````
 
 ## Fonksiyonu isimlendirme [#fonksiyon-isimlendirme]

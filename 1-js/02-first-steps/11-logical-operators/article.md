@@ -64,7 +64,11 @@ if (saat < 10 || saat > 18 || haftaSonu) {
 }
 ```
 
+<<<<<<< HEAD
 ## VEYA ilk doğru değeri arar
+=======
+## OR "||" finds the first truthy value
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 Yukarıda belirtilen mantık klasik mantıktır. JavaScript'in "ekstra" özelliklerine bakılacak olursa
 
@@ -188,7 +192,13 @@ if (1 && 0) { // true && false şeklinde değerlendirilmiştir.
 
 ## VE ilk `yanlış` değeri görür
 
+<<<<<<< HEAD
 Aşağıda 3 tane AND işlemine sokulmuş değer bulunmaktadır:
+=======
+## AND "&&" finds the first falsy value
+
+Given multiple AND'ed values:
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 ```js
 sonuc = deger1 && deger2 && deger3;

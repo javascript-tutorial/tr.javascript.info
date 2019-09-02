@@ -2,7 +2,11 @@
 
 Ok fonksiyonlarının tekrardan üzerinden geçelim.
 
+<<<<<<< HEAD
 Ok fonksiyonları sadece basit şeylerin kolayca yazılması için kullanılmaz.
+=======
+Arrow functions are not just a "shorthand" for writing small stuff. They have some very specific and useful features.
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 JavaScript'te bir sürü başka yerde çalıştırılması gereken kolayca yazılacak fonksiyonlara ihtiyacımız olabilir, 
 
@@ -15,6 +19,10 @@ JavaScript'te bir sürü başka yerde çalıştırılması gereken kolayca yazı
 Bir fonksiyon yaratıp bunu başka bir yerlere iletmek JavaScript'in ruhuna tam da uyan bir işlemdir.
 Böyle fonksiyonlarda var olan kaynağın ( context) kaybolması istenmez.
 
+<<<<<<< HEAD
+=======
+And in such functions we usually don't want to leave the current context. That's where arrow functions come in handy.
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 ## Ok fonksiyonlarının "this"'i yoktur.
 

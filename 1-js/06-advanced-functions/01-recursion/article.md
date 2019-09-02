@@ -68,7 +68,11 @@ us(x, n) =
 
 Buna `us` *öz çağrı ile* kendisini `n==1` olana kadar çağırır diyebiliriz.
 
+<<<<<<< HEAD
 ![özçağrı diyagramı](recursion-pow.svg)
+=======
+![recursive diagram of pow](recursion-pow.svg)
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 
 `us(2,4)`'ü hesaplayabilmek için *özçağrı* şu adımları gerçekleştirir:
@@ -93,7 +97,13 @@ function us(x, n) {
 ````
 Maksimum iç içe çağırma sayısına *özçağrı derinliği* `us` fonksiyonunda bu `n`'dir.
 
+<<<<<<< HEAD
 JavaScript motorları maksimum özçağrı derinliğini sınırlamaktadır. Bazı motorlarda 10000, bazılarında 100000 limiti bulunmaktadır. Bunun için otomatik optimizasyonlar bulunmaktadır. Fakat yine de her motorda desteklenmemektedir ve çok basit durumlarda kullanılır.
+=======
+The maximal number of nested calls (including the first one) is called *recursion depth*. In our case, it will be exactly `n`.
+
+The maximal recursion depth is limited by JavaScript engine. We can rely on it being 10000, some engines allow more, but 100000 is probably out of limit for the majority of them. There are automatic optimizations that help alleviate this ("tail calls optimizations"), but they are not yet supported everywhere and work only in simple cases.
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 Bu özçağrı uygulamalarını limitler, fakat yine de çoğu yerde kullanılmaktadırlar. Çoğu görevde özçağrı şeklinde düşünmek daha basit ve sürdürülebilir bod yazmanızı sağlayacaktır.
 
@@ -320,18 +330,31 @@ Diğer bir deyişle bu firmanın departmanları bulunmaktadır.
 Öyle bir fonksiyon olsun ki tüm çalışanların maaşlarının toplamını dönsün. Bu nasıl yapılır?
 
 
+<<<<<<< HEAD
 Döngü yaklaşımı kolay değildir, çünkü yapı kolay değildir. Önce `firma` için bir `for` döngüsü kullanıldığını ve bununla ilk seviye departmanları bulduğunuzu varsayın. Sonrasında bunun içine bir döngü daha yapıp `siteler`'i bulmanız gerekir. Ayrıca ilerisi için bir tane daha `for` döngüsü yapmanız lazım ve belki yine onun içerisine de bir döngü koymanız lazım. 3. basamakta mı 4. basamakta mı durmalı? Eğer ileride bu yapı sadece bir seviyeye indirilirse kodda karmaşıklık meydana gelir.
+=======
+An iterative approach is not easy, because the structure is not simple. The first idea may be to make a `for` loop over `company` with nested subloop over 1st level departments. But then we need more nested subloops to iterate over the staff in 2nd level departments like `sites`... And then another subloop inside those for 3rd level departments that might appear in the future? If we put 3-4 nested subloops in the code to traverse a single object, it becomes rather ugly.
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 Özçağrı yaklaşımıyla.
 
 Fonksiyon toplanacak departmanı aldığında iki muhtemel durum mevcuttur:
 
+<<<<<<< HEAD
 1. Bu "basit" bir departman olabilir *içerisinde çalışanlar bulunur* -- sonra bunların maaşları basit bir döngüyle toplanabilir.
 2. Veya *`N` alt departmana sahip obje* olabilir - öyleyse `N` defa özçağrı yapıp her bir alt departmanın toplamının sonucunu döndürülür.
 
 (1) özçağrının temelidir.
 
 (2) Özçağrının tekrar eden adımlarıdır. Karmaşık görev daha küçük departman görevlerine ayrılır. Sonrasında yine ayrılabilir fakat en sonunda (1)'e erişecektir.
+=======
+1. Either it's a "simple" department with an *array* of people -- then we can sum the salaries in a simple loop.
+2. Or it's *an object* with `N` subdepartments -- then we can make `N` recursive calls to get the sum for each of the subdeps and combine the results.
+
+The 1st case is the base of recursion, the trivial case, when we get an array.
+
+The 2nd case when we get an object is the recursive step. A complex task is split into subtasks for smaller departments. They may in turn split again, but sooner or later the split will finish at (1).
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 Algoritma kodunu okumak oldukça kolaydır:
 
@@ -385,7 +408,11 @@ Aşağıda ise bu çağrının diyagramı bulunmaktadır.
 
 ![Özçağrı ile maaşlar](recursive-salaries.svg)
 
+<<<<<<< HEAD
 Prensip basitçe şu şekilde açıklanabilir: Obje için `{...}` altçağrıları yapılır, `[...]` ise özçağrı ağacının "yapraklarıdır", anında sonucu dönerler.
+=======
+![recursive salaries](recursive-salaries.svg)
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 Kodun akıllı özellikler kullandığına dikkat edin, bunlar daha önceki kolarda işlenmişti:
 
@@ -477,7 +504,11 @@ let ikinciList = list.next.next;
 list.next.next = null;
 ```
 
+<<<<<<< HEAD
 ![linked list ayırma](linked-list-split.svg)
+=======
+![linked list split](linked-list-split.svg)
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 Birleştirme:
 
@@ -500,7 +531,11 @@ list = { deger: "yeni eleman", sonraki: list };
 */!*
 ```
 
+<<<<<<< HEAD
 ![linked list](linked-list-0.svg) 
+=======
+![linked list](linked-list-0.svg)
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 Yine ortalardan bir yerden veri silineceği zaman `sonraki`'nin bir öncekine getirilmesi gerekri.
 
@@ -509,6 +544,13 @@ list.sonraki = list.sonraki.sonraki;
 ```
 
 ![linked list](linked-list-remove-1.svg)
+<<<<<<< HEAD
+=======
+
+We made `list.next` jump over `1` to value `2`. The value `1` is now excluded from the chain. If it's not stored anywhere else, it will be automatically removed from the memory.
+
+Unlike arrays, there's no mass-renumbering, we can easily rearrange elements.
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 `list.sonraki`'nin değeri `1`'den `2`'ye geçirildi. `1` değeri artık zincirden çıkarıldı. Eğer bu değer başka bir yerde tutulmuyor ise, bu değer ileride otomatik olarak hafızadan silinecektir.
 

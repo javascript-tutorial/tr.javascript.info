@@ -10,7 +10,11 @@
 
 Böylece tüm hamsterlar'ın bir tane `stomach`'i oluyor.
 
+<<<<<<< HEAD
 Her defaında prototip'ten `stomach` alındığında ve sonra `stomach.push` ile `olduğu yerde` modifiye eder.
+=======
+Both for `lazy.stomach.push(...)` and `speedy.stomach.push()`, the property `stomach` is found in the prototype (as it's not in the object itself), then the new data is pushed into it.
+>>>>>>> c4d1987ebc470b30c234dbde6fac6e77b7509927
 
 Aklınızda bulunsun basit bir atamada `this.stomach=` gibi basit atamada gerçekleşmez.
 
@@ -77,4 +81,4 @@ alert( speedy.stomach ); // apple
 alert( lazy.stomach ); // <nothing>
 ```
 
-As a common solution, all properties that describe the state of a particular object, like `stomach` above, are usually written into that object. That prevents such problems.
+As a common solution, all properties that describe the state of a particular object, like `stomach` above, should be written into that object. That prevents such problems.
