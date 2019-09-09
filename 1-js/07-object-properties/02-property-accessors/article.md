@@ -34,7 +34,12 @@ let user = {
   surname: "Smith"
 };
 ```
+<<<<<<< HEAD
 "fullName" adında bir özellik eklemek istenirser, elbette var olan kodu kopyala yapıştır yapmayacağız bunun yerine erişim özelliği kullanabiliriz:
+=======
+
+Now we want to add a `fullName` property, that should be `"John Smith"`. Of course, we don't want to copy-paste existing information, so we can implement it as an accessor:
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
 
 ```js run
 let user = {
@@ -55,7 +60,23 @@ alert(user.fullName); // John Smith
 
 Dışardan, bu özellik normal görünür. Aslında fikir de tam olarak budur. Biz `user.fullName` 'i fonksiyon olarak çağırmıyoruz. Onu normal bir şekilde özellikmiş gibi okuyoruz. Alıcı perdenin arkasında çalışıyor.
 
+<<<<<<< HEAD
 Şu anda `fullName`'in sadece alıcısı var. Eğer `user.fullName=` şeklinde atamaya çalışırsanız hata alırsınız.
+=======
+As of now, `fullName` has only a getter. If we attempt to assign `user.fullName=`, there will be an error:
+
+```js run
+let user = {
+  get fullName() {
+    return `...`;
+  }
+};
+
+*!*
+user.fullName = "Test"; // Error (property has only a getter)
+*/!*
+```
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
 
 Bunu düzeltmek için ayarlayıcı metodu eklemek gerekmektedir:
 
@@ -85,6 +106,7 @@ alert(user.surname); // Cooper
 
 ```smart header="Erişim özellikleri sadece get/set ile erişilebilir"
 
+<<<<<<< HEAD
 Bir özellik ya "veri özelliği" ya da "erişim özelliği" olabilir, aynı anda ikisi olamaz.
 
 Bir özellik `get prop()` ile veya `set prop()` ile tanımlanmışsa, artık erişim özelliğidir. Bundan dolayı okuyabilmek için alıcı ve atama yapabilmek için ayarlayıcı olması gerekir.
@@ -93,13 +115,24 @@ Bazen sadece ayarlayıcı veya alıcı olabilir. Fakat böyle bir durumda özell
 
 ```
 
+=======
+```smart header="No way to handle `delete`"
+There's no similar method to handle deletion of an accessor property. Only getter/setter methods may exist.
+```
+
+## Accessor descriptors
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
 
 ## Erişim Tanımlayıcıları
 
 Erişim tanımlayıcıları normal veri özelliklerine göre daha farklıdır.
 Erişim özellikleri için `deger` ve `yazılabilir` yoktur, bunun yerine `get` ve `set` fonksiyonları vardır.
 
+<<<<<<< HEAD
 Öyleyse erişim tanımlayıcıları şunlara sahiptir:
+=======
+That is, an accessor descriptor may have:
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
 
 - **`get`** -- parametresi olmayan fonksiyon, sadece özellik okunduğunda çalışır.
 - **`set`** -- bir parametreli fonksiyon, özellik ayarlanmak istendiğinde çalışır.
@@ -132,7 +165,13 @@ for(let key in user) alert(key);
 ```
 Tekrar hatırlatmakta fayda var, bir özelliklik ya erişim özelliği veya veri özelliği olabilir, ikisi aynı anda olamaz.
 
+<<<<<<< HEAD
 Aynı tanımlayıcıda eğer hem `get` hem de `value` değerini kullanırsak aşağıdaki hata meydana gelir:
+=======
+Please note once again that a property can be either an accessor (has `get/set` methods) or a data property (has a `value`), not both.
+
+If we try to supply both `get` and `value` in the same descriptor, there will be an error:
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
 
 ```js run
 *!*
@@ -149,9 +188,15 @@ Object.defineProperty({}, 'prop', {
 
 ## Akıllıca getters/setters kullanmak
 
+<<<<<<< HEAD
 Getter/Setter "gerçek" özelliklerin üzerinde daha iyi kontrol amacıyla kurulabilir.
 
 Örneğin, `user` gibi çok kısa isimler için `name` özelliğini `_name` içerisinde tutabilirsiniz. Sonrasında atamaları setter'da filteleyebilirsiniz:
+=======
+Getters/setters can be used as wrappers over "real" property values to gain more control over operations with them.
+
+For instance, if we want to forbid too short names for `user`, we can have a setter `name` and keep the value in a separate property `_name`:
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
 
 ```js run
 let user = {
@@ -175,11 +220,24 @@ user.name = ""; // İsim çok kısa...
 ```
 Teknik olarak, dışarıdan hala `user._name` ile erişilebilir. Fakat genel bir kural olarak `"_"` ile başlayan özellikler içte kullanılan değişkenlerdir ve dışarıdan hiç bir zaman erişilmemelidir.
 
+<<<<<<< HEAD
 
 ## Uyumluluk için kullanma
 Getter/setter fikrinin amacı aslında "normal" veri özelliklerinin kontrolünü her an elde tutabilmektir.
 
 Örneğin, kullanıcı objesini `name` ve `age` özellikleri ekleyelim:
+=======
+So, the name is stored in `_name` property, and the access is done via getter and setter.
+
+Technically, external code is able to access the name directly by using `user._name`. But there is a widely known convention that properties starting with an underscore `"_"` are internal and should not be touched from outside the object.
+
+
+## Using for compatibility
+
+One of the great uses of accessors -- they allow to take control over a "regular" data property at any moment by replacing it with getter and setter and tweak its behavior.
+
+Imagine, we started implementing user objects using data properties `name` and `age`:
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
 
 ```js
 function User(name, age) {
@@ -206,7 +264,15 @@ Peki eski `age` özelliği ne olacak ?
 
 Her yerde bunu arayıp düzeltebiliriz, fakat bu zaman alır ve kod başkaları tarafından yazıldıysa zor olur. Ayrıca `user` objesinin içinde `age` özelliği pek de fena bir fikir sayılmaz, değil mi?  Aslında bazı yerlerde tam da istediğimiz `age`'dir.
 
+<<<<<<< HEAD
 `age` için bir getter yazmak aslında bu problemi ortadan kaldırır.
+=======
+We can try to find all such places and fix them, but that takes time and can be hard to do if that code is used by many other people. And besides, `age` is a nice thing to have in `user`, right?
+
+Let's keep it.
+
+Adding a getter for `age` solves the problem:
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
 
 ```js run no-beautify
 function User(name, birthday) {

@@ -47,8 +47,16 @@ Safari (sadece macOS için desteklenmektedir) biraz özeldir. Geliştirici araç
 
 Bu işlemi yaptıktan sonra `key:Cmd+Opt+C` ile geliştirici konsolunu açıp kapatabilirsiniz. Ayrıca dikkat ederseniz üst menüde "Develop" adında yeni bir başlık göreceksiniz. Buradan da birçok komutu çalıştırabilirsiniz.
 
+<<<<<<< HEAD
 
 ## Multi-line input
+=======
+```smart header="Multi-line input"
+Usually, when we put a line of code into the console, and then press `key:Enter`, it executes.
+
+To insert multiple lines, press `key:Shift+Enter`. This way one can enter long fragments of JavaScript code.
+```
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
 
 Genelde konsol ekranında `key:Enter` yaparsanız bulunduğu satırı çalıştırır. Birden fazla satırı yazmak istiyorsanız `key:Shift+Enter` kullanabilirsiniz.
 

@@ -10,7 +10,11 @@ Programlarken genelde bir şeyi alır ve bunu genişletmek isteriz.
 
 Javascript objeleri gizli bir özellik olan `[[Prototype]]` özelliğine sahiptirler. Bu `null` olabilir veya başka objeye referans verebilir.  Referans verilen obje "prototip" olarak adlandırılır.
 
+<<<<<<< HEAD
 ![prototip](object-prototype-empty.svg)
+=======
+![prototype](object-prototype-empty.svg)
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
 
 `[[Prototip]]`'in "büyülü" bir anlamı bulunmaktadır. Objeden bir özellik okunmak istendiğinde, ve bu obje bulunamadığında JavaScript bunu otomatik olarak prototip'ten alır. Programlamada buna `prototip kalıtımı` denir. Birçok dil özelliği ve programlama tekniği bunun üzerine kuruludur.
 
@@ -62,7 +66,11 @@ Sonrasında `alert` `rabbit.eats` `(**)`'i okur. Bu `rabbit`'te olmadığından 
 
 ![](proto-animal-rabbit.svg)
 
+<<<<<<< HEAD
 Böylece "`animal`" `rabbit`'in prototip'i veya "`rabbit` prototipsel olarak `animal` kalıtımını almıştır" diyebiliriz.
+=======
+![](proto-animal-rabbit.svg)
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
 
 Diyelim ki `animal`'ın birçok özelliği ve metodu olsun, bunları otomatik olarak `rabbit` de kullanabilir. Bu çeşit özelliklere `kalıtılmış` özellikler denir.
 
@@ -91,9 +99,16 @@ rabbit.walk(); // Animal walk
 ```
 Metod prototipten otomatik olarak şu şekilde alınmıştır:
 
+<<<<<<< HEAD
 ![](proto-animal-rabbit-walk.svg)
 Prototip zinciri daha da uzun olabilir:
+=======
+The method is automatically taken from the prototype, like this:
 
+![](proto-animal-rabbit-walk.svg)
+
+The prototype chain can be longer:
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
 
 ```js run
 let animal = {
@@ -120,8 +135,15 @@ alert(longEar.jumps); // true (rabbit'ten gelmekte)
 
 ![](proto-animal-rabbit-chain.svg)
 
+<<<<<<< HEAD
 Aslında iki tane kısıtlama bulunmaktadır:
 
+=======
+There are only two limitations:
+
+1. The references can't go in circles. JavaScript will throw an error if we try to assign `__proto__` in a circle.
+2. The value of `__proto__` can be either an object or `null`. Other types are ignored.
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
 
 1. Referanslar kapalı devre olamaz. Böyle bir duurmda hata verir.
 2. `__proto__`'nun değeri ya obje olur ya da `null` Diğer türlüsü ( tüm ilkel veri tipleri ) görmezden gelinir.
@@ -160,9 +182,17 @@ rabbit.walk(); // Rabbit! Bounce-bounce!
 ```
 Artık `rabbit.wal()` metodu doğrudan kendi içerisinde bulur ve çalıştırır. Prototip kullanmaz:
 
+<<<<<<< HEAD
 ![](proto-animal-rabbit-walk-2.svg)
 
 Alıcı/Ayarlayıcı için ise eğer özellik okunursa bu doğrudan prototipte okunur ve uyarılır.
+=======
+From now on, `rabbit.walk()` call finds the method immediately in the object and executes it, without using the prototype:
+
+![](proto-animal-rabbit-walk-2.svg)
+
+Accessor properties are an exception, as assignment is handled by a setter function. So writing to such a property is actually the same as calling a function.
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
 
 Örneğin aşağıdaki `admin.fullName` özelliğine bakın:
 
@@ -231,15 +261,97 @@ let rabbit = {
 rabbit.sleep();
 
 alert(rabbit.isSleeping); // true
+<<<<<<< HEAD
 alert(animal.isSleeping); // undefined (prototipte böyle bir özellik bulunmamaktadır.)
+=======
+alert(animal.isSleeping); // undefined (no such property in the prototype)
 ```
-Sonuç görseli:
+
+The resulting picture:
 
 ![](proto-animal-rabbit-walk-3.svg)
 
+If we had other objects like `bird`, `snake` etc inheriting from `animal`, they would also gain access to methods of `animal`. But `this` in each method call would be the corresponding object, evaluated at the call-time (before dot), not `animal`. So when we write data into `this`, it is stored into these objects.
+
+As a result, methods are shared, but the object state is not.
+
+## for..in loop
+
+The `for..in` loops over inherited properties too.
+
+For instance:
+
+```js run
+let animal = {
+  eats: true
+};
+
+let rabbit = {
+  jumps: true,
+  __proto__: animal
+};
+
+*!*
+// Object.keys only return own keys
+alert(Object.keys(rabbit)); // jumps
+*/!*
+
+*!*
+// for..in loops over both own and inherited keys
+for(let prop in rabbit) alert(prop); // jumps, then eats
+*/!*
+```
+
+If that's not what we want, and we'd like to exclude inherited properties, there's a built-in method [obj.hasOwnProperty(key)](mdn:js/Object/hasOwnProperty): it returns `true` if `obj` has its own (not inherited) property named `key`.
+
+So we can filter out inherited properties (or do something else with them):
+
+```js run
+let animal = {
+  eats: true
+};
+
+let rabbit = {
+  jumps: true,
+  __proto__: animal
+};
+
+for(let prop in rabbit) {
+  let isOwn = rabbit.hasOwnProperty(prop);
+
+  if (isOwn) {
+    alert(`Our: ${prop}`); // Our: jumps
+  } else {
+    alert(`Inherited: ${prop}`); // Inherited: eats
+  }
+}
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
+```
+Sonuç görseli:
+
+<<<<<<< HEAD
+![](proto-animal-rabbit-walk-3.svg)
+=======
+Here we have the following inheritance chain: `rabbit` inherits from `animal`, that inherits from `Object.prototype` (because `animal` is a literal object `{...}`, so it's by default), and then `null` above it:
+
+![](rabbit-animal-object.svg)
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
+
 Eğer `bird`, `sname` gibi `animal`'dan miras alan objelere sahip olsaydık bunlar da `animal`'in metodlarına erişebilirlerdi. Fakat her metoddaki `this` bağlı bulunduğu objeye göre çalışırdı. Yani noktadan önceki metoda göre, `animal`'e göre değil. Bundan dolayı ne zaman `this`'e veri yazılsa o objelerin içerisine yazılır.
 
+<<<<<<< HEAD
 Sonuç olarak metodlar paylaşılsa bile objelerin durumları paylaşılmaz.
+=======
+...But why `hasOwnProperty` does not appear in `for..in` loop, like `eats` and `jumps`, if it lists all inherited properties.
+
+The answer is simple: it's not enumerable. Just like all other properties of `Object.prototype`, it has `enumerable:false` flag. That's why they are not listed.
+
+```smart header="Almost all other key/value-getting methods ignore inherited properties"
+Almost all other key/value-getting methods, such as `Object.keys`, `Object.values` and so on ignore inherited properties.
+
+They only operate on the object itself. Properties from the prototype are *not* taken into account.
+```
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
 
 ## Özet
 

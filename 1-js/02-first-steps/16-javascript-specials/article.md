@@ -52,7 +52,13 @@ JavaScript'in tüm modern özelliklerini kullanabilmek için, `"use strict"` kul
 ```
 Bu talimatı dosyanın başında veya fonksiyonun başında belirtmeniz gerekmektedir.
 
+<<<<<<< HEAD
 `"use strict"` kullanmadan da herşey çalışır. Fakat eski tipte ve uyumluluk modunda çalışır. Modern davranışı seçerseniz böylece son yenilikleri uyumluluk modu olmadan da çalıştırabilirsiniz.
+=======
+The directive must be at the top of a script or at the beginning of a function body.
+
+Without `"use strict"`, everything still works, but some features behave in the old-fashion, "compatible" way. We'd generally prefer the modern behavior.
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
 
 Bazı modern özellikler ise uyumluluk modunda da çalışmaz sadece sıkı modda çalışır. Bunlara ilerleyen zamanlarda değinilecektir.
 Dahası için: <info:strict-mode>.
@@ -139,6 +145,7 @@ Aritmetiksel
 Değer atama
 : Basit bir şekilde `a = b` şeklinde kullanılabilir. Veya birleşik olarak  `a *= 2` gibi de kullanıma sahiptir.
 
+<<<<<<< HEAD
 Bit seviyesi işlemler
 : Bit seviye operatörleri şu şekilde kullanılabilir: [docs](mdn:/JavaScript/Reference/Operators/Bitwise_Operators)
 
@@ -147,6 +154,16 @@ Bit seviyesi işlemler
 
 Mantıksal operatörler:
 : Mantıksal VE `&&`, VEYA `||` operatörleri ile bu işlemler yapılabilir.
+=======
+Bitwise
+: Bitwise operators work with 32-bit integers at the lowest, bit-level: see the [docs](mdn:/JavaScript/Reference/Operators/Bitwise_Operators) when they are needed.
+
+Conditional
+: The only operator with three parameters: `cond ? resultA : resultB`. If `cond` is truthy, returns `resultA`, otherwise `resultB`.
+
+Logical operators
+: Logical AND `&&` and OR `||` perform short-circuit evaluation and then return the value where it stopped (not necessary `true`/`false`). Logical NOT `!` converts the operand to boolean type and returns the inverse value.
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
 
 Karşılaştırma
 : Eşitlik kontrolü `==`, farklı tipteki verileri sayıya çevirip kontrol eder. `null` ve ` undefined` hariç, bu ikisi de birbirine eşittir.
@@ -234,12 +251,21 @@ Detaylı bilgi için: <info:switch>.
     let toplam = function(a, b) {
       let sonuc = a + b;
 
+<<<<<<< HEAD
       return sonuc;
     }
+=======
+      return result;
+    };
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
     ```
     Fonksiyon ifadesi bir `isme` sahip olabilir fakat bu `isim` sadece bu fonksiyon içinde kullanılabilir. Örneğin = `toplam = function isim(a,b)` gibi.
 
+<<<<<<< HEAD
 3. Ok fonksiyonları:
+=======
+3. Arrow functions:
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
 
     ```js
     // ifada sağ tarafta
@@ -263,6 +289,7 @@ Detaylı bilgi için: <info:switch>.
 - Parametreler varsayılan değerlere sahip olabilirler: `function sum(a = 1, b = 2){...}`
 - Fonksiyonlar her zaman birşey döndürürler. Eğer `return` kelimesi yoksa sonuçta yine de `undefined` döner.
 
+<<<<<<< HEAD
 
 | Fonksiyon Tanımlama | Fonksiyon ifadesi |
 |----------------------|---------------------|
@@ -270,6 +297,9 @@ Detaylı bilgi için: <info:switch>.
 |   - | isme sahip olabilir, sadece fonksiyon içerisinde çalışır |
 
 Dahası için: <info:function-basics>, <info:function-expressions-arrows>. 
+=======
+Details: see <info:function-basics>, <info:function-expressions-arrows>.
+>>>>>>> 3dd8ca09c1a7ed7a7b04eefc69898559902478e1
 
 ## Dahası var
 
