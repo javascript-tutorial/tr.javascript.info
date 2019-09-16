@@ -3,12 +3,22 @@
 
 Tanım olarak objeler, karakter dizisi veya sembol tipinde olmalıdır. Sayı veya boolean olamaz.
 
+<<<<<<< HEAD
 Şimdiye kadar sadece karakter dizisi işlendi. Bundan sonra semboller nasıl kullanılır ve ne gibi artısı var bunların üzerinden geçilecektir.
+=======
+Till now we've been using only strings. Now let's see the benefits that symbols can give us.
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 
 ## Semboller
 
+<<<<<<< HEAD
 "Symbol" değeri eşsizdir.
 `Symbol()` yazılara yeni bir değer yaratılabilir.
+=======
+A "symbol" represents a unique identifier.
+
+A value of this type can be created using `Symbol()`:
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 
 ```js
 // id yeni bir semboldür
@@ -47,8 +57,22 @@ alert(id); // Tip Hatası: Sembol karakter dizisine çevirilemez.
 */!*
 ```
 
+<<<<<<< HEAD
 Eğer sembol'ün değerini göstermek istiyorsanız bu durumda `.toString()` metodunu çağırmanız gerekir:
 
+=======
+That's a "language guard" against messing up, because strings and symbols are fundamentally different and should not accidentally convert one into another.
+
+If we really want to show a symbol, we need to explicitly call `.toString()` on it, like here:
+```js run
+let id = Symbol("id");
+*!*
+alert(id.toString()); // Symbol(id), now it works
+*/!*
+```
+
+Or get `symbol.description` property to show the description only:
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 ```js run
 let id = Symbol("id");
 *!*
@@ -58,23 +82,47 @@ alert(id.toString()); // Symbol(id), Şimdi çalışır
 Sembol ve karakter dizisi birbirinden mantıken farklı olduklarından dolayı bu şekilde birbirlerine çevrilirken sorun olmasın diye kontrollü bir şekilde çevrilmesi istenmektedir.
 ````
 
+<<<<<<< HEAD
 ## "Gizli" Özellikler
 
 Semboller objelere "gizli" özellikler eklenmesinin yolunu açar, bunlar vasıtasıyla kodun başka bir bölgesindeki değişiklik var olan objenin üzerine yazamaz.
+=======
+## "Hidden" properties
+
+Symbols allow us to create "hidden" properties of an object, that no other part of code can accidentally access or overwrite.
+
+For instance, if we're working with `user` objects, that belong to a third-party code. We'd like to add identifiers to them.
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 
 Örneğin, `kullanici` objesi için "id" özelliği şu şekilde tanımlanabilir:
 
 ```js run
+<<<<<<< HEAD
 let kullanici = { isim: "İhsan" };
 let id = Symbol("id");
 
 kullanici[id] = "ID değeri";
 alert( kullanici[id] ); //Sembolü bu şekilde anahtar olarak kullanarak kullanici objesine erişilebilir. we can access the data using the symbol as the key
+=======
+let user = { // belongs to another code
+  name: "John"
+};
+
+let id = Symbol("id");
+
+user[id] = 1;
+
+alert( user[id] ); // we can access the data using the symbol as the key
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 ```
 
 Peki `Symbol("id")`'nin karakter dizisi `"id"`'ye olan üstünlüğü nedir?
 
+<<<<<<< HEAD
 Bunu anlamak için örneği biraz daha genişletmek gerekirse;
+=======
+As `user` objects belongs to another code, and that code also works with them, we shouldn't just add any fields to it. That's unsafe. But a symbol cannot be accessed accidentally, the third-party code probably won't even see it, so it's probably all right to do.
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 
 Başka bir kodun `kullanici` içerisinde `id` özelliği eklemek istediğini farzedin. Bu belki başka bir JavaScript kütüphanesi olabilir. Doğal olarak sizin yaptığınız değişiklikten hiç haberi yoktur.
 
@@ -93,6 +141,7 @@ Artık birbiri ile hiç bir ayrılık olmayacaktır, hatta aynı isme sahip olsa
 ```js run
 let kullanici = { isim: "Mahzun" };
 
+<<<<<<< HEAD
 // `id` özelliğine veri eklendi
 user.id = "ID Değeri";
 
@@ -100,6 +149,15 @@ user.id = "ID Değeri";
 
 user.id = "Başka id değeri"
 // boom! üstüne yazıldı! Aslında daha öncekinin üzerine yazılmak istenmemişti, ama oldu!
+=======
+// Our script uses "id" property
+user.id = "Our id value";
+
+// ...Another script also wants "id" for its purposes...
+
+user.id = "Their id value"
+// Boom! overwritten by another script!
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 ```
 
 ### Obje Tanımında Semboller
@@ -114,7 +172,11 @@ let id = Symbol("id");
 let kullanici = {
   isim: "Mahsun",
 *!*
+<<<<<<< HEAD
   [id]: 123 // dikkat ederseniz id:123 değil
+=======
+  [id]: 123 // not "id: 123"
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 */!*
 };
 ```
@@ -177,9 +239,13 @@ alert( obj[0] ); // test (aynı özellik)
 
 ## Global Semboller
 
+<<<<<<< HEAD
 Görüldüğü üzere semboller her zaman, isimleri aynı olsa bile, birbirinden farklıdır. Bazen durumlarda aynı isimdeki sembolün aynı anlama gelmesi istenebilir.
 
 Örneğin, uygulamnın bir yerinde `"id"` isminde bir sembol oluşturdunuz, başka bir yerinde ise aynı bu objeye erişmek istiyorsunuz.
+=======
+As we've seen, usually all symbols are different, even if they have the same name. But sometimes we want same-named symbols to be same entities. For instance, different parts of our application want to access symbol `"id"` meaning exactly the same property.
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 
 Bunu yapabilmek için *global sembol kaydı* kullanılabilir. Sembolleri bunun içinde yaratılabilir ve sonra kullanılabilir. Bu aynı isme sahip sembollerin aynı değeri döndereceğini garantiler.
 
@@ -215,22 +281,46 @@ Global semboller için `Symbol.for(anahtar)` sembolü ismiyle çağırır, bunun
 Örneğin:
 
 ```js run
+<<<<<<< HEAD
 let sym = Symbol.for("isim");
 let sym2 = Symbol.for("id");
 
 // sembolden ismi al
 alert( Symbol.keyFor(sym) ); // isim
+=======
+// get symbol by name
+let sym = Symbol.for("name");
+let sym2 = Symbol.for("id");
+
+// get name by symbol
+alert( Symbol.keyFor(sym) ); // name
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 alert( Symbol.keyFor(sym2) ); // id
 ```
 
 `Symbol.keyFor` sembol kayıt bölümünde bulunan sembolleri aramak için kullanılır. Bu da global olmayanlarda arama yapılamaz demektir. Eğer sembol global olarak tanımlanamaz ise `undefined` döndürür.
 
+<<<<<<< HEAD
 Örneğin:
 
 ```js run
 alert( Symbol.keyFor(Symbol.for("isim")) ); // isim, global sembol
 
 alert( Symbol.keyFor(Symbol("isim2")) ); // tanımsız, bu argüman sembol kayıtlarında bulunamadı.
+=======
+That said, any symbols have `description` property.
+
+For instance:
+
+```js run
+let globalSymbol = Symbol.for("name");
+let localSymbol = Symbol("name");
+
+alert( Symbol.keyFor(globalSymbol) ); // name, global symbol
+alert( Symbol.keyFor(localSymbol) ); // undefined, not global
+
+alert( localSymbol.description ); // name
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 ```
 
 ## System sembolleri
@@ -263,11 +353,20 @@ Sembollerin iki kullanım yeri vardır:
 
 1. "Gizli" obje özellikleri
 
+<<<<<<< HEAD
     Eğer objeye yeni bir özellik eklenmek istenirse ve bu özelliklik başka kütüphaneler veya kodlar tarafından daha önce tanımlanmış ise, yeni bir sembol oluşturup bunu anahtar olarak kullanabilirsiniz. Sembol özelliği `for..in` içerisinde görünmez. Doğrudan da erişilemez, çünkü başka bir kod sizin yazdığınız sembole ulaşamaz. Bundan dolayı sizin istediğiniz aksiyonu değiştiremez
     
     Öyleyse obje içine "fizlice" özellik eklenebilir ve başkasının da bu özelliği görmesi engellenmiş olur. Sembol özellikler ile bu amaca erişilebilir.
+=======
+1. "Hidden" object properties.
+    If we want to add a property into an object that "belongs" to another script or a library, we can create a symbol and use it as a property key. A symbolic property does not appear in `for..in`, so it won't be accidentally processed together with other properties. Also it won't be accessed directly, because another script does not have our symbol. So the property will be protected from accidental use or overwrite.
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 
 2. JavaScript birçok sistem sembolüne sahiptir. Bunlara `Symbol.*` altından erişilebilir. Varolan davranışlar üzerinde değişiklik yapmak için kullanılır. Örneğin [iterables](inf:iterable) içinde `Symbol.iterator` kullanılmıştır, veya objeden ilkel tiplere çevrilirken `Symbol.toPrimitive` kullanılabilir. [object-to-primitive conversion](info:object-toprimitive)
 
 
+<<<<<<< HEAD
 Teknik olarak semboller %100 gizli değillerdir. [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) ile tüm semboller alınabilir. Ayrıca tüm sembolik anahtarları çevirmek için [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys)  fonksiyonu kullanılabilir. Gördüğünüz gibi aslında tam da gizli sayılmaz. Fakat yine de çoğu kütüphane bunları ortak bir anlaşma varmışçasına kullanmaktadır.
+=======
+Technically, symbols are not 100% hidden. There is a built-in method [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) that allows us to get all symbols. Also there is a method named [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) that returns *all* keys of an object including symbolic ones. So they are not really hidden. But most libraries, built-in functions and syntax constructs don't use these methods.
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a

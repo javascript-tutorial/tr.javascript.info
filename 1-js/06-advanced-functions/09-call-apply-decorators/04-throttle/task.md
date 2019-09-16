@@ -14,18 +14,33 @@ Daha iyi anlayabilmek için günlük kullanılan bir uygulamadan yararlanabiliri
 
 Tarayıcı üzerinde bir fonksiyon ile farenin her mikro seviyeli hareketinde gittiği yerlerin bilgileri alınabilir. Aktif fare kullanımı sırasında akıcı bir şekilde çalışacaktır. Her sn'de 100 defa ( 10ms ) çalışabilir.
 
+<<<<<<< HEAD
 **İzleme fonksiyonu web sayfası üzerinde bazı bilgileri güncellemeli.**
 
 Güncelleme fonksiyonu update()`'in her fare mikro hareketinde çalışması sisteme çok ağır gelmektedir. Aslında bu fonksiyonun 100ms'de birden fazla çalışmasının da bir mantığı yoktur.
 
 Bundan dolayı `update()` yerine, her bir fare hareketinde çalışacak `throttle(update,100)` fonksiyonu kullanılacaktır. Bu dekoratör her fare değişiminde çağırılabilir fakat `update()` 100ms içerisinde maksimum bir defa çağırılacaktır.
+=======
+**We'd like to update some information on the web-page when the pointer moves.**
+
+...But updating function `update()` is too heavy to do it on every micro-movement. There is also no sense in updating more often than once per 100ms.
+
+So we'll wrap it into the decorator: use `throttle(update, 100)` as the function to run on each mouse move instead of the original `update()`. The decorator will be called often, but forward the call to `update()` at maximum once per 100ms.
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 
 Şu şekilde görünecektir:
 
+<<<<<<< HEAD
 1. İlk fare hareketinde dekoratör çağrıyı doğrudan `update`'e yönlendirecektir. Bu önemlidir, kullanıcı böylece hareketinin sonucunu doğrudan görür.
 2. Sonrasında fare hareket etse de `100ms` geçene kadar hiç birşey olmaz. Dekoratör çağrıları görmezden gelir.
 3. `100ms` sonunda son koordinatlar ile tekrardan bir `update` çalışır.
 4. En sonunda fare bir yerlerde durur. Dekoratör `100ms` bekler ve bu bekleme bittikten sonra `update` fonksiyonu son koordinatlar ile çalışır. Belki de en önemlisi son fare koordinatlarının da işlenmiş olmasıdır.
+=======
+1. For the first mouse movement the decorated variant immediately passes the call to `update`. That's important, the user sees our reaction to their move immediately.
+2. Then as the mouse moves on, until `100ms` nothing happens. The decorated variant ignores calls.
+3. At the end of `100ms` -- one more `update` happens with the last coordinates.
+4. Then, finally, the mouse stops somewhere. The decorated variant waits until `100ms` expire and then runs `update` with last coordinates. So, quite important, the final mouse coordinates are processed.
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 
 Kod örneği:
 

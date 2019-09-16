@@ -14,6 +14,10 @@ JavaScript dilinde değişken `let` kelimesiyle üretilir.
 
 Aşağıdaki cümle "mesaj" isminde bir değişken üretir ( diğer bir deyişle *tanımlar* )
 
+<<<<<<< HEAD
+=======
+The statement below creates (in other words: *declares*) a variable with the name "message":
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 
 ```js
 let mesaj;
@@ -116,7 +120,11 @@ Değer değiştiğinde, değişkenin eski değeri silinir.
 
 ![](variable-change.svg)
 
+<<<<<<< HEAD
 Ayrıca iki değişken tanımlayıp içerilerindeki değerleri bir diğerine aktarabilirsiniz.
+=======
+![](variable-change.svg)
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 
 
 ```js run
@@ -324,8 +332,14 @@ Modern JavaScript sıkıştırıcılar ve tarayıcılar kodları oldukça iyi op
 
 Verileri saklamak için değişken tanımlayabilirsiniz. Bu işlemi `var` veya `let` veya `const` ile yapabilirsiniz.
 
+<<<<<<< HEAD
 - `let` -- modern değişken tanımlama. Chrome üzerinde `let` ile değişken tanımlamak istiyorsanız sıkı modda ( strict mode ) çalışmanız gerekmekte.
 - `var` -- eski tip değişken tanımlama. Normale bu tarz değişken oluşturma hiç kullılmayacka. İleride `let` ile `var` arasındaki nüans farkı <info:var> bölümünde incelenecek.
 - `const` -- bu da `let` gibi fakat değeri değiştirilemez.
+=======
+- `let` -- is a modern variable declaration.
+- `var` -- is an old-school variable declaration. Normally we don't use it at all, but we'll cover subtle differences from `let` in the chapter <info:var>, just in case you need them.
+- `const` -- is like `let`, but the value of the variable can't be changed.
+>>>>>>> 646989dd470395510e1006c220e05e85a06eb78a
 
 Değişkenler bulundukları yerdeki anlamlarına göre isimlendirilmelidirler.
