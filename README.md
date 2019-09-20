@@ -1,33 +1,29 @@
-# The Modern JavaScript Tutorial in Turkish
+# Türkçe Modern JavaScript Eğitimi
 
-This repository hosts the translation of <https://javascript.info> in Turkish.
+Bu kaynak <https://javascript.info> sitesinin Türkçe çevirisini içermektedir.
+
+**Şu şekilde yardımda bulunabilirsiniz:**
+
+- [Türkçe çeviri gelişimini](https://github.com/javascript-tutorial/tr.javascript.info/issues/1) adresinden görebilirsiniz
+- Çevirmek istediğiniz tiklenmemiş makaleyi seçin
+- Bu makale başlığını yorum olarak konuya yazın, örneğin : `JavaScript'e giriş`.
+	- Bot bunu anlayıp konuda bunu işaretleyecek ve böylece herkes bilecek hangi konuda çalıştığınızı.
+	- Yorumunuz sadece başlığı içermelidir.
+- Repoyu kopyalayın, çevirin ve Pull Request talebinde bulunun.
+	- PR başlığı yazılan makale ile aynı olmalıdır. Böylece bot bu PR'ı konuya yazabilir
 
 
-**That's how you can contribute:**
+Lütfen proje yöneticilerinin değişiklikleri incelemesi ve merge etmesine zaman tanıyın.
 
-<<<<<<< HEAD
-- See the [Turkish Translate Progress](https://github.com/javascript-tutorial/tr.javascript.info/issues/1) issue.
-- Choose an unchecked article you'd like to translate.
-- Add a comment with the article title to the issue, e.g. `An Introduction to JavaScript`.
-    - Our bot will mark it in the issue, for everyone to know that you're translating it.
-    - Your comment should contain only the title.
-- Fork the repository, translate and send a PR when done.
-    - PR title should match article title, the bot will write it's number into the issue.
-=======
-See <https://javascript.info/translate> for the details.
->>>>>>> 027933531e121650120f7e8385f691de99af12d2
+Eğer cevap vermiyorlar ise, ve siz yöneticiliğe geçmek istiyorsanız, [ana repo](https://github.com/javascript-tutorial/en.javascript.info/issues/new) üzerinden bizimle iletişime geçebilirsiniz.
 
-Please kindly allow maintainers to review and merge or request changes in your translation.
-   
-If maintainers do not respond, or if you'd like to become a maintainer, write us at the [main repo](https://github.com/javascript-tutorial/en.javascript.info/issues/new).
-    
-**Let others know what you're translating, in message boards or chats in your language. Invite them to join!**
+**Başkalarına çeviri yaptığınızı bildirerek onların da bize katılmalarını isteyebilirsiniz**
 
-🎉 Thank you!
+🎉 Teşekkürler!
 
-Your name and the contribution size will appear in the "About project" page when the translation gets published.
+İsminiz ve paylaşımınız proje yayınlandığında "Proje Hakkında" bölümünde yer alacaktır.
 
-P.S. The full list of languages can be found at <https://javascript.info/translate>.
+Not: Tercüme edilen dillerin listesi <https://javascript.info/translate> adresinden erişilebilir.
 
 ## Structure
 
@@ -116,10 +112,6 @@ Some files, usually tasks, have YAML metadata at the top, delimited by `---`:
 
 ```md
 importance: 5
-
----
-<<<<<<< HEAD
-...
 ```
 
 Please don't translate "importance" (and other top metadata).
@@ -139,7 +131,5 @@ Please don't translate or remove the `[#...]` part, it's for URL anchors.
 You can run the tutorial server locally to see how the translation looks.
 
 The server and install instructions are at <https://github.com/javascript-tutorial/server>. 
-=======
 ♥  
 Ilya Kantor @iliakan
->>>>>>> 027933531e121650120f7e8385f691de99af12d2
