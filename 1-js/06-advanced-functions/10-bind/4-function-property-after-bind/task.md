@@ -2,8 +2,14 @@ importance: 5
 
 ---
 
+<<<<<<< HEAD
 # Bağlandıktan sonraki fonksiyon özellikleri.
 Fonksiyonun özelliğinde bir değer var. Bu değer `bind` edildikten sonra değişir mi? Neden?
+=======
+# Function property after bind
+
+There's a value in the property of a function. Will it change after `bind`? Why, or why not?
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 ```js run
 function sayHi() {

@@ -25,6 +25,7 @@ Bu fonksiyon "asenkron" olarak adlandırılır, çünkü işlerini hemen değil 
 
 Çağrı ile script yüklenmeye başlar ve sonrasında çalıştırılır. Yüklerken aşağıdaki kod çalışmayı bitirebilir ve eğer bu yükleme zaman alırsa aynı anda diğer kodlar da çalışabilir.
 
+<<<<<<< HEAD
 
 ```js
 loadScript('/my/script.js');
@@ -33,6 +34,18 @@ loadScript('/my/script.js');
 ```
 
 Diyelimki kod yüklendikten sonra yeni kodu kullanmak istiyor olalım. Yeni fonksiyonlar yaratılmışsa bunları kullanacağımızı varsaylım.
+=======
+If there's a code below `loadScript(…)`, it doesn't wait until the loading finishes.
+
+```js
+loadScript('/my/script.js');
+// the code below loadScript
+// doesn't wait for the script loading to finish
+// ...
+```
+
+We'd like to use the new script as soon as it loads. It declares new functions, and we want to run them.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 Eğer bunu doğrudan `loadScript(…)` çağrısı sonrasına yaparsanız çalışmaz:
 
@@ -45,7 +58,13 @@ newFunction(); // böyle bir fonksiyon bulunmamaktadır.
 ```
 Doğal olarak, tarayıcı kodu yükleyecek zaman bulamadı. Bundan dolayı doğrudan yeni fonksiyonu çağırdığında hata meydana geldi. Bundan sonra `loadScript` fonksiyonu yüklemenin ne durumda olduğunu bildiremez. Script en nihayetinde yüklenir ve sonrasında çalıştırılır, bu kadar. Fakat biz bunun ne zaman olduğunu bilmek istiyoruz. Yüklenen koddaki fonksiyonlar ve değişkenleri kullanmak istiyoruz.
 
+<<<<<<< HEAD
 `callback` fonksiyonunu ikinci bir parametre olarak `loadScript` e ekleyelim, bu kod yüklendiğinde çalışması lazım.
+=======
+Naturally, the browser probably didn't have time to load the script. As of now, the `loadScript` function doesn't provide a way to track the load completion. The script loads and eventually runs, that's all. But we'd like to know when it happens, to use new functions and variables from that script.
+
+Let's add a `callback` function as a second argument to `loadScript` that should execute when the script loads:
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 ```js
 function loadScript(src, *!*callback*/!*) {
@@ -214,6 +233,33 @@ Yukarıdaki kodda:
 
 Bunun için "callback cehennemi" veya "Kıyamet piramidi" denilebilir.
 
+<<<<<<< HEAD
+=======
+<!--
+loadScript('1.js', function(error, script) {
+  if (error) {
+    handleError(error);
+  } else {
+    // ...
+    loadScript('2.js', function(error, script) {
+      if (error) {
+        handleError(error);
+      } else {
+        // ...
+        loadScript('3.js', function(error, script) {
+          if (error) {
+            handleError(error);
+          } else {
+            // ...
+          }
+        });
+      }
+    })
+  }
+});
+-->
+
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 ![](callback-hell.svg)
 
 "Piramit" her bir çağrıda sağa doğru büyüyecek ve kontrolden çıkacaktır.

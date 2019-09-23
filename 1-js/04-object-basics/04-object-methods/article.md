@@ -62,9 +62,14 @@ kullanici.selamVer = selamVer;
 kullanici.selamVer(); // Merhaba!
 ```
 
+<<<<<<< HEAD
 ```smart header="Nesne Tabanlı Programlama"
 
 Varlıkların obje olarak tanımlandığı dillere  [obje tabanlı diller](https://en.wikipedia.org/wiki/Object-oriented_programming), kısaca: "OOP"(Objet-Oriented Programming)
+=======
+```smart header="Object-oriented programming"
+When we write our code using objects to represent entities, that's called [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming), in short: "OOP".
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 OOP kendi başına kitaplar dolusu anlatılacak bir konudur. Nasıl doğru varlıklar seçilmeli? Bu varlıklar arasında nasıl bir iletişim olmalı? Mimarisi nasıl olmalı, gibi konuların her birisi ile ilgili ayrı ayrı kitaplar bulunmaktadır. Örneğin "Design Patterns: Elements of Reusable Object-Oriented Software" by E.Gamma, R.Helm, R.Johnson, J.Vissides or "Object-Oriented Analysis and Design with Applications" by G.Booch, vs. Bu kitapta <info:object-oriented-programming> sadece başlangıç seviyesinde anlatılacaktır.
 ```
@@ -101,6 +106,10 @@ Doğrusunu söylemek gerekirse iki fonksiyonda birbiri ile aynı. Altta yatan fa
 Obje metodlarının objelerde bulunan diğer bilgilere ulaşması çok büyük bir gerekliliktir. 
 Örneğin `kullanici.selamVer()` `kullanici` ismine ihtiyaç duyar.
 
+<<<<<<< HEAD
+=======
+**To access the object, a method can use `this` keyword.**
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 **Objeye ulaşabilmek içim metod `this` kelimesine ihtiyaç duyar.**
 
@@ -113,7 +122,12 @@ let kullanici = {
 
   selamVer() {
 *!*
+<<<<<<< HEAD
     alert(this.isim);
+=======
+    // "this" is the "current object"
+    alert(this.name);
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 */!*
   }
 
@@ -164,11 +178,17 @@ yonetici.selamVer(); // `selamVer()` içerisinde `kullanici` kullanıldığında
 Eğer `kullanici.isim` yerine `this.isim` yazmış olsaydınız kod çalışacaktı.
 
 
+<<<<<<< HEAD
 ## "this" bağımsız bir şekilde kullanılabilir.
 
 Diğer dillerden farklı olarak "this" kelimesi yer gözetmeksizin kullanılabilir. Her fonksiyonun içinde kullanılabilir.
 
 Aşağıdaki kodda bir yazım hatası yoktur:
+=======
+In JavaScript, keyword `this` behaves unlike most other programming languages. It can be used in any function.
+
+There's no syntax error in the following example:
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 ```js
 function selamVer() {
@@ -176,7 +196,11 @@ function selamVer() {
 }
 ```
 
+<<<<<<< HEAD
 `this`'in değeri çalışma anında değerlendirilir. Herşey olabilir.
+=======
+The value of `this` is evaluated during the run-time, depending on the context.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 Örneğin `this` farklı objelerden çağırıldıklarında değerler alabilirler:
 
@@ -216,11 +240,16 @@ Sıkı modda `this` `undefined` döndürür. Eğer `this.isim` yazılırsa hata 
 Normal modda ise ( `use strict` unutulursa) `this` değeri *global obje* olur. Tarayıcı için bu `window`dur. Bu konuya daha sonra değinilecektir.
 
 
+<<<<<<< HEAD
 Obje olmadan `this` çağırmak normal değildir, bir programlama hatasıdır. Eğer fonksiyon `this` içeriyorsa, o objenin dahilinde çağırılabileceği anlamı çıkar.
+=======
+Usually such call is a programming error. If there's `this` inside a function, it expects to be called in an object context.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 ````
 
 ```smart header="Sınırsız `this` kullanmanın yan etkileri"
 
+<<<<<<< HEAD
 Diğer programlama dillerinden geliyorsanız, "bağımlı `this`" kullanımına alışmış olmalısınız. Metod içerisinde kullanılan `this`  her zaman o objeye referans olur.
 
 JavaScript'te `this` bağımsızdır. Değeri çalışma anında belirlenir, hangi metodda yazıldığı önemli değildir, önemli olan "noktadan önceki" objedir.
@@ -229,6 +258,13 @@ JavaScript'te `this` bağımsızdır. Değeri çalışma anında belirlenir, han
 
 Burada amacımız programlama dilininin dizaynının kötü veya iyiliği değildir. Amaç nasıl çalıştığını anlayıp, nerelerde yarar nerelerde zarar getirileceğini bilmektir.
 
+=======
+In JavaScript `this` is "free", its value is evaluated at call-time and does not depend on where the method was declared, but rather on what object is "before the dot".
+
+The concept of run-time evaluated `this` has both pluses and minuses. On the one hand, a function can be reused for different objects. On the other hand, the greater flexibility creates more possibilities for mistakes.
+
+Here our position is not to judge whether this language design decision is good or bad. We'll understand how to work with it, how to get benefits and avoid problems.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 ```
 
 ## Dahili Özellikler: Referans Tipleri
@@ -255,7 +291,13 @@ kullanici.selamVer(); // Basit metod beklendiği gibi çalışır
 */!*
 ```
 
+<<<<<<< HEAD
 Son satırda kullanıcı ismine göre `kullanici.selamVer` veya `kullanici.yolcuEt` cagrilir. `kullanici.selamVer` `()` ile çağrıldığında çalışmaz. 
+=======
+On the last line there is a conditional operator that chooses either `user.hi` or `user.bye`. In this case the result is `user.hi`.
+
+Then the method is immediately called with parentheses `()`. But it doesn't work correctly!
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 Bunun nedeni çağrı içerisinde `this`'in `undefined` olmasıdır.
 
@@ -342,9 +384,16 @@ Bu ok fonksiyonlarının bir özelliğidir. Ayrı bir `this` kullanmak yerine he
 - Metodlar objelerin `obje.biseylerYap()` seklinde çalışabilmesini sağlar.
 - Metodlar objelere `this` şekline referans verebilir.
 
+<<<<<<< HEAD
 `this`'in değeri çalışma zamanında tanımlanır.
 - Fonksiyon tanımlanırken `this` kullanabilir, fakat `this` bu metod çalışmadığı müddetçe bir anlam ifade etmez.
 - O fonksiyon objeler arasında kopyalanabilir.
 - Fonksiyon metod yazım şekliyle çağırıldığında `obje.metod()`, `this`'in değeri bu çağrı boyunca `obje`'dir.
+=======
+The value of `this` is defined at run-time.
+- When a function is declared, it may use `this`, but that `this` has no value until the function is called.
+- A function can be copied between objects.
+- When a function is called in the "method" syntax: `object.method()`, the value of `this` during the call is `object`.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 Ok fonksiyonlarında `this` bulunmamaktadır. Eğer bu fonksiyonlar içerisinde `this` çağırılırsa bunun değeri dışarıdan alınır.

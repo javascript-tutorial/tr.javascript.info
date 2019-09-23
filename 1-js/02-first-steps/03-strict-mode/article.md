@@ -4,7 +4,11 @@ Uzun süredir JavaScript uyumluluk sorunu olmadan gelişmeye devam etmektedir. Y
 
 Bu eski kodlarınızın çalışacağı garantisini verir. Kötü yanı ise JavaScript geliştiricileri tarafından eskiden verilen kötü bir kararın veya hatanın sürekli tekrar edilmesine neden olur. 
 
+<<<<<<< HEAD
 ECMAScript 5 (ES5) standardı 2009 yılında kabul edilmiştir. Bu standar yeni özellikler eklediği gibi eskide olanlardan bazılarını da düzenlemiştir. Eski kodun çalışabilirliğini garanti altına almak için çoğu düzenleme varsayılan olarak kapalı durumda gelir. Bunları açmak için `"use strict"` kullanılmalıdır.
+=======
+This was the case until 2009 when ECMAScript 5 (ES5) appeared. It added new features to the language and modified some of the existing ones. To keep the old code working, most such modifications are off by default. You need to explicitly enable them with a special directive: `"use strict"`.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 ## "use strict"
 
@@ -19,9 +23,13 @@ Bu direktif için kod dosyanızın başına `"use strict"` veya `'use strict'` y
 ...
 ```
 
+<<<<<<< HEAD
 Yakında fonksiyonları ( komutları gruplama ) göreceksiniz. 
 
 `"use strict"` birden çok fonksiyonda kullanılacağı gibi tek fonksiyon için de kullanılabilir. Fakat genelde tüm dosya için kullanılır.
+=======
+We will learn functions (a way to group commands) soon. Looking ahead, let's note that `"use strict"` can be put at the beginning of the function body instead of the whole script. Doing that enables strict mode in that function only. But usually, people use it for the whole script.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 
 ````warn header="\"use strict\" in en üstte olduğuna emin olun"

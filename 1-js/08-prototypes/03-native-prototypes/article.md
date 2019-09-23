@@ -2,7 +2,11 @@
 
 `"prototype"` özelliği JavaScript çekirdeğinde oldukça fazla kullanılmaktadır. Tüm varsayılan yapıcı fonksiyonlar bunu kullanır.
 
+<<<<<<< HEAD
 Önce basit objeler, sonra daha karmaşık olanları için nasıl çalıştığını göreceğiz.
+=======
+First we'll see at the details, and then how to use it for adding new capabilities to built-in objects.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 ## Object.prototype
 
@@ -36,7 +40,11 @@ alert(obj.__proto__ === Object.prototype); // true
 // obj.toString === obj.__proto__.toString == Object.prototype.toString
 ```
 
+<<<<<<< HEAD
 `Object.prototype`'ın üstünde başka bir `[[Prototype]]` yoktur.
+=======
+Please note that there is no more `[[Prototype]]` in the chain above `Object.prototype`:
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 ```js run
 alert(Object.prototype.__proto__); // null
@@ -46,9 +54,15 @@ alert(Object.prototype.__proto__); // null
 
 `Array`, `Date`, `Function` gibi diğer gömülü objeler metodlarını prototype üzerinde tutar.
 
+<<<<<<< HEAD
 Örneğin, `[1,2,3]` bir array yarattığınızda içte varsayılan `new Array()` yapıcısı kullanılır. Bundan dolayı dizi dizi objesi yeni bir objeye yazılır ve `Array.prototype` bunun prototipi olur ve metodlar sağlar. Bu hafızayı oldukça etkin kullanmaya yarar.
 
 Tanım gereği, tüm gömülü prototipler üstünde `Object.prototype`'a sahip olmalıdır. Bazen "herşey objelerden kalıtım alır" sözünü duyarsınız.
+=======
+For instance, when we create an array `[1, 2, 3]`, the default `new Array()` constructor is used internally. So `Array.prototype` becomes its prototype and provides methods. That's very memory-efficient.
+
+By specification, all of the built-in prototypes have `Object.prototype` on the top. That's why some people say that "everything inherits from objects".
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 Aşağıda bunun etraflı bir görselini görebilirsiniz. 
 
@@ -119,9 +133,23 @@ String.prototype.show = function() {
 ```
 Geliştirme sürecinde hangi fikirlerin gömülü olması gerektiğine dair fikrimiz olabilir. Hatta doğal prototiplere ekleme yapmak için istek duyabilirsiniz. Fakat bu genelde kötü bir fikiridir.
 
+<<<<<<< HEAD
 Prototipler evrenseldir, bundan dolayı kolayca ikilik çıkarabilir. Eğer iki kütüphane `String.prototype.show` şeklinde metod eklerse bunlardan biri diğerinin üzerine yazar.
 
 Modern programlama da sadece bir koşulda doğal prototiplerin düzenlenmesine izin verilir. Buna pollyfills denir. Diğer bir deyişle eğer JavaScript şartnamesinde bir metod var fakat bu JavaScript motoru tarafından henüz desteklenmiyorsa, bunu elle yazmak ve gömülü prototipe eklemek mümkündür.
+=======
+During the process of development, we may have ideas for new built-in methods we'd like to have, and we may be tempted to add them to native prototypes. But that is generally a bad idea.
+
+```warn
+Prototypes are global, so it's easy to get a conflict. If two libraries add a method `String.prototype.show`, then one of them will be overwriting the method of the other.
+
+So, generally, modifying a native prototype is considered a bad idea.
+```
+
+**In modern programming, there is only one case where modifying native prototypes is approved. That's polyfilling.**
+
+Polyfilling is a term for making a substitute for a method that exists in JavaScript specification, but is not yet supported by current JavaScript engine.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 Örneğin:
 
@@ -132,9 +160,15 @@ if (!String.prototype.repeat) { // Eğer böyle bir metod yoksa
   String.prototype.repeat = function(n) {
     // karakteri n defa tekrarlar
 
+<<<<<<< HEAD
     // aslında kod bundan daha karmaşık olmalıdır.
     // eğer n negatif bir sayı gelirse hata dönder
     // Algoritma şartnamede belirlenmiştir.
+=======
+    // actually, the code should be a little bit more complex than that
+    // (the full algorithm is in the specification)
+    // but even an imperfect polyfill is often considered good enough for use
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
     return new Array(n + 1).join(this);
   };
 }
@@ -144,7 +178,21 @@ alert( "La".repeat(3) ); // LaLaLa
 
 ## Prototiplerden ödünç alma
 
+<<<<<<< HEAD
 <info:call-apply-decorators#method-borrowing> bölümünde metod ödünç almadan bahsetmiştik.
+=======
+## Borrowing from prototypes
+
+In the chapter <info:call-apply-decorators#method-borrowing> we talked about method borrowing.
+
+That's when we take a method from one object and copy it into another.
+
+Some methods of native prototypes are often borrowed.
+
+For instance, if we're making an array-like object, we may want to copy some `Array` methods to it.
+
+E.g.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 ```js run
 function showArgs() {

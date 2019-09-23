@@ -2,19 +2,33 @@
 
 JavaScript sadece bir objeden kalıtım yapmaya izin verir. Bir obje için sadece bir tane `[[Prototype]]` olabilir. Ayrıca bir sınıf sadece bir sınıfı genişletebilir.
 
+<<<<<<< HEAD
 Bu bizi sınırlandırabilir. Örneğin, `StreetSweeper` ve `Bycicle` adında iki tane sınıfınız var ve bunlardan `StreetSweepingBycicle` adında bir sınıf yaratmak istiyorsunuz.
 
 Veya programlama hakkında konuşacak olursak, `Renderer`adında şablonu uygulayan ve `EventEmitter` adında olayları işleyen bir sınıfımız olsun, ve bu fonksiyonaliteyi birlikte `Page` adında bir sınıfta kullanmak istiyoruz. Böylece page hem şabloları kullanabiliecek hemde hemde olayları yayacak(emit).
+=======
+But sometimes that feels limiting. For instance, we have a class `StreetSweeper` and a class `Bicycle`, and want to make their mix: a `StreetSweepingBicycle`.
+
+Or we have a class `User` and a class `EventEmitter` that implements event generation, and we'd like to add the functionality of `EventEmitter` to `User`, so that our users can emit events.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 Burada bize `mixin` konsepti yardımcı olabilir.
 
+<<<<<<< HEAD
 Wikipedia'da şu şekilde tanımlanmıştır: [mixin](https://en.wikipedia.org/wiki/Mixin) sınıfı diğer sınıflar tarafından kullanılacak metodları olan ve bunun için bir üst sınıfa ihtiyaç duymayan yapıdır.
+=======
+As defined in Wikipedia, a [mixin](https://en.wikipedia.org/wiki/Mixin) is a class containing methods that can be used by other classes without a need to inherit from it.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 Diğer bir deyişle *mixin* belirli davranışları uygulayan metodları sağlar, fakat bunu tek başına kullanmayız, bunu diğer sınıflara başka davranışlar eklemek için kullanırız.
 
 ## Mixin örneği
 
+<<<<<<< HEAD
 JavaScript mixini yapmak için en kolay yol kullanışlı metodlarla donatılmış bir objedir. Böylece kolayca birleştirebilir ve herhangi bir sınıfın prototipine koyabiliriz.
+=======
+The simplest way to implement a mixin in JavaScript is to make an object with useful methods, so that we can easily merge them into a prototype of any class.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 Örneğin aşağoda `sayHiMixin`, `User` için "speech" metodunu ekler:
 
@@ -74,10 +88,17 @@ let sayHiMixin = {
     *!*
     // call parent method
     */!*
+<<<<<<< HEAD
     super.say("Hello " + this.name);
   },
   sayBye() {
     super.say("Bye " + this.name);
+=======
+    super.say(`Hello ${this.name}`); // (*)
+  },
+  sayBye() {
+    super.say(`Bye ${this.name}`); // (*)
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
   }
 };
 
@@ -94,11 +115,23 @@ Object.assign(User.prototype, sayHiMixin);
 new User("Dude").sayHi(); // Hello Dude!
 ```
 
+<<<<<<< HEAD
 Dikkat ederseniz `sayHiMixin` içinde `super.say() çağırıldığında o mixin'in prototipindeki metoduna bakar, sınıfın değil.
 
 ![](mixin-inheritance.svg)
 
 Çünkü `sayHiMixin` metodları `[[HomeObject]]`'e ayarlanmıştır. Bundan dolayı `super` aslında `User.__proto__` değil de `sayHiMixin.__proto__` anlamına gelir.
+=======
+Please note that the call to the parent method `super.say()` from `sayHiMixin` (at lines labelled with `(*)`) looks for the method in the prototype of that mixin, not the class.
+
+Here's the diagram (see the right part):
+
+![](mixin-inheritance.svg)
+
+That's because methods `sayHi` and `sayBye` were initially created in `sayHiMixin`. So even though they got copied, their `[[HomeObject]]` internal property references `sayHiMixin`, as shown on the picture above.
+
+As `super` looks for parent methods in `[[HomeObject]].[[Prototype]]`, that means it searches `sayHiMixin.[[Prototype]]`, not `User.[[Prototype]]`.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 ## EventMixin
 
@@ -106,7 +139,11 @@ Artık gerçek olaylar için mixin yapabiliriz.
 
 Çoğu objenin en önemli özelliği olaylar(event) çalışabilmesidir.
 
+<<<<<<< HEAD
 Bir obje önemli bir olay olduğunda "olay" yaratacak metoda sahip olmalıdır. Diğer objeler ise böyle bir olayı "dinlemeli"'dir.
+=======
+An important feature of many browser objects (for instance) is that they can generate events. Events is a great way to "broadcast information" to anyone who wants it. So let's make a mixin that allows to easily add event-related functions to any class/object.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 Bir olay isme sahip olmalıdır, bunun ile birlikte ek verileri de barındırabilir.
 
@@ -196,8 +233,16 @@ Artık kullanıcının seçimine farklılık gösteren bir kodumuz var ise bunu 
 
 *Mixin* -- geniş bir nesne tabanlı programlama deyimidir buna göre; bir sınıf diğer sınıflar için metodlar içerebilir.
 
+<<<<<<< HEAD
 Python gibi bazı diller birden fazla kalıtım ile mixin yaratmaya izin verir. JavaScript bunu desteklemez, fakat mixinleri prototipe kopyalayarak uygulanmasına izin verir.
+=======
+Some other languages like allow multiple inheritance. JavaScript does not support multiple inheritance, but mixins can be implemented by copying methods into prototype.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 Ayrıca mixinleri kullanarak bir sınıfın davranışlarını genişletebiliriz, bunu yukarıdaki olay-kotarıcı'da görmekteyiz.
 
+<<<<<<< HEAD
 Mixinler gerçek sınıfın metodlarının üzerine yazılarak çatışmaya neden olabilir. Bundan dolayı genellikle mixinleri isimlendirirken dikkatli olmalı ve problemi en aza indirmelisiniz.
+=======
+Mixins may become a point of conflict if they accidentally overwrite existing class methods. So generally one should think well about the naming methods of a mixin, to minimize the probability of that.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27

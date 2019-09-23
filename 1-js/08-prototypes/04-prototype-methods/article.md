@@ -24,6 +24,7 @@ let rabbit = Object.create(animal);
 */!*
 
 alert(rabbit.eats); // true
+
 *!*
 alert(Object.getPrototypeOf(rabbit) === animal); // rabbit'in prototipini alma
 */!*
@@ -62,7 +63,13 @@ Bu tam olarak `obj`'nin aynısını verir. Tüm özellikler: dönülebilir veya 
 
 Neden?
 
+<<<<<<< HEAD
 Birçok nedeni bulunmaktadır.
+=======
+- The `"prototype"` property of a constructor function works since very ancient times.
+- Later, in the year 2012: `Object.create` appeared in the standard. It allowed to create objects with the given prototype, but did not allow to get/set it. So browsers implemented non-standard `__proto__` accessor that allowed to get/set a prototype at any time.
+- Later, in the year 2015: `Object.setPrototypeOf` and `Object.getPrototypeOf` were added to the standard, to perform the same functionality as `__proto__`. As `__proto__` was de-facto implemented everywhere, it was kind-of deprecated and made its way to the Annex B of the standard, that is optional for non-browser environments.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 - Yapıcının `"prototype"` özelliği ilk javascript ortaya çıktığından beri bulunmaktadır.
 - 2012'de: `Object.create` bir standart olarak oturdu. Bu verilen prototip ile objeleri yaratmaya izin verdi. Fakat bunları almaya veya ayarlamaya değil. Bundan dolayı tarayıcılar bir standart olmayan `__proto__` erişimcilerini uygulayarak alıcı ve ayarlayıcılara ( get/set)'e izin verdi.
@@ -70,9 +77,19 @@ Birçok nedeni bulunmaktadır.
 
 Artık bunların hepsi bizim kullanımımızdadır.
 
+<<<<<<< HEAD
 Teknik olarak `[[Prototype]]`'ı istediğimiz an alma/ayarlama işi yapabiliriz. Fakat genelde bunu sadece obje yaratırken kullanır ve daha sonra düzenleme yapmayız: `rabbit`, `animal`dan kalıtım alır fakat onu değiştirmez. JavaScript motorları da bunu yüksek derecede optimize edebilir. Prototipi `Object.setPrototypeOf` veya `obj.__proto__` ile sonradan değiştirmek oldukça yavaş bir operasyondur. Ama mümkündür.
 
 ## "En basit" Objeler
+=======
+```warn header="Don't change `[[Prototype]]` on existing objects if speed matters"
+Technically, we can get/set `[[Prototype]]` at any time. But usually we only set it once at the object creation time, and then do not modify: `rabbit` inherits from `animal`, and that is not going to change.
+
+And JavaScript engines are highly optimized for this. Changing a prototype "on-the-fly" with `Object.setPrototypeOf` or `obj.__proto__=` is a very slow operation, it breaks internal optimizations for object property access operations. So avoid it unless you know what you're doing, or JavaScript speed totally doesn't matter for you.
+```
+
+## "Very plain" objects [#very-plain]
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 Bildiğiniz gibi objeler anahtar/değer ikilisini tutan ilişkisel dizi şeklinde kullanılabilir.
 
@@ -94,6 +111,7 @@ Bu aslında çok da sürpriz olmasa gerek. `__proto__` farklı bir özelliktir: 
 
 Fakat buradaki amacımız böyle bir davranışı uygulamak değildi, değil mi? Biz key/value ikililerini kaydetmekti. `"__proto__"` anahtarı düzgün bir şekilde kaydedilmedi. Bundan dolayı bu bir bugdır. Burada etkisi berbat değildir fakat diğer durumlarda prototip gerçekten değişebilir ve çalışma tamamen istenmeyen bir sonuca varabilir.
 
+<<<<<<< HEAD
 Daha kötüsü -- genelde geliştiriciler böyle bir ihtimali düşünmezler bile. Bundan dolayı böyle bir bug'lar fark edilebilir ve saldırıya açık hale gelirler, özellikle JavaScript server tarafında kullanıldıysa.
 
 Böyle bir olay sadece `__proto__`'da meydana gelir diğer tüm özellikler normalde "atanabilir"'dir.
@@ -101,14 +119,31 @@ Böyle bir olay sadece `__proto__`'da meydana gelir diğer tüm özellikler norm
 Bu problemden nasıl kaçınılabilir?
 
 Öncelikle `Map` kullanılabilir, herşey doğru çalışır.
+=======
+Here the consequences are not terrible. But in other cases we may be assigning object values, and then the prototype may indeed be changed. As the result, the execution will go wrong in totally unexpected ways.
+
+What's worse -- usually developers do not think about such possibility at all. That makes such bugs hard to notice and even turn them into vulnerabilities, especially when JavaScript is used on server-side.
+
+Unexpected things also may happen when assigning to `toString`, which is a function by default, and to other built-in methods.
+
+How to avoid the problem?
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 Fakat burada bize `Obje` yardımcı olabilir, çünkü dili yaratıcılar bu konuları uzun zaman önce düşünmüşler.
 
+<<<<<<< HEAD
 `__proto__` objenin bir özelliği değildir. Fakat `Object.prototype`'a erişimsağlar( accessor ):
+=======
+But `Object` also can serve us well here, because language creators gave thought to that problem long ago.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 ![](object-prototype-2.svg)
 
+<<<<<<< HEAD
 Bundan dolayı, Eğer `obj.__proto__` okunur veya atanırsa, ilgili alıcı/ayarlayıcı prototipten çağırılır, böylece `[[Prototoy]]` alınır/ayarlanır.
+=======
+![](object-prototype-2.svg)
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 Başlangıçta `__proto__` , `[[Prototype]]`a erişmek için bir yol olarak tanımlanmıştır, `[[Prototype]]` değil.
 
@@ -144,7 +179,14 @@ alert(obj); // Error (no toString)
 ```
 ...Fakat bu genelce ilişkili diziler için problem oluşturmaz.
 
+<<<<<<< HEAD
 Çoğu obje-bağlantılı metodlar `Object.something(...)` şeklindedir ve Object.keys(obj) gibi olduğundan prototipte yer almazlar, bundan dolayı şu şekilde çalışmaya devam ederler:
+=======
+...But that's usually fine for associative arrays.
+
+Note that most object-related methods are `Object.something(...)`, like `Object.keys(obj)` -- they are not in the prototype, so they will keep working on such objects:
+
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 ```js run
 let chineseDictionary = Object.create(null);
@@ -160,7 +202,11 @@ Bir objeden Anahtar/değer ikilisini almak için birçok yol bulunmaktadır.
 
 Aşağıdaki kullanımını zaten biliyorsunuz:
 
+<<<<<<< HEAD
 - [Object.keys(obj)](mdn:js/Object/keys) / [Object.values(obj)](mdn:js/Object/values) / [Object.entries(obj)](mdn:js/Object/entries) -- kendi  adı/değerleri/anahtar-değer ikilileri şeklinde döngü yapılabilir. Metodları sadece *enumerable* ( döngülenebilir ) ve *anahtarları karakter dizisi olanlar* .
+=======
+The built-in `__proto__` getter/setter is unsafe if we'd want to put user-generated keys in to an object. Just because a user may enter `"__proto__"` as the key, and there'll be an error, with hopefully light, but generally unpredictable consequences.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 Eğer sembolik özellikler istenirse:
 
@@ -231,6 +277,7 @@ Zincire bakarsanız `rabbit.hasOwnProperty` nereden geliyor görebilirsiniz. `Ob
 ## Özet
 Bu bölümde anlatılanların üzerinden kısaca geçecek olursak:
 
+<<<<<<< HEAD
 - [Object.create(proto[, descriptors])](mdn:js/Object/create) -- verilen `proto` ile yeni bir obje yaratır, ayrıca opsiyonel olarak özellik tanımlıyıcılar verilebilir.
 - [Object.getPrototypeOf(obj)](mdn:js/Object.getPrototypeOf) -- `obj`'nin `[[Prototype]]`ını döner ( `__proto__` alıcısı ( getter ) ile aynı işi yapar)).
 - [Object.setPrototypeOf(obj, proto)](mdn:js/Object.setPrototypeOf) -- `obj`'nin `[[Prototype]]`'ını verilen `proto`'ya ayarlar. ( `__proto__` ayarlayıcısı ( setter) ile aynı işi yapar)
@@ -244,5 +291,18 @@ Bu bölümde anlatılanların üzerinden kısaca geçecek olursak:
 Şunu da belirtmiş olalım `__proto__` `[[Prototype]]` için alıcı/ayarlayıcıdır. Bu `Object.prototype` içerisinde yer alır, tıpkı diğer metodlar gibi.
 
 Prototip olmadan bir objeyi `Object.create(null)` şeklinde yaratmak mümkündür. Bu tür objeler "saf dictionary yapısı" olarak kullanılır. `"__proto__"` anahtarı ile bir problemi bulunmamaktadır.
+=======
+We also made it clear that `__proto__` is a getter/setter for `[[Prototype]]` and resides in `Object.prototype`, just as other methods.
+
+We can create an object without a prototype by `Object.create(null)`. Such objects are used as "pure dictionaries", they have no issues with `"__proto__"` as the key.
+
+Other methods:
+
+- [Object.keys(obj)](mdn:js/Object/keys) / [Object.values(obj)](mdn:js/Object/values) / [Object.entries(obj)](mdn:js/Object/entries) -- returns an array of enumerable own string property names/values/key-value pairs.
+- [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) -- returns an array of all own symbolic keys.
+- [Object.getOwnPropertyNames(obj)](mdn:js/Object/getOwnPropertyNames) -- returns an array of all own string keys.
+- [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) -- returns an array of all own keys.
+- [obj.hasOwnProperty(key)](mdn:js/Object/hasOwnProperty): it returns `true` if `obj` has its own (not inherited) key named `key`.
+>>>>>>> 4d654318ccb6d37d6cefc9b859cf111ff3c96b27
 
 Obje özelliklerini döndüren ( `Object.keys` ve diğerleri ) -- "kendi" özelliklerini döndürür. Eğer kalıtılmış olanlarını da istersek `for..in` kullanabiliriz.
