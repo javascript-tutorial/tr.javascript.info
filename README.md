@@ -25,42 +25,41 @@ Eğer cevap vermiyorlar ise, ve siz yöneticiliğe geçmek istiyorsanız, [ana r
 
 Not: Tercüme edilen dillerin listesi <https://javascript.info/translate> adresinden erişilebilir.
 
-## Structure
+## Yapı
 
-Every chapter, an article or a task resides in its own folder.
+Makale veya görev farketmeksizin her bölüm kendine ait klasörde bulunur.
+Klasör `N-url` şeklinde `N`-sırası ( makaleler sıralıdır ) ve `url` sitedeki url yazımıdır.
 
-The folder is named `N-url`, where `N` – is the number for sorting (articles are ordered), and `url` is the URL-slug on the site.
+Klasörler aşağıdaki dosyalardan oluşur:
 
-The folder has one of files:
+- Bölüm için `index.md`,
+- Makale için `article.md`,
+- Görev için `task.md` ve çözüm var ise `solution.md`.
 
-- `index.md` for a section,
-- `article.md` for an article,
-- `task.md` for a task formulation (+`solution.md` with the solution text if any).
+Dosya `# Title Header` başında diyez ile başlar ve bu metnin hepsi Markdown-benzeri bir format ile yazılmalıdır. Böylece basit metin editörleri ile yazabilirsiniz.
 
-A file starts with the `# Title Header`, and then the text in Markdown-like format, editable in a simple text editor. 
+Makale için gerekli ek kaynaklar ve örnekler de aynı klasörde yer alır.
 
-Additional resources and examples for the article or the task, are also in the same folder.
+## Tercüme İpuçları
 
-## Translation Tips
+Lütfen paragraf ve satır boşluklarını olduğu gibi bırakın. Yeni satır eklemeyin veya var olanı silmeyin. Bu ileride İngilizce versiyonundan çevirirken değişiklikleri bulma konusunda kolaylık sağlar.
 
-Please keep line breaks and paragraphs "as is": don't add newlines and don't remove existing ones. Makes it easy to merge future changes from the English version into the translation. 
+Eğer İngilizce versiyonunun da geliştirilebileceğini düşünüyorsanız. Lütfen Pull Request yapın. Çok memnun oluruz!
 
-If you see that the English version can be improved – great, please send a PR to it.
+### Terimler
 
-### Terms
+- Bazı özel terimler çevirilemez. Örneğin "Function Declaration" olduğu gibi bırakılabilir.
+- `resolved promise`, `slash`, `regexp` gibi diğer terimler sözlükle bulunabilir. 
+    - Eğer sözlükte yoksa bunların tercümelerini [MDN](https://developer.mozilla.org/en-US/) adresinden bulabilirsiniz.
 
-- Some specification terms are not to be translated, e.g. "Function Declaration" can be left "as is".
-- For other terms like `resolved promise`, `slash`, `regexp`, and so on look a good glossary, hopefully there's one for your language already.
-    - If there's no dictionary, look for translations in manuals, such as [MDN](https://developer.mozilla.org/en-US/).
+### Kod bloğu içerisindeki metinler
 
-### Text in Code Blocks
+- Yorumları tercüme edin.
+- Örnek metinleri ve kullanıcı mesajlarını tercüme edin.
+- Değişkenleri, sınıfları, tanımlamaları tercüme etmeyiniz.
+- Kodun tercümeden sonra çelıştığına emin olun :)
 
-- Translate comments.
-- Translate user-messages and example strings.
-- Don't translate variables, classes, identifiers.
-- Ensure that the code works after the translation :)
-
-Example:
+Örnek:
 
 ```js
 // Example
@@ -71,26 +70,26 @@ document.querySelector('.hello').innerHTML = text;
 ✅ DO (translate comment):
 
 ```js
-// Ejemplo
-const text = 'Hola mundo';
+// Örnek
+const text = 'Merhaba Dünya';
 document.querySelector('.hello').innerHTML = text;
 ```
 
 ❌ DON'T (translate class):
 
 ```js
-// Ejemplo
-const text = 'Hola mundo';
-// ".hello" is a class
-// DO NOT TRANSLATE
+// Örnek
+const text = 'Merhaba Dünya';
+// ".hello" Bir sınıf
+// BUNU TERCÜME ETMEYİNİZ
 document.querySelector('.hola').innerHTML = text;
 ```
 
-### External Links
+### Dış Linkler
 
-If an external link is to Wikipedia, e.g. `https://en.wikipedia.org/wiki/JavaScript`, and a version of that article exists in your language that is of decent quality, link to that version instead.
+Eğer dış kaynak linkleri Wikipedia ise ve iyi bir kaynak olarak görüyorsanız buna link verebilirsiniz.
 
-Example:
+Örnek:
 
 ```md
 [JavaScript](https://en.wikipedia.org/wiki/JavaScript) is a programming language.
@@ -99,37 +98,29 @@ Example:
 ✅ OK (en -> es):
 
 ```md
-[JavaScript](https://es.wikipedia.org/wiki/JavaScript) es un lenguaje de programación.
+[JavaScript](https://tr.wikipedia.org/wiki/JavaScript) bir programlama dilidir.
 ```
 
-For links to MDN, a partially translated version is ok.
+MDN'de eğer bir bölümü tercüme edilmiş ise buraya link verebilirsiniz.
 
-If a linked article has no translated version, leave the link "as is".
+Eğer hiç bir çevirisi yoksa linki olduğu gibi bırakın.
 
 ### Metadata
 
-Some files, usually tasks, have YAML metadata at the top, delimited by `---`:
+Bazı dosyalar, genelde görevler, `---` şeklinde YAML metedata'ya sahiptir.
 
 ```md
 importance: 5
 ```
+Lütfen buradaki "importance" ( ve diğer metadataları ) tercüme etmeyiniz.
 
-Please don't translate "importance" (and other top metadata).
+### Çapa
 
-### Anchors
-
-Some headers have `[#anchor]` at the end, e.g.
+Bazı başlıklar sonunda `[#çapa]`'ya sahiptir.
 
 ```md
-## Spread operator [#spread-operator]
+## Ayırma operatörü [#spread-operator]
 ```
+Lütfen bunu tercüme etmeyiniz veya silmeyiniz. Burası URL'i ayarlamak için yazılmıştır.
 
-Please don't translate or remove the `[#...]` part, it's for URL anchors.
-
-## Running locally
-
-You can run the tutorial server locally to see how the translation looks.
-
-The server and install instructions are at <https://github.com/javascript-tutorial/server>. 
 ♥  
-Ilya Kantor @iliakan
