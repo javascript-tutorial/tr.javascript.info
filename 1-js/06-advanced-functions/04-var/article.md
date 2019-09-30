@@ -26,11 +26,30 @@ selamVer();
 alert(terim); // Hata! terim tanımlı değil.
 ```
 
+<<<<<<< HEAD
 ...Fakat farklılık tam da burada ortaya çıkar.
+=======
+...But here are the differences.
+
+## "var" has no block scope
+
+Variables, declared with `var`, are either function-wide or global. They are visible through blocks.
+
+For instance:
+
+```js run
+if (true) {
+  var test = true; // use "var" instead of "let"
+}
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 ## "var"'ın blok kapsamı yoktur
 
+<<<<<<< HEAD
 `var` ya fonksiyon içinde yada globalde tanımlanır, diğer türlü tüm bloklar içerisinden erişilebilir.
+=======
+As `var` ignores code blocks, we've got a global variable `test`.
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 Örneğin:
 

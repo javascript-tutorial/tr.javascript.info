@@ -14,7 +14,11 @@ Yazımı şu şekildedir:
 obj instanceof Class
 ```
 
+<<<<<<< HEAD
 Eğer `obj`'e `Class`'a aitse `true` döner. ( Veya `Class`'tan türüyorsa)
+=======
+It returns `true` if `obj` belongs to the `Class` or a class inheriting from it.
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 Örneğin:
 
@@ -47,16 +51,32 @@ alert( arr instanceof Array ); // true
 alert( arr instanceof Object ); // true
 ```
 
+<<<<<<< HEAD
 Dikkat edin `arr` ayrıca `Object` sınıfına da aittir. Çünkü `Array` prototipi `Object`'ten kalıtım alır.
 
 `instanceof` operatörü prototip zincirini kontrol eder. `Symbol.hasInstance` statik metodu ile daha performanslı yapılabilir.
+=======
+Please note that `arr` also belongs to the `Object` class. That's because `Array` prototypically inherits from `Object`.
+
+Normally, `instanceof` operator examines the prototype chain for the check. We can also set a custom logic in the static method `Symbol.hasInstance`.
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 `obj instanceof Class` algoritması kabaca aşağıdaki gibi çalışır:
 
+<<<<<<< HEAD
 1. Eğer `Symbol.hasInstance` statik metodu var ise onu kullan. Şu şekilde:
 
     ```js run
     // canEat yapabilen herşeyi animal varsayalım.
+=======
+1. If there's a static method `Symbol.hasInstance`, then just call it: `Class[Symbol.hasInstance](obj)`. It should return either `true` or `false`, and we're done. That's how we can customize the behavior of `instanceof`.
+
+    For example:
+
+    ```js run
+    // setup instanceOf check that assumes that
+    // anything with canEat property is an animal
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
     class Animal {
       static [Symbol.hasInstance](obj) {
         if (obj.canEat) return true;
@@ -67,6 +87,7 @@ Dikkat edin `arr` ayrıca `Object` sınıfına da aittir. Çünkü `Array` proto
     alert(obj instanceof Animal); // true: Animal[Symbol.hasInstance](obj) çağırıldı.
     ```
 
+<<<<<<< HEAD
 2. Çoğu sınıf `Symbol.hasInstance`'a sahip değildir. Bu durumda eğer `Class.prototype` `obj`'nin bir prototipine zincirde olup olmadığını kontrol eder.
 
     Diğer bir deyişle:
@@ -74,13 +95,31 @@ Dikkat edin `arr` ayrıca `Object` sınıfına da aittir. Çünkü `Array` proto
     obj.__proto__ == Class.prototype
     obj.__proto__.__proto__ == Class.prototype
     obj.__proto__.__proto__.__proto__ == Class.prototype
+=======
+2. Most classes do not have `Symbol.hasInstance`. In that case, the standard logic is used: `obj instanceOf Class` checks whether `Class.prototype` equals to one of prototypes in the `obj` prototype chain.
+
+    In other words, compare one after another:
+    ```js
+    obj.__proto__ === Class.prototype?
+    obj.__proto__.__proto__ === Class.prototype?
+    obj.__proto__.__proto__.__proto__ === Class.prototype?
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
     ...
+    // if any answer is true, return true
+    // otherwise, if we reached the end of the chain, return false
     ```
 
+<<<<<<< HEAD
     Yukarıdaki örnekte `Rabbit.prototype == rabbit.__proto__`, cevabı doğrudan verir.
     
     Kalıtım yönünden ise `rabbit` üst sınıfın da instanceof'u dur.
     
+=======
+    In the example above `rabbit.__proto__ === Rabbit.prototype`, so that gives the answer immediately.
+
+    In the case of an inheritance, the match will be at the second step:
+
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
     ```js run
     class Animal {}
     class Rabbit extends Animal {}
@@ -89,8 +128,16 @@ Dikkat edin `arr` ayrıca `Object` sınıfına da aittir. Çünkü `Array` proto
     *!*
     alert(rabbit instanceof Animal); // true
     */!*
+<<<<<<< HEAD
     // rabbit.__proto__ == Rabbit.prototype
     // rabbit.__proto__.__proto__ == Animal.prototype (match!)
+=======
+
+    // rabbit.__proto__ === Rabbit.prototype
+    *!*
+    // rabbit.__proto__.__proto__ === Animal.prototype (match!)
+    */!*
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
     ```
 
 Aşağıda `rabbit instanceof Animal`'ın `Animal.prototype`a karşılaştırılması gösterilmiştir.
@@ -101,9 +148,13 @@ Ayrıca [objA.isPrototypeOf(objB)](mdn:js/object/isPrototypeOf) metodu ile eğer
 
 `Class` yapıcısının kendisi bu kontrolde yer almaz, garip değil mi? Sadece `Class.prototype` ve prototiplerin zinciri önemlidir.
 
+<<<<<<< HEAD
 Bu `prototip` değiştiğinde farklı sonuçlara yol açabilir.
 
 Aşağıdaki gibi:
+=======
+That can lead to interesting consequences when `prototype` property is changed after the object is created.
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 
 ```js run
@@ -119,9 +170,13 @@ alert( rabbit instanceof Rabbit ); // false
 */!*
 ```
 
+<<<<<<< HEAD
 Prototip'i değiştirmemeniz ve daha güvenli tutmanız için bir diğer neden daha olmuş oldu. 
 
 ## Bonus: Tip için Object toString
+=======
+## Bonus: Object.prototype.toString for the type
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 Bildiğiniz gibi basit objeler karakter dizisine `[object Object]` şeklinde çevrilir.
 
@@ -153,7 +208,7 @@ let objectToString = Object.prototype.toString;
 // Bu hangi tipte?
 let arr = [];
 
-alert( objectToString.call(arr) ); // [object Array]
+alert( objectToString.call(arr) ); // [object *!*Array*/!*]
 ```
 Burada [call](mdn:js/function/call)'i kullandık ve [](info:call-apply-decorators) bölümünde `objectToString` fonksiyonunun nasıl `this=arr` kaynağında kullanılacağı gösterilmişti.
 
@@ -193,12 +248,24 @@ alert( {}.toString.call(new XMLHttpRequest()) ); // [object XMLHttpRequest]
 ```
 Gördüğünüz gibi, sonuç kesinlikle `Symbol.toStringTag`'dır ve varsa `[object ...]` içerisinde saklanır.
 
+<<<<<<< HEAD
 Sonunda daha güçlü bir typeof'a sahip olduk. Artık sadece ilkel datalar için değil, gömülü gelen objeler için bile çalışabilir durumdadır.
+=======
+As you can see, the result is exactly `Symbol.toStringTag` (if exists), wrapped into `[object ...]`.
+
+At the end we have "typeof on steroids" that not only works for primitive data types, but also for built-in objects and even can be customized.
+
+We can use `{}.toString.call` instead of `instanceof` for built-in objects when we want to get the type as a string rather than just to check.
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 Gömülü gelen objeler için tipi karakter dizi olarak almak istediğimizde `instanceof` yerine bunu kullanabiliriz. Instanceof sadece kontrol işlemi yapmaktaydı.
 
+<<<<<<< HEAD
 ## Özet
 Bildiğimiz tip kontrol metodlarının üzerinden geçecek olursak:
+=======
+Let's summarize the type-checking methods that we know:
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 |               | çalışır   |  döner      |
 |---------------|-------------|---------------|

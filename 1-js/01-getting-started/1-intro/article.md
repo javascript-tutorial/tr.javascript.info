@@ -93,8 +93,12 @@ JavaScript'ten başka bu üç özelliği taşıyan hiçbir tarayıcı teknolojis
 
 JavaScript'in eşsiz olma nedeni budur ve bu yüzden web sayfaları geliştirmekte kullanılan en yaygın araçtır.
 
+<<<<<<< HEAD
 Yeni bir teknolojiyi öğrenmeye başlarken, sunacağı avantajlar için öngörü önemlidir. Bu sebeptendir ki, yeni diller ve tarayıcı yetkinlikleri içeren bu yönelimlere ayak uydurmalıyız.
 
+=======
+That said, JavaScript also allows to create servers, mobile applications, etc.
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 ## JavaScript'e üstün diller
 
@@ -106,7 +110,11 @@ Bundan dolayı yakın zamanda bir sürü yeni *transpiled* yani çevirilmiş dil
 
 Bu dillere örnek vermek gerekirse:
 
+<<<<<<< HEAD
 - [CofeeScript](http://coffeescript.org) JavaScript için "şeker yazım" denebilecek bir dildir. Yazılımı daha kısadır ve daha temiz kod yazmaya yardımcı olur. Genellikle [Ruby](https://www.ruby-lang.org/tr/) geliştiriciler bunu sever.
+=======
+Examples of such languages:
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 - [Typescript](http://www.typescriptlang.org/) durağan veri yapıları ile JavaScript yazılmasını sağlar. Karmaşık programlar geliştirmeyi kolaylaştırır. Microsoft tarafından geliştirilmiştir.
 

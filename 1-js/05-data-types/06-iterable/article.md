@@ -3,7 +3,13 @@
 
 *Iterable* objeleri dizilerin genelleştirilmiş halidir. Bu her objenin `for..of` döngüsünde kullanılmasına olanak verir.
 
+<<<<<<< HEAD
 Diziler zaten tekrarlanabilirdir. Fakat sadece diziler değil, karakter dizileri de tekrarlanabilir.
+=======
+Of course, Arrays are iterable. But there are many other built-in objects, that are iterable as well. For instance, strings are also iterable.
+
+If an object isn't technically an array, but represents a collection (list, set) of something, then `for..of` is a great syntax to loop over it, so let's see how to make it work.
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 Sıralı erişim JavaScript çekirdeğince oldukça fazla kullanılır. Varolan operatörler ve metodların birçoğu buna bel bağlar.
 
@@ -32,8 +38,17 @@ let aralik = {
 - `for..of` bir sonraki değeri istediğinde `next()` metodu çağırılacaktır.
 - `next()` metodu sonrasında `{done:Boolean, value:any}`, `done = true` dönerse sıralı erişimin bittiği anlaşılır. Aksi halde `value` yeni değer olacaktır.
 
+<<<<<<< HEAD
 Aşağıda `aralik` fonksiyonunun uygulamasını görebilirsiniz:
 
+=======
+1. When `for..of` starts, it calls that method once (or errors if not found). The method must return an *iterator* -- an object with the method `next`.
+2. Onward, `for..of` works *only with that returned object*.
+3. When `for..of` wants the next value, it calls `next()` on that object.
+4. The result of `next()` must have the form `{done: Boolean, value: any}`, where `done=true`  means that the iteration is finished, otherwise `value` is the next value.
+
+Here's the full implementation for `range` with remarks:
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 ```js run
 let aralik = {
@@ -69,8 +84,15 @@ for (let num of aralik) {
 ```
 Bu kod için bir tane çok önemli problem mevcuttur:
 
+<<<<<<< HEAD
 - `aralik` fonksiyonunun kendisi `next()` metoduna sahip değildir.
 - Bunun yerine, diğer bir obje, `aralik[Symbol.iterator]()`  ile yaratılmaktadır ve bu sıralı erişimi sağlar.
+=======
+Please note the core feature of iterables: separation of concerns.
+
+- The `range` itself does not have the `next()` method.
+- Instead, another object, a so-called "iterator" is created by the call to `range[Symbol.iterator]()`, and its `next()` generates values for the iteration.
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 Bundan dolayı sıralı erişim objesi aslında sıralı erişilecek objeden farklıdır.
 
@@ -134,9 +156,13 @@ for(let char of str) {
 
 ## Sıralı erişim elemanlarını dışardan çağırma
 
+<<<<<<< HEAD
 Normalde, sıralı erişim elemanları dışardan kod çağırmaya kapatılmıştır. `for..of` döngüsü çalışır ve bu da tek bilinmesi gereken olaydır.
 
 Olayı daha derinlemesine anlayabilmek için dışarıdan nasıl sıralı erişim yaratılır buna bakalım.
+=======
+For deeper understanding let's see how to use an iterator explicitly.
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 
 Karakter dizisini aynı `for..of` gibi döneceğiz fakat doğrudan çağrılarla. Bu kod karakter dizisi erişim elemanını alır ve bunu *manuel* bir şekilde yapar:
 
@@ -273,8 +299,13 @@ let str = '𝒳😂𩷶';
 
 alert( slice(str, 1, 3) ); // 😂𩷶
 
+<<<<<<< HEAD
 // Varolan metodlar vekil çiftleri desteklemez.
 alert( str.slice(1, 3) ); // çöp 
+=======
+// the native method does not support surrogate pairs
+alert( str.slice(1, 3) ); // garbage (two pieces from different surrogate pairs)
+>>>>>>> 0e4f5e425aff4a9767546f75b378ad4a2a2493ea
 ```
 
 
