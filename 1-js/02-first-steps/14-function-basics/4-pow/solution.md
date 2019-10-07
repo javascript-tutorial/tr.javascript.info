@@ -13,10 +13,14 @@ function usAl(x, n) {
 let x = prompt("x?", '');
 let n = prompt("n?", '');
 
+<<<<<<< HEAD
 if (n <= 1) {
   alert(` ${n} için üs alınamamktadır. 0'dan büyük doğal sayı kullanınız.`);
+=======
+if (n < 1) {
+  alert(`Power ${n} is not supported, use a positive integer`);
+>>>>>>> 71ff8f81b05e2438a3c56507888e06c528a71182
 } else {
   alert( usAl(x, n) );
 }
 ```
-

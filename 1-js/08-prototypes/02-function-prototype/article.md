@@ -160,9 +160,15 @@ Bu bölümde kısaca yapıcı fonksiyonlar ile oluşturulan objelerin `[[Prototi
 
 Herşey aslında çok basit, birkaç cümle ile daha net anlatmak gerekirse:
 
+<<<<<<< HEAD
 - `F.prototype` özelliği `[[Prototype]]` ile aynı değildir. `F.prototype` aslında `new F()` çağırıldığında  `[[Prototype]]`'ı  ayarlar.
 - `F.prototype` değeri ya obje ya da null olmalıdır: diğer değerler çalışmaz.
 - `"prototype"` özelliği sadece bir yapıcı fonksiyona ayarlandığı ve `new` ile çağırıldığında özel etkisi olur.
+=======
+- The `F.prototype` property (don't mess with `[[Prototype]]`) sets `[[Prototype]]` of new objects when `new F()` is called.
+- The value of `F.prototype` should be either an object or `null`: other values won't work.
+-  The `"prototype"` property only has such a special effect when set on a constructor function, and invoked with `new`.
+>>>>>>> 71ff8f81b05e2438a3c56507888e06c528a71182
 
 Normal objeler `prototype`'ın ayrı bir önemi yoktur:
 ```js

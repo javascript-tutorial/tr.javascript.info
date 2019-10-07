@@ -30,13 +30,24 @@ result = prompt(başlık[, varsayılan]);
 ```
 Modal penceresi içerisinde bir yazı ve OK/CANCEL butonlarını içerir.
 
+<<<<<<< HEAD
 `başlık`
 : Kullanıcıya gösterilecek yazı.
+=======
+It shows a modal window with a text message, an input field for the visitor, and the buttons OK/Cancel.
+
+`title`
+: The text to show the visitor.
+>>>>>>> 71ff8f81b05e2438a3c56507888e06c528a71182
 
 `default`
 : Opsiyonel bir ikinci parametre, input alanı için varsayılan değeri içerir.
 
+<<<<<<< HEAD
 Kullanıcı ekrana çıkan veri girişi kutusuna istediğini yazar ve OK tuşuna basar. Veya bunu CANCEL tuşuna basarak iptal edebilir. Veya `key:Esc` tuşu da aynı işlevi görür.
+=======
+The visitor may type something in the prompt input field and press OK. Or they can cancel the input by pressing Cancel or hitting the `key:Esc` key.
+>>>>>>> 71ff8f81b05e2438a3c56507888e06c528a71182
 
 Eğer kullanıcı değer girdiyse bunu dönderir, eğer girmediyse ve o ekrandan `key:Esc` veya CANCEL butonu ile çıktıysa `null` dönderir.
 
@@ -73,7 +84,11 @@ result = confirm(soru);
 ```
 `confirm` fonksiyonu içerisine yazdığımız `soru` ile OK ve CANCEL butonu olan bir pencere çıkarır.
 
+<<<<<<< HEAD
 Eğer OK'e basıldıysa `true`, CANCEL'a basıldıysa `false` dönderir.
+=======
+The function `confirm` shows a modal window with a `question` and two buttons: OK and Cancel.
+>>>>>>> 71ff8f81b05e2438a3c56507888e06c528a71182
 
 Örneğin:
 
@@ -91,11 +106,18 @@ Bu bölümde 3 tane tarayıcı tabanlı ve kullanıcı ile etkileşimi sağlayan
 : Ekranda mesaj gösterir.
 
 `prompt`
+<<<<<<< HEAD
 : Kullanıcıya bir mesaj ile soru sorar. Bir veri giriş kutusu ile cevap alır. Eğer kullanıcı bir yazı yazar ve `OK` tuşuna basarsa yazılan değeri döner. Eğer `CANCEL` veya `key:Esc`'ye basarsa bu durumda tarayıcıya `null` değeri döner.
 
 
 `confirm`
 : Kullanıcıdan "OK" veya "CANCEL"'a basmasını ister. Eğer kullanıcı "OK" basarsa `true`, CANCEL veya `key:Esc` durumunda false döner.
+=======
+: shows a message asking the user to input text. It returns the text or, if Cancel button or `key:Esc` is clicked, `null`.
+
+`confirm`
+: shows a message and waits for the user to press "OK" or "Cancel". It returns `true` for OK and `false` for Cancel/`key:Esc`.
+>>>>>>> 71ff8f81b05e2438a3c56507888e06c528a71182
 
 Tüm bu metodlar modaldır. Yani bu kod çalıştığında kullanıcı sayfanın başka bir yeriyle etkileşimde bulunamaz, taki bu pencereler kapatılana kadar.
 

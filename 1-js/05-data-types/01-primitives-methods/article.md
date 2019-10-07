@@ -1,8 +1,12 @@
 # İlkel Tiplerin Metodları
 
+<<<<<<< HEAD
 JavaScript ilkel tiplerin(karakter dizisi, sayılar vs.) karakter gibi kullanılmasına olanak verir.
 
 Ayrıca bunların metodlarının çağırılabilmesini sağlar. Az sonra da gösterileceği gibi, aslında bu ilkel tipler obje değillerdir. (İlerleyen zamanlarda bu daha açık bir şekilde görülecektir.)
+=======
+JavaScript allows us to work with primitives (strings, numbers, etc.) as if they were objects. They also provide methods to call as such. We will study those soon, but first we'll see how it works because, of course, primitives are not objects (and here we will make it even clearer).
+>>>>>>> 71ff8f81b05e2438a3c56507888e06c528a71182
 
 İlkel tipler ile objeler arasındaki farka bakılacak olursa:
 
@@ -33,7 +37,11 @@ Tabi bu farklılığın bir maliyeti var!
 
 Objeler ilkellere göre daha "ağırdırlar". Daha fazla kaynak gerektirirler. Fakat özellikler ve metodlar çok önemli olduklarından JavaScript motoru bunları olabildiğince optimize eder.
 
+<<<<<<< HEAD
 ## Obje olarak ilkel tipler
+=======
+Objects are "heavier" than primitives. They require additional resources to support the internal machinery.
+>>>>>>> 71ff8f81b05e2438a3c56507888e06c528a71182
 
 Burada JavaScript'i oluşturan kişiler ikilem ile karşılaşmışlardır:
 
@@ -51,6 +59,10 @@ Burada JavaScript'i oluşturan kişiler ikilem ile karşılaşmışlardır:
 Örneğin [str.toUpperCase()]
 For instance, there exists a method [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) karakterlerin büyük harfe çevirir.
 
+<<<<<<< HEAD
+=======
+For instance, there exists a string method [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) that returns a capitalized `str`.
+>>>>>>> 71ff8f81b05e2438a3c56507888e06c528a71182
 
 Çalışması şu şekilde:
 
@@ -82,7 +94,12 @@ alert( n.toFixed(2) ); // 1.23
 
 ````warn header="`String/Number/Boolean` gibi yapıcılar sadece içte kullanım içindir"
 
+<<<<<<< HEAD
 Java gibi bazı diller bu obje kapsayıcıları doğrudan tanımlamanıza izin verir. Örneğin `new Number(1)` veya `new Boolean(false)` gibi
+=======
+````warn header="Constructors `String/Number/Boolean` are for internal use only"
+Some languages like Java allow us to explicitly create "wrapper objects" for primitives using a syntax like `new Number(1)` or `new Boolean(false)`.
+>>>>>>> 71ff8f81b05e2438a3c56507888e06c528a71182
 
 JavaScript'te de bu eskiden kalma özelliklerden dolayı mümkündür, fakat **önerilmez**. Bir örnek verilecek olursa:
 
