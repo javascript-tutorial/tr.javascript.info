@@ -2,9 +2,25 @@
 
 # Callback fonksiyonlarına giriş
 
+<<<<<<< HEAD
 Çoğu JavaScript eylemleri *asenkron*'dur
 
 Aşağıdaki `loadScript(src)` fonksiyonuna bakacak olursanız:
+=======
+```warn header="We use browser methods here"
+To demonstrate the use of callbacks, promises and other abstract concepts, we'll be using some browser methods; specifically, loading scripts and performing simple document manipulations.
+
+If you're not familiar with these methods, and their usage in the examples is confusing, or if you would just like to understand them better, you may want to read a few chapters from the [next part](/document) of the tutorial.
+```
+
+Many actions in JavaScript are *asynchronous*. In other words, we initiate them now, but they finish later.
+
+For instance, we can schedule such actions using `setTimeout`.
+
+There are other real-world examples of asynchronous actions, e.g. loading scripts and modules (we'll cover them in later chapters).
+
+Take a look at the function `loadScript(src)`, that loads a script with the given `src`:
+>>>>>>> 30e3fa723721909ee25115562e676db2452cf8d1
 
 ```js
 function loadScript(src) {
@@ -15,14 +31,24 @@ function loadScript(src) {
 ```
 Bu fonksiyonun amacı yeni kodu yüklemektir. `<script src="...">`'yi dökümana ekler ve çalıştırır.
 
+<<<<<<< HEAD
 Aşağıdaki gibi kullanılabilir.
 
 ```js
 // kodu yükler ve çalıştırır.
+=======
+It appends to the document the new, dynamically created, tag `<script src="…">`, the browser loads and executes it.
+
+We can use this function like this:
+
+```js
+// load and execute the script at the given path
+>>>>>>> 30e3fa723721909ee25115562e676db2452cf8d1
 loadScript('/my/script.js');
 ```
 Bu fonksiyon "asenkron" olarak adlandırılır, çünkü işlerini hemen değil de daha sonra bitirir.
 
+<<<<<<< HEAD
 Çağrı ile script yüklenmeye başlar ve sonrasında çalıştırılır. Yüklerken aşağıdaki kod çalışmayı bitirebilir ve eğer bu yükleme zaman alırsa aynı anda diğer kodlar da çalışabilir.
 
 
@@ -33,6 +59,20 @@ loadScript('/my/script.js');
 ```
 
 Diyelimki kod yüklendikten sonra yeni kodu kullanmak istiyor olalım. Yeni fonksiyonlar yaratılmışsa bunları kullanacağımızı varsaylım.
+=======
+The script is executed "asynchronously", as it starts loading starts now, but runs later, when the function has already finished.
+
+If there's a code below `loadScript(…)`, it doesn't wait until the script loading finishes.
+
+```js
+loadScript('/my/script.js');
+// the code below loadScript
+// doesn't wait for the script loading to finish
+// ...
+```
+
+Let's say we need to use the new script as soon as it loads. It declares new functions, and we want to run them.
+>>>>>>> 30e3fa723721909ee25115562e676db2452cf8d1
 
 Eğer bunu doğrudan `loadScript(…)` çağrısı sonrasına yaparsanız çalışmaz:
 
@@ -45,7 +85,13 @@ newFunction(); // böyle bir fonksiyon bulunmamaktadır.
 ```
 Doğal olarak, tarayıcı kodu yükleyecek zaman bulamadı. Bundan dolayı doğrudan yeni fonksiyonu çağırdığında hata meydana geldi. Bundan sonra `loadScript` fonksiyonu yüklemenin ne durumda olduğunu bildiremez. Script en nihayetinde yüklenir ve sonrasında çalıştırılır, bu kadar. Fakat biz bunun ne zaman olduğunu bilmek istiyoruz. Yüklenen koddaki fonksiyonlar ve değişkenleri kullanmak istiyoruz.
 
+<<<<<<< HEAD
 `callback` fonksiyonunu ikinci bir parametre olarak `loadScript` e ekleyelim, bu kod yüklendiğinde çalışması lazım.
+=======
+Naturally, the browser probably didn't have time to load the script. As of now, the `loadScript` function doesn't provide a way to track the load completion. The script loads and eventually runs, that's all. But we'd like to know when it happens, to use new functions and variables from that script.
+
+Let's add a `callback` function as a second argument to `loadScript` that should execute when the script loads:
+>>>>>>> 30e3fa723721909ee25115562e676db2452cf8d1
 
 ```js
 function loadScript(src, *!*callback*/!*) {
@@ -214,6 +260,33 @@ Yukarıdaki kodda:
 
 Bunun için "callback cehennemi" veya "Kıyamet piramidi" denilebilir.
 
+<<<<<<< HEAD
+=======
+<!--
+loadScript('1.js', function(error, script) {
+  if (error) {
+    handleError(error);
+  } else {
+    // ...
+    loadScript('2.js', function(error, script) {
+      if (error) {
+        handleError(error);
+      } else {
+        // ...
+        loadScript('3.js', function(error, script) {
+          if (error) {
+            handleError(error);
+          } else {
+            // ...
+          }
+        });
+      }
+    })
+  }
+});
+-->
+
+>>>>>>> 30e3fa723721909ee25115562e676db2452cf8d1
 ![](callback-hell.svg)
 
 "Piramit" her bir çağrıda sağa doğru büyüyecek ve kontrolden çıkacaktır.

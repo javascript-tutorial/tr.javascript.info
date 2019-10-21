@@ -21,6 +21,7 @@ true + false
 "  -9\n" - 5
 null + 1
 undefined + 1
+" \t \n" - 2
 ```
 
 İyice düşünün, bir yere yazın ve sonra sonucunuzu doğru cevap ile karşılaştırın.
