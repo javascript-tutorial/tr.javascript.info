@@ -1,111 +1,122 @@
-# Browser environment, specs
+# Tarayıcı Ortamı, Özellikleri
 
-The JavaScript language was initially created for web browsers. Since then, it has evolved and become a language with many uses and platforms.
+Javascript dili başlangıçta internet tarayıcıları için oluşturuldu. O zamandan beri geliştirildi ve bir çok kullanımı ve platformu ile bir dil haline geldi.
 
-A platform may be a browser, or a web-server, or a washing machine, or another *host*. Each of them provides platform-specific functionality. The JavaScript specification calls that a *host environment*.
 
-A host environment provides platform-specific objects and functions additional to the language core. Web browsers give a means to control web pages. Node.js provides server-side features, and so on.
+Bir platform tarayıcı veya bir web sunucusu veya bir çamaşır makinesi veya başka bir sunucu olabilir. Bunların her biri platforma özgü fonksiyonlar sağlar. Javascript özelliği bunu bir sunucu ortamı olarak adlandırılır.
 
-Here's a bird's-eye view of what we have when JavaScript runs in a web-browser:
+Bir sunucu ortamı dil çekirdeğine ek olarak platforma özgü nesneler ve fonksiyonlar sağlar. İnternet tarayıcıları internet sayfalarını kontrol etmek için bir yol sunar. Node.js sunucu tarafı özellikleri vb. 
 
-![](windowObjects.svg)
 
-There's a "root" object called `window`. It has two roles:
+İşte javascriptin internet tarayıcısında çalıştığında elimizde ne olduğunu gösteren bir kuş bakışı.
 
-1. First, it is a global object for JavaScript code, as described in the chapter <info:global-object>.
-2. Second, it represents the "browser window" and provides methods to control it.
+![](windowObjects.png)
 
-For instance, here we use it as a global object:
+`window` denilen bir "kök" nesnesi var. İki rolü vardır.
+
+1. Birincisi, Javascript kodu için evrensel bir nesnedir. bölümde açıklandığı gibi [Evrensel nesneler](https://github.com/sahinyanlik/javascript-tutorial-tr/blob/master/1-js/06-advanced-functions/05-global-object/article.md)
+2. İkincisi, "tarayıcı penceresini" temsil eder ve kontrol etmek için yöntemler sağlar. 
+
+Örneğin, burada `window`u evrensel bir nesne olarak kullandık.
 
 ```js run
-function sayHi() {
-  alert("Hello");
+function selamSoyle() {
+  alert("Selam");
 }
 
-// global functions are accessible as properties of window
-window.sayHi();
+// evrensel değişkenler `window` özellikleri olarak erişilebilir.
+window.selamSoyle();
 ```
 
-And here we use it as a browser window, to see the window height:
+Ve burada `window`u pencerenin yüksekliğini görmek için tarayıcı penceresi olarak kullandık: 
 
 ```js run
-alert(window.innerHeight); // inner window height
+alert(window.innerHeight); // İç pencere yüksekliği
 ```
 
-There are more window-specific methods and properties, we'll cover them later.
+Daha fazla `window`a özgü yöntemler ve özellikler var, bunlardan daha sonra bahsedeceğiz.
 
-## DOM (Document Object Model)
+## Document Object Model (DOM) (Belge Nesneli Modeli)
 
-The `document` object gives access to the page content. We can change or create anything on the page using it.
+`document` nesnesi sayfa içeriğine erişimi sağlar. Sayfada herhangi bir şeyi değiştirebilir ya da oluşturabiliriz.
 
-For instance:
+Örneğin:
 ```js run
-// change the background color to red
-document.body.style.background = "red";
+// arka plan rengini kırmızı olarak değiştirelim.
+document.body.style.background = 'red';
 
-// change it back after 1 second
-setTimeout(() => document.body.style.background = "", 1000);
+// 1 saniye sonra tekrar değiştirelim
+setTimeout(() => document.body.style.background = '', 1000);
 ```
 
-Here we used `document.body.style`, but there's much, much more. Properties and methods are described in the specification:
+Burada `document.body.style` kullandık but daha fazla parametreler var. Özellikleri ve yöntemleri tanımlamada açıklanmıştır. Tesadüf ki, bunu geliştiren iki grup vardır. 
 
-- **DOM Living Standard** at <https://dom.spec.whatwg.org>
+1. [W3C](https://en.wikipedia.org/wiki/World_Wide_Web_Consortium) -- belgesi <https://www.w3.org/TR/dom> linktedir.
+2. [WhatWG](https://en.wikipedia.org/wiki/WHATWG), <https://dom.spec.whatwg.org> 'da yayınlanır..
 
-```smart header="DOM is not only for browsers"
-The DOM specification explains the structure of a document and provides objects to manipulate it. There are non-browser instruments that use it too.
+Burada olduğu gibi, 2 grup her zaman aynı fikirde değil. Bu yüzden 2 standartımız var fakat birbirileri ile temasta ve sonuç olarak bir noktada birleşiyorlar. Yani bu kaynaklardan bulabileceğiniz bilgiler birbirlerine çok yakın, 99% gibi bir eşleşme var. Farklılıklar var ama büyük ihtimal bunu fark etmeyeceksiniz.
 
-For instance, server-side tools that download HTML pages and process them use the DOM. They may support only a part of the specification though.
+Şahsen <https://dom.spec.whatwg.org> kullanmayı daha keyifli buluyorum.
+
+Eskiden hiç bir standart yoktu. -- her tarayıcı her ne istiyorsa onu uyguladı. Bu yüzden farklı tarayıcıların aynı şeyler için farklı metotları ve özellikleri vardı ve geliştiriciler her bir tarayıcı için farklı kodlar yazmak zorunda kalıyordu. Karanlık ve dağaınık zamanlar.
+
+Şimdi bile bazen tarayıcıları özgü özellikleri kullanan ve uyumsuzluklar etrafında çalışan eski kodlarla çalışabiliriz ama bu derste modern şeyler kullanacağız: Onlara ihtiyacın olana kadar eski şeyler öğrenmeye gerek yok (şansın yüksek değil). 
+
+Daha sonra herkesi ortak noktada toplamak için DOM standartı belirlendi. İlk versiyon "DOM Level 1" idi, sonra DOM Level 2 tarafından genişletildi, sonra DOM Level 3 ve şimdi DOM Level 4. WhatWG grubundan insanlar sürümden sıkıldılar ve numara olmadan sadece DOM olarak adlandırdılar. Öyleyse biz yapacağız.
+
+```smart header="DOM yalnızca tarayıcı için değildir."
+DOM özelliği bir belgenin yapısını açıklar ve onu işlemek için nesne sağlar. Onu kullanan tarayıcı olmayan araçlarda var.
+
+Örneğin, HTML sayfalarını indiren ve işleyen sunucu-taraflı araçlar. Ancak DOM spesifikasyonunun sadece bir bölümü destekleyebilir.
 ```
 
-```smart header="CSSOM for styling"
-CSS rules and stylesheets are not structured like HTML. There's a separate specification [CSSOM](https://www.w3.org/TR/cssom-1/) that explains how they are represented as objects, and how to read and write them.
+```smart header="Stil için CSSOM"
+CSS kuralları ve stil sayfaları HTML yapısına benzemez. Bu yüzden nesneler olarak nasıl temsil edildiklerini ve nasıl okunup yazılacağını açıklayan bir tanımlama vardır. [CSSOM](https://www.w3.org/TR/cssom-1/)
 
-CSSOM is used together with DOM when we modify style rules for the document. In practice though, CSSOM is rarely required, because usually CSS rules are static. We rarely need to add/remove CSS rules from JavaScript, so we won't cover it right now.
+CSSOM, belgi için stil kurallarını değiştirdiğimizde DOM ile birlikte kullanılıyor. Pratikte olsa CSSOM nadiren gereklidir. Çünkü genelde CSS kuralları statiktir. Javascript'e CSS kuralları ekleme/çıkarma nadiren ihtiyacımız var. Bu yüzden onu kapatmayız.
 ```
 
-## BOM (Browser object model)
+## BOM (HTML'in bir parçası) 
 
-Browser Object Model (BOM) are additional objects provided by the browser (host environment) to work with everything except the document.
+HTML'in bir parçası (BOM), belge dışında her şey ile çalışmak için tarayıcı (sunucu ortamı) tarafından sağlanan ek nesnelerdir.
 
-For instance:
+Örneğin:
 
-- The [navigator](mdn:api/Window/navigator) object provides background information about the browser and the operating system. There are many properties, but the two most widely known are: `navigator.userAgent` -- about the current browser, and `navigator.platform` -- about the platform (can help to differ between Windows/Linux/Mac etc).
-- The [location](mdn:api/Window/location) object allows us to read the current URL and can redirect the browser to a new one.
+- [navigator](mdn:api/Window/navigator) nesnesi tarayıcı ve işletim sistemi hakkında arkaplan bilgisi sağlar. Bir çok özelliği var, fakat en çok bilinen ikisi şunlardır: `navigator.userAgent` -- mevcut tarayıcı hakkında, ve `navigator.platform` -- platform hakkımda (Windows/Linux/Mac arasında farklılık olacağından yardım gerekebilir). 
+- [location](mdn:api/Window/location) nesnesi geçerli adresi okumayı ve tarayıcıyı yenisine yönlendirmeyi sağlar
 
-Here's how we can use the `location` object:
+`location` nesnesini bu şekilde kullanabiliriz: 
 
 ```js run
-alert(location.href); // shows current URL
-if (confirm("Go to wikipedia?")) {
-  location.href = "https://wikipedia.org"; // redirect the browser to another URL
+alert(location.href); // Geçerli URL'yi gösterir
+if (confirm("wikipedia'ya git?")) {
+  location.href = 'https://tr.wikipedia.org'; // Tarayıcı başka bir URL'ye yönlendirir.
 }
 ```
 
-Functions `alert/confirm/prompt` are also a part of BOM: they are directly not related to the document, but represent pure browser methods of communicating with the user.
+`alert/confirm/prompt` fonksiyonları da BOM'un bir parçasıdır: Bunlar doğrudan belge ile ilgili değildir ancak kullanıcı ile tarayıcının saf iletişim kurmasını temsil eder. 
 
-BOM is the part of the general [HTML specification](https://html.spec.whatwg.org).
+```smart header="HTML specification"
+BOM genel kısmıdır[HTML specification](https://html.spec.whatwg.org).
 
-Yes, you heard that right. The HTML spec at <https://html.spec.whatwg.org> is not only about the "HTML language" (tags, attributes), but also covers a bunch of objects, methods and browser-specific DOM extensions. That's "HTML in broad terms". Also, some parts have additional specs listed at <https://spec.whatwg.org>.
+Evet, doğru duydun. <https://html.spec.whatwg.org>'deki HTML özelliği yalnızca "HTML dili" (etiketler, nitelikler) ile ilgili değil, aynı zamanda birçok nesne, yöntem ve tarayıca özgü DOM uzantılarını da kapsar. Bu "geniş anlamda HTML"dir.
+```
 
-## Summary
+## Özet
 
-Talking about standards, we have:
+Standar hakkında konuşurken:
 
-DOM specification
-: Describes the document structure, manipulations and events, see <https://dom.spec.whatwg.org>.
+DOM tanımlaması
+: belge yapısını, manipülasyonları, olayları açıklar, Bkz <https://dom.spec.whatwg.org>.
 
-CSSOM specification
-: Describes stylesheets and style rules, manipulations with them and their binding to documents, see <https://www.w3.org/TR/cssom-1/>.
+CSSOM tanımlaması
+: stil sayfaları ve stil kurallarını açıklar, bunlarla yapılan manipülasyonları ve belge bağlanmalarını sağlar, Bkz <https://www.w3.org/TR/cssom-1/>.
 
-HTML specification
-: Describes the HTML language (e.g. tags) and also the BOM (browser object model) -- various browser functions: `setTimeout`, `alert`, `location` and so on, see <https://html.spec.whatwg.org>. It takes the DOM specification and extends it with many additional properties and methods.
+HTML tanımlaması
+: HTML dilini (etiketler vs.) ve ayrıca BOM (tarayıcı nesne modeli) -- çeşitli tarayıcı fonksiyonlar: `setTimeout`, `alert`, `location` vb açıklar, Bkz <https://html.spec.whatwg.org>. DOM özelliğini alır ve bir çok ek özellik ve yöntemle geliştirir.
 
-Additionally, some classes are described separately at <https://spec.whatwg.org/>.
+Şimdi DOM öğrenmeye başlayacağız. Çünkü belge, kullanıcı arayüzünde önemli bir rol oynuyor, ayrıca onunla çalışmak en karmaşık kısımdır.
 
-Please note these links, as there's so much stuff to learn it's impossible to cover and remember everything.
+Lütfen yukarıdaki bağlantıları kontrol edin. Çünkü öğrenecek bir çok şey var. Her şeyi hatırlamak imkansızdır.
 
-When you'd like to read about a property or a method, the Mozilla manual at <https://developer.mozilla.org/en-US/search> is also a nice resource, but the corresponding spec may be better: it's more complex and longer to read, but will make your fundamental knowledge sound and complete.
-
-To find something, it's often convenient to use an internet search "WHATWG [term]" or "MDN [term]", e.g <https://google.com?q=whatwg+localstorage>, <https://google.com?q=mdn+localstorage>.
-
-Now we'll get down to learning DOM, because the document plays the central role in the UI.
+Bir özellik ve yöntem hakkında okumak istediğinizde -- Mozilla kılavuzu <https://developer.mozilla.org/en-US/search> güzel klavuzlardan bir tanesidir, ancak ilgili spesifikasyonun okunması daha iyi olabilir: daha karmaşık ve okunması uzun fakat temel bilginiz eksiksiz ve sağlam hale gelecektir.
