@@ -3,7 +3,7 @@
 Javascript dili başlangıçta internet tarayıcıları için oluşturuldu. O zamandan beri geliştirildi ve bir çok kullanımı ve platformu ile bir dil haline geldi.
 
 
-Bir platform tarayıcı veya bir web sunucusu veya bir çamaşır makinesi veya başka bir sunucu olabilir. Bunların her biri platforma özgü fonksiyonlar sağlar. Javascript özelliği bunu bir sunucu ortamı olarak adlandırılır.
+Bir platform tarayıcı, bir web sunucusu, bir çamaşır makinesi veya başka bir sunucu olabilir. Bunların her biri platforma özgü fonksiyonlar sağlar. JavaScript özelliklerinde bunu bir sunucu ortamı olarak adlandırılır.
 
 Bir sunucu ortamı dil çekirdeğine ek olarak platforma özgü nesneler ve fonksiyonlar sağlar. İnternet tarayıcıları internet sayfalarını kontrol etmek için bir yol sunar. Node.js sunucu tarafı özellikleri vb. 
 
@@ -14,7 +14,7 @@ Bir sunucu ortamı dil çekirdeğine ek olarak platforma özgü nesneler ve fonk
 
 `window` denilen bir "kök" nesnesi var. İki rolü vardır.
 
-1. Birincisi, Javascript kodu için evrensel bir nesnedir. bölümde açıklandığı gibi [Evrensel nesneler](https://github.com/sahinyanlik/javascript-tutorial-tr/blob/master/1-js/06-advanced-functions/05-global-object/article.md)
+1. Birincisi, Javascript kodu için evrensel bir nesnedir. bölümde açıklandığı gibi info:global-object
 2. İkincisi, "tarayıcı penceresini" temsil eder ve kontrol etmek için yöntemler sağlar. 
 
 Örneğin, burada `window`u evrensel bir nesne olarak kullandık.
@@ -49,25 +49,20 @@ document.body.style.background = 'red';
 setTimeout(() => document.body.style.background = '', 1000);
 ```
 
-Burada `document.body.style` kullandık but daha fazla parametreler var. Özellikleri ve yöntemleri tanımlamada açıklanmıştır. Tesadüf ki, bunu geliştiren iki grup vardır. 
+Burada `document.body.style` kullandık fakat daha fazla parametreler var. Özellikleri ve yöntemleri tanımlamada açıklanmıştır. Tesadüf ki, bunu geliştiren iki grup vardır. 
 
-1. [W3C](https://en.wikipedia.org/wiki/World_Wide_Web_Consortium) -- belgesi <https://www.w3.org/TR/dom> linktedir.
-2. [WhatWG](https://en.wikipedia.org/wiki/WHATWG), <https://dom.spec.whatwg.org> 'da yayınlanır..
+DOM standartları : <https://dom.spec.whatwg.org>
 
-Burada olduğu gibi, 2 grup her zaman aynı fikirde değil. Bu yüzden 2 standartımız var fakat birbirileri ile temasta ve sonuç olarak bir noktada birleşiyorlar. Yani bu kaynaklardan bulabileceğiniz bilgiler birbirlerine çok yakın, 99% gibi bir eşleşme var. Farklılıklar var ama büyük ihtimal bunu fark etmeyeceksiniz.
+Eskiden hiç bir standart yoktu. -- her tarayıcı her ne istiyorsa onu uyguladı. Bu yüzden farklı tarayıcıların aynı şeyler için farklı metotları ve özellikleri vardı. Geliştiriciler her bir tarayıcı için farklı kodlar yazmak zorunda kalıyordu. Karanlık dağınık zamanlar.
 
-Şahsen <https://dom.spec.whatwg.org> kullanmayı daha keyifli buluyorum.
-
-Eskiden hiç bir standart yoktu. -- her tarayıcı her ne istiyorsa onu uyguladı. Bu yüzden farklı tarayıcıların aynı şeyler için farklı metotları ve özellikleri vardı ve geliştiriciler her bir tarayıcı için farklı kodlar yazmak zorunda kalıyordu. Karanlık ve dağaınık zamanlar.
-
-Şimdi bile bazen tarayıcıları özgü özellikleri kullanan ve uyumsuzluklar etrafında çalışan eski kodlarla çalışabiliriz ama bu derste modern şeyler kullanacağız: Onlara ihtiyacın olana kadar eski şeyler öğrenmeye gerek yok (şansın yüksek değil). 
+Şimdi bile bazen tarayıcılara özgü özellikleri kullanan ve uyumsuzluklar etrafında çalışan eski kodlarla çalışabiliriz ama bu derste modern şeyler kullanacağız: Onlara ihtiyacın olana kadar eski şeyler öğrenmeye gerek yok (şansın yüksek değil). 
 
 Daha sonra herkesi ortak noktada toplamak için DOM standartı belirlendi. İlk versiyon "DOM Level 1" idi, sonra DOM Level 2 tarafından genişletildi, sonra DOM Level 3 ve şimdi DOM Level 4. WhatWG grubundan insanlar sürümden sıkıldılar ve numara olmadan sadece DOM olarak adlandırdılar. Öyleyse biz yapacağız.
 
 ```smart header="DOM yalnızca tarayıcı için değildir."
 DOM özelliği bir belgenin yapısını açıklar ve onu işlemek için nesne sağlar. Onu kullanan tarayıcı olmayan araçlarda var.
 
-Örneğin, HTML sayfalarını indiren ve işleyen sunucu-taraflı araçlar. Ancak DOM spesifikasyonunun sadece bir bölümü destekleyebilir.
+Örneğin, HTML sayfalarını indiren ve işleyen sunucu-taraflı araçlar. Ancak DOM özellikleri sadece bir bölümü destekleyebilir.
 ```
 
 ```smart header="Stil için CSSOM"
@@ -76,13 +71,13 @@ CSS kuralları ve stil sayfaları HTML yapısına benzemez. Bu yüzden nesneler 
 CSSOM, belgi için stil kurallarını değiştirdiğimizde DOM ile birlikte kullanılıyor. Pratikte olsa CSSOM nadiren gereklidir. Çünkü genelde CSS kuralları statiktir. Javascript'e CSS kuralları ekleme/çıkarma nadiren ihtiyacımız var. Bu yüzden onu kapatmayız.
 ```
 
-## BOM (HTML'in bir parçası) 
+## BOM (Tarayıcı Nesne Modeli) 
 
 HTML'in bir parçası (BOM), belge dışında her şey ile çalışmak için tarayıcı (sunucu ortamı) tarafından sağlanan ek nesnelerdir.
 
 Örneğin:
 
-- [navigator](mdn:api/Window/navigator) nesnesi tarayıcı ve işletim sistemi hakkında arkaplan bilgisi sağlar. Bir çok özelliği var, fakat en çok bilinen ikisi şunlardır: `navigator.userAgent` -- mevcut tarayıcı hakkında, ve `navigator.platform` -- platform hakkımda (Windows/Linux/Mac arasında farklılık olacağından yardım gerekebilir). 
+- [navigator](mdn:api/Window/navigator) nesnesi tarayıcı ve işletim sistemi hakkında arkaplan bilgisi sağlar. Bir çok özelliği var, fakat en çok bilinen ikisi şunlardır: `navigator.userAgent` -- mevcut tarayıcı hakkında, ve `navigator.platform` -- platform hakkında (Windows/Linux/Mac arasında farklılık olacağından yardım gerekebilir). 
 - [location](mdn:api/Window/location) nesnesi geçerli adresi okumayı ve tarayıcıyı yenisine yönlendirmeyi sağlar
 
 `location` nesnesini bu şekilde kullanabiliriz: 
@@ -115,8 +110,8 @@ CSSOM tanımlaması
 HTML tanımlaması
 : HTML dilini (etiketler vs.) ve ayrıca BOM (tarayıcı nesne modeli) -- çeşitli tarayıcı fonksiyonlar: `setTimeout`, `alert`, `location` vb açıklar, Bkz <https://html.spec.whatwg.org>. DOM özelliğini alır ve bir çok ek özellik ve yöntemle geliştirir.
 
-Şimdi DOM öğrenmeye başlayacağız. Çünkü belge, kullanıcı arayüzünde önemli bir rol oynuyor, ayrıca onunla çalışmak en karmaşık kısımdır.
-
 Lütfen yukarıdaki bağlantıları kontrol edin. Çünkü öğrenecek bir çok şey var. Her şeyi hatırlamak imkansızdır.
 
-Bir özellik ve yöntem hakkında okumak istediğinizde -- Mozilla kılavuzu <https://developer.mozilla.org/en-US/search> güzel klavuzlardan bir tanesidir, ancak ilgili spesifikasyonun okunması daha iyi olabilir: daha karmaşık ve okunması uzun fakat temel bilginiz eksiksiz ve sağlam hale gelecektir.
+Bir özellik ve yöntem hakkında okumak istediğinizde -- Mozilla kılavuzu <https://developer.mozilla.org/en-US/search> güzel kılavuzlardan bir tanesidir, ancak ilgili özelliklerin okunması daha iyi olabilir: daha karmaşık ve okunması uzun fakat temel bilginiz eksiksiz ve sağlam hale gelecektir.
+
+Şimdi DOM öğrenmeye başlayacağız. Çünkü belge, kullanıcı arayüzünde önemli bir rol oynuyor, ayrıca onunla çalışmak en karmaşık kısımdır.
