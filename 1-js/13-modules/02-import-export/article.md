@@ -1,23 +1,23 @@
-# Export and Import
+# Dışa Aktarma ve Dahil Etme
 
-Export and import directives are very versatile.
+Dışa aktarma ve dahil etme yönergeleri çok yönlüdür.
 
-In the previous chapter we saw a simple use, now let's explore more examples.
+Önceki bölümde basit bir kullanımı gördük. Şimdi daha fazla örnek keşfedelim.
 
-## Export before declarations
+## Bildirimler Önce Dışa Aktarım
 
-We can label any declaration as exported by placing `export` before it, be it a variable, function or a class.
+Bir değişken, fonksyion ya da bir sınıf olsun, herhangi bir bildirimi önce `export` diyerek dışa aktarılmış olarak etiketleyebiliriz.
 
-For instance, here all exports are valid:
+Örneğin, buradaki tüm dışa aktarımlar geçerlidir:
 
 ```js
-// export an array
+// Bir diziyi dışarıya atkarma
 *!*export*/!* let months = ['Jan', 'Feb', 'Mar','Apr', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-// export a constant
+// Bir sabiti dışarıya aktarma
 *!*export*/!* const MODULES_BECAME_STANDARD_YEAR = 2015;
 
-// export a class
+// Bir sınıfı dışarıya aktarma
 *!*export*/!* class User {
   constructor(name) {
     this.name = name;
@@ -26,25 +26,25 @@ For instance, here all exports are valid:
 ```
 
 ````smart header="No semicolons after export class/function"
-Please note that `export` before a class or a function does not make it a [function expression](info:function-expressions-arrows). It's still a function declaration, albeit exported.
+Unutmayın ki, bir sınıf veya fonksyiondan önce `export` bir  [işlev ifadeleri](info:function-expressions-arrows) yapmaz. Dışarıya aktarılmasına rağmen hala bir işlev bildirgesidir.
 
-Most JavaScript style guides recommend semicolons after statements, but not after function and class declarations.
+Javascript stil kılavuzlarının çoğu ifadelerden sonra noktalı birgül önermektedir ama işlev ve sınıf bildirimlerinden sonra değil. 
 
-That's why there should be no semicolons at the end of `export class` and `export function`.
+Bu nedenle `export class` ve `export function` sonuna noktalı virgül konuşmamalıdır..
 
 ```js
 export function sayHi(user) {
   alert(`Hello, ${user}!`);
-} *!* // no ; at the end */!*
+} *!* // sonunda ; yok */!*
 ```
 
 ````
 
-## Export apart from declarations
+## Bildirimlerden ayrı dışa aktarma
 
-Also, we can put `export` separately.
+Ayrıca, `export` ayrı ayrı koyabiliriz.
 
-Here we first declare, and then export:
+Burada önce bildirir sonra dışarıya aktarırız:
 
 ```js  
 // 📁 say.js
@@ -57,15 +57,15 @@ function sayBye(user) {
 }
 
 *!*
-export {sayHi, sayBye}; // a list of exported variables
+export {sayHi, sayBye}; // dışa aktarıların değişkenlerin listesi
 */!*
 ```
 
-...Or, technically we could put `export` above functions as well.
+...Veya teknik olarak `export` fonksiyonların üstüne koyabiliriz. 
 
-## Import *
+## İmport *
 
-Usually, we put a list of what to import into `import {...}`, like this:
+Genelde, `import {...}` içine neyin içine aktarılacağını içeren bir liste koyarız, şöyle:
 
 ```js
 // 📁 main.js
@@ -77,7 +77,7 @@ sayHi('John'); // Hello, John!
 sayBye('John'); // Bye, John!
 ```
 
-But if the list is long, we can import everything as an object using `import * as <obj>`, for instance:
+Ama liste uzunsa, `import * as <obj>` kullanarak her şeyi nesne olarak alabiliriz, örneğin:
 
 ```js
 // 📁 main.js
@@ -89,13 +89,13 @@ say.sayHi('John');
 say.sayBye('John');
 ```
 
-At first sight, "import everything" seems such a cool thing, short to write, why should we ever explicitly list what we need to import?
+İlk bakışta, "her şeyi dahil etmek" kısa yazıldığı için güzel gözüküyor. İçeriye aktarmamız için neye ihtiyaç varsa neden açıkça listeleyelim?
 
-Well, there are few reasons.
+Bunun bir kaç nedeni var.
 
-1. Modern build tools ([webpack](http://webpack.github.io) and others) bundle modules together and optimize them to speedup loading and remove unused stuff.
+1. Modern derleme araçları ([webpack](http://webpack.github.io) ve diğerleri) modülleri bir araya getirir ve kullanılmasını önleyen yükleme işlemlerini hızlandırmak ve kaldırmak için optimize eder.
 
-    Let's say, we added a 3rd-party library `lib.js` to our project with many functions:
+    Diyelim ki, birçok fonksiyona sahip projemize 3. parti bir kütüphane `lib.js` ekledik.   
     ```js
     // 📁 lib.js
     export function sayHi() { ... }
@@ -103,15 +103,15 @@ Well, there are few reasons.
     export function becomeSilent() { ... }
     ```
 
-    Now if we only use one of `lib.js` functions in our project:
+    Şimdi projemizde `lib.js` fonksiyonlarından sadece birini kullanırsak
     ```js
     // 📁 main.js
     import {sayHi} from './lib.js';
     ```
-    ...Then the optimizer will automatically detect it and totally remove the other functions from the bundled code, thus making the build smaller. That is called "tree-shaking".
+    ...Ardından optimizer otomatik olarak algılar ve diğer işlevleri birlikte verilen koddan tamamen kaldırır, böylece yapı daha küçük hale gelir. Buna "tree-shaking" denilir.
 
-2. Explicitly listing what to import gives shorter names: `sayHi()` instead of `lib.sayHi()`.
-3. Explicit imports give better overview of the code structure: what is used and where. It makes code support and refactoring easier.
+2. Açıkça listelemek ne içeri aktarılacaksa daha kısa isimler verilir: `lib.sayHi()` yerine `sayHi()`.
+3. Açıkça dahil etmek kod kod yapısında daha iyi genel bakışı sağlar: Nerede, ne kullanılır. Kod desteğini ve yeniden düzenlemeyi kolaylaştırır.
 
 ## Import "as"
 
