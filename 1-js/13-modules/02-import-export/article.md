@@ -115,9 +115,9 @@ Bunun bir kaç nedeni var.
 
 ## Import "as"
 
-We can also use `as` to import under different names.
+Farklı isimler altında içeriye aktarmak için `as` da kullanabiliriz.
 
-For instance, let's import `sayHi` into the local variable `hi` for brevity, and same for `sayBye`:
+Örneğin, Hadi kısa olması için `sayHi` değişkenini `hi` yerel değişken içine alalım. Aynı şekilde `sayBye` içinde:
 
 ```js
 // 📁 main.js
@@ -131,9 +131,9 @@ bye('John'); // Bye, John!
 
 ## Export "as"
 
-The similar syntax exists for `export`.
+Benzer sözdizimleri `export` içinde var.
 
-Let's export functions as `hi` and `bye`:
+Hadi fonksiyonları `hi` ve `bye` olarak dışarıya aktaralım:
 
 ```js
 // 📁 say.js
@@ -141,7 +141,7 @@ Let's export functions as `hi` and `bye`:
 export {sayHi as hi, sayBye as bye};
 ```
 
-Now `hi` and `bye` are official names for outsiders:
+Şimdi `hi` ve `bye` dışarıdakiler için resmi isimler:
 
 ```js
 // 📁 main.js
