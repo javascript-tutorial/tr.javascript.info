@@ -153,39 +153,39 @@ say.bye('John'); // Bye, John!
 
 ## export default
 
-So far, we've seen how to import/export multiple things, optionally "as" other names.
+Şimdiye kadar, Birden çok şeyi içeriye/dışarıya aktaracağımızı gördük, isteğe bağlı olarak "as" diğer isimler.
 
-In practice, modules contain either:
-- A library, pack of functions, like `lib.js`.
-- Or an entity, like `class User` is described in `user.js`, the whole module has only this class.
+Pratikte, modüller şunlardan birini içerir:
+- Bir kütüphane, fonksiyonlar paketi, `lib.js` gibi.
+- Veya bir varlık,`user.js` de `class User` tanımlanmıştır. Bütün modül bu sınıfa sahiptir.
 
-Mostly, the second approach is preferred, so that every "thing" resides in its own module.
+Çoğunlukla ikinci yaklaşım tercih edilir. Böylece her "şey" kendi modulünde bulunur.
 
-Naturally, that requires a lot of files, as everything wants its own module, but that's not a problem at all. Actually, code navigation becomes easier, if files are well-named and structured into folders.
+Doğal olarak bu çok fazla dosya gerektirir, her şeyin kendi modülünü istediği gibi, ama bu hiç sorun değil. Aslında, dosyalar iyi adlandırılmışsa ve klasörler halinde yapılandırılmışsa kod gezinme işlemi kolaylaşır.
 
-Modules provide special `export default` syntax to make "one thing per module" way look better.
+Modüller, "modül başına bir şeyin" daha iyi görünmesini sağlamak için özel `export default` sözdizimi sağlar.
 
-It requires following `export` and `import` statements:
+`export` ve `import` ifadesini takip etmesi gerekir:
 
-1. Put `export default` before the "main export" of the module.
-2. Call `import` without curly braces.
+1. Modulün "main export"'dan önce `export default` koyun
+2. Süslü parantez olmadan `import` çağırın.
 
-For instance, here `user.js` exports `class User`:
+Örneğin, Burada `user.js` `class User` ı dışarıya aktarır:
 
 ```js
 // 📁 user.js
-export *!*default*/!* class User { // just add "default"
+export *!*default*/!* class User { // sadece "default" ekle
   constructor(name) {
     this.name = name;
   }
 }
 ```
 
-...And `main.js` imports it:
+...ve `main.js`de içeriye aktarılır:
 
 ```js
 // 📁 main.js
-import *!*User*/!* from './user.js'; // not {User}, just User
+import *!*User*/!* from './user.js'; // {User} değir, sadece User
 
 new User('John');
 ```
