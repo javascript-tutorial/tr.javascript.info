@@ -2,7 +2,11 @@
 
 Modern JavaScript'te protitip'i `__proto__` kullanarak ( bir önceki bölümde anlatıldığı gibi ) ayarlayabiliriz. Fakat bu daha öncesinde böyle değildi.
 
+<<<<<<< HEAD
 [cut]
+=======
+If `F.prototype` is an object, then the `new` operator uses it to set `[[Prototype]]` for the new object.
+>>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
 
 JavaScript başlangıcından beri kalıtıma sahipti. Bu dilin çekirdek özelliklerinden biriydi.
 
@@ -158,11 +162,19 @@ Rabbit.prototype = {
 
 Bu bölümde kısaca yapıcı fonksiyonlar ile oluşturulan objelerin `[[Prototip]]`'lerinin nasıl ayarlanabileceğinden bahsettik. İlerde bunların daha gelişmişini programlama kalıpları üzerinde öğreneceksiniz.
 
+<<<<<<< HEAD
 Herşey aslında çok basit, birkaç cümle ile daha net anlatmak gerekirse:
 
 - `F.prototype` özelliği `[[Prototype]]` ile aynı değildir. `F.prototype` aslında `new F()` çağırıldığında  `[[Prototype]]`'ı  ayarlar.
 - `F.prototype` değeri ya obje ya da null olmalıdır: diğer değerler çalışmaz.
 - `"prototype"` özelliği sadece bir yapıcı fonksiyona ayarlandığı ve `new` ile çağırıldığında özel etkisi olur.
+=======
+Everything is quite simple, just a few notes to make things clear:
+
+- The `F.prototype` property (don't mistake it for `[[Prototype]]`) sets `[[Prototype]]` of new objects when `new F()` is called.
+- The value of `F.prototype` should be either an object or `null`: other values won't work.
+-  The `"prototype"` property only has such a special effect when set on a constructor function, and invoked with `new`.
+>>>>>>> ec21af8aef6930388c06ee4cd8f8f6769f9d305b
 
 Normal objeler `prototype`'ın ayrı bir önemi yoktur:
 ```js
