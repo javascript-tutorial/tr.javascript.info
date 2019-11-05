@@ -228,19 +228,19 @@ export class { // Hata! (non-default export needs a name)
 
 ### "Default" Takma Adı
 
-The "default" keyword is used as an "alias" for the default export, for standalone exports and other scenarios when we need to reference it.
+"defaul" anahtar sözcüğü, varsayılan  içeriye aktarma, bağımsız içeriye aktarma ve referans göstermemiz gerektiğinde diğer seneryolar için "takma ad" kullanılır
 
-For example, if we already have a function declared, that's how to `export default` it (separately from the definition):
+Örneğin, önceden bildirilmiş bir işlevimiz varsa , işte bunu `export default` nasıl yaparız (tanımdan ayrı olarak):
 
 ```js
 function sayHi(user) {
   alert(`Hello, ${user}!`);
 }
 
-export {sayHi as default}; // same as if we added "export default" before the function
+export {sayHi as default}; // fonksiyondan önce "export default" eklediğimiz gibi
 ```
 
-Or, let's say a module `user.js` exports one main "default" thing and a few named ones (rarely the case, but happens):
+Ya da bir `user.js` modulünün bir ana "varsayılan" şeyi ve bir kaç tane adlandırılmış olanı dışarı aktarıldığını varsayalım.
 
 ```js
 // 📁 user.js
@@ -255,7 +255,7 @@ export function sayHi(user) {
 }
 ```
 
-Here's how to import the default export along with a named one:
+Varsayılan dışa aktarma adını adlandırılmış olanla birlikte şu şekilde alabiliriz: 
 
 ```js
 // 📁 main.js
@@ -264,7 +264,7 @@ import {*!*default as User*/!*, sayHi} from './user.js';
 new User('John');
 ```
 
-Or, if we consider importing `*` as an object, then the `default` property is exactly the default export:
+Ya da `*` nesnesini almayı düşünürsek `default` özelliği tam olarak varsayılan içeriye aktarmadır:
 
 ```js
 // 📁 main.js
@@ -275,7 +275,7 @@ new User('John');
 ```
 
 
-### Should I use default exports?
+### Varsayılan içeriye aktarmayı kullanmalı mıyım?
 
 One should be careful about using default exports, because they are more difficult to maintain.
 
