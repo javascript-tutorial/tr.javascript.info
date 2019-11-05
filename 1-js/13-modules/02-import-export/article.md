@@ -190,43 +190,43 @@ import *!*User*/!* from './user.js'; // {User} değir, sadece User
 new User('John');
 ```
 
-Imports without curly braces look nicer. A common mistake when starting to use modules is to forget curly braces at all. So, remember, `import` needs curly braces for named imports and doesn't need them for the default one.
+Süslü parantezler olmadan içeri aktarmalar daha güzel görünür. Modülleri kullanmaya başlarken görülen yaygın hatalardan biri süslü parantezleri tamamen unutmaktır. Bu nedenle, unutmayın. `import` adlandırılmış içeriye aktarma işlemleri için süslü parantezler gereklidir ama varsayılan için bunlara gerek yoktur.
 
-| Named export | Default export |
+| Adlandırılmış İçeriye Aktarılanlar | Varsayılan İçeriye Aktarılanlar |
 |--------------|----------------|
 | `export class User {...}` | `export default class User {...}` |
 | `import {User} from ...` | `import User from ...`|
 
-Naturally, there may be only one "default" export per file.
+Doğal olarak, dosya başına yalnızca bir "varsayılan" dışa aktarma olabilir.
 
-We may have both default and named exports in a single module, but in practice people usually don't mix them. A module has either named exports or the default one.
+Tek bir modülde hem varsayılan hem de adlandırılmış içeriye aktarma yapabiliriz ancak pratikte insanlar genellikle bunu karıştırmaz. Bir modül, dışa aktarma adını verir veya varsayılan olanıdır.
 
-**Another thing to note is that named exports must (naturally) have a name, while `export default` may be anonymous.**
+**Unutulmaması gereken bir başka şey de, dışa aktarma adının (doğal olarak) bir adı olması gerekirken, `export default` adsız olabilir**
 
-For instance, these are all perfectly valid default exports:
+Örneğin, Bunların hepsi mükemmel ve doğru `default export` kullanımları:
 
 ```js
-export default class { // no class name
+export default class { // sınıf adı yok
   constructor() { ... }
 }
 
-export default function(user) { // no function name
+export default function(user) { // fonksiyon adı yok
   alert(`Hello, ${user}!`);
 }
 
-// export a single value, without making a variable
+// bir değişken yapmadan tek bir değer dışarıya aktar
 export default ['Jan', 'Feb', 'Mar','Apr', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 ```
 
-That's fine, because `export default` is only one per file. Contrary to that, omitting a name for named imports would be an error:
+Bu iyi çünkü `export default` dosya başına yalnızca bir tanesidir. Bunun aksine, adlandırılmış içeriye aktarma için bir adın çıkarılması bir hata olur: 
 
 ```js
-export class { // Error! (non-default export needs a name)
+export class { // Hata! (non-default export needs a name)
   constructor() {}
 }
 ```     
 
-### "Default" alias
+### "Default" Takma Adı
 
 The "default" keyword is used as an "alias" for the default export, for standalone exports and other scenarios when we need to reference it.
 
