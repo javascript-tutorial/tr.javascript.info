@@ -277,28 +277,27 @@ new User('John');
 
 ### Varsayılan içeriye aktarmayı kullanmalı mıyım?
 
-One should be careful about using default exports, because they are more difficult to maintain.
+Varsayılan dışa aktarım kullanımlarında dikkat edilmelidir. Çünkü bakımı daha zordur.
 
-Named exports are explicit. They exactly name what they import, so we have that information from them, that's a good thing.
+Adlandırılmış açıktır. Aldıkları şeyi tam olarak açıklıyorlar. Bu yüzden onlardan bu bilgilere sahibiz. Bu iyi bir şey.
 
-Also, named exports enforce us to use exactly the right name to import:
+Ayrıca, adlandırılmış dışa aktarma işlemleri bizi içe aktarmak için doğru adı kullanmaya zorlar.:
 
 ```js
 import {User} from './user.js';
-// import {MyUser} won't work, the name must be {User}
+// import {MyUser} çalışmayacak, adı {User} olmalı
 ```
 
-For default exports, we always choose the name when importing:
+Varsayılan içeriye aktarma için içeriye aktarırken her zaman adı seçeriz:
 
 ```js
-import User from './user.js'; // works
-import MyUser from './user.js'; // works too
-// could be import Anything..., and it'll be work
+import User from './user.js'; // çalışır
+import MyUser from './user.js'; // çalışır
+// Bir şey içeriye aktarılabilir..., ve çalışacaktır
 ```
+Yani, kötüye kullanılabilecek biraz daha fazla özgürlük var. Böylece ekip üyeleri aynı şey için farklı isimler kullanabilirler.
 
-So, there's a little bit more freedom that can be abused, so that team members may use different names for the same thing.
-
-Usually, to avoid that and keep the code consistent, there's a rule that imported variables should correspond to file names, e.g:
+Genelde, bundan kaçınmak ve kodu tutarlı tutmak için içe aktarılan değişkenlerin dosya adlarına karşılık gelmesi gerektiği bir kural vardır: 
 
 ```js
 import User from './user.js';
@@ -307,24 +306,24 @@ import func from '/path/to/func.js';
 ...
 ```
 
-Another solution would be to use named exports everywhere. Even if only a single thing is exported, it's still exported under a name, without `default`.
+Başka bir çözüm, her yerde adlandırılmış içeriye aktarım kullanmak olacaktır. Sadece tek bir şey içeriye aktarılsa bile yine de `default` olmadan bir isim altında içeriye aktarılır.
 
-That also makes re-export (see below) a little bit easier.
+Bu da re-export (aşağıda göreceksin) biraz daha kolay hale gelir.
 
 ## Re-export
 
-"Re-export" syntax `export ... from ...` allows to import things and immediately export them (possibly under another name), like this:
+"Re-export" söz dizimi `export ... from ...`  şeyleri içeriye aktarmasına ve hemen (başka bir isim altında) içeriye aktarmasına izin verir: 
 
 ```js
 export {sayHi} from './say.js';
 export {default as User} from './user.js';
 ```
 
-What's the point, why that's needed? Let's see a practical use case.
+Amaç ne? Neden bu gerekli? Pratik bir kullanım örneği görelim.
 
-Imagine, we're writing a "package": a folder with a lot of modules, mostly needed internally, with some of the functionality exported outside (tools like NPM allow to publish and distribute packages, but here it doesn't matter).
+Bir "paket" yazdığımızı düşünelim: dışarıda dışa aktarılan fonksiyonelliklerin bir kısmı ile çoğunlukla dahili olarak ihtiyaç duyulan birçok modüle sahip bir klasör (NPM gibi araçlar paketleri yayınlamaya ve dağıtmaya izin verir, ancak burada önemi yoktur).
 
-A directory structure could be like this:
+Bir klasör yapısı şöyle olabilir: 
 ```
 auth/
   index.js  
@@ -338,15 +337,16 @@ auth/
     ...
 ```
 
-We'd like to expose the package functionality via a single entry point, the "main file" `auth/index.js`, to be used like this:
+Paket işlevselliğini tek bir giriş noktası üzerinden göstermek istiyoruz, "ana dosya" `auth/index.js` böyle kullanılmalı,
 
 ```js
 import {login, logout} from 'auth/index.js'
 ```
 
-The idea is that outsiders, developers who use our package, should not meddle with its internal structure. They should not search for files inside our package folder. We export only what's necessary in `auth/index.js` and keep the rest hidden from prying eyes.
+Buradaki fikir, paketimizi kullanan geliştiricilerin iç yapısıyla karışmaması gerektiğidir. Paket klasörümüzdeki dosyaları aramamalılar. Sadece `auth/index.js`de gerekli olanları dışarıya aktarıyoruz ve gerisini meraklı gözlerden gizleriz.
 
-Now, as the actual exported functionality is scattered among the package, we can gather and "re-export" it in `auth/index.js`:
+Şimdi, dışa aktarılan gerçek işlevsellik paketin arasına dağıl olduğundan, paket içinde "re-export" ve toplayabiliriz.
+`auth/index.js`:
 
 ```js
 // 📁 auth/index.js
@@ -361,12 +361,12 @@ export {Github};
 ...
 ```
 
-"Re-exporting" is just a shorter notation for that:
+"Re-exporting" bunun için sadece kısa bir gösterimidir:
 
 ```js
 // 📁 auth/index.js
 export {login, logout} from './helpers.js';
-// or, to re-export all helpers, we could use:
+// ya da tüm yardımcıları re-export için kullanabiliriz.
 // export * from './helpers.js';
 
 export {default as User} from './user.js';
@@ -376,17 +376,17 @@ export {default as Github} from './providers/github.js';
 ```
 
 ````warn header="Re-exporting default is tricky"
-Please note: `export User from './user.js'` won't work. It's actually a syntax error. To re-export the default export, we must mention it explicitly `{default as ...}`, like in the example above.
+Lütfen unutmayın: `export User from './user.js'` çalışmayacak. Bu aslında sözdizimi hatası. Varsayılan içeriye aktarmayı re-export için açıkça belirtmeliyiz `{default as ...}`. Yukarıdaki örnekte olduğu gibi.
 
-Also, there's another oddity: `export * from './user.js'` re-exports only named exports, excluding the default one. Once again, we need to mention it explicitly.
+Ayrıca, başka bir tuhaflık var: `export * from './user.js'` varsayılan olan haric, yalnızca adlandırılmış dışa aktarımlar yeniden dışa aktarılır. Bir kez daha açıkça söylemeliyiz.
 
-For instance, to re-export everything, two statements will be necessary:
+Örneğin, her şeyi yeniden dışa aktarmak için iki ifade gerekli olacaktır:
 ```js
-export * from './module.js'; // to re-export named exports
-export {default} from './module.js'; // to re-export default
+export * from './module.js'; // adlandırılmış dışarıya aktarımı yeniden dışarıya aktarmak için
+export {default} from './module.js'; // varsayılanı yeniden dışarıya aktarmak için 
 ```
 
-The default should be mentioned explicitly only when re-exporting: `import * as obj` works fine. It imports the default export as `obj.default`. So there's a slight asymmetry between import and export constructs here.
+Varsayılan değer açıkça yalnızca yeniden dışa aktarırken belirtilmelidir `import * as obj` iyi çalışır. Varsayılan dışa aktarımı `obj.default` olarak alır. Yani burada içe aktarım ve dışa aktarım yapıları arasında hafif bir asimetri var.
 ````
 
 ## Summary
