@@ -310,9 +310,9 @@ Başka bir çözüm, her yerde adlandırılmış içeriye aktarım kullanmak ola
 
 Bu da re-export (aşağıda göreceksin) biraz daha kolay hale gelir.
 
-## Re-export
+## Yeniden dışa aktarma
 
-"Re-export" söz dizimi `export ... from ...`  şeyleri içeriye aktarmasına ve hemen (başka bir isim altında) içeriye aktarmasına izin verir: 
+"Yeniden dışa aktarma" söz dizimi `export ... from ...`  şeyleri içeriye aktarmasına ve hemen (başka bir isim altında) içeriye aktarmasına izin verir: 
 
 ```js
 export {sayHi} from './say.js';
@@ -345,7 +345,7 @@ import {login, logout} from 'auth/index.js'
 
 Buradaki fikir, paketimizi kullanan geliştiricilerin iç yapısıyla karışmaması gerektiğidir. Paket klasörümüzdeki dosyaları aramamalılar. Sadece `auth/index.js`de gerekli olanları dışarıya aktarıyoruz ve gerisini meraklı gözlerden gizleriz.
 
-Şimdi, dışa aktarılan gerçek işlevsellik paketin arasına dağıl olduğundan, paket içinde "re-export" ve toplayabiliriz.
+Şimdi, dışa aktarılan gerçek işlevsellik paketin arasına dağıl olduğundan, paket içinde "Yeniden dışa aktarma" ve toplayabiliriz.
 `auth/index.js`:
 
 ```js
@@ -361,12 +361,12 @@ export {Github};
 ...
 ```
 
-"Re-exporting" bunun için sadece kısa bir gösterimidir:
+"Yeniden dışa aktarma" bunun için sadece kısa bir gösterimidir:
 
 ```js
 // 📁 auth/index.js
 export {login, logout} from './helpers.js';
-// ya da tüm yardımcıları re-export için kullanabiliriz.
+// ya da tüm yardımcıları yeniden dışa aktarma için kullanabiliriz.
 // export * from './helpers.js';
 
 export {default as User} from './user.js';
@@ -375,8 +375,8 @@ export {default as Github} from './providers/github.js';
 ...
 ```
 
-````warn header="Re-exporting default is tricky"
-Lütfen unutmayın: `export User from './user.js'` çalışmayacak. Bu aslında sözdizimi hatası. Varsayılan içeriye aktarmayı re-export için açıkça belirtmeliyiz `{default as ...}`. Yukarıdaki örnekte olduğu gibi.
+````warn header="Yeniden dışa aktarma default is tricky"
+Lütfen unutmayın: `export User from './user.js'` çalışmayacak. Bu aslında sözdizimi hatası. Varsayılan içeriye aktarmayı yeniden dışa aktarm için açıkça belirtmeliyiz `{default as ...}`. Yukarıdaki örnekte olduğu gibi.
 
 Ayrıca, başka bir tuhaflık var: `export * from './user.js'` varsayılan olan haric, yalnızca adlandırılmış dışa aktarımlar yeniden dışa aktarılır. Bir kez daha açıkça söylemeliyiz.
 
@@ -389,53 +389,53 @@ export {default} from './module.js'; // varsayılanı yeniden dışarıya aktarm
 Varsayılan değer açıkça yalnızca yeniden dışa aktarırken belirtilmelidir `import * as obj` iyi çalışır. Varsayılan dışa aktarımı `obj.default` olarak alır. Yani burada içe aktarım ve dışa aktarım yapıları arasında hafif bir asimetri var.
 ````
 
-## Summary
+## Özetle
 
-There are following types of `export`:
+Aşağıda `export` türleri vardır:
 
-- Before declaration:
+- Bildirmeden önce:
   - `export [default] class/function/variable ...`
-- Standalone:
+- Bağımsız:
   - `export {x [as y], ...}`.
-- Re-export:
+- Yeniden dışa aktarma:
   - `export {x [as y], ...} from "mod"`
-  - `export * from "mod"` (doesn't re-export default).
-  - `export {default [as y]} from "mod"` (re-export default).
+  - `export * from "mod"` (varsayılan yeniden dışa aktarmaz).
+  - `export {default [as y]} from "mod"` (varsayılanı yeniden dışa aktar).
 
-Import:
+İçeriye Aktarma:
 
-- Named exports from module:
+- Modülden adlandırılmış içeri aktarma:
   - `import {x [as y], ...} from "mod"`
-- Default export:  
+- Varsayılan içeri aktarma:  
   - `import x from "mod"`
   - `import {default as x} from "mod"`
-- Everything:
+- Her şey:
   - `import * as obj from "mod"`
-- Import the module (it runs), but do not assign it to a variable:
+- Modulü içeriye aktarın (çalışır) ama değişkene atamayın:
   - `import "mod"`
 
-We can put import/export statements at the top or at the bottom of a script, that doesn't matter.
+Import/export ifadelerini bir komus dosyasının en üstüne veya en altına koyabiliriz. Fark etmez.
 
-So this is technically fine:
+Yani teknik olarak bu iyi:
 ```js
 sayHi();
 
 // ...
 
-import {sayHi} from './say.js'; // import at the end of the script
+import {sayHi} from './say.js'; // script'in sonunda içe aktar
 ```
 
-In practice imports are usually at the start of the file, but that's only for better convenience.
-
+Uygulamada, daha iyi rahatlık için içeriye aktarma genellikle dosyanın başındadır.
 **Please note that import/export statements don't work if inside `{...}`.**
+**Unutmayın ki, import/export ifadeleri `{...}` içindeyse çalışmaz**
 
-A conditional import, like this, won't work:
+Bunun gibi koşullu bir içe aktarma çalışmaz: 
 ```js
 if (something) {
-  import {sayHi} from "./say.js"; // Error: import must be at top level
+  import {sayHi} from "./say.js"; // Hata: içe aktarma en üst düzeyde olmalı
 }
 ```
 
-...But what if we really need to import something conditionally? Or at the right time? Like, load a module upon request, when it's really needed?
+...Ama ya gerçekten şartlı olarak bir şeyler ithal etmemiz gerekirse? Ya da doğru zamanda? Gibi. Gerçekten ihtiyaç duyulduğunda istek üzerine bir modül yükleyin?
 
-We'll see dynamic imports in the next chapter.
+Bir sonraki bölümde dinamik içeriye aktarma göreceğiz.
