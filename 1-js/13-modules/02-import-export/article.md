@@ -1,23 +1,23 @@
-# Export and Import
+# Dışa Aktarma ve Dahil Etme
 
-Export and import directives are very versatile.
+Dışa aktarma ve dahil etme yönergeleri çok yönlüdür.
 
-In the previous chapter we saw a simple use, now let's explore more examples.
+Önceki bölümde basit bir kullanımı gördük. Şimdi daha fazla örnek keşfedelim.
 
-## Export before declarations
+## Bildirimler Önce Dışa Aktarım
 
-We can label any declaration as exported by placing `export` before it, be it a variable, function or a class.
+Bir değişken, fonksyion ya da bir sınıf olsun, herhangi bir bildirimi önce `export` diyerek dışa aktarılmış olarak etiketleyebiliriz.
 
-For instance, here all exports are valid:
+Örneğin, buradaki tüm dışa aktarımlar geçerlidir:
 
 ```js
-// export an array
+// Bir diziyi dışarıya atkarma
 *!*export*/!* let months = ['Jan', 'Feb', 'Mar','Apr', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
-// export a constant
+// Bir sabiti dışarıya aktarma
 *!*export*/!* const MODULES_BECAME_STANDARD_YEAR = 2015;
 
-// export a class
+// Bir sınıfı dışarıya aktarma
 *!*export*/!* class User {
   constructor(name) {
     this.name = name;
@@ -26,25 +26,25 @@ For instance, here all exports are valid:
 ```
 
 ````smart header="No semicolons after export class/function"
-Please note that `export` before a class or a function does not make it a [function expression](info:function-expressions-arrows). It's still a function declaration, albeit exported.
+Unutmayın ki, bir sınıf veya fonksyiondan önce `export` bir  [işlev ifadeleri](info:function-expressions-arrows) yapmaz. Dışarıya aktarılmasına rağmen hala bir işlev bildirgesidir.
 
-Most JavaScript style guides recommend semicolons after statements, but not after function and class declarations.
+Javascript stil kılavuzlarının çoğu ifadelerden sonra noktalı birgül önermektedir ama işlev ve sınıf bildirimlerinden sonra değil. 
 
-That's why there should be no semicolons at the end of `export class` and `export function`.
+Bu nedenle `export class` ve `export function` sonuna noktalı virgül konuşmamalıdır..
 
 ```js
 export function sayHi(user) {
   alert(`Hello, ${user}!`);
-} *!* // no ; at the end */!*
+} *!* // sonunda ; yok */!*
 ```
 
 ````
 
-## Export apart from declarations
+## Bildirimlerden ayrı dışa aktarma
 
-Also, we can put `export` separately.
+Ayrıca, `export` ayrı ayrı koyabiliriz.
 
-Here we first declare, and then export:
+Burada önce bildirir sonra dışarıya aktarırız:
 
 ```js  
 // 📁 say.js
@@ -57,15 +57,15 @@ function sayBye(user) {
 }
 
 *!*
-export {sayHi, sayBye}; // a list of exported variables
+export {sayHi, sayBye}; // dışa aktarıların değişkenlerin listesi
 */!*
 ```
 
-...Or, technically we could put `export` above functions as well.
+...Veya teknik olarak `export` fonksiyonların üstüne koyabiliriz. 
 
-## Import *
+## İmport *
 
-Usually, we put a list of what to import into `import {...}`, like this:
+Genelde, `import {...}` içine neyin içine aktarılacağını içeren bir liste koyarız, şöyle:
 
 ```js
 // 📁 main.js
@@ -77,7 +77,7 @@ sayHi('John'); // Hello, John!
 sayBye('John'); // Bye, John!
 ```
 
-But if the list is long, we can import everything as an object using `import * as <obj>`, for instance:
+Ama liste uzunsa, `import * as <obj>` kullanarak her şeyi nesne olarak alabiliriz, örneğin:
 
 ```js
 // 📁 main.js
@@ -89,13 +89,13 @@ say.sayHi('John');
 say.sayBye('John');
 ```
 
-At first sight, "import everything" seems such a cool thing, short to write, why should we ever explicitly list what we need to import?
+İlk bakışta, "her şeyi dahil etmek" kısa yazıldığı için güzel gözüküyor. İçeriye aktarmamız için neye ihtiyaç varsa neden açıkça listeleyelim?
 
-Well, there are few reasons.
+Bunun bir kaç nedeni var.
 
-1. Modern build tools ([webpack](http://webpack.github.io) and others) bundle modules together and optimize them to speedup loading and remove unused stuff.
+1. Modern derleme araçları ([webpack](http://webpack.github.io) ve diğerleri) modülleri bir araya getirir ve kullanılmasını önleyen yükleme işlemlerini hızlandırmak ve kaldırmak için optimize eder.
 
-    Let's say, we added a 3rd-party library `lib.js` to our project with many functions:
+    Diyelim ki, birçok fonksiyona sahip projemize 3. parti bir kütüphane `lib.js` ekledik.   
     ```js
     // 📁 lib.js
     export function sayHi() { ... }
@@ -103,21 +103,21 @@ Well, there are few reasons.
     export function becomeSilent() { ... }
     ```
 
-    Now if we only use one of `lib.js` functions in our project:
+    Şimdi projemizde `lib.js` fonksiyonlarından sadece birini kullanırsak
     ```js
     // 📁 main.js
     import {sayHi} from './lib.js';
     ```
-    ...Then the optimizer will automatically detect it and totally remove the other functions from the bundled code, thus making the build smaller. That is called "tree-shaking".
+    ...Ardından optimizer otomatik olarak algılar ve diğer işlevleri birlikte verilen koddan tamamen kaldırır, böylece yapı daha küçük hale gelir. Buna "tree-shaking" denilir.
 
-2. Explicitly listing what to import gives shorter names: `sayHi()` instead of `lib.sayHi()`.
-3. Explicit imports give better overview of the code structure: what is used and where. It makes code support and refactoring easier.
+2. Açıkça listelemek ne içeri aktarılacaksa daha kısa isimler verilir: `lib.sayHi()` yerine `sayHi()`.
+3. Açıkça dahil etmek kod kod yapısında daha iyi genel bakışı sağlar: Nerede, ne kullanılır. Kod desteğini ve yeniden düzenlemeyi kolaylaştırır.
 
 ## Import "as"
 
-We can also use `as` to import under different names.
+Farklı isimler altında içeriye aktarmak için `as` da kullanabiliriz.
 
-For instance, let's import `sayHi` into the local variable `hi` for brevity, and same for `sayBye`:
+Örneğin, Hadi kısa olması için `sayHi` değişkenini `hi` yerel değişken içine alalım. Aynı şekilde `sayBye` içinde:
 
 ```js
 // 📁 main.js
@@ -131,9 +131,9 @@ bye('John'); // Bye, John!
 
 ## Export "as"
 
-The similar syntax exists for `export`.
+Benzer sözdizimleri `export` içinde var.
 
-Let's export functions as `hi` and `bye`:
+Hadi fonksiyonları `hi` ve `bye` olarak dışarıya aktaralım:
 
 ```js
 // 📁 say.js
@@ -141,7 +141,7 @@ Let's export functions as `hi` and `bye`:
 export {sayHi as hi, sayBye as bye};
 ```
 
-Now `hi` and `bye` are official names for outsiders:
+Şimdi `hi` ve `bye` dışarıdakiler için resmi isimler:
 
 ```js
 // 📁 main.js
@@ -153,94 +153,94 @@ say.bye('John'); // Bye, John!
 
 ## export default
 
-So far, we've seen how to import/export multiple things, optionally "as" other names.
+Şimdiye kadar, Birden çok şeyi içeriye/dışarıya aktaracağımızı gördük, isteğe bağlı olarak "as" diğer isimler.
 
-In practice, modules contain either:
-- A library, pack of functions, like `lib.js`.
-- Or an entity, like `class User` is described in `user.js`, the whole module has only this class.
+Pratikte, modüller şunlardan birini içerir:
+- Bir kütüphane, fonksiyonlar paketi, `lib.js` gibi.
+- Veya bir varlık,`user.js` de `class User` tanımlanmıştır. Bütün modül bu sınıfa sahiptir.
 
-Mostly, the second approach is preferred, so that every "thing" resides in its own module.
+Çoğunlukla ikinci yaklaşım tercih edilir. Böylece her "şey" kendi modulünde bulunur.
 
-Naturally, that requires a lot of files, as everything wants its own module, but that's not a problem at all. Actually, code navigation becomes easier, if files are well-named and structured into folders.
+Doğal olarak bu çok fazla dosya gerektirir, her şeyin kendi modülünü istediği gibi, ama bu hiç sorun değil. Aslında, dosyalar iyi adlandırılmışsa ve klasörler halinde yapılandırılmışsa kod gezinme işlemi kolaylaşır.
 
-Modules provide special `export default` syntax to make "one thing per module" way look better.
+Modüller, "modül başına bir şeyin" daha iyi görünmesini sağlamak için özel `export default` sözdizimi sağlar.
 
-It requires following `export` and `import` statements:
+`export` ve `import` ifadesini takip etmesi gerekir:
 
-1. Put `export default` before the "main export" of the module.
-2. Call `import` without curly braces.
+1. Modulün "main export"'dan önce `export default` koyun
+2. Süslü parantez olmadan `import` çağırın.
 
-For instance, here `user.js` exports `class User`:
+Örneğin, Burada `user.js` `class User` ı dışarıya aktarır:
 
 ```js
 // 📁 user.js
-export *!*default*/!* class User { // just add "default"
+export *!*default*/!* class User { // sadece "default" ekle
   constructor(name) {
     this.name = name;
   }
 }
 ```
 
-...And `main.js` imports it:
+...ve `main.js`de içeriye aktarılır:
 
 ```js
 // 📁 main.js
-import *!*User*/!* from './user.js'; // not {User}, just User
+import *!*User*/!* from './user.js'; // {User} değir, sadece User
 
 new User('John');
 ```
 
-Imports without curly braces look nicer. A common mistake when starting to use modules is to forget curly braces at all. So, remember, `import` needs curly braces for named imports and doesn't need them for the default one.
+Süslü parantezler olmadan içeri aktarmalar daha güzel görünür. Modülleri kullanmaya başlarken görülen yaygın hatalardan biri süslü parantezleri tamamen unutmaktır. Bu nedenle, unutmayın. `import` adlandırılmış içeriye aktarma işlemleri için süslü parantezler gereklidir ama varsayılan için bunlara gerek yoktur.
 
-| Named export | Default export |
+| Adlandırılmış İçeriye Aktarılanlar | Varsayılan İçeriye Aktarılanlar |
 |--------------|----------------|
 | `export class User {...}` | `export default class User {...}` |
 | `import {User} from ...` | `import User from ...`|
 
-Naturally, there may be only one "default" export per file.
+Doğal olarak, dosya başına yalnızca bir "varsayılan" dışa aktarma olabilir.
 
-We may have both default and named exports in a single module, but in practice people usually don't mix them. A module has either named exports or the default one.
+Tek bir modülde hem varsayılan hem de adlandırılmış içeriye aktarma yapabiliriz ancak pratikte insanlar genellikle bunu karıştırmaz. Bir modül, dışa aktarma adını verir veya varsayılan olanıdır.
 
-**Another thing to note is that named exports must (naturally) have a name, while `export default` may be anonymous.**
+**Unutulmaması gereken bir başka şey de, dışa aktarma adının (doğal olarak) bir adı olması gerekirken, `export default` adsız olabilir**
 
-For instance, these are all perfectly valid default exports:
+Örneğin, Bunların hepsi mükemmel ve doğru `default export` kullanımları:
 
 ```js
-export default class { // no class name
+export default class { // sınıf adı yok
   constructor() { ... }
 }
 
-export default function(user) { // no function name
+export default function(user) { // fonksiyon adı yok
   alert(`Hello, ${user}!`);
 }
 
-// export a single value, without making a variable
+// bir değişken yapmadan tek bir değer dışarıya aktar
 export default ['Jan', 'Feb', 'Mar','Apr', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 ```
 
-That's fine, because `export default` is only one per file. Contrary to that, omitting a name for named imports would be an error:
+Bu iyi çünkü `export default` dosya başına yalnızca bir tanesidir. Bunun aksine, adlandırılmış içeriye aktarma için bir adın çıkarılması bir hata olur: 
 
 ```js
-export class { // Error! (non-default export needs a name)
+export class { // Hata! (non-default export needs a name)
   constructor() {}
 }
 ```     
 
-### "Default" alias
+### "Default" Takma Adı
 
-The "default" keyword is used as an "alias" for the default export, for standalone exports and other scenarios when we need to reference it.
+"defaul" anahtar sözcüğü, varsayılan  içeriye aktarma, bağımsız içeriye aktarma ve referans göstermemiz gerektiğinde diğer seneryolar için "takma ad" kullanılır
 
-For example, if we already have a function declared, that's how to `export default` it (separately from the definition):
+Örneğin, önceden bildirilmiş bir işlevimiz varsa , işte bunu `export default` nasıl yaparız (tanımdan ayrı olarak):
 
 ```js
 function sayHi(user) {
   alert(`Hello, ${user}!`);
 }
 
-export {sayHi as default}; // same as if we added "export default" before the function
+export {sayHi as default}; // fonksiyondan önce "export default" eklediğimiz gibi
 ```
 
-Or, let's say a module `user.js` exports one main "default" thing and a few named ones (rarely the case, but happens):
+Ya da bir `user.js` modulünün bir ana "varsayılan" şeyi ve bir kaç tane adlandırılmış olanı dışarı aktarıldığını varsayalım.
 
 ```js
 // 📁 user.js
@@ -255,7 +255,7 @@ export function sayHi(user) {
 }
 ```
 
-Here's how to import the default export along with a named one:
+Varsayılan dışa aktarma adını adlandırılmış olanla birlikte şu şekilde alabiliriz: 
 
 ```js
 // 📁 main.js
@@ -264,7 +264,7 @@ import {*!*default as User*/!*, sayHi} from './user.js';
 new User('John');
 ```
 
-Or, if we consider importing `*` as an object, then the `default` property is exactly the default export:
+Ya da `*` nesnesini almayı düşünürsek `default` özelliği tam olarak varsayılan içeriye aktarmadır:
 
 ```js
 // 📁 main.js
@@ -275,30 +275,29 @@ new User('John');
 ```
 
 
-### Should I use default exports?
+### Varsayılan içeriye aktarmayı kullanmalı mıyım?
 
-One should be careful about using default exports, because they are more difficult to maintain.
+Varsayılan dışa aktarım kullanımlarında dikkat edilmelidir. Çünkü bakımı daha zordur.
 
-Named exports are explicit. They exactly name what they import, so we have that information from them, that's a good thing.
+Adlandırılmış açıktır. Aldıkları şeyi tam olarak açıklıyorlar. Bu yüzden onlardan bu bilgilere sahibiz. Bu iyi bir şey.
 
-Also, named exports enforce us to use exactly the right name to import:
+Ayrıca, adlandırılmış dışa aktarma işlemleri bizi içe aktarmak için doğru adı kullanmaya zorlar.:
 
 ```js
 import {User} from './user.js';
-// import {MyUser} won't work, the name must be {User}
+// import {MyUser} çalışmayacak, adı {User} olmalı
 ```
 
-For default exports, we always choose the name when importing:
+Varsayılan içeriye aktarma için içeriye aktarırken her zaman adı seçeriz:
 
 ```js
-import User from './user.js'; // works
-import MyUser from './user.js'; // works too
-// could be import Anything..., and it'll be work
+import User from './user.js'; // çalışır
+import MyUser from './user.js'; // çalışır
+// Bir şey içeriye aktarılabilir..., ve çalışacaktır
 ```
+Yani, kötüye kullanılabilecek biraz daha fazla özgürlük var. Böylece ekip üyeleri aynı şey için farklı isimler kullanabilirler.
 
-So, there's a little bit more freedom that can be abused, so that team members may use different names for the same thing.
-
-Usually, to avoid that and keep the code consistent, there's a rule that imported variables should correspond to file names, e.g:
+Genelde, bundan kaçınmak ve kodu tutarlı tutmak için içe aktarılan değişkenlerin dosya adlarına karşılık gelmesi gerektiği bir kural vardır: 
 
 ```js
 import User from './user.js';
@@ -307,24 +306,24 @@ import func from '/path/to/func.js';
 ...
 ```
 
-Another solution would be to use named exports everywhere. Even if only a single thing is exported, it's still exported under a name, without `default`.
+Başka bir çözüm, her yerde adlandırılmış içeriye aktarım kullanmak olacaktır. Sadece tek bir şey içeriye aktarılsa bile yine de `default` olmadan bir isim altında içeriye aktarılır.
 
-That also makes re-export (see below) a little bit easier.
+Bu da re-export (aşağıda göreceksin) biraz daha kolay hale gelir.
 
-## Re-export
+## Yeniden dışa aktarma
 
-"Re-export" syntax `export ... from ...` allows to import things and immediately export them (possibly under another name), like this:
+"Yeniden dışa aktarma" söz dizimi `export ... from ...`  şeyleri içeriye aktarmasına ve hemen (başka bir isim altında) içeriye aktarmasına izin verir: 
 
 ```js
 export {sayHi} from './say.js';
 export {default as User} from './user.js';
 ```
 
-What's the point, why that's needed? Let's see a practical use case.
+Amaç ne? Neden bu gerekli? Pratik bir kullanım örneği görelim.
 
-Imagine, we're writing a "package": a folder with a lot of modules, mostly needed internally, with some of the functionality exported outside (tools like NPM allow to publish and distribute packages, but here it doesn't matter).
+Bir "paket" yazdığımızı düşünelim: dışarıda dışa aktarılan fonksiyonelliklerin bir kısmı ile çoğunlukla dahili olarak ihtiyaç duyulan birçok modüle sahip bir klasör (NPM gibi araçlar paketleri yayınlamaya ve dağıtmaya izin verir, ancak burada önemi yoktur).
 
-A directory structure could be like this:
+Bir klasör yapısı şöyle olabilir: 
 ```
 auth/
   index.js  
@@ -338,15 +337,16 @@ auth/
     ...
 ```
 
-We'd like to expose the package functionality via a single entry point, the "main file" `auth/index.js`, to be used like this:
+Paket işlevselliğini tek bir giriş noktası üzerinden göstermek istiyoruz, "ana dosya" `auth/index.js` böyle kullanılmalı,
 
 ```js
 import {login, logout} from 'auth/index.js'
 ```
 
-The idea is that outsiders, developers who use our package, should not meddle with its internal structure. They should not search for files inside our package folder. We export only what's necessary in `auth/index.js` and keep the rest hidden from prying eyes.
+Buradaki fikir, paketimizi kullanan geliştiricilerin iç yapısıyla karışmaması gerektiğidir. Paket klasörümüzdeki dosyaları aramamalılar. Sadece `auth/index.js`de gerekli olanları dışarıya aktarıyoruz ve gerisini meraklı gözlerden gizleriz.
 
-Now, as the actual exported functionality is scattered among the package, we can gather and "re-export" it in `auth/index.js`:
+Şimdi, dışa aktarılan gerçek işlevsellik paketin arasına dağıl olduğundan, paket içinde "Yeniden dışa aktarma" ve toplayabiliriz.
+`auth/index.js`:
 
 ```js
 // 📁 auth/index.js
@@ -361,12 +361,12 @@ export {Github};
 ...
 ```
 
-"Re-exporting" is just a shorter notation for that:
+"Yeniden dışa aktarma" bunun için sadece kısa bir gösterimidir:
 
 ```js
 // 📁 auth/index.js
 export {login, logout} from './helpers.js';
-// or, to re-export all helpers, we could use:
+// ya da tüm yardımcıları yeniden dışa aktarma için kullanabiliriz.
 // export * from './helpers.js';
 
 export {default as User} from './user.js';
@@ -375,67 +375,67 @@ export {default as Github} from './providers/github.js';
 ...
 ```
 
-````warn header="Re-exporting default is tricky"
-Please note: `export User from './user.js'` won't work. It's actually a syntax error. To re-export the default export, we must mention it explicitly `{default as ...}`, like in the example above.
+````warn header="Yeniden dışa aktarma default is tricky"
+Lütfen unutmayın: `export User from './user.js'` çalışmayacak. Bu aslında sözdizimi hatası. Varsayılan içeriye aktarmayı yeniden dışa aktarm için açıkça belirtmeliyiz `{default as ...}`. Yukarıdaki örnekte olduğu gibi.
 
-Also, there's another oddity: `export * from './user.js'` re-exports only named exports, excluding the default one. Once again, we need to mention it explicitly.
+Ayrıca, başka bir tuhaflık var: `export * from './user.js'` varsayılan olan haric, yalnızca adlandırılmış dışa aktarımlar yeniden dışa aktarılır. Bir kez daha açıkça söylemeliyiz.
 
-For instance, to re-export everything, two statements will be necessary:
+Örneğin, her şeyi yeniden dışa aktarmak için iki ifade gerekli olacaktır:
 ```js
-export * from './module.js'; // to re-export named exports
-export {default} from './module.js'; // to re-export default
+export * from './module.js'; // adlandırılmış dışarıya aktarımı yeniden dışarıya aktarmak için
+export {default} from './module.js'; // varsayılanı yeniden dışarıya aktarmak için 
 ```
 
-The default should be mentioned explicitly only when re-exporting: `import * as obj` works fine. It imports the default export as `obj.default`. So there's a slight asymmetry between import and export constructs here.
+Varsayılan değer açıkça yalnızca yeniden dışa aktarırken belirtilmelidir `import * as obj` iyi çalışır. Varsayılan dışa aktarımı `obj.default` olarak alır. Yani burada içe aktarım ve dışa aktarım yapıları arasında hafif bir asimetri var.
 ````
 
-## Summary
+## Özetle
 
-There are following types of `export`:
+Aşağıda `export` türleri vardır:
 
-- Before declaration:
+- Bildirmeden önce:
   - `export [default] class/function/variable ...`
-- Standalone:
+- Bağımsız:
   - `export {x [as y], ...}`.
-- Re-export:
+- Yeniden dışa aktarma:
   - `export {x [as y], ...} from "mod"`
-  - `export * from "mod"` (doesn't re-export default).
-  - `export {default [as y]} from "mod"` (re-export default).
+  - `export * from "mod"` (varsayılan yeniden dışa aktarmaz).
+  - `export {default [as y]} from "mod"` (varsayılanı yeniden dışa aktar).
 
-Import:
+İçeriye Aktarma:
 
-- Named exports from module:
+- Modülden adlandırılmış içeri aktarma:
   - `import {x [as y], ...} from "mod"`
-- Default export:  
+- Varsayılan içeri aktarma:  
   - `import x from "mod"`
   - `import {default as x} from "mod"`
-- Everything:
+- Her şey:
   - `import * as obj from "mod"`
-- Import the module (it runs), but do not assign it to a variable:
+- Modulü içeriye aktarın (çalışır) ama değişkene atamayın:
   - `import "mod"`
 
-We can put import/export statements at the top or at the bottom of a script, that doesn't matter.
+Import/export ifadelerini bir komus dosyasının en üstüne veya en altına koyabiliriz. Fark etmez.
 
-So this is technically fine:
+Yani teknik olarak bu iyi:
 ```js
 sayHi();
 
 // ...
 
-import {sayHi} from './say.js'; // import at the end of the script
+import {sayHi} from './say.js'; // script'in sonunda içe aktar
 ```
 
-In practice imports are usually at the start of the file, but that's only for better convenience.
-
+Uygulamada, daha iyi rahatlık için içeriye aktarma genellikle dosyanın başındadır.
 **Please note that import/export statements don't work if inside `{...}`.**
+**Unutmayın ki, import/export ifadeleri `{...}` içindeyse çalışmaz**
 
-A conditional import, like this, won't work:
+Bunun gibi koşullu bir içe aktarma çalışmaz: 
 ```js
 if (something) {
-  import {sayHi} from "./say.js"; // Error: import must be at top level
+  import {sayHi} from "./say.js"; // Hata: içe aktarma en üst düzeyde olmalı
 }
 ```
 
-...But what if we really need to import something conditionally? Or at the right time? Like, load a module upon request, when it's really needed?
+...Ama ya gerçekten şartlı olarak bir şeyler ithal etmemiz gerekirse? Ya da doğru zamanda? Gibi. Gerçekten ihtiyaç duyulduğunda istek üzerine bir modül yükleyin?
 
-We'll see dynamic imports in the next chapter.
+Bir sonraki bölümde dinamik içeriye aktarma göreceğiz.

@@ -1,54 +1,54 @@
 
-# Dynamic imports
+# Dinamik İçeriye Aktarma
 
-Export and import statements that we covered in previous chapters are called "static".
+Önceki bölümlerde ele aldığımız ifadelere içeri aktarım ve dışa aktarım ifadelerine "statik" denir.
 
-That's because they are indeed static. The syntax is very strict.
+Çünkü onlar gerçekten statik. Sözdizimi çok katıdır.
 
-First, we can't dynamically generate any parameters of `import`.
+Birincisi, dinamik olarak `import` parametresini oluşturamıyoruz.
 
-The module path must be a primitive string, can't be a function call. This won't work:
+Modül yolu ilkel bir dize olmalı ve işlev çağrısı olamaz. Bu çalışmayacaktır:
 
 ```js
-import ... from *!*getModuleName()*/!*; // Error, only from "string" is allowed
+import ... from *!*getModuleName()*/!*; // Hata, sadece "string"den izin verilir.
 ```
 
-Second, we can't import conditionally or at run-time:
+İkincisi, koşullu veya çalışma zamanında içe aktaramıyoruz: 
 
 ```js
 if(...) {
-  import ...; // Error, not allowed!
+  import ...; // Hata, izin verilmiyor!
 }
 
 {
-  import ...; // Error, we can't put import in any block
+  import ...; // Hata, içe aktarma işlemini herhangi bir bloğa koyamıyoruz.
 }
 ```
 
-That's because, import/export aim to provide a backbone for the code structure. That's a good thing, as code structure can be analyzed, modules can be gathered and bundled together, unused exports can be removed (tree-shaken). That's possible only because everything is fixed.
+Çünkü import/export kod yapısı için omurga sağlamayı hedefleriyor. Bu iyi bir şey, Kod yapısı analiz edilebildiğinden modüller toplanabilir ve birlikte paketlenebilir, kullanılmayan dışa aktarımlar kaldırılabilir (tree-shaken). Bu mümkün çünkü her şey sabit.
 
-But how do we import a module dynamically, on-demand?
 
-## The import() function
+Ancak bir modülü dinamik ve isteğe bağlı olarak nasıl içeriye aktarırız?
 
-The `import(module)` function can be called from anywhere. It returns a promise that resolves into a module object.
+## import() Fonksiyonu
 
-The usage pattern looks like this:
+`import(module)` fonksiyonu her yerden çağrılabilir. Bir modül nesnesine çözümlenen bir söz verir.
 
+Kullanım şekli şöyle görünür: 
 ```js run
 let modulePath = prompt("Module path?");
 
 import(modulePath)
-  .then(obj => <module object>)
-  .catch(err => <loading error, no such module?>)
+  .then(obj => <modül nesnesi>)
+  .catch(err => <yükleme hatası, böyle bir modül yok?>)
 ```
 
-Or, we could use `let module = await import(modulePath)` if inside an async function.
+Veya bir zaman async işlevi içindeyse `let module = await import(modulePath)` kullanabiliriz
 
-Like this:
+Bunun gibi:
 
 [codetabs src="say" current="index.html"]
 
-So, dynamic imports are very simple to use.
+Bu nedenle dinamik içe aktarım kullanımı çok basittir.
 
-Also, dynamic imports work in regular scripts, they don't require `script type="module"`.
+Ayrıca dinamik içeri aktarımlar düzenli komut dosyalarında çalışır, `script type="module"` gerektirmezler.
