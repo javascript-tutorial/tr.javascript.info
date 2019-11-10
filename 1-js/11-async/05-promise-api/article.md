@@ -1,18 +1,17 @@
 # Promise API
 
-There are 5 static methods in the `Promise` class. We'll quickly cover their use cases here.
+`Promise`de 5 statik yöntem vardır. Kullanım davalarını burada hızlı bir şekilde ele alacağız.
 
 ## Promise.resolve
 
-The syntax:
+Söz dizimi:
 
 ```js
 let promise = Promise.resolve(value);
 ```
 
-Returns a resolved promise with the given `value`.
-
-Same as:
+Verilen `value` ile çözülmüş olan bir söz verir.
+Buradaki gibi:
 
 ```js
 let promise = new Promise(resolve => resolve(value));
