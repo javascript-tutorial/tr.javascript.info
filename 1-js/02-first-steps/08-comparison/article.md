@@ -78,7 +78,13 @@ alert( '01' == 1 ); // doğru, karakter olan '01' sayıya çevrilerek 1 olmuştu
 ```
 Boolan değerler için `true` `1` olur ve `false` `0` olur.
 
+<<<<<<< HEAD
 Örneğin:
+=======
+For boolean values, `true` becomes `1` and `false` becomes `0`.
+
+For example:
+>>>>>>> 2b5ac971c1bd8abe7b17cdcf724afd84799b6cbd
 
 ```js run
 alert( true == 1 ); // true ( doğru )
@@ -137,9 +143,16 @@ Sıkı eşitlik kontrolü biraz daha uzun yazıma sahip olsa da hataya yer bıra
 
 Daha uç noktalara bakarsanız, 
 
+<<<<<<< HEAD
 `null` ile `undefined` başka değerler ile karşılaştırıldığında aralarında sezgisel olmayan davranışlar görülür.
 
 Sıkı eşitlik kontrolü için `===`: Bu değerler farklıdır, çünkü her biri kendine has bir tiptir.
+=======
+There's a non-intuitive behavior when `null` or `undefined` are compared to other values.
+
+For a strict equality check `===`
+: These values are different, because each of them is a different type.
+>>>>>>> 2b5ac971c1bd8abe7b17cdcf724afd84799b6cbd
 
     ```js run
     alert( null === undefined ); // false

@@ -6,7 +6,11 @@ importance: 5
 
 `debounce(f, ms)` dekoratörü `f` çağrısına `ms` zarfında en fazla bir defa izin vermelidir.
 
+<<<<<<< HEAD
 Diğer bir deyişle "debounced" fonksiyonu çağırıldığında, `ms`'e yakın diğer tüm özellikler görmezden gelinecektir.
+=======
+In other words, when we call a "debounced" function, it guarantees that all future calls to the function made less than `ms` milliseconds after the previous call will be ignored.
+>>>>>>> 2b5ac971c1bd8abe7b17cdcf724afd84799b6cbd
 
 Örneğin:
 
@@ -21,4 +25,8 @@ setTimeout( () => f(4), 1100); // çalışır
 setTimeout( () => f(5), 1500); // görmezden gelinecek çünkü son çağrıdan itibaren 1000ms'den az bir zaman geçmiştir.
 ```
 
+<<<<<<< HEAD
 Pratikte geri sektiren dekoratör değişmeyeceğini bildiğimiz bir zaman süresince aynı kaynağı tekrar çağırmamak için kullanılabilir.
+=======
+In practice `debounce` is useful for functions that retrieve/update something when we know that nothing new can be done in such a short period of time, so it's better not to waste resources.
+>>>>>>> 2b5ac971c1bd8abe7b17cdcf724afd84799b6cbd
