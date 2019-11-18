@@ -17,9 +17,9 @@ Buradaki gibi:
 let promise = new Promise(resolve => resolve(value));
 ```
 
-The method is used when we already have a value, but would like to have it "wrapped" into a promise.
+Yöntem zaten bir değere sahipken kullanılır. Ancal bir söz içine "sarılmış" olmasını ister.
 
-For instance, the `loadCached` function below fetches the `url` and remembers the result, so that future calls on the same URL return it immediately:
+Örneğin, `loadCached` fonksiyonu aşağıda `url`yi alır ve sonucu hatırlar. Böylece aynı URL'deki gelecekteki çağrılar hemen döndürülür.
 
 ```js
 function loadCached(url) {
@@ -40,52 +40,52 @@ function loadCached(url) {
 }
 ```
 
-We can use `loadCached(url).then(…)`, because the function is guaranteed to return a promise. That's the purpose `Promise.resolve` serves in the line `(*)`: it makes sure the interface is unified. We can always use `.then` after `loadCached`.
+`loadCached(url).then(…)` kullanabiliriz. Çünkü fonksiyonun bir söz döndürmesi garantilidir. Amaç `Promise.resolve` `(*)` doğrultusunda hizmet eder: Arayüzünün birleşik olduğundan emin olun. `.then`den sonra her zaman `loadCached` kullanabiliriz.
 
 ## Promise.reject
 
-The syntax:
+Söz dizimi:
 
 ```js
 let promise = Promise.reject(error);
 ```
 
-Create a rejected promise with the `error`.
+`error` ile reddedilen bir söz oluşturun.
 
-Same as:
+Yukarıdaki ile aynı:
 
 ```js
 let promise = new Promise((resolve, reject) => reject(error));
 ```
 
-We cover it here for completeness, rarely used in real code.
+Gerçek kodda nadiren kullanılan, bütünlük için buradayız.
 
 ## Promise.all
 
-Let's say we want to run many promises to execute in parallel, and wait till all of them are ready.
+Paralel olarak yürütülmek için birçok söz vermek isteriz ve hepsinin hazır olmasını bekleriz.
 
-For instance, download several URLs in parallel and process the content when all are done.
+Örneğin, paralel olarak birkaç URL'yi indirin ve hepsi bittiğinde içeriği işleyin.
 
-That's what `Promise.all` is for.
+Bunun için `Promise.all`.
 
-The syntax is:
+Söz dizimi:
 
 ```js
 let promise = Promise.all([...promises...]);
 ```
 
-It takes an array of promises (technically can be any iterable, but usually an array) and returns a new promise.
+Yeni bir söz alır ve bir dizi söz alır (technically can be any iterable, but usually an array.)
 
-The new promise resolves when all listed promises are settled and has an array of their results.
+Yeni söz, listelenen tüm sözlerin yerine getirildiği ve sonuçların bir dizisine sahip olduğunda karar verir.
 
-For instance, the `Promise.all` below settles after 3 seconds, and then its result is an array `[1, 2, 3]`:
+Örneğin, aşağıdaki `Promise.all` 3 saniye sonra yerleşir ve sonucu `[1, 2, 3]` dizisidir:
 
 ```js run
 Promise.all([
   new Promise(resolve => setTimeout(() => resolve(1), 3000)), // 1
   new Promise(resolve => setTimeout(() => resolve(2), 2000)), // 2
   new Promise(resolve => setTimeout(() => resolve(3), 1000))  // 3
-]).then(alert); // 1,2,3 when promises are ready: each promise contributes an array member
+]).then(alert); // 1,2,3 sözler hazır olduğunda: her söz bir dizi üyesine katkıda bulunur
 ```
 
 Please note that the relative order is the same. Even though the first promise takes the longest time to resolve, it is still first in the array of results.
