@@ -88,11 +88,12 @@ Promise.all([
 ]).then(alert); // 1,2,3 sözler hazır olduğunda: her söz bir dizi üyesine katkıda bulunur
 ```
 
-Please note that the relative order is the same. Even though the first promise takes the longest time to resolve, it is still first in the array of results.
+Lütfen göreli siparişin aynı olduğunu unutmayın. İlk sözün sözülmesi uzun sürse bile sonuçta ilk sırada yer almaktadır. 
 
-A common trick is to map an array of job data into an array of promises, and then wrap that into `Promise.all`.
+Yayın bir hile, bir dizi iş verisini bir dizi sözle eşleştirmek ve ardından bunu `Promise.all` içine kaydırmaktır. 
 
-For instance, if we have an array of URLs, we can fetch them all like this:
+Örneğin, eğer bir dizi URL'miz varsa hepsini şöyle getirebiliriz: 
+
 
 ```js run
 let urls = [
@@ -101,17 +102,18 @@ let urls = [
   'https://api.github.com/users/jeresig'
 ];
 
-// map every url to the promise of the fetch
+// Her URL'yi getirme sözüyle eşleyin
 let requests = urls.map(url => fetch(url));
 
-// Promise.all waits until all jobs are resolved
+// Tüm işler çözülene kadar Promise.all bekler
 Promise.all(requests)
   .then(responses => responses.forEach(
     response => alert(`${response.url}: ${response.status}`)
   ));
 ```
 
-A bigger example with fetching user information for an array of github users by their names (or we could fetch an array of goods by their ids, the logic is same):
+Bir dizi github kullanıcısı için kullanıcı bilgilerini adlarına göre almakla ilgili daha büyük bir örnek (veya bir mal dizisini kimlikleriyle alabiliriz. Mantık aynıdır):
+
 
 ```js run
 let names = ['iliakan', 'remy', 'jeresig'];
@@ -120,22 +122,22 @@ let requests = names.map(name => fetch(`https://api.github.com/users/${name}`));
 
 Promise.all(requests)
   .then(responses => {
-    // all responses are ready, we can show HTTP status codes
+    // Tüm cevaplar hazır. HTTP durum kodlarını gösterebiliriz
     for(let response of responses) {
-      alert(`${response.url}: ${response.status}`); // shows 200 for every url
+      alert(`${response.url}: ${response.status}`); // Her URL için 200 gösterir
     }
 
     return responses;
   })
-  // map array of responses into array of response.json() to read their content
+  // Yanıt dizisini, içeriğini okumak için response.json() dizisine eşleyin
   .then(responses => Promise.all(responses.map(r => r.json())))
-  // all JSON answers are parsed: "users" is the array of them
+  // Tüm JSON cevapları ayrıştırılır: "users" bunların dizisidir.
   .then(users => users.forEach(user => alert(user.name)));
 ```
 
-**If any of the promises is rejected, `Promise.all` immediately rejects with that error.**
+**Eğer sözlerden herhangi biri ret edildiyse  `Promise.all` bu hatayı hemen ret eder**
 
-For instance:
+Örneğin: 
 
 ```js run
 Promise.all([
@@ -147,32 +149,34 @@ Promise.all([
 ]).catch(alert); // Error: Whoops!
 ```
 
-Here the second promise rejects in two seconds. That leads to immediate rejection of `Promise.all`, so `.catch` executes: the rejection error becomes the outcome of the whole `Promise.all`.
+İşte ikinci söz iki saniye içinde reddediyor. Bu `Promise.all`un hemen reddedilmesine yol açar, bu yüzden `.catch` çalıştırır: reddedilme hatası tüm `Promise.all`un sonucudur. 
+
 
 ```warn header="In case of an error, other promises are ignored"
-If one promise rejects, `Promise.all` immediately rejects, completely forgetting about the other ones in the list. Their results are ignored.
+Eğer bir söz reddederse, `Promise.all` derhal reddeder. Listedeki diğerlerini tamamen unutur. Onların sonuçları göz ardı edilir. 
 
-For example, if there are multiple `fetch` calls, like in the example above, and one fails, other ones will still continue to execute, but `Promise.all` don't watch them any more. They will probably settle, but the result will be ignored.
+Örneğin, yukarıdaki örnekte olduğu gibi birden fazla `fetch` çağrısı varsa ve biri başarısız olursa diğeri hala yürütülmeye devam eder. Ancak `Promise.all` artık onları izlememektedir. Muhtemelen yerleşecekler ancak sonuç göz ardı edilecektir. 
 
-`Promise.all` does nothing to cancel them, as there's no concept of "cancellation" in promises. In [another chapter](fetch-abort) we'll cover `AbortController` that aims to help with that, but it's not a part of the Promise API.
+`Promise.all` sözlerinde "iptal" kavramı olmadığı için onları iptal edecek hiçbir şey yapmaz. [Başka bir bölümde](fetch-abort) bu konuda yardımcı olmayı amaçlayan `AbortController`ı ele alacağız. Ancak bu Promise API'sinin bir parçası değil.
 ```
 
 ````smart header="`Promise.all(...)` allows non-promise items in `iterable`"
-Normally, `Promise.all(...)` accepts an iterable (in most cases an array) of promises. But if any of those objects is not a promise, it's wrapped in `Promise.resolve`.
+Normalde, `Promise.all(...)` sözlerin yenilenebilir (çoğu durumda bir dizi) kabul eder. Ancak bu nesnelerden herhangi biri bir söz değilse `Promise.respove` içine sarılır.
+```
 
-For instance, here the results are `[1, 2, 3]`:
+Örneğin burada `[1, 2, 3]` döner:
 
 ```js run
 Promise.all([
   new Promise((resolve, reject) => {
     setTimeout(() => resolve(1), 1000)
   }),
-  2, // treated as Promise.resolve(2)
-  3  // treated as Promise.resolve(3)
+  2, // Promise.resolve(2) olarak kabul edildi.
+  3  // Promise.resolve(3) olarak kabul edildi.
 ]).then(alert); // 1, 2, 3
 ```
 
-So we are able to pass non-promise values to `Promise.all` where convenient.
+Bu yüzden uygun olmayan durumlarda `Promise.all`a söz etmeyen değerleri aktarabiliriz. 
 
 ````
 
@@ -180,14 +184,14 @@ So we are able to pass non-promise values to `Promise.all` where convenient.
 
 [recent browser="new"]
 
-`Promise.all` rejects as a whole if any promise rejects. That's good in cases, when we need *all* results to go on:
+Herhangi bir söz reddederse `Promise.all` bir bütün olarak eder. Devam etmek için *all* sonuçlarına ihtiyacımız olduğunda bu iyidir: 
 
 ```js
 Promise.all([
   fetch('/template.html'),
   fetch('/style.css'),
   fetch('/data.json')
-]).then(render); // render method needs them all
+]).then(render); // render yöntemi hepsine ihtiyaç duyuyor
 ```
 
 `Promise.allSettled` waits for all promises to settle: even if one rejects, it waits for the others. The resulting array has:
