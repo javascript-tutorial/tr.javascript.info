@@ -194,14 +194,14 @@ Promise.all([
 ]).then(render); // render yöntemi hepsine ihtiyaç duyuyor
 ```
 
-`Promise.allSettled` waits for all promises to settle: even if one rejects, it waits for the others. The resulting array has:
+`Promise.allSettled` tüm sözlerin yerine getirilmesini bekler: biri reddetse bile diğerini bekler. Sonuçta ortaya çıkan dizin:
 
-- `{status:"fulfilled", value:result}` for successful responses,
-- `{status:"rejected", reason:error}` for errors.
+- `{status:"fulfilled", value:result}` başarılı cevap için,
+- `{status:"rejected", reason:error}` hatalar için.
 
-For example, we'd like to fetch the information about multiple users. Even if one request fails, we're interested in the others.
+Örneğin, birden fazla kullanıcı hakkında bilgi edinmek istiyoruz. Bir istek başarısız olsa bile diğerleriyle de ilgileniyoruz
 
-Let's use `Promise.allSettled`:
+Hadi `Promise.allSettled` kullanalım:
 
 ```js run
 let urls = [
@@ -223,7 +223,7 @@ Promise.allSettled(urls.map(url => fetch(url)))
   });
 ```
 
-The `results` in the line `(*)` above will be:
+Yukarıdaki satırdaki `results` `(*)` olacak:
 ```js
 [
   {status: 'fulfilled', value: ...response...},
@@ -232,11 +232,11 @@ The `results` in the line `(*)` above will be:
 ]
 ```
 
-So, for each promise we get its status and `value/reason`.
+Dolayısıyla, her söz için onun satütüsünü ve `değer/sebep` bilgisini alırız.
 
 ### Polyfill
 
-If the browser doesn't support `Promise.allSettled`, it's easy to polyfill:
+Eğer tarayıcı `Promise.allSettled` özelliğini desteklemiyorsa, polyfill kolaydır.
 
 ```js
 if(!Promise.allSettled) {
@@ -252,23 +252,23 @@ if(!Promise.allSettled) {
 }
 ```
 
-In this code, `promises.map` takes input values, turns into promises (just in case a non-promise was passed) with `p => Promise.resolve(p)`, and then adds `.then` handler to it.
+Bu kodda, `promises.map` giriş değerini alır, `p => Promise.resolve(p)` ile sözleri döndürüyor (sadece bir söz verilmemişse) ve sonra bunu işleyiciye ekler.
 
-That handler turns a successful result `v` into `{state:'fulfilled', value:v}`, and an error `r` into `{state:'rejected', reason:r}`. That's exactly the format of `Promise.allSettled`.
+Bu işleyici başarılı bir `v` sonucusunu `{state:'fulfilled', value:v}` ve bir `r` hatasını `{state:'rejected', reason:r}` olarak çevirir. Bu `Promise.allSettled` formatıyla aynıdır.
 
-Then we can use `Promise.allSettled` to get the results or *all* given promises, even if some of them reject.
+Sonra bazı sonuçları reddetse bile sonuçları almak  ya da *all* sözleri vermek için `Promise.allSettled`i kullanabiliriz. 
 
 ## Promise.race
 
-Similar to `Promise.all`, it takes an iterable of promises, but instead of waiting for all of them to finish, it waits for the first result (or error), and goes on with it.
+`Promise.all` benzer şekilde sözler yenilenebilir. Ancak hepsinin bitmesini beklemek yerine ilk sonucu (veya hatayı) bekler ve devam eder.
 
-The syntax is:
+Söz dizimi:
 
 ```js
 let promise = Promise.race(iterable);
 ```
 
-For instance, here the result will be `1`:
+Mesela burada sonuç `1` olacak: 
 
 ```js run
 Promise.race([
@@ -278,18 +278,17 @@ Promise.race([
 ]).then(alert); // 1
 ```
 
-So, the first result/error becomes the result of the whole `Promise.race`. After the first settled promise "wins the race", all further results/errors are ignored.
+Böylece ilk sonuç/hata bütün `Promise.race` sonucu olur. İlk kararlaştırılan sözün ardından "yarışı kazanır", diğer tüm sonuçlar/hatalar göz ardı edilir
 
-## Summary
+## Özetle
 
-There are 5 static methods of `Promise` class:
+`Promise` sınıfının 5 statik metodu vardır:
 
-1. `Promise.resolve(value)` -- makes a resolved promise with the given value.
-2. `Promise.reject(error)` -- makes a rejected promise with the given error.
-3. `Promise.all(promises)` -- waits for all promises to resolve and returns an array of their results. If any of the given promises rejects, then it becomes the error of `Promise.all`, and all other results are ignored.
-4. `Promise.allSettled(promises)` (a new method) -- waits for all promises to resolve or reject and returns an array of their results as object with:
-    - `state`: `'fulfilled'` or `'rejected'`
-    - `value` (if fulfilled) or `reason` (if rejected).
-5. `Promise.race(promises)` -- waits for the first promise to settle, and its result/error becomes the outcome.
-
-Of these five, `Promise.all/allSettled` are the most common in practice.
+1. `Promise.resolve(value)` -- verilen değerle çözümlenmiş bir söz verir.
+2. `Promise.reject(error)` -- verilen hata ile reddedilen bir söz verir..
+3. `Promise.all(promises)` -- çözmek için tüm sözleri bekler ve sonuçlarının bir dizisini döndürür. Eğer verilen sözlerden herhangi biri reddederse o zaman `Promise.all` hatası olur ve diğer tüm sonuçlar göz ardı edilir.
+4. `Promise.allSettled(promises)` (yeni bir metod) -- tüm sözlerin çözülmesini veya reddedilmesini bekler ve sonuçlarının bir dizisini nesne olarak döndürür.
+    - `state`: `'fulfilled'` yada `'rejected'`
+    - `value` (if fulfilled) ya da `reason` (reddedilirse).
+5. `Promise.race(promises)` -- ilk yerlmeşmeye söz vermek için bekler ve sonucu/hatası sonuç olur.
+Bu beş maddede `Promise.all/allSettled` en yaygın kullanılanıdır.
