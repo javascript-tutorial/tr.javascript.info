@@ -6,7 +6,11 @@ Fakat var olan ile yeni bir karakter dizisi yapmak ve ilk karakteri büyük baş
 let yeniDizi = str[0].toUpperCase() + str.slice(1);
 ```
 
+<<<<<<< HEAD
 Burada küçük bir problem var. Eğer `str` boş ise, `str[0]` undefined olur ve hata döner.
+=======
+There's a small problem though. If `str` is empty, then `str[0]` is `undefined`, and as `undefined` doesn't have the `toUpperCase()` method, we'll get an error.
+>>>>>>> 47d186598add3a0ea759615596a12e277ce8fb5a
 
 Bunun iki türlü çözümü bulunmaktadır.
 
