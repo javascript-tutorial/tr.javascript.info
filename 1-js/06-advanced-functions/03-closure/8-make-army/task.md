@@ -31,4 +31,10 @@ ordu[0](); // nisanci 0 fakat 10 gösteriyor.
 ordu[5](); // nisancı 5 fakat yine 10 gösteriyor.
 // ... tüm nişancılar kendi numaraları yerine 10 gösteriyorlar.
 ```
+<<<<<<< HEAD
 Neden tüm nişancılar aynı? Kodu olması gerektiği duruma getiriniz.
+=======
+
+Why do all of the shooters show the same value? Fix the code so that they work as intended.
+
+>>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd

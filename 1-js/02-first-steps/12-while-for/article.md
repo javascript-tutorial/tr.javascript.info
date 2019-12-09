@@ -17,7 +17,11 @@ while (koşul) {
 }
 ```
 
+<<<<<<< HEAD
 `koşul` `doğru` iken(while), `döngü gövdesinde` bulunan kod çalıştırılır.
+=======
+While the `condition` is truthy, the `code` from the loop body is executed.
+>>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
 Örneğin, aşağıdaki kod `i < 3` `iken` çalışır.
 
@@ -82,7 +86,11 @@ Bu şekilde döngü yazımı çok nadir olarak kullanılır. Kullanılmasının 
 
 ## "for" döngüsü
 
+<<<<<<< HEAD
 `for` döngüsü en fazla kullanılan döngüdür.
+=======
+The `for` loop is more complex, but it's also the most commonly used loop.
+>>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
 Aşağıdaki şekilde kullanıma sahiptir:
 
@@ -107,7 +115,18 @@ Bölüm bölüm inceleyecek olursak
 | adım   | `i++`       | Gövdenin tekerrür etmesinden sonra fakat koşuldan önce çalışır             |
 | gövde  | `alert(i)`  | koşul doğru olduğu sürece durmadan çalışır                                 |
 
+<<<<<<< HEAD
 Genel döngü algoritması aşağıdaki gibidir:
+=======
+| part  |          |                                                                            |
+|-------|----------|----------------------------------------------------------------------------|
+| begin | `i = 0`    | Executes once upon entering the loop.                                      |
+| condition | `i < 3`| Checked before every loop iteration. If false, the loop stops.              |
+| body | `alert(i)`| Runs again and again while the condition is truthy.                         |
+| step| `i++`      | Executes after the body on each iteration. |
+
+The general loop algorithm works like this:
+>>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
 ```
 Çalışmaya başlar
@@ -117,9 +136,15 @@ Genel döngü algoritması aşağıdaki gibidir:
 → ...
 ```
 
+<<<<<<< HEAD
 Eğer döngüleri yeni görüyorsanız, belki geri dönüp bu olanları sırasıyla kağıda yazarak takip ederseniz sizin için daha iyi olacaktır.
 
 Yukarıdaki kodda tam olarak ne oluyor peki:
+=======
+That is, `begin` executes once, and then it iterates: after each `condition` test, `body` and `step` are executed.
+
+If you are new to loops, it could help to go back to the example and reproduce how it runs step-by-step on a piece of paper.
+>>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
 
 ```js
@@ -202,8 +227,13 @@ Fakat bazı durumlarda bu döngü `kırılabilir` ( break ).
 
 Örneğin, kullanıcıdan bir dizi sayı girmesini istediniz eğer boş bir değer girerse döngüyü kırabilirsiniz.
 
+<<<<<<< HEAD
 ```js
 let toplam = 0;
+=======
+```js run
+let sum = 0;
+>>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
 while (true) {
 
@@ -278,14 +308,22 @@ Yukarıdaki döngü `?` ile yazılacak olursa:
 (i > 5) ? alert(i) : *!*continue*/!*; // `continue` burada kullanılamaz!!!
 ```
 
+<<<<<<< HEAD
 ... sonrasında çalışmayı durdurur. Böyle kodlar yazım hatası verir.
 
 Bu da `'?'` işaretini `if` yerine kullanmamak için ayrı bir neden.
+=======
+...it stops working: there's a syntax error.
+>>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
 ````
 
 ## break/continue için etiket tanımlanması ( Label )
 
+<<<<<<< HEAD
+=======
+For example, in the code below we loop over `i` and `j`, prompting for the coordinates `(i, j)` from `(0,0)` to `(2,2)`:
+>>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
 Bazen birden fazla döngü içinden tek bir break ile çıkılma ihtiyacı duyulabilir.
 Örneğin aşağıdaki kodda döngü `i` ve `j` kordinatlarını ekranda gösterir:
@@ -296,8 +334,12 @@ for (let i = 0; i < 3; i++) {
 
     let deger = prompt(`Kordinattaki değer (${i},${j})`, '');
 
+<<<<<<< HEAD
     // Burada döngüden çıkmak istersem ne yapmalıyım?
 
+=======
+    // what if we want to exit from here to Done (below)?
+>>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
   }
 }
 
@@ -349,13 +391,22 @@ for (let i = 0; i < 3; i++) { ... }
 
 `continue` talimatı da etiket ile kullanılabilir. Bu durumda etiketin yazılı olduğu yere atlar.
 
+<<<<<<< HEAD
+=======
+````warn header="Labels do not allow to \"jump\" anywhere"
+Labels do not allow us to jump into an arbitrary place in the code.
+>>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
 ````warn header="Etiketler \"goto\" değildir."
 Etiketler ile kodun herhangi bir yerine atlamak mümkün değildir.
 
 Örneğin aşağıdaki kod çalışmaz.
 ```js
+<<<<<<< HEAD
 break etiket;  // etikete atlar değil mi?.
+=======
+break label; // doesn't jumps to the label below
+>>>>>>> 5b195795da511709faf79a4d35f9c5623b6dbdbd
 
 etiket: for (...)
 ```
