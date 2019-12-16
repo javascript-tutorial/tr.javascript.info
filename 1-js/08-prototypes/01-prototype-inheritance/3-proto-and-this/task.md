@@ -2,8 +2,12 @@ importance: 5
 
 ---
 
+<<<<<<< HEAD
 # Nereye yazar?
 `animal`dan türemiş bir `rabbit`'imizi var.
+=======
+# Where does it write?
+>>>>>>> 524d59884650be539544c34f71d821432b7280fd
 
 Eğer `rabbit.eat()` çağırılırsa hangi obje `full` özelliğini alır: `animal` mi yoksa `rabbit` mi?
 
