@@ -1,4 +1,4 @@
-# Fonksiyon ifadeleri ve oklar.
+# Fonksiyon ifadeleri.
 
 JavaScript'te fonksiyonlar "büyülü dil yapısı" değil sadece özel bir tip değerdir.
 [cut]
@@ -122,8 +122,8 @@ Fonksiyon `soru` sormalı, bu sorunun cevabına göre `evet()` veya `hayir()` fo
 ```js run
 *!*
 function sor(soru, evet, hayir) {
-  if (confirm(soru)) yes()
-  else no();
+  if (confirm(soru)) evet()
+  else hayir();
 }
 */!*
 
@@ -142,7 +142,7 @@ Daha kısa yolunu yazmadan önce söylemek gerekir ki bu tür fonksiyonlar olduk
 
 **`sor` fonksiyonunun argümanları *callbacks* veya *geri çağrım fonksiyonları* olarak adlandırılırlar.
 
-Fikir fonksiyonu bizim baştan paslayıp ana fonksiyon içerieinde daha sonra duruma göre çağırılmasından kaynaklanmaktadır. Örneğe bakarsanız `tamamGoster` "evet" cevabı için *geri çağrım fonksiyonu*'dur.
+Fikir fonksiyonu bizim baştan paslayıp ana fonksiyon içerisinde daha sonra duruma göre çağırılmasından kaynaklanmaktadır. Örneğe bakarsanız `tamamGoster` "evet" cevabı için *geri çağrım fonksiyonu*'dur.
 
 Fonksiyon İfadesi kullanarak aynı fonksiyonu daha kısa bir şekilde yazmak mümkün:
 
@@ -153,7 +153,7 @@ function sor(soru, evet, hayir) {
 }
 
 *!*
-ask(
+sor(
   "Kabul Ediyormusun?",
   function() { alert("Kabul ettin"); },
   function() { alert("Çalışmayı durdurdun."); }
@@ -174,9 +174,9 @@ Değişkenler arasında paylaşılabilir. İstendiği zaman çalıştırılabili
 ```
 
 
-## Fonksiyon ifadesi ile Fonksiyon tanımının karışalaştırılması
+## Fonksiyon ifadesi ile Fonksiyon tanımının karşılaştırılması
 
-Eğer Fonksiyon ifades ile fonksiyon tanımı arasındaki önemli farkları açıklamak gerekirse;
+Eğer Fonksiyon ifadesi ile fonksiyon tanımı arasındaki önemli farkları açıklamak gerekirse;
 
 Yazım: Kodda neyin ne olduğunu görme.
 
@@ -204,7 +204,7 @@ Daha ince bir değişiklik ise fonksiyonun JavaScript motorunda ne zaman yaratı
 
 **Fonksiyon ifadesi kod çalışırken fonksiyona geldikten sonra kullılır**
 
-Çalışma atamanın sağ tarafaını geçince `let sum = function...`, bu noktadan sonra fonksiyon artık yaratıldı. Bundan böyle çağırılabilir veya başka bir değişkene atanabilir.
+Çalışma atamanın sağ tarafına geçince `let sum = function...`, bu noktadan sonra fonksiyon artık yaratıldı. Bundan böyle çağırılabilir veya başka bir değişkene atanabilir.
 
 Fonksiyon tanımlama ise farklıdır.
 
@@ -223,7 +223,7 @@ Sonuç olarak, fonksiyon tanımı ile bu tanımdan önce çağırılabilir.
 selamVer("Ahmet"); // Merhaba Ahmet
 */!*
 
-function sayHi(isim) {
+function selamVer(isim) {
   alert( `Merhaba, ${isim}` );
 }
 ```
@@ -362,106 +362,6 @@ Ayrıca fonksiyon içerisinde `function f(...){}` ile araştırmak `let f= funct
 Fakat eğer Fonksiyon Tanımı işimize yaramaz ise(yukarıda örnğin Fonksiyon ifadesini kullandık), bu durumda Fonksiyon İfadesi yöntemi kullanılmalıdır.
 ```
 
-
-## Ok Fonksiyonları [#arrow-functions]
-
-Fonksiyonları yaratmak için daha kısa bir yöntem daha vardır, bu Fonksiyon İfadesinden daha iyi denilebilir. Bunlara "Ok Fonksiyonları" denir. Çünkü "ok" gibi görünürler.
-
-```js
-let func = (arg1, arg2, ...argN) => ifade
-```
-
-Yukarıda yazılan kod `func` adında `arg1..argN`'e kadar argüman alan ve sonunda `ifade`yi çalıştıran bir fonksiyon bulunmaktadır.
-
-Diğer bir deyişle, aşağıdaki ile neredeyse aynı kod yazılmıştır.
-
-```js
-let func = function(arg1, arg2, ...argN) {
-  return ifade;
-}
-```
-... Fakat `ok` ile yazılan daha özlüdür.
-
-Örneğin:
-```js run
-let topla = (a, b) => a + b;
-
-/* ok fonksiyonu aşağıdaki fonksiyon ifadesinin daha özlü yazılmış halidir.:
-
-let topla = function(a, b) {
-  return a + b;
-};
-*/
-
-alert( topla(1, 2) ); // 3
-
-```
-Eğer tek argüman olsaydı, bu durumda parantez de çıkarılabilirdi, böylece daha da kolay olurdu:
-
-
-```js run
-// aynısı
-// let ikiKati = function(n) { return n * 2 }
-*!*
-let ikiKati = n => n * 2;
-*/!*
-
-alert( ikiKati(3) ); // 6
-```
-
-Eğer hiç bir değer yoksa parantez eklenmelidir. ( Bir değer olduğunda yukarıdaki gibi kullanılabilir.)
-
-
-```js run
-let selamVer = () => alert("Merhaba!");
-
-selamVer();
-```
-Ok Fonksiyonları Fonksiyon ifadeleri ile aynı şekilde kullanılabilirler.
-
-Örneğin aşağıda `merhaba()` fonksiyonunun Ok Fonksiyonu şekliyle görebilirsiniz.
-
-```js run
-let yas = prompt("Kaç Yaşındasın?", 18);
-
-let merhaba = (yas < 18) ?
-  () => alert('Merhaba') :
-  () => alert("Merhabalar!");
-
-merhaba(); 
-```
-
-Ok fonksiyonları ilk yazılmaya başlandığında göze yabancı gelebilir. Fakat zamanla göz bu yapıya alışacak ve hemen ayak uyduracaktır.
-
-Uzunca yazmak istemiyorsanız, kolayca tek kelimelik fonksiyonlar yazabilirsiniz.
-
-
-```smart header="Çok satırlı Ok Fonksiyonları"
-
-Yukarıdaki örnekte argüman `=>` solundan alınır ve sağında çalıştırılır.
-
-Bazen bundan daha karmaşık yapılara ihtiyaç duyabilirsiniz. Bunun için sağ tarafa başlarken `{` parantez ile başlar ve bittiğinde de `}` ile fonksiyonu kapatırsanız içerisine fonksiyonun gövdesini yazabilirsiniz.
-
-Bunun gibi:
-
-```js run
-let toplam = (a, b) => {  // birden fazla satır yazmak için `{` kullanılmalıdı.
-  let sonuc = a + b;
-*!*
-  return sonuc; // eğer süslü parantez kullanıyorsanız değer döndürmek için return yazmanız gerekmektedir.
-*/!*
-};
-
-alert( toplam(1, 2) ); // 3
-```
-
-```smart header="Dahası var"
-Şu anda sadece Ok Fonksiyonlarına giriş yaptık. Fakat elbette tamamı bu değil! Ok fonksiyonun başka ilginç özellikleri de mevcut. Bunlara <info:arrow-functions> bölümünde değinilecektir.
-
-Şimdilik tek satırlı fiillerde ve geri çağrım fonksiyonlarında kullabilirsiniz.
-```
-
-
 ## Özet
 
 - Fonksiyonlar değerdir. Atanabilir, kopyalanabilir ve kodun herhangi bir yerinde tanımlanabilirler.
@@ -473,7 +373,3 @@ alert( toplam(1, 2) ); // 3
 
 Fonksiyon ifadesi sadece Fonksiyon Tanımı yetersiz kalırsa kullanılmalıdır. Bu örnek daha önce yukarıda yapılmıştı.
 
-Ok Fonksiyonları tek satır için kullanışlıdır. İki türlüsü vardır:
-
-1. Süslü parantez olmadan: Fonksiyon sağ taraftaki ifadeyi çalıştırır ve sonucu dönderir. Tek satırda biten işlemler için kullanılmalıdır.
-2. Süslü parantez ile `(...args) => { gövde }` -- süslü parantez bizim birden fazla satır yazmamızı sağlar.  Fakat gövde içerisinde `return` kullanılması gerekmektedir.
