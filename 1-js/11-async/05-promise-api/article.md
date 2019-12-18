@@ -74,7 +74,7 @@ Söz dizimi:
 let promise = Promise.all([...promises...]);
 ```
 
-Yeni bir söz alır ve bir dizi söz alır (technically can be any iterable, but usually an array.)
+Yeni bir söz alır ve bir dizi söz alır (Teknik olarak herhangi bir yinelenebilir nesne, ama çoğunlukla bir array.)
 
 Yeni söz, listelenen tüm sözlerin yerine getirildiği ve sonuçların bir dizisine sahip olduğunda karar verir.
 
