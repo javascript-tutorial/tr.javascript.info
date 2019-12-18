@@ -1,6 +1,6 @@
 # Promise API
 
-`Promise`de 5 statik yöntem vardır. Kullanım davalarını burada hızlı bir şekilde ele alacağız.
+`Promise`de 5 statik yöntem vardır. Kullanım durumlarını burada hızlı bir şekilde ele alacağız.
 
 ## Promise.resolve
 
