@@ -12,6 +12,11 @@ Komutlar herhangi bir derleme ve hazırlığa gereksinim duymadan doğrudan çal
 
 Bu yönden bakınca JavaScript diğer dillere kıyasla oldukça farklıdır. Bkz: [Java](http://en.wikipedia.org/wiki/Java).
 
+<<<<<<< HEAD
+=======
+```smart header="Why is it called <u>Java</u>Script?"
+When JavaScript was created, it initially had another name: "LiveScript". But Java was very popular at that time, so it was decided that positioning a new language as a "younger brother" of Java would help.
+>>>>>>> e92bb83e995dfea982dcdc5065036646bfca13f0
 
 ```smart header="Neden <u>Java</u>Script?"
 JavaScript ilk yazıldığında, başka bir adı vardı: "LiveScript". Ancak Java dili o dönemlerde çok ünlü olduğundan dolayı yeni bir dil ve "küçük kardeş" gibi görünmesi açısından JavaScript olarak değiştirildi.
@@ -39,7 +44,11 @@ Motorlar çok karmaşık yapılardır. Ancak kolay ögelere dayanırlar.
 2. Sonra bu kodları makine diline çevirir.
 3. Makine bu kodları çok hızlı bir biçimde çalıştırır.
 
+<<<<<<< HEAD
 Motor bu sürecin her bir adımında iyileştirme yapar. Hatta derlenmiş ve çalışır durumda bulunan kodlardaki veri yapılarını inceler ve bunları iyileştirerek daha hızlı duruma getirir. Sonuç olarak yazılan bu kodlar çok hızlı bir biçimde çalışır.
+=======
+The engine applies optimizations at each step of the process. It even watches the compiled script as it runs, analyzes the data that flows through it, and further optimizes the machine code based on that knowledge.
+>>>>>>> e92bb83e995dfea982dcdc5065036646bfca13f0
 ```
 
 ## Tarayıcı içerisindeki JavaScript neler yapabilir?
@@ -93,8 +102,12 @@ JavaScript'ten başka bu üç özelliği taşıyan hiçbir tarayıcı teknolojis
 
 JavaScript'in eşsiz olma nedeni budur ve bu yüzden web sayfaları geliştirmekte kullanılan en yaygın araçtır.
 
+<<<<<<< HEAD
 Yeni bir teknolojiyi öğrenmeye başlarken, sunacağı avantajlar için öngörü önemlidir. Bu sebeptendir ki, yeni diller ve tarayıcı yetkinlikleri içeren bu yönelimlere ayak uydurmalıyız.
 
+=======
+That said, JavaScript also allows to create servers, mobile applications, etc.
+>>>>>>> e92bb83e995dfea982dcdc5065036646bfca13f0
 
 ## JavaScript'e üstün diller
 
@@ -106,7 +119,11 @@ Bundan dolayı yakın zamanda bir sürü yeni *transpiled* yani çevirilmiş dil
 
 Bu dillere örnek vermek gerekirse:
 
+<<<<<<< HEAD
 - [CofeeScript](http://coffeescript.org) JavaScript için "şeker yazım" denebilecek bir dildir. Yazılımı daha kısadır ve daha temiz kod yazmaya yardımcı olur. Genellikle [Ruby](https://www.ruby-lang.org/tr/) geliştiriciler bunu sever.
+=======
+Examples of such languages:
+>>>>>>> e92bb83e995dfea982dcdc5065036646bfca13f0
 
 - [Typescript](http://www.typescriptlang.org/) durağan veri yapıları ile JavaScript yazılmasını sağlar. Karmaşık programlar geliştirmeyi kolaylaştırır. Microsoft tarafından geliştirilmiştir.
 

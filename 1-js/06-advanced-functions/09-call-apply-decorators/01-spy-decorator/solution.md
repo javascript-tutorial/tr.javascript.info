@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 Burada `calls.push(args)` ile `f.apply(this,args)`'a gönderilen tüm çağrıların argümanları tutulabilir.
+=======
+The wrapper returned by `spy(f)` should store all arguments and then use `f.apply` to forward the call.
+>>>>>>> e92bb83e995dfea982dcdc5065036646bfca13f0
