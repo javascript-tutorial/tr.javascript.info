@@ -1,6 +1,6 @@
 # Fonksiyon ifadeleri.
 
-JavaScript'te fonksiyonlar "büyülü dil yapısı" değil sadece özel bir tip değerdir.
+JavaScript'te fonksiyonlar, "büyülü dil yapısı" değil yalnızca özel bir değer tipidir.
 [cut]
 
 Daha önceden *fonksiyon tanımlama* için aşağıdaki form kullanılmıştı.
@@ -65,7 +65,7 @@ Detayına bakılacak olursa:
 1.`(1)` fonksiyon tanımlanır ve `selamVer` değişkenine atanır.
 2. `(2)` bunu `func` değişkenine kopyalar.
 
-    Tekrardan hatırlatmak gerekirse: `selamVer` etrafında parantez bulunmamaktadır. Eğer parantez ile yazılacak olsaydı `func = selamVer()`, `selamVer()` fonksiyonunun çıktısı `func` değişkenine atanırdı fonksiyon değil.
+    Tekrardan hatırlatmak gerekirse: `selamVer` etrafında parantez bulunmamaktadır. Eğer `func = selamVer()` şeklinde parantez ile yazılacak olsaydı, func değişkenine atanan değer `selamVer` fonksiyonunun kendisi değil, bu fonksiyonun çıktısı olurdu.
 
 3. Fonksiyon bundan sonra `selamVer()` ve `func()` şeklinde çağırılabilir.
  
@@ -154,7 +154,7 @@ function sor(soru, evet, hayir) {
 
 *!*
 sor(
-  "Kabul Ediyormusun?",
+  "Kabul Ediyor musun?",
   function() { alert("Kabul ettin"); },
   function() { alert("Çalışmayı durdurdun."); }
 );
