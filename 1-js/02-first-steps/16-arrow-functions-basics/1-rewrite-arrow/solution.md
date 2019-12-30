@@ -1,16 +1,17 @@
 
 ```js run
-function sor(soru, evet, hayir) {
-  if (confirm(soru)) evet()
-  else hayir();
+function ask(question, yes, no) {
+  if (confirm(question)) yes()
+  else no();
 }
 
 ask(
-  "Kabul ediyor musun?",
+  "Do you agree?",
 *!*
-  () => alert("Kabul ettin."),
-  () => alert("Çalışmasını durdurdun")
+  () => alert("You agreed."),
+  () => alert("You canceled the execution.")
 */!*
 );
 ```
-Daha kısa ve temiz görünüyor değil mi?
+
+Looks short and clean, right?
