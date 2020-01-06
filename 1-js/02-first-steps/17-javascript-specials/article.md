@@ -1,182 +1,191 @@
-# JavaScript incelikleri
+# JavaScript specials
 
-Bu bölümde kısaca JavaScript dilinde hali hazırda öğrendiğiniz fakat özellikle dikkat etmeniz gereken inceliklerden bahsedilecektir.
+This chapter briefly recaps the features of JavaScript that we've learned by now, paying special attention to subtle moments.
 
-## Kod Yapısı
+## Code structure
 
-Cümleler birbirinden noktalı virgül ile ayrılır:
-
-```js run no-beautify
-alert('Merhaba'); alert('Dünya');
-```
-
-Genelde, yeni satıra geçmekte noktalı virgül görevi görür. Bundan dolayı aşağıdaki kod da çalışır:
+Statements are delimited with a semicolon:
 
 ```js run no-beautify
-alert('Merhaba')
-alert('Dünya')
+alert('Hello'); alert('World');
 ```
-Buna "otomatik noktalı virgül koyma" denir. Bazen çalışmaz, örneğin:
+
+Usually, a line-break is also treated as a delimiter, so that would also work:
+
+```js run no-beautify
+alert('Hello')
+alert('World')
+```
+
+That's called "automatic semicolon insertion". Sometimes it doesn't work, for instance:
 
 ```js run
-alert("Bu mesajdan sonra hata verecek")
+alert("There will be an error after this message")
 
 [1, 2].forEach(alert)
 ```
 
-Çoğu kod klavuzu her cümlenizin sonuna noktalı virgül kullanmanız gerektiği kanısındadır.
+Most codestyle guides agree that we should put a semicolon after each statement.
 
-Noktalı virgüller `{..}` kod bloğu sonunda gerekli değildir, örneğin döngüler:
+Semicolons are not required after code blocks `{...}` and syntax constructs with them like loops:
 
 ```js
 function f() {
-  // fonksiyon tanımından sonra noktalı virgül yazılmaz
+  // no semicolon needed after function declaration
 }
 
 for(;;) {
-  // döngüden sonra noktalı virgül yazılmaz
+  // no semicolon needed after the loop
 }
 ```
-... Diyelim ki yine de noktalı virgül koymak istediniz. Bu bir hata değildir, önemsenmez.
 
-Daha fazlasına <info:structure> bölümünden bakabilirsiniz.
+...But even if we can put an "extra" semicolon somewhere, that's not an error. It will be ignored.
 
-## Sıkı Mod
+More in: <info:structure>.
 
-JavaScript'in tüm modern özelliklerini kullanabilmek için, `"use strict"` kullanmanız gerekmektedir.
+## Strict mode
+
+To fully enable all features of modern JavaScript, we should start scripts with `"use strict"`.
 
 ```js
 'use strict';
 
 ...
 ```
-Bu talimatı dosyanın başında veya fonksiyonun başında belirtmeniz gerekmektedir.
 
-`"use strict"` kullanmadan da herşey çalışır. Fakat eski tipte ve uyumluluk modunda çalışır. Modern davranışı seçerseniz böylece son yenilikleri uyumluluk modu olmadan da çalıştırabilirsiniz.
+The directive must be at the top of a script or at the beginning of a function body.
 
-Bazı modern özellikler ise uyumluluk modunda da çalışmaz sadece sıkı modda çalışır. Bunlara ilerleyen zamanlarda değinilecektir.
-Dahası için: <info:strict-mode>.
+Without `"use strict"`, everything still works, but some features behave in the old-fashion, "compatible" way. We'd generally prefer the modern behavior.
 
-## Değişkenler
+Some modern features of the language (like classes that we'll study in the future) enable strict mode implicitly.
 
-Şu şekillerde tanımlanabilir:
+More in: <info:strict-mode>.
+
+## Variables
+
+Can be declared using:
 
 - `let`
-- `const` (sabit, değiştirilemez)
-- `var` (eski tip)
+- `const` (constant, can't be changed)
+- `var` (old-style, will see later)
 
-Değişkenler isimlendirilirken aşağıdakileri içerebilir:
-- Harf ve sayıları içerebilir fakat ilk karakter sayı olamaz.
-- `$` ve `_` gibi karakterler diğer karakterle aynı niteliktedir ve her yerde kullanılabilir.
-- Latin olmayan yani Arapça, Japonca, Çince gibi diller de kullanılabilir fakat genelde kullanılmaz. 
+A variable name can include:
+- Letters and digits, but the first character may not be a digit.
+- Characters `$` and `_` are normal, on par with letters.
+- Non-Latin alphabets and hieroglyphs are also allowed, but commonly not used.
 
-Değişkenler dinamik yazıma sahiptir ve herşeyi tutabilirler:
+Variables are dynamically typed. They can store any value:
 
 ```js
 let x = 5;
-x = "Ahmet";
+x = "John";
 ```
 
-7 çeşit veri tipi bulunmaktadır:
+There are 7 data types:
 
-- `number` ( sayı ) floating-point ve doğal sayılar için kullanılır.
-- `string` (karakter dizileri),
-- `boolean` Mantıksal değerler için `dogru/yanlis`,
-- `null` -- sadece `null` değerini tutar ve bu da "boş" veya "varolmayan" anlamına gelir,
-- `undefined` -- sadece `undefined` değerine sahiptir. Bu da "değer atanmamış" demektir,
-- `object` ve `symbol` -- karmaşık veri yapıları için ve tek tanıtıcı(unique identifier) için kullanılabilir. Bu konular henüz anlatılmadı.
+- `number` for both floating-point and integer numbers,
+- `string` for strings,
+- `boolean` for logical values: `true/false`,
+- `null` -- a type with a single value `null`, meaning "empty" or "does not exist",
+- `undefined` -- a type with a single value `undefined`, meaning "not assigned",
+- `object` and `symbol` -- for complex data structures and unique identifiers, we haven't learnt them yet.
 
-`typeof` operatörü değerin tipini dönderir, fakat şu hallerde hata verir:
-
+The `typeof` operator returns the type for a value, with two exceptions:
 ```js
-typeof null == "object" // hata verir
-typeof function(){} == "function" // fonksiyonlara özel davranılır.
+typeof null == "object" // error in the language
+typeof function(){} == "function" // functions are treated specially
 ```
 
-Dahası için: <info:variables> ve <info:types> konularına bakabilirsiniz.
+More in: <info:variables> and <info:types>.
 
-## Etkileşim
+## Interaction
 
-Şu anda tarayıcıyı çalışma ortamı olarak kullandığınızdan dolayı, bazı basit arayüz fonksiyonlarını bilmekte fayda var:
+We're using a browser as a working environment, so basic UI functions will be:
 
-[`prompt(soru[, varsayılan])`](mdn:api/Window/prompt)
-: `soru` sor ve kullanıcının girdiği değeri dönder. Eğer kullanıcı "iptal" tuşuna bakarsa `null` dönder.
+[`prompt(question, [default])`](mdn:api/Window/prompt)
+: Ask a `question`, and return either what the visitor entered or `null` if they clicked "cancel".
 
-[`confirm(soru)`](mdn:api/Window/confirm)
-: `soru` sor ve "Tamam" mı yoksa "İptal" mi diye seçenekler sun. Sonuçta seçilene göre  `true/false` dönder.
+[`confirm(question)`](mdn:api/Window/confirm)
+: Ask a `question` and suggest to choose between Ok and Cancel. The choice is returned as `true/false`.
 
-[`alert(mesaj)`](mdn:api/Window/alert)
-: Mesajın çıktısını ekrana uyarı olarak ver.
+[`alert(message)`](mdn:api/Window/alert)
+: Output a `message`.
 
-tüm bo fonksiyonlar *modal* dır. Tekrara hatırlatmak gerekirse modal kullanıcının etkileşimi olana kadar kodu durdururlar. Yani kullanıcıdan cevabı beklerler.
+All these functions are *modal*, they pause the code execution and prevent the visitor from interacting with the page until they answer.
 
-Örneğin:
+For instance:
 
 ```js run
-let ziyaretci = prompt("Adınız?", "İbrahim");
-let cayIstermi = confirm("Biraz çay ister misiniz?");
+let userName = prompt("Your name?", "Alice");
+let isTeaWanted = confirm("Do you want some tea?");
 
-alert( "Ziyaretçi: " + ziyaretci ); // İbrahim
-alert( "Çay isteriyor mu?: " + cayIstermi ); // true
+alert( "Visitor: " + userName ); // Alice
+alert( "Tea wanted: " + isTeaWanted ); // true
 ```
 
-Dahası için: <info:alert-prompt-confirm>.
+More in: <info:alert-prompt-confirm>.
 
-## Operatörler
+## Operators
 
-JavaScript aşağıdaki operatörleri destekler:
+JavaScript supports the following operators:
 
-Aritmetiksel
-: Normal işlemler: `* + - /`, mod alma `%`  ve `**` üs alma için bu operatörler kullanılır.
+Arithmetical
+: Regular: `* + - /`, also `%` for the remainder and `**` for power of a number.
 
-    Eğer operandlardan birisi karakter ise diğer taraf sayı bile olsa `+` kullanıldığında bu iki değer de karakter olarak varsayılır
+    The binary plus `+` concatenates strings. And if any of the operands is a string, the other one is converted to string too:
 
     ```js run
-    alert( '1' + 2 ); // '12', karakter dizisi
-    alert( 1 + '2' ); // '12', karakter dizisi
+    alert( '1' + 2 ); // '12', string
+    alert( 1 + '2' ); // '12', string
     ```
 
-Değer atama
-: Basit bir şekilde `a = b` şeklinde kullanılabilir. Veya birleşik olarak  `a *= 2` gibi de kullanıma sahiptir.
+Assignments
+: There is a simple assignment: `a = b` and combined ones like `a *= 2`.
 
-Bit seviyesi işlemler
-: Bit seviye operatörleri şu şekilde kullanılabilir: [docs](mdn:/JavaScript/Reference/Operators/Bitwise_Operators)
+Bitwise
+: Bitwise operators work with 32-bit integers at the lowest, bit-level: see the [docs](mdn:/JavaScript/Reference/Operators/Bitwise_Operators) when they are needed.
 
-Üçlü operatör
-: Üç tane paremetreden oluşur: `koşul ? sonucA : sonucB`. Eğer `koşul` doğru ise `sonucA` döndürür, yanlış ise `sonucB` 
+Conditional
+: The only operator with three parameters: `cond ? resultA : resultB`. If `cond` is truthy, returns `resultA`, otherwise `resultB`.
 
-Mantıksal operatörler:
-: Mantıksal VE `&&`, VEYA `||` operatörleri ile bu işlemler yapılabilir.
+Logical operators
+: Logical AND `&&` and OR `||` perform short-circuit evaluation and then return the value where it stopped (not necessary `true`/`false`). Logical NOT `!` converts the operand to boolean type and returns the inverse value.
 
-Karşılaştırma
-: Eşitlik kontrolü `==`, farklı tipteki verileri sayıya çevirip kontrol eder. `null` ve ` undefined` hariç, bu ikisi de birbirine eşittir.
+Comparisons
+: Equality check `==` for values of different types converts them to a number (except `null` and `undefined` that equal each other and nothing else), so these are equal:
 
     ```js run
     alert( 0 == false ); // true
     alert( 0 == '' ); // true
     ```
-    `sıkı eşitlik` operatörü `===` bu çeviriyi yapmamaktadır: farklı tipler her zaman farklı değerler ifade eder, öyleyse:
 
-    `null` ve `undefined` değerleri özeldir: `==` şeklinde birbirlerine eşittirler. Fakat başka hiç bir değere eşit değildirler.
-    Büyüktür/Küçüktür karşılaştırmasında karakter dizileri karakter karakter karşılaştırılır. Diğer tipler sayıya çevrilir.
+    Other comparisons convert to a number as well.
 
+    The strict equality operator `===` doesn't do the conversion: different types always mean different values for it.
 
-Geri kalan operatörleri daha derin bir biçimde <info:operators>, <info:comparison>, <info:logical-operators> bölümlerinden inceleyebilirsiniz.
+    Values `null` and `undefined` are special: they equal `==` each other and don't equal anything else.
 
-## Döngüler
+    Greater/less comparisons compare strings character-by-character, other types are converted to a number.
 
-- Şimdiye kadar 3 çeşit döngü işlendi:
+Other operators
+: There are few others, like a comma operator.
+
+More in: <info:operators>, <info:comparison>, <info:logical-operators>.
+
+## Loops
+
+- We covered 3 types of loops:
 
     ```js
     // 1
-    while (koşul) {
+    while (condition) {
       ...
     }
 
     // 2
     do {
       ...
-    } while (koşul);
+    } while (condition);
 
     // 3
     for(let i = 0; i < 10; i++) {
@@ -184,93 +193,87 @@ Geri kalan operatörleri daha derin bir biçimde <info:operators>, <info:compari
     }
     ```
 
-- `for(let...)` içinde tanımlanan değişkenler sadece döngü içerisinden erişilebilirdir. Fakat `let`i pas geçip var olan değişkeni kullanmak da mümkündür.
-- Direktifler `break/continue` döngüden çıkılmasını sağlar. `label` kullanarak iç içe döngüde `break/continue` nereye dallanacağını belirleyebilirsiniz.
+- The variable declared in `for(let...)` loop is visible only inside the loop. But we can also omit `let` and reuse an existing variable.
+- Directives `break/continue` allow to exit the whole loop/current iteration. Use labels to break nested loops.
 
-Detaylaına <info:while-for> bölümünden erişebilirsiniz.
+Details in: <info:while-for>.
 
-İlerleyen bölümlerde döngülerin nasıl objelerle başa çıktığı üzerinde durulacaktır.
+Later we'll study more types of loops to deal with objects.
 
-## "switch" yapısı
+## The "switch" construct
 
-"switch" yapısı çoklu `if` kontrolleri yerine kullanılabilir. "switch" karşılaştırma için, sıkı karşılaştırmayı `===` kullanır.
+The "switch" construct can replace multiple `if` checks. It uses `===` (strict equality) for comparisons.
 
-Örneğin:
+For instance:
+
 ```js run
-let age = prompt('Kaç yaşındasın?', 18);
+let age = prompt('Your age?', 18);
 
 switch (age) {
   case 18:
-    alert("Çalışmaz"); // `prompt` ile tutulan değer sayı değil karakterdir!!!
+    alert("Won't work"); // the result of prompt is a string, not a number
 
   case "18":
-    alert("Çalışır!");
+    alert("This works!");
     break;
 
   default:
-    alert("Değer yukarıda bulunan koşullara uymamakta");
+    alert("Any value not equal to one above");
 }
 ```
 
-Detaylı bilgi için: <info:switch>.
+Details in: <info:switch>.
 
-## Fonksiyonlar
+## Functions
 
-Şimdiye kadar üç faklı yolla fonksiyon yazılabileceği gösterildi:
+We covered three ways to create a function in JavaScript:
 
-1. Fonksiyon Tanımlama: Fonksiyon ana kod akışında.
+1. Function Declaration: the function in the main code flow
 
     ```js
-    function toplam(a, b) {
-      let sonuc = a + b;
+    function sum(a, b) {
+      let result = a + b;
 
-      return sonuc;
+      return result;
     }
     ```
 
-2. Fonksiyon ifadesi: Fonksiyon ifadenin içerisinde
+2. Function Expression: the function in the context of an expression
 
     ```js
-    let toplam = function(a, b) {
-      let sonuc = a + b;
+    let sum = function(a, b) {
+      let result = a + b;
 
-      return sonuc;
-    }
+      return result;
+    };
     ```
-    Fonksiyon ifadesi bir `isme` sahip olabilir fakat bu `isim` sadece bu fonksiyon içinde kullanılabilir. Örneğin = `toplam = function isim(a,b)` gibi.
 
-3. Ok fonksiyonları:
+3. Arrow functions:
 
     ```js
-    // ifada sağ tarafta
-    let toplam = (a, b) => a + b;
+    // expression at the right side
+    let sum = (a, b) => a + b;
 
-    // Çoklu satır için {..} kullanılmalı ve `return` ile değerin dönderilmesi gerekmektedir:
-    let toplam = (a, b) => {
+    // or multi-line syntax with { ... }, need return here:
+    let sum = (a, b) => {
       // ...
       return a + b;
     }
 
-    // argümansız
-    let selamVer = () => alert("Merhaba");
+    // without arguments
+    let sayHi = () => alert("Hello");
 
-    // tek argümanlı
-    let ikiyeKatla = n => n * 2;
+    // with a single argument
+    let double = n => n * 2;
     ```
 
 
-- Fonksiyonlar yerel değişkenlere sahip olabilirler: Bu değişkenler fonksiyon gövdesinde yazılır ve sadece fonksiyon içerisinde kullanılabilir.
-- Parametreler varsayılan değerlere sahip olabilirler: `function sum(a = 1, b = 2){...}`
-- Fonksiyonlar her zaman birşey döndürürler. Eğer `return` kelimesi yoksa sonuçta yine de `undefined` döner.
+- Functions may have local variables: those declared inside its body. Such variables are only visible inside the function.
+- Parameters can have default values: `function sum(a = 1, b = 2) {...}`.
+- Functions always return something. If there's no `return` statement, then the result is `undefined`.
 
+Details: see <info:function-basics>, <info:arrow-functions-basics>.
 
-| Fonksiyon Tanımlama | Fonksiyon ifadesi |
-|----------------------|---------------------|
-| Tüm kod bloğunda görünür | kodların çalışması kendisine ulaşırsa çalışır |
-|   - | isme sahip olabilir, sadece fonksiyon içerisinde çalışır |
+## More to come
 
-Dahası için: <info:function-basics>, <info:function-expressions-arrows>. 
-
-## Dahası var
-
-Burada sadece JavaScrpt özelliklerinin kısa bir listesi verilmiştir. Şu ana kadar sadece basit anlamda bu dili inceledik. Gelecek konularda daha özel ve gelişmiş JavaScript özelliklerini inceleyebilirsiniz.
+That was a brief list of JavaScript features. As of now we've studied only basics. Further in the tutorial you'll find more specials and advanced features of JavaScript.

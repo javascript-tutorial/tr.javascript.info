@@ -101,7 +101,11 @@ Son tahlilde hafıza haritası şu şekildedir:
 
 ![](family.svg)
 
+<<<<<<< HEAD
 Şu anda tüm objeler erişilebilir durumdadır.
+=======
+![](family.svg)
+>>>>>>> 14e4e9f96bcc2bddc507f409eb4716ced897f91a
 
 İki referans silinirse:
 
@@ -147,7 +151,11 @@ Bu örnek erişilebilirliğin ne kadar önemli bir konsept olduğunu gösterir.
 
 Temelde Çöp Toplama algoritması "mark-and-sweep" algoritmasıdır.
 
+<<<<<<< HEAD
 Aşağıdaki Çöp Toplama işlemleri düzenli olarak yapılır:
+=======
+![](family-no-family.svg)
+>>>>>>> 14e4e9f96bcc2bddc507f409eb4716ced897f91a
 
 - Çöp toplayıcı kökleri işaretler(hatırlar).
 - Sonra bunlardan tüm referansları işaretler.
@@ -164,35 +172,71 @@ Diyelimki obje yapısı aşağıdaki gibi olsun:
 
 İlk adım kökleri işaretlemek:
 
+<<<<<<< HEAD
 ![](garbage-collection-2.svg)
+=======
+- The garbage collector takes roots and "marks" (remembers) them.
+- Then it visits and "marks" all references from them.
+- Then it visits marked objects and marks *their* references. All visited objects are remembered, so as not to visit the same object twice in the future.
+- ...And so on until every reachable (from the roots) references are visited.
+- All objects except marked ones are removed.
+>>>>>>> 14e4e9f96bcc2bddc507f409eb4716ced897f91a
 
 Sonra bunların referansları:
 
+<<<<<<< HEAD
+=======
+![](garbage-collection-1.svg)
+>>>>>>> 14e4e9f96bcc2bddc507f409eb4716ced897f91a
 
 ![](garbage-collection-3.svg)
 
 ...Sonra eğer mümkün ise referansların referansları:
 
+<<<<<<< HEAD
 ![](garbage-collection-4.svg)
+=======
+![](garbage-collection-2.svg)
+>>>>>>> 14e4e9f96bcc2bddc507f409eb4716ced897f91a
 
 Son adım olarak ziyaret edilmeyen objeler "ulaşılamaz" addedilip silinir:
 
+<<<<<<< HEAD
 ![](garbage-collection-5.svg)
+=======
+![](garbage-collection-3.svg)
+>>>>>>> 14e4e9f96bcc2bddc507f409eb4716ced897f91a
 
 JavaScript motoru bunu hızlıca çalıştırmak ve kodun çalışmasını etkilememek için bir çok optimizsyon yapar.
 
+<<<<<<< HEAD
+=======
+![](garbage-collection-4.svg)
+>>>>>>> 14e4e9f96bcc2bddc507f409eb4716ced897f91a
 
 Bazı Optimizasyonlar:
 
+<<<<<<< HEAD
 - **Jenerason Koleksiyonu** -- objeler iki kümeye ayrılır: "yeni olanlar" ve "eski olanlar". Çoğu obje birden var olur, işini hızlı bir şekilde yapar ve hızlıca ölür, bunların hemen silinmesi gerekir. Eğer silinemediler ise bu defa eskiler kümesine girerler ve daha az sıklıkla silinirler.
 
 
 - **Artımlı Koleksiyon** -- Eğer çok fazla sayıda obje varsa bu objeleri bir seferde dolaşmak çok fazla zaman alacaktır. Kod çalışırken belki biraz yavaşlamaya neden olabilir. Bundan dolayı motorlar genelde çöp toplama işini bölümlere ayırırlar. Bu bölümleri ayrı ayrı çalışır. Tabi kendileri arasında bir şekilde değişiklikleri bildirmeleri gerekir, fakat bir tane büyük yerine bu şekilde küçük küçük işlemler hızı artırmaktadık.
+=======
+![](garbage-collection-5.svg)
+
+We can also imagine the process as spilling a huge bucket of paint from the roots, that flows through all references and marks all reachable objects. The unmarked ones are then removed.
+
+That's the concept of how garbage collection works. JavaScript engines apply many optimizations to make it run faster and not affect the execution.
+>>>>>>> 14e4e9f96bcc2bddc507f409eb4716ced897f91a
 
 - **Boş zaman Koleksiyonu** -- Çöp toplayıcı genelde CPU kullanılmadığı zamanlarda çalışır, böylece kodun çalışmasına olan etki en aza iner.
 
 Bunlarla birlikte başka optimizasyon ve çöp toplama algoritmaları bulunmaktadır. Her motor kendine göre farklı optimizasyonu beraberinde getirir. Daha da önemlisi motor geliştikçe bakış açıları değişir. Analizler artar. Eğer gerçekten ilginizi çekiyorsa bu konu aşağıdaki linkler size yol gösterecektir.
 
+<<<<<<< HEAD
+=======
+There exist other optimizations and flavours of garbage collection algorithms. As much as I'd like to describe them here, I have to hold off, because different engines implement different tweaks and techniques. And, what's even more important, things change as engines develop, so studying deeper "in advance", without a real need is probably not worth that. Unless, of course, it is a matter of pure interest, then there will be some links for you below.
+>>>>>>> 14e4e9f96bcc2bddc507f409eb4716ced897f91a
 
 ## Özet
 
