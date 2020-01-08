@@ -57,7 +57,7 @@ Eğer İngilizce versiyonunun da geliştirilebileceğini düşünüyorsanız. L�
 - Yorumları tercüme edin.
 - Örnek metinleri ve kullanıcı mesajlarını tercüme edin.
 - Değişkenleri, sınıfları, tanımlamaları tercüme etmeyiniz.
-- Kodun tercümeden sonra çelıştığına emin olun :)
+- Kodun tercümeden sonra çalıştığına emin olun :)
 
 Örnek:
 
