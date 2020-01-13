@@ -94,7 +94,11 @@ let meyveler = [
 
 ![](queue.svg)
 
+<<<<<<< HEAD
 Diziler bu iki işlemi de destekler.
+=======
+![](queue.svg)
+>>>>>>> a4a84083a7656f2b25de8b766b2457d3aae17874
 
 Bu işlemler ile çokça karşılaşılır. Örneğin, kuyruktaki mesajların hepsinin ekranda gösterilmesi gerekebilir.
 
@@ -380,7 +384,11 @@ let matrix = [
   [7, 8, 9]
 ];
 
+<<<<<<< HEAD
 alert( matrix[1][1] ); // merkez eleman
+=======
+alert( matrix[1][1] ); // 5, the central element
+>>>>>>> a4a84083a7656f2b25de8b766b2457d3aae17874
 ```
 
 ## toString

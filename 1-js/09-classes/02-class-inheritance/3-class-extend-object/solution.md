@@ -25,8 +25,13 @@ Bu problem düzeltildikten sonra bile, `"class Rabbit extends Object"` ile `clas
 Bildiğiniz gibi "extends" yazımı iki prototip kurar:
 
 
+<<<<<<< HEAD
 1. Yapıcı fonksiyonların `"prototype"` ları arasında ( metodlar için )
 2. Yapıcı fonksiyonların kendileri arasında ( statik metodlar için ) 
+=======
+1. Between `"prototype"` of the constructor functions (for methods).
+2. Between the constructor functions themselves (for static methods).
+>>>>>>> a4a84083a7656f2b25de8b766b2457d3aae17874
 
 Bizim durumumuzda `class Rabbit extends Object`:
 

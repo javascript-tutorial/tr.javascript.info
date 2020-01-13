@@ -12,7 +12,11 @@ let kullanici = {
 ```
 Tarayıcıların çoğundaki hata mesajının anlaşılmaz.
 
+<<<<<<< HEAD
 **The error appears because a semicolon is missing after `kullanici = {...}`.**
+=======
+The error message in most browsers does not give us much of a clue about what went wrong.
+>>>>>>> a4a84083a7656f2b25de8b766b2457d3aae17874
 
 JavaScript parantezden önce noktalı virgül koymaz. Bu durumda kod aşağıdaki gibi çalışacaktır:
 
