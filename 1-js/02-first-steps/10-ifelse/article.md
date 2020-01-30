@@ -29,7 +29,7 @@ if (yil == 2015) {
   alert( "Bravo!" );
 }
 ```
-Her `if` kullandığınızda süslü parantez kullanmanız okunurluğu artıracaktır. Tek satırda yazsanız süslü parantez içinde yazmanız önerilir.
+Her `if` kullandığınızda süslü parantez kullanmanız okunurluğu artıracaktır. Tek satır bile yazsanız süslü parantez içinde yazmanız önerilir.
 
 ## Boolean dönüştürme
 
