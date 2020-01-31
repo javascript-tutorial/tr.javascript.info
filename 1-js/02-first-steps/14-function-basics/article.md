@@ -135,7 +135,7 @@ Genelde fonksiyonlar yapacakları işe ait tüm değişkenleri tanımlarlara, gl
 ## Parametreler
 Paramterelere isteğe bağlı olarak veri paslanabilir. Bunlara *fonksiyon argümanları* da denir.
 
-Aşağıdaki fonksiyon iki tane parametreye sahiptir. `denBeri` ve `metin`
+Aşağıdaki fonksiyon iki tane parametreye sahiptir. `gonderen` ve `metin`
 
 ```js run
 function mesajGoster(*!*gonderen, metin*/!*) { // argümanlar: gonderen, metin
@@ -150,7 +150,7 @@ mesajGoster('Mehmet', "Naber?"); // Mehmet: Naber? (**)
 
 Eğer fonksiyonlar `(*)` ve `(**)` deki gibi yazılırsa doğrudan fonksiyonda `gonderen` ve `metin` yerel değişkenlerine atanırlar. Sonrasında fonksiyon bunları kullanabilir.
 
-Aşağıda `gonderen` değişkeni fonksiyona paslanmakta. Dikkat ederseniz fonksiyon içerisinde `from` değişse bile bu dışarıda bulunan değişkeni etkilememekte. Çünkü fonksiyon bu değişkenin her zaman kopyasını kullanır:
+Aşağıda `gonderen` değişkeni fonksiyona paslanmakta. Dikkat ederseniz fonksiyon içerisinde `gonderen` değişse bile bu dışarıda bulunan değişkeni etkilememekte. Çünkü fonksiyon bu değişkenin her zaman kopyasını kullanır:
 
 
 ```js run
@@ -167,7 +167,7 @@ let gonderen = "Mahmut";
 
 mesajGoster(gonderen, "Merhaba"); // *Mahmut*: Merhaba
 
-// "from" değişkeninin değeri sadece fonksiyon içerisinde değişti. Çünkü bu değişken paslandığında fonksiyon yerel bir kopyası üzerinde çalışır
+// "gonderen" değişkeninin değeri sadece fonksiyon içerisinde değişti. Çünkü bu değişken paslandığında fonksiyon yerel bir kopyası üzerinde çalışır
 alert( gonderen ); // Mahmut
 ```
 
