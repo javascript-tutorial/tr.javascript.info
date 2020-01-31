@@ -89,7 +89,7 @@ alert( 'Çok büyük' );
 alert( "Böyle bir değeri bilmiyorum." );
 ```
 
-````smart header="Her türli ifade `switch/case` olabilir.
+````smart header="Her türli ifade `switch/case` olabilir."
 
 Örneğin:
 
