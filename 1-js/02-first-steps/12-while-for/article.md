@@ -328,7 +328,7 @@ Aşağıdaki gibi:
     let giris = prompt(`Kordinattaki değer (${i},${j})`, '');
 
     // Eğer iptal edildi veya boş bir değer girildiyse dışarıdaki döngüyü de kır.
-    if (!input) *!*break ust_dongu*/!*; // (*)
+    if (!giris) *!*break ust_dongu*/!*; // (*)
 
     // değer ile birşeyler yap.
   }
