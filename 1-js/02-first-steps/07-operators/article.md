@@ -262,16 +262,16 @@ Artırma/Azaltma sadece değişkenlere uygulanabilirler. `5++` gibi bir kullanı
 `++` ve `--` operatörleri değişkenden önce veya sonra kullanılabilirler.
 
 
-- When the operator goes after the variable, it is called a "postfix form": `counter++`.
-- The "prefix form" is when the operator stands before the variable: `++counter`.
+- Operatör değişkenden sonra geliyorsa ona "postfix form" deriz: `counter++`.
+- "prefix form" ise opeatörün değişkenden önce geldiği durumdur: `++counter`.
 
-Both of these records do the same: increase `counter` by `1`.
+Bu iki durumda da aynı işlem yapılır: `counter` değişkeni `1` arttırılır.
 
-Is there any difference? Yes, but we can only see it if we use the returned value of `++/--`.
+Peki bir farkları var mı? Evet, fakat bunu `++/--` işleminden dönen değerleri kullanırsak görebiliriz.
 
-Let's clarify. As we know, all operators return a value. Increment/decrement is not an exception here. The prefix form returns the new value, while the postfix form returns the old value (prior to increment/decrement).
+Şöyle açıklayabiliriz. Bildiğimiz üzere tüm operatörler bir değer döndürür. arttırma/azaltma opeatörleri buna bir istisna değildir. Prefix formu oluşan yeni değeri döndürürken, postfix formu eski değeri(arttırma/azaltma işlemi yapılmadan önceki) döndürür.
 
-To see the difference, here's the example:
+Farkı görebilmemiz için örneği inceleyelim:
 
 ```js run
 let counter = 1;
@@ -280,9 +280,9 @@ let a = ++counter; // (*)
 alert(a); // *!*2*/!*
 ```
 
-Here in the line `(*)` the prefix call `++counter` increments `counter` and returns the new value that is `2`. So the `alert` shows `2`.
+`(*)` satırında *prefix* formundaki `++counter` `counter` değişkenini arttırır ve yeni değer olan `2` yi döndürür. Yani `alert` bize `2` değerini gösterecektir.
 
-Now let's use the postfix form:
+Şimdi de postfix kullanıma bakalım:
 
 ```js run
 let counter = 1;
@@ -291,53 +291,53 @@ let a = counter++; // (*) changed ++counter to counter++
 alert(a); // *!*1*/!*
 ```
 
-In the line `(*)` the *postfix* form `counter++` also increments `counter`, but returns the *old* value (prior to increment). So the `alert` shows `1`.
+`(*)` satırında *postfix* formundaki `++counter` de aynı şekilde `counter` değişkenini arttırır fakat bu sefer değişkenin *eski* değerini(arttırma işlemi yapılmadan önceki) değerini döndürür. Yani `alert` bize `1` değerini gösterecektir.
 
-To summarize:
+Özetle:
 
-- If the result of increment/decrement is not used, then there is no difference in which form to use:
+- Eğer arttırma/azaltma işleminin sonucunu kullanmıyorsak hangi formu kullandığımızın bir farkı olmaz:
 
     ```js run
     let counter = 0;
     counter++;
     ++counter;
-    alert( counter ); // 2, the lines above did the same
+    alert( counter ); // 2, iki satır da aynı işlemi yaptı.
     ```
-- If we'd like to increase the value *and* use the result of the operator right now, then we need the prefix form:
+- Eğer bir değeri arttıracak *ve* onu aynı anda(o işlem sırasında) kullanacaksak, prefix formunu kullanmamız gerekir:
 
     ```js run
     let counter = 0;
     alert( ++counter ); // 1
     ```
-- If we'd like to increment, but use the previous value, then we need the postfix form:
+- Eğer arttırma yapacak fakat arttırma yapmadan yapmadan önceki değeri kullanacaksak, postfix formunu kullanmamız gerekir:
 
     ```js run
     let counter = 0;
     alert( counter++ ); // 0
     ```
 
-````smart header="Increment/decrement among other operators"
-Operators `++/--` can be used inside an expression as well. Their precedence is higher than most other arithmetical operations.
+````smart header="Diğer operatörler arasında arttırma/azaltma"
+`++/--` operatörleri ayrıca bir ifadenin içinde kullanılabilirler. Öncelikleri diğer tüm operatörlerden daha yüksektir.
 
-For instance:
+Örneğin:
 
 ```js run
 let counter = 1;
 alert( 2 * ++counter ); // 4
 ```
 
-Compare with:
+alttaki örnek ile karşılaştıralım:
 
 ```js run
 let counter = 1;
-alert( 2 * counter++ ); // 2, because counter++ returns the "old" value
+alert( 2 * counter++ ); // 2, çünkü counter++ "eski" değeri döndürecektir
 ```
 
-Though technically allowable, such notation usually makes the code less readable. One line does multiple things -- not good.
+Teknik olarak doğru olmakla birlikte bu tür kullanımlar kodu daha az okunur kılar. Bir satırında birden çok işlem yapılması çok iyi değildir.
 
-While reading the code, a fast "vertical" eye-scan can easily miss such `counter++`, and it won't be obvious that the variable increases.
+Kod okurken hızlı bir göz taraması sırasında `counter++` ifadesini gözden kaçırmamız oldukça olasıdır. Değişkenin arttırıldığı açıkça gözükmeyebilir.
 
-The "one line -- one action" style is advised:
+"Bir satır -- bir işlem" stili önerilir:
 
 ```js run
 let counter = 1;
@@ -346,29 +346,29 @@ counter++;
 ```
 ````
 
-## Bitwise operators
+## Bitsel(Bitwise) Operatörler
 
-Bitwise operators treat arguments as 32-bit integer numbers and work on the level of their binary representation.
+Bitsel operatörler argümanlara 32-bitlik doğal sayı gibi davranır ve ikili gösterimleri düzeyinde çalışır.
 
-These operators are not JavaScript-specific. They are supported in most programming languages.
+Bu operatörler JavaScript'e özgü değildir. Çoğu programlama dilinde bulunurlar.
 
-The list of operators:
+Operatörlerin listesi:
 
-- AND ( `&` )
-- OR ( `|` )
-- XOR ( `^` )
-- NOT ( `~` )
-- LEFT SHIFT ( `<<` )
-- RIGHT SHIFT ( `>>` )
-- ZERO-FILL RIGHT SHIFT ( `>>>` )
+- AND -- VE ( `&` )
+- OR -- VEYA ( `|` )
+- XOR -- ÖZEL VEYA ( `^` )
+- NOT -- DEĞİL ( `~` )
+- LEFT SHIFT -- SOLA KAYDIRMA ( `<<` )
+- RIGHT SHIFT -- SAĞ KAYDIRMA ( `>>` )
+- ZERO-FILL RIGHT SHIFT -- SIFIR DOLDURARAK SAĞ KAYDIRMA ( `>>>` )
 
-These operators are used very rarely. To understand them, we should delve into low-level number representation, and it would not be optimal to do that right now. Especially because we won't need them any time soon. If you're curious, you can read the [Bitwise Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) article in MDN. It would be more practical to do that when a real need arises.
+Bu oparatörlerin çok nadir kullanılır.  Onları anlamak için düşük seviyeli sayı temsiline girmemiz gerekiyor ve özellikle de yakın zamanda onlara ihtiyaç duymayacağımızdan şu anda bunu yapmak uygun olmayacaktır. Merak ediyorsanız, MDN ile ilgili [Bitwise Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) makalesini okuyabilirsiniz. Gerçek bir ihtiyacınız olduğunda bunu yapmak daha pratik olacaktır.
 
-## Modify-in-place
+## Modify-in-place (Yerinde Değiştir)
 
-We often need to apply an operator to a variable and store the new result in that same variable.
+Bazen bir değişken üzerinde bir operatör işlemi yaparız ve yeni oluşacak değerini aynı değişkende tutmak isteriz.
 
-For example:
+Örneğin:
 
 ```js
 let n = 2;
@@ -377,62 +377,63 @@ n = n * 2;
 ```
 
 This notation can be shortened using the operators `+=` and `*=`:
+Bu işlemler `+=` ve `*=` kullanılarak kısaltılabilir:
 
 ```js run
 let n = 2;
-n += 5; // now n = 7 (same as n = n + 5)
-n *= 2; // now n = 14 (same as n = n * 2)
+n += 5; // şu an n = 7 (n = n + 5 ile aynı)
+n *= 2; // şu an n = 14 (n = n * 2 ile aynı)
 
 alert( n ); // 14
 ```
 
-Short "modify-and-assign" operators exist for all arithmetical and bitwise operators: `/=`, `-=`, etc.
+Kısa olan "modify-and-assign" operatörleri tüm aritmetik ve bitsel operatörler için mevcuttur: `/=`, `-=`, vb.
 
-Such operators have the same precedence as a normal assignment, so they run after most other calculations:
+Bu tür operatörler normal bir atama(assignment) ile aynı önceliğe sahiptir, bu yüzden diğer birçok hesaplamalardan sonra çalışırlar.
 
 ```js run
 let n = 2;
 
 n *= 3 + 5;
 
-alert( n ); // 16  (right part evaluated first, same as n *= 8)
+alert( n ); // 16  (önce sağ kısımda işleem yapıldı, n *= 8 gibi)
 ```
 
-## Comma
+## Virgül
 
-The comma operator `,` is one of the rarest and most unusual operators. Sometimes, it's used to write shorter code, so we need to know it in order to understand what's going on.
+Virgül operatörü `,` nadir ve en alışılmadık operatörlerden birisidir. Bazen daha kısa kodlar yazmak için kullanılır. Bu yüzden neler olduğunu anlamak için bu operatörü de bilmemiz gerekiyor.
 
-The comma operator allows us to evaluate several expressions, dividing them with a comma `,`. Each of them is evaluated but only the result of the last one is returned.
+Virgül operatörü birden fazla ifadeyi virgül `,` ile ayırarak hesaplamamıza olanak sağlar. Her bir ifade işleme alınır fakat bu ifadelerden sadece sonuncusu döndürülür.
 
-For example:
+Örneğin:
 
 ```js run
 *!*
 let a = (1 + 2, 3 + 4);
 */!*
 
-alert( a ); // 7 (the result of 3 + 4)
+alert( a ); // 7 (3 + 4 işleminin sonucu)
 ```
 
-Here, the first expression `1 + 2` is evaluated and its result is thrown away. Then, `3 + 4` is evaluated and returned as the result.
+Burada, ilk ifade olan `1 + 2` işleme giriyor fakat sonucu çöpe atılıyor. Sonrasında gelen `3 + 4` işleme giriyor ve sonuç olarak geri döndürülüyor.
 
-```smart header="Comma has a very low precedence"
-Please note that the comma operator has very low precedence, lower than `=`, so parentheses are important in the example above.
+```smart header="Virgül operatörünün önceliği çok düşüktür"
+Unutmamak gerekir ki virgül oparatörü çok düşük bir önceliğe sahiptir, önceliği `=` den bile daha düşüktür; bu yüzden yukardaki örnekte gördüğümüz gibi parantezler çok önemlidir.
 
-Without them: `a = 1 + 2, 3 + 4` evaluates `+` first, summing the numbers into `a = 3, 7`, then the assignment operator `=` assigns    `a = 3`, and finally the number after the comma, `7`, is not processed so it's ignored.
+Parantezler olmadan: `a = 1 + 2, 3 + 4` ifadesinde önce `+` işleme alınır, değerler toplanarak `a = 3, 7` ifadesine çevirilir, ondan sonra atama operatörü `=` ile `a = 3` ataması yapılır, ve sonuç olarak virgülden sonraki sayı olan `7` işlenmeyerek yok sayılır.
 ```
 
-Why do we need an operator that throws away everything except the last part?
+Peki neden son kısım hariç her şeyi yok sayan bir operatöre neden ihtiyacımız var?
 
-Sometimes, people use it in more complex constructs to put several actions in one line.
+Bazen bizler, bir satırda birkaç işlem yapılan karmaşık yapılarda bu operatörü kullanırız.
 
-For example:
+Örneğin:
 
 ```js
-// three operations in one line
+// Bir satırda 3 farklı işlem
 for (*!*a = 1, b = 3, c = a * b*/!*; a < 10; a++) {
  ...
 }
 ```
 
-Such tricks are used in many JavaScript frameworks. That's why we're mentioning them. But, usually, they don't improve code readability so we should think well before using them.
+Bu tarz numaralar bir çok JavaScript frameworklerinde kullanılır. Bu yüzden bunladan bahsettik. Ama genelde bunlar kodun okunabilirliğini azaltıyorlar. Bu yüzden kullanmadan önce iyi düşünmek gerekir.
