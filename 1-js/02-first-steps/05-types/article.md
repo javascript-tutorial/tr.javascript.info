@@ -23,8 +23,7 @@ s = 12.345;
 Normal sayıların haricinde "özel sayısal değerler" de sayı olarak tanımlanabilir. Bunlar : `Infinity`, `-Infinity` ve `NaN` gibi değerlerdir.
 
 
-- `Infinity` matematiksel sonsuzluğu ifade eder.
-- `Infinity` represents the mathematical [Sonsuz](https://tr.wikipedia.org/wiki/Sonsuz) ∞. Diğer tüm sayılardan büyük olan özel bir sayıdır.
+- `Infinity` matematiksel [Sonsuzluğu](https://tr.wikipedia.org/wiki/Sonsuz) ∞ ifade eder. Diğer tüm sayılardan büyük olan özel bir sayıdır.
 
     0'a bölünmede sonuç sonsuzu verir:
 
