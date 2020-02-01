@@ -35,7 +35,7 @@ alert(id1 == id2); // false
 Eğer Ruby veya diğer diller ile çalışıyorsanız "symbols" farklı özelliklere sahip olabilir. JavaScript sembolleri tamamen farklıdır.
 
 ````warn header="Semboller doğrudan karakter dizisine çevrilmezler"
-Çoğu değer karakter dizisine çevrilmeyi destekler. Örnepşn, `alert` neredeyse tüm değerler için çalışır. Symbol ise farklıdır. Doğrudan karakter disizine çevrilemez.
+Çoğu değer karakter dizisine çevrilmeyi destekler. Örneğin, `alert` neredeyse tüm değerler için çalışır. Symbol ise farklıdır. Doğrudan karakter disizine çevrilemez.
 
 Örneğin, 
 Aşağıdaki `alert` hata verecektir.
@@ -69,7 +69,7 @@ let kullanici = { isim: "İhsan" };
 let id = Symbol("id");
 
 kullanici[id] = "ID değeri";
-alert( kullanici[id] ); //Sembolü bu şekilde anahtar olarak kullanarak kullanici objesine erişilebilir. we can access the data using the symbol as the key
+alert( kullanici[id] ); //Sembolü bu şekilde anahtar olarak kullanarak kullanici objesine erişilebilir.
 ```
 
 Peki `Symbol("id")`'nin karakter dizisi `"id"`'ye olan üstünlüğü nedir?
@@ -185,7 +185,7 @@ Bunu yapabilmek için *global sembol kaydı* kullanılabilir. Sembolleri bunun i
 
 Bu kayıt bölümünden sembolleri okumak için `Symbol.for(anahtar)` kullanılır.
 
-Bu gkıbak kayıt bölümünü kontrol eder. Eğer bir sembol `anahtar`olarak tanımalnmışsa bunu döndürür. Eğer böyle bir anahtar yok ise `Symbol(anahtar)` metodu çalışır ve bu yeni anahtar global sembol kaydı bölümüne kaydedilir.
+Bu global kayıt bölümünü kontrol eder. Eğer bir sembol `anahtar`olarak tanımalnmışsa bunu döndürür. Eğer böyle bir anahtar yok ise `Symbol(anahtar)` metodu çalışır ve bu yeni anahtar global sembol kaydı bölümüne kaydedilir.
 
 Örneğin:
 
@@ -200,7 +200,7 @@ let idAgain = Symbol.for("id");
 alert( id === idAgain ); // true
 ```
 
-Kayıt bölümündeki Sembollere *global semboller* denir. Eğer uygulamanın tamamnıda sembol bullanmak isterseniz bu bölüme kayıt edilmelidir.
+Kayıt bölümündeki Sembollere *global semboller* denir. Eğer uygulamanın tamamında sembol kullanmak isterseniz bu bölüme kayıt edilmelidir.
 
 
 ```smart header="Ruby Gibi"
@@ -263,9 +263,9 @@ Sembollerin iki kullanım yeri vardır:
 
 1. "Gizli" obje özellikleri
 
-    Eğer objeye yeni bir özellik eklenmek istenirse ve bu özelliklik başka kütüphaneler veya kodlar tarafından daha önce tanımlanmış ise, yeni bir sembol oluşturup bunu anahtar olarak kullanabilirsiniz. Sembol özelliği `for..in` içerisinde görünmez. Doğrudan da erişilemez, çünkü başka bir kod sizin yazdığınız sembole ulaşamaz. Bundan dolayı sizin istediğiniz aksiyonu değiştiremez
+    Eğer objeye yeni bir özellik eklenmek istenirse ve bu özellik başka kütüphaneler veya kodlar tarafından daha önce tanımlanmış ise, yeni bir sembol oluşturup bunu anahtar olarak kullanabilirsiniz. Sembol özelliği `for..in` içerisinde görünmez. Doğrudan da erişilemez, çünkü başka bir kod sizin yazdığınız sembole ulaşamaz. Bundan dolayı sizin istediğiniz aksiyonu değiştiremez
     
-    Öyleyse obje içine "fizlice" özellik eklenebilir ve başkasının da bu özelliği görmesi engellenmiş olur. Sembol özellikler ile bu amaca erişilebilir.
+    Öyleyse obje içine "gizlice" özellik eklenebilir ve başkasının da bu özelliği görmesi engellenmiş olur. Sembol özellikler ile bu amaca erişilebilir.
 
 2. JavaScript birçok sistem sembolüne sahiptir. Bunlara `Symbol.*` altından erişilebilir. Varolan davranışlar üzerinde değişiklik yapmak için kullanılır. Örneğin [iterables](inf:iterable) içinde `Symbol.iterator` kullanılmıştır, veya objeden ilkel tiplere çevrilirken `Symbol.toPrimitive` kullanılabilir. [object-to-primitive conversion](info:object-toprimitive)
 
