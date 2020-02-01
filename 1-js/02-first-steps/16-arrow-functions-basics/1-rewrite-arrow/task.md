@@ -9,7 +9,7 @@ function sor(soru, evet, hayir) {
   else hayir();
 }
 
-ask(
+sor(
   "Kabul ediyor musun?",
   function() { alert("Kabul ettin"); },
   function() { alert("Çalışmasını durdurdun"); }
