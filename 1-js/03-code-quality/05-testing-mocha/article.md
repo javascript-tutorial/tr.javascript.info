@@ -10,11 +10,11 @@ Fonksiyon yazıldığında, genelde ne olması gerektiğini düşünürüz: hang
 
 Geliştirme yaparken, bu fonksiyonun çıktısı ile bekleneni birbiri ile karşılaştırılabilir. Örneğin bu konsolda yapılabilir.
 
-Eğer birşey yanlışsa kod değiştirilir ve tekrar çalıştırılır, taki doğru çalışana dek.
+Eğer birşey yanlışsa kod değiştirilir ve tekrar çalıştırılır, ta ki doğru çalışana dek.
 
 Fakat bunları tekrar tekrar çalıştırmak iyi bir yöntem değildir.
 
-**Bu tekrarları yaparken, birşeyleri onutmak çokça karşılaşılan bir durumdur**
+**Bu tekrarları yaparken, bir şeyleri atlamak çokça karşılaşılan bir durumdur**
 
 Örneğin, `f` diye bir fonksiyon yazılırken. Test: `f(1)` çalışır fakat `f(2)` çalışmaz. Kod düzeltildi, şimdi  `f(2)`çalışmakta. Tamamlandı mı? Fakat `f(1)` tekrar test edilmedi. Bu bir hataya neden olabilir.
 
@@ -65,7 +65,7 @@ Bu özelliğin 3 ana bölümü vardır:
 
     `assert*` fonksiyonu `us`'ün beklendiği gibi çalışıp çalışmadığını kontrol eder. Burada `assert.equal`'ı kullanılmaktadır. Argümanları karşılaştırarak eşitlik olmadığı durumda hata verir. Burada `us(2,3)`, `8` e eşit mi diye bakılır
 
-    İleki dönemlerde farklı karşılaştırmaları göreceksiniz.
+    İleriki dönemlerde farklı karşılaştırmaları göreceksiniz.
 
 
 ## Geliştirme akışı
