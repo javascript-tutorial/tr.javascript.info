@@ -25,11 +25,11 @@ Bu panelde `hello.js` i seçtiğinizde aşağıdaki gibi bir ekran görmeniz ger
 ![](chrome-tabs.svg)
 
 Bu bölüm üçe ayrılmıştır:
-1. **Kaynak bölgesi**: Html, javascript, css ve diğer dosyalar görseller de dahil olmak üzere açılan sayfaya iat olan kaynakları gösterir. Chrome eklentileri de burada yer alabilir.
-2. **Kaynak bölgesi** burası ise kaynak kodu gösterir.
+1. **Dosya Gezgini**: Html, javascript, css ve diğer dosyalar görseller de dahil olmak üzere açılan sayfaya iat olan kaynakları gösterir. Chrome eklentileri de burada yer alabilir.
+2. **Kod Editörü** burası ise kaynak kodu gösterir.
 3. **Bilgi ve kontrol bölgesi** burada ise hata ayıklama yapılır. 
 
-Şimdi geliştirici araçlarının sol köşesinde bulunan açma kapama bölümünü kullanarak kendinize biraz yer açabilirsiniz.
+Şimdi geliştirici araçlarının sol köşesinde bulunan <span class="devtools" style="background-position:-172px -122px"></span> açma kapama bölümünü kullanarak kendinize biraz yer açabilirsiniz.
 
 ## Konsol
 
