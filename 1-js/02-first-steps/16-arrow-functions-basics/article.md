@@ -1,4 +1,4 @@
-## Ok Fonksiyonları [#arrow-functions]
+# Ok Fonksiyonları (arrow-functions)
 
 Fonksiyonları yaratmak için daha kısa bir yöntem daha vardır, bu Fonksiyon İfadesinden daha iyi denilebilir. Bunlara "Ok Fonksiyonları" denir. Çünkü "ok" gibi görünürler.
 
