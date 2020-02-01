@@ -5,7 +5,7 @@ function sor(soru, evet, hayir) {
   else hayir();
 }
 
-ask(
+sor(
   "Kabul ediyor musun?",
 *!*
   () => alert("Kabul ettin."),
