@@ -202,6 +202,7 @@ yonetici.f(); // Yonetici  (this == yonetici)
 yonetici['f'](); // Köşeli parantez veya noktalı yazım farketmez, her ikisi de çalışır.
 ```
 
+````smart header="Obje olmadan çağırma: `this == undefined`"
 Aslında fonksiyonu obje olmadan da çağırmak mümkündür.
 
 ```js run
