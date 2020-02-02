@@ -6,11 +6,12 @@ Ayrıca bunların metodlarının çağırılabilmesini sağlar. Az sonra da gös
 
 İlkel tipler ile objeler arasındaki farka bakılacak olursa:
 
-İlkel tip
+İlkel tip:
+- 7 tane ilkel tip vardır: `string`, `number`, `bigint`, `boolean`, `symbol`, `null` ve `undefined`.
 
-Obje
-: Birçok değeri özellikleri içerisinde saklayabilir.
-`{}` şeklinde, örneğin `{isim:"Kemal", yas:30}` gibi. JavaScript'te fonksiyonlar gibi başka türde de objeler bulunmaktadır.
+Obje:
+- Birçok değeri özellikleri içerisinde saklayabilir.
+- `{}` şeklinde, örneğin `{isim:"Kemal", yas:30}` gibi. JavaScript'te fonksiyonlar gibi başka türde de objeler bulunmaktadır.
 
 Objeler için ön önemli özelliklerden birisi de fonksiyonları özellikleri içerisinde tutabilmeleridir:
 
@@ -48,8 +49,7 @@ Burada JavaScript'i oluşturan kişiler ikilem ile karşılaşmışlardır:
 
 "Obje Kapları"(Object wrappers) her ilkel tip için farklıdır bunlar: `String`, `Number`, `Boolean` ve `Symbol` şeklindedir. Hepsinin kendine has metodları vardır.
 
-Örneğin [str.toUpperCase()]
-For instance, there exists a method [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) karakterlerin büyük harfe çevirir.
+Örneğin [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase)  bir stringdeki karakterlerin hepsini büyük harfe çevirir.
 
 
 Çalışması şu şekilde:
@@ -62,7 +62,7 @@ alert( str.toUpperCase() ); // MERHABA
 
 Basit değil mi? `str.toUpperCase()` çağırıldığında sırası ile aşağıdakiler olmaktadır.
 
-1. Karakter dizisi `str` ilkel bir tiptir. Bundan dolayı özelliğine erişilmek istendiğinde aynı karakter dizisine sahip bir obje yaratılır. Bu objejin `toUpperCase()` gibi kullanışlı metodları bulunmaktadır.
+1. Karakter dizisi `str` ilkel bir tiptir. Bundan dolayı özelliğine erişilmek istendiğinde aynı karakter dizisine sahip bir obje yaratılır. Bu objenin `toUpperCase()` gibi kullanışlı metodları bulunmaktadır.
 2. Bu metod yeni bir karakter dizisi döndürür ve bu `alert` içinde gösterilir.
 3. Özel yaratılan obje imha edilir, `str` eski ilkel haline döner.
 
