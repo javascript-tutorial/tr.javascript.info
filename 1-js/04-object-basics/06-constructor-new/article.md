@@ -83,8 +83,8 @@ Yapıcı fonksiyon tekrar çağırılamaz çünkü hiç bir yere kayıt edilmemi
 
 ## Yapıcı modu testi: new.target
 
-```smart header="Advanced stuff"
-The syntax from this section is rarely used, skip it unless you want to know everything.
+```smart header="İleri düzey konular"
+Bu olay çok nadir kullanılır. Eğer her şeyi öğrenmek istemiyorsanız burayı geçebilirsiniz.
 ```
 
 Fonksiyon içinde, bu fonksiyon `new` ile mi yoksa `new` olmadan mı çağırılmış bu `new.target` özelliği kullanılarak anlaşılabilir.
@@ -103,7 +103,7 @@ User(); // new.target undefined döndürür.
 new User(); // function Kullanici { ... } gibi ekrana fonksiyonu yazar
 ```
 
-That can be used to allow both `new` and regular syntax to work the same:
+`new` ve normal sözdiziminin(syntax) aynı çalışmasını sağlar:
 
 ```js run
 function Kullanici(isim) {
@@ -126,7 +126,7 @@ Genelde yapıcı metodların `return` sözcüğü yoktur. Amaçları gerekli ola
 Fakat `return` sözcüğü var ise kurallar basittir:
 
 - Eğer `return` obje ile çağırılırsa `this` yerine bu obje döndürülür.
-- Eğer `return` ilkel bir obje il çağırılırsa görmezden gelinir.
+- Eğer `return` ilkel bir obje ile çağırılırsa görmezden gelinir.
 
 Diğer bir deyişle, obje ile `return` kullanıldığında obje döner, diğer tüm hallerde `this` döner.
 
