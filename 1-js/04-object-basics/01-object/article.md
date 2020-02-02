@@ -143,7 +143,7 @@ let kullanici = {
 let anahtar = prompt("Kullanıcı hakkında ne bilmek istiyorsun?", "isim");
 
 // değişkene göre değer alınır.
-alert( kullanici[key] ); // Mahsun (eğer "isim" girerse )
+alert( kullanici[anahtar] ); // Mahsun (eğer "isim" girerse )
 ```
 
 
@@ -169,9 +169,7 @@ Hesaplanmış özelliklerin anlamı basittir: `[meyve]`, özellik isminin `meyve
 
 Öyleyse eğer kullanıcı `"elma"` değerini girerse `poset` `{elma:5}` olacaktır.
 
-Aslında aşağıdaki ile aynı şekilde çalışacaktır.
-
-Essentially, that works the same as:
+Aslında aşağıdaki ile aynı şekilde çalışacaktır:
 ```js run
 let meyve = prompt("Hangi meyveyi istersin?", "elma");
 let poset = {};
@@ -626,7 +624,7 @@ let kullanici = { isim: "Mümtaz" };
 // ismin üstüne yazılır, ve yonetici eklenir.
 Object.assign(kullanici, { isim: "Pete", yonetici: true });
 
-// şu anda: kullanici = { isim: "Müntaz", yonetici: true }
+// şu anda: kullanici = { isim: "Pete", yonetici: true }
 ```
 `Object.assign`ile basit bir objeyi kolayca klonlamak da mümkündür:
 
