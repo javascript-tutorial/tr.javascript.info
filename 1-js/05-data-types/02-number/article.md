@@ -33,7 +33,7 @@ let ms = 0.000001;
 Aynı şekilde `"e"` yardımcı olabilir. 0 ları yazmak yerine :
 
 ```js
-let ms = 1e-6; // six zeroes to the left from 1 
+let ms = 1e-6; // 1'in soluna 6 tane 0 
 ```
 Şeklinde tanımlayabilirsiniz. `0.000001` gördüğünüz gibi 6 tane sıfır bulunmaktadır. Bundan dolayı `1e-6` şeklinde yazılabilir.
 
@@ -170,6 +170,8 @@ Eğer sayı çok büyükse 64 bit alanın dışına çıkabilir bu da sonsuz dö
 
 ```js run
 alert( 1e500 ); // Sonsuz
+```
+
 Çok ta açık olmamakla birlikte çoğunlukla ola gelen bir problem ise küsür kaybıdır.
 
 Aşağıdaki olayı test edin:
@@ -378,7 +380,7 @@ Birkaç örnek:
     ```js run
     alert( Math.pow(2, 10) ); // 2'nin 10 üssü = 1024
     ```
-marh objesi daha birçok fonksiyon ve sabit barındırmaktadır. Trigonometri de bunlara dahildir.  [ Math objesi dökümantasyonu](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math)
+math objesi daha birçok fonksiyon ve sabit barındırmaktadır. Trigonometri de bunlara dahildir.  [ Math objesi dökümantasyonu](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math)
 
 ## Özet
 
