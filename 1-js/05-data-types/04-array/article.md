@@ -86,7 +86,7 @@ let meyveler = [
 
 ## pop/push, shift/unshift işlemleri için metodlar
 
-[kuyruk](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) dizilerin en fazla kullnıldığı yerdir. Bilgisayar biliminde, sıralı elemanların koleksiyonları  iki operasyonu desteklemelidir:
+[Kuyruk](https://en.wikipedia.org/wiki/Queue_(abstract_data_type)) dizilerin en fazla kullanıldığı yerdir. Bilgisayar biliminde, sıralı elemanların koleksiyonları  iki operasyonu desteklemelidir:
 
 - Sonuna yeni eleman eklemeli : `push`.
 - `shift` ile başlangıçtan eleman alındığında ikinci eleman birinci olmalı.
@@ -142,7 +142,7 @@ Bilgisayar biliminde bu işlemlere izin veren veri yapılarına [deque](https://
 
     alert( meyveler ); // Elma, Portakal, Armut
     ```
-    `fruit.push()` ile `fruit[fruits.length] = ...` bir biri ile aynı anlama gelirler.
+    `fruit.push()` ile `fruit[fruits.length] = ...` birbiri ile aynı anlama gelirler.
     
 **Dizilerin başlangıcı ile ilgili metodlar:**
 
@@ -203,7 +203,7 @@ alert( meyveler ); // Muz, Armut - 2 eleman
 ```
 ... Fakat dizileri asıl önemli kılan içinde neler olduğudur. JavaScript motoru elemanları ardışık hafıza alanlarında tutmaya çalışır. Böylece diziler çok hızlı şekilde çalışabilirler.
 
-Fakat eğer "sıralı koleksiyon" olan diziden çıkılır ve obje olarak çalıştırılırsa herşey bozulur.
+Fakat eğer "sıralı koleksiyon" olan diziden çıkılır ve obje olarak çalıştırılırsa her şey bozulur.
 
 Örneğin, teknik olarak aşağıdaki örnek bunu yansıtır:
 
@@ -430,7 +430,7 @@ Dizi özel bir çeşit objedir, verilerin sıralı bir şekilde saklanması içi
     `new Array(number)` verilen boyutlarda yeni bir dizi yaratır, fakat eleman olmadan.
 
 - `length` özelliği dizinin boyu ve daha net olmak gerekirse son index sayısı + 1 şeklindedir. Dizi metodları tarafından otomatik olarak ayarlanır.
-- Eğer `length`'i elle küçüktürseniz dizi de kısalacaktır, tabi bu veri kayıplarına neden olabilir.
+- Eğer `length`'i elle küçültürseniz dizi de kısalacaktır, tabi bu veri kayıplarına neden olabilir.
 
 
 Dizi üzerinde aşağıdaki işlemler yapılabilir:
