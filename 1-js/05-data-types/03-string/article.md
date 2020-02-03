@@ -6,7 +6,7 @@ Karakter dizisi formatı her zmaan [UTF-16](https://en.wikipedia.org/wiki/UTF-16
 
 [cut]
 
-## Quotes
+## Tırnak İşaretleri
 
 Tekrar hatırlayacak olursanız, Karakter dizisi tek tırnak ve çift tırnak ile açılıp kapatılabilir. :
 ```js
@@ -46,7 +46,7 @@ Tek tırnak ve çift tırnak dil ilk yazılmaya başlandığı, çoklu satırlar
 
 
 ## Özel Karakterler
-"yeni satır" `\n` karakterini kullanarak çif tırnaklı karakter dizisi içerisinde birçok satırdan oluşan bir metin yazılabilir:
+"yeni satır" `\n` karakterini kullanarak çift tırnaklı karakter dizisi içerisinde birçok satırdan oluşan bir metin yazılabilir:
 
 ```js run
 let davetliListesi = "Davetliler:\n * İhsan\n * Cemal\n * Muzaffer";
@@ -84,7 +84,7 @@ alert( "\u{1F60D}"); // 😍, gülen yüz sembolü (uzun unicode)
 
 Tüm özel karakterler her zaman `\` karakteri ile başlarlar. Karakterler normal akışında giderken başka bir iş yapması için var olan işlemi kesmesinden dolayı "kesme karakteri" denebilir..
 
-Karakter dizisine ünlem işareti koyulmak istendiğinde yine bu kesme işareti kullanılır.
+Karakter dizisi içinde kesme işareti kullanmak istersek bu işaret yardımıyla yaparız.
 
 Örneğin:
 
@@ -119,7 +119,7 @@ Dikkat ederseniz `\n` "özel karakter" oludğundan dolayı bir karakter olarak t
 
 ```warn header="`length` bir özelliktir"
 
-Genelde başka diller ile çalışmış programcılar yanlışlıkla `str.length` yerin `str.length()` metodunu çağırmaktadırlar. Böyle bir metod yoktur.
+Genelde başka diller ile çalışmış programcılar yanlışlıkla `str.length` yerine `str.length()` metodunu çağırmaktadırlar. Böyle bir metod yoktur.
 
 `str.length` sayısal bir değerdir, fonksiyon değildir! Sonunda parantez açıp kapanmaz.
 ```
@@ -169,7 +169,7 @@ let str = 'Selam';
 str[0] = 's'; // hata
 alert( str[0] ); // çalışmaz, değişiklik olmaz
 ```
-Bunun çüzümü se yeni bir karakter dizisi atayıp `str`'yi buna atamaktır.
+Bunun çüzümü ise yeni bir karakter dizisi atayıp `str`'yi buna atamaktır.
 
 Örneğin:
 ```js run
