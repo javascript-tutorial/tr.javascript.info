@@ -9,7 +9,11 @@ Buna karşın objeler anahtar bilgileri ile değerlerini tutar ve daha karmaşı
 
 Obje `{...}` işareti ile yaratılabilir. Objenin kendine has *özellikleri* mevcuttur. Bir özellik anahtar:değer ikilisinden oluşur. `key`( anahtar) genelde karakter dizisi olur ve "özellik ismi" olarak adlandırılır. Değer ise herhangi bir tip olabilir.
 
+<<<<<<< HEAD
 Obje bir dolap gibi düşünülebilir. Bu dolabın içindeki her klasörün bir ismi var ve bu isme göre içinde değerler mevcut. Bu `key`(anahtar) değerine göre dosyayı bulmak, eklemek ve silmek daha kolay olacaktır.
+=======
+![](object.svg)
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 
 ![](object.svg)
 
@@ -43,16 +47,26 @@ let kullanici = {     // obje
 
 `kullanici` objesi bir dolap ve içinde "isim" ve "yaş" değerlerinin olduğu iki klasör olarak hayal edilebilir.
 
+<<<<<<< HEAD
 ![kullanici objesi](object-user.svg)
+=======
+![user object](object-user.svg)
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 
 Bu klasörleri istediğimiz zaman okuyabilir, yazabilir ve silebiliriz.
 
 Özellik değerlerine `.` yazımı ile ulaşılabilir.
 
 ```js
+<<<<<<< HEAD
 // objenin özellikleri:
 alert( kullanici.isim ); // Mahsun
 alert( kullanici.yas ); // 30
+=======
+// get property values of the object:
+alert( user.name ); // John
+alert( user.age ); // 30
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 ```
 Değer her tipten olabilir. Boolean değeri aşağıdaki gibi eklenebilir :
 
@@ -60,7 +74,11 @@ Değer her tipten olabilir. Boolean değeri aşağıdaki gibi eklenebilir :
 kullanici.adminMi = true;
 ```
 
+<<<<<<< HEAD
 ![kullanici objesi 2](object-user-isadmin.svg)
+=======
+![user object 2](object-user-isadmin.svg)
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 
 `delete` operatörü ile bir özellik silinebilir:
 
@@ -68,7 +86,11 @@ kullanici.adminMi = true;
 delete kullanici.yas;
 ```
 
+<<<<<<< HEAD
 ![kullanici objesi 3](object-user-delete.svg)
+=======
+![user object 3](object-user-delete.svg)
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 
 Birkaç kelimeden oluşan özellik ismi yazabilirsiniz. Fakat bu durumda anahtar çift tırnak içine alınmalıdır:
 
@@ -105,7 +127,13 @@ kullanici.Nemrudun Kızı = true
 ```
 Çünkü `.` aslında bir değişken ismi beklemektedir. Değişken tanımlarken boşluk ve başka sınırlamalar aynen `.` yazımı için de geçerlidir.
 
+<<<<<<< HEAD
 Bunun yerine köşeli parantez yazımı ile bunu çözebilirsiniz:
+=======
+That's because the dot requires the key to be a valid variable identifier. That is: no spaces and other limitations.
+
+There's an alternative "square bracket notation" that works with any string:
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 
 ```js run
 let kullanici = {};
@@ -132,7 +160,13 @@ kullanici[anahtar] = true;
 ```
 Burada `anahtar` çalışma anında veya kullanıcının gireceği değere göre atanır. Sonrasında istenen özelliğe erişmek için kullanılabilir. Nokta yazımı köşeli parantez kadar etkin değildir. Köşeli parantez esneklik sağlar.
 
+<<<<<<< HEAD
 Örneğin:
+=======
+Here, the variable `key` may be calculated at run-time or depend on the user input. And then we use it to access the property. That gives us a great deal of flexibility.
+
+For instance:
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 
 ```js run
 let kullanici = {
@@ -146,6 +180,17 @@ let anahtar = prompt("Kullanıcı hakkında ne bilmek istiyorsun?", "isim");
 alert( kullanici[anahtar] ); // Mahsun (eğer "isim" girerse )
 ```
 
+The dot notation cannot be used in a similar way:
+
+```js run
+let user = {
+  name: "John",
+  age: 30
+};
+
+let key = "name";
+alert( user.key ) // undefined
+```
 
 ### Hesaplanmış Özellikler
 
@@ -220,9 +265,17 @@ Bundan dolayı eğer kullanıcıya `anahtar` tanımlattırılırsa bu aslında h
 
 Böyle bir durumda kullanıcı "__proto__" seçerse tüm mantık yukarıdaki gibi çalışmaz hale gelir.
 
+<<<<<<< HEAD
 `__proto__`'yu normal özellik olarak tanıtma yöntemi de bulunmaktadır, bunu ilerleyen zamanlarda işlenecektir. 
 
 Farklı bir veri yapısı daha vardır  [Map](info:map-set-weakmap-weakset). Bu <info:map-set-weakmap-weakset> bölümünden incelenebilir, ki bu her türlü anahtarı kabul eder.
+=======
+In that case the visitor may choose `__proto__` as the key, and the assignment logic will be ruined (as shown above).
+
+There is a way to make objects treat `__proto__` as a regular property, which we'll cover later, but first we need to know more about objects.
+
+There's also another data structure [Map](info:map-set), that we'll learn in the chapter <info:map-set>, which supports arbitrary keys.
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 ````
 
 
@@ -306,8 +359,13 @@ let anahtar = "yas";
 alert( *!*anahtar*/!* in kullanici ); // true, değişkenden değerini alır ve kontrol eder.
 ```
 
+<<<<<<< HEAD
 ````smart header="Özellik undefined dönderiyorsa nasıl kontrol edilmeli?"
 Genelde sıkı karşılaştırma `"=== undefined"` doğru çalışır. Fakat burada özel bir durum mevcuttur ve sıkı karşılaştırma da başarısız olur, fakat bu durumda bile `"in"` doğru çalışır.
+=======
+````smart header="Using \"in\" for properties that store `undefined`"
+Usually, the strict comparison `"=== undefined"` check the property existence just fine. But there's a special case when it fails, but `"in"` works correctly.
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 
 Bu olay objenin özelliğinin var olduğu fakat `undefined` döndürdüğü durumda meydana gelir.
 
@@ -325,8 +383,12 @@ Yukarıdaki örnekte `obj.test` teknik olarak mevcut. Bundan dolayı `in` operat
 Bu türde olaylar çok nadir yaşanır, çünkü bir özelliğe neredeyse kimse `undefined` atamaz. Genelde `bilinmeyen` için `null` veya boş değer kullanılır. Bundan dolayı `in` operatörü kodda yabancı görünür.
 ````
 
+<<<<<<< HEAD
 
 ## "for..in" döngüsü
+=======
+## The "for..in" loop
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 
 Objenin içindeki `anahtarlar` içini adım adım gezen `for..in` döngüsü bulunmaktadır. Bu `for(;;)` döngüsünden tamamen farklıdır.
 
@@ -446,6 +508,11 @@ let karsilama = mesaj;
 ```
 Sonuç olarak birbirinden bağımsız iki değişken de `"Merhaba!"` değerini tutar.
 
+<<<<<<< HEAD
+=======
+As a result we have two independent variables, each one is storing the string `"Hello!"`.
+
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 ![](variable-copy-value.svg)
 
 Objeler bu şekilde çalışmaz:
@@ -479,7 +546,13 @@ Artık iki tane değişken var ve ikisi de aynı objeye referans oldu:
 
 ![](variable-copy-reference.svg)
 
+<<<<<<< HEAD
 Bu iki değişkenden birini kullanarak objenin içeriği değiştirilebilir:
+=======
+![](variable-copy-reference.svg)
+
+We can use any variable to access the cabinet and modify its contents:
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 
 ```js run
 let kullanici = { isim: 'Mümtaz' };
@@ -502,7 +575,11 @@ Eşitlik `==` ve sıkı eşitlik `===` operatörleri aynı şekilde çalışmakt
 
 **İki obje anca aynı objeler ise eşittir.**
 
+<<<<<<< HEAD
 Örneğin iki değişken aynı objeyi referans alırsa bu durumda eşit olurlar:
+=======
+For instance, if two variables reference the same object, they are equal:
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 
 ```js run
 let a = {};
@@ -541,7 +618,13 @@ alert(kullanici.yas); // 25
 ```
 `(*)` satırında hata alınacakmış gibi dursa da hata alınmaz ve bir sorun olmadan çalışır. Bunun nedeni `const`'un referansının değişmediğinde sorun yaratmamasıdır. Daha önce de `kullanici` aynı objeye referans gösteriyordu, daha sonra da. *içinde* ne olduğu `const`'u ilgilendirmez. Tekrar atama yapmadığınız sürece bir sorun teşkil etmez.
 
+<<<<<<< HEAD
 Örneğin `const` aşağıdaki gibi bir kullanımda, yani `kullanici` değişkenine başka bir obje referans etmeye çalıştığımızda hata verir:
+=======
+It might seem that the line `(*)` would cause an error, but no, there's totally no problem. That's because `const` fixes only value of `user` itself. And here `user` stores the reference to the same object all the time. The line `(*)` goes *inside* the object, it doesn't reassign `user`.
+
+The `const` would give an error if we try to set `user` to something else, for instance:
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 
 ```js run
 const kullanici = {
@@ -681,6 +764,10 @@ Bunu düzeltmek için klonlarken eğer obje ise içteki objenin yapısının da 
 Bu derin klonlama için kullanılan [Structured cloning algorithm](https://w3c.github.io/html/infrastructure.html#internal-structured-cloning-algorithm) adında bir algoritma bulunmaktadır. Tekeri tekrar bulmaya gerek olmadığından , uygulaması olan [lodash](https://lodash.com) kütüphanesinde bulunan 
 [Structured cloning algorithm][_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) metodu kullanılabilir.
 
+<<<<<<< HEAD
+=======
+There's a standard algorithm for deep cloning that handles the case above and more complex cases, called the [Structured cloning algorithm](https://html.spec.whatwg.org/multipage/structured-data.html#safe-passing-of-structured-data). In order not to reinvent the wheel, we can use a working implementation of it from the JavaScript library [lodash](https://lodash.com), the method is called [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep).
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 
 
 ## Özet

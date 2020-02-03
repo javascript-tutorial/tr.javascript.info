@@ -1,6 +1,10 @@
 # Tip Dönüşümleri
 
+<<<<<<< HEAD
 Çoğu zaman operatörler ve fonksiyonlar otomatik olarak değeri doğru tipe dönüştürürler. Buna "tip dönüştürme" denir.
+=======
+Most of the time, operators and functions automatically convert the values given to them to the right type.
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 
 Örneğin `alert` otomatik olarak verilen tüm değerleri karakter dizisine çevirir ve ekranda gösterir. Matematiksel operatörler ise değerleri sayılara çevirir.
 
@@ -10,7 +14,7 @@ Tabi bunun yanında doğrudan tipi sizin tarafınızdan değiştirilmesi gereken
 Bu bölümde objeler hakkında bilgi verilmeyecektir. Önce ilkel tiplerin iyice öğrenilmesi lazım, sonra objelerin öğrenilmesi ve daha sonra <info:object-toprimitive> bölümünde objelerin dönüştürülmesi öğrenilebilir. 
 ```
 
-## ToString
+## String Conversion
 
 Bir değeri karakter dizisi olarak kullanmak istiyorsanız ToString'i kullanabilirsiniz.
 
@@ -27,7 +31,7 @@ alert(typeof value); // karakter dizisi
 ```
 Eğer `false` değeri karakter dizisi dönüştürme işlemine tabi tutarsanız `"false"`, `null`'u tutarsanız `"null"` olur.
 
-## ToNumber
+## Numeric Conversion
 
 Sayısal dünüştürme işlemleri matematiksel operasyonlarda otomatik olarak gerçekleşir.
 
@@ -75,6 +79,7 @@ alert( Number(false) );       // 0
 
 Lütfen `null` ve `undefined`'ın aynı davranmadıklarını bilin. `null` 0 olurken `undefined` `NaN` yani sayı değildir.
 
+<<<<<<< HEAD
 ````smart header="Ekleme karakteri '+'"
 
 Neredeyse tüm matematiksel operasyonlar önce değerleri sayılara çevirmeye çalışır. Eğer bir taraf sayıya çevrilemediyse bu durumda karakter olarak diğeri ile birleştirme işlemi yapılır.
@@ -90,6 +95,11 @@ Gördüğünüz gibi sadece bir tarafın karakter olması yeterlidir. Eğer iki 
 ````
 
 ## ToBoolean
+=======
+Most mathematical operators also perform such conversion, we'll see that in the next chapter.
+
+## Boolean Conversion
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 
 Boolean dönüştürme en kolay olanıdır.
 
@@ -120,14 +130,24 @@ alert( Boolean(" ") ); // içerisinde boşluk olan karakter dizisi true olur.
 ```
 ````
 
+<<<<<<< HEAD
 
 ## Özet
+=======
+## Summary
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 
 Üç tane çok kullanılan tip dönüştürücü bulunmaktadır : Karakter Dizisine dönüştüren, sayıya dönüştüren ve boolean değere dönüştüren.
 
+<<<<<<< HEAD
 **`ToString`** -- Bir çıktı verildiğinde otomatik olarak bu fonksiyon çalışır. `String(value)` kullanılarak da dönüştürme işlemi yapılabilir.
 
 **`ToNumber`** -- Matematiksel operasyonlar otomatik olarak yaparlar. Ayrıca `Number(value)` ile de dönüştürme işlemi yapılabilir.
+=======
+**`String Conversion`** -- Occurs when we output something. Can be performed with `String(value)`. The conversion to string is usually obvious for primitive values.
+
+**`Numeric Conversion`** -- Occurs in math operations. Can be performed with `Number(value)`.
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 
 
 Dönüştürme işlemi aşağıdaki kuralları kapsar:
@@ -139,7 +159,11 @@ Dönüştürme işlemi aşağıdaki kuralları kapsar:
 |<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
 | `string` | Önce başta ve sondaki whitespace'ler silinir. Sonra eğer kalan değerde hiç bir karakter yok ise sonuç `0`. Eğer içerisinde sayısal olmayan bir değer var ise bu durumda `NaN` değeri alınır. |
 
+<<<<<<< HEAD
 **`ToBoolean`** -- Lojik operatörlerde otomatik çalışır ayrıca  `Boolean(value)` ile de dönüştürme işlemi yapılabilir.
+=======
+**`Boolean Conversion`** -- Occurs in logical operations. Can be performed with `Boolean(value)`.
+>>>>>>> d10b50ae7f67d91606a751926cb06aa06f10c1b4
 
 Kuralları şu şekildedir:
 
