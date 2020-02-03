@@ -63,9 +63,9 @@ Kolay değil mi? `1`. indeksten başlayarak 1 eleman sildi.
 Bir sonraki örnekte ise 4 eleman silinecek ve yeni bir eleman bunların yerine konulacak.
 
 ```js run
-let arr = [*!*"Ben", "şu", "an",*/!* "JavaScript", "çalışıyorum"];
+let arr = [*!*"Ben", "şu", "an", "JavaScript",*/!* "çalışıyorum"];
 
-// İlk 3 elamanı sil ve öncesine yeni eleman ekle.
+// İlk 4 elamanı sil ve öncesine yeni eleman ekle.
 arr.splice(0, 4, "Ders")
 
 alert( arr ) // Şimdi [Ders çalışıyorum]
@@ -93,7 +93,7 @@ arr.splice(1, 0,  "karmaşık");
 alert( arr ); // "Ben", "karmaşık", "JavaScript", "çalışıyorum"
 ```
 
-````smart header="Negatif indekslerde kullanılabilir"
+````smart header="Negatif indeksler de kullanılabilir"
 Bu ve diğer metodlarda negatif indeksler kullanılabilir. Negatif indeksler dizinin sonundan başına doğrudur. Örneğin:
 
 ```js run
@@ -144,7 +144,7 @@ Yazımı:
 arr.concat(arg1, arg2...)
 ```
 
-İstenildiği kadar arhümanı kabul eder, bunlar dizi veya değer olabilir.
+İstenildiği kadar argümanı kabul eder, bunlar dizi veya değer olabilir.
 
 Sonuç `arr`, ardından `arg1`, `arg2` şeklinde tüm dizileri ve değerleri içeren bir dizi olur.
 
@@ -372,7 +372,7 @@ alert(arr);  // *!*1, 2, 15*/!*
 
 Ne olduğunu düşünürsek. `arr` herşeyi tutabilir, değil mi? Sayı, karakter veya html elementi vs. tutabilir. İçinde bulunanları sıralamak için karşılaştırmayı yapan *sıralama fonksiyonu*na ihtiyaç vardır. Bunun da varsayılanı karakter sıralamadır.
 
-`arr.sort(fn)` metodu içinde sıralama algoritmasına sahiptir. Bu sıralamanın nasıl çalıştığına dair bir bilgimiz olmasına gerek yok (Çoğu zaman [quicksort](https://en.wikipedia.org/wiki/Quicksort) ) kullanılır. Diziyi dolanır ve elemanları verilen algoritmaya göre karşılaştırır ve sıralar. Tek bilmeniz gereken `fn` fonksiyonunun karşılaştırmayı yaptığıdır.
+`arr.sort(fn)` metodu içinde sıralama algoritmasına sahiptir. Bu sıralamanın nasıl çalıştığına dair bir bilgimiz olmasına gerek yok (Çoğu zaman [quicksort](https://en.wikipedia.org/wiki/Quicksort) kullanılır). Diziyi dolanır ve elemanları verilen algoritmaya göre karşılaştırır ve sıralar. Tek bilmeniz gereken `fn` fonksiyonunun karşılaştırmayı yaptığıdır.
 
 Eğer hangi elemanın karşılaştırıldığını öğrenmek istiyorsanız elbette bunu görebilirsiniz.
 
@@ -402,7 +402,7 @@ alert(arr);  // *!*1, 2, 15*/!*
 ````
 
 ````smart header="Daha zarif bir fonksiyon için ok kullanmak."
-[Ok fonksiyonlarını](info:function-expression#arrow-functions)? hatırlarsanız burada daha zarif bir biçimde sıralama yapılabilir:
+[Ok fonksiyonlarını](info:arrow-functions-basics) hatırlarsanız burada daha zarif bir biçimde sıralama yapılabilir:
 
 ```js
 arr.sort( (a, b) => a - b );
