@@ -1,90 +1,90 @@
 
-# Map, Set, WeakMap and WeakSet
+# Map, Set, WeakMap ve WeakSet
 
-Now we know the following complex data structures:
+Şu ana kadar bu karmaşık veri yapılarını gördük:
 
-- Objects for storing keyed collections.
-- Arrays for storing ordered collections.
+- Anahtar değere sahip verileri tutan objeler.
+- Sıralı bir biçimde verileri tutan Arrayler.
 
-But that's not enough for real life. That's why there also exist `Map` and `Set`.
+Ancak bunlar yeterli olmayabiliyorlar. Bu yüzden `Map` ve `Set` diye yapılar bulunuyor. (Collections)
 
 ## Map
 
-[Map](mdn:js/Map) is a collection of keyed data items. Just like an `Object`. But the main difference is that `Map` allows keys of any type.
+[Map](mdn:js/Map), anahtar değere sahip veriler tutan bir yapıdır(collection). Tıpkı `Obje` gibi. Fakat aralarındaki en önemli farklardan biri `Map`ler anahtar değer olarak herhangi bir tipte olabilirler.
 
-The main methods are:
+Ana fonksiyonlar şu şekildedir:
 
-- `new Map()` -- creates the map.
-- `map.set(key, value)` -- stores the value by the key.
-- `map.get(key)` -- returns the value by the key, `undefined` if `key` doesn't exist in map.
-- `map.has(key)` -- returns `true` if the `key` exists, `false` otherwise.
-- `map.delete(key)` -- removes the value by the key.
-- `map.clear()` -- clears the map
-- `map.size` -- is the current elements count.
+- `new Map()` -- map yaratır.
+- `map.set(key, value)` -- Anahtara değer atar.
+- `map.get(key)` -- Anahtarın değerini döndürür. Eğer öyle bir `anahtar` yoksa `undefined` döndürür.
+- `map.has(key)` -- Eğer öyle bir anahtar varsa `true` yoksa `false` döndürür.
+- `map.delete(key)` -- Verilen anahtara ait değeri siler.
+- `map.clear()` -- Mapin içini temizler.
+- `map.size` -- anlık eleman sayısını döndürür.
 
-For instance:
+Örneğin:
 
 ```js run
 let map = new Map();
 
-map.set('1', 'str1');   // a string key
-map.set(1, 'num1');     // a numeric key
-map.set(true, 'bool1'); // a boolean key
+map.set('1', 'str1');   // String tipinde anahtar
+map.set(1, 'num1');     // Sayı tipinde anahtar
+map.set(true, 'bool1'); // boolean tipinde anahtar
 
-// remember the regular Object? it would convert keys to string
-// Map keeps the type, so these two are different:
+// sıradan Objeleri hatırlıyorsunuzdur. Anahtar değerleri stringe dönüşürdü
+// Map anahtar tipini de korur, tıpkı şu 2 farklı şekilde olduğu gibi:
 alert( map.get(1)   ); // 'num1'
 alert( map.get('1') ); // 'str1'
 
 alert( map.size ); // 3
 ```
 
-As we can see, unlike objects, keys are not converted to strings. Any type of key is possible.
+Gördüğümüz üzere, objelerden farklı olarak, anahtarlar stringe dönüşmediler. Herhangi bir tipte anahtar kullanmak mümkündür.
 
-**Map can also use objects as keys.**
+**Map'ler ayrıca anahtar olarak Obje de kullanabilir.**
 
-For instance:
+Örneğin:
 ```js run
 let john = { name: "John" };
 
-// for every user, let's store his visits count
-let visitsCountMap = new Map();
+// John'un ziyaret sayısını tutalım
+let ziyaretSayisiMap = new Map();
 
-// john is the key for the map
-visitsCountMap.set(john, 123);
+// john map için anahtar olarak kullanıldı
+ziyaretSayisiMap.set(john, 123);
 
-alert( visitsCountMap.get(john) ); // 123
+alert( ziyaretSayisiMap.get(john) ); // 123
 ```
 
-Using objects as keys is one of most notable and important `Map` features. For string keys, `Object` can be fine, but it would be difficult to replace the `Map` with a regular `Object` in the example above.
+Nesneleri anahtar olarak kullanmak, en dikkate değer ve önemli `Map` özelliklerinden biridir. String anahtarlar için `Obje` yeterli olabilir fakat yukarıdaki örnek için `Map` yerine `Obje` kullanmak daha zordur.
 
-In the old times, before `Map` existed, people added unique identifiers to objects for that:
+Eskiden, `Map`in olmadığı zamanlarda, geliştiriciler objelere eşsiz tanımlayıcılar eklerdi:
 
 ```js run
-// we add the id field
+// id değeri ekledik
 let john = { name: "John", *!*id: 1*/!* };
 
-let visitsCounts = {};
+let ziyaretSayisi = {};
 
-// now store the value by id
-visitsCounts[john.id] = 123;
+// şimdi id kullanarak veriyi tuttuk
+ziyaretSayisi[john.id] = 123;
 
-alert( visitsCounts[john.id] ); // 123
+alert( ziyaretSayisi[john.id] ); // 123
 ```
 
-...But `Map` is much more elegant.
+...Ama `Map` kullanması çok daha hoş.
 
 
-```smart header="How `Map` compares keys"
-To test values for equivalence, `Map` uses the algorithm [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero). It is roughly the same as the strict equality `===`, but the difference is that `NaN` is considered equal to `NaN`. So `NaN` can be used as the key as well.
+```smart header="`Map` anahtarları nasıl karşılaştırır"
+Değerlerin eşitliğini test etmek için 'Map' [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero) algoritmasını kullanır. Bu algoritma sıkı eşitlik `===` ile kabaca aynıdır fakat farkı `NaN`ın `NaN`a eşit olmasıdır. Böylece `NaN` bir anahtar değer olarak kullanılabilir.
 
-This algorithm can't be changed or customized.
+Bu algoritma değiştirilemez veya özelleştirilemez.
 ```
 
 
-````smart header="Chaining"
+````smart header="Zincirleme"
 
-Every `map.set` call returns the map itself, so we can "chain" the calls:
+Tüm `map.set` çağırmaları mapin kendisini döndürür. Böylece çağırmaları `zincir`leyebiliriz:
 
 ```js
 map.set('1', 'str1')
@@ -93,12 +93,12 @@ map.set('1', 'str1')
 ```
 ````
 
-## Map from Object
+## Objeden Map
 
-When a `Map` is created, we can pass an array (or another iterable) with key-value pairs, like this:
+Bir `Map` oluşturduğumuzda anahtar-değer çifti olarak array kullanabiliriz:
 
 ```js
-// array of [key, value] pairs
+// [key, value] çiftlerinden oluşan array
 let map = new Map([
   ['1',  'str1'],
   [1,    'num1'],
@@ -106,9 +106,9 @@ let map = new Map([
 ]);
 ```
 
-There is a built-in method [Object.entries(obj)](mdn:js/Object/entries) that returns the array of key/value pairs for an object exactly in that format.
+Tıpkı bu formatta objeler için anahtar/değer çifti arrayi döndüren bir yerleşik fonksiyon [Object.entries(obj)](mdn:js/Object/entries) vardır.
 
-So we can initialize a map from an object like this:
+Böylece bir objeden bir map oluşturabiliriz:
 
 ```js
 let map = new Map(Object.entries({
@@ -117,70 +117,71 @@ let map = new Map(Object.entries({
 }));
 ```
 
-Here, `Object.entries` returns the array of key/value pairs: `[ ["name","John"], ["age", 30] ]`. That's what `Map` needs.
+Burada, `Object.entries` anahtar/değer çifti arrayi döndürür: `[ ["name","John"], ["age", 30] ]`. `Map`in ihtiyacı olan da buydu.
 
-## Iteration over Map
+## Map üzerinde yineleme
 
-For looping over a `map`, there are 3 methods:
+`Map` üzerinde döngü yapmak için 3 metod vardır:
 
-- `map.keys()` -- returns an iterable for keys,
-- `map.values()` -- returns an iterable for values,
-- `map.entries()` -- returns an iterable for entries `[key, value]`, it's used by default in `for..of`.
+- `map.keys()` -- anahtarlar için bir yinelenebilir döndürür
+- `map.values()` -- değerler için bir yinelenebilir döndürür
+- `map.entries()` -- `[key, value]` girişleri için bir yinelenebilir döndürür, `for..of` içinde varsayılan olarak kullanılır.
 
-For instance:
+Örneğin:
 
 ```js run
-let recipeMap = new Map([
-  ['cucumber', 500],
-  ['tomatoes', 350],
-  ['onion',    50]
+let yemekMap = new Map([
+  ['salatalik', 500],
+  ['domates', 350],
+  ['sogan',    50]
 ]);
 
-// iterate over keys (vegetables)
-for(let vegetable of recipeMap.keys()) {
-  alert(vegetable); // cucumber, tomateos, onion
+// anahtarlar üzerinde yineleme (sebzeler)
+for(let vegetable of yemekMap.keys()) {
+  alert(vegetable); // salatalik, domates, sogan
 }
 
-// iterate over values (amounts)
-for(let amount of recipeMap.values()) {
+// değerler üzerinde yineleme (miktarlar)
+for(let amount of yemekMap.values()) {
   alert(amount); // 500, 350, 50
 }
 
-// iterate over [key, value] entries
-for(let entry of recipeMap) { // the same as of recipeMap.entries()
-  alert(entry); // cucumber,500 (and so on)
+// [anahtar, değer] üzerinde yineleme
+for(let entry of yemekMap) { // yemekMap.entries() ile aynı
+  alert(entry); // salatalik,500 (vb.)
 }
 ```
 
-```smart header="The insertion order is used"
-The iteration goes in the same order as the values were inserted. `Map` preserves this order, unlike a regular `Object`.
+```smart header="Eklenme sırasıyla kullanıldı"
+Yineleme değerlerin eklenme sırasıyla yapıldı. Sıradan `Obje`lerden farklı olarak `Map` bu sırayı korur.
+
 ```
 
-Besides that, `Map` has a built-in `forEach` method, similar to `Array`:
+Bunun yanı sıra, `Map` yerleşik `forEach` metoduna sahiptir, tıpkı `Array` gibi:
 
 ```js
-recipeMap.forEach( (value, key, map) => {
-  alert(`${key}: ${value}`); // cucumber: 500 etc
+yemekMap.forEach( (value, key, map) => {
+  alert(`${key}: ${value}`); // salatalik: 500 vb.
 });
 ```
 
 
 ## Set
 
-`Set` -- is a collection of values, where each value may occur only once.
+`Set` her değerin sadece birer kez olabileceği yapılardır(collection).
 
-The main methods are:
+Ana fonksiyonlar şu şekildedir:
 
-- `new Set(iterable)` -- creates the set, optionally from an array of values (any iterable will do).
-- `set.add(value)` -- adds a value, returns the set itself.
-- `set.delete(value)` -- removes the value, returns `true` if `value` existed at the moment of the call, otherwise `false`.
-- `set.has(value)` -- returns `true` if the value exists in the set, otherwise `false`.
-- `set.clear()` -- removes everything from the set.
-- `set.size` -- is the elements count.
+- `new Set(iterable)` -- set oluşturur, isteğe bağlı olarak değerler içeren arrayden de oluşturulabilir.
+- `set.add(value)` -- bir değer ekler, set'in kendisini döndürür
+- `set.delete(value)` -- değeri siler. Eğer öyle bir `değer` varsa `true` yoksa `false` döndürür.
+- `set.has(value)` -- Eğer öyle bir `değer` varsa `true` yoksa `false` döndürür.
+- `set.clear()` -- set'in içindeki her şeyi siler.
+- `set.size` -- eleman sayısını döndürür.
 
-For example, we have visitors coming, and we'd like to remember everyone. But repeated visits should not lead to duplicates. A visitor must be "counted" only once.
+Örneğin, misafirlerimiz geliyor ve herkesi hatırlamak istiyoruz. Fakat ikinci defa gelenlerin tekrarlanmasını istemiyoruz. Bir ziyaretçinin sadece bir kez "sayılması" gerekiyor.
 
-`Set` is just the right thing for that:
+`Set` tam olarak ihtiyacımız olan şey:
 
 ```js run
 let set = new Set();
@@ -189,109 +190,109 @@ let john = { name: "John" };
 let pete = { name: "Pete" };
 let mary = { name: "Mary" };
 
-// visits, some users come multiple times
+// ziyaretler, bazıları birden çok kez gelmiş
 set.add(john);
 set.add(pete);
 set.add(mary);
 set.add(john);
 set.add(mary);
 
-// set keeps only unique values
+// set sadece eşsiz değerler tutar
 alert( set.size ); // 3
 
 for(let user of set) {
-  alert(user.name); // John (then Pete and Mary)
+  alert(user.name); // John (sonraki döngülerde Pete and Mary)
 }
 ```
 
-The alternative to `Set` could be an array of users, and the code to check for duplicates on every insertion using [arr.find](mdn:js/Array/find). But the performance would be much worse, because this method walks through the whole array checking every element. `Set` is much better optimized internally for uniqueness checks.
+Kullanıcılardan oluşan bir array `Set`e alternatif olabilir ve [arr.find](mdn:js/Array/find) kullanarak her ekleme yaparken aynısından var mı diye kontrol yapabiliriz. Fakat bu kodumuzun performansını azaltır. Çünkü bu metod ile her seferinde arrayin tüm elemanlarını kontrol etmemiz gerekir. `Set` eşsizlik kontrolü yapmak için daha iyi optimize edilmiştir.
 
-## Iteration over Set
+## Set üzerinde yineleme
 
-We can loop over a set either with `for..of` or using `forEach`:
+'for..of' veya 'forEach' kullanarak set üzerinde yineleme yapmamız mümkündür:
 
 ```js run
-let set = new Set(["oranges", "apples", "bananas"]);
+let set = new Set(["portakal", "elma", "muz"]);
 
 for(let value of set) alert(value);
 
-// the same with forEach:
+// forEach ile de aynı şekilde:
 set.forEach((value, valueAgain, set) => {
   alert(value);
 });
 ```
 
-Note the funny thing. The `forEach` function in the `Set` has 3 arguments: a value, then *again a value*, and then the target object. Indeed, the same value appears in the arguments twice.
+Komiktir ki `Set` içerisindeki forEach` fonksiyonu 3 argümana sahiptir: bir değer, sonra *tekrardan bir değer*, ve hedef obje. Aslında aynı değeri argümanda 2 kez görürürüz.
 
-That's made for compatibility with `Map` where `forEach` has three arguments.
+Bu, 3 argüman alan `forEach` fonksiyonuna sahip olan `Map` ile uyumlu olması için yapılmıştır.
 
-The same methods as `Map` has for iterators are also supported:
+`Map`in sahip olduğu yineleme yapan fonksiyonlar burda da vardır:
 
-- `set.keys()` -- returns an iterable object for values,
-- `set.values()` -- same as `set.keys`, for compatibility with `Map`,
-- `set.entries()` -- returns an iterable object for entries `[value, value]`, exists for compatibility with `Map`.
+- `set.keys()` -- değerler için bir yinelenebilir nesne döndürür,
+- `set.values()` -- `set.keys` ile aynı, `Map` ile uyumlu olması için yapılmış,
+- `set.entries()` -- `[value, value]` girişleri için yinelenebilir obje döndürür, `Map` ile uyumlu olması için vardır.
 
 ## WeakMap and WeakSet
 
-`WeakSet` is a special kind of `Set` that does not prevent JavaScript from removing its items from memory. `WeakMap` is the same thing for `Map`.
+`WeakSet`, JavaScript'in WeakSet'teki öğeleri bellekten kaldırmasını engellemeyen özel bir tür `Set` dir. `WeakMap` de `Map` için aynı şeydir.
 
-As we know from the chapter <info:garbage-collection>, JavaScript engine stores a value in memory while it is reachable (and can potentially be used).
+<info:garbage-collection> konusundan bildiğimiz üzere, JavaScript motoru bir değeri ona erişebildiği(ve potansiyel olarak kullanılabildiği) sürece bellekte tutar.
 
-For instance:
+Örneğin:
 ```js
 let john = { name: "John" };
 
-// the object can be accessed, john is the reference to it
+// Obje erişebilir, john da onun referansı
 
-// overwrite the reference
+// referansın üzerine yazalım (overwrite)
 john = null;
 
 *!*
-// the object will be removed from memory
+// obje daha fazla erişebilir olmadığı için bellekten silinir.
 */!*
 ```
 
-Usually, properties of an object or elements of an array or another data structure are considered reachable and kept in memory while that data structure is in memory.
+Genellikle, bir veri yapısı hafızada bulunduğu sürece onun ögelerine(bir objenin özelliklerine veya bir dizinin elamanlarına) ulaşılabilir ve hafızada tutulabilir kabul edilir.
 
-In a regular `Map`, it does not matter if we store an object as a key or as a value. It's kept in memory even if there are no more references to it.
+Normal `Map`te bir objeyi anahtar veya değer olarak tutmamızın bir önemi yoktur. Başka referansı olmasa bile bellekte tutulur.
 
-For instance:
+Örneğin:
 ```js
 let john = { name: "John" };
 
 let map = new Map();
 map.set(john, "...");
 
-john = null; // overwrite the reference
+john = null; // referansın üzerine yazalım (overwrite)
 
 *!*
-// john is stored inside the map
-// we can get it by using map.keys()
+// john map içinde tutuldu
+// map.keys() kullanarak ona ulaşabiliriz
 */!*
 ```
 
 
-With the exception of `WeakMap/WeakSet`.
+`WeakMap/WeakSet` istisnası olarak.
 
-**`WeakMap/WeakSet` does not prevent the object removal from the memory.**
+**`WeakMap/WeakSet` nesnenin bellekten kaldırılmasını engellemez.**
 
-Let's start with `WeakMap`.
+`WeakMap` ile başlayalım.
 
-The first difference from `Map` is that its keys must be  objects, not primitive values:
+`Map`ten ilk farkı, anahtarlar obje olmalı, ilkel tipte olamaz.
 
 ```js run
 let weakMap = new WeakMap();
 
 let obj = {};
 
-weakMap.set(obj, "ok"); // works fine (object key)
+weakMap.set(obj, "ok"); // düzgün çalışır (anahtar bir obje)
 
 *!*
-weakMap.set("test", "Whoops"); // Error, because "test" is a primitive
+weakMap.set("test", "Whoops"); // Hata verir, çünkü "test" ilkel bir tipte
 */!*
 ```
 
-Now, if we use an object as the key in it, and there are no other references to that object -- it will be removed from memory (and from the map) automatically.
+Şimdi, bir nesneyi anahtar olarak kullanırsak ve o nesneye başka referanslar yoksa - otomatik olarak bellekten (ve mapten) kaldırılır.
 
 ```js
 let john = { name: "John" };
@@ -299,134 +300,134 @@ let john = { name: "John" };
 let weakMap = new WeakMap();
 weakMap.set(john, "...");
 
-john = null; // overwrite the reference
+john = null; // referansın üzerine yazalım (overwrite)
 
-// john is removed from memory!
+// john bellekten silindi!
 ```
 
-Compare it with the regular `Map` example above. Now if `john` only exists as the key of `WeakMap` -- it is to be automatically deleted.
+Yukarıdaki normal `Map` örneğiyle karşılaştırın. Şimdi eğer `john` sadece `WeakMap` anahtarı olarak var olduysa -- otomatik olarak silinir.
 
-...And `WeakMap` does not support methods `keys()`, `values()`, `entries()`, we can not iterate over it. So there's really no way to receive all keys or values from it.
+...Ve `WeakMap` `keys()`, `values()`, `entries()` metodlarını desteklemez, yineleme yapamayız. Bu yüzden tüm anahtar veya değerleri çekmemizin bir yolu yoktur.
 
-`WeakMap` has only the following methods:
+`WeakMap` sadece bu metodlara sahiptir:
 
 - `weakMap.get(key)`
 - `weakMap.set(key, value)`
 - `weakMap.delete(key, value)`
 - `weakMap.has(key)`
 
-Why such a limitation? That's for technical reasons. If the object has lost all other references (like `john` in the code above), then it is to be deleted automatically. But technically it's not exactly specified *when the cleanup happens*.
+Neden böyle bir sınırlama var? Teknik sebeplerden dolayı. Nesne diğer tüm referansları (yukarıdaki koddaki john gibi) kaybetmişse, otomatik olarak silinecektir. Ancak teknik olarak, *temizleme işlemi yapılırken* tam olarak belirtilmemiştir.
 
-The JavaScript engine decides that. It may choose to perform the memory cleanup immediately or to wait and do the cleaning later when more deletions happen. So, technically the current element count of the `WeakMap` is not known. The engine may have cleaned it up or not, or did it partially. For that reason, methods that access `WeakMap` as a whole are not supported.
+JavaScript motoru buna karar verir. Bellek temizliğini hemen gerçekleştirmeyi veya sonradan daha fazla silme işlemi yapılana kadar beklemeyi seçebilir. Bu nedenle, teknik olarak WeakMap'in geçerli eleman sayısı bilinmemektedir. Motor onu temizlemiş veya temizlememiş, veya bunu kısmen yapmış olabilir.  Bu nedenle, WeakMap'e bir bütün olarak erişen metodlar desteklenmez.
 
-Now where do we need such thing?
+Şimdi böyle bir şeye nerede ihtiyacımız var?
 
-The idea of `WeakMap` is that we can store something for an object that exists only while the object exists. But we do not force the object to live by the mere fact that we store something for it.
+WeakMap fikri, var olan bir nesne için sadece var olduğu sürece bir şeyler depolayabilmemizdir. Ancak, nesneyi, onun için bir şey depoladığımız gerçeğiyle yaşamaya zorlamıyoruz.
 
 ```js
-weakMap.put(john, "secret documents");
-// if john dies, secret documents will be destroyed
+weakMap.put(john, "gizli belgeler");
+// eğer john ölürse, gizli belgeler yok olacak.
 ```
 
-That's useful for situations when we have a main storage for the objects somewhere and need to keep additional information that is only relevant while the object lives.
+Objeler için bir yerde ana depolama alanına sahip olduğumuz ve sadece obje var olduğu sürece amacımıza yönelik ek bilgileri tutmamız gerektiği durumlarda kullanışlıdır.
 
-Let's see an example.
+Bir örnek görelim.
 
-For instance, we have a code that keeps a visit count for each user. The information is stored in a map: a user is the key and the visit count is the value. When a user leaves, we don't want to store his visit count any more.
+Örneğin, her kullanıcı için ziyaret sayısını tutan bir kodumuz var. Bilgiler bir map'te saklanır: kullanıcı anahtardır ve ziyaret sayısı değerdir. Bir kullanıcı ayrıldığında, ziyaret sayısını artık saklamak istemiyoruz.
 
-One way would be to keep track of leaving users and clean up the storage manually:
+Bunun bir yolu, terk eden kullanıcıları takip etmek ve depolamayı manuel olarak temizlemek olabilir:
 
 ```js run
-let john = { name: "John" };
+let eda = { name: "Eda" };
 
-// map: user => visits count
-let visitsCountMap = new Map();
+// map: kullanıcı => ziyaret sayısı
+let ziyaretSayisiMap = new Map();
 
-// john is the key for the map
-visitsCountMap.set(john, 123);
+// eda map için anahtardır
+ziyaretSayisiMap.set(eda, 123);
 
-// now john leaves us, we don't need him any more
-john = null;
+// eğer eda bizi terk ederse, ona artık ihtiyacımız yoktur. (Gerçek hayatın aksine...)
+eda = null;
 
 *!*
-// but it's still in the map, we need to clean it!
+// Ama o hala map'te kalmaya devam eder, onu temizlememiz lazım! (Peki ya kalbimizden?)
 */!*
-alert( visitsCountMap.size ); // 1
-// it's also in the memory, because Map uses it as the key
+alert( ziyaretSayisiMap.size ); // 1
+// Ayrıca hafızada da durur, çünkü Map onu anahtar olarak kullanıyor.
 ```
 
-Another way would be to use `WeakMap`:
+Bir diğer yol `WeakMap` kullanmak olabilir:
 
 ```js
-let john = { name: "John" };
+let eda = { name: "Eda" };
 
-let visitsCountMap = new WeakMap();
+let ziyaretSayisiMap = new WeakMap();
 
-visitsCountMap.set(john, 123);
+ziyaretSayisiMap.set(eda, 123);
 
-// now john leaves us, we don't need him any more
-john = null;
+// eğer eda bizi terk ederse, ona artık ihtiyacımız yoktur.
+eda = null;
 
-// there are no references except WeakMap,
-// so the object is removed both from the memory and from visitsCountMap automatically
+// WeakMap dışında bir referans yoktur,
+// Bu yüzden obje hafıza ve ziyaretSayisiMap'ten otomatik olarak silinir.
 ```
 
-With a regular `Map`, cleaning up after a user has left becomes a tedious task: we not only need to remove the user from its main storage (be it a variable or an array), but also need to clean up the additional stores like `visitsCountMap`. And it can become cumbersome in more complex cases when users are managed in one place of the code and the additional structure is at another place and is getting no information about removals.
+Sıradan `Map` ile, bir kullanıcı ayrıldıktan sonra temizlik yapmak sıkıcı bir iş haline gelir: kullanıcıyı yalnızca ana depolama alanından (değişken veya dizi olsun) kaldırmamız değil, aynı zamanda ziyaretSayisiMap gibi ek alanları da temizlememiz gerekir. Ayrıca, kullanıcıların kodun bir yerinde yönetildiği ve ek yapının başka bir yerde olduğu ve kaldırma işlemleri hakkında bilgi almadığı daha karmaşık durumlarda hantal olabilir.
 
-`WeakMap` can make things simpler, because it is cleaned up automatically. The information in it like visits count in the example above lives only while the key object exists.
+`WeakMap` işleri daha basit hale getirebilir, çünkü otomatik olarak temizlenir. Yukarıdaki örnekte ziyaret sayısı gibi bilgiler, yalnızca anahtar nesne var olduğunda yaşar.
 
-`WeakSet` behaves similarly:
+`WeakSet` benzer şekilde davranır:
 
-- It is analogous to `Set`, but we may only add objects to `WeakSet` (not primitives).
-- An object exists in the set while it has reachable from somewhere else.
-- Like `Set`, it supports `add`, `has` and `delete`, but not `size`, `keys()` and no iterations.
+- `Set`e benzer, ancak `WeakSet`e yalnızca nesneler ekleyebiliriz (ilkel değil).
+- Bir nesne ona başka bir yerden ulaşılabildiği sürece set içinde var olur
+- `Set` gibi, `add`, `has` ve `delete`yi destekler, ama `size`, `keys()` ve yinelemeleri desteklemez.
 
-For instance, we can use it to keep track of whether an item is checked:
+Örneğin, bir öğenin kontrol edilip edilmediğini takip etmek için kullanabiliriz:
 
 ```js
 let messages = [
-    {text: "Hello", from: "John"},
-    {text: "How goes?", from: "John"},
-    {text: "See you soon", from: "Alice"}
+    {mesaj: "Merhaba", kimden: "John"},
+    {mesaj: "Nasıl gidiyor?", kimden: "John"},
+    {mesaj: "Görüşürüz", kimden: "Alice"}
 ];
 
-// fill it with array elements (3 items)
+// dizi elemanları ile doldur (3 eleman)
 let unreadSet = new WeakSet(messages);
 
-// we can use unreadSet to see whether a message is unread
+// unreadSet'i mesajın okunup okunmadığını görmek için kullanabiliriz
 alert(unreadSet.has(messages[1])); // true
-// remove it from the set after reading
+// okuduktan sonra sil
 unreadSet.delete(messages[1]); // true
 
-// and when we shift our messages history, the set is cleaned up automatically
+// mesaj geçmişini kaydırdığımızda set otomatik olarak temizlenir
 messages.shift();
-// no need to clean unreadSet, it now has 2 items
-// unfortunately, there's no method to get the exact count of items, so can't show it
+// unreadSet'i temizlememize gerek yok, şu an 2 elemanı var
+// ne yazık ki, öğelerin tam sayısını elde etmek için bir yöntem yoktur, bu yüzden gösteremezsiniz
 ```
 
-The most notable limitation of `WeakMap` and `WeakSet` is the absence of iterations, and inability to get all current content. That may appear inconvenient, but actually does not prevent `WeakMap/WeakSet` from doing their main job -- be an "additional" storage of data for objects which are stored/managed at another place.
+`WeakMap` ve `WeakSet`in en dikkate değer sınırlaması, yinelemelerin olmaması ve mevcut tüm içeriğin alınamamasıdır. Bu rahatsız edici görünebilir, ancak aslında `WeakMap / WeakSet`in ana işlerini yapmasını engellemez -- başka bir yerde saklanan / yönetilen nesneler için "ek" veri depolama alanı olur.
 
-## Summary
+## Özet
 
-- `Map` -- is a a collection of keyed values.
+- `Map` -- anahtarlı değerler tutan bir yapıdır.(collection)
 
-    The differences from a regular `Object`:
+    normal `Obje`den farkları:
 
-    - Any keys, objects can be keys.
-    - Iterates in the insertion order.
-    - Additional convenient methods, the `size` property.
+    - Herhangi bir anahtar için objeler anahtar olabilir.
+    - Yinelemeler eklenme sırasıyla yapılır.
+    - Ek olarak kullanışlı metodlar, `size` özelliği.
 
-- `Set` -- is a collection of unique values.
+- `Set` -- eşsiz değerler tutan bir yapı.(collection)
 
-    - Unlike an array, does not allow to reorder elements.
-    - Keeps the insertion order.
+    - Bir array aksine elemanların tekrar sıralanmasına izin vermez.
+    - Eklenme sırasıyla tutar.
 
-- `WeakMap` -- a variant of `Map` that allows only objects as keys and removes them once they become unaccessible by other means.
+- `WeakMap` -- anahtar olarak sadece obje alan ve başka yolla ulaşılamaz hale geldiklerinde onları silen `Map`in farklı bir biçimi.
 
-    - It does not support operations on the structure as a whole: no `size`, no `clear()`, no iterations.
+    - Bir bütün olarak yapı üzerinde yapılan işlemleri desteklemez: `size` yok, `clear()` yok, yineleme yok.
 
-- `WeakSet` -- is a variant of `Set` that only stores objects and removes them once they become unaccessible by other means.
+- `WeakSet` -- sadece obje tutan ve başka yolla ulaşılamaz hale geldiklerinde onları silen `Set`in farklı bir biçimi.
 
-    - Also does not support `size/clear()` and iterations.
+    - Aynı şekilde `size/clear()` ve yinelemeleri desteklemez.
 
-`WeakMap` and `WeakSet` are used as "secondary" data structures in additional to the "main" object storage. Once the object is removed from the main storage, so it only stays in `WeakMap/WeakSet`, they clean up aumatically.
+`WeakMap` ve `WeakSet`, "ana" nesne depolama alanına ek olarak "ikincil" veri yapıları olarak kullanılır. Nesne, ana depolama alanından kaldırıldığında, yalnızca `WeakMap / WeakSet` içinde kalır, otomatik olarak temizlenir.
