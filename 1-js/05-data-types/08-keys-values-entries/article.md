@@ -5,7 +5,7 @@ Veri yapılarından biraz uzaklaşıp bunların döngülerinden bahsedecek olurs
 
 Bir önceki bölümde `map.keys()`, `map.values()`, `map.entries()` gibi metodlar vardı.
 
-Bu metodlar `generi`c metorlardır. Bunların veri yapılarında kullanılması çoğu dilde ortaktır. Eğer yenei bir veri yapısı yapmak istiyorsanız siz de bunların uygulamasını yapmalısınız.
+Bu metodlar `generic` metorlardır. Bunların veri yapılarında kullanılması çoğu dilde ortaktır. Eğer yeni bir veri yapısı yapmak istiyorsanız siz de bunların uygulamasını yapmalısınız.
 
 Bunlar:
 - `Map`
@@ -71,87 +71,87 @@ for(let deger of Object.values(kullanici)) {
 Bu baya işe yarar bir özelliktir. Fakat symbol özelliklerini almak istiyorsanız [Object.getOwnPropertySymbols](mdn:js/Object/getOwnPropertySymbols) metodunu kullanabilirsiniz. Ayrıca [Reflect.ownKeys(obj)](mdn:js/Reflect/ownKeys) *tüm* anahtarları döner.
 ```
 
-## Object.fromEntries to transform objects
+## Nesneleri dönüştürmek için Object.fromEntries
 
-Sometimes we need to perform a transformation of an object to `Map` and back.
+Bazen bir nesneyi `Map`e dönüştürüp ardından onu objeye geri dönüştürmemiz gerekir
 
-We already have `new Map(Object.entries(obj))` to make a `Map` from `obj`.
+Halihazırda `obj`den `Map` yapmak için `new Map(Object.entries(obj))` var.
 
-The syntax of `Object.fromEntries` does the reverse. Given an array of `[key, value]` pairs, it creates an object:
+`Object.fromEntries` in sözdizimi(syntaxi) tam tersini yapar. `[key, value]` çifti dizisi verildiğinde, bir obje oluşturur:
 
 ```js run
-let prices = Object.fromEntries([
-  ['banana', 1],
-  ['orange', 2],
-  ['meat', 4]
+let fiyatlar = Object.fromEntries([
+  ['muz', 1],
+  ['portakal', 2],
+  ['et', 4]
 ]);
 
-// now prices = { banana: 1, orange: 2, meat: 4 }
+// şimdi fiyatlar = { muz: 1, portakal: 2, et: 4 }
 
-alert(prices.orange); // 2
+alert(fiyatlar.portakal); // 2
 ```
 
-Let's see practical applications.
+Pratik uygulamaları görelim.
 
-For example, we'd like to create a new object with double prices from the existing one.
+Örneğin, mevcut olandan iki kat fiyatla yeni bir nesne oluşturmak istiyoruz.
 
-For arrays, we have `.map` method that allows to transform an array, but nothing like that for objects.
+Diziler için, bir diziyi dönüştürmeye izin veren .map metodumuz var, ancak nesneler için böyle bir şey yok.
 
-So we can use a loop:
+Bu yüzden bir döngü kullanabiliriz:
 
 ```js run
-let prices = {
-  banana: 1,
-  orange: 2,
-  meat: 4,
+let fiyatlar = {
+  muz: 1,
+  portakal: 2,
+  et: 4,
 };
 
-let doublePrices = {};
-for(let [product, price] of Object.entries(prices)) {
-  doublePrices[product] = price * 2;
+let ikiKatiFiyatlar = {};
+for(let [product, price] of Object.entries(fiyatlar)) {
+  ikiKatiFiyatlar[product] = price * 2;
 }
 
-alert(doublePrices.meat); // 8
+alert(ikiKatiFiyatlar.et); // 8
 ```
 
-...Or we can represent the object as an `Array` using `Object.entries`, then perform the operations with `map` (and potentially other array methods), and then go back using `Object.fromEntries`.
+...Veya `Object.entries` kullanarak nesneyi bir `Array` olarak temsil edebilir, daha sonra işlemleri `map` (ve muhtemelen diğer dizi metodları) ile gerçekleştirebilir ve daha sonra `Object.fromEntries` kullanarak geri dönebiliriz.
 
-Let's do it for our object:
+Bunu bizim objemiz için yapalım:
 
 ```js run
-let prices = {
-  banana: 1,
-  orange: 2,
-  meat: 4,
+let fiyatlar = {
+  muz: 1,
+  portakal: 2,
+  et: 4,
 };
 
 *!*
-let doublePrices = Object.fromEntries(
+let ikiKatiFiyatlar = Object.fromEntries(
   // convert to array, map, and then fromEntries gives back the object
-  Object.entries(prices).map(([key, value]) => [key, value * 2])
+  Object.entries(fiyatlar).map(([key, value]) => [key, value * 2])
 );
 */!*
 
-alert(doublePrices.meat); // 8
+alert(ikiKatiFiyatlar.et); // 8
 ```   
 
-It may look difficult from the first sight, but becomes easy to understand after you use it once or twice.
+İlk görüşte zor görünebilir, ancak bir veya iki kez kullandıktan sonra anlaşılması kolaylaşır.
 
-We also can use `fromEntries` to get an object from `Map`.
+`Map`ten bir obje almak için`fromEntries` de kullanabiliriz.
 
-E.g. we have a `Map` of prices, but we need to pass it to a 3rd-party code that expects an object.
+Örneğin. Bir fiyat `Map`imiz var, ancak bunu bir nesne bekleyen 3. taraf koduna geçirmemiz gerekiyor.
 
-Here we go:
+Şu şekilde:
 
 ```js run
 let map = new Map();
-map.set('banana', 1);
-map.set('orange', 2);
-map.set('meat', 4);
+map.set('muz', 1);
+map.set('portakal', 2);
+map.set('et', 4);
 
 let obj = Object.fromEntries(map);
 
-// now obj = { banana: 1, orange: 2, meat: 4 }
+// now obj = { muz: 1, portakal: 2, et: 4 }
 
-alert(obj.orange); // 2
+alert(obj.portakal); // 2
 ```
