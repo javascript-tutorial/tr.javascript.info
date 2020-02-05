@@ -1,7 +1,7 @@
 
 # Fonksiyon Objeleri, NFE
 
-Bildiğiniz gibi JavaScript'te fonksiyonlar deperdir.
+Bildiğiniz gibi JavaScript'te fonksiyonlar değerdir.
 
 Her değerin bir tipi olduğuna göre fonksiyonun tipi nedir?
 
@@ -56,7 +56,7 @@ let kullanici = {
 
 }
 
-alert(kullanici.selamVer.name); // Merhaba
+alert(kullanici.selamVer.name); // selamVer
 alert(kullanici.yolcuEt.name); // Güle güle
 ```
 Burada bir sihir yoktur. İsmin çıkarılamadığı birçok durum meydana gelebilir.
@@ -133,7 +133,7 @@ function selamVer() {
   sayHi.counter++;
   */!*
 }
-sayHi.counter = 0; // ilk değer
+selamVer.counter = 0; // ilk değer
 
 selamVer(); // Selam
 selamVer(); // Selam
@@ -292,7 +292,7 @@ Bunu kullanarak kod şu şekilde düzeltilebilir:
 
 ```js run
 let selamVer = function *!*func*/!*(kim) {
-  if (who) {
+  if (kim) {
     alert(`Selam, ${kim}`);
   } else {
 *!*
@@ -327,7 +327,7 @@ Fonksiyonlar objedir.
 
 Eğer fonksiyon Fonksiyon Tanımı yöntemi ile ( ana akışta olmayan ) tanımlanmışsa ve isim taşıyorsa buna İsimlendirilmiş Fonksiyon Tanımı denir. İsim içersiinde veya recursive çağrılarda kullanılabilir.
 
-Fonksiyonlar ayrıca başka özelliklerde taşıyabilirler. Çoğu bilinen JavaScript kütüpyanesi bu özelliği ziyadesiyle kullanır.
+Fonksiyonlar ayrıca başka özelliklerde taşıyabilirler. Çoğu bilinen JavaScript kütüphanesi bu özelliği ziyadesiyle kullanır.
 
 Genelde bir "ana" fonksiyon ve bu fonksiyona bağlı birçok "yardımcı" fonksiyon tanımlarlar. Örneğin [jquery](https://jquery.com) `$` adında bir fonksiyon oluşturur. [lodash](https://lodash.com) fonksiyonu `_` adında bir fonksiyon oluşturu. Ardıncan `_.clone`, `_.keyBy` gibi özellikleri ekler. [Dökümantasyon](https://lodash.com/docs)'u inceleyebilirsiniz.  Aslında, global alanda baya temiz çalışırlar. Böylece bir kütüphane bir tane global değişken vermiş olur. Bu da isimlerin birbiriyle çakışmasını engeller.
 
