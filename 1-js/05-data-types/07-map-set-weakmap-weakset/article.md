@@ -4,7 +4,7 @@
 Şu ana kadar bu karmaşık veri yapılarını gördük:
 
 - Anahtar değere sahip verileri tutan objeler.
-- Sıralı bir biçimde verileri tutan Arrayler.
+- Sıralı bir biçimde verileri tutan Diziler.
 
 Ancak bunlar yeterli olmayabiliyorlar. Bu yüzden `Map` ve `Set` diye yapılar bulunuyor. (Collections)
 
@@ -95,10 +95,10 @@ map.set('1', 'str1')
 
 ## Objeden Map
 
-Bir `Map` oluşturduğumuzda anahtar-değer çifti olarak array kullanabiliriz:
+Bir `Map` oluşturduğumuzda anahtar-değer çifti olarak dizi kullanabiliriz:
 
 ```js
-// [key, value] çiftlerinden oluşan array
+// [key, value] çiftlerinden oluşan dizi
 let map = new Map([
   ['1',  'str1'],
   [1,    'num1'],
@@ -106,7 +106,7 @@ let map = new Map([
 ]);
 ```
 
-Tıpkı bu formatta objeler için anahtar/değer çifti arrayi döndüren bir yerleşik fonksiyon [Object.entries(obj)](mdn:js/Object/entries) vardır.
+Tıpkı bu formatta objeler için anahtar/değer çifti dizisi döndüren bir yerleşik fonksiyon [Object.entries(obj)](mdn:js/Object/entries) vardır.
 
 Böylece bir objeden bir map oluşturabiliriz:
 
@@ -117,7 +117,7 @@ let map = new Map(Object.entries({
 }));
 ```
 
-Burada, `Object.entries` anahtar/değer çifti arrayi döndürür: `[ ["name","John"], ["age", 30] ]`. `Map`in ihtiyacı olan da buydu.
+Burada, `Object.entries` anahtar/değer çifti dizisi döndürür: `[ ["name","John"], ["age", 30] ]`. `Map`in ihtiyacı olan da buydu.
 
 ## Map üzerinde yineleme
 
@@ -157,7 +157,7 @@ Yineleme değerlerin eklenme sırasıyla yapıldı. Sıradan `Obje`lerden farkl�
 
 ```
 
-Bunun yanı sıra, `Map` yerleşik `forEach` metoduna sahiptir, tıpkı `Array` gibi:
+Bunun yanı sıra, `Map` yerleşik `forEach` metoduna sahiptir, tıpkı `Dizi` gibi:
 
 ```js
 yemekMap.forEach( (value, key, map) => {
@@ -172,7 +172,7 @@ yemekMap.forEach( (value, key, map) => {
 
 Ana fonksiyonlar şu şekildedir:
 
-- `new Set(iterable)` -- set oluşturur, isteğe bağlı olarak değerler içeren arrayden de oluşturulabilir.
+- `new Set(iterable)` -- set oluşturur, isteğe bağlı olarak değerler içeren diziden de oluşturulabilir.
 - `set.add(value)` -- bir değer ekler, set'in kendisini döndürür
 - `set.delete(value)` -- değeri siler. Eğer öyle bir `değer` varsa `true` yoksa `false` döndürür.
 - `set.has(value)` -- Eğer öyle bir `değer` varsa `true` yoksa `false` döndürür.
@@ -205,7 +205,7 @@ for(let user of set) {
 }
 ```
 
-Kullanıcılardan oluşan bir array `Set`e alternatif olabilir ve [arr.find](mdn:js/Array/find) kullanarak her ekleme yaparken aynısından var mı diye kontrol yapabiliriz. Fakat bu kodumuzun performansını azaltır. Çünkü bu metod ile her seferinde arrayin tüm elemanlarını kontrol etmemiz gerekir. `Set` eşsizlik kontrolü yapmak için daha iyi optimize edilmiştir.
+Kullanıcılardan oluşan bir dizi `Set`e alternatif olabilir ve [arr.find](mdn:js/Array/find) kullanarak her ekleme yaparken aynısından var mı diye kontrol yapabiliriz. Fakat bu kodumuzun performansını azaltır. Çünkü bu metod ile her seferinde dizinin tüm elemanlarını kontrol etmemiz gerekir. `Set` eşsizlik kontrolü yapmak için daha iyi optimize edilmiştir.
 
 ## Set üzerinde yineleme
 
@@ -419,7 +419,7 @@ messages.shift();
 
 - `Set` -- eşsiz değerler tutan bir yapı.(collection)
 
-    - Bir array aksine elemanların tekrar sıralanmasına izin vermez.
+    - Bir dizi aksine elemanların tekrar sıralanmasına izin vermez.
     - Eklenme sırasıyla tutar.
 
 - `WeakMap` -- anahtar olarak sadece obje alan ve başka yolla ulaşılamaz hale geldiklerinde onları silen `Map`in farklı bir biçimi.
