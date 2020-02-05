@@ -29,7 +29,7 @@ Neyseki bunların hiç biri için kod yazmaya gerek yok. Bu problem bizim için 
 
 ## JSON.stringify
 
-[JSON](http://en.wikipedia.org/wiki/JSON) (JavaScript Object Notation) genelde objelerin değerlerini ifade eder.[RFC 4627](http://tools.ietf.org/html/rfc4627) standardında tanımı yapılmıştır. Öncelikle JavaScript düşünülerek yapılmış olsa da birçok dil de kendine has kütüphanelerle JSON desteği vermektedir. Böylece client JavaScript kullnırken server Ruby/PHP/Java/Herneyse... kullansa bile JSON kullanımında bir sorun oluşturmaz.
+[JSON](http://en.wikipedia.org/wiki/JSON) (JavaScript Object Notation) genelde objelerin değerlerini ifade eder.[RFC 4627](http://tools.ietf.org/html/rfc4627) standardında tanımı yapılmıştır. Öncelikle JavaScript düşünülerek yapılmış olsa da birçok dil de kendine has kütüphanelerle JSON desteği vermektedir. Böylece client JavaScript kullanırken server Ruby/PHP/Java/Herneyse... kullansa bile JSON kullanımında bir sorun oluşturmaz.
 
 JavaScript aşağıdaki metodları destekler:
 
@@ -70,8 +70,8 @@ alert(json);
 
 JSON kodlanmış objenin normal obje ile arasında bir kaç tane önemli farklılık vardır:
 
-- Karakterler çift tırnak kullanır. JSON'da tek tırnak veya ters tırnak kıllanılmaz. Bundan dolayı `'Ahmet'` -> `"Ahmet"` olur. 
-- Obje özelliklerinin isimleri de çift tırnak içinde alınır. Bu da zorunludur. Bundan dolay `yas:30` , `"yas"`:30'olur.
+- Karakterler çift tırnak kullanır. JSON'da tek tırnak veya ters tırnak kullanılmaz. Bundan dolayı `'Ahmet'` -> `"Ahmet"` olur. 
+- Obje özelliklerinin isimleri de çift tırnak içinde alınır. Bu da zorunludur. Bundan dolayı `yas:30` , `"yas":30` olur.
 
 `JSON.stringify` ilkel tiplere de uygulanabilir.
 
@@ -88,7 +88,7 @@ Desteklenen JSON tipleri:
 Örneğin:
 
 ```js run
-// normal bir sayı JSOn için de normal bir sayıdır.
+// normal bir sayı JSON için de normal bir sayıdır.
 alert( JSON.stringify(1) ) // 1
 
 // karakterler de JSON içinde karakterdir fakat çift tırnak içinde gösterilir.
@@ -160,7 +160,7 @@ tanisma.yeri = oda;       // tanisma odaya referans veriyor.
 oda.dolduruldu = tanisma; // oda tanismaya referans veriyor
 
 *!*
-JSON.stringify(meetup); // Hata: Dairesel yapı JSON'a çevrilememiştir.
+JSON.stringify(tanisma); // Hata: Dairesel yapı JSON'a çevrilememiştir.
 */!*
 ```
 Çeviri yapılırken hata olmasının nedeni: `oda.dolduruldu` `tanisma`'ya referans olurken. `tanisma.yeri` `oda`'ya referans verir.
@@ -209,7 +209,7 @@ alert( JSON.stringify(tanisma, *!*['baslik', 'katilimcilar']*/!*) );
 ```
 Burada çok sıkı kullandık. Özellik listesi tüm yapı için kullanıldı. Bundan ddolayı katılımcılar boş döndür, `adi` alanı da istenseydi bu durumda değer gelecekti.
 
-Eğer `oda.dolduruldu` hari. ( dairesel referans ) yapmayanlar hariç hepsini içermek isterseniz:
+Dairesel referansa neden olabilecek `oda.dolduruldu` hariç hepsini içermek isterseniz:
 
 ```js run
 let oda = {
@@ -418,7 +418,7 @@ let kullanici = '{ "adi": "Ahmet", "yasi": 35, "admin": false, "arkadaslar": [0,
 
 kullanici = JSON.parse(kullanici);
 
-alert( user.arkadaslar[1] ); // 1
+alert( kullanici.arkadaslar[1] ); // 1
 ```
 JSON gerektiği kadar karmaşık olabilir, içerisinde objeler diziler ve bu objelerin içerisinde objeler diziler olabilir. Tek yapması gereken formata uymaktır.
 
@@ -441,7 +441,7 @@ JSON'un daha sıkı yazıma sahip olmasının nedeni geliştiricilerinin tembel 
 
 ## Alıcı kullanma 
 
-Diyelimki sunucunuzda `meetup` diye bir objeyi metin şeklinde tutuyorsunuz.
+Diyelimki sunucunuzda `tanisma` diye bir objeyi metin şeklinde tutuyorsunuz.
 
 Aşağıdaki gibi görünecektir:
 
