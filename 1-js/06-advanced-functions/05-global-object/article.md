@@ -7,7 +7,7 @@ Tabi o zamandan beri JavaScript çok değişti, artık evrensel obje göze batar
 
 Global obje hala dil içerisinde yer almaktadır.
 
-Tarayıcıc için bu "window" ve NodeJs için ise "global"'dir. Diğer ortamlar da kendine ait evrensel objelere sahiptirler.
+Tarayıcı için bu "window" ve NodeJs için ise "global"'dir. Diğer ortamlar da kendine ait evrensel objelere sahiptirler.
 
 İki şeyi yapmaktadır:
 
@@ -22,7 +22,7 @@ Tarayıcıc için bu "window" ve NodeJs için ise "global"'dir. Diğer ortamlar 
     ```
     Bu aynı şekilde diğer dahili fonksiyon ve değişkenler için de geçerlidir. Örneğin `Array` yerine `window.Array` kullanılabilir.
 
-2. Global `var` değişkeni tanımlamaya olanak tanır. `window` özellikleri ile okuma ve yazma sağlanabilir. Çrneğin
+2. Global `var` değişkeni tanımlamaya olanak tanır. `window` özellikleri ile okuma ve yazma sağlanabilir. Örneğin
 
     <!-- no-strict to move variables out of eval -->
     ```js untrusted run no-strict refresh
@@ -63,7 +63,7 @@ Doğal olarak, evrensel objenin "evrensel olan herşeye erişebilir" fikri eski 
 ```
 ## "window"'un kullanım alanları
 
-Node.JS gibi sunucu ortamlarında, `global` obje çok az kullanılır. Hatta `hiç bir zaman` diyebiliriz.
+Node.JS gibi sunucu ortamlarında, `global` obje çok az kullanılır. Hatta `hiçbir zaman` diyebiliriz.
 
 Buna rağmen `window` bazı durumlarda kullanılmaktadır.
 
@@ -75,17 +75,17 @@ Genelde, kullanmak çok iyi bir fikir olmasa da, aşağıda bazı örnekleri gö
     var kullanici = "Evrensel";
 
     function selamVer() {
-      var user = "Yerel";
+      var kullanici = "Yerel";
 
     *!*
-      alert(window.user); // Evrensel
+      alert(window.kullanici); // Evrensel
     */!*
     }
 
     selamVer();
     ```
 
-    Bu sizi çözüme ulaştırır fakat değişkenlere farklı isimler vermek daha iyidir, böylece `window` kullanmanıza gerek kalmaz. Ayrıca dikkat ederseniz `kullici` tanımlamak için `var` kullanılmıştır. `let` kullanılmış olsaydı `window`'dan bu değeri alamazdınız.
+    Bu sizi çözüme ulaştırır fakat değişkenlere farklı isimler vermek daha iyidir, böylece `window` kullanmanıza gerek kalmaz. Ayrıca dikkat ederseniz `kullanici` tanımlamak için `var` kullanılmıştır. `let` kullanılmış olsaydı `window`'dan bu değeri alamazdınız.
     
 3. Global bir değişkenin var olup olmadığına bakar.
 
