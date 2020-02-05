@@ -51,9 +51,9 @@ function showName(adi, soyadi, ...basliklar) {
 
   // geri kalanlar basliklar degikenine atanır.
   // Ör: basliklar = ["Konsil", "İmparator"]
-  alert( titles[0] ); // Konsil
-  alert( titles[1] ); // İmparator
-  alert( titles.length ); // 2
+  alert( basliklar[0] ); // Konsil
+  alert( basliklar[1] ); // İmparator
+  alert( basliklar.length ); // 2
 }
 
 showName("Julius", "Caesar", "Konsil", "İmparator");
@@ -90,10 +90,10 @@ function argumanIsimleri() {
 }
 
 // shows: 2, Julius, Caesar
-showName("Julius", "Caesar");
+argumanIsimleri("Julius", "Caesar");
 
 // shows: 1, Ahmet, tanimsiz (ikinci bir argüman yok.)
-showName("Ahmet");
+argumanIsimleri("Ahmet");
 ```
 
 Önceden, geriye kalanlar parametresi eklenmemişti, `arguments` değişkeni tüm argümanların alınacağı yegane yöntemdi.
