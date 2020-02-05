@@ -11,7 +11,7 @@ Fonksiyon yaratmak için:
 let func = new Function('a', 'b', 'return a + b');
 ```
 
-`new Function`'ın tüm argümanları karakter dizisidir. Parametreler önce, en son olarak yazılır.
+`new Function`'ın tüm argümanları karakter dizisidir. Parametreler önce, çalışacak kodun içeriği en son olarak yazılır.
 
 Örneğin:
 
@@ -78,7 +78,7 @@ function FonkAl() {
   return func;
 }
 
-getFunc()(); // *!*"test"*/!*, FonkAl'ın sözcüksel ortamından.
+FonkAl()(); // *!*"test"*/!*, FonkAl'ın sözcüksel ortamından.
 ```
 
 `new Function` özelliği biraz garip dursa da çok kullanışlı ve pratiktir.
