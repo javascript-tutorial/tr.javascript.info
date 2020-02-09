@@ -89,11 +89,11 @@ let *!*kullaniciAdi*/!* = 'Adem';
 function mesajGoster() {
   *!*kullaniciAdi*/!* = "Yusuf"; // (1) dışarıda bulunan değişkenin değeri değişti.
 
-  let mesaj = 'Merhaba, ' + *!*userName*/!*;
+  let mesaj = 'Merhaba, ' + *!*kullaniciAdi*/!*;
   alert(mesaj);
 }
 
-alert( mesaj ); // Fonksiyon çağırılmadan  *!*Adem*/!* 
+alert( kullaniciAdi ); // Fonksiyon çağırılmadan  *!*Adem*/!* 
 
 mesajGoster();
 
@@ -113,13 +113,13 @@ function mesajGoster() {
 */!*
 
   let mesaj = 'Merhaba, ' + kullaniciAdi; // *!*Yusuf*/!*
-  alert(message);
+  alert(mesaj);
 }
 
 // buradaki fonksiyon kendi değişkenini yaratacak ve onu kullanacak.
 mesajGoster();
 
-alert( userName ); // *!*Adem*/!*, değişmedi!!!, fonksiyon dışarıda bulunan değişkene erişmedi.
+alert( kullaniciAdi ); // *!*Adem*/!*, değişmedi!!!, fonksiyon dışarıda bulunan değişkene erişmedi.
 ```
 
 ```smart header="Evrensel(Global) Değişkenler"
