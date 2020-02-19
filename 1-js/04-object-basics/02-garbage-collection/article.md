@@ -62,7 +62,7 @@ let kullanici = {
 };
 
 *!*
-let yonetici = isim;
+let yonetici = kullanici;
 */!*
 ```
 
