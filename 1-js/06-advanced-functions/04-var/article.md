@@ -1,5 +1,17 @@
 
+<<<<<<< HEAD
 # Eski tip "var" 
+=======
+# The old "var"
+
+```smart header="This article is for understanding old scripts"
+The information in this article is useful for understanding old scripts.
+
+That's not how we write a new code.
+```
+
+In the very first chapter about [variables](info:variables), we mentioned three ways of variable declaration:
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
 
 İlk bölümde [degiskenler](info:variables) altında üç çeşit değişken tanımlama yöntemi olduğundan bahsedilmişti.
 1. `let`
@@ -26,11 +38,30 @@ selamVer();
 alert(terim); // Hata! terim tanımlı değil.
 ```
 
+<<<<<<< HEAD
 ...Fakat farklılık tam da burada ortaya çıkar.
+=======
+...But here are the differences.
+
+## "var" has no block scope
+
+Variables, declared with `var`, are either function-wide or global. They are visible through blocks.
+
+For instance:
+
+```js run
+if (true) {
+  var test = true; // use "var" instead of "let"
+}
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
 
 ## "var"'ın blok kapsamı yoktur
 
+<<<<<<< HEAD
 `var` ya fonksiyon içinde yada globalde tanımlanır, diğer türlü tüm bloklar içerisinden erişilebilir.
+=======
+As `var` ignores code blocks, we've got a global variable `test`.
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
 
 Örneğin:
 
@@ -127,7 +158,11 @@ Bundan dolayı yukarıdaki örnekte `if(false)` hiç bir zaman çalışmayacakt�
 
 **Tanımlar yükseltilir fakat atamalar yükseltilmez**
 
+<<<<<<< HEAD
 Bir örnekle göstermek gerekirse:
+=======
+That's best demonstrated with an example:
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
 
 ```js run
 function selamVer() {
@@ -167,13 +202,89 @@ Tüm `var` tanımları fonksiyon başladığında işlendiğinden dolayı, isten
 
 Yukarıdaki her iki `alert` örneği de hatasız çalışmaktadır çünkü `terim` mevcuttur. Değeri atanmadığından `undefined` göstermiştir.
 
+<<<<<<< HEAD
 ## Özet
+=======
+### IIFE
+
+As in the past there was only `var`, and it has no block-level visibility, programmers invented a way to emulate it. What they did was called "immediately-invoked function expressions" (abbreviated as IIFE).
+
+That's not something we should use nowadays, but you can find them in old scripts.
+
+An IIFE looks like this:
+
+```js run
+(function() {
+
+  let message = "Hello";
+
+  alert(message); // Hello
+
+})();
+```
+
+Here a Function Expression is created and immediately called. So the code executes right away and has its own private variables.
+
+The Function Expression is wrapped with parenthesis `(function {...})`, because when JavaScript meets `"function"` in the main code flow, it understands it as the start of a Function Declaration. But a Function Declaration must have a name, so this kind of code will give an error:
+
+```js run
+// Try to declare and immediately call a function
+function() { // <-- Error: Unexpected token (
+
+  let message = "Hello";
+
+  alert(message); // Hello
+
+}();
+```
+
+Even if we say: "okay, let's add a name", that won't work, as JavaScript does not allow Function Declarations to be called immediately:
+
+```js run
+// syntax error because of parentheses below
+function go() {
+
+}(); // <-- can't call Function Declaration immediately
+```
+
+So, the parentheses around the function is a trick to show JavaScript that the function is created in the context of another expression, and hence it's a Function Expression: it needs no name and can be called immediately.
+
+There exist other ways besides parentheses to tell JavaScript that we mean a Function Expression:
+
+```js run
+// Ways to create IIFE
+
+(function() {
+  alert("Parentheses around the function");
+}*!*)*/!*();
+
+(function() {
+  alert("Parentheses around the whole thing");
+}()*!*)*/!*;
+
+*!*!*/!*function() {
+  alert("Bitwise NOT operator starts the expression");
+}();
+
+*!*+*/!*function() {
+  alert("Unary plus starts the expression");
+}();
+```
+
+In all the above cases we declare a Function Expression and run it immediately. Let's note again: nowadays there's no reason to write such code.
+
+## Summary
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
 
 `var`'ın iki tane ana farklılığı mevcuttur:
 
 1. Değişkenlerin blok limiti yoktur. En düşük fonksiyon içerisinden görünebilirler. Yani aynı fonksiyon içerisinde farklı bir bloğun içinde yazılsa bile fonksiyon içinden erişilebilmektedir.
 2. Değişkenlerin tanımlanması fonksiyon başladığında gerçekleşir.
 
+<<<<<<< HEAD
 Evrensel obje söz konusu olduğunda bir farklılık bulunmaktadır bunu bir sonraki bölümde göreceğiz.
+=======
+There's one more very minor difference related to the global object, that we'll cover in the next chapter.
+>>>>>>> 405150f1f286db19a3c1ed913fa3e905fcefbe46
 
 Bu farklılıklar aslında kötüdür. Öncelikle blok seviyesinde değişken yaratılmamaktadır. "Yükseltme" olayı hataya neden olabilmektedir. Bundan dolayı yeni kodlarda `var` çok nadir olarak kullanılır.
