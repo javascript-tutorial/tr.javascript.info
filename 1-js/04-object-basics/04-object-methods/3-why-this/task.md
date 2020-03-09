@@ -4,7 +4,11 @@ importance: 3
 
 # "this" in değerini açıklayın
 
+<<<<<<< HEAD
 Aşağıdaki amaç `obj.selamVer()` in 4 defa çağırılmasıdır.
+=======
+In the code below we intend to call `obj.go()` method 4 times in a row.
+>>>>>>> fcfef6a07842ed56144e04a80c3a24de049a952a
 
 Fakat `(1)` ve `(2)` , `(3)` ve `(4)` ten farklı çalışmaktadır. Neden?
 
