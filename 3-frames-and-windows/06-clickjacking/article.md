@@ -1,79 +1,79 @@
-# The clickjacking attack
+# Clickjacking saldırısı
 
-The "clickjacking" attack allows an evil page to click on a "victim site" *on behalf of the visitor*.
+Clickjacking saldırısı kötücül bir sayfanın *kullanıcı adına* hedef sitede tıklamalar yapmasına olanak sağlar.
 
-Many sites were hacked this way, including Twitter, Facebook, Paypal and other sites. They have all been fixed, of course.
+Sonradan düzeltilmiş olsa da Twitter, Facebook ve PayPal'ın da bulunduğu birçok site, zamanında bu saldırı ile ele geçirilmiştir. 
 
-## The idea
+## Mantık
 
-The idea is very simple.
+Saldırının arkasındaki mantık oldukça basittir.
 
-Here's how clickjacking was done with Facebook:
+Örneğin Facebook ile yapılan bir clickjacking saldırısı böyle işler:
 
-1. A visitor is lured to the evil page. It doesn't matter how.
-2. The page has a harmless-looking link on it (like "get rich now" or "click here, very funny").
-3. Over that link the evil page positions a transparent `<iframe>` with `src` from facebook.com, in such a way that the "Like" button is right above that link. Usually that's done with `z-index`.
-4. In attempting to click the link, the visitor in fact clicks the button.
+1. Ziyaretçi herhangi bir neden veya yolla kötücül siteyi ziyaret eder.
+2. Kötücül sitede zararsız ve ilgi çekici bir baplantı bulunur (örneğin "Zengin olmak için tıkla" veya "bu kedinin neler yaptığına inanamayacaksınız").
+3. Kötücül sayfa bağlantının üzerine facebook.com'dan `src`'si olan şeffaf bir `<iframe>` yerleştirir. Bu `<iframe>` şeffaf bir "Beğen" butonunun tam bağlantının üzerine gelmesini sağlar. Genellikle yerleştirme için `z-index` kullanılır. 
+4. Ziyaretçi bağlantıya tıklamayı denerken aslında şeffaf olan butona tıklar.
 
-## The demo
+## Örnek
 
-Here's how the evil page looks. To make things clear, the `<iframe>` is half-transparent (in real evil pages it's fully transparent):
+Bu kod bir kötücül sayfa örneğidir. Daha iyi görülebilmesi amacıyla `<iframe>` yarı şeffaf olarak ayarlanmıştır (Gerçek bir kötücül sayfada bu `<iframe>` tamamen şeffaftır):
 
 ```html run height=120 no-beautify
 <style>
-iframe { /* iframe from the victim site */
+iframe { /* Hedef siteden alınan iframe */
   width: 400px;
   height: 100px;
   position: absolute;
   top:0; left:-20px;
 *!*
-  opacity: 0.5; /* in real opacity:0 */
+  opacity: 0.5; /* Gerçekte opacity:0 */
 */!*
   z-index: 1;
 }
 </style>
 
-<div>Click to get rich now:</div>
+<div>Zengin olmak için tıkla:</div>
 
-<!-- The url from the victim site -->
+<!-- Hedef sitenin url'si -->
 *!*
 <iframe src="/clickjacking/facebook.html"></iframe>
 
-<button>Click here!</button>
+<button>Buraya tıkla!</button>
 */!*
 
-<div>...And you're cool (I'm a cool hacker actually)!</div>
+<div>Ve artık zenginsin (ve ayrıca beni Facebook'ta beğenmeni sağladım)!</div>
 ```
 
-The full demo of the attack:
+Saldırının tam bir örneği:
 
 [codetabs src="clickjacking-visible" height=160]
 
-Here we have a half-transparent `<iframe src="facebook.html">`, and in the example we can see it hovering over the button. A click on the button actually clicks on the iframe, but that's not visible to the user, because the iframe is transparent.
+Bu örnekte elimizde yarı şeffaf bir `<iframe src="facebook.html">` var, ve burada butonun üstünde kaldığını görebiliyoruz. Bu butona basılacak bir tıklama aslında iframe tarafından yakalanır, ancak bu olay iframe şeffaf olduğu için kullanıcı tarafından görülmez. 
 
-As a result, if the visitor is authorized on Facebook ("remember me" is usually turned on), then it adds a "Like". On Twitter that would be a "Follow" button.
+Sonuç olarak eğer kullanıcının Facebook hesabı zaten açıksa sayfayı beğenmiş olur. Eğer örnekte Twitter hedef site olsaydı, kullanıcı sayfayı Twitter'da takip etmiş olurdu.
 
-Here's the same example, but closer to reality, with `opacity:0` for `<iframe>`:
+Aynı örneğin `<iframe>` için `opacity:0` ayarlanmış, daha gerçekçi bir versiyonu:
 
 [codetabs src="clickjacking" height=160]
 
-All we need to attack -- is to position the `<iframe>` on the evil page in such a way that the button is right over the link. That's usually possible with CSS.
+Saldırının gerçekleşmesi için tek gereken kötücül sayfadaki `<iframe>`'in tam olarak bağlantının üstüne yerleşmesidir. Bu olay çoğunlukla CSS ile mümkündür.
 
-```smart header="Clickjacking is for clicks, not for keyboard"
-The attack only affects mouse actions.
+```smart header="Clickjacking sadece tıklamalar için kullanılabilir, metinler için değil"
+Bu saldırı sadece fare hareketlerini kapsar.
 
-Technically, if we have a text field to hack, then we can position an iframe in such a way that text fields overlap each other. So when a visitor tries to focus on the input they see on the page, they actually focus on the input inside the iframe.
+Teknik olarak, saldıracağımız nesne bir metin alanı olsaydı, bir iframe'i tam olarak alanın üzerine getirerek saldırıyı deneyebilirdik. Böylece gerçek metin alanına yazdığını düşünen kullanıcı aslında iframe'in metin alanına yazardı. 
 
-But then there's a problem. Everything that the visitor types will be hidden, because the iframe is not visible.
+Ancak, bu durumds kullanıcının yazdıkları ekranda görünmez.
 
-People will usually stop typing when they can't see their new characters printing on the screen.
+Genellikle kullanıcı ekranda yazdığını göremediğinde yazmayı keser, bu da bu saldırıyı metin alanalrı için kullanışsız kılar.
 ```
 
-## Old-school defences (weak)
+## Eski yöntem savunmalar (zayıf)
 
-The oldest defence is a bit of JavaScript which forbids opening the page in a frame (so-called "framebusting").
+Bu saldırıya karşı en eski savunma yöntemi sayfanın iframe olarak açılmasını engelleyen bir JavaScript betiğidir. Bu yöntem ayrıca "framebusting" olarak da bilinir.
 
-That looks like this:
+Betik şöyle görünür:
 
 ```js
 if (top != window) {
@@ -81,66 +81,66 @@ if (top != window) {
 }
 ```
 
-That is: if the window finds out that it's not on top, then it automatically makes itself the top.
+Mantık: Eğer asıl sayfa en üstte olmadığını fark ederse, kendini en üste taşır.
 
-This not a reliable defence, because there are many ways to hack around it. Let's cover a few.
+Bu yöntem, etrafından dolaşma yolları nedeniyle güvenilmezdir. Bu yöntemlerden bazılarını inceleyelim.
 
-### Blocking top-navigation
+### Üste taşımayı engellemek
 
-We can block the transition caused by changing `top.location` in the [beforeunload](info:onload-ondomcontentloaded#window.onbeforeunload) event.
+[beforeunload](info:onload-ondomcontentloaded#window.onbeforeunload) olayından önce `top.location`'ın değişmesinden kaynaklanan üste çıkma eylemi engellenebilir.
 
-The top page (belonging to the hacker) sets a handler to it, and when the `iframe` tries to change `top.location` the visitor gets a message asking them whether they want to leave.
+Üstteki (saldırgana ait) sayfa bu olaya bir işleyici bağlayarak `iframe` `top.location`'ı değiştirmeyi denediğinde kullanıcıya ayrılamk isteyip istemediğini soran bir mesaj gösterebilir.
 
-Like this:
+Örneğin:
 ```js
 window.onbeforeunload = function() {
   window.onbeforeunload = null;
-  return "Want to leave without learning all the secrets (he-he)?";
+  return "Gerçekten tüm kedileri görmeden bu sayfadan ayrılmak istiyor musunuz?";
 };
 ```
 
-In most cases the visitor would answer negatively because they don't know about the iframe - all they can see is the top page, leading them to think there is no reason to leave. So `top.location` won't change!
+Çoğu senaryoda, kullanıcı iframe'in varlığını bilmediğinden dolayı "Hayır" cevabını verecektir. Sonuçta gördükleri tek şey üzerinde kedi videoları olan en üstteki sayfa, niye ayrılmak istesinler ki? Yani, `top.location` değişmeyecek. 
 
-In action:
+İş üzerinde:
 
 [codetabs src="top-location"]
 
-### Sandbox attribute
+### Sandbox niteliği
 
-One of the things restricted by the `sandbox` attribute is navigation. A sandboxed iframe may not change `top.location`.
+`sandbox` niteliği tarafından kısıtlanan özelliklerden biri sayfa hareketidir. Sandbox niteliğine sahip bir iframe `top.location` değerini değiştiremez. 
 
-So we can add the iframe with `sandbox="allow-scripts allow-forms"`. That would relax the restrictions, permitting scripts and forms. But we omit `allow-top-navigation` so that changing `top.location` is forbidden.
+Yani iframe'i `sandbox="allow-scripts allow-forms"` niteliğiyle ekleyebiliriz. Nitelikteki `"allow-scripts allow-forms"` kısmı sandbox niteliğindeki kısıtlamaları kaldırarak betik ve formların çalışmasını sağlar ancak `allow-top-navigation` olmadığından iframe üste çıkamaz.
 
-Here's the code:
+Kod örneği:
 
 ```html
 <iframe *!*sandbox="allow-scripts allow-forms"*/!* src="facebook.html"></iframe>
 ```
 
-There are other ways to work around that simple protection too.
+Bu basit korumanın arkasından dolaşacak tabii ki daha fazla yöntem var.
 
 ## X-Frame-Options
 
-The server-side header `X-Frame-Options` can permit or forbid displaying the page inside a frame.
+Sunucu-taraflı `X-Frame-Options` başlığı bir sayfanın iframe içinde gösterilmesine izin verebilir veya reddedebilir.
 
-It must be sent *by the server*: the browser will ignore it if found in a `<meta>` tag. So, `<meta http-equiv="X-Frame-Options"...>` won't do anything.
+Başlığın *sunucu tarafından* gönderilmesi şarttır, tarayıcı bu başlığı `<meta>` etiketinde görürse yok sayar. Yani `<meta http-equiv="X-Frame-Options"...>` etkisizdir.
 
-The header may have 3 values:
+Başlık üç değerden birini taşıyabilir:
 
 
 `DENY`
-: Never ever show the page inside a frame.
+: Sayfayı asla iframe içinde gösterme.
 
 `SAMEORIGIN`
-: Allow inside a frame if the parent document comes from the same origin.
+: Sayfanın iframe içinde gösterilmesine ancak ana dosya aynı kaynaktansa izin ver.A
 
 `ALLOW-FROM domain`
-: Allow inside a frame if the parent document is from the given domain.
+: Sayfanın iframe içinde gösterilmesine ancak ana dosya belirtilen alan adından geliyorsa izin ver.
 
-For instance, Twitter uses `X-Frame-Options: SAMEORIGIN`.
+Örneğin, Twitter'da `X-Frame-Options: SAMEORIGIN` kullanılıyor.
 
 ````online
-Here's the result:
+Sonuç:
 
 ```html
 <iframe src="https://twitter.com"></iframe>
@@ -149,16 +149,16 @@ Here's the result:
 <!-- ebook: prerender/ chrome headless dies and timeouts on this iframe -->
 <iframe src="https://twitter.com"></iframe>
 
-Depending on your browser, the `iframe` above is either empty or alerting you that the browser won't permit that page to be navigating in this way.
+Tarayıcınıza göre yukarıdaki `iframe` ya boştur ya da tarayıcının bu sayfa hareketine izin vermediği konusunda sizi uyaracaktır.
 ````
 
-## Showing with disabled functionality
+## İşlevsiz olarak göstermek
 
-The `X-Frame-Options` header has a side-effect. Other sites won't be able to show our page in a frame, even if they have good reasons to do so.
+`X-Frame-Options` başlığının bir de kötü yanı var: Diğer siteler, iyi bir nedenleri olsa bile, bu başlığı taşıyan siteyi bir iframe içinde gösteremeyecek.
 
-So there are other solutions... For instance, we can "cover" the page with a `<div>` with `height: 100%; width: 100%;`, so that it intercepts all clicks. That `<div>` should disappear if `window == top` or if we figure out that we don't need the protection.
+Yine de, başka çözümler var... Örneğin, bir `<div>` oluşturup `height: 100%; width: 100%;` değerlerini kullanarak sayfayı "kaplayabiliriz", böylece bu `<div>` gelen tüm tıklamaları engeller, eğer bu korumaya ihtiyaç duymazsak veya `window == top` olursa da yok olur. 
 
-Something like this:
+Bunun gibi:
 
 ```html
 <style>
@@ -173,67 +173,68 @@ Something like this:
 </style>
 
 <div id="protector">
-  <a href="/" target="_blank">Go to the site</a>
+  <a href="/" target="_blank">Siteye git</a>
 </div>
 
 <script>
-  // there will be an error if top window is from the different origin
-  // but that's ok here
+  // Eğer üstteki sayfa başka bir kaynaktansa burada bir hata oluşacak
+  // ancak sorun değil
   if (top.document.domain == document.domain) {
     protector.remove();
   }
 </script>
 ```
 
-The demo:
+Örnek:
 
 [codetabs src="protector"]
 
-## Samesite cookie attribute
+## Samesite çerez niteliği
 
-The `samesite` cookie attribute can also prevent clickjacking attacks. The purpose of the attribute is to prevent cookies from being sent to a website when the user doesn't intend to visit the website. It is designed to prevent cross-site request forgery attacks, but also helps with clickjacking because a hijacked click usually results in an unintended request to a different site. When a cookie has the `samesite` attribute, whether the value is `strict` or `lax`, cookies are not sent to a website when it is loaded inside an iframe. 
+`samesite` çerez niteliği clickjacking saldırılarını engelleyebilen niteliklerden biridir. Bu niteliğin amacı kullanıcı site dışındaki başka bir siteye gitmek istemediğinde o siteye çerezleri göndermemektir. Çapraz site sahteciliği saldırılarına karşı tasarlanmış olmasına rağmen clickjacking'e karşı doğal bir koruma sağlar, çünkü genellikle bir clickjacking saldırısı başka bir siteye bir istek gönderilmesine neden olur. Bir çerez samesite niteliğine sahip iken, değerinin `strict` veya `lax` olmasına bakılmaksızın iframe içinde açılan bir sayfayla paylaşılmaz.
 
-The `samesite` attribute can be set using HTTP response headers or JavaScript. Via HTTP, it looks like: 
+`samesite` niteliği HTTP cevap başlıklarıyla veya JavaScript ile tanımlanabilir. HTTP kullanırken böyle gözükür: 
 
 `Set-Cookie: demoCookie=demoValue; samesite=lax`
 
-or
+veya
 
 `Set-Cookie: demoCookie=demoValue; samesite=strict`
 
-In JavaScript, it is: 
+JavaScript için: 
 
 ```html
 document.cookie = "demoCookie=demoValue; SameSite=Lax";
 document.cookie = "demoCookie=demoValue; SameSite=Strict";
 ```
 
-When the value is `lax`, these types of requests are blocked: 
-- Form POST submit (&lt;form method="POST" action="..."&gt;)
+Değer `lax` iken bu türden istekler engellenir: 
+- Form POST gönderimi (&lt;form method="POST" action="..."&gt;)
 - iframe (&lt;iframe src="..."&gt;&lt;/iframe&gt;)
 - AJAX ($.get("..."))
-- Image (&lt;img src="..."&gt;)
-- Script (&lt;script src="..."&gt;&lt;/script&gt;)
+- Görüntü (&lt;img src="..."&gt;)
+- Betik (&lt;script src="..."&gt;&lt;/script&gt;)
 - Stylesheet (&lt;link rel="stylesheet" type="text/css" href="..."&gt;)
 
-When the value is `strict`, these types of requests are also blocked, in addition to those under `lax`: 
-- Clicking a link (&lt;a href="..."&gt;&lt;/a&gt;)
-- Prerender (&lt;link rel="prerender" href=".."/&gt;)
-- Form GET submit (&lt;form method="GET" action="..."&gt;)
+Değer `strict` iken `lax` değerine ek olarak bunlar engellenir:
+- Link tıklamaları (&lt;a href="..."&gt;&lt;/a&gt;)
+- Önbetimleme (&lt;link rel="prerender" href=".."/&gt;)
+- Form GET gönderimi (&lt;form method="GET" action="..."&gt;)
 
-In this case, we are concerned with iframe requests. A clickjacking attempt would fail because the user is not considered logged into, for example, Facebook, so they can't "Like" anything through the iframe. 
+Bu senaryoda iframe istekleri ilgimizi çeken yer. Clickjacking saldırısı durumnda, nitelikten dolayı kullanıcı örneğin Facebook'ta giriş yapmamış sayılacağından herhangi bir şeyi beğenemez, bu yüzden saldırı sonuçsuz kalır.
 
-The `samesite` attribute will not have an effect when cookies are not used. This may allow websites to easily show public, unauthenticated pages in iframes on unaffiliated websites. However, this may also allow clickjacking attacks to work in a few limited cases. An anonymous polling website that prevents duplicate voting by checking IP addresses, for example, would still be vulnerable to clickjacking because it does not authenticate users using cookies. 
+`samesite` niteliği çerezlerin kullanılmadığı alanlarda işlevsiz kalır. Bu zaaf sitelerin iframe içinde çereze ihtiyaç duymayan halka açık sitelerin görüntülenebilmesine olanak verir. Örneğin sadece birden fazla oy verilmesin diye IP adreslerini kaydeden anonim bir oylama sitesi saldırıya açık kalacaktır.
 
-## Summary
+## Özet
 
-Clickjacking is a way to "trick" users into clicking on a malicious site without even knowing what's happening. That's dangerous if there are important click-activated actions.
+Clickjacking kullanıcıları kötücül bir siteye ne olduğunu bile anlamadan tıklamaya "sevk eden" bir yöntemdir. Özellikle önemli butonların bulunduğu sitelerde (örneğin PayPal) tehlikelidir. 
 
-A hacker can post a link to their evil page in a message, or lure visitors to their page by some other means. There are many variations.
+Saldırgan kötücül sayfaya bir bağlantı paylaşabilir veya kullanıcıları bu sayfaya çekebilir. 
 
-From one perspective -- the attack is "not deep": all a hacker is doing is intercepting a single click. But from another perspective, if the hacker knows that after the click another control will appear, then they may use cunning messages to coerce the user into clicking on them as well.
+Bir açıdan saldırı "sığ" olarak sınıflandırılabilir: sonuçta saldırgan sadece tek bir tıklamatı ele geçiriyor. Ancak, başka bir açıdan, eğer saldırgan başka tıklamaların gerekeceğini biliyorsa aynı yöntemle kullanıcının oralara tıklamasını sağlayabilir.
 
-The attack is quite dangerous, because when we engineer the UI we usually don't anticipate that a hacker may click on behalf of the visitor. So vulnerabilities can be found in totally unexpected places.
+Bu saldırı olukça tehilkelidir, çünkü genellikle bir arayüzü tasarlarken saldırganın kullanıcı yerine tıklamasını heasba katmayız. Yani açıklar beklemediğimiz yerlerden gelebilir. 
 
-- It is recommended to use `X-Frame-Options: SAMEORIGIN` on pages (or whole websites) which are not intended to be viewed inside frames.
-- Use a covering `<div>` if we want to allow our pages to be shown in iframes, but still stay safe.
+- `X-Frame-Options: SAMEORIGIN` niteiğinin sayfalarda (veya sitelerde) kullanılması önerilir (eğer site iframe içinde görüntülenmek amacı taşımıyorsa)
+
+- Sayfanın iframe içinde görüntülenebilir olmasını istiyorsak kaplayıcı bir `div` kullanabiliriz, ama önlemlerin alınması gereklidir.
