@@ -8,6 +8,11 @@ importance: 5
 
 Bunun iki iki versiyonunu da yazınız.
 
+<<<<<<< HEAD
 1. `setInterval` kullanarak.
 2. Kendini tekrar eden `setTimeout` kullanarak.
 
+=======
+1. Using `setInterval`.
+2. Using nested `setTimeout`.
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a

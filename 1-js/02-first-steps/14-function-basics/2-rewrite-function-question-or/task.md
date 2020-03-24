@@ -15,7 +15,11 @@ function yasKontrolu(yas) {
   if (yas > 18) {
     return true;
   } else {
+<<<<<<< HEAD
     return confirm('Ebeveynlerin izin verdi mi?');
+=======
+    return confirm('Did parents allow you?');
+>>>>>>> 162280b6d238ce32bbd8ff7a3f7992be82c2311a
   }
 }
 ```
