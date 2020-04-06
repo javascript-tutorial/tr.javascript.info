@@ -117,7 +117,7 @@ Gövdesinde aynı kodu çalıştıran birden fazla `case` gruplanabilir.
 Örneğin, diyelim ki `case 3` ve `case 5` için aynı kodu çalıştırmak isteniz:
 
 ```js run no-beautify
-let a = 2 + 2;
+let a = 3;
 
 switch (a) {
   case 4:
@@ -125,7 +125,11 @@ switch (a) {
     break;
 
 *!*
+<<<<<<< HEAD
   case 3:                    // (*) iki "case" gruplandı
+=======
+  case 3: // (*) grouped two cases
+>>>>>>> c89ddc5d92195e08e2c32e30526fdb755fec4622
   case 5:
     alert('Yanlış!');
     alert("Neden matematik dersi almıyorsun?");
