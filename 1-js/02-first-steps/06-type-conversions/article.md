@@ -47,7 +47,7 @@ let num = Number(str); // sayı olan 123
 
 alert(typeof num); // number
 ```
-Bu şekilde fonksiyon ile değer dönüştürme işlemi genelde karakter dizi olarak aldığımız formlarda kullanılır. Aslında sayı kullanılmak istenmektedir. Fakat yazı kutusunun içeriğine sayı dahilinde yazılanları kontrol etmeniz gerekmektedir. Böyle bir fonksiyona sayı olmayan bir değer geldiğinde fonksiyon `NaN` değeri dönderir. Yani (Not a number) sayı değil.
+Bu şekilde fonksiyon ile değer dönüştürme işlemi genelde karakter dizi olarak aldığımız formlarda kullanılır. Aslında sayı kullanılmak istenmektedir. Fakat yazı kutusunun içeriğine sayı dahilinde yazılanları kontrol etmeniz gerekmektedir. Böyle bir fonksiyona sayı olmayan bir değer geldiğinde fonksiyon `NaN` değeri döndürür. Yani (Not a number) sayı değil.
 
 ```js run
 let age = Number("Bir sayı yerine her hangi bir yazı");
