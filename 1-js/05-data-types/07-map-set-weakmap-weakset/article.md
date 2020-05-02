@@ -1,4 +1,4 @@
-
+﻿
 # Map, Set, WeakMap ve WeakSet
 
 Şu ana kadar bu karmaşık veri yapılarını gördük:
@@ -75,7 +75,7 @@ alert( ziyaretSayisi[john.id] ); // 123
 ...Ama `Map` kullanması çok daha hoş.
 
 
-```smart header="`Map` anahtarları nasıl karşılaştırır"
+`Map` anahtarları nasıl karşılaştırır"
 Değerlerin eşitliğini test etmek için 'Map' [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero) algoritmasını kullanır. Bu algoritma sıkı eşitlik `===` ile kabaca aynıdır fakat farkı `NaN`ın `NaN`a eşit olmasıdır. Böylece `NaN` bir anahtar değer olarak kullanılabilir.
 
 Bu algoritma değiştirilemez veya özelleştirilemez.
@@ -431,3 +431,4 @@ messages.shift();
     - Aynı şekilde `size/clear()` ve yinelemeleri desteklemez.
 
 `WeakMap` ve `WeakSet`, "ana" nesne depolama alanına ek olarak "ikincil" veri yapıları olarak kullanılır. Nesne, ana depolama alanından kaldırıldığında, yalnızca `WeakMap / WeakSet` içinde kalır, otomatik olarak temizlenir.
+
