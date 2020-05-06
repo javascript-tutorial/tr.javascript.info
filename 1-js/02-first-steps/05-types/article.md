@@ -232,7 +232,7 @@ Javascript dilinde 7 tane basit tip bulunmaktadır.
 
 `typeof` operatörü değişkenin tipini verir.
 - İki türlü kullanılabilir: `typeof x` veya `typeof(x)`
-- Geriye karakter dizisi olarak değişkenin tipini dönderir. Örneğin: `"string"`
+- Geriye karakter dizisi olarak değişkenin tipini döndürür. Örneğin: `"string"`
 - `null` için `"object"` der. Fakat bu dile ait bir hatadır. Normalde `null` obje değildir.
 
 Bir sonraki bölümde basit tiplere yoğunlaşılacaktır. Bu tipleri kullanmak alışkanlık haline geldiğinde objelere geçilebilir.

@@ -11,7 +11,7 @@ Okunabilirlik açısından kodu satırlara bölmeniz önerilir.
 ```js
 let mesaj;
 
-if (login == 'Çalışan') {
+if (giris == 'Çalışan') {
   mesaj = 'Merhaba';
 } else if (giris == 'Yönetici') {
   mesaj = 'Sana da merhaba patron';

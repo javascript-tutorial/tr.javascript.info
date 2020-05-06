@@ -71,18 +71,21 @@ ziyaretSayisi[john.id] = 123;
 
 alert( ziyaretSayisi[john.id] ); // 123
 ```
+ziyaretSayisi bir nesne olduğundan, John gibi tüm anahtarları dizelere dönüştürür, bu nedenle "[object Object]" dize anahtarına sahibiz.
+
 
 ...Ama `Map` kullanması çok daha hoş.
 
 
 `Map` anahtarları nasıl karşılaştırır"
+
 Değerlerin eşitliğini test etmek için 'Map' [SameValueZero](https://tc39.github.io/ecma262/#sec-samevaluezero) algoritmasını kullanır. Bu algoritma sıkı eşitlik `===` ile kabaca aynıdır fakat farkı `NaN`ın `NaN`a eşit olmasıdır. Böylece `NaN` bir anahtar değer olarak kullanılabilir.
 
 Bu algoritma değiştirilemez veya özelleştirilemez.
-```
+````
 
 
-````smart header="Zincirleme"
+````"Zincirleme"
 
 Tüm `map.set` çağırmaları mapin kendisini döndürür. Böylece çağırmaları `zincir`leyebiliriz:
 
