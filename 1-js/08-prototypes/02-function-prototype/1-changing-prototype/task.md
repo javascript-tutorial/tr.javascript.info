@@ -19,7 +19,12 @@ let rabbit = new Rabbit();
 alert( rabbit.eats ); // true
 ```
 
+<<<<<<< HEAD
 1. Bir tane daha karakter dizisi ekledik, `alert` ne gösterir?
+=======
+
+1. We added one more string (emphasized). What will `alert` show now?
+>>>>>>> cd2c7ce3c8f033e6f7861ed1b126552e41ba3e31
 
     ```js
     function Rabbit() {}
@@ -52,7 +57,11 @@ alert( rabbit.eats ); // true
     alert( rabbit.eats ); // ?
     ```
 
+<<<<<<< HEAD
 3. Ya böyle ? ( bir satır değiştirildi )
+=======
+3. And like this (replaced one line)?
+>>>>>>> cd2c7ce3c8f033e6f7861ed1b126552e41ba3e31
 
     ```js
     function Rabbit() {}

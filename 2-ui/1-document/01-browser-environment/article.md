@@ -1,16 +1,24 @@
 # Tarayıcı Ortamı, Özellikleri
 
+<<<<<<< HEAD
 Javascript dili başlangıçta internet tarayıcıları için oluşturuldu. O zamandan beri geliştirildi ve bir çok kullanımı ve platformu ile bir dil haline geldi.
 
 
 Bir platform tarayıcı, bir web sunucusu, bir çamaşır makinesi veya başka bir sunucu olabilir. Bunların her biri platforma özgü fonksiyonlar sağlar. JavaScript özelliklerinde bunu bir sunucu ortamı olarak adlandırılır.
+=======
+The JavaScript language was initially created for web browsers. Since then it has evolved and become a language with many uses and platforms.
+
+A platform may be a browser, or a web-server or another *host*, even a coffee machine. Each of them provides platform-specific functionality. The JavaScript specification calls that a *host environment*.
+
+A host environment provides own objects and functions additional to the language core. Web browsers give a means to control web pages. Node.js provides server-side features, and so on.
+>>>>>>> cd2c7ce3c8f033e6f7861ed1b126552e41ba3e31
 
 Bir sunucu ortamı dil çekirdeğine ek olarak platforma özgü nesneler ve fonksiyonlar sağlar. İnternet tarayıcıları internet sayfalarını kontrol etmek için bir yol sunar. Node.js sunucu tarafı özellikleri vb. 
 
 
 İşte javascriptin internet tarayıcısında çalıştığında elimizde ne olduğunu gösteren bir kuş bakışı.
 
-![](windowObjects.png)
+![](windowObjects.svg)
 
 `window` denilen bir "kök" nesnesi var. İki rolü vardır.
 
@@ -24,8 +32,13 @@ function selamSoyle() {
   alert("Selam");
 }
 
+<<<<<<< HEAD
 // evrensel değişkenler `window` özellikleri olarak erişilebilir.
 window.selamSoyle();
+=======
+// global functions are methods of the global object:
+window.sayHi();
+>>>>>>> cd2c7ce3c8f033e6f7861ed1b126552e41ba3e31
 ```
 
 Ve burada `window`u pencerenin yüksekliğini görmek için tarayıcı penceresi olarak kullandık: 
@@ -38,7 +51,13 @@ Daha fazla `window`a özgü yöntemler ve özellikler var, bunlardan daha sonra 
 
 ## Document Object Model (DOM) (Belge Nesneli Modeli)
 
+<<<<<<< HEAD
 `document` nesnesi sayfa içeriğine erişimi sağlar. Sayfada herhangi bir şeyi değiştirebilir ya da oluşturabiliriz.
+=======
+Document Object Model, or DOM for short, represents all page content as objects that can be modified.
+
+The `document` object is the main "entry point" to the page. We can change or create anything on the page using it.
+>>>>>>> cd2c7ce3c8f033e6f7861ed1b126552e41ba3e31
 
 Örneğin:
 ```js run
@@ -57,6 +76,7 @@ Eskiden hiç bir standart yoktu. -- her tarayıcı her ne istiyorsa onu uygulad�
 
 Şimdi bile bazen tarayıcılara özgü özellikleri kullanan ve uyumsuzluklar etrafında çalışan eski kodlarla çalışabiliriz ama bu derste modern şeyler kullanacağız: Onlara ihtiyacın olana kadar eski şeyler öğrenmeye gerek yok (şansın yüksek değil). 
 
+<<<<<<< HEAD
 Daha sonra herkesi ortak noktada toplamak için DOM standartı belirlendi. İlk versiyon "DOM Level 1" idi, sonra DOM Level 2 tarafından genişletildi, sonra DOM Level 3 ve şimdi DOM Level 4. WhatWG grubundan insanlar sürümden sıkıldılar ve numara olmadan sadece DOM olarak adlandırdılar. Öyleyse biz yapacağız.
 
 ```smart header="DOM yalnızca tarayıcı için değildir."
@@ -74,6 +94,23 @@ CSSOM, belgi için stil kurallarını değiştirdiğimizde DOM ile birlikte kull
 ## BOM (Tarayıcı Nesne Modeli) 
 
 HTML'in bir parçası (BOM), belge dışında her şey ile çalışmak için tarayıcı (sunucu ortamı) tarafından sağlanan ek nesnelerdir.
+=======
+```smart header="DOM is not only for browsers"
+The DOM specification explains the structure of a document and provides objects to manipulate it. There are non-browser instruments that use DOM too.
+
+For instance, server-side scripts that download HTML pages and process them can also use DOM. They may support only a part of the specification though.
+```
+
+```smart header="CSSOM for styling"
+CSS rules and stylesheets are structured in a different way than HTML. There's a separate specification, [CSS Object Model (CSSOM)](https://www.w3.org/TR/cssom-1/), that explains how they are represented as objects, and how to read and write them.
+
+CSSOM is used together with DOM when we modify style rules for the document. In practice though, CSSOM is rarely required, because usually CSS rules are static. We rarely need to add/remove CSS rules from JavaScript, but that's also possible.
+```
+
+## BOM (Browser Object Model)
+
+The Browser Object Model (BOM) represents additional objects provided by the browser (host environment) for working with everything except the document.
+>>>>>>> cd2c7ce3c8f033e6f7861ed1b126552e41ba3e31
 
 Örneğin:
 
@@ -83,6 +120,7 @@ HTML'in bir parçası (BOM), belge dışında her şey ile çalışmak için tar
 `location` nesnesini bu şekilde kullanabiliriz: 
 
 ```js run
+<<<<<<< HEAD
 alert(location.href); // Geçerli URL'yi gösterir
 if (confirm("wikipedia'ya git?")) {
   location.href = 'https://tr.wikipedia.org'; // Tarayıcı başka bir URL'ye yönlendirir.
@@ -93,6 +131,21 @@ if (confirm("wikipedia'ya git?")) {
 
 ```smart header="HTML specification"
 BOM genel kısmıdır[HTML specification](https://html.spec.whatwg.org).
+=======
+alert(location.href); // shows current URL
+if (confirm("Go to Wikipedia?")) {
+  location.href = "https://wikipedia.org"; // redirect the browser to another URL
+}
+```
+
+Functions `alert/confirm/prompt` are also a part of BOM: they are directly not related to the document, but represent pure browser methods of communicating with the user.
+
+```smart header="Specifications"
+BOM is the part of the general [HTML specification](https://html.spec.whatwg.org).
+
+Yes, you heard that right. The HTML spec at <https://html.spec.whatwg.org> is not only about the "HTML language" (tags, attributes), but also covers a bunch of objects, methods and browser-specific DOM extensions. That's "HTML in broad terms". Also, some parts have additional specs listed at <https://spec.whatwg.org>.
+```
+>>>>>>> cd2c7ce3c8f033e6f7861ed1b126552e41ba3e31
 
 Evet, doğru duydun. <https://html.spec.whatwg.org>'deki HTML özelliği yalnızca "HTML dili" (etiketler, nitelikler) ile ilgili değil, aynı zamanda birçok nesne, yöntem ve tarayıca özgü DOM uzantılarını da kapsar. Bu "geniş anlamda HTML"dir.
 ```

@@ -6,7 +6,11 @@ importance: 5
 
 Görev iki bölümden oluşmaktadır.
 
+<<<<<<< HEAD
 Bir objemiz var:
+=======
+Given the following objects:
+>>>>>>> cd2c7ce3c8f033e6f7861ed1b126552e41ba3e31
 
 ```js
 let head = {
