@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# createTextNode vs innerHTML vs textContent
+# createTextNode, innerHTML ve textContent'in Karşılaştırılması
 
 Boş bir DOM elementimiz `elem` ve bir string metnimiz `text` var.
 
