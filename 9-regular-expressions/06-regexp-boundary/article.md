@@ -27,7 +27,11 @@ So, it matches the pattern `pattern:\bHello\b`, because:
 2. Then matches the word `pattern:Hello`.
 3. Then the test `pattern:\b` matches again, as we're between `subject:o` and a space.
 
+<<<<<<< HEAD
 The pattern `pattern:\bJava\b` would also match. But not `pattern:\bHell\b` (because there's no word boundary after `l`) and not `Java!\b` (because the exclamation sign is not a wordly character `pattern:\w`, so there's no word boundary after it).
+=======
+The pattern `pattern:\bHello\b` would also match. But not `pattern:\bHell\b` (because there's no word boundary after `l`) and not `Java!\b` (because the exclamation sign is not a wordly character `pattern:\w`, so there's no word boundary after it).
+>>>>>>> e4e6a50b5762dd5dc4c0f0c58f870c64be39dcfa
 
 ```js run
 alert( "Hello, Java!".match(/\bHello\b/) ); // Hello
