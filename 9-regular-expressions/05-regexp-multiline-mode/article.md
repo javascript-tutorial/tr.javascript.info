@@ -54,7 +54,11 @@ Eeyore: 3`;
 alert( str.match(/\d$/gm) ); // 1,2,3
 ```
 
+<<<<<<< HEAD
 Without the flag `m`, the dollar `pattern:$` would only match the end of the whole text, so only the very last digit would be found.
+=======
+Without the flag `pattern:m`, the dollar `pattern:$` would only match the end of the whole text, so only the very last digit would be found.
+>>>>>>> 445bda39806050acd96f87166a7c97533a0c67e9
 
 ```smart
 "End of a line" formally means "immediately before a line break": the test  `pattern:$` in multiline mode matches at all positions succeeded by a newline character `\n`.
