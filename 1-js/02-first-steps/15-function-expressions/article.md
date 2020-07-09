@@ -65,7 +65,8 @@ Detayına bakılacak olursa:
 1.`(1)` fonksiyon tanımlanır ve `selamVer` değişkenine atanır.
 2. `(2)` bunu `func` değişkenine kopyalar.
 
-    Tekrardan hatırlatmak gerekirse: `selamVer` etrafında parantez bulunmamaktadır. Eğer `func = selamVer()` şeklinde parantez ile yazılacak olsaydı, func değişkenine atanan değer `selamVer` fonksiyonunun kendisi değil, bu fonksiyonun çıktısı olurdu.
+Tekrardan hatırlatmak gerekirse: `selamVer` etrafında parantez bulunmamaktadır. Eğer `func = selamVer()` şeklinde parantez ile yazılacak olsaydı, 
+func değişkenine atanan değer `selamVer` fonksiyonunun kendisi değil, bu fonksiyonun çıktısı olurdu.
 
 3. Fonksiyon bundan sonra `selamVer()` ve `func()` şeklinde çağırılabilir.
  
