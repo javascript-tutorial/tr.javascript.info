@@ -11,7 +11,7 @@ Aşağıdaki kodun stilinde ne yanlışları vardır?
 function ust(x,n)
 {
   let sonuc=1;
-  for(let i=0;i<n;i++) {sonuc*=x;}
+  for(let i=0;i<=n;i++) {sonuc*=x;}
   return sonuc;
 }
 
@@ -22,7 +22,7 @@ if (n<=0)
 }
 else
 {
-  alert(sonuc(x,n))
+  alert(ust(x,n))
 }
 ```
 
