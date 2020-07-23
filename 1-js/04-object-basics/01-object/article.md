@@ -584,9 +584,9 @@ for (let anahtar in kullanici) {
 */!*
 
 // şu anda klonu tamamen bağımsız durumda
-koln.isim = "İhsan"; // İçindeki veri değiştirildi.
+klon.isim = "İhsan"; // İçindeki veri değiştirildi.
 
-alert( kolon.isim ); // orninal objede bu hala Mümtaz olarak durmakta.
+alert( klon.isim ); // orninal objede bu hala Mümtaz olarak durmakta.
 ```
 
 Bunun yanında [Object.assign](mdn:js/Object/assign) metodu da kullanılabilir.
