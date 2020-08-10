@@ -16,10 +16,19 @@ Diğer bir deyişle `deger` özelliği tüm kullanıcıların girdiği değerler
 Aşağıda bir demosunu görmektesiniz:
 
 ```js
+<<<<<<< HEAD
 let toplayici = new Toplayici(1); // toplayıcıya  1 ile başla.
 toplayici.oku(); // kullanıcının girdiği değeri toplar.
 toplayici.oku(); // kullanıcının girdiği değeri toplar.
 alert(toplayici.deger); // toplamı gösterir.
+=======
+let accumulator = new Accumulator(1); // initial value 1
+
+accumulator.read(); // adds the user-entered value
+accumulator.read(); // adds the user-entered value
+
+alert(accumulator.value); // shows the sum of these values
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 ```
 
 [demo]

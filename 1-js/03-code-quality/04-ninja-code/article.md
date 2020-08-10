@@ -29,7 +29,11 @@ Dao kelimesizlikte saklıdır. Sadece Dao doğru başlamıştır ve doğru biter
 ```
 Diğer bir şekilde daha hızlı ( ve daha beter!) kod yazma yöntemi de tek-harfli değişkenler kullanmaktır. Örneğin `a`,`b` ve `c` gibi.
 
+<<<<<<< HEAD
 Kısa değişken isimleri kodun içerisinde aynen bir ninjanın ormanda kaybolduğu gibi kaybolurlar. Kimse onları "arayarak" bulamaz. Hatta birisi bulsa bile ne olduğunu çözemez
+=======
+Another way to code shorter is to use single-letter variable names everywhere. Like `a`, `b` or `c`.
+>>>>>>> fbf443e414097e5a3a41dd1273ef9a4a3230e72c
 
 .... Fakat bir istisna var. Gerçek ninja hiç bir zaman `for` döngüsünde sayaç için `i` kullanmaz. Her yerde kullanır ama orada kullanmaz. Biraz kurcalayın daha çok garip harf var. Örneğin `x` veya `y` gibi.
 
