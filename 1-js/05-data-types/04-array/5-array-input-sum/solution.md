@@ -18,7 +18,7 @@ function sumInput() {
 
   let toplam = 0;
   for (let sayi of sayilar) {
-    sayilar += sayi;
+    toplam += sayi;
   }
   return toplam;
 }
