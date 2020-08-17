@@ -94,7 +94,11 @@ let meyveler = [
 
 ![](queue.svg)
 
+<<<<<<< HEAD
 Diziler bu iki işlemi de destekler.
+=======
+![](queue.svg)
+>>>>>>> fe571b36ed9e225f29239e82947005b08d74ac05
 
 Bu işlemler ile çokça karşılaşılır. Örneğin, kuyruktaki mesajların hepsinin ekranda gösterilmesi gerekebilir.
 
@@ -116,7 +120,11 @@ Yığına en son eklenen eleman ilk olarak alınır, Buna LIFO(Last-In-First-Out
 
 JavaScript'te diziler yığın veya kuyruk olarak kullanılabilirler. Başlangıca veya sona yeni eleman eklenebilir veya çıkartılabilir.
 
+<<<<<<< HEAD
 Bilgisayar biliminde bu işlemlere izin veren veri yapılarına [deque](https://en.wikipedia.org/wiki/Double-ended_queue) denir.
+=======
+In computer science the data structure that allows this, is called [deque](https://en.wikipedia.org/wiki/Double-ended_queue).
+>>>>>>> fe571b36ed9e225f29239e82947005b08d74ac05
 
 
 **Dizilerin sonu ile ilgili metodlar:**
@@ -149,8 +157,13 @@ Bilgisayar biliminde bu işlemlere izin veren veri yapılarına [deque](https://
 `shift`
 : Dizinin ilk elemanını döndürür:
 
+<<<<<<< HEAD
     ```js
     let meyveler = ["Elma", "Portakal", "Armut"];
+=======
+    ```js run
+    let fruits = ["Apple", "Orange", "Pear"];
+>>>>>>> fe571b36ed9e225f29239e82947005b08d74ac05
 
     alert( meyveler.shift() ); // Elmayı sil ve bunu ekranda bildir.
 
@@ -160,8 +173,13 @@ Bilgisayar biliminde bu işlemlere izin veren veri yapılarına [deque](https://
 `unshift`
 : Dizinin başlangıcına eleman ekleme:
 
+<<<<<<< HEAD
     ```js
     let meyveler = ["Portakal", "Armut"];
+=======
+    ```js run
+    let fruits = ["Orange", "Pear"];
+>>>>>>> fe571b36ed9e225f29239e82947005b08d74ac05
 
     meyveler.unshift('Elma');
 
@@ -380,7 +398,11 @@ let matrix = [
   [7, 8, 9]
 ];
 
+<<<<<<< HEAD
 alert( matrix[1][1] ); // merkez eleman
+=======
+alert( matrix[1][1] ); // 5, the central element
+>>>>>>> fe571b36ed9e225f29239e82947005b08d74ac05
 ```
 
 ## toString

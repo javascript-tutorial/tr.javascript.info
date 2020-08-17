@@ -1,6 +1,10 @@
 # Unicode: flag "u" and class \p{...}
 
+<<<<<<< HEAD
 JavaScript uses [Unicode encoding](https://en.wikipedia.org/wiki/Unicode) for strings. Most characters are encoding with 2 bytes, but that allows to represent at most 65536 characters.
+=======
+JavaScript uses [Unicode encoding](https://en.wikipedia.org/wiki/Unicode) for strings. Most characters are encoded with 2 bytes, but that allows to represent at most 65536 characters.
+>>>>>>> fe571b36ed9e225f29239e82947005b08d74ac05
 
 That range is not big enough to encode all possible characters, that's why some rare characters are encoded with 4 bytes, for instance like `𝒳` (mathematical X) or `😄` (a smile), some hieroglyphs and so on.
 
@@ -93,7 +97,11 @@ Here's the main character categories and their subcategories:
   - control `Cc`,
   - format `Cf`,
   - not assigned `Cn`,
+<<<<<<< HEAD
   -- private use `Co`,
+=======
+  - private use `Co`,
+>>>>>>> fe571b36ed9e225f29239e82947005b08d74ac05
   - surrogate `Cs`.
 
 
@@ -127,7 +135,11 @@ alert("number: xAF".match(regexp)); // xAF
 
 Let's look for Chinese hieroglyphs.
 
+<<<<<<< HEAD
 There's a unicode property `Script` (a writing system), that may have a value: `Cyrillic`, `Greek`, `Arabic`, `Han` (Chinese) and so on, [here's the full list]("https://en.wikipedia.org/wiki/Script_(Unicode)").
+=======
+There's a unicode property `Script` (a writing system), that may have a value: `Cyrillic`, `Greek`, `Arabic`, `Han` (Chinese) and so on, [here's the full list](https://en.wikipedia.org/wiki/Script_(Unicode)).
+>>>>>>> fe571b36ed9e225f29239e82947005b08d74ac05
 
 To look for characters in a given writing system we should use `pattern:Script=<value>`, e.g. for Cyrillic letters: `pattern:\p{sc=Cyrillic}`, for Chinese hieroglyphs: `pattern:\p{sc=Han}`, and so on:
 
