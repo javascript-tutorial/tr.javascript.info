@@ -36,7 +36,7 @@ JavaScript'te operatörlerin özel durumlarından birisi karakter dizilerinin `+
 
 Böylece `+` işaretinin amacının ötesinde bir işlem yapabildiğinin farkına varmış olmalısınız.
 
-Normalde `+` iki sayıyı toplamaya yararken eğer bir taraf karakter dizisi ise bu durumda birleştirmeye yarar.
+Normalde `+` iki sayıyı toplamaya yaparken eğer bir taraf karakter dizisi ise bu durumda birleştirmeye yarar.
 
 ```js
 let s = "my" + "string";
