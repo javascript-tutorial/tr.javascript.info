@@ -31,7 +31,11 @@ Aşağıda tüm özçağrı ağacını görebilirsiniz.
 
 Gördüğünüz gibi `fib(3)` iki defa `fib(2)` ise üç defa çalıştırılır. Toplamda hesaplama `n` den daha hızlı bir şekilde büyür. `n=77` için bu sayı çok büyük olur.
 
+<<<<<<< HEAD
 Bu daha önceden hesaplanmış değerleri hatırlayarak çözülebilir: Eğer `fib(3)` bir defa hesaplanırsa, bu gelecekteki hesaplamalar için tekrar kullanılabilir.
+=======
+![fibonacci recursion tree](fibonacci-recursion-tree.svg)
+>>>>>>> b85413d0bdd6f4f468fcadeacb4c4056e3671ce1
 
 Diğer bir yöntem ise özçağrıyı hiç kullanmayıp döngü bazlı bir algoritma geliştirmektir.
 
