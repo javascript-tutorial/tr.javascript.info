@@ -4,7 +4,11 @@ importance: 5
 
 # Garip instanceof
 
+<<<<<<< HEAD
 Aşağıdaki `instanceof` neden `true` dönüyor? Aslında `a`'nın `B()` tarafından üretilmediği açık.
+=======
+In the code below, why does `instanceof` return `true`? We can easily see that `a` is not created by `B()`.
+>>>>>>> f830bc5d9454d85829e011d914f215eb5896579a
 
 ```js run
 function A() {}

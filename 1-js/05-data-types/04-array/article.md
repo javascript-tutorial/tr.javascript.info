@@ -94,7 +94,11 @@ let meyveler = [
 
 ![](queue.svg)
 
+<<<<<<< HEAD
 Diziler bu iki işlemi de destekler.
+=======
+![](queue.svg)
+>>>>>>> f830bc5d9454d85829e011d914f215eb5896579a
 
 Bu işlemler ile çokça karşılaşılır. Örneğin, kuyruktaki mesajların hepsinin ekranda gösterilmesi gerekebilir.
 
@@ -116,7 +120,11 @@ Yığına en son eklenen eleman ilk olarak alınır, Buna LIFO(Last-In-First-Out
 
 JavaScript'te diziler yığın veya kuyruk olarak kullanılabilirler. Başlangıca veya sona yeni eleman eklenebilir veya çıkartılabilir.
 
+<<<<<<< HEAD
 Bilgisayar biliminde bu işlemlere izin veren veri yapılarına [deque](https://en.wikipedia.org/wiki/Double-ended_queue) denir.
+=======
+In computer science the data structure that allows this, is called [deque](https://en.wikipedia.org/wiki/Double-ended_queue).
+>>>>>>> f830bc5d9454d85829e011d914f215eb5896579a
 
 
 **Dizilerin sonu ile ilgili metodlar:**
@@ -149,8 +157,13 @@ Bilgisayar biliminde bu işlemlere izin veren veri yapılarına [deque](https://
 `shift`
 : Dizinin ilk elemanını döndürür:
 
+<<<<<<< HEAD
     ```js
     let meyveler = ["Elma", "Portakal", "Armut"];
+=======
+    ```js run
+    let fruits = ["Apple", "Orange", "Pear"];
+>>>>>>> f830bc5d9454d85829e011d914f215eb5896579a
 
     alert( meyveler.shift() ); // Elmayı sil ve bunu ekranda bildir.
 
@@ -160,8 +173,13 @@ Bilgisayar biliminde bu işlemlere izin veren veri yapılarına [deque](https://
 `unshift`
 : Dizinin başlangıcına eleman ekleme:
 
+<<<<<<< HEAD
     ```js
     let meyveler = ["Portakal", "Armut"];
+=======
+    ```js run
+    let fruits = ["Orange", "Pear"];
+>>>>>>> f830bc5d9454d85829e011d914f215eb5896579a
 
     meyveler.unshift('Elma');
 
@@ -186,7 +204,11 @@ Dizi özel bir tip objedir. `arr[0]` ile özelliğe erişme aslında objelerden 
 
 Objeleri daha genişleterek sıralı veri koleksiyonları ve `length` gibi özellikler alması sağlanmıştır. Fakat derininde diziler objedir.
 
+<<<<<<< HEAD
 Hatırlarsanız, JavaScript'te sadece 7 basit tip bulunmaktadır. Dizi obje olduğundan obje gibi davranır.
+=======
+Remember, there are only eight basic data types in JavaScript (see the [Data types](https://javascript.info/types) chapter for more info). Array is an object and thus behaves like an object.
+>>>>>>> f830bc5d9454d85829e011d914f215eb5896579a
 
 Örneğin referans ile kopyalanır:
 
@@ -380,7 +402,11 @@ let matrix = [
   [7, 8, 9]
 ];
 
+<<<<<<< HEAD
 alert( matrix[1][1] ); // merkez eleman
+=======
+alert( matrix[1][1] ); // 5, the central element
+>>>>>>> f830bc5d9454d85829e011d914f215eb5896579a
 ```
 
 ## toString
