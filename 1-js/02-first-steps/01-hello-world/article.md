@@ -59,7 +59,9 @@ JavaScript kodundan önce ve sonra yazılan yorumlar. Çok eski JavaScript kitap
     //--></script>
     ```
 
-    Bu yorumların amacı <script> etiketini anlamayan tarayıcılarda JavaScript kodunun ekrana yazılmasını engellemektir. <br>Fakat artık neredeyse tüm tarayıcılar `<script>` etiketini anladıklarından bu konuda da bir sıkıntı bulunmamaktadır. <br>Eğer böyle bir kod bloğu görürseniz kod çok eski diyebilirsiniz.
+    Bu yorumların amacı <script> etiketini anlamayan tarayıcılarda JavaScript kodunun ekrana yazılmasını engellemektir.     
+    Fakat artık neredeyse tüm tarayıcılar `<script>` etiketini anladıklarından bu konuda da bir sıkıntı bulunmamaktadır.    
+    Eğer böyle bir kod bloğu görürseniz kod çok eski diyebilirsiniz.
 
 
 ## Dışardan yüklenen Javascript kod dosyaları
