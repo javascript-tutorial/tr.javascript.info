@@ -1,11 +1,19 @@
+<<<<<<< HEAD
 # Koşul operatörleri: if, '?'
+=======
+# Conditional branching: if, '?'
+>>>>>>> 58f6599df71b8d50417bb0a52b1ebdc995614017
 
 
 Bazı durumlarda koşula göre farklı eylemler yapmak isteyebilirsiniz.
 
 `"?"` operatörü veya `if` cümlesi bu koşulları kontrol etmenizi sağlar. 
 
+<<<<<<< HEAD
 ## "if" cümlesi
+=======
+The `if(...)` statement evaluates a condition in parentheses and, if the result is `true`, executes a block of code.
+>>>>>>> 58f6599df71b8d50417bb0a52b1ebdc995614017
 
 "if" cümlesi koşulu alır ve kontrol eder sonucunda `true` ise kodu çalıştırır.
 
@@ -215,7 +223,11 @@ Koşula göre `firma =='Netscap'`, soru işaretinden sonra birinci bölüm veya 
 Sonucu bir değere atanmamıştır. Amaç duruma göre doğrudan kodu çalıştırmak.
 
 
+<<<<<<< HEAD
 **Soru işaretinin bu amaç doğrultusunda kullanılması önerilmez.**
+=======
+**It's not recommended to use the question mark operator in this way.**
+>>>>>>> 58f6599df71b8d50417bb0a52b1ebdc995614017
 
 Yazımı if yazımından daha kısa olsa bile daha az okunabilir durumdadır.
 Aşağıda `if` ile yazımını görmektesiniz.

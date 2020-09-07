@@ -11,4 +11,3 @@ Eğer kullanıcı "ECMAScript" cevabı verirse "Doğru" diğer türlü "ECMAScri
 ![](ifelse_task2.svg)
 
 [demo src="ifelse_task2"]
-
