@@ -4,7 +4,11 @@ Bakalım JavaScript nedir, ne yapılır ve hangi teknolojilerle birlikte çalı�
 
 ## JavaScript Nedir?
 
+<<<<<<< HEAD
 *JavaScript*, ilk başta  *"web belgelerine canlılık"* getirmek için oluşturulmuştur.
+=======
+*JavaScript* was initially created to "make web pages alive".
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Bu dilde yazılan kod kümelerine betik denir. Doğrudan HTML kodu içerisine yazılıp sayfa yüklendiğinde doğrudan çalışabilir.
 
@@ -12,6 +16,11 @@ Komutlar herhangi bir derleme ve hazırlığa gereksinim duymadan doğrudan çal
 
 Bu yönden bakınca JavaScript diğer dillere kıyasla oldukça farklıdır. Bkz: [Java](http://en.wikipedia.org/wiki/Java).
 
+<<<<<<< HEAD
+=======
+```smart header="Why is it called <u>Java</u>Script?"
+When JavaScript was created, it initially had another name: "LiveScript". But Java was very popular at that time, so it was decided that positioning a new language as a "younger brother" of Java would help.
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ```smart header="Neden <u>Java</u>Script?"
 JavaScript ilk yazıldığında, başka bir adı vardı: "LiveScript". Ancak Java dili o dönemlerde çok ünlü olduğundan dolayı yeni bir dil ve "küçük kardeş" gibi görünmesi açısından JavaScript olarak değiştirildi.
@@ -39,7 +48,11 @@ Motorlar çok karmaşık yapılardır. Ancak kolay ögelere dayanırlar.
 2. Sonra bu kodları makine diline çevirir.
 3. Makine bu kodları çok hızlı bir biçimde çalıştırır.
 
+<<<<<<< HEAD
 Motor bu sürecin her bir adımında iyileştirme yapar. Hatta derlenmiş ve çalışır durumda bulunan kodlardaki veri yapılarını inceler ve bunları iyileştirerek daha hızlı duruma getirir. Sonuç olarak yazılan bu kodlar çok hızlı bir biçimde çalışır.
+=======
+The engine applies optimizations at each step of the process. It even watches the compiled script as it runs, analyzes the data that flows through it, and further optimizes the machine code based on that knowledge.
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 ```
 
 ## Tarayıcı içerisindeki JavaScript neler yapabilir?
@@ -64,7 +77,11 @@ Tarayıcı içerisinde bulunan JavaScript kullanıcı güvenliği amacıyla sın
 
 Bu engellemeleri şu biçimde sıralayabiliriz :
 
+<<<<<<< HEAD
 - Web sayfasında çalışan JavaScript dosyalara erişim sağlayamaz, saklama alanınızda bulunan programları kopyalayamaz veya çalıştıramaz. İşletim sisteminizin fonksiyonlarına doğrudan erişimi yoktur.
+=======
+- JavaScript on a webpage may not read/write arbitrary files on the hard disk, copy them or execute programs. It has no direct access to OS functions.
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
     Günümüz tarayıcıları dosyalarla çalışmanıza izin verebilir. Ancak bu izin oldukça sınırlıdır. Örneğin, yalnızca dosyayı tarayıcıya taşıyıp bırakabilirsiniz veya `<input>` kullanarak dosyayı seçebilirsiniz.
 
@@ -93,8 +110,12 @@ JavaScript'ten başka bu üç özelliği taşıyan hiçbir tarayıcı teknolojis
 
 JavaScript'in eşsiz olma nedeni budur ve bu yüzden web sayfaları geliştirmekte kullanılan en yaygın araçtır.
 
+<<<<<<< HEAD
 Yeni bir teknolojiyi öğrenmeye başlarken, sunacağı avantajlar için öngörü önemlidir. Bu sebeptendir ki, yeni diller ve tarayıcı yetkinlikleri içeren bu yönelimlere ayak uydurmalıyız.
 
+=======
+That said, JavaScript also allows to create servers, mobile applications, etc.
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ## JavaScript'e üstün diller
 
@@ -106,9 +127,19 @@ Bundan dolayı yakın zamanda bir sürü yeni *transpiled* yani çevirilmiş dil
 
 Bu dillere örnek vermek gerekirse:
 
+<<<<<<< HEAD
 - [CofeeScript](http://coffeescript.org) JavaScript için "şeker yazım" denebilecek bir dildir. Yazılımı daha kısadır ve daha temiz kod yazmaya yardımcı olur. Genellikle [Ruby](https://www.ruby-lang.org/tr/) geliştiriciler bunu sever.
 
 - [Typescript](http://www.typescriptlang.org/) durağan veri yapıları ile JavaScript yazılmasını sağlar. Karmaşık programlar geliştirmeyi kolaylaştırır. Microsoft tarafından geliştirilmiştir.
+=======
+Examples of such languages:
+
+- [CoffeeScript](http://coffeescript.org/) is a "syntactic sugar" for JavaScript. It introduces shorter syntax, allowing us to write clearer and more precise code. Usually, Ruby devs like it.
+- [TypeScript](http://www.typescriptlang.org/) is concentrated on adding "strict data typing" to simplify the development and support of complex systems. It is developed by Microsoft.
+- [Flow](http://flow.org/) also adds data typing, but in a different way. Developed by Facebook.
+- [Dart](https://www.dartlang.org/) is a standalone language that has its own engine that runs in non-browser environments (like mobile apps), but also can be transpiled to JavaScript. Developed by Google.
+- [Brython](https://brython.info/) is a Python transpiler to JavaScript that allow to write application in pure Python without JavaScript.
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 - [Dart](https://www.dartlang.org/) kendi başına ayrı bir dildir. Tarayıcı üzerinde veya telefon uygulamalarında kendi motoru üzerinden çalıştırılır. Google'ın tarayıcılarda JavaScript yerine Dart'ı önermiş olmasına karşın, bu günlerde JavaScript'e çeviri yapılarak kullanılmaktadır.
 

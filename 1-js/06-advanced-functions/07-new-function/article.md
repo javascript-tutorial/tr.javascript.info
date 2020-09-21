@@ -46,6 +46,7 @@ Tabi bunlar çok özel haller, örneğin sunucudan bir metini alıp çalıştır
 
 ## Closure
 
+<<<<<<< HEAD
 Fonksiyon genelde doğduğu yeri hatırlar `[[Ortam]]`. Bulunduğu Sözcüksel Ortama yaratıldığı yerden referans verir.
 
 Bir fonksiyon `new Function` ile yaratıldığında `[[Ortam]]` referansı o anki bulunduğu ortamı değil de evrensel ortama referans verir.
@@ -54,6 +55,17 @@ Bir fonksiyon `new Function` ile yaratıldığında `[[Ortam]]` referansı o ank
 
 function FonkAl() {
   let deger = "test";
+=======
+Usually, a function remembers where it was born in the special property `[[Environment]]`. It references the Lexical Environment from where it's created  (we covered that in the chapter <info:closure>).
+
+But when a function is created using `new Function`, its `[[Environment]]` is set to reference not the current Lexical Environment, but the global one.
+
+So, such function doesn't have access to outer variables, only to the global ones.
+
+```js run
+function getFunc() {
+  let value = "test";
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 *!*
   let func = new Function('alert(deger)');
@@ -97,7 +109,13 @@ Fakat `new Function` dıştaki değişkenlere erişebilir olsa isi bu defa `kull
 
 **Dış fonksiyonlara erişilme mümkün olsa bile `new Function` sıkıştırıcılar ile problem yaşardı**
 
+<<<<<<< HEAD
 `new Function`'ın bir özelliği bizi hata yapmaktan kurtarır ve daha iyi kod yazmamıza yardımcı olur.
+=======
+Besides, such code would be architecturally bad and prone to errors.
+
+To pass something to a function, created as `new Function`, we should use its arguments.
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Eğer `new Function` ile yazılmış bir fonksiyona argüman göndermek istiyorsanız, bunu argümanları birer birer belirterek yapmanız gerekmektedir.
 
@@ -118,7 +136,11 @@ alert( topla(a, b) ); // 3
 
 ## Özet
 
+<<<<<<< HEAD
 Yazım:
+=======
+These three declarations mean the same:
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ```js
 let func = new Function(arg1, arg2, ..., govde);
@@ -134,4 +156,8 @@ new Function('a,b', ' return a + b; '); // virgül ile ayrılmış yazım
 new Function('a , b', ' return a + b; '); //virgül ve boşluk ile ayrılmış yazım.
 ```
 
+<<<<<<< HEAD
 `new Function` kullanılarak yaratılan fonksiyonlar, `[[Ortam]]` olarak Evrensel Sözcük Ortamını referans verir, dış değil. Bundan dolayı dıştaki değişkeni kullanamazlar. Fakat bu aslında iyi birşeydir, bizi hatalardan korur. Bire bir parametre gönderme de mimari olarak çok başarılır. Ayrıca *sıkıştırıcı* ile de probleme neden olmamaktadır.
+=======
+Functions created with `new Function`, have `[[Environment]]` referencing the global Lexical Environment, not the outer one. Hence, they cannot use outer variables. But that's actually good, because it insures us from errors. Passing parameters explicitly is a much better method architecturally and causes no problems with minifiers.
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3

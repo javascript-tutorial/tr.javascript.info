@@ -2,9 +2,15 @@
 
 Ok fonksiyonlarının tekrardan üzerinden geçelim.
 
+<<<<<<< HEAD
 Ok fonksiyonları sadece basit şeylerin kolayca yazılması için kullanılmaz.
 
 JavaScript'te bir sürü başka yerde çalıştırılması gereken kolayca yazılacak fonksiyonlara ihtiyacımız olabilir, 
+=======
+Arrow functions are not just a "shorthand" for writing small stuff. They have some very specific and useful features.
+
+JavaScript is full of situations where we need to write a small function that's executed somewhere else.
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 Örneğin:
 
@@ -15,6 +21,10 @@ JavaScript'te bir sürü başka yerde çalıştırılması gereken kolayca yazı
 Bir fonksiyon yaratıp bunu başka bir yerlere iletmek JavaScript'in ruhuna tam da uyan bir işlemdir.
 Böyle fonksiyonlarda var olan kaynağın ( context) kaybolması istenmez.
 
+<<<<<<< HEAD
+=======
+And in such functions we usually don't want to leave the current context. That's where arrow functions come in handy.
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ## Ok fonksiyonlarının "this"'i yoktur.
 
@@ -119,5 +129,14 @@ Ok fonksiyonları:
 - `new` ile çağırılamaz.
 - `super` yok. Bunu henüz işlemedik, ilerleyen <info:class-inheritance> bölümünde inceleyeceğiz.
 
+<<<<<<< HEAD
 Bunların nedeni kısa ve kendi "kaynağı" olmayan ve dış kaynağı kullanacak fonksiyonlar yaratılmak istenmesindendir. Bu noktada gerçekten beklendiği gibi bir etki yapmatadır.
 
+=======
+- Do not have `this`
+- Do not have `arguments`
+- Can't be called with `new`
+- They also don't have `super`, but we didn't study it yet. We will on the chapter <info:class-inheritance>
+
+That's because they are meant for short pieces of code that do not have their own "context", but rather work in the current one. And they really shine in that use case.
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3

@@ -86,7 +86,11 @@ alert( firstMatch.index );  // 0
 alert( firstMatch.input );  // <h1>Hello, world!</h1>
 ```
 
+<<<<<<< HEAD
 If we use `for..of` to loop over `matchAll` matches, then we don't need `Array.from`, разумеется, не нужен.
+=======
+If we use `for..of` to loop over `matchAll` matches, then we don't need `Array.from` any more.
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 
 ## str.split(regexp|substr, limit)
 
@@ -145,7 +149,10 @@ alert( '12-34-56'.replace( *!*/-/g*/!*, ":" ) )  // 12:34:56
 The second argument is a replacement string. We can use special character in it:
 
 | Symbols | Action in the replacement string |
+<<<<<<< HEAD
 | Symbols | Action in the replacement string |
+=======
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 |--------|--------|
 |`$&`|inserts the whole match|
 |<code>$&#096;</code>|inserts a part of the string before the match|
@@ -205,9 +212,12 @@ alert(result); // Smith, John
 
 If there are many groups, it's convenient to use rest parameters to access them:
 
+<<<<<<< HEAD
 
 Если в регулярном выражении много скобочных групп, то бывает удобно использовать остаточные аргументы для обращения к ним:
 
+=======
+>>>>>>> e074a5f825a3d10b0c1e5e82561162f75516d7e3
 ```js run
 let str = "John Smith";
 
