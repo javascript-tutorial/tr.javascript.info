@@ -1,41 +1,41 @@
-# Cookies, document.cookie
+# Cookie, document.cookie
 
-Cookies are small strings of data that are stored directly in the browser. They are a part of HTTP protocol, defined by [RFC 6265](https://tools.ietf.org/html/rfc6265) specification.
+Cookie, browserda tutulan küçük dataya verilen isimdir. [RFC 6265](https://tools.ietf.org/html/rfc6265) kapsamında tanımlanan HTTP protokolünün bir parçasıdır.
 
-Most of the time, cookies are set by a web server. Then they are automatically added to every request to the same domain.
+Cookie'ler çoğu zaman web server tarafından setlenir. Bu şekilde browser aynı domain'e yapılan (neredeyse) her request'in HTTP-Header'ına `Cookie` olarak ekler. 
 
-One of the most widespread use cases is authentication:
+En çok kullanılma nedeni ise authentication içindir:
 
-1. Upon sign in, the server uses `Set-Cookie` HTTP-header in the response to set a cookie with "session identifier".
-2. Next time when the request is set to the same domain, the browser sends the over the net using `Cookie` HTTP-header.
-3. So the server knows who made the request.
+1. Oturum açma sırasında HTTP-Header'ında gönderilen `SET-Cookie` Server tarafından kullanılır ve `unique` bir cookie oluşturulur.
+2. Aynı domain'e tekrar istek yapıldığında, browser HTTP-Header'da yer alan `Cookie` yi gönderir.
+3. Bu şekilde server isteği kimin yaptığını bilir.
 
-We can also access cookies from the browser, using `document.cookie` property.
+Ayrıca Cookie'lere browser üzerinden `document.cookie` parametresini kullanarak da erişebiliriz.
 
-There are many tricky things about cookies and their options. In this chapter we'll cover them in detail.
+Cookieler ve kullanım seçenekleri için birçok yöntem bulunmaktadır. Bu yazıda onlara değineceğiz.
 
-## Reading from document.cookie
+## document.cookie parametresinden okuma
 
 ```online
-Do you have any cookies on this site? Let's see:
+Browserınızda bu siteye ait cookie var mı görelim:
 ```
 
 ```offline
-Assuming you're on a website, it's possible to see the cookies, like this:
+Websitesinde olduğunuzu farzedelim,bu durumda cookie'leri şu şekilde görebiliriz :
 ```
 
 ```js run
-// At javascript.info, we use Google Analytics for statistics,
-// so there should be some cookies
+// javascript.info sitesinde istatistikler için Google Analytics kullanılıyor,
+// bu yüzden bazı cookiler olmalı
 alert( document.cookie ); // cookie1=value1; cookie2=value2;...
 ```
 
 
-The value of `document.cookie` consists of `name=value` pairs, delimited by `; `. Each one is a separate cookie.
+`document.cookie` değeri `anahtar=değer` pair'ını içerir, ve `; ` ile biter. Her biri ayrı bir cookie'yi temsil eder.
 
-To find a particular cookie, we can split `document.cookie` by `; `, and then find the right name. We can use either a regular expression or array functions to do that.
+Belli bir cookie'yi bulmak için, `document.cookie` yi `; ` den ayırıp daha sonra aradığımız anahtarı bulabiliriz. Bunun için regular expression ya da array fonksiyonlarını kullanabiliriz.
 
-We leave it as an exercise for the reader. Also, at the end of the chapter you'll find helper functions to manipulate cookies.
+Bu kısmı okuyan kişiye ödev olarak bırakıyoruz. Ayrıca her konunun sonunda cookie üzerinde oynama yapmak için yardımcı fonksiyonlar bulacaksınız.
 
 ## Writing to document.cookie
 
