@@ -1,17 +1,26 @@
 # İlkel Tiplerin Metodları
 
+<<<<<<< HEAD
 JavaScript ilkel tiplerin(karakter dizisi, sayılar vs.) karakter gibi kullanılmasına olanak verir.
 
 Ayrıca bunların metodlarının çağırılabilmesini sağlar. Az sonra da gösterileceği gibi, aslında bu ilkel tipler obje değillerdir. (İlerleyen zamanlarda bu daha açık bir şekilde görülecektir.)
+=======
+JavaScript allows us to work with primitives (strings, numbers, etc.) as if they were objects. They also provide methods to call as such. We will study those soon, but first we'll see how it works because, of course, primitives are not objects (and here we will make it even clearer).
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 İlkel tipler ile objeler arasındaki farka bakılacak olursa:
 
 İlkel tip:
 - 7 tane ilkel tip vardır: `string`, `number`, `bigint`, `boolean`, `symbol`, `null` ve `undefined`.
 
+<<<<<<< HEAD
 Obje:
 - Birçok değeri özellikleri içerisinde saklayabilir.
 - `{}` şeklinde, örneğin `{isim:"Kemal", yas:30}` gibi. JavaScript'te fonksiyonlar gibi başka türde de objeler bulunmaktadır.
+=======
+- Is a value of a primitive type.
+- There are 7 primitive types: `string`, `number`, `bigint`, `boolean`, `symbol`, `null` and `undefined`.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 Objeler için ön önemli özelliklerden birisi de fonksiyonları özellikleri içerisinde tutabilmeleridir:
 
@@ -34,7 +43,11 @@ Tabi bu farklılığın bir maliyeti var!
 
 Objeler ilkellere göre daha "ağırdırlar". Daha fazla kaynak gerektirirler. Fakat özellikler ve metodlar çok önemli olduklarından JavaScript motoru bunları olabildiğince optimize eder.
 
+<<<<<<< HEAD
 ## Obje olarak ilkel tipler
+=======
+Objects are "heavier" than primitives. They require additional resources to support the internal machinery.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 Burada JavaScript'i oluşturan kişiler ikilem ile karşılaşmışlardır:
 
@@ -51,6 +64,10 @@ Burada JavaScript'i oluşturan kişiler ikilem ile karşılaşmışlardır:
 
 Örneğin [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase)  bir stringdeki karakterlerin hepsini büyük harfe çevirir.
 
+<<<<<<< HEAD
+=======
+For instance, there exists a string method [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) that returns a capitalized `str`.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 Çalışması şu şekilde:
 
@@ -82,7 +99,12 @@ alert( n.toFixed(2) ); // 1.23
 
 ````warn header="`String/Number/Boolean` gibi yapıcılar sadece içte kullanım içindir"
 
+<<<<<<< HEAD
 Java gibi bazı diller bu obje kapsayıcıları doğrudan tanımlamanıza izin verir. Örneğin `new Number(1)` veya `new Boolean(false)` gibi
+=======
+````warn header="Constructors `String/Number/Boolean` are for internal use only"
+Some languages like Java allow us to explicitly create "wrapper objects" for primitives using a syntax like `new Number(1)` or `new Boolean(false)`.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 JavaScript'te de bu eskiden kalma özelliklerden dolayı mümkündür, fakat **önerilmez**. Bir örnek verilecek olursa:
 

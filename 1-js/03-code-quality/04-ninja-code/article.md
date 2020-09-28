@@ -2,7 +2,19 @@
 
 Ninja programcıların eskiden bu kurnazlıkları yaparak kodu tekrardan düzenleyenleri ağlatırlardı. Kod guruları bu kodları anca test yazarak kontrol edebilirdi. Yeni kod yazmaya başlayanlar bazen daha iyi kullanabilirler.
 
+<<<<<<< HEAD
 Dikkatlice oku ve hangisisin bul bakalım - ninja, çaylak, veya kod eleştirmeni.
+=======
+```quote author="Confucius (Analects)"
+Learning without thought is labor lost; thought without learning is perilous.
+```
+
+Programmer ninjas of the past used these tricks to sharpen the mind of code maintainers.
+
+Code review gurus look for them in test tasks.
+
+Novice developers sometimes use them even better than programmer ninjas.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 ```warn header="İroni tesbit edildi!"
 Bu kodlar kötü yazıma örnektirler.!!!
@@ -29,7 +41,11 @@ Dao kelimesizlikte saklıdır. Sadece Dao doğru başlamıştır ve doğru biter
 ```
 Diğer bir şekilde daha hızlı ( ve daha beter!) kod yazma yöntemi de tek-harfli değişkenler kullanmaktır. Örneğin `a`,`b` ve `c` gibi.
 
+<<<<<<< HEAD
 Kısa değişken isimleri kodun içerisinde aynen bir ninjanın ormanda kaybolduğu gibi kaybolurlar. Kimse onları "arayarak" bulamaz. Hatta birisi bulsa bile ne olduğunu çözemez
+=======
+Another way to code shorter is to use single-letter variable names everywhere. Like `a`, `b` or `c`.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 
 .... Fakat bir istisna var. Gerçek ninja hiç bir zaman `for` döngüsünde sayaç için `i` kullanmaz. Her yerde kullanır ama orada kullanmaz. Biraz kurcalayın daha çok garip harf var. Örneğin `x` veya `y` gibi.
 
@@ -91,8 +107,13 @@ Karıştırın ki kodu okuyan kişi kolayca okuyamasın. Eğer bir yazım hatas�
 
 ## Zekice eş anlamlı sözler kullanmak
 
+<<<<<<< HEAD
 ```quote author="Confucius"
 Hepsinden zoru karanlık odada kara kediyi bulmak, hele bir de odada kedi yoksa.
+=======
+```quote author="Laozi (Tao Te Ching)"
+The Tao that can be told is not the eternal Tao. The name that can be named is not the eternal name.
+>>>>>>> f489145731a45df6e369a3c063e52250f3f0061d
 ```
 
 *Aynı şeyler* için *birbirine yakın* şeyler kullanmak hayatı daha ilginç kılar ve sizin yaratıcılığınız topluma gösterme açısından iyi bir fırsattır.
