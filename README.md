@@ -1,6 +1,10 @@
 # Türkçe Modern JavaScript Eğitimi
 
+<<<<<<< HEAD
 Bu kaynak <https://javascript.info> sitesinin Türkçe çevirisini içermektedir.
+=======
+This repository hosts the English content of the Modern JavaScript Tutorial, published in [https://javascript.info](https://javascript.info).
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 
 **Şu şekilde yardımda bulunabilirsiniz:**
 
@@ -32,9 +36,15 @@ Klasör `N-url` şeklinde `N`-sırası ( makaleler sıralıdır ) ve `url` sited
 
 Klasörler aşağıdaki dosyalardan oluşur:
 
+<<<<<<< HEAD
 - Bölüm için `index.md`,
 - Makale için `article.md`,
 - Görev için `task.md` ve çözüm var ise `solution.md`.
+=======
+  - `index.md` stands for a chapter
+  - `article.md` stands for an article
+  - `task.md` stands for a task (solution must be provided in `solution.md` file as well)
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 
 Dosya `# Title Header` başında diyez ile başlar ve bu metnin hepsi Markdown-benzeri bir format ile yazılmalıdır. Böylece basit metin editörleri ile yazabilirsiniz.
 

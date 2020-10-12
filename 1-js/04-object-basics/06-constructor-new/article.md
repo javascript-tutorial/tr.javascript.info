@@ -30,9 +30,17 @@ alert(kullanici.yoneticiMi); // false
 ```
 Fonksiyon `new Kullanici(...)` şeklinde çalıştığında, aşağıdaki adımlar izlenir:
 
+<<<<<<< HEAD
 1. Yeni bir obje yaratılır ve `this` bu obje olur.
 2. Fonksiyon gövdesi çalışır. Genelde `this` modifiye edilir ve yeni özellikler eklenir.
 3. `this` değeri dönderilir.
+=======
+When a function is executed with `new`, it does the following steps:
+
+1. A new empty object is created and assigned to `this`.
+2. The function body executes. Usually it modifies `this`, adds new properties to it.
+3. The value of `this` is returned.
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 
 Diğer bir deyişle, `new Kullanici(...)` şöyle yapar:
 
@@ -52,7 +60,11 @@ function Kullanici(isim) {
 }
 ```
 
+<<<<<<< HEAD
 Öyleyse `new Kullanici("İhsan") objesi aşağıdaki gibidir:
+=======
+So `let user = new User("Jack")` gives the same result as:
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 
 ```js
 let kullanici = {
@@ -128,7 +140,12 @@ Fakat `return` sözcüğü var ise kurallar basittir:
 - Eğer `return` obje ile çağırılırsa `this` yerine bu obje döndürülür.
 - Eğer `return` ilkel bir obje ile çağırılırsa görmezden gelinir.
 
+<<<<<<< HEAD
 Diğer bir deyişle, obje ile `return` kullanıldığında obje döner, diğer tüm hallerde `this` döner.
+=======
+- If `return` is called with an object, then the object is returned instead of `this`.
+- If `return` is called with a primitive, it's ignored.
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 
 Örneğin aşağıda `return` edilen obje `this` yerine dönderilir.
 
@@ -137,10 +154,17 @@ function BuyukKullanici() {
 
   this.isim = "İhsan";
 
+<<<<<<< HEAD
   return { isim: "Muhsin" };  // <-- obje dönderir
 }
 
 alert( new BuyukKullanici().isim );  // Muhsin, objeyi aldık ^^
+=======
+  return { name: "Godzilla" };  // <-- returns this object
+}
+
+alert( new BigUser().name );  // Godzilla, got that object
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 ```
 Şimdi ise boş bir `return` cümlesi yazalım( eğer ilkel bir tipte kullanılsa birşey değiştirmez)
 
@@ -149,8 +173,12 @@ function KucukKullanici() {
 
   this.isim = "İhsan";
 
+<<<<<<< HEAD
   return; // çalışmayı bitirir ve `this`'i döndürür.
 
+=======
+  return; // <-- returns this
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 }
 
 alert( new KucukKullanici().isim );  // İhsan
@@ -200,10 +228,16 @@ ihsan = {
 */
 ```
 
+<<<<<<< HEAD
 ## Özet
 
 - Yapıcı fonksiyonlar, veya kısaca yapıcılar, normal fonksiyonlardır. Fakat baş haflerinin büyük olmasıyla ilgili ortak bir kullanım vardır.
 - Bu fonksiyonlar sadece `new` kullanılarak çağırılmalıdır. Böyle çağrılar önce boş bir `this` yaratır ve buna değerler eklendikten sonra bu `this`'i geri gönderir.
+=======
+To create complex objects, there's a more advanced syntax, [classes](info:classes), that we'll cover later.
+
+## Summary
+>>>>>>> 0599d07b3c13ee25f583fc091cead3c17a7e7779
 
 
 Yapıcılar ile benzer objeler yapmak mümkündür.
