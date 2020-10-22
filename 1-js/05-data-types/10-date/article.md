@@ -12,8 +12,8 @@ Yeni bir `Date` objesi yaratmak için `new Date()` aşağıdaki argümanların b
 : Argümansız -- yeni o anki tarih ve saat ile yeni bir `Date` objesi oluşturur:
 
     ```js run
-    let simdi = new Date();
-    alert( simdi ); // o anki tarih/saati gösterir.
+    let now = new Date();
+    alert( now ); // o anki tarih/saati gösterir.
     ```
 
 `new Date(milisaniye)`
@@ -36,8 +36,8 @@ Yeni bir `Date` objesi yaratmak için `new Date()` aşağıdaki argümanların b
 : Eğer bir argüman var ve bu da karakter dizisi ise, `Date.parse` algoritmasına göre bakılır ve uygunsa tarih oluşturulur.
 
     ```js run
-    let tarih = new Date("2017-01-26");
-    alert(tarih); // Thu Jan 26 2017 ...
+    let date = new Date("2017-01-26");
+    alert(date); // Thu Jan 26 2017 ...
     ```
 
 `new Date(yıl, ay, gün, saat, dakika, saniye, milisaniye)`
@@ -59,8 +59,8 @@ Yeni bir `Date` objesi yaratmak için `new Date()` aşağıdaki argümanların b
     En düşün hassasiyet 1ms'dir(1/1000)
 
     ```js run
-    let tarih = new Date(2011, 0, 1, 2, 3, 4, 567);
-    alert( tarih ); // 1.01.2011, 02:03:04.567
+    let date = new Date(2011, 0, 1, 2, 3, 4, 567);
+    alert( date ); // 1.01.2011, 02:03:04.567
     ```
 
 ## Tarih bileşenlerine erişim
@@ -143,10 +143,10 @@ Gördüğünüz gibi,`setHours` gibi bazı metodlar birden fazla bileşeni aynı
 Örneğin:
 
 ```js run
-let bugun = new Date();
+let today = new Date();
 
 bugun.setHours(0);
-alert(bugun); // bu gün ve saat 0
+alert(today); // bu gün ve saat 0
 
 bugun.setHours(0, 0, 0, 0);
 alert(today); // bu gün ve saniye 00:00:00.
@@ -159,8 +159,8 @@ alert(today); // bu gün ve saniye 00:00:00.
 Örneğin:
 
 ```js run
-let tarih = new Date(2013, 0, *!*32*/!*); // 32 Ocak 2013 ?!?
-alert(tarih); // ...is 1st Şubat 2013!
+let date = new Date(2013, 0, *!*32*/!*); // 32 Ocak 2013 ?!?
+alert(date); // ...is 1st Şubat 2013!
 ```
 Sınırın dışındaki tarih bileşenleri otomatik olarak dağıtılır.
 Ayların sınırlarını düşünmenize gerek yoktur. Bunlar `Date` objesi tarafından otomatik olarak hesaplanacaktır.
@@ -168,19 +168,19 @@ Ayların sınırlarını düşünmenize gerek yoktur. Bunlar `Date` objesi taraf
 Diyelim ki "28 Şub 2016"'yı iki gün artırmak istediniz. Belki "2 Mart" belki de "1 Mart" olabilir. Bunu bizim düşünmemize gerek yoktur. Sadece iki gün ekleyin yeterli. `Date` objesi geri kalanı sizin için yapacaktır:
 
 ```js run
-let tarih = new Date(2016, 1, 28);
+let date = new Date(2016, 1, 28);
 *!*
-tarih.setDate(date.getDate() + 2);
+date.setDate(date.getDate() + 2);
 */!*
 
-alert( tarih ); // 1 Mar 2016
+alert( date ); // 1 Mar 2016
 ```
 
 Bu özellik belirtilen bir süre sonrasında tekrardan tarihi almak için kullanılır. Örneğin "Şu andan 70 sn sonrası"'ni al.
 
 ```js run
-let tarih = new Date();
-tarih.setSeconds(tarih.getSeconds() + 70);
+let date = new Date();
+date.setSeconds(tarih.getSeconds() + 70);
 
 alert( date ); // doğru tarihi gösterir.
 ```
@@ -188,12 +188,12 @@ Sıfır veya negatif değer de ayarlamak mümkündür. Örneğin:
 
 
 ```js run
-let tarih = new Date(2016, 0, 2); // 2 Ocak 2016
+let date = new Date(2016, 0, 2); // 2 Ocak 2016
 
-tarih.setDate(1); // ayın 1. günü
-alert( tarih );
+date.setDate(1); // ayın 1. günü
+alert( date );
 
-tarih.setDate(0); // İlk gün 1 olduğundan dolayı 0 geçen ayın son gününü verir. min day is 1, so the last day of the previous month is assumed
+date.setDate(0); // İlk gün 1 olduğundan dolayı 0 geçen ayın son gününü verir. min day is 1, so the last day of the previous month is assumed
 alert( date ); // 31 Aralık 2015
 ```
 
@@ -202,8 +202,8 @@ alert( date ); // 31 Aralık 2015
 `Date` objesi sayıya çevrildiğinde, aynı timestamp'te olduğu gibi `date.getTime()` değerini alır:
 
 ```js run
-let tarih = new Date();
-alert(+tarih); // date.getTime() ile aynı şekilde milisaniye döner.
+let date = new Date();
+alert(+date); // date.getTime() ile aynı şekilde milisaniye döner.
 ```
 
 Önemli not: tarihler birbirinden çıkarılabilir fakat sonuç ms cinsinden olur.
@@ -211,16 +211,16 @@ alert(+tarih); // date.getTime() ile aynı şekilde milisaniye döner.
 Bu iki tarih arasındaki zamanı ölçmek için kullanılabilir:
 
 ```js run
-let baslangic = new Date(); // saymaya başla!
+let start = new Date(); // saymaya başla!
 
 // işi yap
 for (let i = 0; i < 100000; i++) {
   let doSomething = i * i * i;
 }
 
-let bitis = new Date(); // bitt
+let end = new Date(); // bitt
 
-alert( `Döngü ${bitis - baslangic} ms` );
+alert( `Döngü ${end - start} ms` );
 ```
 
 ## Date.now()
@@ -237,7 +237,7 @@ Aşağıdaki daha iyidir denebilir:
 
 ```js run
 *!*
-let baslangic = Date.now(); // 1 Ocak 1970'den şimdiye kadar olan zamanın ms cinsinden değeri
+let start = Date.now(); // 1 Ocak 1970'den şimdiye kadar olan zamanın ms cinsinden değeri
 */!*
 
 // işi yap
@@ -246,10 +246,10 @@ for (let i = 0; i < 100000; i++) {
 }
 
 *!*
-let bitis = Date.now(); // done
+let end = Date.now(); // done
 */!*
 
-alert( `Döngü ${bitis - baslangic} ms sürdür` ); // sadece sayılar çıkarıldı tarihler değil.
+alert( `Döngü ${end - start} ms sürdür` ); // sadece sayılar çıkarıldı tarihler değil.
 ```
 
 ## Kıyaslama
@@ -260,13 +260,13 @@ Eğer çok ağır yüklü işlemler için kıyaslama yapılıyorsa, dikkatli olu
 
 ```js
 // tarih1 ve tarih2, hangisi işlemi daha hızlı tamamlar.
-function cikarma(tarih1, tarih2) {
-  return tarih2 - tarih1;
+function diffSubtract(date1, date2) {
+  return date2 - date1;
 }
 
 // veya
-function tarihFarki(tarih1, tarih2) {
-  return tarih2.getTime() - tarih1.getTime();
+function diffGetTime(date1, date2) {
+  return date2.getTime() - date1.getTime();
 }
 ```
 Yukarıdaki iki fonksiyon aynı işlemi yapar, fakat bir tanesi `date.getTime()` ile o tarihin ms cinsinden değerini alırken diğeri tarihin sayıya doğrudan çevrilmesine dayalı. Sonuçları her zaman aynı olacaktır.
@@ -278,25 +278,25 @@ Bunu ölçmek için fonksiyonları birçok defa çalıştırıp aradaki farkı �
 Ölçülecek olursa:
 
 ```js run
-function cikarma(tarih1, tarih2) {
-  return tarih2 - tarih1;
+function diffSubtract(date1, date2) {
+  return date2 - date1;
 }
 
-function tarihFarki(tarih1, tarih2) {
-  return tarih2.getTime() - tarih1.getTime();
+function diffGetTime(date1, date2) {
+  return date2.getTime() - date1.getTime();
 }
 
-function karsilastirma(f) {
-  let tarih1 = new Date(0);
-  let tarih2 = new Date();
+function bench(f) {
+  let date1 = new Date(0);
+  let date2 = new Date();
 
-  let baslangic = Date.now();
-  for (let i = 0; i < 100000; i++) f(tarih1, tarih2);
-  return Date.now() - baslangic;
+  let start = Date.now();
+  for (let i = 0; i < 100000; i++) f(date1, date2);
+  return Date.now() - start;
 }
 
-alert( 'Çıkarma işlemi ile: ' + karsilastirma(cikarma) + 'ms' );
-alert( 'tarihFarki islemi ile: ' + karsilastirma(tarihFarki) + 'ms' );
+alert( 'Time of diffSubtract: ' + bench(diffSubtract) + 'ms' );
+alert( 'Time of diffGetTime: ' + bench(diffGetTime) + 'ms' );
 ```
 
 `getTime()` ile yapılan işlem çok daha hızlı! Bunun nedeni tip dönüşümü olmaması, böylece JavaScript motoru çok daha iyi optimize edebilmektedir.
@@ -316,48 +316,48 @@ Sonuç olarak `karsilastirm(cikarma)` için daha az işlemci kaynağı kullanıl
 Aşağıda örneğini görebilirsiniz:
 
 ```js run
-function cikarma(tarih1, tarih2) {
-  return tarih2 - tarih1;
+function diffSubtract(date1, date2) {
+  return date2 - date1;
 }
 
-function tarihFarki(tarih1, tarih2) {
-  return tarih2.getTime() - tarih1.getTime();
+function diffGetTime(date1, date2) {
+  return date2.getTime() - date1.getTime();
 }
 
-function karsilastirma(f) {
-  let tarih1 = new Date(0);
-  let tarih2 = new Date();
+function bench(f) {
+  let date1 = new Date(0);
+  let date2 = new Date();
 
-  let baslangic = Date.now();
-  for (let i = 0; i < 100000; i++) f(tarih1, tarih2);
-  return Date.now() - baslangic;
+  let start = Date.now();
+  for (let i = 0; i < 100000; i++) f(date1, date2);
+  return Date.now() - start;
 }
 
-let zaman1 = 0;
-let zaman2 = 0;
+let time1 = 0;
+let time2 = 0;
 
 *!*
 // Paketi 10 defa çalışacak şekilde ayarlayın
 for (let i = 0; i < 10; i++) {
-  zaman1 += karsilastirma(cikarma);
-  zaman2 += karsilastirma(tarihFarki);
+  time1 += bench(diffSubtract);
+  time2 += bench(diffGetTime);
 }
 */!*
 
-alert( 'Cikarma islemi ile geçen süre: ' + zaman1 );
-alert( 'TarihFarki islemi ile geçen süre: ' + zaman2 );
+alert( 'Total time for diffSubtract: ' + time1 );
+alert( 'Total time for diffGetTime: ' + time2 );
 ```
 Modern JavaScript motorları "sıcak kod" için daha gelişmiş optimizasyon yapmaya başladılar. Bu nadiren çalışan kodlar yerine daha çok fazlaca tekrar eden kodların optimizasyonu anlamına gelmektedir. Böylece ilk çalışmalar çok ta optimize edilmezler. 
 
 ```js
 // ana döngüye girmeden ısınma turu:
-karsilastirma(cikarma);
-karsilastirma(tarihFarki);
+bench(diffSubtract);
+bench(diffGetTime);
 
 // şimdi ise karşılaştırma ( benchmark )
 for (let i = 0; i < 10; i++) {
-  zaman1 += karsilastirma(cikarma);
-  zaman2 += karsilastirma(tarihFarki);
+  time1 += bench(diffSubtract);
+  time2 += bench(diffGetTime);
 }
 ```
 
@@ -393,9 +393,9 @@ alert(ms); // 1327611110417  (timestamp)
 Zaman damgasından (timestamp) `new Date` objesi yaratılabilir.
 
 ```js run
-let tarih = new Date( Date.parse('2012-01-26T13:51:50.417-07:00') );
+let date = new Date( Date.parse('2012-01-26T13:51:50.417-07:00') );
 
-alert(tarih);  
+alert(date);  
 ```
 
 ## Özet
@@ -411,7 +411,7 @@ Diğer sistemlerin aksine, zaman damgası javascripte saniye değil sarise cinsi
 Eğer daha ayrıntılı zaman bilgisine erişmek istiyorsanız. JavaScript desteklemese bile çoğu sistem microsaniyeye destek verir ( saniyenin milyonda biri ). Örneğin [performance.now()](mdn:api/Performance/now) sayfanın yüklenme süresini mikrosaniye cinsinden verir.
 
 ```js run
-alert(`Yüklemeye 4731.26000000001ms önce başladı`);
+alert(`Loading started ${performance.now()}ms ago`);
 // Sonuç : Yüklemeye 4731.26000000001ms önce başladı
 // .26 mikrosaniye (260 mikrosaniye)
 // noktanın 3. basamağından sonraki değerler sapmadır fakat ilk 3 basamak doğrudur.
