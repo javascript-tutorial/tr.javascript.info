@@ -1,6 +1,10 @@
 # Unicode: flag "u" and class \p{...}
 
+<<<<<<< HEAD
 JavaScript uses [Unicode encoding](https://en.wikipedia.org/wiki/Unicode) for strings. Most characters are encoding with 2 bytes, but that allows to represent at most 65536 characters.
+=======
+JavaScript uses [Unicode encoding](https://en.wikipedia.org/wiki/Unicode) for strings. Most characters are encoded with 2 bytes, but that allows to represent at most 65536 characters.
+>>>>>>> 2d5be7b7307b0a4a85e872d229e0cebd2d8563b5
 
 That range is not big enough to encode all possible characters, that's why some rare characters are encoded with 4 bytes, for instance like `𝒳` (mathematical X) or `😄` (a smile), some hieroglyphs and so on.
 
@@ -33,12 +37,15 @@ Unlike strings, regular expressions have flag `pattern:u` that fixes such proble
 
 ## Unicode properties \p{...}
 
+<<<<<<< HEAD
 ```warn header="Not supported in Firefox and Edge"
 Despite being a part of the standard since 2018, unicode properties are not supported in Firefox ([bug](https://bugzilla.mozilla.org/show_bug.cgi?id=1361876)) and Edge ([bug](https://github.com/Microsoft/ChakraCore/issues/2969)).
 
 There's [XRegExp](http://xregexp.com) library that provides "extended" regular expressions with cross-browser support for unicode properties.
 ```
 
+=======
+>>>>>>> 2d5be7b7307b0a4a85e872d229e0cebd2d8563b5
 Every character in Unicode has a lot of properties. They describe what "category" the character belongs to, contain miscellaneous information about it.
 
 For instance, if a character has `Letter` property, it means that the character belongs to an alphabet (of any language). And `Number` property means that it's a digit: maybe Arabic or Chinese, and so on.
@@ -93,7 +100,11 @@ Here's the main character categories and their subcategories:
   - control `Cc`,
   - format `Cf`,
   - not assigned `Cn`,
+<<<<<<< HEAD
   -- private use `Co`,
+=======
+  - private use `Co`,
+>>>>>>> 2d5be7b7307b0a4a85e872d229e0cebd2d8563b5
   - surrogate `Cs`.
 
 
@@ -127,7 +138,11 @@ alert("number: xAF".match(regexp)); // xAF
 
 Let's look for Chinese hieroglyphs.
 
+<<<<<<< HEAD
 There's a unicode property `Script` (a writing system), that may have a value: `Cyrillic`, `Greek`, `Arabic`, `Han` (Chinese) and so on, [here's the full list]("https://en.wikipedia.org/wiki/Script_(Unicode)").
+=======
+There's a unicode property `Script` (a writing system), that may have a value: `Cyrillic`, `Greek`, `Arabic`, `Han` (Chinese) and so on, [here's the full list](https://en.wikipedia.org/wiki/Script_(Unicode)).
+>>>>>>> 2d5be7b7307b0a4a85e872d229e0cebd2d8563b5
 
 To look for characters in a given writing system we should use `pattern:Script=<value>`, e.g. for Cyrillic letters: `pattern:\p{sc=Cyrillic}`, for Chinese hieroglyphs: `pattern:\p{sc=Han}`, and so on:
 
