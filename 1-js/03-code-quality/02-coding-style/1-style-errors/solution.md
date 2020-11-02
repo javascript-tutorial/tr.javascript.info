@@ -10,12 +10,21 @@ function ust(x,n)  // <- argümanlar arasında boşluk bulunmamakta.
   return sonuc;
 }
 
+<<<<<<< HEAD
 let x=prompt("x?",''), n=prompt("n?",'') // <-- teknik olarka mümkün,
 // fakat iki satır yapmak daha iyi, ayrıca boşluk ve ; kullanılmamış.
 if (n<0)  // <- (n < 0) olmalı, arada boşluk kullanılmamış
 {   // <- süslü parantez yeni satırda
   // Aşağıdaki uzun metin iki satırda yazılsa daha iyi olabilir
   alert(`${n} üssü alınamadı, kullandığınız sayı 0'dan küçük olamaz. Lütfen doğal sayıları kullanınız.`);
+=======
+let x=prompt("x?",''), n=prompt("n?",'') // <-- technically possible,
+// but better make it 2 lines, also there's no spaces and missing ;
+if (n<=0)  // <- no spaces inside (n <= 0), and should be extra line above it
+{   // <- figure bracket on a separate line
+  // below - long lines can be split into multiple lines for improved readability
+  alert(`Power ${n} is not supported, please enter an integer number greater than zero`);
+>>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 }
 else // <- tek satırda  "} else {" şeklinde kullanılabilir.
 {
@@ -39,9 +48,15 @@ function ust(x, n) {
 let x = prompt("x?", "");
 let n = prompt("n?", "");
 
+<<<<<<< HEAD
 if (n < 0) {
   alert(`${n} üssü alınamadı, kullandığınız sayı 0'dan küçük olamaz.
      Lütfen doğal sayıları kullanınız.`);
+=======
+if (n <= 0) {
+  alert(`Power ${n} is not supported,
+    please enter an integer number greater than zero`);
+>>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 } else {
   alert( ust(x, n) );
 }

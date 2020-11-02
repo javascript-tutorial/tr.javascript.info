@@ -34,11 +34,19 @@ Pratikte hafif düzenleyiciler birçok eklenti ile klasör bazında yazım, otom
 
 Aşağıdaki hafif düzenleyiciler ilginizi çekebilir:
 
+<<<<<<< HEAD
 - [Visual Studio Code](https://code.visualstudio.com/) (tüm işletim sistemlerinde çalışır, ücretsiz).
 - [Atom](https://atom.io/) (tüm işletim sistemlerinde çalışır, ücretsiz).
 - [Sublime Text](http://www.sublimetext.com) (tüm işletim sistemlerinde çalışır, ücretli).
 - [Notepad++](https://notepad-plus-plus.org/) (sadece Windows'ta çalışır, ücretsiz).
 - Vim and Emacs gibi düzenleyiciler de oldukça iyidir fakat öğrenme süresi diğerler hafif düzenleyicilere göre daha uzundur.
+=======
+- [Atom](https://atom.io/) (cross-platform, free).
+- [Visual Studio Code](https://code.visualstudio.com/) (cross-platform, free).
+- [Sublime Text](http://www.sublimetext.com) (cross-platform, shareware).
+- [Notepad++](https://notepad-plus-plus.org/) (Windows, free).
+- [Vim](http://www.vim.org/) and [Emacs](https://www.gnu.org/software/emacs/) are also cool if you know how to use them.
+>>>>>>> dccca58f268ad6d5a6f2160613a8ea3c5cd53a2d
 
 ## Lütfen Tartışmayalım!
 
