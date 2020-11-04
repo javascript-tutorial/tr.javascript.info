@@ -2,13 +2,13 @@ importance: 5
 
 ---
 
-# Animate a plane (CSS)
+# Uçağa animasyon ekle (CSS)
 
-Show the animation like on the picture below (click the plane):
+Aşağıdaki gibi bir animasyon yap (Uçağa tıkla):
 
 [iframe src="solution" height=300]
 
-- The picture grows on click from `40x24px` to `400x240px` (10 times larger).
-- The animation takes 3 seconds.
-- At the end output: "Done!".
-- During the animation process, there may be more clicks on the plane. They shouldn't "break" anything.
+- Resim tıklanınca boyutu `40x24px`'den `400x240px`'e çıkıyor.
+- Animasyon 3 saniye sürüyor.
+- Bitince "Bitti!" diye mesaj göster.
+- Animasyon süresince uçağa birden çok kere tıklanabilir. Bu tıklamalar bir şeyi bozmamalıdır.
