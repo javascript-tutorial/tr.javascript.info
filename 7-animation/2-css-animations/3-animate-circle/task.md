@@ -2,15 +2,15 @@ importance: 5
 
 ---
 
-# Animated circle
+# Animasyonlu Daire
 
-Create a function `showCircle(cx, cy, radius)` that shows an animated growing circle.
+`showCircle(cx, cy, radius)` şeklinde, animasyonlu bir şekilde daireyi genişleten, bir fonksiyon yarat.
 
-- `cx,cy` are window-relative coordinates of the center of the circle,
-- `radius` is the radius of the circle.
+- `cx,cy` dairenin merkezinin pencereye göreceli olarak koordinatları,
+- `radius` dairenin yarıçapı.
 
-Click the button below to see how it should look like:
+Aşağıdaki tuşa tıklayarak nasıl gözükmesi gerektiğini görebilirsin.
 
 [iframe src="solution" height=260]
 
-The source document has an example of a circle with right styles, so the task is precisely to do the animation right.
+Kaynak dökümanın içinde aynı şekilde çizilmiş bir daire var, bu görevin amacı sadece animasyonu doğru bir şekilde yapmak.
