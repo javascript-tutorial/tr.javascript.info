@@ -1,7 +1,11 @@
 
 # Fonksiyon Objeleri, NFE
 
+<<<<<<< HEAD
 Bildiğiniz gibi JavaScript'te fonksiyonlar değerdir.
+=======
+As we already know, a function in JavaScript is a value.
+>>>>>>> 99e59ba611ab11319ef9d0d66734b0bea2c3f058
 
 Her değerin bir tipi olduğuna göre fonksiyonun tipi nedir?
 
@@ -13,7 +17,13 @@ Daha iyi görselleyebilmek adına fonksiyonlara "aksiyon objeleri" denebilir. Sa
 
 Fonksiyon objelerinin kullanışlı özellikleri bulunmaktadır.
 
+<<<<<<< HEAD
 Örneğin, fonksiyonun ismi "name" özelliği ile alınabilir.
+=======
+Function objects contain some useable properties.
+
+For instance, a function's name is accessible as the "name" property:
+>>>>>>> 99e59ba611ab11319ef9d0d66734b0bea2c3f058
 
 ```js run
 function selamVer() {
@@ -22,6 +32,7 @@ function selamVer() {
 
 alert(selamVer.name); // selamVer
 ```
+<<<<<<< HEAD
 "name" özelliği atama o kadar akıllıdır ki, fonksiyon tanımlama ifadelerindeki ismi bile doğru alır.
 
 ```js run
@@ -30,6 +41,17 @@ let selamVer = function() {
 }
 
 alert(selamVer.name); // selamVer 
+=======
+
+What's kind of funny, the name-assigning logic is smart. It also assigns the correct name to a function even if it's created without one, and then immediately assigned:
+
+```js run
+let sayHi = function() {
+  alert("Hi");
+};
+
+alert(sayHi.name); // sayHi (there's a name!)
+>>>>>>> 99e59ba611ab11319ef9d0d66734b0bea2c3f058
 ```
 Hatta atama varsayılan değer ile yapıldığında bile çalışır:
 
@@ -63,8 +85,13 @@ Burada bir sihir yoktur. İsmin çıkarılamadığı birçok durum meydana geleb
 
 Böyle durumlarda aşağıdaki gibi boş dönerler:
 
+<<<<<<< HEAD
 ```js
 // Dizinin içerisinde fonksiyon yaratılması
+=======
+```js run
+// function created inside array
+>>>>>>> 99e59ba611ab11319ef9d0d66734b0bea2c3f058
 let arr = [function() {}];
 
 alert( arr[0].name ); // <boş>
@@ -88,7 +115,11 @@ Gördüğünüz gibi geriye kalan parametresi `...` sayılmamaktadır.
 
 `length` özelliği bazen diğer fonksiyonların üzerinde çalışan fonksiyonlara bir iç bakış oluşturur.
 
+<<<<<<< HEAD
 Mesela, aşağıdaki kodda `sor`fonksiyonu `soru` parametresi alır ve belirli olmayan sayıda `isleyici` fonksiyonunu çağırır.
+=======
+The `length` property is sometimes used for [introspection](https://en.wikipedia.org/wiki/Type_introspection) in functions that operate on other functions.
+>>>>>>> 99e59ba611ab11319ef9d0d66734b0bea2c3f058
 
 Kullanıcı cevap verdiğinde `isleyici`(handler) çağırılır. İki türlü işleyici gönderilebilir:
 
@@ -97,7 +128,13 @@ Kullanıcı cevap verdiğinde `isleyici`(handler) çağırılır. İki türlü i
 
 Mantık şu şekildedir; cevap pozisit olduğunda argüman almayan isleyici calisir, fakat evrensel isleyiciye de izin verir.
 
+<<<<<<< HEAD
 `isleyici`'lerin doğru çalışması için, `length` özelliğinden faydalanılabilir.
+=======
+To call `handler` the right way, we examine the `handler.length` property.
+
+The idea is that we have a simple, no-arguments handler syntax for positive cases (most frequent variant), but are able to support universal handlers as well:
+>>>>>>> 99e59ba611ab11319ef9d0d66734b0bea2c3f058
 
 ```js run
 function sor(soru, ...isleyiciler) {
@@ -230,8 +267,12 @@ selamVer("Ahmet"); // Selam, Ahmet
 ```
 `func` ismine ait iki tane özellik vardır:
 
+<<<<<<< HEAD
 1.Bu şekilde fonksiyonun kendisine içerisinden referans vermek mümkündür.
 2. Fonksiyonun dışından erişilemez.
+=======
+There are two special things about the name `func`, that are the reasons for it:
+>>>>>>> 99e59ba611ab11319ef9d0d66734b0bea2c3f058
 
 Örneğin, `selamVer` fonksiyonu eğer bir parametre olmadan çağırılırsa kendisini `"Misafir"` ile tekrardan çağırabilir.
 
@@ -266,7 +307,12 @@ let selamVer = function(kim) {
   }
 };
 ```
+<<<<<<< HEAD
 Buradaki problem `selamVer`'in değeri değişebilir. Fonksiyon diğer bir değişkene gidebilir ardından hatalar vermeye başlar.
+=======
+
+The problem with that code is that `sayHi` may change in the outer code. If the function gets assigned to another variable instead, the code will start to give errors:
+>>>>>>> 99e59ba611ab11319ef9d0d66734b0bea2c3f058
 
 ```js run
 let selamVer = function(kim) {
@@ -311,8 +357,13 @@ hosGeldin(); // Selam, Misafir (iç çağrı çalışır)
 
 Dışta bulunan kod hala `selamVer` veya `hosGeldin` değişkenlerine sahiptir. Dıştaki değişkenlere birşey olsa bile `func`"iç fonksiyon ismi"'dir. Kendisini gizli biçimde çağırabilir.
 
+<<<<<<< HEAD
 ```smart header="Fonksiyon Tanımı diye birşey yoktur."
 "içsel isim" olarak tanımlanan özellik sadece Fonksiyon İfadeleri için geçerlidir. Fonksiyon Tanımlarında çalışmaz. Fonksiyon tanımları için "içsel" bir isim ekleme yöntemi yoktur.
+=======
+```smart header="There's no such thing for Function Declaration"
+The "internal name" feature described here is only available for Function Expressions, not for Function Declarations. For Function Declarations, there is no syntax for adding an "internal" name.
+>>>>>>> 99e59ba611ab11319ef9d0d66734b0bea2c3f058
 
 Bazen güvenli bir isme ihtiyaç duyulduğunda Fonksiyon Tanımı tekrardan İsimlendirilmiş Fonksiyon İfadesi şekline getirilir.
 ```
@@ -329,6 +380,11 @@ Eğer fonksiyon Fonksiyon Tanımı yöntemi ile ( ana akışta olmayan ) tanıml
 
 Fonksiyonlar ayrıca başka özelliklerde taşıyabilirler. Çoğu bilinen JavaScript kütüphanesi bu özelliği ziyadesiyle kullanır.
 
+<<<<<<< HEAD
 Genelde bir "ana" fonksiyon ve bu fonksiyona bağlı birçok "yardımcı" fonksiyon tanımlarlar. Örneğin [jquery](https://jquery.com) `$` adında bir fonksiyon oluşturur. [lodash](https://lodash.com) fonksiyonu `_` adında bir fonksiyon oluşturu. Ardıncan `_.clone`, `_.keyBy` gibi özellikleri ekler. [Dökümantasyon](https://lodash.com/docs)'u inceleyebilirsiniz.  Aslında, global alanda baya temiz çalışırlar. Böylece bir kütüphane bir tane global değişken vermiş olur. Bu da isimlerin birbiriyle çakışmasını engeller.
+=======
+They create a "main" function and attach many other "helper" functions to it. For instance, the [jQuery](https://jquery.com) library creates a function named `$`. The [lodash](https://lodash.com) library creates a function `_`, and then adds `_.clone`, `_.keyBy` and other properties to it (see the [docs](https://lodash.com/docs) when you want to learn more about them). Actually, they do it to lessen their pollution of the global space, so that a single library gives only one global variable. That reduces the possibility of naming conflicts.
+
+>>>>>>> 99e59ba611ab11319ef9d0d66734b0bea2c3f058
 
 Bundan dolayı bir fonksiyon kendince bir iş yapabilir ve özellikleri vasıtasıyla başka fonksiyonalitelere de sahip olabilir.

@@ -26,10 +26,17 @@ More complex tests are possible, e.g. `pattern:X(?=Y)(?=Z)` means:
 
 1. Find `pattern:X`.
 2. Check if `pattern:Y` is immediately after `pattern:X` (skip if isn't).
+<<<<<<< HEAD
 3. Check if `pattern:Z` is immediately after `pattern:Y` (skip if isn't).
 4. If both tests passed, then it's the match.
 
 In other words, such pattern means that we're looking for `pattern:X` followed by   `pattern:Y` and `pattern:Z` at the same time.
+=======
+3. Check if `pattern:Z` is also immediately after `pattern:X` (skip if isn't).
+4. If both tests passed, then the `pattern:X` is a match, otherwise continue searching.
+
+In other words, such pattern means that we're looking for `pattern:X` followed by `pattern:Y` and `pattern:Z` at the same time.
+>>>>>>> 99e59ba611ab11319ef9d0d66734b0bea2c3f058
 
 That's only possible if patterns `pattern:Y` and `pattern:Z` aren't mutually exclusive.
 
