@@ -6,9 +6,15 @@ importance: 5
 
 `sayacUret()` kodunu değiştirerek sayacın azaltılabilir ve ayarlanabilir olmasını sağlayınız:
 
+<<<<<<< HEAD
 - `sayac()` bir sonraki sayıyı döndürmelidir(eskisinde olduğu gibi)
 - `sayac.set(deger)` `sayac` degerini `deger`e eşlemelidir.
 - `sayac.azalt(deger)` `sayac` degerini bir azaltmalıdır.
+=======
+- `counter()` should return the next number (as before).
+- `counter.set(value)` should set the counter to `value`.
+- `counter.decrease()` should decrease the counter by 1.
+>>>>>>> 23da191b58643387783f38e999f5b05be87d3d93
 
 
 İzole edilmiş koda bakarak tamamen nasıl kullanıldığını görebilirsiniz
