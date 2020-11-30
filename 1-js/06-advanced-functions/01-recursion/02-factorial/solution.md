@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 Tanım olarak `n!` faktöriyel `n * (n-1)!` şeklinde çalışır.
+=======
+By definition, a factorial `n!` can be written as `n * (n-1)!`.
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
 Diğer bir deyişle `faktoriyel(n)` `n` in `factorial(n-1)` ile çarpılmasıdır. Sonrasında `n-1` `1` olana kadar basamak basamak azalır.
 

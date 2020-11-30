@@ -57,7 +57,11 @@ In the replacement string we use a dollar sign: `pattern:$1`, while in the patte
 
 If a regexp has many parentheses, it's convenient to give them names.
 
+<<<<<<< HEAD
 To reference a named group we can use `pattern:\k<имя>`.
+=======
+To reference a named group we can use `pattern:\k<name>`.
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
 In the example below the group with quotes is named `pattern:?<quote>`, so the backreference is `pattern:\k<quote>`:
 

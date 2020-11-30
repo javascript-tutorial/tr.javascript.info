@@ -18,15 +18,30 @@ Bu durumda bizi Babel kurtarır.
 
 [Babel](https://babeljs.io)  [transpiler](https://en.wikipedia.org/wiki/Source-to-source_compiler)dır. Yani kaynak kodundan kaynak koduna çeviri yapar. Modern dil özelliklerini kullanarak yazdığımız kodu, eski standartlara çevirir.
 
+<<<<<<< HEAD
 Babel iki bölümden oluşmaktadır:
+=======
+1. First, the transpiler program, which rewrites the code. The developer runs it on their own computer. It rewrites the code into the older standard. And then the code is delivered to the website for users. Modern project build systems like [webpack](http://webpack.github.io/) provide means to run transpiler automatically on every code change, so that it's very easy to integrate into development process.
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
 1. Transpiler programi, yani kodu yeniden yazan program. Geliştiriciler bunu kendi bilgisayarlarında yaparlar. Kod eski standartlara göre tekrar yazılır. Ardından web sitesine ulaştırılarak kullanıma açılır. [webpack](http://webpack.github.io/) veya [brunch](http://brunch.io/) otomatik kurma(Build) işlemi yapan araçlar anlık olarak her kod değiştiğinde kodu eski standartlara çevireiblirler. Bundan dolayı bizim için çokta bir fark yoktur.
 
+<<<<<<< HEAD
 2. The polyfill.
+=======
+    New language features may include not only syntax constructs, but also built-in functions.
+    The transpiler rewrites the code, transforming syntax constructs into older ones. But as for new built-in functions, we need to implement them. JavaScript is a highly dynamic language, scripts may add/modify any functions, so that they behave according to the modern standard.
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
     Transpiler kodu yazdı, yazım özellikleri tamam fakat yeni fonksiyonlar eklendiğinde özel kod yazarak bunların uygulamasını yapmanız gerekir. JavaScript çok dinamik bir dildir. Kodlar sadece yeni fonksiyonları değil var olanları da değiştirir, anca böyle modern standartlara göre kod yazılır.
 
+<<<<<<< HEAD
     "polyfill" ,"doldurma" anlamına gelir ve eksik uygulamaları bizim için uygular.
+=======
+    Two interesting polyfills are:
+    - [core js](https://github.com/zloirock/core-js) that supports a lot, allows to include only needed features.
+    - [polyfill.io](http://polyfill.io) service that provides a script with polyfills, depending on the features and user's browser.
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
     Polyfill'e örnek verecek olursak:
     - [babel polyfill](https://babeljs.io/docs/usage/polyfill/) çoğu özelliği destekler. Fakat dosya boyutu büyüktür.

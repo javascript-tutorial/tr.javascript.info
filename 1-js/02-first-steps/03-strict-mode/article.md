@@ -4,7 +4,11 @@ Uzun süredir JavaScript uyumluluk sorunu olmadan gelişmeye devam etmektedir. Y
 
 Bu eski kodlarınızın çalışacağı garantisini verir. Kötü yanı ise JavaScript geliştiricileri tarafından eskiden verilen kötü bir kararın veya hatanın sürekli tekrar edilmesine neden olur. 
 
+<<<<<<< HEAD
 ECMAScript 5 (ES5) standardı 2009 yılında kabul edilmiştir. Bu standar yeni özellikler eklediği gibi eskide olanlardan bazılarını da düzenlemiştir. Eski kodun çalışabilirliğini garanti altına almak için çoğu düzenleme varsayılan olarak kapalı durumda gelir. Bunları açmak için `"use strict"` kullanılmalıdır.
+=======
+This was the case until 2009 when ECMAScript 5 (ES5) appeared. It added new features to the language and modified some of the existing ones. To keep the old code working, most such modifications are off by default. You need to explicitly enable them with a special directive: `"use strict"`.
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
 ## "use strict"
 
@@ -19,10 +23,14 @@ Bu direktif için kod dosyanızın başına `"use strict"` veya `'use strict'` y
 ...
 ```
 
+<<<<<<< HEAD
 Yakında fonksiyonları ( komutları gruplama ) göreceksiniz. 
 
 `"use strict"` birden çok fonksiyonda kullanılacağı gibi tek fonksiyon için de kullanılabilir. Fakat genelde tüm dosya için kullanılır.
 
+=======
+Quite soon we're going to learn functions (a way to group commands), so let's note in advance that `"use strict"` can be put at the beginning of a function. Doing that enables strict mode in that function only. But usually people use it for the whole script.
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 
 ````warn header="\"use strict\" in en üstte olduğuna emin olun"
 
@@ -45,16 +53,22 @@ alert("Bazı kodlar");
 ```warn header="`use strict`'i iptal eden bir direktif bulunmamaktadır"
 Modern JavaScript'i eski haline getiren `"no use strict"` gibi bir direktif bulunmamaktadır.
 
+<<<<<<< HEAD
 Sıkı moda girdiğinizda artık eskiye dönüş yoktur.
+=======
+Once we enter strict mode, there's no going back.
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
 ```
 
 ## Browser console
 
-For the future, when you use a browser console to test features, please note that it doesn't `use strict` by default.
+When you use a [developer console](info:devtools) to run code, please note that it doesn't `use strict` by default.
 
 Sometimes, when `use strict` makes a difference, you'll get incorrect results.
 
-You can try to press `key:Shift+Enter` to input multiple lines, and put `use strict` on top, like this:
+So, how to actually `use strict` in the console?
+
+First, you can try to press `key:Shift+Enter` to input multiple lines, and put `use strict` on top, like this:
 
 ```js
 'use strict'; <Shift+Enter for a newline>
@@ -64,16 +78,17 @@ You can try to press `key:Shift+Enter` to input multiple lines, and put `use str
 
 It works in most browsers, namely Firefox and Chrome.
 
-If it doesn't, the most reliable way to ensure `use strict` would be to input the code into console like this:
+If it doesn't, e.g. in an old browser, there's an ugly, but reliable way to ensure `use strict`. Put it inside this kind of wrapper:
 
 ```js
 (function() {
   'use strict';
 
-  // ...your code...
+  // ...your code here...
 })()
 ```
 
+<<<<<<< HEAD
 ## Her zaman "use strict" kullanın
 
 `"use strict"` ile varsayılan modun farkları üzerinden tekrar geçilecektir.
@@ -86,3 +101,20 @@ Gelecek bölümlerde dilin özelliklerini öğrendikçe bu sıkı mod ile varsay
 2. Sıkı moda dosyanın başına `"use strict"` direktifiyle geçilebilir. Bu bize "sınıf" veya "modül" gibi dil özelliklerini kazandırır.
 3. Sıkı mod tüm modern tarayıcılar tarafından desteklenir.
 4. Bundan sonra tersi söylenmedikçe her yazacağınız örneklerde  `"use strict"` ile başlayacağınız varsayılmaktadır. 
+=======
+## Should we "use strict"?
+
+The question may sound obvious, but it's not so.
+
+One could recommend to start scripts with `"use strict"`... But you know what's cool?
+
+Modern JavaScript supports "classes" and "modules" - advanced language structures (we'll surely get to them), that enable `use strict` automatically. So we don't need to add the `"use strict"` directive, if we use them.
+
+**So, for now `"use strict";` is a welcome guest at the top of your scripts. Later, when your code is all in classes and modules, you may omit it.**
+
+As of now, we've got to know about `use strict` in general.
+
+In the next chapters, as we learn language features, we'll see the differences between the strict and old modes. Luckily, there aren't many and they actually make our lives better.
+
+All examples in this tutorial assume strict mode unless (very rarely) specified otherwise.
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5

@@ -42,4 +42,9 @@ function f() {
 
 f(); // cleanup!
 ```
+<<<<<<< HEAD
 Burada `finally` temizliğin yapılacağının garantisini verir. Eğer temizlik kodunu `f`'in sonuna koyarsanız çalışmayabilir.
+=======
+
+It's `finally` that guarantees the cleanup here. If we just put the code at the end of `f`, it wouldn't run in these situations.
+>>>>>>> e1a3f634a47c119cf1ec7420c49fc0fc7172c0b5
