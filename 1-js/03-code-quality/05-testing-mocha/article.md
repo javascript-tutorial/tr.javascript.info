@@ -1,8 +1,14 @@
+<<<<<<< HEAD
 # Mocha ile otomatik test yazma.
 
 Bundan sonraki görevlerde otomatik test kullanılacak.
 
 It's actually a part of the "educational minimum" of a developer.
+=======
+# Automated testing with Mocha
+
+Automated testing will be used in further tasks, and it's also widely used in real projects.
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 ## Neden teste ihtiyac var?
 
@@ -20,14 +26,26 @@ Fakat bunları tekrar tekrar çalıştırmak iyi bir yöntem değildir.
 
 Bu çok tipiktir. Birşey geliştirirken çoğu zaman muhtemel olan durumları aklımızda tutarız. Fakat programcıların bu durumların tamamını aklında tutması beklenemez. Bundan dolayı bir tanesini düzeltirken diğerini kırmak çokça yaşanılan bir durumdur.
 
+<<<<<<< HEAD
+=======
+**Automated testing means that tests are written separately, in addition to the code. They run our functions in various ways and compare results with the expected.**
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 **Otomatik testlerin koddan ayrı yazılması demektir. Kolayca çalıştırılır ve tüm durumları kontrol edebilir**
 
+<<<<<<< HEAD
 ## Davranışa Yönelik Geliştirme  - Behaviour Driven Development(BDD)
+=======
+Let's start with a technique named [Behavior Driven Development](http://en.wikipedia.org/wiki/Behavior-driven_development) or, in short, BDD.
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 Diyelim ki [Davranışa Yönelik Geliştirme](http://en.wikipedia.org/wiki/Behavior-driven_development) tekniğini kullandınız, BDD sadece test için değil, bundan daha fazlasıdır.
 
+<<<<<<< HEAD
 **BDD üç şeyin içiçe bulunmasıdır. Bunlar: test,dökümantasyon ve örneklerdir.**
+=======
+To understand BDD, we'll examine a practical case of development.
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 Yeteri kadar konuştuk. Şimdi örneklere geçebiliriz.
 
@@ -37,9 +55,13 @@ Diyelimki `us(x,n)` adında bir fonksiyon yazmak isteyelim. Bu `x`i üssü olan 
 
 Bu görev sadece örnektir: Bunun yaptığını yapan `**` operatörü vardır ve aynı işi yapar. Burada bizim konsantre olacağımız olay bunun geliştirilmesi sürecidir. Bu daha karmaşık görevlerde de aynı şekilde kullanılabilir.
 
+<<<<<<< HEAD
 `us` fonksiyonunu yaratmadan önce, fonksiyonun ne yapacağını tanımlamanız gerekmektedir.
 
 Bu tanımlamaya *ayrıntılar* veya *özellikler* diyebilirsiniz. Kısaca bu aşağıdaki gibidir:
+=======
+Such description is called a *specification* or, in short, a spec, and contains descriptions of use cases together with tests for them, like this:
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 ```js
 describe("us", function() {
@@ -56,21 +78,45 @@ Bu özelliğin 3 ana bölümü vardır:
 `describe("baslik", function() { ... })`
 : Fonksiyonun neyi tanımladığı yazılır. Bizim durumumuzda bu üs'tür.
 
+<<<<<<< HEAD
 `it("baslik", function() { ... })`
 : `it` bölümünde ise daha okunaklı bir şekilde, hangi koşulda ne yaptığı açıklanır. ikinci argüman ise bunu test eder.
 
+=======
+`describe("title", function() { ... })`
+: What functionality we're describing. In our case we're describing the function `pow`. Used to group "workers" -- the `it` blocks.
+
+`it("use case description", function() { ... })`
+: In the title of `it` we *in a human-readable way* describe the particular use case, and the second argument is a function that tests it.
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 `assert.equal(value1, value2)`
 : `it` bloğunun içindeki ko eğer doğru ise hatasız döner.
 
+<<<<<<< HEAD
     `assert*` fonksiyonu `us`'ün beklendiği gibi çalışıp çalışmadığını kontrol eder. Burada `assert.equal`'ı kullanılmaktadır. Argümanları karşılaştırarak eşitlik olmadığı durumda hata verir. Burada `us(2,3)`, `8` e eşit mi diye bakılır
 
     İleriki dönemlerde farklı karşılaştırmaları göreceksiniz.
+=======
+    Functions `assert.*` are used to check whether `pow` works as expected. Right here we're using one of them -- `assert.equal`, it compares arguments and yields an error if they are not equal. Here it checks that the result of `pow(2, 3)` equals `8`. There are other types of comparisons and checks, that we'll add later.
+
+The specification can be executed, and it will run the test specified in `it` block. We'll see that later.
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 
 ## Geliştirme akışı
 
+<<<<<<< HEAD
 Genelde akış şu şekildedir:
+=======
+1. An initial spec is written, with tests for the most basic functionality.
+2. An initial implementation is created.
+3. To check whether it works, we run the testing framework [Mocha](http://mochajs.org/) (more details soon) that runs the spec. While the functionality is not complete, errors are displayed. We make corrections until everything works.
+4. Now we have a working initial implementation with tests.
+5. We add more use cases to the spec, probably not yet supported by the implementations. Tests start to fail.
+6. Go to 3, update the implementation till tests give no errors.
+7. Repeat steps 3-6 till the functionality is ready.
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 1. Başlangıçta en basit fonksiyonalite test edilir.
 2. Bunun uygulaması yapılmıştır.
@@ -80,7 +126,13 @@ Genelde akış şu şekildedir:
 6. Üçüncü adıma dönüp bu testlerin hatalarını düzeltene kadar hata almaya devam edersiniz.
 7. 3-6 arasını düzelterek tüm fonksiyonalite hazır oluncaya kadar devam edin.
 
+<<<<<<< HEAD
 Öyleyse geliştirme süreklilik tekrar bu işlemler üzerinden geçerek devam eder. *Özellikleri* yazıldıktan sonra, bunların uygulaması yapılır, sonra daha fazla test yazılır ve çalıştığına emin olunur.
+=======
+Let's see this development flow in our practical case.
+
+The first step is already complete: we have an initial spec for `pow`. Now, before making the implementation, let's use few JavaScript libraries to run the tests, just to see that they are working (they will all fail).
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 Bizim durumumuzda ilk adım tamamlandı. Başlangıçta `us` için özelliği tanımladık. Şimdi bunun uygulamasını yapmaya geldi. Fakat öncesinde bir defa kodu çalıştıralım bakalım testler uygulamasını yazmadan çalışacak mı? ( hepsinin hata vermesi lazım )
 
@@ -112,7 +164,11 @@ Sonuc:
 
 Şu anda hata olduğundan testler başarısız oldu. Şu anda `us` boş olduğundan dolayı `us(2,3)` `undefined` döndürdü halbuki test `8` cevabı beklemekteydi.
 
+<<<<<<< HEAD
 Daha gelişmiş test çalıştırıcılar da bulunmaktadır,  örneğin [karma](https://karma-runner.github.io/) vs. Bundan dolayı farklı testler yapmak sorun değildir.
+=======
+For the future, let's note that there are more high-level test-runners, like [karma](https://karma-runner.github.io/) and others, that make it easy to autorun many different tests.
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 ## İlk uygulama
 
@@ -132,7 +188,11 @@ Yaptığımız hilekarlık. Fonksiyon çalışmıyor, örneğin `us(3,4)` hata v
 
 ... Aslında bu pratikte de olabilir. Yani testten geçebilir, fakat fonksiyon yanlış çalışır. Bu tanımlamalar, özellikler mükemmel değildir. Daha fazla kontrol eklemeniz gerekir.
 
+<<<<<<< HEAD
  `pow(3,4)=81` ekleyelim
+=======
+Let's add one more test to check that `pow(3, 4) = 81`.
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
  İki farklı şekilde testleri organize edebilirsiniz:
 
@@ -159,8 +219,13 @@ Yaptığımız hilekarlık. Fonksiyon çalışmıyor, örneğin `us(3,4)` hata v
         assert.equal(pow(2, 3), 8);
       });
 
+<<<<<<< HEAD
       it("üçün üçüncü kuvveti yirmi yedidir", function() {
         assert.equal(pow(3, 3), 27);
+=======
+      it("3 raised to power 4 is 81", function() {
+        assert.equal(pow(3, 4), 81);
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
       });
 
     });
@@ -178,7 +243,11 @@ Sonuç:
 
 [iframe height=250 src="pow-2" edit border="1"]
 
+<<<<<<< HEAD
 Beklendiği üzre ikinci test başarısız oldu. Bizim fonksiyonumuz her zaman `8` dönderiyordu, ikincide ise `assert` `27` cevaını bekledi.
+=======
+As we could expect, the second test failed. Sure, our function always returns `8`, while the `assert` expects `81`.
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 
 ## Test uygulamalarını geliştirme.
@@ -293,7 +362,11 @@ Testler bitti – tüm testlerden sonra (after)
 
 [edit src="beforeafter" title="Örneği sandbox'ta çalıştır"]
 
+<<<<<<< HEAD
 Genelde `beforeEach/afterEach` (`before/each`) başlangıçta ösellikleri ayarlama, sayacı sıfırlama veya testler arasında birşey yapma gibi aksiyonları gerçekleştirir.
+=======
+Usually, `beforeEach/afterEach` and `before/after` are used to perform initialization, zero out counters or do something else between the tests (or test groups).
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 ````
 
 ## Özellikleri geliştirme
@@ -332,11 +405,18 @@ Testin sonucu:
 
 Yeni eklenen testler başarısız oldu çünkü daha uygulamasını yapılmadı. BDD( Behaviour Driven Development) bu şekilde yapılır. Önce başarısız testler yazılır sonra bu testlerin uygulamaları yazılır.
 
+<<<<<<< HEAD
 ```smart header="Diğer iddialar(assertion)"
 
 Dikkat ederseniz `assert.isNaN`: `NaN`'ı kontrol eder.
 
 Chai içinde daha farklı iddialar da bulunmaktadır bunlardan bazıları:
+=======
+```smart header="Other assertions"
+Please note the assertion `assert.isNaN`: it checks for `NaN`.
+
+There are other assertions in [Chai](http://chaijs.com) as well, for instance:
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 
 
@@ -380,6 +460,12 @@ BDD'de önce özellikler yazılır sonra bunların uygulamaları yapılır. Sonu
 2. **Dökümantasyon** -- `describe` ve `it` bize aslında fonksiyonun ne iş yaptığını söyler.
 3. **Örnekler** -- testler aslında çalışan örneklerdir. Bize fonksiyonun nasıl çağırılması gerektiğini gösterir.
 
+<<<<<<< HEAD
+=======
+1. As **Tests** - they guarantee that the code works correctly.
+2. As **Docs** -- the titles of `describe` and `it` tell what the function does.
+3. As **Examples** -- the tests are actually working examples showing how a function can be used.
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 Özelliklere bakarak, güvenli bir şekilde kod geliştirilebilir, değiştirilebilir hatta fonksiyonlar yeniden yazılabilir.
 
@@ -387,23 +473,40 @@ Bu aslında büyük projeler için daha önemlidir. Örneğin fonksiyonda bir ye
 
 Testler olmazsa geliştiriciler iki şekilde devam edebilir:
 
+<<<<<<< HEAD
 1. Değişiklik ne olursa olsun yapılır. Sonrasında kullanıcılar bug bulur ve bunları bize bildirir. Tabi bu sizin için normal birşeyse eğer. 
 2. Veya geliştiriciler bu fonksiyona dokunmaya çekinir, eğer gerçekten önemli bir fonksiyonsa bunun altından kalkılamayabilir. Bundan dolayı fonksiyonlara dokunmaya dokunmaya bir çok fonksiyon yazılır ve herkes kendine ait kodu kullanır.
 
 **Otomatik test edilmiş kod ise bunun tam anlamıyla zıttıdır**
 
 Eğer projede testler yazılmış olsaydı, böyle problemler olmazdı. Testleri çalıştırır ve yaptığınız değişikliklerin herhangi bir yeri etkileyip etkilemediğini anında görebilirdiniz.
+=======
+1. To perform the change, no matter what. And then our users meet bugs, as we probably fail to check something manually.
+2. Or, if the punishment for errors is harsh, as there are no tests, people become afraid to modify such functions, and then the code becomes outdated, no one wants to get into it. Not good for development.
+
+**Automatic testing helps to avoid these problems!**
+
+If the project is covered with tests, there's just no such problem. After any changes, we can run tests and see a lot of checks made in a matter of seconds.
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 **Ayrıca iyi test edilmiş kodun mimarisi daha iyidir**
 
+<<<<<<< HEAD
 Çünkü değiştirmek ve geliştirmek daha kolaydır. Sadece bu değil
+=======
+Naturally, that's because auto-tested code is easier to modify and improve. But there's also another reason.
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 Kod öyle bir organize edilmelidir ki her fonksiyonun açık bir şekilde ne yapacağı belli olmalıdır. Hangi değerleri alacağı hangi değerler döneceği. Bu başlangıçtan itibaren iyi bir mimariye sahip olduğunun kanıtıdır.
 
 Gerçek hayatta bu bazen kolay olmayabilir. Bazen gerçekten özellikleri yazmak gerçek kodu yazmadan önce çok zor olabilir. Çünkü fonksiyonun nasıl davranacağı tam olarak kesitirilemeyebilir. Fakat genel olarak bakılacak olursa test yazma geliştirmeyi hızlandırır ve daha istikrarlı kılar.
 
+<<<<<<< HEAD
 ## Sırada ne var?
 
 Bu ders sonunda bir çok test ile iç içi görev bulacaksınız. Böylece daha pratiğe dayalı örnekler yapabileceksiniz.
+=======
+Later in the tutorial you will meet many tasks with tests baked-in. So you'll see more practical examples.
+>>>>>>> c56e6a57ac3497aab77128c5bfca13513980709b
 
 Test yazmak iyi JavaScript bilgisi gerektirir. Fakat siz daha yeni öğrenmeye başladınız. Bundan dolayı şimdilik bu kadar yeterli, bundan sonra test yazmanıza gerek yok. Eğer daha karmaşık olsalar bile bu derste gördüğünüz örneklerden yola çıkarak bunları okuyabilirsiniz.
