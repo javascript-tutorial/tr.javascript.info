@@ -2,12 +2,12 @@ importance: 5
 
 ---
 
-# Animate the flying plane (CSS)
+# Havadaki uçağa animasyon ekle (CSS)
 
-Modify the solution of the previous task <info:task/animate-logo-css> to make the plane grow more than it's original size 400x240px (jump out), and then return to that size.
+Bir önceki görevdeki çözümü değiştirerek <info:task/animate-logo-css> uçağı orijinal boyutu 400x240px'den daha büyük hale getir (dışarı taşır), ve o boyutuna geri çevir.
 
-Here's how it should look (click on the plane):
+Son hali böyle olmalı (uçağa tıkla):
 
 [iframe src="solution" height=350]
 
-Take the solution of the previous task as the source.
+Bir önceki çözümü temel alarak ilerleyebirsiniz.

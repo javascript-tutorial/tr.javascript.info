@@ -1,17 +1,17 @@
 
-CSS to animate both `width` and `height`:
+`width` ve `height` özelliklerinin animasyonu için CSS:
 ```css
-/* original class */
+/* orijinal class */
 
 #flyjet {
   transition: all 3s;
 }
 
-/* JS adds .growing */
+/* JS .growing ekliyor*/
 #flyjet.growing {
   width: 400px;
   height: 240px;
 }
 ```
 
-Please note that `transitionend` triggers two times -- once for every property. So if we don't perform an additional check then the message would show up 2 times.
+Dikkat et! `transitionend` iki kere tetikleniyor -- her özellik için bir kere. Eğer bir konrol yapmazsak mesaj 2 kere gözükecek.

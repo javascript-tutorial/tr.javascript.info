@@ -1,7 +1,7 @@
-We need to choose the right Bezier curve for that animation. It should have `y>1` somewhere for the plane to "jump out".
+Animasyon için doğru Bezier eğrisini seçmemiz gerekiyor. Bir yerinde `y>1` olmalı ki uçak "dışarı taşabilsin".
 
-For instance, we can take both control points with `y>1`, like: `cubic-bezier(0.25, 1.5, 0.75, 1.5)`.
+Örneğin iki kontrol noktasını da `y>1` olacak şekilde ayarlayabiliriz: `cubic-bezier(0.25, 1.5, 0.75, 1.5)`.
 
-The graph:
+Eğrinin grafiği:
 
 ![](bezier-up.svg)
