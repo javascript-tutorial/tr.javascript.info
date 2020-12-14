@@ -18,7 +18,11 @@ Without parentheses, the pattern `pattern:go+` means `subject:g` character, foll
 Parentheses group characters together, so `pattern:(go)+` means `match:go`, `match:gogo`, `match:gogogo` and so on.
 
 ```js run
+<<<<<<< HEAD
 alert( 'Gogogo now!'.match(/(go)+/i) ); // "Gogogo"
+=======
+alert( 'Gogogo now!'.match(/(go)+/ig) ); // "Gogogo"
+>>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
 ```
 
 ### Example: domain
@@ -218,8 +222,13 @@ let results = '<h1> <h2>'.matchAll(/<(.*?)>/gi);
 
 for(let result of results) {
   alert(result);
+<<<<<<< HEAD
   // первый вывод: <h1>,h1
   // второй: <h2>,h2
+=======
+  // first alert: <h1>,h1
+  // second: <h2>,h2
+>>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
 }
 ```
 
@@ -249,7 +258,11 @@ The call to `matchAll` does not perform the search. Instead, it returns an itera
 
 So, there will be found as many results as needed, not more.
 
+<<<<<<< HEAD
 E.g. there are potentially 100 matches in the text, but in a `for..of` loop we found 5 of them, then decided it's enough and make a `break`. Then the engine won't spend time finding other 95 mathces.
+=======
+E.g. there are potentially 100 matches in the text, but in a `for..of` loop we found 5 of them, then decided it's enough and made a `break`. Then the engine won't spend time finding other 95 matches.
+>>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
 ```
 
 ## Named groups

@@ -57,16 +57,26 @@ For instance:
 
 - **\d** -- is the same as `pattern:[0-9]`,
 - **\w** -- is the same as `pattern:[a-zA-Z0-9_]`,
+<<<<<<< HEAD
 - **\s** -- is the same as `pattern:[\t\n\v\f\r ]`, plus few other rare unicode space characters.
+=======
+- **\s** -- is the same as `pattern:[\t\n\v\f\r ]`, plus few other rare Unicode space characters.
+>>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
 ```
 
 ### Example: multi-language \w
 
 As the character class `pattern:\w` is a shorthand for `pattern:[a-zA-Z0-9_]`, it can't find Chinese hieroglyphs, Cyrillic letters, etc.
 
+<<<<<<< HEAD
 We can write a more universal pattern, that looks for wordly characters in any language. That's easy with unicode properties: `pattern:[\p{Alpha}\p{M}\p{Nd}\p{Pc}\p{Join_C}]`.
 
 Let's decipher it. Similar to `pattern:\w`, we're making a set of our own that includes characters with following unicode properties:
+=======
+We can write a more universal pattern, that looks for wordly characters in any language. That's easy with Unicode properties: `pattern:[\p{Alpha}\p{M}\p{Nd}\p{Pc}\p{Join_C}]`.
+
+Let's decipher it. Similar to `pattern:\w`, we're making a set of our own that includes characters with following Unicode properties:
+>>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
 
 - `Alphabetic` (`Alpha`) - for letters,
 - `Mark` (`M`) - for accents,
@@ -85,10 +95,17 @@ let str = `Hi 你好 12`;
 alert( str.match(regexp) ); // H,i,你,好,1,2
 ```
 
+<<<<<<< HEAD
 Of course, we can edit this pattern: add unicode properties or remove them. Unicode properties are covered in more details in the article <info:regexp-unicode>.
 
 ```warn header="Unicode properties aren't supported in Edge and Firefox"
 Unicode properties `pattern:p{…}` are not yet implemented in Edge and Firefox. If we really need them, we can use library [XRegExp](http://xregexp.com/).
+=======
+Of course, we can edit this pattern: add Unicode properties or remove them. Unicode properties are covered in more details in the article <info:regexp-unicode>.
+
+```warn header="Unicode properties aren't supported in IE"
+Unicode properties `pattern:p{…}` are not implemented in IE. If we really need them, we can use library [XRegExp](http://xregexp.com/).
+>>>>>>> 23e85b3c33762347e26276ed869e491e959dd557
 
 Or just use ranges of characters in a language that interests us, e.g.  `pattern:[а-я]` for Cyrillic letters.
 ```
