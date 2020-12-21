@@ -20,7 +20,11 @@ It has 3 modes:
     alert( result.length ); // 2
 
     // Additional information:
+<<<<<<< HEAD
     alert( result.index );  // 0 (match position)
+=======
+    alert( result.index );  // 7 (match position)
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
     alert( result.input );  // I love JavaScript (source string)
     ```
 
@@ -86,7 +90,11 @@ alert( firstMatch.index );  // 0
 alert( firstMatch.input );  // <h1>Hello, world!</h1>
 ```
 
+<<<<<<< HEAD
 If we use `for..of` to loop over `matchAll` matches, then we don't need `Array.from`, разумеется, не нужен.
+=======
+If we use `for..of` to loop over `matchAll` matches, then we don't need `Array.from` any more.
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 
 ## str.split(regexp|substr, limit)
 
@@ -142,10 +150,16 @@ To find all hyphens, we need to use not the string `"-"`, but a regexp `pattern:
 alert( '12-34-56'.replace( *!*/-/g*/!*, ":" ) )  // 12:34:56
 ```
 
+<<<<<<< HEAD
 The second argument is a replacement string. We can use special character in it:
 
 | Symbols | Action in the replacement string |
 | Symbols | Action in the replacement string |
+=======
+The second argument is a replacement string. We can use special characters in it:
+
+| Symbols | Action in the replacement string |
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 |--------|--------|
 |`$&`|inserts the whole match|
 |<code>$&#096;</code>|inserts a part of the string before the match|
@@ -205,9 +219,12 @@ alert(result); // Smith, John
 
 If there are many groups, it's convenient to use rest parameters to access them:
 
+<<<<<<< HEAD
 
 Если в регулярном выражении много скобочных групп, то бывает удобно использовать остаточные аргументы для обращения к ним:
 
+=======
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 ```js run
 let str = "John Smith";
 
@@ -232,6 +249,26 @@ alert(result); // Smith, John
 
 Using a function gives us the ultimate replacement power, because it gets all the information about the match, has access to outer variables and can do everything.
 
+<<<<<<< HEAD
+=======
+## str.replaceAll(str|regexp, str|func)
+
+This method is essentially the same as `str.replace`, with two major differences:
+
+1. If the first argument is a string, it replaces *all occurences* of the string, while `replace` replaces only the *first occurence*.
+2. If the first argument is a regular expression without the `g` flag, there'll be an error. With `g` flag, it works the same as `replace`.
+
+The main use case for `replaceAll` is replacing all occurences of a string.
+
+Like this:
+
+```js run
+// replace all dashes by a colon
+alert('12-34-56'.replaceAll("-", ":")) // 12:34:56
+```
+
+
+>>>>>>> fc3f811c03ca97ff8304271bb2b918413bed720f
 ## regexp.exec(str)
 
 The method `regexp.exec(str)` method returns a match for `regexp` in the string `str`.  Unlike previous methods, it's called on a regexp, not on a string.
