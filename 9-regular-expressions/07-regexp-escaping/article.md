@@ -96,4 +96,8 @@ alert( "Chapter 5.1".match(regexp) ); // 5.1
 
 - To search for special characters `pattern:[ \ ^ $ . | ? * + ( )` literally, we need to prepend them with a backslash `\` ("escape them").
 - We also need to escape `/` if we're inside `pattern:/.../` (but not inside `new RegExp`).
+<<<<<<< HEAD:9-regular-expressions/07-regexp-escaping/article.md
 - When passing a string `new RegExp`, we need to double backslashes `\\`, cause string quotes consume one of them.
+=======
+- When passing a string to `new RegExp`, we need to double backslashes `\\`, cause string quotes consume one of them.
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293:9-regular-expressions/07-regexp-escaping/article.md

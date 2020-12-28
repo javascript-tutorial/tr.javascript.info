@@ -5,7 +5,11 @@ Answers: **no, yes**.
     ```js run
     alert( "Java".match(/Java[^script]/) ); // null
     ```
+<<<<<<< HEAD:9-regular-expressions/08-regexp-character-sets-and-ranges/1-find-range-1/solution.md
 - Yes, because the part `pattern:[^script]` part matches the character `"S"`. It's not one of `pattern:script`. As the regexp is case-sensitive (no `pattern:i` flag), it treats `"S"` as a different character from `"s"`.
+=======
+- Yes, because the `pattern:[^script]` part matches the character `"S"`. It's not one of `pattern:script`. As the regexp is case-sensitive (no `pattern:i` flag), it treats `"S"` as a different character from `"s"`.
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293:9-regular-expressions/08-regexp-character-sets-and-ranges/1-find-range-1/solution.md
 
     ```js run
     alert( "JavaScript".match(/Java[^script]/) ); // "JavaS"

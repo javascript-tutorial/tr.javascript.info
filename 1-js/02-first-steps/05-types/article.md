@@ -1,6 +1,14 @@
 # Data types
 
+<<<<<<< HEAD
 Bir javascript değişkeni her türlü veriyi tutabilir. Önce karakter dizisi(String) atansa da sonra sayısal değer alabilir:
+=======
+A value in JavaScript is always of a certain type. For example, a string or a number.
+
+There are eight basic data types in JavaScript. Here, we'll cover them in general and in the next chapters we'll talk about each of them in detail.
+
+We can put any type in a variable. For example, a variable can at one moment be a string and then store a number:
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
 
 ```js
 // Hata yok
@@ -8,11 +16,17 @@ let mesaj = "merhaba";
 mesaj = 123456;
 ```
 
+<<<<<<< HEAD
 Bu şekilde olaylara izin veren tipdeki dillere "dinamik tip" dil denir. Veri yapıları olsa bile değişkenler bu yapılara bağlı değildir.
 
 JavaScript dilinde yedi farklı veri tipi bulunmaktadır. Şimdilik bu tiplerden bahsedeceğiz gelecek bölümlerde ise daha derinlemesine bu tipleri inceleyeceğiz.
 
 ##  Number - Sayı
+=======
+Programming languages that allow such things, such as JavaScript, are called "dynamically typed", meaning that there exist data types, but variables are not bound to any of them.
+
+## Number
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
 
 ```js
 let s = 123;
@@ -58,14 +72,52 @@ Kodunuzun tamamı hiç durmadan çalışacaktır. En kötü ihtimalle `NaN` sonu
 Özel sayısal değerler "number" tipine aittir. Tabiki sayı bizim bildiğimiz tipte sayı değillerdir. 
 <info:number> bölümünde sayısal değerler ile çalışmayı daha derinlemesine göreceksiniz.
 
+<<<<<<< HEAD
 ## String - Karakter Dizisi
+=======
+Special numeric values formally belong to the "number" type. Of course they are not numbers in the common sense of this word.
+
+We'll see more about working with numbers in the chapter <info:number>.
+
+## BigInt
+
+In JavaScript, the "number" type cannot represent integer values larger than <code>(2<sup>53</sup>-1)</code> (that's `9007199254740991`), or less than <code>-(2<sup>53</sup>-1)</code> for negatives. It's a technical limitation caused by their internal representation.
+
+For most purposes that's quite enough, but sometimes we need really big numbers, e.g. for cryptography or microsecond-precision timestamps.
+
+`BigInt` type was recently added to the language to represent integers of arbitrary length.
+
+A `BigInt` value is created by appending `n` to the end of an integer:
+
+```js
+// the "n" at the end means it's a BigInt
+const bigInt = 1234567890123456789012345678901234567890n;
+```
+
+As `BigInt` numbers are rarely needed, we don't cover them here, but devoted them a separate chapter <info:bigint>. Read it when you need such big numbers.
+
+
+```smart header="Compatibility issues"
+Right now, `BigInt` is supported in Firefox/Chrome/Edge/Safari, but not in IE.
+```
+
+You can check [*MDN* BigInt compatibility table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#Browser_compatibility) to know which versions of a browser are supported.
+
+## String
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
 
 JavaScriptte karakter dizileri çift tırnak içerisine alınmalıdır.
 
 ```js
+<<<<<<< HEAD
 let str = "Merhaba";
 let str2 = 'Tek tırnak da çalışır';
 let phrase = `değer gömülebilir ${str}`;
+=======
+let str = "Hello";
+let str2 = 'Single quotes are ok too';
+let phrase = `can embed another ${str}`;
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
 ```
 JavaScriptte 3 çeşit tırnak içine alma yöntemi vardır.
 
@@ -75,7 +127,13 @@ JavaScriptte 3 çeşit tırnak içine alma yöntemi vardır.
 
 Çift tırnak ile tek tırnak "basit" tırnaklardır. Aralarında bir farklılık yoktur.
 
+<<<<<<< HEAD
 Ters tırnak ise "genişletilmiş fonksiyonlu" tırnaktır. Bunu kullanarak karakter dizisi içerisine `${...}` gibi başka bir dizi yerleştirebiliriz. Örneğin:
+=======
+Double and single quotes are "simple" quotes. There's practically no difference between them in JavaScript.
+
+Backticks are "extended functionality" quotes. They allow us to embed variables and expressions into a string by wrapping them in `${…}`, for example:
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
 
 ```js run
 let isim = "Ahmet";
@@ -94,6 +152,7 @@ alert( "sonuç ${1 + 2}" ); // örneğin burada normal çift tırnak kullanıld�
 ```
 Karakter dizileri konusunu <info:string> bölümünde daha derinlemesine incelenecektir.
 
+<<<<<<< HEAD
 ```smart header="*Karakter* tipi diye bir tip yoktur."
 Bazı dillerde "character" - Karakter adında sadece bir karakteri tutan veri tipleri mevcuttur. Bu tip Java ve C'de `char` olarak tanımlanır.
 
@@ -101,6 +160,17 @@ Javascriptte böyle bir tip bulunmamaktadır. Tek karakterli değişken de karak
 ```
 
 ## Boolean ( doğru/yanlış) tipi
+=======
+We'll cover strings more thoroughly in the chapter <info:string>.
+
+```smart header="There is no *character* type."
+In some languages, there is a special "character" type for a single character. For example, in the C language and in Java it is called "char".
+
+In JavaScript, there is no such type. There's only one type: `string`. A string may consist of zero characters (be empty), one character or many of them.
+```
+
+## Boolean (logical type)
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
 
 Boolean tipi `true` ve `false` olmak üzere sadece iki değer tutabilir.
 
@@ -141,7 +211,11 @@ Javascriptte `null` olmayan objeyi referans göstermez veya başka dillerdeki gi
 
 Yukarıdaki `yas` boş veya bilinmeyen bir değerdir.
 
+<<<<<<< HEAD
 ## "undefined" değeri
+=======
+The code above states that `age` is unknown.
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
 
 Bir diğer özel değer ise `undefined`dır. Kendi başına `null` gibi bir değerdir.
 
@@ -150,28 +224,50 @@ Bir diğer özel değer ise `undefined`dır. Kendi başına `null` gibi bir değ
 Eğer bir değişken tanımlanmış fakat hiç bir değer atanmamışsa tam olarak bu değeri alır.
 
 ```js run
-let x;
+let age;
 
+<<<<<<< HEAD
 alert(x); // "undefined" çıktısı verir.
 ```
 Teknik olarak `undefined` değerini herhangi bir değişkene atamak mümkündür:
-
-```js run
-let x = 123;
-
-x = undefined;
-
-alert(x); // "undefined"
+=======
+alert(age); // shows "undefined"
 ```
 
+Technically, it is possible to explicitly assign `undefined` to a variable:
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
+
+```js run
+let age = 100;
+
+// change the value to undefined
+age = undefined;
+
+alert(age); // "undefined"
+```
+
+<<<<<<< HEAD
 Fakat bu şekilde tanımlanmasa daha iyi olur. Normalde `null` kullanılarak değişkenin boş veya bilinmeyen olduğu tanımlanır, `undefined` değişkene bir değer atanmış mı? Sorusunu kontrol eder.
+=======
+...But we don't recommend doing that. Normally, one uses `null` to assign an "empty" or "unknown" value to a variable, while `undefined` is reserved as a default initial value for unassigned things.
+
+## Objects and Symbols
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
 
 ## Objeler ve Semboller
 `Obje` özel bir tiptir.
 
+<<<<<<< HEAD
 Diğer tüm tipler "primitive" yani basit veya ilkel tiplerdir. Bu değişkenler sadece birşey tutabilirler( karakter dizisi veya sayı ). Buna karşılık objeler veri koleksiyonları (collections) veya karmaşık yapılar tutabilirler. <info:object> konusunda Obje daha derinlemesine incelenecektir. 
 
 `symbol` objeler için benzersiz tanımlayıcılar oluşturmak için kullanılır. Bu konuyu objeleri öğrendikten sonra öğrenmek daha iyi olacaktır.
+=======
+All other types are called "primitive" because their values can contain only a single thing (be it a string or a number or whatever). In contrast, objects are used to store collections of data and more complex entities.
+
+Being that important, objects deserve a special treatment. We'll deal with them later in the chapter <info:object>, after we learn more about primitives.
+
+The `symbol` type is used to create unique identifiers for objects. We have to mention it here for the sake of completeness, but also postpone the details till we know objects.
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
 
 ## typeof operatörü [#type-typeof]
 `typeof` argüman tipini bildirir. Farklı tipler için farklı akışlarınız varsa bunu kullanabilirsiniz.
@@ -190,6 +286,8 @@ Diğer bir deyişle parantezli de çalışır parantez olmadan da çalışır. S
 typeof undefined // "undefined"
 
 typeof 0 // "number"
+
+typeof 10n // "bigint"
 
 typeof true // "boolean"
 
@@ -212,15 +310,34 @@ typeof alert // "function"  (3)
 
 Son üç satır diğerlerinden farklıdır. Şu şekilde;
 
+<<<<<<< HEAD
 1. `Math` matematiksal operasyonlar için kullanılacak JavaScript dilinde var olan bir objedir. <info:number> konusunda buna değinilecektir.  Burada sadece objenin örneklenmesi için kullanılmıştır.
 2. `typeof null` sonucu `"object"` dir. Aslında yanlış. Bu `typeof` fonksiyonunun bilinen bir hatasıdır. Eski versiyonlara uygunluk açısından bu şekliyle bırakılmıştır. Yoksa `null` bir obje değildir. Kendine has bir tiptir. Tekrar söylemek gerekirse bu JavaScript dilinin bir hatasıdır.
 3. `typeof alert` fonksiyondur. Çünkü `alert` dilde doğrudan var olan bir fonksiyondur. `Math` ile farklı gördüğünüz gibi. Bir sonraki bölümde fonksiyonlar anlatılacaktır. Fonksiyonlar obje tipine dahildir. Fakat `typeof` bunları farklı yorumlar. Resmi olarak yanlış olsa da pratikte çokça kullanılan bir özelliktir.
 
+=======
+1. `Math` is a built-in object that provides mathematical operations. We will learn it in the chapter <info:number>. Here, it serves just as an example of an object.
+2. The result of `typeof null` is `"object"`. That's an officially recognized error in `typeof` behavior, coming from the early days of JavaScript and kept for compatibility. Definitely, `null` is not an object. It is a special value with a separate type of its own.
+3. The result of `typeof alert` is `"function"`, because `alert` is a function. We'll study functions in the next chapters where we'll also see that there's no special "function" type in JavaScript. Functions belong to the object type. But `typeof` treats them differently, returning `"function"`. That also comes from the early days of JavaScript. Technically, such behavior isn't correct, but can be convenient in practice.
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
 
 ## Özet
 
+<<<<<<< HEAD
 Javascript dilinde 7 tane basit tip bulunmaktadır.
 
+=======
+There are 8 basic data types in JavaScript.
+
+- `number` for numbers of any kind: integer or floating-point, integers are limited by <code>±(2<sup>53</sup>-1)</code>.
+- `bigint` is for integer numbers of arbitrary length.
+- `string` for strings. A string may have zero or more characters, there's no separate single-character type.
+- `boolean` for `true`/`false`.
+- `null` for unknown values -- a standalone type that has a single value `null`.
+- `undefined` for unassigned values -- a standalone type that has a single value `undefined`.
+- `object` for more complex data structures.
+- `symbol` for unique identifiers.
+>>>>>>> 13da056653754765b50aa5a9f706f84a4a0d6293
 
 - `number` her türlü sayı için ( integer veya floating point)
 - `string` bir veya birden fazla karakter için
