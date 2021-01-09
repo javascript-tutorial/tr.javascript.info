@@ -4,11 +4,11 @@ libs:
 
 ---
 
-# DOM tree
+# DOM Yapısı
 
-The backbone of an HTML document are tags.
+Bir HTML belgesinin omurgası etiketlerdir.
 
-According to Document Object Model (DOM), every HTML-tag is an object. Nested tags are called "children" of the enclosing one.
+Document Object Model (DOM)' a göre, her HTML etiketi bir nesnedir. Nested tags are called "children" of the enclosing one.
 
 The text inside a tag it is an object as well.
 
