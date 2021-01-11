@@ -91,6 +91,10 @@ Fakat normalde sizinde bildiğiniz gibi bunu iki satır görmesi gerekmektedir. 
 
 Eğer yeni satıra geçmek istiyorsanız önerilen yöntem noktalı virgül kullanmanızdır. Bu kural JavaScript toplumu tarafından benimsenmiştir. Tekrar belitelim JavaScript yazarken noktalı virgül kullanmadan yeni satıra geçmek çoğu zaman -- *mümkündür* -- fakat başlangıçta noktalı virgül kullanmanız daha güvenlidir ve önerilir.
 
+<<<<<<< HEAD
+=======
+## Comments [#code-comments]
+>>>>>>> 468e3552884851fcef331fbdfd58096652964b5f
 
 ## Yorum Satırları
 Zamanla yazdığınız programlar gittikçe karmaşıklaşır. Neyin ne için yapıldığını belirtmeniz için *yorum* yazmak kaçınılmaz olur.
@@ -128,7 +132,13 @@ alert('Hello');
 alert('Dünya');
 ```
 
+<<<<<<< HEAD
 ```smart header="Klavye kısa yollarını kullanın!"
+=======
+```smart header="Use hotkeys!"
+In most editors, a line of code can be commented out by pressing the `key:Ctrl+/` hotkey for a single-line comment and something like `key:Ctrl+Shift+/` -- for multiline comments (select a piece of code and press the hotkey). For Mac, try `key:Cmd` instead of `key:Ctrl` and `key:Option` instead of `key:Shift`.
+```
+>>>>>>> 468e3552884851fcef331fbdfd58096652964b5f
 
 Çoğu editör `key:Ctrl+/` kısa yolunu kullanarak tek satır veya `key:Ctrl+Shift+/` kullanarak çok satır yorum yapmanıza yardımcı olur. Mac için `key:Cmd` tuşu windows için ise `key:Ctrl` tuşudur.
 ```
