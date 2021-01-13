@@ -5,7 +5,7 @@ Veri yapılarından biraz uzaklaşıp bunların döngülerinden bahsedecek olurs
 
 Bir önceki bölümde `map.keys()`, `map.values()`, `map.entries()` gibi metodlar vardı.
 
-Bu metodlar `generic` metorlardır. Bunların veri yapılarında kullanılması çoğu dilde ortaktır. Eğer yeni bir veri yapısı yapmak istiyorsanız siz de bunların uygulamasını yapmalısınız.
+Bu metodlar `generic` metodlardır. Bunların veri yapılarında kullanılması çoğu dilde ortaktır. Eğer yeni bir veri yapısı yapmak istiyorsanız siz de bunların uygulamasını yapmalısınız.
 
 Bunlar:
 - `Map`
