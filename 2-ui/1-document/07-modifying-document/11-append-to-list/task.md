@@ -2,8 +2,7 @@ importance: 5
 
 ---
 
-# HTML'yi listeye ekleme
-
+# Insert the HTML in the list
 
 Buraya iki `<li>`  arasına `<li>2</li><li>3</li>` eklemek için kodu yazın:
 
