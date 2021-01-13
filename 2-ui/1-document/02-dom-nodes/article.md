@@ -62,7 +62,7 @@ Yalnızca iki üst düzey istisna vardır:
 1. "<head>" öncesindeki boşluklar ve satırsonları tarihsel nedenlerden dolayı göz ardı edilir,
 2. "</body>" 'den sonra bir şey koyarsak, HTML spesifikasyonu tüm içeriğin "<body>" içinde olmasını gerektirdiğinden, bu otomatik olarak sonunda "body" nin içine taşınır. Dolayısıyla "</body>" öğesinden sonra boşluk kalmayabilir..
 
-In other cases everything's straightforward -- if there are spaces (just like any character) in the document, then they become text nodes in DOM, Diğer durumlarda her şey basittir; eğer belgede boşluklar varsa (tıpkı herhangi bir karakter gibi), o zaman bunlar DOM'da metin düğümleri olurlar ve eğer onları kaldırırsak, o zaman kaybolacaklardır.
+Diğer durumlarda her şey basittir; eğer belgede boşluklar varsa (tıpkı herhangi bir karakter gibi), o zaman bunlar DOM'da metin düğümleri olurlar ve eğer onları kaldırırsak, o zaman kaybolacaklardır.
 
 Yalnızca boşluk içeren metin düğümleri yoktur:
 
@@ -127,7 +127,7 @@ drawHtmlTree(node4, 'div.domtree', 690, 360);
 </script>
 
 ````warn header="Tablolar her zaman `<tbody>` e sahiptir"
-İlginç "özel durum" tablolardır. DOM spesifikasyonuna göre <tbody> 'ye sahip olmaları gerekir, ancak HTML metni bunu (resmi olarak) ihmal edebilir. Ardından tarayıcı DOM içinde otomatik olarak <tbody> oluşturur. 
+İlginç "özel durum" tablolardır. DOM şartnamesine göre <tbody> 'ye sahip olmaları gerekir, ancak HTML metni bunu (resmi olarak) ihmal edebilir. Ardından tarayıcı DOM içinde otomatik olarak <tbody> oluşturur. 
 
 HTML gösterimi:
 
