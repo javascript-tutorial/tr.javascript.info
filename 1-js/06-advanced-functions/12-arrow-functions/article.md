@@ -68,7 +68,7 @@ Bu ok fonksiyonlarında işlemez çünkü ok fonksiyonlarında `this` bulunmamak
 ```
 
 ```smart header="Arrow fonksiyonları ile bind arasındaki fark"
-`=>` fonksiyonları ile `.bin(this)` ile çağırılan normal fonksiyonlar arasında ince bir fark vardır.
+`=>` fonksiyonları ile `.bind(this)` ile çağırılan normal fonksiyonlar arasında ince bir fark vardır.
 
 - `.bind(this)` fonksiyonun "bağlı versiyonu"'nu oluştururken.
 - `=>` fonksiyonu hiç bir bağlılık oluşturmaz. Fonksiyon basit bir şekilde `this`'e sahip değildir. `this`'in aranması aynı normal fonksiyonlardaki gibi dışarıdaki sözcüksel ortamda aranması ile son bulur.
