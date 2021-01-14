@@ -4,19 +4,19 @@ libs:
 
 ---
 
-# DOM tree
+# DOM Yapısı
 
-The backbone of an HTML document are tags.
+Bir HTML belgesinin omurgası etiketlerdir.
 
-According to Document Object Model (DOM), every HTML-tag is an object. Nested tags are called "children" of the enclosing one.
+Document Object Model (DOM)' a göre, her HTML etiketi bir nesnedir. İç içe geçmiş etiketlere, çevreleyen etiketin "alt öğeleri" denir.
 
-The text inside a tag it is an object as well.
+Bir etiketin içindeki metin de bir nesnedir..
 
-All these objects are accessible using JavaScript.
+Tüm bu nesnelere JavaScript kullanılarak erişilebilir.
 
-## An example of DOM
+## Bir DOM örneği
 
-For instance, let's explore the DOM for this document:
+Örneğin, bu belge için DOM'u inceleyelim:
 
 ```html run no-beautify
 <!DOCTYPE HTML>
@@ -30,7 +30,7 @@ For instance, let's explore the DOM for this document:
 </html>
 ```
 
-The DOM represents HTML as a tree structure of tags. Here's how it looks:
+DOM, HTML'i etiketlerin ağaç yapısı olarak temsil eder. Şu şekilde görünür:
 
 <div class="domtree"></div>
 
@@ -41,29 +41,30 @@ drawHtmlTree(node1, 'div.domtree', 690, 320);
 </script>
 
 ```online
-On the picture above, you can click on element nodes and their children will open/collapse.
+Yukarıdaki resimde, eleman düğümlerine tıklayabilirsiniz ve çocukları açılacak / daralacaktır..
 ```
 
-Tags are called *element nodes* (or just elements). Nested tags become children of the enclosing ones. As a result we have a tree of elements: `<html>` is at the root, then `<head>` and `<body>` are its children, etc.
+Etiketler *eleman düğümleri* veya sadece eleman olarak adlandırılır. İç içe geçmiş etiketler, çevreleyenlerin alt öğeleri olur. Sonuç olarak bir element ağacımız var: `<html>` burada köktür, sonra `<head>` ve `<body>` gelir bunlar ise html'nin çocuklarıdır vb.
 
-The text inside elements forms *text nodes*, labelled as `#text`. A text node contains only a string. It may not have children and is always a leaf of the tree.
+Öğelerin içindeki metin,  `#text` olarak etiketlenmiş metin düğümleri oluşturur. Bir metin düğümü yalnızca bir dize içerir. Alt öğeleri olmayabilir ve her zaman ağacın bir yaprağıdır.
 
-For instance, the `<title>` tag has the text `"About elks"`.
+Örneğin, `<title>` etiketinde `"About elks"` metni bulunur.
 
-Please note the special characters in text nodes:
+Lütfen metin düğümlerindeki özel karakterlere dikkat edin:
 
-- a newline: `↵` (in JavaScript known as `\n`)
-- a space: `␣`
+- yeni satır: `↵` (Javascript'te bilineni: `\n`)
+- boşluk: `␣`
 
-Spaces and newlines -- are totally valid characters, they form text nodes and become a part of the DOM. So, for instance, in the example above the `<head>` tag contains some spaces before `<title>`, and that text becomes a `#text` node (it contains a newline and some spaces only).
+Boşluklar ve satır sonları tamamen geçerli karakterlerdir, metin düğümleri oluştup DOM'un bir parçası olurlar. 
+Dolayısıyla, örneğin yukarıdaki örnekte "<head>" etiketi, "<title>" dan önce bazı boşluklar içerir ve bu metin bir "#text" düğümü haline gelir (yalnızca bir satırsonu ve bazı boşluklar içerir).
 
-There are only two top-level exclusions:
-1. Spaces and newlines before `<head>` are ignored for historical reasons,
-2. If we put something after `</body>`, then that is automatically moved inside the `body`, at the end, as the HTML spec requires that all content must be inside `<body>`. So there may be no spaces after `</body>`.
+Yalnızca iki üst düzey istisna vardır:
+1. "<head>" öncesindeki boşluklar ve satırsonları tarihsel nedenlerden dolayı göz ardı edilir,
+2. "</body>" 'den sonra bir şey koyarsak, HTML spesifikasyonu tüm içeriğin "<body>" içinde olmasını gerektirdiğinden, bu otomatik olarak sonunda "body" nin içine taşınır. Dolayısıyla "</body>" öğesinden sonra boşluk kalmayabilir..
 
-In other cases everything's straightforward -- if there are spaces (just like any character) in the document, then they become text nodes in DOM, and if we remove them, then there won't be any.
+Diğer durumlarda her şey basittir; eğer belgede boşluklar varsa (tıpkı herhangi bir karakter gibi), o zaman bunlar DOM'da metin düğümleri olurlar ve eğer onları kaldırırsak, o zaman kaybolacaklardır.
 
-Here are no space-only text nodes:
+Yalnızca boşluk içeren metin düğümleri yoktur:
 
 ```html no-beautify
 <!DOCTYPE HTML>
@@ -79,21 +80,21 @@ drawHtmlTree(node2, 'div.domtree', 690, 210);
 </script>
 
 ```smart header="Edge spaces and in-between empty text are usually hidden in tools"
-Browser tools (to be covered soon) that work with DOM usually do not show spaces at the start/end of the text and empty text nodes (line-breaks) between tags.
+DOM ile çalışan tarayıcı araçları (yakında ele alınacaktır) genellikle metnin başında / sonunda boşluklar ve etiketler arasında boş metin düğümleri (satır sonları) göstermez.
 
-That's because they are mainly used to decorate HTML, and do not affect how it is shown (in most cases).
+Bunun nedeni, esas olarak HTML'yi dekore etmek için kullanılmaları ve gösterilme şeklini etkilememeleridir (çoğu durumda).
 
-On further DOM pictures we'll sometimes omit them where they are irrelevant, to keep things short.
+Daha fazla DOM resimlerinde, işleri kısa tutmak için bazen ilgisiz oldukları yerlerde bunları çıkarırız.
 ```
 
 
-## Autocorrection
+## Otomatik düzeltme
 
-If the browser encounters malformed HTML, it automatically corrects it when making DOM.
+Tarayıcı hatalı biçimlendirilmiş HTML ile karşılaşırsa, DOM oluştururken bunu otomatik olarak düzeltir.
 
-For instance, the top tag is always `<html>`. Even if it doesn't exist in the document -- it will exist in the DOM, the browser will create it. The same goes for `<body>`.
+Örneğin, en üstteki etiket her zaman <html> olur. Belgede olmasa bile - DOM'da bulunacak, tarayıcı onu oluşturacaktır. Aynısı <body> için de geçerlidir .
 
-As an example, if the HTML file is a single word `"Hello"`, the browser will wrap it into `<html>` and `<body>`, add the required `<head>`, and the DOM will be:
+Örnek olarak, HTML dosyası tek bir kelimeyse yani "Hello" gibi birşey ise , tarayıcı onu <html> içine saracak, gerekli olan <body> ve <head> kısmını ekleyecek ve DOM şu şekilde olacaktır:
 
 
 <div class="domtree"></div>
@@ -104,9 +105,9 @@ let node3 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,
 drawHtmlTree(node3, 'div.domtree', 690, 150);
 </script>
 
-While generating the DOM, browsers automatically process errors in the document, close tags and so on.
+DOM oluşturulurken, tarayıcılar belgedeki hataları otomatik olarak işler, etiketleri kapatır vb.
 
-Such an document with unclosed tags:
+Kapatılmamış etiketlere sahip böyle bir belge:
 
 ```html no-beautify
 <p>Hello
@@ -115,7 +116,7 @@ Such an document with unclosed tags:
 <li>Dad
 ```
 
-...Will become a normal DOM, as the browser reads tags and restores the missing parts:
+...Tarayıcı etiketleri okurken ve eksik kısımları geri yüklerken normal bir DOM haline gelecektir:
 
 <div class="domtree"></div>
 
@@ -125,16 +126,16 @@ let node4 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,
 drawHtmlTree(node4, 'div.domtree', 690, 360);
 </script>
 
-````warn header="Tables always have `<tbody>`"
-An interesting "special case" is tables. By the DOM specification they must have `<tbody>`, but HTML text may (officially) omit it. Then the browser creates `<tbody>` in DOM automatically.
+````warn header="Tablolar her zaman `<tbody>` e sahiptir"
+İlginç "özel durum" tablolardır. DOM şartnamesine göre <tbody> 'ye sahip olmaları gerekir, ancak HTML metni bunu (resmi olarak) ihmal edebilir. Ardından tarayıcı DOM içinde otomatik olarak <tbody> oluşturur. 
 
-For the HTML:
+HTML gösterimi:
 
 ```html no-beautify
 <table id="table"><tr><td>1</td></tr></table>
 ```
 
-DOM-structure will be:
+DOM yapısı olarak:
 <div class="domtree"></div>
 
 <script>
@@ -143,12 +144,14 @@ let node5 = {"name":"TABLE","nodeType":1,"children":[{"name":"TBODY","nodeType":
 drawHtmlTree(node5,  'div.domtree', 600, 200);
 </script>
 
-You see? The `<tbody>` appeared out of nowhere. You should keep this in mind while working with tables to avoid surprises.
+Gördünüz mü ? Aniden `<tbody>` ortaya çıktı. Sürprizlerden kaçınmak için tablolarla çalışırken bunu aklınızda bulundurmalısınız.
 ````
 
-## Other node types
+## Diğer düğüm türleri
 
-Let's add more tags and a comment to the page:
+Sayfaya daha fazla etiket ve bir yorum ekleyelim:
+
+
 
 ```html
 <!DOCTYPE HTML>
@@ -174,88 +177,87 @@ let node6 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,
 drawHtmlTree(node6, 'div.domtree', 690, 500);
 </script>
 
-Here we see a new tree node type -- *comment node*, labeled as `#comment`.
+Burada yeni bir ağaç düğümü türü görüyoruz `#comment` olarak etiketlenmiş bir yorum düğümü.
 
-We may think -- why is a comment added to the DOM? It doesn't affect the visual representation in any way. But there's a rule -- if something's in HTML, then it also must be in the DOM tree.
+DOM'a neden bir yorum eklendiğini düşünebiliriz. Yorumlar sayfayı hiçbir şekilde etkilemez. Ancak bir kural vardır - HTML'de bir şey varsa, o zaman da DOM ağacında olmalıdır.
 
-**Everything in HTML, even comments, becomes a part of the DOM.**
+**HTML'deki her şey, hatta yorumlar bile DOM'un bir parçası haline gelir.**
 
-Even the `<!DOCTYPE...>` directive at the very beginning of HTML is also a DOM node. It's in the DOM tree right before `<html>`. We are not going to touch that node, we even don't draw it on diagrams for that reason, but it's there.
+HTML'nin en başındaki <! DOCTYPE ...> yönergesi bile bir DOM düğümüdür. DOM ağacında <html> 'den hemen öncedir. Bu düğüme dokunmayacağız, hatta bu nedenle onu diyagramlar üzerine çizmeyeceğiz, ama oradadır.
 
-The `document` object that represents the whole document is, formally, a DOM node as well.
+Tüm belgeyi temsil eden `document` nesnesi, resmi olarak bir DOM düğümüdür
 
-There are [12 node types](https://dom.spec.whatwg.org/#node). In practice we usually work with 4 of them:
+ [12 düğüm tipi](https://dom.spec.whatwg.org/#node) vardır. Pratikte genellikle 4 tanesiyle çalışırız:
 
-1. `document` -- the "entry point" into DOM.
-2. element nodes -- HTML-tags, the tree building blocks.
-3. text nodes -- contain text.
-4. comments -- sometimes we can put the information there, it won't be shown, but JS can read it from the DOM.
+1. `document` -- DOM'a "giriş noktasıdır".
+2. eleman düğümleri - HTML etiketleri, ağaç yapı taşları.
+3. metin düğümleri - metin içerir.
+4. yorumlar - bazen bilgileri oraya koyabiliriz, kullanıcıya gösterilmez, ancak JS bunu DOM'dan okuyabilir.
 
-## See it for yourself
+## Kendin gör
 
-To see the DOM structure in real-time, try [Live DOM Viewer](http://software.hixie.ch/utilities/js/live-dom-viewer/). Just type in the document, and it will show up DOM at an instant.
+DOM yapısını gerçek zamanlı görmek için, deneyin [Live DOM Viewer](http://software.hixie.ch/utilities/js/live-dom-viewer/). Sadece belgeyi yazın, DOM'u anında gösterecektir
 
-## In the browser inspector
+## Tarayıcı geliştirici araçlarında görün
 
-Another way to explore the DOM is to use the browser developer tools. Actually, that's what we use when developing.
+DOM'u keşfetmenin bir başka yolu da tarayıcı geliştirici araçlarını kullanmaktır. Aslında, geliştirirken kullandığımız şey bu.
 
-To do so, open the web-page [elks.html](elks.html), turn on the browser developer tools and switch to the Elements tab.
+Bunu yapmak için web sayfasını açın [elks.html](elks.html), tarayıcı geliştirici araçlarını açın ve Öğeler sekmesine geçin.
 
-It should look like this:
+Böyle görünmeli:
 
 ![](elks.png)
 
-You can see the DOM, click on elements, see their details and so on.
+DOM'u görebilir, öğelere tıklayabilir, ayrıntılarını görebilir ve daha fazlasını yapabilirsiniz.
 
-Please note that the DOM structure in developer tools is simplified. Text nodes are shown just as text. And there are no "blank" (space only) text nodes at all. That's fine, because most of the time we are interested in element nodes.
+Geliştirici araçlarındaki DOM yapısının basitleştirildiğini lütfen unutmayın. Metin düğümleri sadece metin olarak gösterilir. Ve "boş" (yalnızca boşluk) metin düğümleri de yoktur. Sorun değil, çünkü çoğu zaman eleman düğümleriyle ilgileniyoruz.
 
-Clicking the <span class="devtools" style="background-position:-328px -124px"></span> button in the left-upper corner allows to choose a node from the webpage using a mouse (or other pointer devices) and "inspect" it (scroll to it in the Elements tab). This works great when we have a huge HTML page (and corresponding huge DOM) and would like to see the place of a particular element in it.
+Sol üst köşedeki düğmeyi tıklamak <span class="devtools" style="background-position:-328px -124px"></span>, bir fare (veya diğer işaretçi aygıtları) kullanarak web sayfasından bir düğüm seçmeye ve onu "incelemeye" (Öğeler sekmesinde ona kaydırın) izin verir. Bu, büyük bir HTML sayfamız (ve buna karşılık gelen devasa DOM) olduğunda ve içindeki belirli bir öğenin yerini görmek istediğinde harika çalışıyor.
 
-Another way to do it would be just right-clicking on a webpage and selecting "Inspect" in the context menu.
+Bunu yapmanın başka bir yolu da bir web sayfasına sağ tıklayıp içerik menüsünde "İncele" yi seçmektir.
+
 
 ![](inspect.png)
 
-At the right part of the tools there are the following subtabs:
-- **Styles** -- we can see CSS applied to the current element rule by rule, including built-in rules (gray). Almost everything can be edited in-place, including the dimensions/margins/paddings of the box below.
-- **Computed** -- to see CSS applied to the element by property: for each property we can see a rule that gives it (including CSS inheritance and such).
-- **Event Listeners** -- to see event listeners attached to DOM elements (we'll cover them in the next part of the tutorial).
-- ...and so on.
+Araçların sağ tarafında aşağıdaki alt sekmeler bulunur:
 
-The best way to study them is to click around. Most values are editable in-place.
+- **Stiller(Styles)** -- CSS'nin, yerleşik kurallar (gri) dahil olmak üzere belirli öğelere kurallar uygulandığını görebiliriz. Aşağıdaki kutunun boyutları / kenar boşlukları / dolgular dahil hemen hemen her şey yerinde düzenlenebilir.
+- **Hesaplanmış (Computed)** -- öğeye uygulanan özellikleri CSS'de görmek için: her özellik için onu veren bir kural görebiliriz (CSS mirası vb. dahil).
+- **Olay Dinleyicileri (Event Listeners)** -- DOM öğelerine eklenen olay dinleyicilerini görmek için (serinin sonraki bölümünde bunları ele alacağız). 
+…ve bunun gibi.
 
-## Interaction with console
+Bunları incelemenin en iyi yolu, öğeye tıklamaktır. Değerlerin çoğu yerinde düzenlenebilir.
 
-As we explore the DOM, we also may want to apply JavaScript to it. Like: get a node and run some code to modify it, to see the result. Here are few tips to travel between the Elements tab and the console.
+## Konsol ile etkileşim
 
-- Select the first `<li>` in the Elements tab.
-- Press `key:Esc` -- it will open console right below the Elements tab.
+DOM'u keşfederken, ona JavaScript de uygulamak isteyebiliriz. Örneğin: bir düğüm alın ve sonucu görmek için onu değiştirmek için bir kod çalıştırın. Öğeler sekmesi ve konsol arasında gezinmek için birkaç ipucu.
 
-Now the last selected element is available as `$0`, the previously selected is `$1` etc.
+- Öğeler sekmesinde ilk `<li>` öğesini seçin.
+- `key:Esc` tuşuna basın - konsolu Elements sekmesinin hemen altında açacaktır.
 
-We can run commands on them. For instance, `$0.style.background = 'red'` makes the selected list item red, like this:
+Artık son seçilen öğe `$0` olarak mevcut, önceden seçilen öğe `$1` vb.
+
+Onlara komutlar çalıştırabiliriz. Örneğin, `$0.style.background = 'red'` seçilen liste öğesini şu şekilde kırmızı yapar:
 
 ![](domconsole0.png)
 
-From the other side, if we're in console and have a variable referencing a DOM node, then we can use the command `inspect(node)` to see it in the Elements pane.
-
-Or we can just output it in the console and explore "at-place", like `document.body` below:
-
+Diğer taraftan, eğer konsoldaysak ve bir DOM düğümünü referans alan bir değişkenimiz varsa, o zaman komutu `inspect(node)` Elementler bölmesinde görmek için kullanabiliriz.
+Ya da bunu konsola çıkarabilir ve `document.body` kısmını aşağıdaki gibi "yerinde" keşfedebiliriz:
 ![](domconsole1.png)
 
-That's for debugging purposes of course. From the next chapter on we'll access and modify DOM using JavaScript.
+Bu elbette hata ayıklama amaçlıdır. Bir sonraki bölümde DOM'a JavaScript kullanarak erişip değiştireceğiz.
 
-The browser developer tools are a great help in development: we can explore the DOM, try things and see what goes wrong.
+Tarayıcı geliştirici araçları, geliştirmede harika bir yardımcıdır: DOM'u keşfedebilir, bir şeyler deneyebilir ve neyin yanlış gittiğini görebiliriz.
 
-## Summary
+## Özet
 
-An HTML/XML document is represented inside the browser as the DOM tree.
+Bir HTML / XML belgesi tarayıcının içinde DOM ağacı olarak temsil edilir.
 
-- Tags become element nodes and form the structure.
-- Text becomes text nodes.
-- ...etc, everything in HTML has its place in DOM, even comments.
+- Etiketler eleman düğümleri haline gelir ve yapıyı oluşturur.
+- Metin, metin düğümleri haline gelir.
+- HTML'deki her şeyin yeri, hatta yorumlar da DOM'da vardır.
 
-We can use developer tools to inspect DOM and modify it manually.
+DOM'u incelemek ve manuel olarak değiştirmek için geliştirici araçlarını kullanabiliriz.
+Burada, başlangıç için en çok kullanılan ve önemli eylemlerin temellerini ele aldık. Chrome Geliştirici Araçları hakkında kapsamlı bir dokümantasyon vardır <https://developers.google.com/web/tools/chrome-devtools>. Bu araçları öğrenmenin en iyi yolu, onlara tıklamak, menüleri okumaktır. Çoğu seçenek tıklamaya açıktır. Daha sonra, onları genel olarak tanıdığınızda, belgeleri okuyun ve gerisini alın.
 
-Here we covered the basics, the most used and important actions to start with. There's an extensive documentation about Chrome Developer Tools at <https://developers.google.com/web/tools/chrome-devtools>. The best way to learn the tools is to click here and there, read menus: most options are obvious. Later, when you know them in general, read the docs and pick up the rest.
-
-DOM nodes have properties and methods that allow to travel between them, modify, move around the page and more. We'll get down to them in the next chapters.
+DOM düğümleri, aralarında gezinmeye, değiştirmeye, sayfada dolaşmaya ve daha pek çok şeye izin veren özelliklere ve yöntemlere sahiptir. Sonraki bölümlerde onlara değineceğiz.
