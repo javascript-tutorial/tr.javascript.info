@@ -7,7 +7,7 @@ Daha önceden *fonksiyon tanımlama* için aşağıdaki form kullanılmıştı.
 
 ```js
 function selamVer() {
-  alert( "Merhaba" );
+  alert("Merhaba");
 }
 ```
 
@@ -18,7 +18,7 @@ Aşağıdaki gibi görünür:
 
 ```js
 let selamVer = function() {
-  alert( "Merhaba" );
+  alert("Merhaba");
 };
 ```
 
@@ -30,7 +30,7 @@ Hatta yazdığımız fonksiyonu `alert` ile ekrana basmak da mümkündür.
 
 ```js run
 function selamVer() {
-  alert( "Merhaba" );
+  alert("Merhaba");
 }
 
 *!*
@@ -51,7 +51,7 @@ Fakat yine de değerdir. Bundan dolayı diğer değerlerle uğraşıldığı gib
 
 ```js run no-beautify
 function selamVer() {   // (1) oluştur
-  alert( "Merhaba" );
+  alert("Merhaba");
 }
 
 let func = selamVer;    // (2) kopyala
@@ -129,11 +129,11 @@ function sor(soru, evet, hayir) {
 */!*
 
 function tamamGoster() {
-  alert( "Kabul ettiniz" );
+  alert("Kabul ettiniz");
 }
 
 function iptalGoster() {
-  alert( "Çalışmasını durdurdunuz" );
+  alert("Çalışmasını durdurdunuz");
 }
 // kullanım: tamamGoster, iptalGoster fonksiyona parametre olarak gönderilmiştir.
 sor("Kabul ediyor musunuz?", tamamGoster, iptalGoster);
