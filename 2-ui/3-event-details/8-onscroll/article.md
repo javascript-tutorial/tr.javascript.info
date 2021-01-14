@@ -1,12 +1,12 @@
-# Scrolling
+# Sayfa Kaydırma(Scrolling)
 
-Scroll events allow to react on a page or element scrolling. There are quite a few good things we can do here.
+Kaydırma olayları, bir sayfada veya öğe kaydırmada tepki vermeyi sağlar. Burada yapabileceğimiz epeyce iyi şeyler var.
 
-For instance:
-- Show/hide additional controls or information depending on where in the document the user is.
-- Load more data when the user scrolls down till the end of the page.
+Örneğin:
+- Kullanıcının belgede nerede olduğuna bağlı olarak ek kontrolleri veya bilgileri gösterin / gizleyin..
+- Kullanıcı sayfanın sonuna kadar aşağı kaydırdığında daha fazla veri yükleyin.
 
-Here's a small function to show the current scroll:
+Küçük bir kaydırma örneği:
 
 ```js autorun
 window.addEventListener('scroll', function() {
@@ -15,25 +15,25 @@ window.addEventListener('scroll', function() {
 ```
 
 ```online
-In action:
+İşlemde:
 
-Current scroll = <b id="showScroll">scroll the window</b>
+Mevcut kaydırma = <b id="showScroll">scroll the window</b>
 ```
 
-The `scroll` event works both on the `window` and on scrollable elements.
+`scroll` elementi hem `window` ta hem de kaydırılabilir elementlerde çalışır.
 
-## Prevent scrolling
+## Kaydırmayı Önlemek
 
-How do we make something unscrollable? We can't prevent scrolling by using `event.preventDefault()` in `onscroll` listener, because it triggers *after* the scroll has already happened.
+Bir şeyi nasıl kaydırılamaz hale getiririz? `onscroll` dinleyicisinde `event.preventDefault()` kullanarak kaydırmayı engelleyemiyoruz çünkü kaydırma zaten gerçekleştikten sonra tetiklenir.
 
-But we can prevent scrolling by `event.preventDefault()` on an event that causes the scroll.
+Ancak `event.preventDefault()` ile , kaydırmaya neden olan bir olayda kaydırmayı engelleyebiliriz .
 
-For instance:
-- `wheel` event -- a mouse wheel roll (a "scrolling" touchpad action generates it too).
-- `keydown` event for `key:pageUp` and `key:pageDown`.
+Örneğin:
+- `wheel` olayı -- farenin tekerliği ile veya "kayan bir dokunmatik alan" yani touchpad de aynı görevi üstlenir).
+- `keydown` olayı için `key:pageUp` ve `key:pageDown`.
 
-If we add an event handler to these events and `event.preventDefault()` in it, then the scroll won't start.
+Bu olaylara bir olay işleyicisi (event handler) ve bunun içine `event.preventDefault()`  eklersek, kaydırma başlamaz.
 
-Sometimes that may help, but it's more reliable to use CSS to make something unscrollable, such as the `overflow` property.
+Bazen bu size yardımcı olabilir ancak bir şeyi kaydırılamaz hale getirmek için CSS kullanmak daha güvenilirdir mesela `overflow` özelliği gibi.
 
-Here are few tasks that you can solve or look through to see the applications on `onscroll`.
+İşte `onscroll` ile çözebileceğiniz veya uygulamaları görmek için inceleyebileceğiniz birkaç görev.
