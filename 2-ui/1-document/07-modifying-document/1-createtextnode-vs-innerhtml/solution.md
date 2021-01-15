@@ -1,8 +1,8 @@
-Answer: **1 and 3**.
+Cevap: **1 ve 3**.
 
-Both commands result in adding the `text` "as text" into the `elem`.
+Her iki komut da 'metin'i(`text`) "elem" e 'metin olarak' eklemeyle sonuçlanır.
 
-Here's an example:
+İşte bir örnek:
 
 ```html run height=80
 <div id="elem1"></div>
