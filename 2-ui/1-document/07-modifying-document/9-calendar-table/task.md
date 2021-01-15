@@ -2,15 +2,15 @@ importance: 4
 
 ---
 
-# Takvim Oluşturma 
+# Create a calendar 
 
-Bir işlev(function) yazın  `createCalendar(elem, year, month)`.
+Bir işlev(function) yazın: `createCalendar(elem, year, month)`.
 
 Çağrı, belirtilen yıl/ay için bir takvim oluşturmalıdır ve  onu `elem` içine koymalıdır.
 
-Takvim, bir haftanın `<tr>` ve bir günün `<td>` olduğu bir tablo olmalıdır. Üst tablo hafta içi isimleriyle `<th>` olmalıdır: ilk gün Pazartesi olmalı, ve böyle devam ederek Pazar gününe kadar. 
+Takvim, bir haftanın `<tr>` ve bir günün `<td>` olduğu bir tablo olmalıdır. Üst tablo hafta içi isimleriyle `<th>` olmalıdır: ilk gün Pazartesi olmalı, ve Pazar gününe kadar böyle devam etmeli. 
 
-Örneğin, `createCalendar(cal, 2012, 9)`, element `cal`da asagidaki takvimi olusturmalıdır.
+Örneğin, `createCalendar(cal, 2012, 9)`, element `cal`da aşağidaki takvimi oluşturmalıdır.
 
 [iframe height=210 src="solution"]
 
