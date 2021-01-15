@@ -4,9 +4,9 @@ importance: 5
 
 # createTextNode vs innerHTML vs textContent
 
-We have an empty DOM element `elem` and a string `text`.
+Boş bir DOM elementimiz `elem` ve bir string metnimiz `text` var.
 
-Which of these 3 commands do exactly the same?
+Bu 3 komuttan hangisi tamamen aynıdır?
 
 1. `elem.append(document.createTextNode(text))`
 2. `elem.innerHTML = text`

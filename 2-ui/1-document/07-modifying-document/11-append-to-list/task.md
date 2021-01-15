@@ -4,7 +4,7 @@ importance: 5
 
 # Insert the HTML in the list
 
-Write the code to insert `<li>2</li><li>3</li>` between two `<li>` here:
+Buraya iki `<li>`  arasına `<li>2</li><li>3</li>` eklemek için kodu yazın:
 
 ```html
 <ul id="ul">
