@@ -1,5 +1,4 @@
-Answer: **1 and 3**.
-
+Cevap: **1 ve 3**.
 
 Her iki komut da 'metin'i(`text`) "elem" e 'metin olarak' eklemeyle sonuçlanır.
 
