@@ -30,12 +30,12 @@ Başlangıç için,  sayfa üzerinde `alert`ten daha güzel görünen bir mesaj�
 */!*
 ```
 
-Bu bir HTML örnegidir. Şimdi ayni `div`i JavaScript ile oluşturalim (farzedelim ki, styles(strong kelimesine referans) hala HTML icinde veya dış CSS dosyası).
+Bu bir HTML örneğidir. Şimdi aynı `div`i JavaScript ile oluşturalım (farzedelim ki, styles(strong kelimesine referans) hala HTML içinde veya bir dışsal CSS dosyasıdır).
 
 ## Creating an element
 
 
-DOM dügümleri(nodes) oluşturmak icin iki yontem vardir:
+DOM düğümleri(nodes) oluşturmak icin iki yöntem vardır:
 
 `document.createElement(tag)`
 : Verilen etiketle birlikte yeni bir *element düğümü(element node)* oluşturur:
@@ -61,7 +61,7 @@ div.className = "alert alert-success";
 div.innerHTML = "<strong>Merhaba</strong> Onemli bir mesaj okudunuz.";
 ```
 
-Bundan sonra, DOM elementimiz hazırdır. Şu anda, o sadece bir değişkendir ve onu göremeyiz. Bunun sebebi, o henüz sayfanın içine işlenmemiştir
+Bundan sonra, DOM elementimiz hazırdır. Şu anda, o sadece bir değişkendir ve onu göremeyiz. Bunun sebebi, o henüz sayfanın içine işlenmemiştir.
 
 ## Insertion methods
 
@@ -69,7 +69,7 @@ Bundan sonra, DOM elementimiz hazırdır. Şu anda, o sadece bir değişkendir v
 
 Bunun için özel bir yöntem `appendChild` vardır: `document.body.appendChild(div)`.
 
-İste tam kode:
+İste tam kod:
 
 ```html run height="80"
 <style>
@@ -93,12 +93,12 @@ Bunun için özel bir yöntem `appendChild` vardır: `document.body.appendChild(
 </script>
 ```
 
-Burada, bir üst öğeye(parent element) düğüm(node) eklemek için kullanılan yöntemlerin kısa bir listesi (kisaca `parentElem`):
+Burada, bir üst öğeye(parent element) düğüm(node) eklemek için kullanılan yöntemlerin kısa bir listesi (kısaca `parentElem`):
 
 `parentElem.appendChild(node)`
 : `parentElem`in son öğesi(last child) olarak 'node'ı ekler.
 
-    Asagidaki ornek, `<ol>`un sonuna yeni bir `<li>` ekler:
+    Asagidaki örnek, `<ol>`un sonuna yeni bir `<li>` ekler:
 
     ```html run height=100
     <ol id="list">
@@ -116,9 +116,9 @@ Burada, bir üst öğeye(parent element) düğüm(node) eklemek için kullanıla
     ```
 
 `parentElem.insertBefore(node, nextSibling)`
-: `nextSibling`den önce `parentElem`e `node` ekler .
+: `nextSibling`den önce `parentElem`e `node` ekler.
 
-    Aşağıdakı kod, ikinci `<li>`den önce yeni bir liste ---- ekler:
+    Aşağıdakı kod, ikinci `<li>`den önce yeni bir liste ekler:
 
     ```html run height=100
     <ol id="list">
@@ -135,20 +135,20 @@ Burada, bir üst öğeye(parent element) düğüm(node) eklemek için kullanıla
     */!*
     </script>
     ```
-    `newLi`yi ilk oge olarak eklemek icin, bunu soyle yapabiliriz:
+    `newLi`yi ilk oğe olarak eklemek icin, bunu şöyle yapabiliriz:
 
     ```js
     list.insertBefore(newLi, list.firstChild);
     ```
 
 `parentElem.replaceChild(node, oldChild)`
-: `parentElem`in alt ogeleri arasinda `node` ile birlikte `oldChild`i yenisiyle yer degistirir.
+: `parentElem`in alt öğeleri arasında `node` ile birlikte `oldChild`i yenisiyle yer degistirir.
 
-Tüm bu yöntemler eklenen düğümü geri döndürür. Diger anlatimla,`parentElem.appendChild(node)` `node`i geri döndürür.Ama genellikle geri döndürülen değer kullanılmaz, sadece yöntemi çalıştırırız.
+Tüm bu yöntemler eklenen düğümü geri döndürür. Diğer anlatımla,`parentElem.appendChild(node)` `node`i geri döndürür.Ama genellikle geri döndürülen değer kullanılmaz, sadece yöntemi çalıştırırız.
 
-Bu yöntemler "eskimistir": eski zamanlardan beri varlar ve onlarla birçok eski scriptlerde karsilasabiliriz. Ne yazık ki, bunlar yeterince esnek değillerdir.
+Bu yöntemler "eskimiştir": eski zamanlardan beri varlar ve onlarla birçok eski scriptlerde karsılasabiliriz. Ne yazık ki, bunlar yeterince esnek değillerdir.
 
-Örneğin, bir string olarak varsa *html* nasıl eklenir? Ya da, verilen bir düğüm, üst öğeye(parent) başvurmadan nasıl kaldırılır? Elbette ki, bu yapılabılınır, ama zarif bir şekilde değil.
+Örneğin, bir string olarak varsa *html* nasıl eklenir? Ya da, verilen bir düğüm, üst öğeye(parent) başvurmadan nasıl kaldırılır? Elbette ki, bu yapılabilinir, ama zarif bir şekilde değil.
 
 Bu yüzden, tüm durumları kolayca idare etmek için iki ekleme yöntemi daha vardır.
 
@@ -157,14 +157,14 @@ Bu yüzden, tüm durumları kolayca idare etmek için iki ekleme yöntemi daha v
 Bu yöntemler kümesi daha esnek eklemeler sunar.
 
 - `node.append(...nodes or strings)` -- düğümün sonuna veya düğümlerin sonundaki stringlere `node`(düğüm) ekler,
-- `node.prepend(...nodes or strings)` -- düğüm veya düğüm basindaki stringlere `node`(düğüm) ekler,
-- `node.before(...nodes or strings)` –- `node`(düğüm)'den once düğümler veya stringler ekler,
+- `node.prepend(...nodes or strings)` -- düğüm veya düğüm başındaki stringlere `node`(düğüm) ekler,
+- `node.before(...nodes or strings)` –- `node`(düğüm)'den önce düğümler veya stringler ekler,
 - `node.after(...nodes or strings)` –- `node`(düğüm)'den sonra düğümler veya stringlere ekler,
 - `node.replaceWith(...nodes or strings)` –- verilen düğümler veya stringler, `node` ile  yer değistirir.
 
 Bunlarin hepsi DOM düğümler ve/veya stringlerinin bir listesini kabul eder. Eğer bir string verilirse, metin düğümü(text node) olarak eklenir.
 
-İşte bir listeye daha fazla madde(item) ve onun öncesinde/sonrasinda metin eklemek icin bu yöntemleri kullanmanın bir örneği:
+İşte bir listeye daha fazla madde(item) ve onun öncesinde/sonrasında metin eklemek için bu yöntemleri kullanmanın bir örneği:
 
 ```html autorun 
 <ol id="ol">
@@ -205,7 +205,7 @@ before
 after
 ```
 
-Bu yöntemler, tek bir çağrıda coklu düğümler ve metin parçalarının listesi ekleyebilir.
+Bu yöntemler, tek bir çağrıda çoklu düğümler ve metin parçalarının listesi ekleyebilir.
 
 Örneğin, buraya bir string ve bir element eklenir:
 
@@ -240,14 +240,14 @@ Başka, oldukça çok yönlü bir yöntem var: `elem.insertAdjacentHTML(where, h
 
 İlk parametre, "elem" e göre nereye ekleneceğini belirleyen bir kod kelimesidir. Aşağıdakilerden biri olmalıdır: 
 
-- `"beforebegin"` -- `elem`den hemen once, `html` ekler,
+- `"beforebegin"` -- `elem`den hemen önce, `html` ekler,
 - `"afterbegin"` -- başında `elem`e `html` ekler,
 - `"beforeend"` -- sonunda `elem`e `html`" ekler, 
 - `"afterend"` -- `elem`den hemen sonra, `html` ekler.
 
-Ikinci parametre "HTML olarak" eklenmis bir HTML dizisi(string)dir, .
+İkinci parametre "HTML olarak" eklenmiş bir HTML dizisi(string)dir, .
 
-Örnegin:
+Örneğin:
 
 ```html run
 <div id="div"></div>
@@ -257,7 +257,7 @@ Ikinci parametre "HTML olarak" eklenmis bir HTML dizisi(string)dir, .
 </script>
 ```
 
-...Suna yonlendirir:
+...Şuna yönlendirir:
 
 ```html run
 <p>Hello</p>
@@ -265,9 +265,9 @@ Ikinci parametre "HTML olarak" eklenmis bir HTML dizisi(string)dir, .
 <p>Bye</p>
 ```
 
-Bu şekilde sayfamıza rasgele bir HTML ekleyebiliriz.
+Bu şekilde sayfamıza isteğe bağlı bir HTML ekleyebiliriz.
 
-İşte ekleme tüurevlerinin resmi:
+İşte ekleme türevlerinin resmi:
 
 ![](insert-adjacent.svg)
 
@@ -275,7 +275,7 @@ Bu ve önceki resim arasındaki benzerlikleri kolayca fark edebiliriz. Ekleme no
 
 Yöntemin iki kardeşi vardır:
 
-- `elem.insertAdjacentText(where, text)` -- ayni sözdizimi(syntax), ama bir "metin" dizesi HTML yerine "metin olarak" eklenir,
+- `elem.insertAdjacentText(where, text)` -- ayn sözdizimi(syntax), ama bir "metin" dizesi HTML yerine "metin olarak" eklenir,
 - `elem.insertAdjacentElement(where, elem)` -- ayni sözdizimi(syntax), ama bir oge ekler,
 
 Esas olarak sözdizimini(syntax) "düzgün" yapmak için vardırlar. Uygulamada, çoğu zaman yalnızca "insertAdjacentHTML" kullanılır. Çünkü öğeler ve metin için `append/prepend/before/after` yöntemlerimiz var -- Onlari yazmak daha kısadır ve düğüm/metin parçası ekleyebilirler. 
@@ -304,11 +304,11 @@ Esas olarak sözdizimini(syntax) "düzgün" yapmak için vardırlar. Uygulamada,
 
 Benzer bir mesaj daha nasıl eklenir?
 
-Bir işlev(function) yapabilir ve kodu oraya koyabiliriz. Ama alternatif yol, var olan `div`i *klonlamak* ve icindeki metni degistirmek olacaktır (eğer gerekliyse).
+Bir işlev(function) yapabilir ve kodu oraya koyabiliriz. Ama alternatif yol, var olan `div`i *klonlamak* ve içindeki metni degistirmek olacaktır (eğer gerekliyse).
 
-Bazen büyük bir unsurumuz olduğunda, bu daha hızlı ve daha basit olabilir
+Bazen büyük bir unsurumuz olduğunda, bu daha hızlı ve daha basit olabilir.
 
--Çağrı `elem.cloneNode(true)` öğenin "derin" bir klonunu oluşturur -- tüm nitelikler ve alt(child) elementler ile.. Eğer `elem.cloneNode(false)`i cağırırsak, daha sonra klon alt(child) elementler olmadan yapılır.
+-Çağrı `elem.cloneNode(true)` öğenin "derin" bir klonunu oluşturur -- tüm nitelikler ve alt(child) elementler ile.. Eğer `elem.cloneNode(false)`i çağırırsak, daha sonra klon alt(child) elementler olmadan yapılır.
 
 Mesaji kopyalamanın bir örneği:
 
@@ -340,7 +340,7 @@ Mesaji kopyalamanın bir örneği:
 
 ## DocumentFragment [#document-fragment]
 
-`DocumentFragment` düğüm listelerini geçirmek için bir sarıcı olarak görevi özel bir DOM düğümüdür.
+`DocumentFragment` düğüm listelerini geçirmek için bir sarıcı olarak görevi olan özel bir DOM düğümüdür.
 
 Buna diğer düğümler ekleyebiliriz, ama bunu herhangi bir yere yerleştirdiğimizde, daha sonra içeriği bunun yerine eklenir.
 
@@ -378,7 +378,7 @@ Lütfen not edin, sondaki satıra `(*)`, `DocumentFragment`i ekleriz, ama o "iç
 </ul>
 ```
 
-DocumentFragment pek nadir açıkça kullanılır. Bunun yerine bir sıra düğümü geri döndürebiliyorsak, neden özel bir düğüme eklemeliyiz? Yeniden yazılmış örnek:`
+'DocumentFragment' pek nadir açıkça kullanılır. Bunun yerine bir sıra düğümü geri döndürebiliyorsak, neden özel bir düğüme eklemeliyiz? Yeniden yazılmış örnek:
 
 ```html run
 <ul id="ul"></ul>
@@ -405,9 +405,9 @@ ul.append(...getListContent()); // append + "..." operator = friends!
 Temel olarak `DocumentFragment` ifadesinden bahsediyoruz. çünkü bunun üzerinde [template](info:template-element) element, gibi bazı kavramlar vardır, ki daha sonra bunlari ele alacağız. 
 
 
-## Removal methodsğ
+## Removal methods
 
-Düğümleri kaldırmak için, aşaıdaki yöntemler vardır:
+Düğümleri kaldırmak için, aşağıdaki yöntemler vardır:
 
 
 `parentElem.removeChild(node)`
@@ -419,7 +419,7 @@ Düğümleri kaldırmak için, aşaıdaki yöntemler vardır:
 Kolayca görebiliriz ki, ikinci yöntem çok daha kısadır. İlki tarihsel nedenlerden dolayı vardır.
 
 ````Akıllıca
-Eğer biz bir öğeyi baska bir yere *tasimak* istiyorsak --- Onu eskisinden kaldırmaya gerek yok.
+Eğer biz bir öğeyi baska bir yere *taşımak* istiyorsak --- Onu eskisinden kaldırmaya gerek yok.
 
 **Tüm ekleme yöntemleri düğümü otomatik olarak eski yerinden kaldırır.**
 
@@ -429,7 +429,7 @@ Eğer biz bir öğeyi baska bir yere *tasimak* istiyorsak --- Onu eskisinden kal
 <div id="first">First</div>
 <div id="second">Second</div>
 <script>
-  // remove'i cagirmaya gerek yok
+  // remove'i cağırmaya gerek yok
   second.after(first); // #second'i al ve ondan sonra - #first'i ekle 
 </script>
 ```
@@ -479,13 +479,13 @@ Sözdizimi(Syntax):
 
 `document.write(html)` çağrısı "burada ve şimdi" sayfasına 'html' yazar. `html` string dinamik olarak oluşturulmus olabilir, bu nedenle esnektir. Tam teşekküllü bir web sayfası oluşturmak ve yazmak için JavaScript kullanabiliriz. 
 
-Yöntem DOM'un, standartların olduğu zamanlardan geliyor... Gerçekten eski zamanlar. O hala yaşıyor, çünkü onu kullanan scriptler vardır.
+Yöntem DOM'un, standartların olmadığı zamanlardan geliyor... Gerçekten eski zamanlar. O hala yaşıyor, çünkü onu kullanan scriptler vardır.
 
 Modern scriptlerde, onu pek nadir görebiliriz, çünkü aşağıdaki önemli sınırlama nedeniyle:
 
 **"document.write" çağrısı yalnızca sayfa yüklenirken yapılır** 
 
-Eger onu daha sonra çağırırsak, var olan belge içeriği silinmiş olur.
+Eğer onu daha sonra çağırırsak, var olan belge içeriği silinmiş olur.
 
 Örneğin:
 
@@ -500,15 +500,15 @@ Eger onu daha sonra çağırırsak, var olan belge içeriği silinmiş olur.
 */!*
 ```
 
-Öyleyse "yüklendikten sonra" aşamasında bir ceşit kullanılamaz, yukarıda bahsettiğimiz diğer DOM yöntemlerinin aksine.
+Öyleyse, yukarıda bahsettiğimiz diğer DOM yöntemlerinin aksine, "yüklendikten sonra" aşamasında kullanılamaz olur.
 
 Bu olumsuz tarafıydı.
 
-Teknik olarak, internet tarayıcı gelen HTML'yi okurken ("ayrıştırma") `document.write` cagrılır ve 
-bir şey yazar, tarayıcı HTML metninde ilk başta olduğu gibi onu tüketir.
-Bu bizi baş aşanı eder-- o cok hızlı calışır, cunku *DOM değişikligi yoktur*. DOM henüz oluşturulmamışken, onu doğrudan sayfadaki metne yazar, ve  internet tarayıcı oluşum-süresinde onu DOM'a yerleştirir. 
+Teknik olarak, internet tarayıcı gelen HTML'yi okurken, ("parsing/ayrıştırma") `document.write` çağrılır ve bir şey yazar, tarayıcı HTML metninde ilk başta olduğu gibi onu işler.
 
-Öyleyse, HTML'ye dinamik olarak çok fazla metin eklememiz gerekirse ve biz sayfa yükleme aşamasındayız ve hız önemlidir, bu yardım edebilir. Ama uygulamada bu gereksinimler pek nadir bir araya gelir. Ve genellikle biz bu yöntemi sadece eski olduklari icin scriptlerde görebiliriz.
+Ki bize olumlu tarafı verir -- o çok hızlı çalışır, çünkü *DOM değişikligi yoktur*. DOM henüz oluşturulmamışken, onu doğrudan sayfadaki metne yazar, ve  internet tarayıcı oluşum-süresinde onu DOM'a yerleştirir. 
+
+Öyleyse, HTML'ye dinamik olarak çok fazla metin eklememiz gerekirse ve biz sayfa yükleme aşamasındayız ve hız önemlidir, bu yardım edebilir. Ama uygulamada bu gereksinimler pek nadir bir araya gelir. Ve genellikle biz bu yöntemi sadece eski olan scriptlerde görebiliriz.
 
 ## Summary
 
@@ -516,11 +516,11 @@ Yeni düğümler yaratma yöntemleri:
 
 - `document.createElement(tag)` -- verilen etiketle(tag) bir element yaratır,
 - `document.createTextNode(value)` -- bir metin düğümü(text node) yaratır (pek nadir kullanılır),
-- `elem.cloneNode(deep)` -- elementi kopyalar, eğer `deep==true` tüm içerikleriyle.  
+- `elem.cloneNode(deep)` -- elementi kopyalar, eğer `deep==true` tüm alt içerikleriyle ise.  
 
-Düğümlerin yerleştirilmesi ve çıkarılması:
+-Düğümlerin yerleştirilmesi ve çıkarılması:
 
-- En üst ogeden(parent):
+-- En üst ogeden(parent):
   - `parent.appendChild(node)`
   - `parent.insertBefore(node, nextSibling)`
   - `parent.removeChild(node)`
