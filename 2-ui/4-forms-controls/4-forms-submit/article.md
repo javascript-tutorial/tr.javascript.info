@@ -1,25 +1,27 @@
-# Form submission: event and method submit
+# Form gönderme: Olay veya metod olarak
 
-The `submit` event triggers when the form is submitted, it is usually used to validate the form before sending it to the server or to abort the submission and process it in JavaScript.
+Form gönderildiğinde `submit` olayı tetiklenir, genellikle formu sunucuya göndermeden önce doğrulamak veya gönderimi iptal edip JavaScript'te işlemek için kullanılır.
 
-The method `form.submit()` allows to initiate form sending from JavaScript. We can use it to dynamically create and send our own forms to server.
+`form.submit()` metodu JavaScript'ten form gönderimini başlatmaya izin verir. Kendi formlarımızı dinamik olarak oluşturmak ve sunucuya göndermek için kullanabiliriz.
 
-Let's see more details of them.
+Daha fazla ayrıntı görelim.
 
-## Event: submit
+## Olay olarak submit kullanımı
 
-There are two main ways to submit a form:
+Form göndermenin iki ana yolu vardır:
 
-1. The first -- to click `<input type="submit">` or `<input type="image">`.
-2. The second -- press `key:Enter` on an input field.
+1. Birincisi -- `<input type="submit">` veya `<input type="image">` alanlarına tıklayarak.
+2. İkincisi -- bir giriş alanında (input) `key:Enter`a basmak
 
-Both actions lead to `submit` event on the form. The handler can check the data, and if there are errors, show them and call `event.preventDefault()`, then the form won't be sent to the server.
 
-In the form below:
-1. Go into the text field and press `key:Enter`.
-2. Click `<input type="submit">`.
 
-Both actions show `alert` and the form is not sent anywhere due to `return false`:
+Her iki eylem de formda olay gönderilmesine yol açar. İşleyici verileri kontrol edebilir ve hata varsa bunları gösterebilir ve `event.preventDefault()` öğesini çağırabilir , bu durumda form sunucuya gönderilmez.
+
+Aşağıdaki formda:
+1. Metin alanına gidin ve `key:Enter` tuşuna basın .
+2. Tıklayın  `<input type="submit">`.
+
+Her iki eylem de `alert` gösterir ve `return false` olduğu için form hiçbir yere gönderilmez
 
 ```html autorun height=60 no-beautify
 <form onsubmit="alert('submit!');return false">
@@ -28,28 +30,27 @@ Both actions show `alert` and the form is not sent anywhere due to `return false
 </form>
 ```
 
-````smart header="Relation between `submit` and `click`"
-When a form is sent using `key:Enter` on an input field, a `click` event triggers on the `<input type="submit">`.
+````smart header="`submit` ve `click` arasındaki ilişki"
+Bir input alanında `key:Enter` kullanılarak bir form gönderildiğinde, `<input type="submit">` üzerinde bir `click` olayı tetiklenir..
 
-That's rather funny, because there was no click at all.
+Bu oldukça komik çünkü hiç tıklama yoktu.
 
-Here's the demo:
+Örnek:
 ```html autorun height=60
 <form onsubmit="return false">
- <input type="text" size="30" value="Focus here and press enter">
+ <input type="text" size="30" value="Buraya tıkla ve birşeyler yaz sonra enter'e bas">
  <input type="submit" value="Submit" *!*onclick="alert('click')"*/!*>
 </form>
 ```
 
-````
 
-## Method: submit
 
-To submit a form to the server manually, we can call `form.submit()`.
+## Metod olarak submit kullanımı
 
-Then the `submit` event is not generated. It is assumed that if the programmer calls `form.submit()`, then the script already did all related processing.
+Sunucuya manuel olarak bir form göndermek için, `form.submit()` metodunu kullanabiliriz.
 
-Sometimes that's used to manually create and send a form, like this:
+Sonra herhangi bir `submit` olayı oluşturulmaz. Programcı `form.submit()` 'i çağırırsa, komut dosyasının tüm ilgili işlemleri zaten yaptığı varsayılır.
+Bazen bu, aşağıdaki gibi bir formu manuel olarak oluşturmak ve göndermek için kullanılır:
 
 ```js run
 let form = document.createElement('form');
