@@ -4,7 +4,7 @@ importance: 4
 
 # Colored clock with setInterval
 
-Buradaki gibi renklendirilmiş saat oluşturun:
+Buradaki gibi renklendirilmiş bir saat oluşturun:
 
 [iframe src="solution" height=60]
 
