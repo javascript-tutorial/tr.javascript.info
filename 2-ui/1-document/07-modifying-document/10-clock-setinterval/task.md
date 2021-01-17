@@ -4,8 +4,8 @@ importance: 4
 
 # Colored clock with setInterval
 
-Create a colored clock like here:
+Buradaki gibi renklendirilmiş saat oluşturun:
 
 [iframe src="solution" height=60]
 
-Use HTML/CSS for the styling, JavaScript only updates time in elements.
+Şekillendirmek için HTML/CSS, sadece elementlerdeki zaman için Javascript kullanın.
