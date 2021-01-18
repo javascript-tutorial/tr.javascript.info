@@ -7,7 +7,7 @@ function kullaniciOlustur() {
     isim: "İhsan",
     ref: this
   };
-};
+}
 
 let kullanici = kullaniciOlustur();
 
@@ -21,7 +21,24 @@ Ve objet tanımının `this`'e doğrudan bir etkisi yoktur. `this` tüm fonksiyo
 
 Öyleyse, `ref: this` aslında fonksiyonun `thsi` değerini alır.
 
+<<<<<<< HEAD
 Şimdi tersi bir duruma bakalım:
+=======
+So `ref: this` actually takes current `this` of the function.
+
+We can rewrite the function and return the same `this` with `undefined` value: 
+
+```js run
+function makeUser(){
+  return this; // this time there's no object literal
+}
+
+alert( makeUser().name ); // Error: Cannot read property 'name' of undefined
+```
+As you can see the result of `alert( makeUser().name )` is the same as the result of `alert( user.ref.name )` from the previous example.
+
+Here's the opposite case:
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 
 ```js run
 function kullaniciOlustur() {
@@ -33,7 +50,7 @@ function kullaniciOlustur() {
     }
 */!*
   };
-};
+}
 
 let kullanici = kullaniciOlustur();
 

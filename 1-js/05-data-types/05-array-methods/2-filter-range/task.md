@@ -4,7 +4,11 @@ importance: 4
 
 # Filtreleme ve yeni dizi dönme
 
+<<<<<<< HEAD
 `filterRange(arr, a, b)` adında bir fonksiyon yazın. `arr` argümanı alsın, `a` ile `b` arasını alsın ve döndersin.
+=======
+Write a function `filterRange(arr, a, b)` that gets an array `arr`, looks for elements with values higher or equal to `a` and lower or equal to `b` and return a result as an array.
+>>>>>>> 3a0b3f4e31d4c4bbe90ed4c9c6e676a888ad8311
 
 Fonksiyon diziyi modifiye etmemeli. Yeni bir dizi döndürmeli.
 
