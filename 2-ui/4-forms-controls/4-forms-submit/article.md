@@ -10,18 +10,18 @@ Daha fazla ayrıntı görelim.
 
 Form göndermenin iki ana yolu vardır:
 
-1. Birincisi -- `<input type="submit">` veya `<input type="image">` alanlarına tıklayarak.
-2. İkincisi -- bir giriş alanında (input) `key:Enter`a basmak
+1. Birincisi -- `<input type="submit">` veya `<input type="image">` alanlarına tıklamak.
+2. İkincisi -- bir giriş alanında (input) `key:Enter`a basmak.
 
 
 
-Her iki eylem de formda olay gönderilmesine yol açar. İşleyici verileri kontrol edebilir ve hata varsa bunları gösterebilir ve `event.preventDefault()` öğesini çağırabilir , bu durumda form sunucuya gönderilmez.
+Her iki eylem de formda olay gönderilmesine yol açar. İşleyici verileri kontrol edebilir ve hata varsa bunları gösterebilir ve `event.preventDefault()` öğesini çağırabilir, bu durumda form sunucuya gönderilmez.
 
 Aşağıdaki formda:
-1. Metin alanına gidin ve `key:Enter` tuşuna basın .
-2. Tıklayın  `<input type="submit">`.
+1. Metin alanına gidin ve `key:Enter` tuşuna basın.
+2. Tıklayın  `<input type="submit">`
 
-Her iki eylem de `alert` gösterir ve `return false` olduğu için form hiçbir yere gönderilmez
+Her iki eylem de `alert` gösterir ve `return false` olduğu için form hiçbir yere gönderilmez.
 
 ```html autorun height=60 no-beautify
 <form onsubmit="alert('submit!');return false">
@@ -31,7 +31,7 @@ Her iki eylem de `alert` gösterir ve `return false` olduğu için form hiçbir 
 ```
 
 ````smart header="`submit` ve `click` arasındaki ilişki"
-Bir input alanında `key:Enter` kullanılarak bir form gönderildiğinde, `<input type="submit">` üzerinde bir `click` olayı tetiklenir..
+Bir input alanında `key:Enter` kullanılarak bir form gönderildiğinde, `<input type="submit">` üzerinde bir `click` olayı tetiklenir.
 
 Bu oldukça komik çünkü hiç tıklama yoktu.
 
