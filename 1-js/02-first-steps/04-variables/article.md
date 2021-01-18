@@ -137,7 +137,7 @@ alert(mesaj); // Merhaba Dünya!
 
 ```smart header="Fonksiyonel Diller"
 
-İlginç bir bilgi olarak [Scala](http://www.scala-lang.org/) veya [Erlang](http://www.erlang.org/) gibi [fonksiyonel]https://tr.wikipedia.org/wiki/Fonksiyonel_programlama) diller değişkenin değerinin değiştirilmesine izin vermez.
+İlginç bir bilgi olarak [Scala](http://www.scala-lang.org/) veya [Erlang](http://www.erlang.org/) gibi [fonksiyonel](https://tr.wikipedia.org/wiki/Fonksiyonel_programlama) diller değişkenin değerinin değiştirilmesine izin vermez.
 
 Böyle dillerde değer bir kutunun içerisinde sonsuza kadar saklanır. Eğer farklı bir değer kaydetmek istenirse bu diller bizi yeni bir kutu oluşturmaya iter. Eskisi yeniden kullanıp değeri değiştirilemez.
 
