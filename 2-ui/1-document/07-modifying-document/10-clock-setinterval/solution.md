@@ -1,6 +1,6 @@
-First, let's make HTML/CSS.
+İlk olarak, HTML/CSS yapalım.
 
-Each component of the time would look great in its own `<span>`:
+Zamanın her bir bileşeni kendi 'span'ının içinde harika görünecektir:
 
 ```html
 <div id="clock">
@@ -8,9 +8,9 @@ Each component of the time would look great in its own `<span>`:
 </div>
 ```
 
-Also we'll need CSS to color them.
+Ayrıca onları renklendirmek için CSS'ye ihtiyacımız olacak.
 
-The `update` function will refresh the clock, to be called by `setInterval` every second:
+"Update" işlevi(function), her saniye "setInterval" tarafından çağrılmak üzere saati yeniler:
 
 ```js
 function update() {
@@ -32,9 +32,9 @@ function update() {
 }
 ```
 
-In the line `(*)` we every time check the current date. The calls to `setInterval` are not reliable: they may happen with delays.
+'(*)' Satırında, güncel tarihi kontrol ederiz. 'setInterval'a olan çağrılar güvenilir değildir: Onlar gecikmelere sebep olur. 
 
-The clock-managing functions:
+Saat yönetimi işlevleri:
 
 ```js
 let timerId;
@@ -50,4 +50,4 @@ function clockStop() {
 }
 ```
 
-Please note that the call to `update()` is not only scheduled in `clockStart()`, but immediately run in the line `(*)`. Otherwise the visitor would have to wait till the first execution of `setInterval`. And the clock would be empty till then.
+Lütfen not edin ki, 'update()'e olan çağrı sadece 'clockStart()'da planlanmamıştır, ama anında '(*)' satırında çalışmaya başlar. Yoksa, ziyaretçi `setInterval`in ilk uygulanmasına kadar beklemek zorunda olacaktır. Ve o zamana kadar da saat boş olacaktır.
