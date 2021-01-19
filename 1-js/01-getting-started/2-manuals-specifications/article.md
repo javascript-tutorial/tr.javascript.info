@@ -5,7 +5,7 @@ Bu kitap aslında bir *eğitim süreci*'dir. Amacı size kademeli olarak JavaScr
 
 ## Şartname
 
-**ECMA-262 şartnamesi** JavaScript için olabilecek en derin bilgilerin bulunduğu kaynaktır. Dili tanımlar.
+**ECMA-262 Şartnamesi** JavaScript için olabilecek en derin bilgilerin bulunduğu kaynaktır. Dili tanımlar.
 
 Fakat formal bir dil kullanıldığından dolayı ilk seferde anlaması zordur. Eğer en güvenilir kaynak neredir diye soracak olursanız bunun cevabı **ECMA-262 Şarnamesi**'dir. Fakat her an gidip kolayca bilgi alabileceğiniz bir kaynak değildir.
 
