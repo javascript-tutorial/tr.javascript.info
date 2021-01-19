@@ -1,7 +1,7 @@
 
 # Kılavuz ve Şartnameler
 
-Bu kitap aslında bir *eğitim süreci*'dir. Amacı size kademeli olarak JavaScript öğrenmenizi sağlamaktır. Önce temellere alıştıktan sonra diğer kaynaklar üzerinde durulacaktır.
+Bu kitap aslında bir *eğitim süreci*'dir. Amacı sizin kademeli olarak JavaScript öğrenmenizi sağlamaktır. Önce temellere alıştıktan sonra diğer kaynaklar üzerinde durulacaktır.
 
 ## Şartname
 
