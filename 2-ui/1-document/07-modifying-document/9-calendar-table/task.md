@@ -4,7 +4,7 @@ importance: 4
 
 # Create a calendar 
 
-Bir işlev(function) yazın: `createCalendar(elem, year, month)`.
+Bir fonksiyon yazın: `createCalendar(elem, year, month)`.
 
 Çağrı, belirtilen yıl/ay için bir takvim oluşturmalıdır ve  onu `elem` içine koymalıdır.
 
