@@ -1,22 +1,23 @@
 
-# URL objects
+# URL yapısı
 
-The built-in [URL](https://url.spec.whatwg.org/#api) class provides a convenient interface for creating and parsing URLs.
 
-There are no networking methods that require exactly an `URL` object, strings are good enough. So technically we don't have to use `URL`. But sometimes it can be really helpful.
+Yerleşik [URL](https://url.spec.whatwg.org/#api) sınıfı, URL'leri oluşturmak ve ayrıştırmak için uygun bir arayüz sağlar.
 
-## Creating an URL
+Tam olarak bir `URL` nesnesi gerektiren ağ oluşturma yöntemi yoktur, dizeler(strings) yeterince iyidir. Yani teknik olarak `URL` kullanmak zorunda değiliz. Ama bazen gerçekten yardımcı olabilir.
 
-The syntax to create a new URL object:
+##  URL oluşturma
+
+Yeni bir URL nesnesi oluşturmak için sözdizimi:
 
 ```js
 new URL(url, [base])
 ```
 
-- **`url`** -- the URL string or path (if base is set, see below).
-- **`base`** -- an optional base, if set and `url` has only path, then the URL is generated relative to `base`.
+- **`url`** -- URL'nin dizesi veya yolu (temel ayarlanmışsa, aşağıya bakın).
+- **`base`** -- isteğe bağlı, base ayarlanmış ve `url`'de yalnızca yol varsa bu durumda URL `base`'e göre yani tabana göre oluşturulur.
 
-For example, these two URLs are same:
+Örneğin, bu iki URL aynı:
 
 ```js run
 let url1 = new URL('https://javascript.info/profile/admin');
@@ -26,7 +27,7 @@ alert(url1); // https://javascript.info/profile/admin
 alert(url2); // https://javascript.info/profile/admin
 ```
 
-Переход к пути относительно текущего URL:
+Mevcut URL'ye göre bir yola ata:
 
 ```js run
 let url = new URL('https://javascript.info/profile/admin');
@@ -35,8 +36,7 @@ let testerUrl = new URL('tester', url);
 alert(testerUrl); // https://javascript.info/profile/tester
 ```
 
-
-The `URL` object immediately allows us to access its components, so it's a nice way to parse the url, e.g.:
+`URL` nesnesi, bileşenlerine anında erişmemizi sağlar, bu nedenle URL'yi ayrıştırmanın güzel bir yoludur.
 
 ```js run
 let url = new URL('https://javascript.info/url');
@@ -46,47 +46,46 @@ alert(url.host);     // javascript.info
 alert(url.pathname); // /url
 ```
 
-Here's the cheatsheet:
+İşte kopya kağıdı:
 
 ![](url-object.svg)
 
-- `href` is the full url, same as `url.toString()`
-- `protocol` ends with the colon character `:`
-- `search` - a string of parameters, starts with the question mark `?`
-- `hash` starts with the hash character `#`
-- there are also `user` and `password` properties if HTTP authentication is present.
+- `href` tam url, `url.toString()` ile aynı
+- `protocol` iki nokta üst üste karakteri ile biter `:`
+- `search` - bir dizi parametre, soru işaretiyle başlar `?`
+- `hash` karma karakterle başlar `#`
+- HTTP kimlik doğrulaması varsa `user` ve `password` özellikleri de vardır.
 
 
-```smart header="We can use `URL` everywhere instead of a string"
-We can use an `URL` object in `fetch` or `XMLHttpRequest`, almost everywhere where a string url is expected.
+```smart header="Bir string yerine her yerde `URL` kullanabiliriz"
+`fetch` veya `XMLHttpRequest`'te, bir string url'nin beklendiği hemen hemen her yerde bir `URL` nesnesi kullanabiliriz.
 
-In the vast majority of methods it's automatically converted to a string.
-```
+Yöntemlerin büyük çoğunluğunda otomatik olarak bir stringe dönüştürülür.
 
-## SearchParams "?..."
 
-Let's say we want to create an url with given search params, for instance, `https://google.com/search?query=JavaScript`.
+## Arama Parametreleri "?..."
 
-They must be correctly encoded to include non-latin charcters, spaces etc.
+Verilen arama parametreleriyle bir url oluşturmak istediğimizi varsayalım, örneğin, `https://google.com/search?query=JavaScript`.
 
-Some time ago, before `URL` objects appeared, we'd use built-in functions `encodeURIComponent/decodeURIComponent`. They have some problems, but now that doesn't matter.
+Latin olmayan karakterleri, boşlukları vb. içerecek şekilde doğru kodlanmaları gerekir.
 
-There's URL property for that: `url.searchParams` is an object of type [URLSearchParams](https://url.spec.whatwg.org/#urlsearchparams).
+Bir süre önce, `URL` nesneler ortaya çıkmadan önce yerleşik işlevleri kullanırdık encodeURIComponent/decodeURIComponent. Bazı sorunları var ama artık bu önemli değil.
 
-It provides convenient methods for search parameters:
+Bunun için URL özelliği var: `url.searchParams` bu [URLSearchParams](https://url.spec.whatwg.org/#urlsearchparams) türünde bir nesnedir.
 
-- **`append(name, value)`** -- add the parameter,
-- **`delete(name)`** -- remove the parameter,
-- **`get(name)`** -- get the parameter,
-- **`getAll(name)`** -- get all parameters with that name (if many, e.g. `?user=John&user=Pete`),
-- **`has(name)`** -- check for the existance of the parameter,
-- **`set(name, value)`** -- set/replace the parameter,
-- **`sort()`** -- sort parameters by name, rarely needed,
-- ...and also iterable, similar to `Map`.
+Arama parametreleri için uygun yöntemler sağlar:
 
-So, `URL` object also provides an easy way to operate on url parameters.
+- **`append(name, value)`** -- parametre ekleme,
+- **`delete(name)`** -- parametreyi silme,
+- **`get(name)`** -- parametreyi alma,
+- **`getAll(name)`** -- bu isimdeki tüm parametreleri al (eğer çoksa örnek: `?user=John&user=Pete`),
+- **`has(name)`** -- parametrenin varlığını kontrol etme,
+- **`set(name, value)`** -- parametreyi ayarlama / değiştirme,
+- **`sort()`** -- parametreleri ada göre sırala, nadiren gerekli...
 
-For example:
+Dolayısıyla `URL` nesnesi, url parametreleri üzerinde çalışmanın kolay bir yolunu da sağlar.
+
+Örneğin:
 
 ```js run
 let url = new URL('https://google.com/search');
