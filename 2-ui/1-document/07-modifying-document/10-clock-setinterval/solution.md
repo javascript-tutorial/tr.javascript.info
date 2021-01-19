@@ -10,7 +10,7 @@ Zamanın her bir bileşeni kendi 'span'ının içinde harika görünecektir:
 
 Ayrıca onları renklendirmek için CSS'ye ihtiyacımız olacak.
 
-"Update" işlevi(function), her saniye "setInterval" tarafından çağrılmak üzere saati yeniler:
+"Update" fonksiyonu, her saniye "setInterval" tarafından çağrılmak üzere saati yeniler:
 
 ```js
 function update() {
@@ -34,7 +34,7 @@ function update() {
 
 '(*)' Satırında, güncel tarihi kontrol ederiz. 'setInterval'a olan çağrılar güvenilir değildir: Onlar gecikmelere sebep olur. 
 
-Saat yönetimi işlevleri:
+Saat yönetimi fonksiyonları:
 
 ```js
 let timerId;
