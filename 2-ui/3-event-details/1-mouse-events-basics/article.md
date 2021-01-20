@@ -253,5 +253,5 @@ Ayrıca, tıklamaların istenmeyen bir yan etkisi olarak metin seçimiyle uğra�
 
 Bunu yapmanın birkaç yolu vardır, örneğin:
 1. CSS methodu `user-select:none` tamamiyle metin seçimini engeller.
-2. Ondan sonra gelecek metin seçimini iptal et; `getSelection().removeAllRanges()`.
-3.`mousedown` olayını engelle ve varsayılan metin seçimi durumunu engelle (genellikle en iyi çözüm).
+2. Ondan sonra gelecek metin seçimini iptal eder; `getSelection().removeAllRanges()`.
+3. Fare `mousedown` olayını engelleyerek varsayılan metin seçimi durumunu engeller (genellikle en iyi çözüm).
