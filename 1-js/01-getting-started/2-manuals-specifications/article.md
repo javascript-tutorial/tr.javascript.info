@@ -1,13 +1,13 @@
 
 # Kılavuz ve Şartnameler
 
-Bu kitap aslında bir *eğitim süreci*'dir. Amacı size kademeli olarak JavaScript öğrenmenizi sağlamaktır. Önce temellere alıştıktan sonra diğer kaynaklar üzerinde durulacaktır.
+Bu kitap aslında bir *eğitim süreci*'dir. Amacı sizin kademeli olarak JavaScript öğrenmenizi sağlamaktır. Önce temellere alıştıktan sonra diğer kaynaklar üzerinde durulacaktır.
 
 ## Şartname
 
-**ECMA-262 şartnamesi** JavaScript için olabilecek en derin bilgilerin bulunduğu kaynaktır. Dili tanımlar.
+**ECMA-262 Şartnamesi** JavaScript için olabilecek en derin bilgilerin bulunduğu kaynaktır. Dili tanımlar.
 
-Fakat formal bir dil kullanıldığından dolayı ilk seferde anlaması zordur. Eğer en güvenilir kaynak neredir diye soracak olursanız bunun cevabı **ECMA-262 Şarnamesi**'dir. Fakat her an gidip kolayca bilgi alabileceğiniz bir kaynak değildir.
+Fakat formal bir dil kullanıldığından dolayı ilk seferde anlaması zordur. Eğer en güvenilir kaynak neredir diye soracak olursanız bunun cevabı **ECMA-262 Şartnamesi**'dir. Fakat her an gidip kolayca bilgi alabileceğiniz bir kaynak değildir.
 
 Son taslağına <https://tc39.es/ecma262/> adresinden erişebilirsiniz.
 
