@@ -1,90 +1,103 @@
-# Mouse events basics
+# Fare olaylarıyla ilgili temel bilgiler
 
-Mouse events come not only from "mouse manipulators", but are also emulated on touch devices, to make them compatible.
+Fare olayları yalnızca "fare olayi ya da manipülasyonu" ile gerçekleşmez, aynı zamanda dokunmatik cihazlara da uyumlu hale getirmek için bu cihazlarda taklit edilir.
 
-In this chapter we'll get into more details about mouse events and their properties.
+Bu bölümde fare olayları ve özellikleri hakkında daha fazla ayrıntıya gireceğiz.
 
-## Mouse event types
+## Fare olay türleri
 
-We can split mouse events into two categories: "simple" and "complex"
+Fare olaylarını "basit" ve "karmaşık" olarak iki kategoriye ayırabiliriz.
 
-### Simple events
+### Basit fare olayları
 
-The most used simple events are:
+En çok kullanılan basit olaylar şunlardır:
 
-`mousedown/mouseup`
-: Mouse button is clicked/released over an element.
+`mousedown/mouseup` 
+: Fare ile bir öğenin üzerine tıklanır / bırakılır.
 
 `mouseover/mouseout`
-: Mouse pointer comes over/out from an element.
+: Fare ile bir öğenin üzerine gelinir / uzaklaşılır.
 
 `mousemove`
-: Every mouse move over an element triggers that event.
+: Bir öğenin üzerine yapılan her fare bu olayı tetikler.
 
-...There are several other event types too, we'll cover them later.
+...Başka olay türleri de var, bunları daha sonra ele alacağız.
 
-### Complex events
+### Karmaşık fare olayları
 
 `click`
-: Triggers after `mousedown` and then `mouseup` over the same element if the left mouse button was used.
+: Farenin sol tuşuna basıldığında, aynı öğe üzerinde `mousedown` ve ardından `mouseup` olayının gerçekleşmesi ile tetiklenir.
 
 `contextmenu`
-: Triggers after `mousedown` if the right mouse button was used.
+: Farenin sağ tuşuna basıldığında, `mousedown` olayı gerçekleşirse tetiklenir.
 
 `dblclick`
-: Triggers after a double click over an element.
+: Bir ögenin üzerine çift tıklandıktan sonra tetiklenir.
 
-Complex events are made of simple ones, so in theory we could live without them. But they exist, and that's good, because they are convenient.
+Karmaşık olaylar basit olayların birleşimi, bu yüzden teoride onlarsız da işlerimizi görebiliriz. Ama karmaşık olayların var olmaları iyi çünkü kullanışlılar.
 
-### Events order
+### Olay sırası
 
-An action may trigger multiple events.
+Bir eylem birden fazla fare olayı tetikleyebilir.
 
-For instance, a click first triggers `mousedown`, when the button is pressed, then `mouseup` and `click` when it's released.
+Örneğin, bir tıklama, düğmeye basıldığında önce `mousedown` olayını, ardından `mouseup` olayını ve fare butonu bırakıldığında `click` olayını tetikler.
 
-In cases when a single action initiates multiple events, their order is fixed. That is, the handlers are called in the order `mousedown` -> `mouseup` -> `click`. Events are handled in the same sequence:  `onmouseup` finishes before `onclick` runs.
+Tek bir eylemin birden çok fare olayı başlattığı durumlarda, bunların sırası sabittir. İşleyiciler her zaman şu sıraya göre çağırılır: `mousedown` -> `mouseup` -> `click`.  Olaylar aynı sırayla işlenir: önce `onclick` çalışır sonra `onmouseup`.
 
-```online
-Click the button below and you'll see the events. Try double-click too.
+````online
+Gerçekleşen eylemleri görmek için aşağıdaki butonu tıkla. Çift tıklamayı da dene.
 
-On the teststand below all mouse events are logged, and if there are more than 1 second delay between them, then they are separated by a horizontal ruler.
+Aşağıdaki test standında, tüm fare olayları kaydedilir ve aralarında 1 saniyeden fazla gecikme varsa, yatay bir cetvel ile ayrılırlar.
 
-Also we can see the `which` property that allows to detect the mouse button.
+Ayrıca, fare butonuna tıklandıgında algılanmasını sağlayan "which" özelliğini görebilirsiniz.
 
 <input onmousedown="return logMouse(event)" onmouseup="return logMouse(event)" onclick="return logMouse(event)" oncontextmenu="return logMouse(event)" ondblclick="return logMouse(event)" value="Click me with the right or the left mouse button" type="button"> <input onclick="logClear('test')" value="Clear" type="button"> <form id="testform" name="testform"> <textarea style="font-size:12px;height:150px;width:360px;"></textarea></form>
 ```
 
-## Getting the button: which
+Tıklamayla ilgili bütün olaylar `button` özelliğine sahiptir ve bu da olayın tam olarak hangi fare butonu ile çalıştığını bulmamızı sağlar.
 
-Click-related events always have the `which` property, which allows to get the exact mouse button.
+`click` ve `contextmenu` olayları için kullanılamaz çünkü `click` sadece sol tıklamada, `contextmenu` sadece sağ tıklamada gerçekleşir.
 
-It is not used for `click` and `contextmenu` events, because the former happens only on left-click, and the latter -- only on right-click.
+Ancak `mousedown` ve `mouseup` olaylarını takip etmek istersek, o zaman `button` özelliğine ihtiyacımız olur, çünkü bu olaylar herhangi bir fare butonu ile gerçekleşebilir, bu yüzden  `button` "right-mousedown" (sağ- tıklama) ile "left-mousedown" (sol-tıklama) olayını ayırt etmemizi sağlar.
 
-But if we track `mousedown` and `mouseup`, then we need it, because these events trigger on any button, so `which` allows to distinguish between "right-mousedown" and "left-mousedown".
+Üç olası değer vardır:
 
-There are the three possible values:
+| Button State | event.button |
+| Sol tuşa tıklama | 0 |
+| Orta tuşa tıklama | 1 |
+| Sağ tuşa tıklama | 2 |
+| X1 tuşa tıklama (geri tuşu) | 3 |
+| X2 tuşa tıklama (ileri tuşu) | 4 |
 
-- `event.which == 1` -- the left button
-- `event.which == 2` - the middle button
-- `event.which == 3` - the right button
+Çoğu fare aygıtında yalnızca sol ve sağ düğmeler bulunur, bu nedenle olası değerler 0 veya 2'dir. Dokunmatik aygıtlar da üzerlerine bir kez dokunduğunda benzer olaylar oluşturur.
 
-The middle button is somewhat exotic right now and is very rarely used.
+Ayrıca, o anda basılan tüm düğmelere düğme başına bir bit olmak üzere tamsayı olarak sahip olan `event.buttons` özelliği vardır. Uygulamada bu özellik çok nadiren kullanılır, ihtiyacınız olursa [MDN](https://developer.mozilla.org/en-US/docs/Web/api/MouseEvent/buttons)'de ayrıntıları bulabilirsiniz.
 
-## Modifiers: shift, alt, ctrl and meta
+## Zamanı geçmiş which butonu
 
-All mouse events include the information about pressed modifier keys.
+Eski kodlar, olası değerlerle buton elde etmenin eski bir yolu olan event.which özelliğini kullanabilir:
 
-The properties are:
+- `event.which == 1` -- sol tuşa tıklama
+- `event.which == 2` - orta tuşa tıklama
+- `event.which == 3` - sağ tuşa tıklama
+
+**Şu an itibariyle artık kullanımdan kaldırılan event.which olayını artık kullanmamalıyız.** 
+
+## Değiştiriciler: shift, alt, ctrl and meta
+
+Tüm fare olayları, basılan değiştirici tuşlarla ilgili bilgileri içerir.
+
+Özellikler (properties):
 
 - `shiftKey`
 - `altKey`
 - `ctrlKey`
-- `metaKey` (`key:Cmd` for Mac)
+- `metaKey` (`key:Cmd` Mac için)
 
-For instance, the button below only works on `key:Alt+Shift`+click:
+Örneğin, aşağıdaki düğme yalnızca `Alt+Shift`+fare tıklaması ile beraber çalışır:
 
 ```html autorun height=60
-<button id="button">Alt+Shift+Click on me!</button>
+<button id="button">Alt+Shift+Click tıkla!</button>
 
 <script>
   button.onclick = function(event) {
@@ -97,62 +110,64 @@ For instance, the button below only works on `key:Alt+Shift`+click:
 </script>
 ```
 
-```warn header="Attention: on Mac it's usually `Cmd` instead of `Ctrl`"
-On Windows and Linux there are modifier keys `key:Alt`, `key:Shift` and `key:Ctrl`. On Mac there's one more: `key:Cmd`, it corresponds to the property `metaKey`.
+```warn header="Dikkat: Mac için genellikle `Ctrl` yerine `Cmd` kullanılır."
+Windows ve Linux işletim sistemlerinde `key:Alt`, `key:Shift` and `key:Ctrl` değiştiricileri bulunur. Mac için bir değiştirici daha var: `key:Cmd`, bu `metaKey` özelliğine karşılık gelir.
 
-In most cases when Windows/Linux uses `key:Ctrl`, on Mac people use `key:Cmd`. So where a Windows user presses `key:Ctrl+Enter` or `key:Ctrl+A`, a Mac user would press `key:Cmd+Enter` or `key:Cmd+A`, and so on, most apps use `key:Cmd` instead of `key:Ctrl`.
+Çoğu zaman Windows/Linux üzerinde bir durum için `key:Ctrl` kullanılırken, Mac üzerinde `key:Cmd` kullanılır. Bu yüzden Windows kullanıcısı `key:Ctrl+Enter` ya da `key:Ctrl+A` kullandığı zaman, Mac kullanıcısı `key:Cmd+Enter` ya da `key:Cmd+A` kullanır. Bir çok uygulama da `key:Ctrl` yerine `key:Cmd` kullanır.
 
-So if we want to support combinations like `key:Ctrl`+click, then for Mac it makes sense to use  `key:Cmd`+click. That's more comfortable for Mac users.
+Dolayısıyla, Ctrl + tıklama gibi kombinasyonları kullanacagımız zaman, Mac için Cmd + tıklamayı kullanmak mantıklıdır. Bu, Mac kullanıcıları için fiziksel açıdan da daha rahat bir çözümdür.
 
-Even if we'd like to force Mac users to `key:Ctrl`+click -- that's kind of difficult. The problem is: a left-click with `key:Ctrl` is interpreted as a *right-click* on Mac, and it generates the `contextmenu` event, not `click` like Windows/Linux.
+Mac kullanıcılarını `key: Ctrl` + tıklama yapmaya zorlasak bile sorun şudur: `key:Ctrl` ile sol tıklama, Mac'te *sağ tıklama* olarak yorumlanır ve Windows / Linux gibi `click` değil, `contextmenu` olayını oluşturur.
 
-So if we want users of all operational systems to feel comfortable, then together with `ctrlKey` we should use `metaKey`.
+Dolayısıyla, tüm işletim sistemlerinin kullanıcılarının kendilerini rahat hissetmelerini istiyorsak, o zaman `ctrlKey` ile birlikte `metaKey` kullanmalıyız.
 
-For JS-code it means that we should check `if (event.ctrlKey || event.metaKey)`.
+JS kodu için bu, `if (event.ctrlKey || event.metaKey) şeklinde tuşları kontrol etmemiz gerektiği anlamına gelir.
 ```
 
-```warn header="There are also mobile devices"
-Keyboard combinations are good as an addition to the workflow. So that if the visitor has a
- keyboard -- it works. And if your device doesn't have it -- then there's another way to do the same.
+```warn header="Hesaba katmamız gereken bir başka durum da mobil cihazlar"
+Klavye kombinasyonları ziyaretçinin klavyesi varsa çalışır. 
+Ancak eğer kullanıcı klavyesiz kullanıyorsa -- o zaman aynısını yapmanın başka bir yolu var.
 ```
 
-## Coordinates: clientX/Y, pageX/Y
+## Koordinatlar: clientX/Y, pageX/Y
 
-All mouse events have coordinates in two flavours:
+Tüm fare olaylarının iki farklı türde koordinatları vardır:
 
-1. Window-relative: `clientX` and `clientY`.
-2. Document-relative: `pageX` and `pageY`.
+1. Pencereye bağlı koordinatlar (Window-relative): `clientX` ve `clientY`.
+2. Belgeye bağlı koordınatlar (Document-relative): `pageX` ve `pageY`.
 
-For instance, if we have a window of the size 500x500, and the mouse is in the left-upper corner, then `clientX` and `clientY` are `0`. And if the mouse is in the center, then `clientX` and `clientY` are `250`, no matter what place in the document it is. They are similar to `position:fixed`.
+Kısaca, belgeye bağlı koordinatlar pageX / Y, belgenin en sol üst köşesinden sayılır ve sayfa kaydırıldığında da değişmez, clientX / Y ise geçerli pencerenin (wındow) sol üst köşesinden sayılır. Sayfa kaydırıldığında değişirler.
+
+Örneğin, 500x500 boyutunda bir penceremiz varsa ve fare en sol üst köşedeyse, o zaman `clientX` ve `clientY` `0` olur. Fare tam ortadaysa, o zaman belgenin neresinde olursa olsun `clientX` ve `clientY` `250` olur. `position:fixed` ile benzer şekilde çalışır.
 
 ````online
-Move the mouse over the input field to see `clientX/clientY` (it's in the `iframe`, so coordinates are relative to that `iframe`):
+`clientX/clientY` değerlerini görmek için fare ile üzerinden geç. ("iframe" içinde yapıldı, bu nedenle koordinatlar bu "iframe" e göredir):
 
 ```html autorun height=50
 <input onmousemove="this.value=event.clientX+':'+event.clientY" value="Mouse over me">
 ```
 ````
 
-Document-relative coordinates are counted from the left-upper corner of the document, not the window.
-Coordinates `pageX`, `pageY` are similar to `position:absolute` on the document level.
+Belgeye bağlı koordinatlar, pencereden değil, belgenin sol üst köşesinden sayılır.
+"PageX", "pageY" koordinatları, belge düzeyinde "position: absolute" ile benzerdir.
 
-You can read more about coordinates in the chapter <info:coordinates>.
+Bunlar arasındaki farkı burada daha detaylı olarak işledik <info:coordinates>.
 
-## No selection on mousedown
+## mousedown olayında metin seçimini önleme
 
-Mouse clicks have a side-effect that may be disturbing. A double click selects the text.
+Fare tıklamalarının rahatsız edici olabilecek bir yan etkisi vardır. Çift tıklama metni seçer.
 
-If we want to handle click events ourselves, then the "extra" selection doesn't look good.
+Bütün tıklama olaylarını kendimiz kontrole almak istiyorsak, "ekstra" olarak metin seçimi iyi olmayabilir.
 
-For instance, a double-click on the text below selects it in addition to our handler:
+Örneğin, aşağıdaki metne çift tıklamak, işleyicimize ek olarak bir tıkladıgımız kelimeyi seçer:
 
 ```html autorun height=50
-<b ondblclick="alert('dblclick')">Double-click me</b>
+<b ondblclick="alert('dblclick')">Bana çift tıkla</b>
 ```
 
-There's a CSS way to stop the selection: the `user-select` property from [CSS UI Draft](https://www.w3.org/TR/css-ui-4/).
+Seçimi durdurmanın bir CSS yolu vardır: `user-select` özelliğini buradan incelyebilirsiniz. [CSS UI Draft](https://www.w3.org/TR/css-ui-4/).
 
-Most browsers support it with prefixes:
+Çoğu tarayıcı bunu destekler:
 
 ```html autorun height=50
 <style>
@@ -164,80 +179,79 @@ Most browsers support it with prefixes:
   }
 </style>
 
-Before...
+Önce...
 <b ondblclick="alert('Test')">
-  Unselectable
+  Seçilemez
 </b>
-...After
+...Sonra
 ```
 
-Now if you double-click on "Unselectable", it doesn't get selected. Seems to work.
+Şimdi "Seçilemez" üzerine çift tıklarsanız, seçilmez. Çalışıyor gibi görünüyor.
 
-...But there is a potential problem! The text became truly unselectable. Even if a user starts the selection from "Before" and ends with "After", the selection skips "Unselectable" part. Do we really want to make our text unselectable?
+...Ancak potansiyel bir sorun var! Metin gerçekten seçilemez hale geldi. Kullanıcı seçimi "Önce" den başlatıp "Sonra" ile bitirse bile, seçim "Seçilemeyen" kısmı atlar. Metnimizi gerçekten seçilemez hale getirmek istiyor muyuz?
 
-Most of time, we don't. A user may have valid reasons to select the text, for copying or other needs. That may be inconvenient if we don't allow them to do it. So this solution is not that good.
+Çoğu zaman bunu istemeyiz. Bir kullanıcının metni seçmek, kopyalamak veya diğer ihtiyaçları için geçerli nedenleri olabilir. Bunu yapmalarına izin vermezsek bu rahatsız edici olabilir. Yani bu çözüm o kadar iyi değil.
 
-What we want is to prevent the selection on double-click, that's it.
+İstediğimiz sadece çift tıklamayla seçimi engellemek, hepsi bu.
 
-A text selection is the default browser action on `mousedown` event. So the alternative solution would be to handle `mousedown` and prevent it, like this:
+Metin seçimi  `mousedown` olayıyla beraber gerçekleşen bir tarayıcı işlemi. Bu yüzden alternatif yöntem `mousedown` olayını engellemek, şu şekilde:
 
 ```html autorun height=50
-Before...
+Önce...
 <b ondblclick="alert('Click!')" *!*onmousedown="return false"*/!*>
-  Double-click me
+  Çift tıkla
 </b>
-...After
+...Sonra
 ```
 
-Now the bold element is not selected on double clicks.
+Artık kalın yazı tipiyle yazılmış öğe çift tıklamayla seçilmiyor.
 
-The text inside it is still selectable. However, the selection should start not on the text itself, but before or after it. Usually that's fine though.
+İçindeki metin hala seçilebilir. Ancak, seçim metnin kendisinde değil, ondan önce veya sonra başlamalıdır. Yine de genellikle bu sorun olmaz ve en iyi çözüm alternatifidir.
 
-````smart header="Canceling the selection"
-Instead of *preventing* the selection, we can cancel it "post-factum" in the event handler.
 
-Here's how:
+````smart header="Metin seçimini iptal etme"
+Seçimi *önlemek* yerine, olay işleyicisini "post-factum" iptal edebiliriz.
+Şu şekilde:
 
 ```html autorun height=50
-Before...
+Önce...
 <b ondblclick="*!*getSelection().removeAllRanges()*/!*">
-  Double-click me
+  Çift tıkla!
 </b>
-...After
+...Sonra
 ```
 
-If you double-click on the bold element, then the selection appears and then is immediately removed. That doesn't look nice though.
-````
+Kalın yazı tipiyle yazılmış öğeye çift tıklarsanız, seçim görünür ve hemen kaldırılır. Yine de bu hoş görünmüyor.````
 
-````smart header="Preventing copying"
-If we want to disable selection to protect our content from copy-pasting, then we can use another event: `oncopy`.
+````smart header="Kopyalamayı önlemek"
+İçeriğimizi kopyalayıp yapıştırmaya karşı korumak için seçimi devre dışı bırakmak istiyorsak, başka bir özellik kullanabiliriz.
 
 ```html autorun height=80 no-beautify
 <div *!*oncopy="alert('Copying forbidden!');return false"*/!*>
-  Dear user,
-  The copying is forbidden for you.
-  If you know JS or HTML, then you can get everything from the page source though.
+  Sevgili kullanıcı,
+  Kopyalama bu metin için yasaktır.
+  Eğer JS ve HTML biliyorsanız yine de buradaki her şeyi kopyalayabilirsiniz.
 </div>
 ```
-If you try to copy a piece of text in the `<div>`, that won't work, because the default action `oncopy` is prevented.
+Eğer `<div>` içindeki bir yazıyı kopyalamaya çalışırsanız, işe yaramaz, çünkü normal olarak varsayılan `oncopy` özelliği şimdi engellendi.
 
-Surely that can't stop the user from opening HTML-source, but not everyone knows how to do it.
+Elbette bu, kullanıcının HTML kaynağını açmasını engelleyemez, ancak herkes bunu nasıl yapacağını bilmiyor.
 ````
 
-## Summary
+## Özet
 
-Mouse events have the following properties:
+Fare olayları aşağıdaki özelliklere sahiptir:
 
-- Button: `which`.
-- Modifier keys (`true` if pressed): `altKey`, `ctrlKey`, `shiftKey` and `metaKey` (Mac).
-  - If you want to handle `key:Ctrl`, then don't forget Mac users, they use `key:Cmd`, so it's better to check `if (e.metaKey || e.ctrlKey)`.
+- Buton: `button`.
+- Değiştirici tuşlar (basıldığında `true` değerini verir): `altKey`, `ctrlKey`, `shiftKey` and `metaKey` (Mac).
+  - `key:Ctrl` ile işlem yapacaksanız, Mac kullanıcılarını unutmayın, Mac kullanıcıları `key:Cmd` kullanırlar bu sebeple `if (e.metaKey || e.ctrlKey)` ile bunu kontrol etmeniz gerekir.
 
-- Window-relative coordinates: `clientX/clientY`.
-- Document-relative coordinates: `pageX/pageY`.
+- Pencereye bağlı koordinatlar : `clientX/clientY`.
+- Belgeye bağlı koordinatlar : `pageX/pageY`.
 
-It's also important to deal with text selection as an unwanted side-effect of clicks.
+Ayrıca, tıklamaların istenmeyen bir yan etkisi olarak metin seçimiyle uğraşmak da önemlidir.
 
-There are several ways to do this, for instance:
-1. The CSS-property `user-select:none` (with browser prefixes) completely disables text-selection.
-2. Cancel the selection post-factum using `getSelection().removeAllRanges()`.
-3. Handle `mousedown` and prevent the default action (usually the best).
+Bunu yapmanın birkaç yolu vardır, örneğin:
+1. CSS methodu `user-select:none` tamamiyle metin seçimini engeller.
+2. Ondan sonra gelecek metin seçimini iptal et; `getSelection().removeAllRanges()`.
+3.`mousedown` olayını engelle ve varsayılan metin seçimi durumunu engelle (genellikle en iyi çözüm).
