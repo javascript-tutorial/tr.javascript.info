@@ -10,10 +10,10 @@ table.tBodies[0].append(...sortedRows);
 ```
 
 1. `table.querySelectorAll('tr')` gibi tüm `<tr>`leri al, sonra onlardan bir array yap,  çünkü array yöntemlerine ihtiyacımız var.
-2. İlk TR (`table.rows[0]`) aslında bir tablo başlığıdırö bu yüzden geri kalanını `.slice(1)` ile alıyoruz.
+2. İlk TR (`table.rows[0]`) aslında bir tablo başlığıdır, bu yüzden geri kalanını `.slice(1)` ile alıyoruz.
 3. Daha sonra onları ilk `<td>` (isim alanı)'nın içeriği ile karşılaştıryoruz.
 4. Şimdi düğümleri `.append(...sortedRows)` olarak doğru sırada ekleyin.
 
-    Tobloların doğrudan belirtilmeyen bir <tbody> öğesi vardır, bu yüzden onu alır ve içine ekleriz: basit bir `table.append(...)` başarısız olacaktır.
+    Tabloların doğrudan belirtilmeyen bir <tbody> öğesi vardır, bu yüzden onu alır ve içine ekleriz: basit bir `table.append(...)` başarısız olacaktır.
   
-    Lütfen not edin: Onları kaldırmak zorunda değiliz, sadece "re-insert" (yeniden ekle), onlar eski yerlerini kendiliğinden bırakacaktır.
+    Lütfen not edin: Onları kaldırmak zorunda değiliz, sadece yeniden ekle ("re-insert"), onlar eski yerlerini kendiliğinden bırakacaktır.
