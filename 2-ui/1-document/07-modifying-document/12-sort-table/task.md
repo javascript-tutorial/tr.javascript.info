@@ -4,13 +4,13 @@ importance: 5
 
 # Sort the table
 
-There's a table:
+Bir tablo var:
 
 <table>
 <tr>
-  <th>Name</th>
-  <th>Surname</th>
-  <th>Age</th>
+  <th>İsim</th>
+  <th>Soyisim</th>
+  <th>Yaş</th>
 </tr>
 <tr>
   <td>John</td>
@@ -34,6 +34,6 @@ There's a table:
 </tr>
 </table>
 
-There may be more rows in it.
+Belki içinde daha çok satır var.
 
-Write the code to sort it by the `"name"` column.
+`"name"` sütunu tarafından sıralanması için kodu buraya yazın.
