@@ -4,7 +4,7 @@ importance: 1
 
 # Why does "aaa" remain?
 
-Örnegi çalıstırın. Niçin `table.remove()`, `"aaa"` metnini silmez?
+Örneği çalıstırın. Niçin `table.remove()`, `"aaa"` metnini silmez?
 
 ```html height=100 run
 <table id="table">
