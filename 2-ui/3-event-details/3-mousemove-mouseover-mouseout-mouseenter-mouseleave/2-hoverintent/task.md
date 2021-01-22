@@ -2,29 +2,29 @@ importance: 5
 
 ---
 
-# "Smart" tooltip
+# "Akıllı" tooltip
 
-Write a function that shows a tooltip over an element only if the visitor moves the mouse *over it*, but not *through it*.
+Kullanıcı fareyle bir elementin *üzerinden geçtiğinde* ancak *üzerinden geçip gitmediğinde* tooltip (ipucu) gösteren bir fonksiyon yazın. 
 
-In other words, if the visitor moves the mouse on the element and stopped -- show the tooltip. And if they just moved the mouse through fast, then no need, who wants extra blinking?
+Diğer kelimelerle, eğer kullanıcı faresiyle bir ögenin üzerine gelirse ve durursa -- tooltipi göster. Ancak eğer faresiyle bu ögenin üzerinden hızlıca geçip giderse, tooltip gösterme.
 
-Technically, we can measure the mouse speed over the element, and if it's slow then we assume that it comes "over the element" and show the tooltip, if it's fast -- then we ignore it.
+Teknik olarak, bir öğenin üzerindeki fare hızını ölçebiliriz, eğer hızı yavaşsa biz bunu elementin üzerinden geçiyor kabul ederek tooltipi göstermeliyiz. Hızı fazla ise o zaman görmezden gelmeliyiz.
 
-Make a universal object `new HoverIntent(options)` for it. With `options`:
+Bunun için global obje `new HoverIntent(options)` yap. `options` (seçenekler) ile beraber:
 
-- `elem` -- element to track.
-- `over` -- a function to call if the mouse is slowly moving over the element.
-- `out` -- a function to call when the mouse leaves the element (if `over` was called).
+- `elem` -- Takip edilecek element.
+- `over` -- Eğer fare elementin üzerinden yavaşca geçiyorsa çağırılacak fonksiyon.
+- `out` -- Fare elementin üzerinden ayrıldığı zaman çağırılacak fonksiyon (eğer `over` çağırıldıysa).
 
-An example of using such object for the tooltip:
+Tooltip için böyle bir objeyi kullanmaya bir örnek:
 
 ```js
-// a sample tooltip
+// örnek tooltip
 let tooltip = document.createElement('div');
 tooltip.className = "tooltip";
 tooltip.innerHTML = "Tooltip";
 
-// the object will track mouse and call over/out
+// mouse hareketlerini takip edecek nesne
 new HoverIntent({
   elem,
   over() {
@@ -38,10 +38,10 @@ new HoverIntent({
 });
 ```
 
-The demo:
+demo:
 
 [iframe src="solution" height=140]
 
-If you move the mouse over the "clock" fast then nothing happens, and if you do it slow or stop on them, then there will be a tooltip.
+Fareyi "saat" üzerine hızlı bir şekilde hareket ettirirseniz hiçbir şey olmaz ve bunu yavaş yaparsanız veya durdurursanız, bir tooltip gösterecektir.
 
-Please note: the tooltip doesn't "blink" when the cursor moves between the clock subelements.
+Lütfen dikkat: imleç saat alt öğeleri arasında hareket ettiğinde tooltip "gelip gitmez".
