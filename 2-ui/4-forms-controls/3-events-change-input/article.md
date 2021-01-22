@@ -1,21 +1,21 @@
-# Events: change, input, cut, copy, paste
+# Olaylar: change, input, cut, copy, paste
 
-Let's discuss various events that accompany data updates.
+Hadi veri güncellemelerine eşlik eden çeşitli olayları tartışalım.
 
-## Event: change
+## Olay: change
 
-The [change](http://www.w3.org/TR/html5/forms.html#event-input-change) event triggers when the element has finished changing.
+[change olayı](http://www.w3.org/TR/html5/forms.html#event-input-change) öğe değişmeyi bitirdiğinde tetiklenir.
 
-For text inputs that means that the event occurs when it loses focus.
+Bu olay metin girişleri için odak kaybedildiği zaman meydana gelir.
 
-For instance, while we are typing in the text field below -- there's no event. But when we move the focus somewhere else, for instance, click on a button -- there will be a `change` event:
+Örneğin, aşağıdaki metin alanına birşey yazarken olay yok. Ama odağı başka bir yere taşıdığımızda, örneğin, butona tıkladığımızda bir `change` olayı olacak:
 
 ```html autorun height=40 run
 <input type="text" onchange="alert(this.value)">
 <input type="button" value="Button">
 ```
 
-For other elements: `select`, `input type=checkbox/radio` it triggers right after the selection changes.
+`select`, `input type=checkbox/radio` elementlerde ise olay, elementteki değişiklikten hemen sonra tetiklenir.
 
 ## Event: input
 
