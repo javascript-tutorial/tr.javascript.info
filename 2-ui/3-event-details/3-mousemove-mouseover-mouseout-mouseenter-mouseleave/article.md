@@ -187,4 +187,4 @@ Not edilmesi gerekenler:
 
 -  `mouseover/out` olayları anne elementten çocuk elemente hareket ettiğimizde dahi tetiklenir. Tarayıcı bir imlecin aynı anda sadece bir elementin üstünde olabileceğini varsayar -- en içteki olanın üzerinde.
 
-- `mouseenter/leave` olayalrı kabarcık (bubble) yapmaz ve imleç içteki çocuk elementin üzerine gittiğinde tetiklenmez. Sadece imlecin elementin tamamı üzerine girip / ayrılması ile tetiklenirler, diğer öge içinde hareketleri göz ardı ederler. 
+- `mouseenter/leave` olayları kabarcık (bubble) yapmaz ve imleç daha içteki elementin üzerine gittiğinde tetiklenmez. Sadece imlecin elementin tamamı üzerine girip / ayrılması ile tetiklenirler, diğer öge içinde hareketleri göz ardı ederler. 
