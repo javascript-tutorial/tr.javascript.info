@@ -2,16 +2,17 @@ importance: 5
 
 ---
 
-# Selectable list
+# Seçilebilir liste
 
-Create a list where elements are selectable, like in file-managers.
+Dosya yöneticilerinde olduğu gibi öğelerin seçilebilir olduğu bir liste oluşturun.
 
-- A click on a list element selects only that element (adds the class `.selected`), deselects all others.
-- If a click is made with `key:Ctrl` (`key:Cmd` for Mac), then the selection is toggled on the element, but other elements are not modified.
+ - Bir liste elemanına tıklandığında sadece o eleman seçilir (".selected" sınıfını ekler), diğerlerinin seçimini kaldırır.
+ - Eğer tıklama `key:Ctrl` ile yapıldıysa (Mac için `key:Cmd`), tıklama yapılan eleman seçilir, ancak diğer elemanlar etkilenmez.
 
-The demo:
+Demo:
 
 [iframe border="1" src="solution" height=180]
 
-P.S. For this task we can assume that list items are text-only. No nested tags.
-P.P.S. Prevent the native browser selection of the text on clicks.
+**NOT** Bu görev için, liste öğelerinin yalnızca metin olduğunu varsayabiliriz. İç içe geçmiş tag yok.
+
+**NOT** Tıklamalarda metnin yerel tarayıcı seçimini engelleyin.

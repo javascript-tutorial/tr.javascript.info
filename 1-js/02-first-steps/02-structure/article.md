@@ -143,6 +143,9 @@ Aşağıdaki yorum satırı yanlış bir kulanımdır. Bu durumda hata alırsın
 alert( 'Dünya' );
 ```
 ````
+
 Lütfen kod yazarken yorum satırı yazmaktan çekinmeyin.
 
-Yorumlar elbette dosyanızın biraz daha büyük olmasına sebek olarabilir fakat bu sorun değildir. Kodunuzu küçültmek için bir çok sıkıştırıcı bulunmaktadır. Bunlar kodunuzu canlı sisteme alırken yorumlardan arındırarak server'a koyarlar böylece yazdığınız kod hiç yer kaplamaz. Daha hazla örneği ve daha iyi nasıl yorum yazabileceğinizi <info:coding-style> bölümünde göreceksiniz.
+Yorumlar elbette dosyanızın biraz daha büyük olmasına sebep olabilir, fakat bu sorun değildir. Kodunuzu küçültmek için bir çok sıkıştırıcı bulunmaktadır. Bunlar kodunuzu canlı sisteme alırken yorumlardan arındırarak server'a koyarlar böylece yazdığınız kod hiç yer kaplamaz.
+
+Daha fazla örneği ve daha iyi nasıl yorum yazabileceğinizi <info:coding-style> bölümünde göreceksiniz.

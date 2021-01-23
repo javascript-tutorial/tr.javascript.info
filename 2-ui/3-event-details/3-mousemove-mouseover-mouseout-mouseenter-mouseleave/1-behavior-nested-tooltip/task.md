@@ -2,24 +2,24 @@ importance: 5
 
 ---
 
-# Improved tooltip behavior
+# Geliştirilmiş ipucu (tooltip) davranışı 
 
-Write JavaScript that shows a tooltip over an element with the attribute `data-tooltip`.
+Fare ile bir elementin üzerinden geçildiğinde `data-tooltip` özelliği ile beraber tooltip (ipucu) gösteren bir javaScript kodu yazın.
 
-That's like the task <info:task/behavior-tooltip>, but here the annotated elements can be nested. The most deeply nested tooltip is shown.
+Buradaki göreve benziyor <info:task/behavior-tooltip>, ancak burada gösterilen öğeler iç içe geçmiş olabilir. En içteki tooltip gösterilmelidir.
 
-For instance:
+Örneğin:
 
 ```html
 <div data-tooltip="Here – is the house interior" id="house">
   <div data-tooltip="Here – is the roof" id="roof"></div>
   ...
-  <a href="https://en.wikipedia.org/wiki/The_Three_Little_Pigs" data-tooltip="Read on…">Hover over me</a>
+  <a href="https://en.wikipedia.org/wiki/The_Three_Little_Pigs" data-tooltip="Read on…">Fare ile buranın üzerine gel</a>
 </div>
 ```
 
-The result in iframe:
+Sonuç iframe üzerinde:
 
 [iframe src="solution" height=300 border=1]
 
-P.S. Hint: only one tooltip may show up at the same time.
+Not ipucu: aynı anda yalnızca bir araç ipucu (tooltip) görünebilir.
