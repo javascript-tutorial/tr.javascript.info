@@ -2,7 +2,7 @@
 
 Sürükle ve bırak (Drag'n'Drop) harika bir arayüz çözümüdür. Bir şeyi alıp sürükleyip bırakmak; kopyalamadan ve taşımadan (dosya yöneticilerinde olduğu gibi) sipariş vermeye (ürünleri sürükleyip sepete bırakma) kadar birçok şeyi yapmanın açık ve basit bir yoludur.
 
-Modern HTML standardı sürükle ve bırak olayına izin verir. [section about Drag Events](https://html.spec.whatwg.org/multipage/interaction.html#dnd).
+Modern HTML standardı da sürükle ve bırak olayına izin verir. [ilgili kısım](https://html.spec.whatwg.org/multipage/interaction.html#dnd).
 
 Bunlar basit görevleri kolayca çözmeyi sağlarlar ve ayrıca tarayıcı dışından dosyaların tarayıcıya sürüklenip bırakılmasını sağlarlar. Böylece işletim sistemi dosya yöneticisinden bir dosya alıp tarayıcı penceresine bırakabiliriz. Böylece JavaScript, içeriğine erişim kazanır.
 
