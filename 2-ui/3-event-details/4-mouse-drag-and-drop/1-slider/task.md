@@ -2,15 +2,15 @@ importance: 5
 
 ---
 
-# Slider
+# Kaydırıcı (Slider)
 
-Create a slider:
+Bir kaydırıcı oluşturun:
 
 [iframe src="solution" height=60 border=1]
 
-Drag the blue thumb with the mouse and move it.
+Mavi çubugu fareyle sürükleyin ve hareket ettirin.
 
-Important details:
+Önemli ayrıntılar:
 
-- When the mouse button is pressed, during the dragging the mouse may go over or below the slider. The slider will still work (convenient for the user).
-- If the mouse moves very fast to the left or to the right, the thumb should stop exactly at the edge.
+- Fareye basıldığında, sürükleme sırasında fare kaydırıcının üstüne veya altına gidebilir. Kaydırıcı yine de çalışacaktır (kullanıcı için uygundur).
+- Fare sola veya sağa çok hızlı hareket ederse, mavi çubuk tam olarak kenarda durmalıdır.
