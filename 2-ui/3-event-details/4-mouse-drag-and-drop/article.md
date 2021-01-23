@@ -1,55 +1,55 @@
-# Drag'n'Drop with mouse events
+# Fare olaylarıyla sürükle ve bırak
 
-Drag'n'Drop is a great interface solution. Taking something, dragging and dropping is a clear and simple way to do many things, from copying and moving (see file managers) to ordering (drop into cart).
+Sürükle ve bırak (Drag'n'Drop) harika bir arayüz çözümüdür. Bir şeyi alıp sürükleyip bırakmak; kopyalamadan ve taşımadan (dosya yöneticilerinde olduğu gibi) sipariş vermeye (ürünleri sürükleyip sepete bırakma) kadar birçok şeyi yapmanın açık ve basit bir yoludur.
 
-In the modern HTML standard there's a [section about Drag Events](https://html.spec.whatwg.org/multipage/interaction.html#dnd).
+Modern HTML standardı da sürükle ve bırak olayına izin verir. [ilgili kısım](https://html.spec.whatwg.org/multipage/interaction.html#dnd).
 
-They are interesting because they allow to solve simple tasks easily, and also allow to handle drag'n'drop of "external" files into the browser. So we can take a file in the OS file-manager and drop it into the browser window. Then JavaScript gains access to its contents.
+Bunlar basit görevleri kolayca çözmeyi sağlarlar ve ayrıca tarayıcı dışından dosyaların tarayıcıya sürüklenip bırakılmasını sağlarlar. Böylece işletim sistemi dosya yöneticisinden bir dosya alıp tarayıcı penceresine bırakabiliriz. Böylece JavaScript, içeriğine erişim kazanır.
 
-But native Drag Events also have limitations. For instance, we can't limit dragging by a certain area. Also we can't make it "horizontal" or "vertical" only. There are other drag'n'drop tasks that can't be implemented using that API.
+Ancak bu yerel HTML standardındaki sürükle bırak mekanizmasında sınırlamalar vardır. Örneğin, sürüklemeyi belirli bir alanla sınırlayamayız. Ayrıca, bunu yalnızca "yatay" veya "dikey" olarak yapamayız. Bunun gibi bu API kullanılarak uygulanamayan başka sürükle bırak görevleri de vardır.
 
-So here we'll see how to implement Drag'n'Drop using mouse events. Not that hard either.
+Bu yüzden burada, fare olaylarını kullanarak Sürükle ve Bırak özelliğini nasıl uygulayacağımızı göreceğiz. Diğerleri gibi bu da zor değil.
 
-## Drag'n'Drop algorithm
+## Sürükle bırak algoritması
 
-The basic Drag'n'Drop algorithm looks like this:
+Temel sürükle ve bırak algoritması şuna benzer:
 
-1. Catch `mousedown` on a draggable element.
-2. Prepare the element for moving (maybe create a copy of it or whatever).
-3. Then on `mousemove` move it by changing `left/top` and `position:absolute`.
-4. On `mouseup` (button release) -- perform all actions related to a finished Drag'n'Drop.
+1. Sürüklenebilir ögenin üzerinde `mousedown` olayını yakalayın.
+2. Öğeyi taşımak için hazırlayın (belki bir kopyasını oluşturabilirsiniz).
+3. Daha sonra `mousemove` olayı sırasında `left/top` ve `position:absolute` değerlerini değiştirerek ögeyi hareket ettirin.
+4.  `mouseup` olayı (fareyi bıraktığımız zaman) -- Sürükle bırak olayı bittiği zaman yapılacak aksiyonları yapın.
 
-These are the basics. We can extend it, for instance, by highlighting droppable (available for the drop) elements when hovering over them.
+Bunlar temel bilgilerdir. Örneğin, üzerine gelindiğinde bırakılabilir (bırakımaya müsait) öğeleri ışıklandırma gibi bu algoritmayı genişletebiliriz.
 
-Here's the algorithm for drag'n'drop of a ball:
+İşte bir topu sürükleyip bırakmanın uygulaması:
 
 ```js
 ball.onmousedown = function(event) { // (1) start the process
 
-  // (2) prepare to moving: make absolute and on top by z-index
+  // (2) topu harekete hazırla: z indexi ile en üste getir, pozisyonu absolute yap
   ball.style.position = 'absolute';
   ball.style.zIndex = 1000;
-  // move it out of any current parents directly into body
-  // to make it positioned relative to the body
+  
+  // topu dogrudan body e bagla, ebeveyn elementlerden ayır
   document.body.append(ball);  
-  // ...and put that absolutely positioned ball under the cursor
 
-  moveAt(event.pageX, event.pageY);
-
-  // centers the ball at (pageX, pageY) coordinates
+  // topu (pageX, pageY) koordınatlarında ortala
   function moveAt(pageX, pageY) {
     ball.style.left = pageX - ball.offsetWidth / 2 + 'px';
     ball.style.top = pageY - ball.offsetHeight / 2 + 'px';
   }
+  
+  // pozısyonu absolute olan topu fare imlecinin altına koy
+  moveAt(event.pageX, event.pageY);
 
   function onMouseMove(event) {
     moveAt(event.pageX, event.pageY);
   }
 
-  // (3) move the ball on mousemove
+  // (3) mousemove olayında topu hareket ettir
   document.addEventListener('mousemove', onMouseMove);
 
-  // (4) drop the ball, remove unneeded handlers
+  // (4) topu bırak, gereksiz işleyicileri kaldır
   ball.onmouseup = function() {
     document.removeEventListener('mousemove', onMouseMove);
     ball.onmouseup = null;
@@ -58,19 +58,19 @@ ball.onmousedown = function(event) { // (1) start the process
 };
 ```
 
-If we run the code, we can notice something strange. On the beginning of the drag'n'drop, the ball "forks": we start dragging its "clone".
+Kodu çalıştırırsak tuhaf bir şey fark edebiliriz. Sürükleyip bırakmanın başlangıcında, top "klonlanır": "klonunu" sürüklemeye başlarız.
 
 ```online
-Here's an example in action:
+İşte bir örnek:
 
 [iframe src="ball" height=230]
 
-Try to drag'n'drop the mouse and you'll see the strange behavior.
+Fareyi sürükleyip bırakmaya çalıştığınızda garip davranışı göreceksiniz.
 ```
 
-That's because the browser has its own Drag'n'Drop for images and some other elements that runs automatically and conflicts with ours.
+Bunun nedeni, tarayıcının resimler için otomatik olarak çalışan ve bizimkilerle çakışan kendi Sürükle ve Bırak özelliğine ve diğer bazı öğelere sahip olmasıdır.
 
-To disable it:
+Bunu deve dışarı bırakmak için:
 
 ```js
 ball.ondragstart = function() {
@@ -78,7 +78,7 @@ ball.ondragstart = function() {
 };
 ```
 
-Now everything will be all right.
+Şimdi her şey normale dönecektir.
 
 ```online
 In action:
@@ -86,32 +86,34 @@ In action:
 [iframe src="ball2" height=230]
 ```
 
-Another important aspect -- we track `mousemove` on `document`, not on `ball`. From the first sight it may seem that the mouse is always over the ball, and we can put `mousemove` on it.
+Bir diğer önemli husus - "top" üzerinde değil, "belge" üzerinde `mousemove` yani fare hareketini izliyoruz. İlk bakışta, farenin her zaman topun üstündeymiş gibi olacagını düşünebiliriz ve bu yüzden topun üzerinden de dinleyebiliriz diye düşünebiliriz ( ball.eventLıstener ile) .
 
-But as we remember, `mousemove` triggers often, but not for every pixel. So after swift move the cursor can jump from the ball somewhere in the middle of document (or even outside of the window).
+Ancak hatırlarsak, `mousemove` sık sık tetiklenmesine rağmen, aynı zamanda bazı pikselleri atlayabilir. Bu yüzden ani bir hareketin ardından, imleç topun üzerinden atlayarak, pencerenin başka bir yerine gidebilir ve hatta pencerenin dışına çıkabilir.
 
-So we should listen on `document` to catch it.
+Bu yüzden yakalamak için `document` i dinlemeliyiz. (document.eventListener ile)
 
-## Correct positioning
+## Doğru konumlama
 
-In the examples above the ball is always centered under the pointer:
+Yukarıdaki örneklerde top her zaman imlecin altında ortalanır:
 
 ```js
 ball.style.left = pageX - ball.offsetWidth / 2 + 'px';
 ball.style.top = pageY - ball.offsetHeight / 2 + 'px';
 ```
 
-Not bad, but there's a side-effect. To initiate the drag'n'drop, we can `mousedown` anywhere on the ball. But if do it at the edge, then the ball suddenly "jumps" to become centered.
+Bu durum kötü değil ama bir yan etkisi var. Sürükle ve bırak işlemini başlatmak için, topun herhangi bir yerinde fareyi `mousedown` olayını dinleyebiliriz. Ancak bunu kenarda yaparsanız, top aniden ortalanmak için "zıplar".
 
-It would be better if we keep the initial shift of the element relative to the pointer.
+İmlece göre öğenin ilk kaymasını tutarsak daha iyi olur.
 
-For instance, if we start dragging by the edge of the ball, then the cursor should remain over the edge while dragging.
+Örneğin, topun kenarından sürüklemeye başlarsak, sürüklerken imleç kenarın üzerinde kalmalıdır.
 
 ![](ball_shift.svg)
 
-1. When a visitor presses the button (`mousedown`) -- we can remember the distance from the cursor to the left-upper corner of the ball in variables `shiftX/shiftY`. We should keep that distance while dragging.
+Algoritmamızı güncelleyelim:
 
-    To get these shifts we can substract the coordinates:
+1. Kullanıcı topu fare ile tuttuğunda (`mousedown`) -- `shiftX/shiftY` değişkenlerini kullanarak, imleç ile topun üst sol köşesi arasındaki mesafeyi bulabiliriz. Sürüklerken bu mesafeyi arada tutmamız gerekir.
+
+    Bu vardiyaları elde etmek için koordinatları çıkarabiliriz:
 
     ```js
     // onmousedown
@@ -119,9 +121,9 @@ For instance, if we start dragging by the edge of the ball, then the cursor shou
     let shiftY = event.clientY - ball.getBoundingClientRect().top;
     ```
 
-    Please note that there's no method to get document-relative coordinates in JavaScript, so we use window-relative coordinates here.
+   JavaScript'te belgeye bağlı koordinatları elde etmenin bir yöntemi olmadığını lütfen unutmayın, bu nedenle burada pencereye göre koordinatları kullanıyoruz.
 
-2. Then while dragging we position the ball on the same shift relative to the pointer, like this:
+2. Sonra sürüklerken, topu imlece göre aynı vardiyaya yerleştiririz, örneğin:
 
     ```js
     // onmousemove
@@ -130,7 +132,7 @@ For instance, if we start dragging by the edge of the ball, then the cursor shou
     ball.style.top = event.pageY - *!*shiftY*/!* + 'px';
     ```
 
-The final code with better positioning:
+Daha iyi bir konumlandırmaya sahip son kod:
 
 ```js
 ball.onmousedown = function(event) {
@@ -178,25 +180,25 @@ In action (inside `<iframe>`):
 [iframe src="ball3" height=230]
 ```
 
-The difference is especially noticeable if we drag the ball by its right-bottom corner. In the previous example the ball "jumps" under the pointer. Now it fluently follows the cursor from the current position.
+Topu sağ alt köşesinden sürüklediğimizde fark özellikle belirgindir. Önceki örnekte top, imlecin altına zıplıyordu. Şimdi, imleci mevcut konumundan akıcı bir şekilde takip ediyor.
 
-## Detecting droppables
+## Sürüklediğimiz itemi bırakacağımız yerleri tespit etme
 
-In previous examples the ball could be dropped just "anywhere" to stay. In real-life we usually take one element and drop it onto another. For instance, a file into a folder, or a user into a trash can or whatever.
+Önceki örneklerde, top "herhangi bir yere" bırakılabilirdi. Gerçek hayatta genellikle bir elementi alıp diğerine bırakırız. Örneğin, bir klasöre bir dosya veya bir item çöp tenekesine bırakılır.
 
-Abstractly, we take a "draggable" element and drop it onto "droppable" element.
+Özet olarak, "sürüklenebilir" bir öğe alıp "bırakılabilir" öğenin üzerine bırakıyoruz.
 
-We need to know the target droppable at the end of Drag'n'Drop -- to do the corresponding action, and, preferably, during the dragging process, to highlight it.
+İtemi bırakacağımız yeri bilmek ve tercihen bırakacagımız yeri ışıklandırmak için sürükle-bırak işleminin sonunda bırakılabilir hedefin yerini bilmemiz gerekir.
 
-The solution is kind-of interesting and just a little bit tricky, so let's cover it here.
+Çözüm biraz ilginç ve biraz aldatıcı, bu yüzden burada ele alalım.
 
-What's the first idea? Probably to put `onmouseover/mouseup` handlers on potential droppables and detect when the mouse pointer appears over them. And then we know that we are dragging/dropping on that element.
+İlk akla gelen nedir? Muhtemelen olası hedeflerde `onmouseover/mouseup` olayını dinlemek ve eğer imleç üstlerinden geçerse bunu belirlemek.
 
-But that doesn't work.
+Ancak bu işe yaramayacak.
 
-The problem is that, while we're dragging, the draggable element is always above other elements. And mouse events only happen on the top element, not on those below it.
+Problem şu ki, biz elementi alıp sürüklerken, bu element her zaman diğerlerinin üstünde ( z-index den ötürü). Ve fare olayları sadece üstteki element üzerinde olur, alttakileri görmez.
 
-For instance, below are two `<div>` elements, red on top of blue. There's no way to catch an event on the blue one, because the red is on top:
+Örneğin, aşağıda mavinin üzerinde kırmızı olmak üzere iki `<div>` ögesi var. Mavi elementin üzerinde bir fare olayı yakalamak imkansız çünkü üstünde kırmızı element var.
 
 ```html run autorun height=60
 <style>
@@ -207,36 +209,36 @@ For instance, below are two `<div>` elements, red on top of blue. There's no way
     top: 0;
   }
 </style>
-<div style="background:blue" onmouseover="alert('never works')"></div>
-<div style="background:red" onmouseover="alert('over red!')"></div>
+<div style="background:blue" onmouseover="alert('asla çalışmayacak')"></div>
+<div style="background:red" onmouseover="alert('kırmızının üzerinde!')"></div>
 ```
 
-The same with a draggable element. The ball in always on top over other elements, so events happen on it. Whatever handlers we set on lower elements, they won't work.
+Aynı durum sürüklediğimiz elementte de geçerli. Top her zaman diğer elementlerin üzerinde olduğu için, fare olayı onun üzerinde gerçekleşir. Örneğin bırakacagımız noktada da fare olayı dinlemek istersek, çalışmayacak.
 
-That's why the initial idea to put handlers on potential droppables doesn't work in practice. They won't run.
+Bu nedenle, olay dinleyicileri potansiyel hedeflere yerleştirme fikri pratikte işe yaramaz.
 
-So, what to do?
+O zaman ne yapmalı?
 
-There's a method called `document.elementFromPoint(clientX, clientY)`. It returns the most nested element on given window-relative coordinates (or `null` if coordinates are out of the window).
+Burada `document.elementFromPoint(clientX, clientY)` isimli bir method var. Pencereye göre koordinatlarda en çok içeri geçmiş öğeyi verir (veya koordinatlar pencerenin dışındaysa "null" ya da boş).
 
-So in any of our mouse event handlers we can detect the potential droppable under the pointer like this:
+Böylece bu methodu kullanarak, sürüklediğimiz ögeyi bırakacagımız noktayı belirleyebiliriz.
 
 ```js
-// in a mouse event handler
+// Fare olayı dinleyicisi
 ball.hidden = true; // (*)
 let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
 ball.hidden = false;
-// elemBelow is the element below the ball. If it's droppable, we can handle it.
+// elemBelow topun da aşağısındaki elementi bulup koordinatlarını saklar.
 ```
 
-Please note: we need to hide the ball before the call `(*)`. Otherwise we'll usually have a ball on these coordinates, as it's the top element under the pointer: `elemBelow=ball`.
+Not: bu z çağırmadan önce topu saklamamız gerekir `(*)`. Yoksa muhtemelen bu koordinatlar topun koordinatları olur, çünkü imlecin göreceği ilk element olacaktır: `elemBelow=ball`.
 
-We can use that code to check what we're "flying over" at any time. And handle the drop when it happens.
+Bu kodu istediğimiz zaman diğer elementlerin "üzerinden geçip geçmediğimizi" kontrol etmek için kullanabiliriz. Ve gerçekleştiğinde sürüklediğimiz elementi buraya birakabileceğimiz anlamına gelir.
 
-An extended code of `onMouseMove` to find "droppable" elements:
+"Bırakılabilir" öğeleri bulmak için genişletilmiş bir `onMouseMove` kodu:
 
 ```js
-let currentDroppable = null; // potential droppable that we're flying over right now
+let currentDroppable = null; // potansiyel birakacağımız yer
 
 function onMouseMove(event) {
   moveAt(event.pageX, event.pageY);
@@ -245,54 +247,53 @@ function onMouseMove(event) {
   let elemBelow = document.elementFromPoint(event.clientX, event.clientY);
   ball.hidden = false;
 
-  // mousemove events may trigger out of the window (when the ball is dragged off-screen)
-  // if clientX/clientY are out of the window, then elementfromPoint returns null
+  // mousemove olayları pencerenin dışında tetiklenebilir (top ekranın dışına sürüklendiğinde)
+  // clientX / clientY pencerenin dışındaysa, elementfromPoint null (boş) döndürür
   if (!elemBelow) return;
 
-  // potential droppables are labeled with the class "droppable" (can be other logic)
+  // potansiyel bırakılabilir alanlar "bırakılabilir" sınıfıyla etiketlenir (başka bir isim verebilirsiniz)
   let droppableBelow = elemBelow.closest('.droppable');
 
-  if (currentDroppable != droppableBelow) { // if there are any changes
-    // we're flying in or out...
-    // note: both values can be null
-    //   currentDroppable=null if we were not over a droppable (e.g over an empty space)
-    //   droppableBelow=null if we're not over a droppable now, during this event
+  if (currentDroppable != droppableBelow) { // eğer bir değişiklik varsa
+    // not: iki değer de boş olabilir
+    //   currentDroppable=null eğer bırakabileceğimiz bir noktadan geçmediysel (örneğin boş bir alandan geçtiysek) 
+    //   droppableBelow=null şu an bu olay sırasında bırakabileceğimiz alanda değilsek
 
     if (currentDroppable) {
-      // the logic to process "flying out" of the droppable (remove highlight)
+      // bırabileceğimiz alandan gelip geçme mantığı (ışıklandırmayı kaldır)
       leaveDroppable(currentDroppable);
     }
     currentDroppable = droppableBelow;
     if (currentDroppable) {
-      // the logic to process "flying in" of the droppable
+      // bırakabileceğimiz alana gitme mantığı
       enterDroppable(currentDroppable);
     }
   }
 }
 ```
 
-In the example below when the ball is dragged over the soccer gate, the gate is highlighted.
+Aşağıdaki örnekte, top futbol kalesinin üzerinden sürüklendiğinde, kale ışıklandırılmıştır.
 
 [codetabs height=250 src="ball4"]
 
-Now we have the current "drop target" in the variable `currentDroppable` during the whole process and can use it to highlight or any other stuff.
+Artık tüm süreç boyunca `currentDroppable` değişkeninde mevcut "bırakacağımız noktanın hedefi" var ve onu ışıklandırmak veya başka şeyler için kullanabiliriz.
 
-## Summary
+## Özet
 
-We considered a basic `Drag'n'Drop` algorithm.
+Basit bir `Drag'n'Drop` sürükle bırak algoritmasını inceledik.
 
-The key components:
+Anahtar nokatalar:
 
-1. Events flow: `ball.mousedown` -> `document.mousemove` -> `ball.mouseup` (cancel native `ondragstart`).
-2. At the drag start -- remember the initial shift of the pointer relative to the element: `shiftX/shiftY` and keep it during the dragging.
-3. Detect droppable elements under the pointer using `document.elementFromPoint`.
+1. Olay sırası: `ball.mousedown` -> `document.mousemove` -> `ball.mouseup` (local `ondragstart` ı iptal et).
+2. Sürükleme başladığında -- Fare imleci ile element arasındaki başlangıç kaymasını hesapla: `shiftX/shiftY` ve bu mesafeyi sürükleme sırasında da koru.
+3. Sürüklediğimiz elementi bırakabileceğimiz noktaları belirle `document.elementFromPoint`.
 
-We can lay a lot on this foundation.
+Bu temele çok şey katabiliriz.
 
-- On `mouseup` we can finalize the drop: change data, move elements around.
-- We can highlight the elements we're flying over.
-- We can limit dragging by a certain area or direction.
-- We can use event delegation for `mousedown/up`. A large-area event handler that checks  `event.target` can manage Drag'n'Drop for hundreds of elements.
-- And so on.
+- `mouseup` olayıyla elementi bırakışı sonlandırabiliriz: veriyi değiştirebiliriz, ögeleri yerinden oynatabiliriz.
+- Üstünden geçtiğimiz elementleri ışıklandırabiliriz.
+- Sürüklemeyi belli bir yönde ve belli bir alanda sınırlandırabiliriz.
+-  `mousedown/up` için olay delegeasyonu kullanabiliriz. "Event.target" öğesini kontrol eden geniş alanlı bir olay işleyicisi, yüzlerce öğe için sürükle bırak işlevini yönetebilir.
+- Bunu daha da ilerletebilirsiniz.
 
-There are frameworks that build architecture over it: `DragZone`, `Droppable`, `Draggable` and other classes. Most of them do the similar stuff to described above, so it should be easy to understand them now. Or roll our own, because you already know how to handle the process, and it may be more flexible than to adapt something else.
+Bunun üzerine yazılım mimarisi oluşturan bazı yazılım kütüphaneler (framework) var: `DragZone`, `Droppable`, `Draggable`. Çoğu yukarıdakine benzer algoritmalar içerir. Bu yüzden bu kütühaneleri anlamanız daha kolay olacaktır. Ya da kendiniz yapın, bu süreci nasıl işleyeceğinizi artık biliyorsunuz, muhtemelen başka bir kütüphaneyi kendi kodunuza adapte etmekten daha kolay olacaktır. 
