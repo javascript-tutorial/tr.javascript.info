@@ -40,7 +40,7 @@ Aşağıdaki hafif düzenleyiciler ilginizi çekebilir:
 - [Notepad++](https://notepad-plus-plus.org/) (sadece Windows'ta çalışır, ücretsiz).
 - Vim and Emacs gibi düzenleyiciler de oldukça iyidir fakat öğrenme süresi diğerler hafif düzenleyicilere göre daha uzundur.
 
-## Lütfen Tartışmayalım!
+## Lütfen Tartışmayalım
 
 Yukarıda yazan düzenleyicileri ben veya birçok profesyonel arkadaşım mutlu bir şekilde kullanmaktayız.
 
