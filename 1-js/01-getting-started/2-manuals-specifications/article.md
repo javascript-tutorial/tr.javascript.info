@@ -16,17 +16,17 @@ Daha geniş kitleler tarafından kullanılmayan yeni özelliklere ve önerilere 
 Ayrıca, tarayıcı için geliştirme yapıyorsanız, ikinci [second part](info:browser-environment) bölümünden farklı eğitimlere bakabilirsiniz.
 
 ## Kılavuz
+
 - **MDN (Mozilla) JavaScript Reference** örnek ve kılavuzların yeraldığı bir diğer kaynaktır. İstediğiniz konular derinlemesine incelemek için harika bir kaynaktır.
-    
+
     Buradan erişebilirsiniz: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference>
 
     Google'da "MDN [term]" şeklinde aratırsanız aslında çok daha kolay erişebilirsiniz. Örneğin : `parseInt`'i aramak için <https://google.com/search?q=MDN+parseInt> kullanabilirsiniz.
 
 - **MSDN** – Microsoft kılavuzu da çok fazla bilgi içermektedir. Buna JavaScript ( JScript olarak da alandırılmakta ) veya Internet Explorer gibi konular da dahildir; <http://msdn.microsoft.com/> adresinden ulaşılabilir.
-    
+
     Ayrıca "RegExp MSDN" veya "RegExp MSDN jscript" şeklinde arayabilirsiniz.
-    
-    
+
 ## Özelliklerin desteği
 
 JavaScript çok hızlı gelişen bir dildir, sürekli olarak yeni özellikler eklenir.
