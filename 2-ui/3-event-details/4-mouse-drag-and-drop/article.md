@@ -14,10 +14,10 @@ Bu yüzden burada, fare olaylarını kullanarak Sürükle ve Bırak özelliğini
 
 Temel sürükle ve bırak algoritması şuna benzer:
 
-1. Sürüklenebilir ögenin üzerinde `mousedown` olayını yakala.
+1. Sürüklenebilir ögenin üzerinde `mousedown` olayını yakalayın.
 2. Öğeyi taşımak için hazırlayın (belki bir kopyasını oluşturabilirsiniz).
 3. Daha sonra `mousemove` olayı sırasında `left/top` ve `position:absolute` değerlerini değiştirerek ögeyi hareket ettirin.
-4.  `mouseup` olayı (fareyi bıraktığımız zaman) -- Sürükle bırak olayı bittiği zaman yapılacak aksiyonları yap.
+4.  `mouseup` olayı (fareyi bıraktığımız zaman) -- Sürükle bırak olayı bittiği zaman yapılacak aksiyonları yapın.
 
 Bunlar temel bilgilerdir. Örneğin, üzerine gelindiğinde bırakılabilir (bırakımaya müsait) öğeleri ışıklandırma gibi bu algoritmayı genişletebiliriz.
 
@@ -101,7 +101,7 @@ ball.style.left = pageX - ball.offsetWidth / 2 + 'px';
 ball.style.top = pageY - ball.offsetHeight / 2 + 'px';
 ```
 
-Bu kötü değil ama bir yan etkisi var. Sürükle ve bırak işlemini başlatmak için, topun herhangi bir yerinde fareyi `mousedown` olayını dinleyebiliriz. Ancak bunu kenarda yaparsanız, top aniden ortalanmak için "zıplar".
+Bu durum kötü değil ama bir yan etkisi var. Sürükle ve bırak işlemini başlatmak için, topun herhangi bir yerinde fareyi `mousedown` olayını dinleyebiliriz. Ancak bunu kenarda yaparsanız, top aniden ortalanmak için "zıplar".
 
 İmlece göre öğenin ilk kaymasını tutarsak daha iyi olur.
 
@@ -296,4 +296,4 @@ Bu temele çok şey katabiliriz.
 -  `mousedown/up` için olay delegeasyonu kullanabiliriz. "Event.target" öğesini kontrol eden geniş alanlı bir olay işleyicisi, yüzlerce öğe için sürükle bırak işlevini yönetebilir.
 - Bunu daha da ilerletebilirsiniz.
 
-Bunun üzerine yazılım mimarisi oluşturan bazı yazılım kütüphaneleri (framework) var: `DragZone`, `Droppable`, `Draggable`. Çoğu yukarıdakine benzer algoritmalar içerir. Bu yüzden bu kütühaneleri anlamanız daha kolay olacaktır. Ya da kendiniz yapın, bu süreci nasıl işleyeceğinizi artık biliyorsunuz, muhtemelen başka bir kütüphaneyi kendi kodunuza adapte etmekten daha kolay olacaktır. 
+Bunun üzerine yazılım mimarisi oluşturan bazı yazılım kütüphaneler (framework) var: `DragZone`, `Droppable`, `Draggable`. Çoğu yukarıdakine benzer algoritmalar içerir. Bu yüzden bu kütühaneleri anlamanız daha kolay olacaktır. Ya da kendiniz yapın, bu süreci nasıl işleyeceğinizi artık biliyorsunuz, muhtemelen başka bir kütüphaneyi kendi kodunuza adapte etmekten daha kolay olacaktır. 
