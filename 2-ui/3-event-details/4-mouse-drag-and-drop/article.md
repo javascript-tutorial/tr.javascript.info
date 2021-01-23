@@ -10,7 +10,7 @@ Ancak bu yerel HTML standardındaki sürükle bırak mekanizmasında sınırlama
 
 Bu yüzden burada, fare olaylarını kullanarak Sürükle ve Bırak özelliğini nasıl uygulayacağımızı göreceğiz. Diğerleri gibi bu da zor değil.
 
-## Sürükle bırak algortiması
+## Sürükle bırak algoritması
 
 Temel sürükle ve bırak algoritması şuna benzer:
 
