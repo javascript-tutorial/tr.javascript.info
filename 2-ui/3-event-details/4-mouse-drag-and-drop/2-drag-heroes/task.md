@@ -1,20 +1,19 @@
 importance: 5
 
 ---
+# Sahada süper kahramanları sürükleyin
 
-# Drag superheroes around the field
+Bu görev, Drag'n'Drop (sürükle bırak) ve DOM'un çeşitli yönlerini anlamanıza yardımcı olacaktır.
 
-This task can help you to check understanding of several aspects of Drag'n'Drop and DOM.
+Tüm öğeleri `draggable` sınıfıyla - sürüklenebilir yapın. Bölümdeki top gibi.
 
-Make all elements with class `draggable` -- draggable. Like a ball in the chapter.
+Gereksinimler:
 
-Requirements:
+- Sürükleme başlangıcını izlemek için olay delegasyonunu kullanın:  `mousedown` için `document`" üzerinde tek bir olay dinleyicisi yeterli.
+- Öğeler pencerenin üst / alt kenarlarına sürüklenirse - daha fazla sürüklemeye izin vermek için sayfa yukarı / aşağı kayar.
+- Yatay kaydırma yok.
+- Sürüklenebilir öğeler, hızlı fare hareketlerinden sonra bile tarayıcıdan/pencereden asla ayrılmamalıdır.
 
-- Use event delegation to track drag start: a single event handler on `document` for `mousedown`.
-- If elements are dragged to top/bottom window edges -- the page scrolls up/down to allow further dragging.
-- There is no horizontal scroll.
-- Draggable elements should never leave the window, even after swift mouse moves.
-
-The demo is too big to fit it here, so here's the link.
+Demo buraya sığamayacak kadar büyük, link burada.
 
 [demo src="solution"]
