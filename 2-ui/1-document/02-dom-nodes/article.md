@@ -56,11 +56,11 @@ Lütfen metin düğümlerindeki özel karakterlere dikkat edin:
 - boşluk: `␣`
 
 Boşluklar ve satır sonları tamamen geçerli karakterlerdir, metin düğümleri oluştup DOM'un bir parçası olurlar. 
-Dolayısıyla, örneğin yukarıdaki örnekte "<head>" etiketi, "<title>" dan önce bazı boşluklar içerir ve bu metin bir "#text" düğümü haline gelir (yalnızca bir satırsonu ve bazı boşluklar içerir).
+Dolayısıyla, örneğin yukarıdaki örnekte `<head>` etiketi, `<title>` dan önce bazı boşluklar içerir ve bu metin bir "#text" düğümü haline gelir (yalnızca bir satırsonu ve bazı boşluklar içerir).
 
 Yalnızca iki üst düzey istisna vardır:
-1. "<head>" öncesindeki boşluklar ve satırsonları tarihsel nedenlerden dolayı göz ardı edilir,
-2. "</body>" 'den sonra bir şey koyarsak, HTML spesifikasyonu tüm içeriğin "<body>" içinde olmasını gerektirdiğinden, bu otomatik olarak sonunda "body" nin içine taşınır. Dolayısıyla "</body>" öğesinden sonra boşluk kalmayabilir..
+1. `<head>` öncesindeki boşluklar ve satırsonları tarihsel nedenlerden dolayı göz ardı edilir,
+2. `</body>` 'den sonra bir şey koyarsak, HTML spesifikasyonu tüm içeriğin `<body>` içinde olmasını gerektirdiğinden, bu otomatik olarak sonunda "body" nin içine taşınır. Dolayısıyla `</body>` öğesinden sonra boşluk kalmayabilir..
 
 Diğer durumlarda her şey basittir; eğer belgede boşluklar varsa (tıpkı herhangi bir karakter gibi), o zaman bunlar DOM'da metin düğümleri olurlar ve eğer onları kaldırırsak, o zaman kaybolacaklardır.
 
