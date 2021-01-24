@@ -76,14 +76,14 @@ alert("Şimdi ise beklendiği gibi hatasız");
 [1, 2].forEach(alert)  
 ```
 
-Now we have the "Şimdi ise beklendiği gibi hatasız" message and then `1` and `2`.
+Şimdi "Her şey yolunda" mesajını ve ardından `1` ve `2`'yi görüyoruz.
 
 İlk yazdığımız kod bloğunda hata olmasının sebebi JavaScript'in `[...]` den önce noktalı virgül gelmeyeceğini varsaymasından dolayı olmaktadır.
 
 Bundan dolayı noktalı virgül koyulmaz, bu durumda ilk kod bloğunda tüm blok bir ifadesi olarak görülür. JavaScript motoru kodu aşağıdaki gibi görecektir.
 
 ```js run no-beautify
-alert("There will be an error")[1, 2].forEach(alert)
+alert("Bir hata gerçekleşecek")[1, 2].forEach(alert)
 ```
 
 Fakat normalde sizinde bildiğiniz gibi bunu iki satır görmesi gerekmektedir. Bu ve bunun gibi hatalar ile kod yazdığınız sürece karşılaşabileceğiniz hatalardır.
