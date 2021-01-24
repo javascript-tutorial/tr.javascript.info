@@ -48,29 +48,29 @@ Modern JavaScript'i eski haline getiren `"no use strict"` gibi bir direktif bulu
 Sıkı moda girdiğinizda artık eskiye dönüş yoktur.
 ```
 
-## Browser console
+## Tarayıcı Konsolu
 
-For the future, when you use a browser console to test features, please note that it doesn't `use strict` by default.
+İleride özellikleri test etmek için bir [geliştirici konsolu](info:devtools) kullandığınızda, lütfen tarayıcının varsayılan olarak `use strict` kullanmadığını unutmayın.
 
-Sometimes, when `use strict` makes a difference, you'll get incorrect results.
+Bazen, `use strict` bir fark yarattığında, yanlış sonuçlar alırsınız.
 
-You can try to press `key:Shift+Enter` to input multiple lines, and put `use strict` on top, like this:
+Birden çok satır girmek için `key:Shift+Enter` tuşlarına basmayı deneyebilir ve üstte `use strict` kullanmayı deneyebilirsiniz, örneğin:
 
 ```js
-'use strict'; <Shift+Enter for a newline>
-//  ...your code
-<Enter to run>
+'use strict'; <Yeni satır için Shift+Enter>
+//  ...sizin kodunuz
+<Çalıştırmak için Enter>
 ```
 
-It works in most browsers, namely Firefox and Chrome.
+Çoğu tarayıcıda, yani Firefox ve Chrome'da çalışır.
 
-If it doesn't, the most reliable way to ensure `use strict` would be to input the code into console like this:
+Aksi takdirde, `use strict` eklemenin en güvenilir yolu, kodu konsola şu şekilde girmek olacaktır:
 
 ```js
 (function() {
   'use strict';
 
-  // ...your code...
+  // ...sizin kodunuz...
 })()
 ```
 
