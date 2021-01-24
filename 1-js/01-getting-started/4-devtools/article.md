@@ -32,7 +32,6 @@ Hatanın altında `>` sembolünü görebilirsiniz. Bu "komut satırı"'nı işar
 
 Başlangıç için hataları görmek yeterli olacaktır. Daha sonra geliştirme aracını <info:debugging-chrome> bölümünde derinlemesine öğreneceksiniz.
 
-
 ## Firefox, Edge ve diğerleri
 
 Çoğu tarayıcı geliştirme aracını `key:F12` tuşu ile açar.
@@ -47,12 +46,12 @@ Safari (sadece macOS için desteklenmektedir) biraz özeldir. Geliştirici araç
 
 Bu işlemi yaptıktan sonra `key:Cmd+Opt+C` ile geliştirici konsolunu açıp kapatabilirsiniz. Ayrıca dikkat ederseniz üst menüde "Develop" adında yeni bir başlık göreceksiniz. Buradan da birçok komutu çalıştırabilirsiniz.
 
-
 ## Multi-line input
 
 Genelde konsol ekranında `key:Enter` yaparsanız bulunduğu satırı çalıştırır. Birden fazla satırı yazmak istiyorsanız `key:Shift+Enter` kullanabilirsiniz.
 
 ## Özet
+
 - Geliştirici araçları hataları görmenizi, komutları çalıştırmanızı, değişkenleri takip etmenizi sağlar.
 - Windows işletim sisteminde `key:f12` tuşu ile açılır (Çoğu tarayıcıda bu tuş çalışır). macOS işletim sistemi için ise Google Chrome: `key:Cmd+Opt+J`  ile Safari ise: `key:Cmd+Opt+C` tuşu ile açılır (Safari'de geliştirici modunu açmanız gerekmekte).
 
