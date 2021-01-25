@@ -4,17 +4,32 @@ importance: 5
 
 # "Akıllı" tooltip
 
+<<<<<<< HEAD
 Kullanıcı fareyle bir elementin *üzerinden geçtiğinde* ancak *üzerinden geçip gitmediğinde* tooltip (ipucu) gösteren bir fonksiyon yazın. 
 
 Diğer kelimelerle, eğer kullanıcı faresiyle bir ögenin üzerine gelirse ve durursa -- tooltipi göster. Ancak eğer faresiyle bu ögenin üzerinden hızlıca geçip giderse, tooltip gösterme.
+=======
+Write a function that shows a tooltip over an element only if the visitor moves the mouse *to it*, but not *through it*.
+
+In other words, if the visitor moves the mouse to the element and stops there -- show the tooltip. And if they just moved the mouse through, then no need, who wants extra blinking?
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 Teknik olarak, bir öğenin üzerindeki fare hızını ölçebiliriz, eğer hızı yavaşsa biz bunu elementin üzerinden geçiyor kabul ederek tooltipi göstermeliyiz. Hızı fazla ise o zaman görmezden gelmeliyiz.
 
+<<<<<<< HEAD
 Bunun için global obje `new HoverIntent(options)` yap. `options` (seçenekler) ile beraber:
 
 - `elem` -- Takip edilecek element.
 - `over` -- Eğer fare elementin üzerinden yavaşca geçiyorsa çağırılacak fonksiyon.
 - `out` -- Fare elementin üzerinden ayrıldığı zaman çağırılacak fonksiyon (eğer `over` çağırıldıysa).
+=======
+Make a universal object `new HoverIntent(options)` for it.
+
+Its `options`:
+- `elem` -- element to track.
+- `over` -- a function to call if the mouse came to the element: that is, it moves slowly or stopped over it.
+- `out` -- a function to call when the mouse leaves the element (if `over` was called).
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 
 Tooltip için böyle bir objeyi kullanmaya bir örnek:
 

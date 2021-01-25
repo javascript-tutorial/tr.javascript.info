@@ -6,7 +6,9 @@ importance: 5
 
 Bir tablo var:
 
+```html run
 <table>
+<<<<<<< HEAD
 <tr>
   <th>İsim</th>
   <th>Soyisim</th>
@@ -32,7 +34,29 @@ Bir tablo var:
   <td>...</td>
   <td>...</td>
 </tr>
+=======
+<thead>
+  <tr>
+    <th>Name</th><th>Surname</th><th>Age</th>
+  </tr>
+</thead>
+<tbody>
+  <tr>
+    <td>John</td><td>Smith</td><td>10</td>
+  </tr>
+  <tr>
+    <td>Pete</td><td>Brown</td><td>15</td>
+  </tr>
+  <tr>
+    <td>Ann</td><td>Lee</td><td>5</td>
+  </tr>
+  <tr>
+    <td>...</td><td>...</td><td>...</td>
+  </tr>
+</tbody>
+>>>>>>> 97ef86242f9f236b13152e1baf52a55c4db8728a
 </table>
+```
 
 Belki içinde daha çok satır var.
 
