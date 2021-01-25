@@ -80,7 +80,6 @@ const bigInt = 1234567890123456789012345678901234567890n;
 Şu anda, `BigInt` Firefox/Chrome/Edge/Safari'de destekleniyor, ancak IE'de desteklenmiyor.
 ```
 
-You can check [*MDN* BigInt compatibility table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#Browser_compatibility) to know which versions of a browser are supported.
 Bir tarayıcının hangi sürümlerinin desteklendiğini öğrenmek için [* MDN * BigInt uyumluluk tablosunu](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#Browser_compatibility) kontrol edebilirsiniz.
 
 ## String - Karakter Dizisi
