@@ -46,7 +46,6 @@ let mesaj = 'Merhaba!'; // Değişken tanımlandı ve değer atandı
 alert(mesaj); // Merhaba!
 ```
 Birden fazla değişkeni bir satırda tanımlamak da mümkündür.
-We can also declare multiple variables in one line:
 
 ```js no-beautify
 let kullanici = 'Ahmet', yas = 25, mesaj = 'Merhaba';
@@ -62,7 +61,7 @@ let yas = 25;
 let mesaj = 'Merhaba';
 ```
 
-Bazı programcılar is şu şekilde kullanmaktadırlar:
+Bazı programcılar ise şu şekilde kullanmaktadırlar:
 
 ```js no-beautify
 let kullanici = 'Ahmet',
@@ -129,7 +128,6 @@ let mesaj;
 mesaj = merhaba;
 */!*
 
-// now two variables hold the same data
 // artık iki değişken de aynı değeri taşır.
 alert(merhaba); // Merhaba Dünya!
 alert(mesaj); // Merhaba Dünya!
