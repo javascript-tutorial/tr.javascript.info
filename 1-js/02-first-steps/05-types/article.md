@@ -1,4 +1,4 @@
-# Data types
+# Veri Tipleri
 
 Bir javascript değişkeni her türlü veriyi tutabilir. Önce karakter dizisi(String) atansa da sonra sayısal değer alabilir:
 
@@ -10,7 +10,7 @@ mesaj = 123456;
 
 Bu şekilde olaylara izin veren tipdeki dillere "dinamik tip" dil denir. Veri yapıları olsa bile değişkenler bu yapılara bağlı değildir.
 
-JavaScript dilinde yedi farklı veri tipi bulunmaktadır. Şimdilik bu tiplerden bahsedeceğiz gelecek bölümlerde ise daha derinlemesine bu tipleri inceleyeceğiz.
+JavaScript dilinde sekiz farklı veri tipi bulunmaktadır. Şimdilik bu tiplerden bahsedeceğiz gelecek bölümlerde ise daha derinlemesine bu tipleri inceleyeceğiz.
 
 ##  Number - Sayı
 
@@ -42,7 +42,7 @@ Normal sayıların haricinde "özel sayısal değerler" de sayı olarak tanımla
     alert( "Sayı Değil ( Not a Number) " / 2 ); // NaN, böyle bir bölme işlemi yapılamaz.
     ```
 
-    `NaN` is sticky. Any further operation on `NaN` would give `NaN`:
+    `NaN` yapışkandır. `NaN` üzerinde yapılacak herhangi bir işlem yeniden `NaN` çıktısı verecektir:
 
     ```js run
     alert( "not a number" / 2 + 5 ); // NaN
@@ -57,6 +57,31 @@ Kodunuzun tamamı hiç durmadan çalışacaktır. En kötü ihtimalle `NaN` sonu
 ```
 Özel sayısal değerler "number" tipine aittir. Tabiki sayı bizim bildiğimiz tipte sayı değillerdir. 
 <info:number> bölümünde sayısal değerler ile çalışmayı daha derinlemesine göreceksiniz.
+
+## BigInt - Büyük Sayı
+
+JavaScript'te "number" türü, şundan büyük tamsayı değerlerini temsil edemez <code>(2<sup>53</sup>-1)</code> (bu `9007199254740991`), veya daha az <code>-(2<sup>53</sup>-1)</code> negatifler için. Dahili temsillerinden kaynaklanan teknik bir sınırlamadır.
+
+Çoğu amaç için bu oldukça yeterlidir, ancak bazen gerçekten büyük sayılara ihtiyacımız olabilir, kriptografi veya mikrosaniye hassasiyetli zaman damgaları için.
+
+Son zamanlarda, isteğe bağlı uzunluktaki tam sayıları temsil etmek için dile `BigInt` türü eklendi.
+
+Bir tamsayının sonuna `n` eklenerek `BigInt` değeri oluşturulur:
+
+```js
+// Sondaki "n" bu değerin bir BigInt olduğu anlamına gelir
+const bigInt = 1234567890123456789012345678901234567890n;
+```
+
+`BigInt` sayılarına nadiren ihtiyaç duyulduğundan, onları burada ele almıyoruz, ancak onlara ayrı bir bölüm <info:bigint> ayırdık. Bu kadar büyük sayılara ihtiyacınız olduğunda okuyun.
+
+
+```smart header="Compatibility issues"
+Şu anda, `BigInt` Firefox/Chrome/Edge/Safari'de destekleniyor, ancak IE'de desteklenmiyor.
+```
+
+You can check [*MDN* BigInt compatibility table](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#Browser_compatibility) to know which versions of a browser are supported.
+Bir tarayıcının hangi sürümlerinin desteklendiğini öğrenmek için [* MDN * BigInt uyumluluk tablosunu](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/BigInt#Browser_compatibility) kontrol edebilirsiniz.
 
 ## String - Karakter Dizisi
 
@@ -219,10 +244,11 @@ Son üç satır diğerlerinden farklıdır. Şu şekilde;
 
 ## Özet
 
-Javascript dilinde 7 tane basit tip bulunmaktadır.
+Javascript dilinde 8 tane basit tip bulunmaktadır.
 
 
 - `number` her türlü sayı için ( integer veya floating point)
+- `bigint` isteğe bağlı uzunluktaki tam sayılar içindir.
 - `string` bir veya birden fazla karakter için
 - `boolean` , `true`/`false` yani doğru-yanlış değerleri için.
 - `null` bilinmeyen değerler için.
