@@ -6,7 +6,7 @@ importance: 5
 
 `ul/li` olarak iç içe geçmiş bir ağaç var. 
 
-Her bir `<li>` nin neslindenn gelenlerin sayısını ekleyen kodu yazın. Yaprakları geçin (çocuksuz düğümler).
+Her bir `<li>` nin neslinden gelenlerin sayısını ekleyen kodu yazın. Yaprakları geçin (çocuksuz düğümler).
 
 Sonuç:
 
