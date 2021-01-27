@@ -1,4 +1,4 @@
-# Fonksiyon ifadeleri.
+# Fonksiyon ifadeleri
 
 JavaScript'te fonksiyonlar, "büyülü dil yapısı" değil yalnızca özel bir değer tipidir.
 [cut]
