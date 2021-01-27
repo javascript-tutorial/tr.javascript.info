@@ -1,4 +1,4 @@
-# Mocha ile otomatik test yazma.
+# Mocha ile otomatik test yazma
 
 Bundan sonraki görevlerde otomatik test kullanılacak.
 
