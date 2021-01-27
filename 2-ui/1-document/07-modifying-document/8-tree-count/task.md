@@ -4,10 +4,10 @@ importance: 5
 
 # Show descendants in a tree
 
-There's a tree organized as nested `ul/li`.
+`ul/li` olarak iç içe geçmiş bir ağaç var. 
 
-Write the code that adds to each `<li>` the number of its descendants. Skip leaves (nodes without children).
+Her bir `<li>` nin neslinden gelenlerin sayısını ekleyen kodu yazın. Yaprakları geçin (çocuksuz düğümler).
 
-The result:
+Sonuç:
 
 [iframe border=1 src="solution"]

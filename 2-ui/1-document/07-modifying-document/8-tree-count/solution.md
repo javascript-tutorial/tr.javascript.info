@@ -1,1 +1,1 @@
-To append text to each `<li>` we can alter the text node `data`.
+Metni her bir `<li>`nin sonuna eklemek için, metin düğümü (text node) `data`sını  değiştiririz.
