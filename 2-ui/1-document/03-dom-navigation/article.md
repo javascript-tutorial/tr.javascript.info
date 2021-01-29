@@ -5,37 +5,39 @@ libs:
 ---
 
 
-# Walking the DOM
+# Dom'da gezinme
 
-The DOM allows us to do anything with elements and their contents, but first we need to reach the corresponding DOM object.
+DOM, elementler ve içerikleri ile her şeyi yapmamıza izin verir, ancak önce ilgili DOM nesnesine ulaşmamız gerekir.
 
-All operations on the DOM start with the `document` object. From it we can access any node.
+DOM üzerindeki tüm işlemler `document` nesnesiyle başlar. Bu nesneden herhangi bir düğüme erişebiliriz.
 
-Here's a picture of links that allow for travel between DOM nodes:
+DOM düğümleri arasında dolaşmaya izin veren bağlantıların bir görüntüsü:
 
 ![](dom-links.svg)
 
-Let's discuss them in more detail.
+Bunlara daha ayrıntılı değinelim.
 
-## On top: documentElement and body
+## Üstte: documentElement ve body
 
-The topmost tree nodes are available directly as `document` properties:
+En üstteki ağaç düğümleri doğrudan `document` özellikleri olarak kullanılabilir:
 
 `<html>` = `document.documentElement`
-: The topmost document node is `document.documentElement`. That's DOM node of `<html>` tag.
+: En üstteki belge düğümü `document.documentElement`'tir. Bu, `<html>` etiketinin DOM düğümüdür.
 
 `<body>` = `document.body`
-: Another widely used DOM node is the `<body>` element -- `document.body`.
+: Yaygın olarak kullanılan başka bir DOM düğümü, `<body>` elementidir -- `document.body`.
 
 `<head>` = `document.head`
-: The `<head>` tag is available as `document.head`.
+: `<head>` etiketi `document.head` olarak mevcuttur.
 
-````warn header="There's a catch: `document.body` can be `null`"
-A script cannot access an element that doesn't exist at the moment of running.
 
-In particular, if a script is inside `<head>`, then `document.body` is unavailable, because the browser did not read it yet.
 
-So, in the example below the first `alert` shows `null`:
+````warn header="Bir yakalama var: `document.body`, `null` olabilir."
+Bir komut dosyası (script), çalışma anında mevcut olmayan bir öğeye erişemez.
+
+Özellikle, bir komut dosyası `<head>` içindeyse, tarayıcı henüz okumadığı için `document.body` kullanılamaz.
+
+Bu nedenle, aşağıdaki örnekte ilk `alert` `null` gösterir:
 
 ```html run
 <html>
