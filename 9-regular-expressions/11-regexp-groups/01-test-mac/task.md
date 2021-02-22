@@ -16,5 +16,9 @@ alert( regexp.test('0132546789AB') ); // false (no colons)
 
 alert( regexp.test('01:32:54:67:89') ); // false (5 numbers, must be 6)
 
+<<<<<<< HEAD:9-regular-expressions/11-regexp-groups/01-test-mac/task.md
 alert( regexp.test('01:32:54:67:89:ZZ') ) // false (ZZ ad the end)
+=======
+alert( regexp.test('01:32:54:67:89:ZZ') ) // false (ZZ at the end)
+>>>>>>> 7533c719fbf62ba57188d6d51fe4c038b282bd0c:9-regular-expressions/11-regexp-groups/01-test-mac/task.md
 ```

@@ -1,6 +1,10 @@
 # Lookahead and lookbehind
 
+<<<<<<< HEAD
 Sometimes we need to find only those matches for a pattern that are followed or preceeded by another pattern.
+=======
+Sometimes we need to find only those matches for a pattern that are followed or preceded by another pattern.
+>>>>>>> 7533c719fbf62ba57188d6d51fe4c038b282bd0c
 
 There's a special syntax for that, called "lookahead" and "lookbehind", together referred to as "lookaround".
 
@@ -26,10 +30,17 @@ More complex tests are possible, e.g. `pattern:X(?=Y)(?=Z)` means:
 
 1. Find `pattern:X`.
 2. Check if `pattern:Y` is immediately after `pattern:X` (skip if isn't).
+<<<<<<< HEAD
 3. Check if `pattern:Z` is immediately after `pattern:Y` (skip if isn't).
 4. If both tests passed, then it's the match.
 
 In other words, such pattern means that we're looking for `pattern:X` followed by   `pattern:Y` and `pattern:Z` at the same time.
+=======
+3. Check if `pattern:Z` is also immediately after `pattern:X` (skip if isn't).
+4. If both tests passed, then the `pattern:X` is a match, otherwise continue searching.
+
+In other words, such pattern means that we're looking for `pattern:X` followed by `pattern:Y` and `pattern:Z` at the same time.
+>>>>>>> 7533c719fbf62ba57188d6d51fe4c038b282bd0c
 
 That's only possible if patterns `pattern:Y` and `pattern:Z` aren't mutually exclusive.
 
@@ -54,7 +65,11 @@ The syntax is: `pattern:X(?!Y)`, it means "search `pattern:X`, but only if not f
 ```js run
 let str = "2 turkeys cost 60€";
 
+<<<<<<< HEAD
 alert( str.match(/\d+(?!€)/) ); // 2 (the price is skipped)
+=======
+alert( str.match(/\d+\b(?!€)/g) ); // 2 (the price is not matched)
+>>>>>>> 7533c719fbf62ba57188d6d51fe4c038b282bd0c
 ```
 
 ## Lookbehind
@@ -81,7 +96,7 @@ And, if we need the quantity -- a number, not preceded by `subject:$`, then we c
 ```js run
 let str = "2 turkeys cost $60";
 
-alert( str.match(/(?<!\$)\d+/) ); // 2 (skipped the price)
+alert( str.match(/(?<!\$)\b\d+/g) ); // 2 (the price is not matched)
 ```
 
 ## Capturing groups
