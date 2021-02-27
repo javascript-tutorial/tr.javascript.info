@@ -70,7 +70,7 @@ Değişkenler isimlendirilirken aşağıdakileri içerebilir:
 - `$` ve `_` gibi karakterler diğer karakterle aynı niteliktedir ve her yerde kullanılabilir.
 - Latin olmayan yani Arapça, Japonca, Çince gibi diller de kullanılabilir fakat genelde kullanılmaz. 
 
-Değişkenler dinamik yazıma sahiptir ve herşeyi tutabilirler:
+Değişkenler dinamik yazıma sahiptir ve her şeyi tutabilirler:
 
 ```js
 let x = 5;
@@ -108,7 +108,7 @@ Dahası için: <info:variables> ve <info:types> konularına bakabilirsiniz.
 [`alert(mesaj)`](mdn:api/Window/alert)
 : Mesajın çıktısını ekrana uyarı olarak ver.
 
-tüm bo fonksiyonlar *modal* dır. Tekrara hatırlatmak gerekirse modal kullanıcının etkileşimi olana kadar kodu durdururlar. Yani kullanıcıdan cevabı beklerler.
+tüm bu fonksiyonlar *modal* dır. Tekrar hatırlatmak gerekirse modallar kullanıcının etkileşimi olana kadar kodu durdururlar. Yani kullanıcıdan cevabı beklerler.
 
 Örneğin:
 
