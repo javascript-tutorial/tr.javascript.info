@@ -5,8 +5,13 @@
 
 Kod:
 
+<<<<<<< HEAD
 ```js run
 function topla(a) {
+=======
+```js demo run
+function sum(a) {
+>>>>>>> e01998baf8f85d9d6cef9f1add6c81b901f16d69
 
   let anlikToplam = a;
 
