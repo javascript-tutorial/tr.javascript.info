@@ -1,6 +1,11 @@
 ```js run no-beautify
+<<<<<<< HEAD
 function sortByName(arr) {
   arr.sort((a, b) => a.adi > b.adi);
+=======
+function sortByAge(arr) {
+  arr.sort((a, b) => a.age - b.age);
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 }
 
 let muzaffer = { adi: "Muzaffer", yas: 25 };

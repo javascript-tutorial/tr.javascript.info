@@ -1,8 +1,18 @@
 # Sayılar
 
+<<<<<<< HEAD
 JavaScript'te tüm sayılar 64-bit formatında tutulur [IEEE-754](http://en.wikipedia.org/wiki/IEEE_754-1985), buna "double precision" da denir.
 
 Sayılar ile ilgili bilinenlerin üzerinden tekrar geçecek olunursa.
+=======
+In modern JavaScript, there are two types of numbers:
+
+1. Regular numbers in JavaScript are stored in 64-bit format [IEEE-754](https://en.wikipedia.org/wiki/IEEE_754-2008_revision), also known as "double precision floating point numbers". These are numbers that we're using most of the time, and we'll talk about them in this chapter.
+
+2. BigInt numbers, to represent integers of arbitrary length. They are sometimes needed, because a regular number can't exceed <code>2<sup>53</sup></code> or be less than <code>-2<sup>53</sup></code>. As bigints are used in few special areas, we devote them a special chapter <info:bigint>.
+
+So here we'll talk about regular numbers. Let's expand our knowledge of them.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 ## Sayıyı yazmanın bir çok yolu
 
@@ -12,11 +22,26 @@ Diyelim ki 1 milyar yazmak istiyorsunuz. Şu şekilde:
 let milyar = 1000000000;
 ```
 
+<<<<<<< HEAD
 Fakat gerçek hayatta bu kadar 0 yan yana yazdığınızda karışma şansı olduğundan bunun yerine `1milyar` veya `7.3milyar` gibi yazılabilmektedir. Aynı özellik JavaScript için de geçerli. Fakat bu defa sayıdaki 0 sayısı  `"e"` ile birlikte kullanılmalıdır: 
+=======
+We also can use underscore `_` as the separator:
+
+```js
+let billion = 1_000_000_000;
+```
+
+Here the underscore `_` plays the role of the "syntactic sugar", it makes the number more readable. The JavaScript engine simply ignores `_` between digits, so it's exactly the same one billion as above.
+
+In real life though, we try to avoid writing long sequences of zeroes. We're too lazy for that. We'll try to write something like `"1bn"` for a billion or `"7.3bn"` for 7 billion 300 million. The same is true for most large numbers.
+
+In JavaScript, we can shorten a number by appending the letter `"e"` to it and specifying the zeroes count:
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 ```js run
 let milyar = 1e9;  // 1 milyar 1 ve 9 sıfırdan oluşmaktadır.
 
+<<<<<<< HEAD
 alert( 7.3e9 );  // 7.3 milyar (7,300,000,000)
 ```
 
@@ -26,11 +51,29 @@ alert( 7.3e9 );  // 7.3 milyar (7,300,000,000)
 ```
 
 Çok küçük bir sayıya bakıldığında. Örneğin 1 mikrosaniye ( saniyenin milyonda 1'i):
+=======
+alert( 7.3e9 );  // 7.3 billions (same as 7300000000 or 7_300_000_000)
+```
+
+In other words, `e` multiplies the number by `1` with the given zeroes count.
+
+```js
+1e3 = 1 * 1000 // e3 means *1000
+1.23e6 = 1.23 * 1000000 // e6 means *1000000
+```
+
+Now let's write something very small. Say, 1 microsecond (one millionth of a second):
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 ```js
 let ms = 0.000001;
 ```
+<<<<<<< HEAD
 Aynı şekilde `"e"` yardımcı olabilir. 0 ları yazmak yerine :
+=======
+
+Just like before, using `"e"` can help. If we'd like to avoid writing the zeroes explicitly, we could say the same as:
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 ```js
 let ms = 1e-6; // 1'in soluna 6 tane 0 
@@ -111,7 +154,11 @@ Yuvarlama işlemi için birçok dahili fonksiyon bulunmaktadır:
 : Yukarı yuvarlar: `3.1` `4`,  `-1.1` `-1` olur.
 
 `Math.round`
+<<<<<<< HEAD
 : En yakın tam sayıya yuvarlar: `3.1`  `3`, `3.6`  `4` ve `-1.1`  `-1` olur.
+=======
+: Rounds to the nearest integer: `3.1` becomes `3`, `3.6` becomes `4`, the middle case: `3.5` rounds up to `4` too.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 `Math.trunc` (Internet Explorer desteklemez)
 : Ondalık bölümü siler: `3.1`  `3`, `-1.1`  `-1` olur.
@@ -131,14 +178,18 @@ Bu fonksiyonlar ondalık sayılar için önünüze gelebilecek tüm farklılıkl
 
 Bunu yapmak için iki yol bulunmaktadır:
 
+<<<<<<< HEAD
 1. Çarp ve Böl.
     
     Örneğin 2. basamaktan sonrasını yuvarlamak istiyorsanız bunu  `100` ile çarpıp sonra tekrar `100` e bölerseniz istediğinizi elde etmiş olursunuz.
     
+=======
+    For example, to round the number to the 2nd digit after the decimal, we can multiply the number by `100` (or a bigger power of 10), call the rounding function and then divide it back.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
     ```js run
     let num = 1.23456;
 
-    alert( Math.floor(num * 100) / 100 ); // 1.23456 -> 123.456 -> 123 -> 1.23
+    alert( Math.round(num * 100) / 100 ); // 1.23456 -> 123.456 -> 123 -> 1.23
     ```
 
 2. [toFixed(n)](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Number/toFixed) kullanarak ondalık bölümde `n` basamaktan sonrası için yuvarlama yapılabilir.
@@ -188,7 +239,13 @@ alert( 0.1 + 0.2 ); // 0.30000000000000004
 ```
 Yok artık! Burada yanlış karşılaştırmanın sonuçlarını gördünüz. Düşünün bir e-ticaret sitesi yapıyorsunuz. Kullanıcı `0.10₺` ve `0.20₺` lik iki tane çiklet ekledi sepetine. Sonuçta toplam `$0.30000000000000004` oldu. Sitenize gelen kişinin kafası karışacaktır.
 
+<<<<<<< HEAD
 Peki neden böyle birşey oluyor?
+=======
+Ouch! There are more consequences than an incorrect comparison here. Imagine you're making an e-shopping site and the visitor puts `$0.10` and `$0.20` goods into their cart. The order total will be `$0.30000000000000004`. That would surprise anyone.
+
+But why does this happen?
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 Sayı hafızada binary formatta tutulur. Fakat ondalık bölümleri `0.1`, `0.2` gibi desimal sistemde çok basit gibi duran sayılar aslında bitmez bir binary forma sahiptir.
 
@@ -198,7 +255,11 @@ Sayı hafızada binary formatta tutulur. Fakat ondalık bölümleri `0.1`, `0.2`
 
 Aslında *0.1* veya *0.2* tam olarak saklanamaz, tıpkı `1/3`'ün tam olarak saklanamaması gibi.
 
+<<<<<<< HEAD
 IEEE-754 bunu en yakın değere yuvarlayarak çözmektedir. Bu kurallar bizim "küçük küsürleri" görmemizi engeller.
+=======
+The numeric format IEEE-754 solves this by rounding to the nearest possible number. These rounding rules normally don't allow us to see that "tiny precision loss", but it exists.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 Örneğin:
 ```js run
@@ -251,14 +312,22 @@ JavaScript böyle bir durumda hata vermez. Belirli formata göre en iyi şekilde
 ```smart header="Sıfırlar"
 Diğer bir komik olay ise `0` ve `-0`'ın varlığıdır.
 
+<<<<<<< HEAD
 İşaret bir bit ile tutulduğundan dolayı tüm sayıların `-` ve `+` lı değerleri bulunmaktadır.
+=======
+That's because a sign is represented by a single bit, so it can be set or not set for any number including a zero.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 Çoğu durumda bu ayrım soruna anlaşılamaz. Çünkü operatörler ikisine de aynı şekilde davranır.
 ```
 
+<<<<<<< HEAD
 
 
 ## Testler: isFinite ve isNaN
+=======
+## Tests: isFinite and isNaN
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 Hatırlarsanız iki tane özel sayı vardı.
 
@@ -302,7 +371,11 @@ Aklınızda bulunsun tüm boş veya sadece boşluk tuşu ile yazılan tüm değe
 
 ```smart header="`Object.is` ile karşılaştırma"
 
+<<<<<<< HEAD
 Özel bir dahili metod olan [Object.is](mdn:js/Object/is) ile değerler `===` gibi karşılaştırılabilir. İki durum için daha güvenlidir denebilir:
+=======
+There is a special built-in method [`Object.is`](mdn:js/Object/is) that compares values like `===`, but is more reliable for two edge cases:
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 1. `NaN` ile çalışır: `Object.is(NaN, NaN) === true` bu iyi
 2. `0` ve `-0` farklıdır: `Object.is(0, -0) === false`,neredeyse hiç kullanılmaz, ama yinede teknik olarak farklıdırlar.
@@ -358,7 +431,11 @@ JavaScript dahilinde matematiksel fonksiyonların ve sabitlerin bulunduğu küç
 Birkaç örnek:
 
 `Math.random()`
+<<<<<<< HEAD
 :  0 ile 1 (1 dahil değil) arasında rasgele sayı üretir.
+=======
+: Returns a random number from 0 to 1 (not including 1).
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
     ```js run
     alert( Math.random() ); // 0.1234567894322
@@ -374,28 +451,50 @@ Birkaç örnek:
     alert( Math.min(1, 2) ); // 1
     ```
 
+<<<<<<< HEAD
 `Math.pow(n, üs)`
 : `n`'in `üs`sünü döndürür.
+=======
+`Math.pow(n, power)`
+: Returns `n` raised to the given power.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
     ```js run
     alert( Math.pow(2, 10) ); // 2'nin 10 üssü = 1024
     ```
 math objesi daha birçok fonksiyon ve sabit barındırmaktadır. Trigonometri de bunlara dahildir.  [ Math objesi dökümantasyonu](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math)
 
+<<<<<<< HEAD
 ## Özet
+=======
+There are more functions and constants in `Math` object, including trigonometry, which you can find in the [docs for the Math object](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/Math).
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 Büyük sayıları yazmak için:
 - `"e"` nin yanına kaç tane sıfır varsa onu yazın. Örneğin : `123e6` = `123` ün yanına `6` tane 0 yaz demektir.
 - `"e"` den sonra yazılan negatif sayı ise kaç tane sıfır varsa önüne bir koy ve değeri bu sayıya böl demektir. 
 
+<<<<<<< HEAD
 
 Farklı sayı sistemleri:
+=======
+To write numbers with many zeroes:
+
+- Append `"e"` with the zeroes count to the number. Like: `123e6` is the same as `123` with 6 zeroes `123000000`.
+- A negative number after `"e"` causes the number to be divided by 1 with given zeroes. E.g. `123e-6` means `0.000123` (`123` millionths).
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 - Sayıları doğrudan hex olarak (`0x`), octal olarak(`0o`) veya binary(ikili) (`0b`) olarak yazmak mümkündür.
 - `parseInt(str,taban) verilen tabana göre karakteri ayrıştırmaya yarar. Taban `2` ile `36` aralığında olmalıdır ( 2 ve 36 dahil)
 - `num.toString(taban)` ise bir sayıyı karakter dizisine verilen tabanda yazmaya yarar. 
 
+<<<<<<< HEAD
 `12pt` ve `100px` gibi değerleri sayıya çevirme:
+=======
+- Can write numbers directly in hex (`0x`), octal (`0o`) and binary (`0b`) systems.
+- `parseInt(str, base)` parses the string `str` into an integer in numeral system with given `base`, `2 ≤ base ≤ 36`.
+- `num.toString(base)` converts a number to a string in the numeral system with the given `base`.
+>>>>>>> d4b3c135ccf80914f59677803e64ebc832d165e3
 
 - `parseInt/parseFloat` hafif çevirimler için kullanılabilir, karakter görene kadar sayıları tutar ve karakter görürse tuttuklarını geri dönderir.
 
