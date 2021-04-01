@@ -176,7 +176,7 @@ Zincirleme atama sağdan sola doğru olur. Önce en sağdaki değişkene değer 
 
 ````smart header="`\"=\"` operatörü değer dönderir"
 
-Operatör her zaman değer dönderir. Toplama `+` veya çarpma için `*` bu çok açıktır. Fakat ya atama ? Atama operatörü de aslında değer dönderir. 
+Operatör her zaman değer döndürür. Toplama `+` veya çarpma için `*` bu çok açıktır. Fakat ya atama ? Atama operatörü de aslında değer döndürür. 
 
 Aşağıdaki gibi bir işlem yaptığınızda `value` x'in içine yazılır ve sonra dönderilir.
 
