@@ -174,11 +174,11 @@ alert( c ); // 4
 Zincirleme atama sağdan sola doğru olur. Önce en sağdaki değişkene değer atanır. `2+2` değeri önce `c`'ye ardından `b` ve son olarakta `a` ya atanır. En sonunda tüm değişkenler tek bir değeri alırlar.
 
 
-````smart header="`\"=\"` operatörü değer dönderir"
+````smart header="`\"=\"` operatörü değer döndürür"
 
 Operatör her zaman değer döndürür. Toplama `+` veya çarpma için `*` bu çok açıktır. Fakat ya atama ? Atama operatörü de aslında değer döndürür. 
 
-Aşağıdaki gibi bir işlem yaptığınızda `value` x'in içine yazılır ve sonra dönderilir.
+Aşağıdaki gibi bir işlem yaptığınızda `value` x'in içine yazılır ve sonra döndürülür.
 
 Daha karmaşık bir örnek şu şekilde yapılabilir:
 ```js run
