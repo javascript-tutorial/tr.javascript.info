@@ -1,14 +1,24 @@
 # CSS Animasyonları
 
+<<<<<<< HEAD
 CSS animasyonları basit animasyonları JavaScript kullanmadan yapmayı sağlar.
 
 JavaScript, CSS animasyonlarını kontrol etmek ve biraz kodla daha iyi hale getirmek için kullanılabilir.
+=======
+CSS animations make it possible to do simple animations without JavaScript at all.
+
+JavaScript can be used to control CSS animations and make them even better, with little code.
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 ## CSS Geçişleri [#css-transition]
 
 CSS geçişlerinin fikri basittir. Bir özelliği ve o özelliğin değişiminin nasıl anime edileceğini tanımlarız. O özellik değiştiğinde, tarayıcı animasyonu çizer.
 
+<<<<<<< HEAD
 Yani, yapmamız gereken tek şey özelliği değiştirmek. Özelliğin değişiminin nasıl çizileceğini tarayıcı halledecektir.
+=======
+That is, all we need is to change the property, and the fluid transition will be done by the browser.
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 Örneğin, aşağıdaki CSS `background-color` özelliğindeki değişimlerin animasyonunu 3 saniye boyunca oynatır.
 
@@ -47,7 +57,11 @@ CSS geçişlerini tanımlamak için 4 özellik vardır:
 - `transition-timing-function`
 - `transition-delay`
 
+<<<<<<< HEAD
 Bunları biraz sonra açıklayacağız, şimdilik bilmemiz gereken, `transition` özelliği ile bu dört özelliği beraber şu sırayla tanımlayabildiğimiz: `property duration timing-function delay`. Ayrıca birden fazla özelliğin animasyonunu tek seferde tanımlayabiliriz.
+=======
+We'll cover them in a moment, for now let's note that the common `transition` property allows declaring them together in the order: `property duration timing-function delay`, as well as animating multiple properties at once.
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 Örneğin, bu tuş hem `color` hem de `font-size` özelliklerini canlandırır.
 
@@ -70,6 +84,7 @@ growing.onclick = function() {
 </script>
 ```
 
+<<<<<<< HEAD
 Şimdi, animasyon özelliklerini teker teker açıklayalım.
 
 ## transition-property
@@ -77,6 +92,15 @@ growing.onclick = function() {
 `transition-property` özelliğine canlandıracağımız özelliklerin listesine yazarız. Örneğin `left`, `margin-left`, `height`, `color`.
 
 Tüm özelliklere animasyon eklenemez ama [çoğuna](http://www.w3.org/TR/css3-transitions/#animatable-properties-). `all` değeri "tüm özellikleri canlandır" anlamına gelir.
+=======
+Now, let's cover animation properties one by one.
+
+## transition-property
+
+In `transition-property`, we write a list of properties to animate, for instance: `left`, `margin-left`, `height`, `color`. Or we could write `all`, which means "animate all properties".
+
+Do note that, there are properties which can not be animated. However, [most of the generally used properties are animatable](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_animated_properties).
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 ## transition-duration
 
@@ -84,11 +108,19 @@ Tüm özelliklere animasyon eklenemez ama [çoğuna](http://www.w3.org/TR/css3-t
 
 ## transition-delay
 
+<<<<<<< HEAD
 `transition-delay` özelliği ile animasyon başlamadan önceki gecikmeyi tanımlayabiliriz. Örneğin, `transition-delay: 1s` ise animasyon değişimden `1` saniye sonra başlar.
 
 Negatif değerler tanımlamak da mümkün. O zamansa animasyon ortadan başlar. Örneğin, `transition-duration: 2s` ise ve gecikme `-1s` ise animasyon `1` saniye sürer ve yarısından başlar.
 
 Buradaki animasyon `0`'dan `9`'a kadar sayıları CSS `translate` özelliğini kullanarak kaydırıyor.
+=======
+In `transition-delay` we can specify the delay *before* the animation. For instance, if `transition-delay` is `1s` and `transition-duration` is `2s`, then the animation starts 1 second after the property change and the total duration will be 2 seconds.
+
+Negative values are also possible. Then the animation is shown immediately, but the starting point of the animation will be after given value (time). For example, if `transition-delay` is `-1s` and `transition-duration` is `2s`, then animation starts from the halfway point and total duration will be 1 second. 
+
+Here the animation shifts numbers from `0` to `9` using CSS `translate` property:
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 [codetabs src="digits"]
 
@@ -108,13 +140,21 @@ Yukardaki örnekte JavaScript `.animate` sınıfını elemente ekler - ve animas
 stripe.classList.add('animate');
 ```
 
+<<<<<<< HEAD
 Ayrıca animasyonu 'ortadan' da,  belli bir sayıdan, başlatabiliriz. Yani, `transition-delay` özelliğine negatif değer vererek şu anki saniyeye karşılık gelen sayıdan başlatabiliriz.
+=======
+We could also start it from somewhere in the middle of the transition, from an exact number, e.g. corresponding to the current second, using a negative `transition-delay`.
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 Rakama tıklarsanız, animasyonu şu anki saniyeden başlatır.
 
 [codetabs src="digits-negative-delay"]
 
+<<<<<<< HEAD
 Bunu JavaScript'e bir satır fazladan ekleyerek yapabiliriz:
+=======
+JavaScript does it with an extra line:
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 ```js
 stripe.onclick = function() {
@@ -129,26 +169,49 @@ stripe.onclick = function() {
 
 ## transition-timing-function
 
+<<<<<<< HEAD
 Bu özellik, zamanlama fonksiyonu, animasyon işleminin süre boyunca nasıl dağıtılacağını tanımlamamızı sağlar. Örneğin, yavaş başlayıp sonra hızlanacak mı yoksa tam tersi mi gibi.
 
 İlk bakışta en karmaşık özellik gibi gözükebilir. Ama üstünde biraz zaman harcayınca çok basitleşecektir.
 
 Bu özellik iki tip değer kabul eder: bir Bezier eğrisi ya da steps fonksiyonu. Daha sık kullanıldığı için ilk olarak eğriden başlayalım.
+=======
+The timing function describes how the animation process is distributed along its timeline. Will it start slowly and then go fast, or vice versa.
+
+It appears to be the most complicated property at first. But it becomes very simple if we devote a bit time to it.
+
+That property accepts two kinds of values: a Bezier curve or steps. Let's start with the curve, as it's used more often.
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 ### Bezier eğrisi
 
+<<<<<<< HEAD
 Zamanlama fonksiyonu şu özellikleri sağlayan 4 kontrol noktası olan bir [Bezier eğrisi](/bezier-curve) ile tanımlanabilir:
 
 1. lk kontrol noktası: `(0,0)`.
 2. Son kontrol noktası: `(1,1)`.
 3. Ara noktalar için `x` değeri `0..1` aralığında olmalıdır, `y` her şey olabilir.
+=======
+The timing function can be set as a [Bezier curve](/bezier-curve) with 4 control points that satisfy the conditions:
+
+1. First control point: `(0,0)`.
+2. Last control point: `(1,1)`.
+3. For intermediate points, the values of `x` must be in the interval `0..1`, `y` can be anything.
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 CSS'de bir bezier eğrisi şöyle tanımlanır: `cubic-bezier(x2, y2, x3, y3)`. Burada sadece 2. ve 3. kontrol noktalarını tanımlamamız yeterli çünkü 1. nokta `(0,0)`'a 4. nokta da `(1,1)`'e sabitlenmiştir.
 
+<<<<<<< HEAD
 Zamanlama fonksiyonu animasyonun zaman içinde ne kadar hızlı gerçekleştiğini tanımlar.
 
 - `x` ekseni zamanı gösterir: `0` – başlama anı, `1` – `transition-duration` özelliğinin son anı.
 - `y` ekseni işlemin ne kadarının tamamlandığını gösterir. `0` – canlandırılan özelliğin başlama değeri, `1` – özelliğin son değeri.
+=======
+The timing function describes how fast the animation process goes.
+
+- The `x` axis is the time: `0` -- the start, `1` -- the end of `transition-duration`.
+- The `y` axis specifies the completion of the process: `0` -- the starting value of the property, `1` -- the final value.
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 En basit eğri biçimi animasyon eşit bir şekilde oynatıldığında, yani doğrusal bir hızda olduğundadır. Bu eşit dağılım şu eğri ile tanımlanabilir: `cubic-bezier(0, 0, 1, 1)`.
 
@@ -197,7 +260,11 @@ CSS:
 
 CSS'de önceden tanımlanmış, hazır, birkaç fonksiyon vardır. `linear`, `ease`, `ease-in`, `ease-out` ve `ease-in-out`.
 
+<<<<<<< HEAD
 `linear` fonksiyonu `cubic-bezier(0, 0, 1, 1)` için bir kısayoldur - Zaten görmüş olduğumuz düz bir çizgi.
+=======
+The `linear` is a shorthand for `cubic-bezier(0, 0, 1, 1)` -- a straight line, which we described above.
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 Diğerleri ise şu `cubic-bezier` eğrileri için kısayoldur: 
 
@@ -221,9 +288,15 @@ Yani, trenimizi yavaşlatmak için `ease-out` fonksiyonunu kullanabilirdik.
 
 Ama biraz farklı görünüyor.
 
+<<<<<<< HEAD
 **Bir bezier eğrisi, animasyonun sınırları dışına "taşmasına" neden olabilir.**
 
 Eğrinin üzerindeki kontrol noktaları herhangi bir `y` değeri alabilir: negatif veya çok büyük değerler. O zaman bezier eğrisi de çok aşağıya düşebilir ya da çok yukarı zıplayabilir ve animasyonun normal sınırları dışına çıkmasına sebep olabilir.
+=======
+**A Bezier curve can make the animation exceed its range.**
+
+The control points on the curve can have any `y` coordinates: even negative or huge ones. Then the Bezier curve would also extend very low or high, making the animation go beyond its normal range.
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 Aşağıdaki örneğin animasyon kodu:
 ```css
@@ -244,6 +317,7 @@ Ama trene tıklarsanız göreceksiniz ki:
 
 [codetabs src="train-over"]
 
+<<<<<<< HEAD
 Peki neden böyle oluyor? Aşağıdaki bezier eğrisinin grafiğine bakarsak gayet açıkça anlayabiliriz.
 
 ![](bezier-train-over.svg)
@@ -251,14 +325,31 @@ Peki neden böyle oluyor? Aşağıdaki bezier eğrisinin grafiğine bakarsak gay
 2\. noktanın `y` koordinatını sıfırın altına çektik ve 3. noktanın `y` koordinatını da `1`'in üstüne çıkardık. Bu yüzden, eğri "düzgün" dörtgenin dışına çıkıyor. `y` değeri "standart" aralığın, `0...1`'in, dışına çıkıyor.
 
 Bildiğimiz gibi, `y` "animasyonun ne kadarının tamamlandığını" gösteriyor. `y = 0` değeri özelliğin başlama değerine ve `y = 1` de son değerine karşılık geliyor. Yani, `y < 0` olan değerler özelliği, left özelliğinin başlama değerinden daha aşağıya çekiyor ve `y > 1` olan değerler ise son `left` değerinden daha üste çıkarıyor.
+=======
+Why it happens is pretty obvious if we look at the graph of the given Bezier curve:
+
+![](bezier-train-over.svg)
+
+We moved the `y` coordinate of the 2nd point below zero, and for the 3rd point we made it over `1`, so the curve goes out of the "regular" quadrant. The `y` is out of the "standard" range `0..1`.
+
+As we know, `y` measures "the completion of the animation process". The value `y = 0` corresponds to the starting property value and `y = 1` -- the ending value. So values `y<0` move the property beyond the starting `left` and `y>1` -- past the final `left`.
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 Bu tabii ki daha "yumuşak" bir örnek. Eğer `y` değerine `-99` ve `99` gibi değerler verseydik tren aralığın çok daha dışına çıkardı.
 
+<<<<<<< HEAD
 Ama spesifik bir iş için Bezier eğrisini nasıl yapabiliriz? Bunun için birçok yardımcı araç var. Örneğin, <http://cubic-bezier.com/> sitesiyle bir bezier eğrisi çizebiliriz.
 
 ### Steps
 
 Bir zamanlama fonksiyonu olan `steps(number of steps[, start/end])`, animasyonu adımlara bölmemizi sağlar.
+=======
+But how do we make a Bezier curve for a specific task? There are many tools. For instance, we can do it on the site <http://cubic-bezier.com/>.
+
+### Steps
+
+The timing function `steps(number of steps[, start/end])` allows splitting an animation into steps.
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 Animasyonu rakamları kullandığımız bir örnekte görelim.
 
@@ -285,7 +376,11 @@ Toplamda 9 adım olacak, her rakam için bir adım hareketi:
 
 İkinci argüman şu iki kelimeden biri olabilir: `start` ya da `end`.
 
+<<<<<<< HEAD
 `start` animasyon başladığı anda ilk adımı yapmamız gerektiğini söyler.
+=======
+The `start` means that in the beginning of animation we need to make the first step immediately.
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 Animasyon sırasında da görebileceğimiz gibi, rakama tıkladığımız zaman anında `1`'e (ilk adıma) geçiyor ve bir sonraki saniye başladığında tekrar değişiyor.
 
@@ -307,7 +402,11 @@ Bu sefer değerler şu şekilde değişiyor:
 - ...
 - `9s` -- `-90%`
 
+<<<<<<< HEAD
 Burada `step(9, end)` fonksiyonun nasıl çalıştığını görebiliriz. İlk rakam değişimindeki duraklamaya dikkat edin.
+=======
+Here's `steps(9, end)` in action (note the pause between the first digit change):
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 [codetabs src="step-end"]
 
@@ -324,11 +423,19 @@ CSS animasyonu bittiği zaman `transitionend` event'i tektiklenir.
 
 Animasyon tamamlandıktan sonra bir aksiyon yapmak için kullanılır. Ayrıca, animasyonları birbirine bağlamamızı sağlar.
 
+<<<<<<< HEAD
 Örneğin, aşağıdaki gemi tıklanıldığında ileri doğru yüzmeye ve sonra geri dönmeye başlar. Her seferinde biraz daha sağa doğru gidiyor.
 
 [iframe src="boat" height=300 edit link]
 
 Animasyon `go` fonksiyonun çağrılması ile başlıyor ve animasyon bittiği zaman geminin yönünü ters çevirip tekrar çağrılıyor.
+=======
+For instance, the ship in the example below starts to sail there and back when clicked, each time farther and farther to the right:
+
+[iframe src="boat" height=300 edit link]
+
+The animation is initiated by the function `go` that re-runs each time the transition finishes, and flips the direction:
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 ```js
 boat.onclick = function() {
@@ -337,11 +444,19 @@ boat.onclick = function() {
 
   function go() {
     if (times % 2) {
+<<<<<<< HEAD
       // sağa doğru yüz
       boat.classList.remove('back');
       boat.style.marginLeft = 100 * times + 200 + 'px';
     } else {
       // sola doğru yüz
+=======
+      // sail to the right
+      boat.classList.remove('back');
+      boat.style.marginLeft = 100 * times + 200 + 'px';
+    } else {
+      // sail to the left
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
       boat.classList.add('back');
       boat.style.marginLeft = 100 * times - 200 + 'px';
     }
@@ -357,7 +472,11 @@ boat.onclick = function() {
 };
 ```
 
+<<<<<<< HEAD
 `transitionend` event'inin objesinin birkaç özelliği vardır:
+=======
+The event object for `transitionend` has a few specific properties:
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 `event.propertyName`
 : Animasyonu biten CSS özelliğinin adı. Birden çok özelliğe animasyon eklediğimiz zaman kullanılışlı olabilir.
@@ -369,7 +488,11 @@ boat.onclick = function() {
 
 `@keyframes` CSS kuralını kullanarak birden çok basit animasyonu birleştirebiliriz.
 
+<<<<<<< HEAD
 Animasyonun 'adını' ve kurallarını tanımlamamızı sağlar. Bu kurallar animasyonun neye, ne zaman ve nereye doğru olacağını gösterir. Sonra, `animation` özelliğini kullanarak animasyonu bir elemente ekleyebilir ve ek olarak parametre girebilmemizi sağlar.
+=======
+It specifies the "name" of the animation and rules - what, when and where to animate. Then using the `animation` property, we can attach the animation to the element and specify additional parameters for it.
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 Aşağıda açıklamalı bir örnek görebilirsiniz:
 
@@ -405,17 +528,26 @@ Aşağıda açıklamalı bir örnek görebilirsiniz:
 
 `@keyframes` hakkında birçok makale ve [detaylı açıklamasını](https://drafts.csswg.org/css-animations/) bulabilirsiniz.
 
+<<<<<<< HEAD
 Büyük ihtimalle `@keyframes`'e çok sık ihtiyacınız olmayacak, sitenizdeki her şey sürekli hareket etmediği takdirde.
+=======
+You probably won't need `@keyframes` often, unless everything is in constant motion on your sites.
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 ## Özet
 
+<<<<<<< HEAD
 CSS animasyonları bir veya birden fazla CSS özelliğindeki değişimlere rahatça animasyon eklememizi sağlar.
+=======
+CSS animations allow smoothly (or not) animated changes of one or multiple CSS properties.
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 Çoğu animasyon işi için iyidir. Animasyonlar ayrıca JavaScript kullanarak da eklenebilir. Bir sonraki bölüm de onun üzerine.
 
 Javascript Animasyonları ile karşılaştırıldığında CSS animasyonların farkları şunlardır:
 
 ```compare plus="CSS animations" minus="JavaScript animations"
+<<<<<<< HEAD
 + Kolay şeyleri kolayca yapmamızı sağlar.
 + Hızlı ve CPU için hafiftir.
 - JavaScript animasyonları daha esnektir. Her türlü animasyonu programlayabilmenizi sağlar. Örneğin, bir elementin 'patlama' animasyonu gibi.
@@ -423,5 +555,14 @@ Javascript Animasyonları ile karşılaştırıldığında CSS animasyonların f
 ```
 
 Animasyonların çoğu bu bölümde anlatıldığı gibi CSS ile gerçekleştirilebilir. `transitionend` event'i animasyon bittikten sonra JavaScript kodu çalıştırmamızı sağlar. Bu sayede kodla da kolayca entegre edilebilir.
+=======
++ Simple things done simply.
++ Fast and lightweight for CPU.
+- JavaScript animations are flexible. They can implement any animation logic, like an "explosion" of an element.
+- Not just property changes. We can create new elements in JavaScript as part of the animation.
+```
+
+The majority of animations can be implemented using CSS as described in this chapter. And the `transitionend` event allows JavaScript to be run after the animation, so it integrates fine with the code.
+>>>>>>> 7b76185892aa9798c3f058256aed44a9fb413cc3
 
 Bir sonraki bölümde daha karmaşık animasyonlar için JavaScript animasyonları kullanacağız.
