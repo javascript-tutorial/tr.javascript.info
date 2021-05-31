@@ -1,19 +1,19 @@
 
-# Class basic syntax
+# Temel Sınıf sözdizimi
 
 ```quote author="Wikipedia"
-In object-oriented programming, a *class* is an extensible program-code-template for creating objects, providing initial values for state (member variables) and implementations of behavior (member functions or methods).
+Sınıf, nesne yönelimli programlama dillerinde nesnelerin özelliklerini, davranışlarını ve başlangıç durumlarını tanımlamak için kullanılan şablonlara verilen addır.
 ```
 
-In practice, we often need to create many objects of the same kind, like users, or goods or whatever.
+Pratikte, aynı türden birçok nesne oluşturmamız gerekebilir, kullanıcılar veya malzemeler gibi.
 
-As we already know from the chapter <info:constructor-new>, `new function` can help with that.
+<info:constructor-new>, kısmından bildiğimiz gibi `new(yeni) fonksiyonu` bize bu konuda yardımcı olabilir.
 
-But in the modern JavaScript, there's a more advanced "class" construct, that introduces great new features which are useful for object-oriented programming.
+Ancak modern Javascript'de bundan daha gelişmiş bir "sınıf" yapısı var. Bu yapı nesne tabanlı programlamaya yeni ve faydalı özellikler getiriyor.
 
-## The "class" syntax
+## Sınıf sözdizimi
 
-The basic syntax is:
+Temel sözdizimi:
 ```js
 class MyClass {
   // class methods
@@ -25,11 +25,11 @@ class MyClass {
 }
 ```
 
-Then `new MyClass()` creates a new object with all the listed methods.
+Sonra `new MyClass()` bu metotlarla birlikte yeni bir nesne oluşturuyor.
 
-The `constructor()` method is called automatically by `new`, so we can initialize the object there.
+`constructor()` metodu `new` tarafından otomatik olarak çağırılıyor. Bu sayede nesneyi orada tanımlayabiliyoruz.
 
-For example:
+Örnek olarak:
 
 ```js run
 class User {
@@ -49,28 +49,29 @@ let user = new User("John");
 user.sayHi();
 ```
 
-When `new User("John")` is called:
-1. A new object is created.
-2. The `constructor` runs with the given argument and assigns `this.name` to it.
-
-...Then we can call methods, such as `user.sayHi`.
+`new User("John")` çağırıldığında:
+1. Yeni bir nesne oluşturuluyor.
+2. `constructor` verilen argümanla çalışıyor ve buna `this.name`'i atıyor.
 
 
-```warn header="No comma between class methods"
-A common pitfall for novice developers is to put a comma between class methods, which would result in a syntax error.
+...Daha sonra `user.sayHi` gibi metodları çağırabiliriz.
 
-The notation here is not to be confused with object literals. Within the class, no commas are required.
+
+```warn header="Sınıf metodları arasında virgül kullanılmaz"
+Acemi geliştiricilerin düştüğü bir hata da, sınıf metodları arasına virgül koymak. Bu da sözdimizi hatasına neden oluyor.
+
+Buradaki notasyon nesne sabitleriyle karıştırılmamalı. Sınıf içinde virgüle ihtiyaç yok.
 ```
 
-## What is a class?
+## Sınıf nedir?
 
-So, what exactly is a `class`? That's not an entirely new language-level entity, as one might think.
+Peki, `class` (sınıf) tam olarak nedir? Bu aslında tam olarak yeni bir dil seviyesi obje değil.
 
-Let's unveil any magic and see what a class really is. That'll help in understanding many complex aspects.
+Hadi, sihri ortaya çıkaralım ve bir sınıfın tam olarak ne olduğunu görelim. Bu daha karmaşık konseptleri anlamamıza da yardımcı olacak.
 
-In JavaScript, a class is a kind of a function.
+Javascript'de sınıf aslında bir tür fonksiyondur.
 
-Here, take a look:
+Şuna bir göz atalım:
 
 ```js run
 class User {
@@ -84,8 +85,8 @@ alert(typeof User); // function
 */!*
 ```
 
-What `class User {...}` construct really does is:
-1. Creates a function named `User`, that becomes the result of the class declaration.
+`class User {...}` yapısının yaptığı şey aslında:
+1. `User` adında, sınıfın tanımlayıcısın sonucu olacak, yeni bir fonksiyon oluşturur.
     - The function code is taken from the `constructor` method (assumed empty if we don't write such method).
 3. Stores all methods, such as `sayHi`, in `User.prototype`.
 
