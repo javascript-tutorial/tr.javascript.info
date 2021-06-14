@@ -154,7 +154,7 @@ for (i = 0; i < 3; i++) { // var olan değişkeni kullan
   alert(i); // 0, 1, 2
 }
 
-alert(i); // 3, görünür halde çünkü değişken döngünün dılında tanımlandı.
+alert(i); // 3, görünür halde çünkü değişken döngünün dışında tanımlandı.
 ```
 
 ````
@@ -221,7 +221,7 @@ alert( 'Toplam: ' + toplam );
 
 `break` talimatı `(*)` satırında görüldüğü üzere. Eğer kullanıcı boş değer girerse doğrudan döngü durur ve döngüden sonraki ilk satıra atlar. Yani `alert` çalışır. 
 
-"Sonsuz döngü" + `break` birlikte kullanıldığında başlangıçta koşul kontrol edilmese de olur ama döngü gövdesinde veya sonunda kontrol edilmesi gerekir denen döngüler için güzel bir birliktelik oluşturur. Bu döngü içerisinde bir çok defa koşul kullılarak döngü kırılabilir.
+"Sonsuz döngü" + `break` birlikte kullanıldığında başlangıçta koşul kontrol edilmese de olur ama döngü gövdesinde veya sonunda kontrol edilmesi gerekir denen döngüler için güzel bir birliktelik oluşturur. Bu döngü içerisinde bir çok defa koşul kullanılarak döngü kırılabilir.
 
 ## Bir sonraki tekerrüre geçme  [#continue]
 
