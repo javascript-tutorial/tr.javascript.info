@@ -44,7 +44,11 @@ alert(3 +
 + 2);
 ```
 
+<<<<<<< HEAD
 Yukarıdaki bloğun çıktısı `6` olacaktır çünkü JavaScript yeni satırda noktalı virgül eklememiştir. Buradan anlayabilirsiniz ki eğer satır `"+"` ile bitiyorsa ifade bitmiş sayılmaz ve noktalı virgül gereklidir. Bu durumda yukarıdaki kod beklendiği gibi çalışmaktadır.
+=======
+The code outputs `6` because JavaScript does not insert semicolons here. It is intuitively obvious that if the line ends with a plus `"+"`, then it is an "incomplete expression", so a semicolon there would be incorrect. And in this case, that works as intended.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 **Fakat bazı durumlarda noktalı virgülün otomatik olarak konulması gerekirken JavaScript bunu yapmakta sorun yaşar**
 
@@ -54,28 +58,43 @@ Böyle hataları bulmak oldukça zordur.
 Eğer böyle bir hata görmek istiyorsanız, aşağıdaki koda bir bakın
 
 ```js run
-[1, 2].forEach(alert)
+alert("Hello");
+
+[1, 2].forEach(alert);
 ```
 `[]` veya `forEach` in ne anlama geldiğini bilmenize şimdilik gerek yok daha sonra bu konuyu işleyeceğiz. Şu anda bilmeniz gereken önce 1 uyarısı alacaksınız sonra 2.
 
+<<<<<<< HEAD
 Şimdi bu koddan önce noktalı virgül ile bitmeyen bir uyarı ifadesi yazın.
 
 ```js run no-beautify
 alert("Hata alacaksınız")
+=======
+No need to think about the meaning of the brackets `[]` and `forEach` yet. We'll study them later. For now, just remember the result of running the code: it shows `Hello`, then `1`, then `2`.
 
-[1, 2].forEach(alert)
+Now let's remove the semicolon after the `alert`:
+
+```js run no-beautify
+alert("Hello")
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
+
+[1, 2].forEach(alert);
 ```
 
+<<<<<<< HEAD
 Eğer yukarıdaki kodu çalıştırısanız sadece ilk uyarı mesajını görecek ve sonrasında hata alacaksınız.
 
 Fakat aşağıdaki gibi noktalı virgül kullanırsanız herşeyin beklenen şekilde çalıştığını göreceksiniz:
 
 ```js run
 alert("Şimdi ise beklendiği gibi hatasız");
+=======
+The difference compared to the code above is only one character: the semicolon at the end of the first line is gone.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
-[1, 2].forEach(alert)  
-```
+If we run this code, only the first `Hello` shows (and there's an error, you may need to open the console to see it). There are no numbers any more.
 
+<<<<<<< HEAD
 Şimdi "Her şey yolunda" mesajını ve ardından `1` ve `2`'yi görüyoruz.
 
 İlk yazdığımız kod bloğunda hata olmasının sebebi JavaScript'in `[...]` den önce noktalı virgül gelmeyeceğini varsaymasından dolayı olmaktadır.
@@ -87,10 +106,27 @@ alert("Bir hata gerçekleşecek")[1, 2].forEach(alert)
 ```
 
 Fakat normalde sizinde bildiğiniz gibi bunu iki satır görmesi gerekmektedir. Bu ve bunun gibi hatalar ile kod yazdığınız sürece karşılaşabileceğiniz hatalardır.
+=======
+That's because JavaScript does not assume a semicolon before square brackets `[...]`. So, the code in the last example is treated as a single statement.
+
+Here's how the engine sees it:
+
+```js run no-beautify
+alert("Hello")[1, 2].forEach(alert);
+```
+
+Looks weird, right? Such merging in this case is just wrong. We need to put a semicolon after `alert` for the code to work correctly.
+
+This can happen in other situations also.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 ````
 
 Eğer yeni satıra geçmek istiyorsanız önerilen yöntem noktalı virgül kullanmanızdır. Bu kural JavaScript toplumu tarafından benimsenmiştir. Tekrar belitelim JavaScript yazarken noktalı virgül kullanmadan yeni satıra geçmek çoğu zaman -- *mümkündür* -- fakat başlangıçta noktalı virgül kullanmanız daha güvenlidir ve önerilir.
 
+<<<<<<< HEAD
+=======
+## Comments [#code-comments]
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 ## Yorum Satırları
 Zamanla yazdığınız programlar gittikçe karmaşıklaşır. Neyin ne için yapıldığını belirtmeniz için *yorum* yazmak kaçınılmaz olur.
@@ -128,7 +164,13 @@ alert('Hello');
 alert('Dünya');
 ```
 
+<<<<<<< HEAD
 ```smart header="Klavye kısa yollarını kullanın!"
+=======
+```smart header="Use hotkeys!"
+In most editors, a line of code can be commented out by pressing the `key:Ctrl+/` hotkey for a single-line comment and something like `key:Ctrl+Shift+/` -- for multiline comments (select a piece of code and press the hotkey). For Mac, try `key:Cmd` instead of `key:Ctrl` and `key:Option` instead of `key:Shift`.
+```
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 Çoğu editör `key:Ctrl+/` kısa yolunu kullanarak tek satır veya `key:Ctrl+Shift+/` kullanarak çok satır yorum yapmanıza yardımcı olur. Mac için `key:Cmd` tuşu windows için ise `key:Ctrl` tuşudur.
 ```
