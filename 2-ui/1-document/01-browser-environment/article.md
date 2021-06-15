@@ -1,5 +1,6 @@
 # Tarayıcı Ortamı, Özellikleri
 
+<<<<<<< HEAD
 Javascript dili başlangıçta internet tarayıcıları için oluşturuldu. O zamandan beri geliştirildi ve bir çok kullanımı ve platformu ile bir dil haline geldi.
 
 
@@ -9,8 +10,17 @@ Bir sunucu ortamı dil çekirdeğine ek olarak platforma özgü nesneler ve fonk
 
 
 İşte javascriptin internet tarayıcısında çalıştığında elimizde ne olduğunu gösteren bir kuş bakışı.
+=======
+The JavaScript language was initially created for web browsers. Since then it has evolved and become a language with many uses and platforms.
 
-![](windowObjects.png)
+A platform may be a browser, or a web-server or another *host*, even a "smart" coffee machine, if it can run JavaScript. Each of them provides platform-specific functionality. The JavaScript specification calls that a *host environment*.
+
+A host environment provides own objects and functions additional to the language core. Web browsers give a means to control web pages. Node.js provides server-side features, and so on.
+
+Here's a bird's-eye view of what we have when JavaScript runs in a web browser:
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
+
+![](windowObjects.svg)
 
 `window` denilen bir "kök" nesnesi var. İki rolü vardır.
 
@@ -24,8 +34,13 @@ function selamSoyle() {
   alert("Selam");
 }
 
+<<<<<<< HEAD
 // evrensel değişkenler `window` özellikleri olarak erişilebilir.
 window.selamSoyle();
+=======
+// global functions are methods of the global object:
+window.sayHi();
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 ```
 
 Ve burada `window`u pencerenin yüksekliğini görmek için tarayıcı penceresi olarak kullandık: 
@@ -38,7 +53,13 @@ Daha fazla `window`a özgü yöntemler ve özellikler var, bunlardan daha sonra 
 
 ## Document Object Model (DOM) (Belge Nesneli Modeli)
 
+<<<<<<< HEAD
 `document` nesnesi sayfa içeriğine erişimi sağlar. Sayfada herhangi bir şeyi değiştirebilir ya da oluşturabiliriz.
+=======
+Document Object Model, or DOM for short, represents all page content as objects that can be modified.
+
+The `document` object is the main "entry point" to the page. We can change or create anything on the page using it.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 Örneğin:
 ```js run
@@ -49,6 +70,7 @@ document.body.style.background = 'red';
 setTimeout(() => document.body.style.background = '', 1000);
 ```
 
+<<<<<<< HEAD
 Burada `document.body.style` kullandık fakat daha fazla parametreler var. Özellikleri ve yöntemleri tanımlamada açıklanmıştır. Tesadüf ki, bunu geliştiren iki grup vardır. 
 
 DOM standartları : <https://dom.spec.whatwg.org>
@@ -74,6 +96,25 @@ CSSOM, belgi için stil kurallarını değiştirdiğimizde DOM ile birlikte kull
 ## BOM (Tarayıcı Nesne Modeli) 
 
 HTML'in bir parçası (BOM), belge dışında her şey ile çalışmak için tarayıcı (sunucu ortamı) tarafından sağlanan ek nesnelerdir.
+=======
+Here we used `document.body.style`, but there's much, much more. Properties and methods are described in the specification: [DOM Living Standard](https://dom.spec.whatwg.org).
+
+```smart header="DOM is not only for browsers"
+The DOM specification explains the structure of a document and provides objects to manipulate it. There are non-browser instruments that use DOM too.
+
+For instance, server-side scripts that download HTML pages and process them can also use DOM. They may support only a part of the specification though.
+```
+
+```smart header="CSSOM for styling"
+There's also a separate specification, [CSS Object Model (CSSOM)](https://www.w3.org/TR/cssom-1/) for CSS rules and stylesheets, that explains how they are represented as objects, and how to read and write them.
+
+CSSOM is used together with DOM when we modify style rules for the document. In practice though, CSSOM is rarely required, because we rarely need to modify CSS rules from JavaScript (usually we just add/remove CSS classes, not modify their CSS rules), but that's also possible.
+```
+
+## BOM (Browser Object Model)
+
+The Browser Object Model (BOM) represents additional objects provided by the browser (host environment) for working with everything except the document.
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 Örneğin:
 
@@ -83,6 +124,7 @@ HTML'in bir parçası (BOM), belge dışında her şey ile çalışmak için tar
 `location` nesnesini bu şekilde kullanabiliriz: 
 
 ```js run
+<<<<<<< HEAD
 alert(location.href); // Geçerli URL'yi gösterir
 if (confirm("wikipedia'ya git?")) {
   location.href = 'https://tr.wikipedia.org'; // Tarayıcı başka bir URL'ye yönlendirir.
@@ -93,6 +135,21 @@ if (confirm("wikipedia'ya git?")) {
 
 ```smart header="HTML specification"
 BOM genel kısmıdır[HTML specification](https://html.spec.whatwg.org).
+=======
+alert(location.href); // shows current URL
+if (confirm("Go to Wikipedia?")) {
+  location.href = "https://wikipedia.org"; // redirect the browser to another URL
+}
+```
+
+Functions `alert/confirm/prompt` are also a part of BOM: they are directly not related to the document, but represent pure browser methods of communicating with the user.
+
+```smart header="Specifications"
+BOM is the part of the general [HTML specification](https://html.spec.whatwg.org).
+
+Yes, you heard that right. The HTML spec at <https://html.spec.whatwg.org> is not only about the "HTML language" (tags, attributes), but also covers a bunch of objects, methods and browser-specific DOM extensions. That's "HTML in broad terms". Also, some parts have additional specs listed at <https://spec.whatwg.org>.
+```
+>>>>>>> fb4fc33a2234445808100ddc9f5e4dcec8b3d24c
 
 Evet, doğru duydun. <https://html.spec.whatwg.org>'deki HTML özelliği yalnızca "HTML dili" (etiketler, nitelikler) ile ilgili değil, aynı zamanda birçok nesne, yöntem ve tarayıca özgü DOM uzantılarını da kapsar. Bu "geniş anlamda HTML"dir.
 ```
