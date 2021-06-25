@@ -79,7 +79,7 @@ let node2 = {"name":"HTML","nodeType":1,"children":[{"name":"HEAD","nodeType":1,
 drawHtmlTree(node2, 'div.domtree', 690, 210);
 </script>
 
-```smart header="Edge spaces and in-between empty text are usually hidden in tools"
+```smart header="Metinlerin baş / son bölümlerinde bulunan boşluk karakterleri ve sadece boşluk karakterinden oluşan metin düğümleri araçlarda genellikle gizlenir"
 DOM ile çalışan tarayıcı araçları (yakında ele alınacaktır) genellikle metnin başında / sonunda boşluklar ve etiketler arasında boş metin düğümleri (satır sonları) göstermez.
 
 Bunun nedeni, esas olarak HTML'yi dekore etmek için kullanılmaları ve gösterilme şeklini etkilememeleridir (çoğu durumda).
