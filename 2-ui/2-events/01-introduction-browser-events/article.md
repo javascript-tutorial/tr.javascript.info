@@ -18,7 +18,7 @@ Sadece bir göz atmak için, en faydalı DOM olaylarının bir listesi:
 **Klavye olayları:**
 - `keydown` ve `keyup` -- ziyaretçi butona bastığında ve butonu bıraktığında.
 
-**Document olayları:**
+**Doküman olayları:**
 - `DOMContentLoaded` -- HTML yüklenip, işlenip, DOM tamamen inşa edildiğinde. 
 
 **CSS olayları:**
@@ -36,179 +36,179 @@ Olaylara tepki vermek için bir *işleyici* atayabiliriz -- bir olay durumunda �
 
 ### HTML-özelliği
 
-Bir işleyici HTML'de `on<olay>` adlı bir özellik ile ayarlanabilir.
+Bir işleyici HTML'de `on<olay>` adlı bir öznitelik ile ayarlanabilir.
 
-Örneğin, bir `input`'a `click` işleyicisi atamak için, buradaki gibi `onclick` kullanabiliriz:
+Söz gelimi, bir `input`'a `click` işleyicisi atamak için, buradaki gibi `onclick` kullanabiliriz:
 
 ```html run
 <input value="Bana tıkla" *!*onclick="alert('Tıklandı!')"*/!* type="button">
 ```
 
-Fare tıklandığında, `onclick` içerisindeki kod çalışır.
+Fare tıklandığında, `onclick` içinde kod çalışır.
 
-Please note that inside `onclick` we use single quotes, because the attribute itself is in double quotes. If we forget that the code is inside the attribute and use double quotes inside, like this:  `onclick="alert("Click!")"`, then it won't work right.
+Lütfen `onclick`'in içinde tek tırnak kullandığımızı unutmayın, çünkü özniteliğin kendisi çift tırnak içindedir. Eğer kodun özniteliğin içinde olduğunu unutur ve içinde şu şekilde çift tırnak kullanırsak: `onclick="alert("Click!")"`, doğru bir şekilde çalışmayacaktır.
 
-An HTML-attribute is not a convenient place to write a lot of code, so we'd better create a JavaScript function and call it there.
+HTML özniteliği çok fazla kod yazmak için uygun bir yer değildir, bu nedenle bir JavaScript fonksiyonu oluşturup onu orada çağırmamız daha iyi olur.
 
-Here a click runs the function `countRabbits()`:
+Burada bir tıklama, fonksiyonu çalıştırır `countRabbits()`:
 
 ```html autorun height=50
 <script>
   function countRabbits() {
     for(let i=1; i<=3; i++) {
-      alert("Rabbit number " + i);
+      alert("Tavşan sayısı " + i);
     }
   }
 </script>
 
-<input type="button" *!*onclick="countRabbits()"*/!* value="Count rabbits!">
+<input type="button" *!*onclick="countRabbits()"*/!* value="Tavşanları say!">
 ```
 
-As we know, HTML attribute names are not case-sensitive, so `ONCLICK` works as well as `onClick` and `onCLICK`... But usually attributes are lowercased: `onclick`.
+Bildiğimiz üzere, HTML öznitelik isimleri büyük-küçük harf duyarlı değildir, yani `ONCLICK`, `onClick`, `onCLICK`... aynı şekilde çalışır. Fakat genellikle öznitelikler küçük harfle yazılır: `onclick`.
 
-### DOM property
+### DOM özelliği
 
-We can assign a handler using a DOM property `on<event>`.
+DOM özelliği kullanarak bir işleyici atayabiliriz `on<olay>`.
 
-For instance, `elem.onclick`:
+Söz gelimi, `elem.onclick`:
 
 ```html autorun
-<input id="elem" type="button" value="Click me">
+<input id="elem" type="button" value="Bana tıkla">
 <script>
 *!*
   elem.onclick = function() {
-    alert('Thank you');
+    alert('Teşekkür ederim');
   };
 */!*
 </script>
 ```
 
-If the handler is assigned using an HTML-attribute then the browser reads it, creates a new function from the attribute content and writes it to the DOM property.
+Eğer işleyici bir HTML özniteliği kullanılarak atandıysa tarayıcı onu okur, öznitelik içeriğinden yeni bir fonksiyon oluşturur ve onu DOM özelliğine yazar.
 
-So this way is actually the same as the previous one.
+Yani bu yol aslında bir öncekiyle aynıdır.
 
-**The handler is always in the DOM property: the HTML-attribute is just one of the ways to initialize it.**
+**İşleyici her zaman DOM özelliğinin içindedir: HTML özniteliği sadece onu başlatma yollarından biridir.**
 
-These two code pieces work the same:
+Bu iki kod parçası aynı şekilde çalışır:
 
-1. Only HTML:
+1. Sadece HTML:
 
     ```html autorun height=50
-    <input type="button" *!*onclick="alert('Click!')"*/!* value="Button">
+    <input type="button" *!*onclick="alert('Tıkla!')"*/!* value="Buton">
     ```
 2. HTML + JS:
 
     ```html autorun height=50
-    <input type="button" id="button" value="Button">
+    <input type="button" id="button" value="Buton">
     <script>
     *!*
       button.onclick = function() {
-        alert('Click!');
+        alert('Tıkla!');
       };
     */!*
     </script>
     ```
 
-**As there's only one `onclick` property, we can't assign more than one event handler.**
+**Sadece bir tane `onclick` özeliği olduğundan, birden fazla olay işleyici atayamayız.**
 
-In the example below adding a handler with JavaScript overwrites the existing handler:
+Aşağıdaki örnekte JavaScript ile bir işleyici eklemek, mevcut işleyicinin üzerine yazar:
 
 ```html run height=50 autorun
-<input type="button" id="elem" onclick="alert('Before')" value="Click me">
+<input type="button" id="elem" onclick="alert('Öncesi')" value="Bana tıkla">
 <script>
 *!*
-  elem.onclick = function() { // overwrites the existing handler
-    alert('After'); // only this will be shown
+  elem.onclick = function() { // var olan işleyicinin üzerine yazar
+    alert('Sonrası'); // sadece bu gösterilir
   };
 */!*
 </script>
 ```
 
-By the way, we can assign an existing function as a handler directly:
+Bu arada, var olan bir fonksiyonu doğrudan işleyici olarak atayabiliriz:
 
 ```js
 function sayThanks() {
-  alert('Thanks!');
+  alert('Teşekkürler!');
 }
 
 elem.onclick = sayThanks;
 ```
 
-To remove a handler -- assign `elem.onclick = null`.
+Bir işleyiciyi silmek için -- `elem.onclick = null` atarız.
 
-## Accessing the element: this
+## Öğeye erişmek: this
 
-The value of `this` inside a handler is the element. The one which has the handler on it.
+Bir işleyicinin içindeki `this`'in değeri, üzerinde işleyici olan öğedir.
 
-In the code below `button` shows its contents using `this.innerHTML`:
+Aşağıdaki kodda `button`' içeriğini `this.innerHTML` kullanarak gösterir:
 
 ```html height=50 autorun
-<button onclick="alert(this.innerHTML)">Click me</button>
+<button onclick="alert(this.innerHTML)">Tıkla bana</button>
 ```
 
-## Possible mistakes
+## Olası hatalar
 
-If you're starting to work with event -- please note some subtleties.
+Eğer olaylarla çalışmaya başlıyorsanız, lütfen bazı incelikleri göz önünde bulundurun.
 
-**The function should be assigned as `sayThanks`, not `sayThanks()`.**
+**Fonksiyon `sayThanks` şeklinde atanmalıdır, `sayThanks()` olarak değil.**
 
 ```js
-// right
+// doğru
 button.onclick = sayThanks;
 
-// wrong
+// yanlış
 button.onclick = sayThanks();
 ```
 
-If we add parentheses, `sayThanks()` --  is a function call. So the last line actually takes the *result* of the function execution, that is `undefined` (as the function returns nothing), and assigns it to `onclick`. That doesn't work.
+Eğer parantez eklersek, `sayThanks()` --  ifadesi fonksiyonu çağırır. Yani aslında fonksiyonun çalışmasıyla gelen *sonuç* değerini alır, bu da `undefined` olur (fonksiyon hiçbir şey döndürmediğinden), ve bu değeri `onclick` özniteliğine atamış olur. Bu da çalışmaz.
 
-...But in the markup we do need the parentheses:
+...Fakat işaretlemede parantezlere ihtiyacımız var:
 
 ```html
 <input type="button" id="button" onclick="sayThanks()">
 ```
 
-The difference is easy to explain. When the browser reads the attribute, it creates a handler function with the body from its content.
+Farkı açıklaması kolaydır. Tarayıcı özniteliği okuduğunda, içeriğinden gövde ile bir işleyici fonksiyon oluşturur.
 
-So the last example is the same as:
+Yani son örnek şununla aynıdır:
 ```js
 button.onclick = function() {
 *!*
-  sayThanks(); // the attribute content
+  sayThanks(); // öznitelik içeriği
 */!*
 };
 ```
 
-**Use functions, not strings.**
+**Fonksiyonları kullanın, string'leri değil.**
 
-The assignment `elem.onclick = "alert(1)"` would work too. It works for compatibility reasons, but strongly not recommended.
+`elem.onclick = "alert(1)"` ataması da işe yarar. Uyumluluk nedenleriyle çalışır, fakat kesinlikle önerilmez.
 
-**Don't use `setAttribute` for handlers.**
+**İşleyiciler için `setAttribute` kullanmayın.**
 
-Such a call won't work:
+Şu şekilde bir çağırım işe yaramayacaktır:
 
 ```js run no-beautify
-// a click on <body> will generate errors,
-// because attributes are always strings, function becomes a string
+// <body> üzerine tıklandığında hatalar oluşur,
+// öznitelikler her zaman string olduğundan, fonksiyon string olmuş olur.
 document.body.setAttribute('onclick', function() { alert(1) });
 ```
 
-**DOM-property case matters.**
+**DOM-özellik durumu önemlidir.**
 
-Assign a handler to `elem.onclick`, not `elem.ONCLICK`, because DOM properties are case-sensitive.
+`elem.onclick`'e bir işleyici atayın, `elem.ONCLICK` değil, çünkü DOM özellikleri büyük-küçük harf duyarlıdır.
 
 ## addEventListener
 
-The fundamental problem of the aforementioned ways to assign handlers -- we can't assign multiple handlers to one event.
+İşleyici atamanın yukarıda bahsedilen yollarındaki temel sorun -- bir olaya birden çok işleyici atayamayız.
 
-For instance, one part of our code wants to highlight a button on click, and another one wants to show a message.
+Söz gelimi, kodumuzun bir kısmı buton tıklandığında butonu vurgulamak istiyor, diğer kısmı ise bir mesaj göstermek istiyor.
 
-We'd like to assign two event handlers for that. But a new DOM property will overwrite the existing one:
+Bunun için iki olay işleyicisi atamak istiyoruz. Fakat yeni bir DOM özelliği, halihazırda var olanın üzerine yazacaktır.
 
 ```js no-beautify
 input.onclick = function() { alert(1); }
 // ...
-input.onclick = function() { alert(2); } // replaces the previous handler
+input.onclick = function() { alert(2); } // bir önceki işleyicinin üzerine yazar
 ```
 
 Web-standard developers understood that long ago and suggested an alternative way of managing handlers using special methods `addEventListener` and `removeEventListener`. They are free of such a problem.
