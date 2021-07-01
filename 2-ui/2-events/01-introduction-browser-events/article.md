@@ -211,19 +211,19 @@ input.onclick = function() { alert(1); }
 input.onclick = function() { alert(2); } // bir önceki işleyicinin üzerine yazar
 ```
 
-Web-standard developers understood that long ago and suggested an alternative way of managing handlers using special methods `addEventListener` and `removeEventListener`. They are free of such a problem.
+Web-standardı geliştiricileri uzun zaman önce işleyicileri, `addEventListener` ve `removeEventListener` özel metodlarını kullanarak yönetmenin alternatif bir yolunu buldular. Bu metodlar, yukarıda bahsedilen problemden muaftırlar.
 
-The syntax to add a handler:
+İşleyici eklemenin söz dizimi şu şekildedir:
 
 ```js
 element.addEventListener(event, handler[, options]);
 ```
 
 `event`
-: Event name, e.g. `"click"`.
+: Olay adı, örneğin. `"click"`.
 
 `handler`
-: The handler function.
+: İşleyici fonksiyon.
 
 `options`
 : An additional optional object with properties:
