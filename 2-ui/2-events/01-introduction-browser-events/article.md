@@ -1,50 +1,50 @@
-# Introduction to browser events
+# Tarayıcı olaylarına giriş
 
-*An event* is a signal that something has happened. All DOM nodes generate such signals (but events are not limited to DOM).
+*Olay* bir şeyin olduğunun işaretidir. Tüm DOM düğümleri bu tür sinyalleri üretir (fakat olaylar DOM ile sınırlı değildir).
 
-Here's a list of the most useful DOM events, just to take a look at:
+Sadece bir göz atmak için, en faydalı DOM olaylarının bir listesi:
 
-**Mouse events:**
-- `click` -- when the mouse clicks on an element (touchscreen devices generate it on a tap).
-- `contextmenu` -- when the mouse right-clicks on an element.
-- `mouseover` / `mouseout` -- when the mouse cursor comes over / leaves an element.
-- `mousedown` / `mouseup` -- when the mouse button is pressed / released over an element.
-- `mousemove` -- when the mouse is moved.
+**Fare olayları:**
+- `click` -- fare bir öğeye tıkladığında (dokunmatik ekranlı cihazlar bunu dokunuşla oluşturur).
+- `contextmenu` -- fare bir öğeye sağ tıkladığında.
+- `mouseover` / `mouseout` -- fare imleci bir öğenin üzerine geldiğinde / ayrıldığında.
+- `mousedown` / `mouseup` -- bir öğenin üzerinde fare butonuna basıldığında, bırakıldığında.
+- `mousemove` -- fare hareket ettirildiğinde.
 
-**Form element events:**
-- `submit` -- when the visitor submits a `<form>`.
-- `focus` --  when the visitor focuses on an element, e.g. on an `<input>`.
+**Form öğesi olayları:**
+- `submit` -- ziyaretçi bir `<form>` gönderdiğinde.
+- `focus` --  ziyaretçi bir öğeye odaklandığında, örneğin bir `<input>` üzerine.
 
-**Keyboard events:**
-- `keydown` and `keyup` -- when the visitor presses and then releases the button.
+**Klavye olayları:**
+- `keydown` ve `keyup` -- ziyaretçi butona bastığında ve butonu bıraktığında.
 
-**Document events:**
-- `DOMContentLoaded` -- when the HTML is loaded and processed, DOM is fully built.
+**Document olayları:**
+- `DOMContentLoaded` -- HTML yüklenip, işlenip, DOM tamamen inşa edildiğinde. 
 
-**CSS events:**
-- `transitionend` -- when a CSS-animation finishes.
+**CSS olayları:**
+- `transitionend` -- bir CSS animasyonu bittiğinde
 
-There are many other events. We'll get into more details of particular events in next chapters.
+Daha birçok olay vardır. Sonraki bölümlerde belirli olayların daha fazla ayrıntısına gireceğiz.
 
-## Event handlers
+## Olay işleyicileri
 
-To react on events we can assign a *handler* -- a function that runs in case of an event.
+Olaylara tepki vermek için bir *işleyici* atayabiliriz -- bir olay durumunda çalışan bir fonksiyon
 
-Handlers are a way to run JavaScript code in case of user actions.
+İşleyiciler, kullanıcı eylemleri durumunda JavaScript kodu çalıştırmanın bir yoludur.
 
-There are several ways to assign a handler. Let's see them, starting from the simplest one.
+İşleyici atamanın birkaç yolu vardır. En basitinden başlayarak bunları görelim.
 
-### HTML-attribute
+### HTML-özelliği
 
-A handler can be set in HTML with an attribute named `on<event>`.
+Bir işleyici HTML'de `on<olay>` adlı bir özellik ile ayarlanabilir.
 
-For instance, to assign a `click` handler for an `input`, we can use `onclick`, like here:
+Örneğin, bir `input`'a `click` işleyicisi atamak için, buradaki gibi `onclick` kullanabiliriz:
 
 ```html run
-<input value="Click me" *!*onclick="alert('Click!')"*/!* type="button">
+<input value="Bana tıkla" *!*onclick="alert('Tıklandı!')"*/!* type="button">
 ```
 
-On mouse click, the code inside `onclick` runs.
+Fare tıklandığında, `onclick` içerisindeki kod çalışır.
 
 Please note that inside `onclick` we use single quotes, because the attribute itself is in double quotes. If we forget that the code is inside the attribute and use double quotes inside, like this:  `onclick="alert("Click!")"`, then it won't work right.
 
