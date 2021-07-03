@@ -36,7 +36,7 @@ Modal penceresi içerisinde bir yazı ve OK/CANCEL butonlarını içerir.
 `default`
 : Opsiyonel bir ikinci parametre, input alanı için varsayılan değeri içerir.
 
-Kullanıcı ekrana çıkan veri girişi kutusuna istediğini yazar ve OK tuşuna basar. Veya bunu CANCEL tuşuna basarak iptal edebilir. Veya `key:Esc` tuşu da aynı işlevi görür.
+Kullanıcı ekrana çıkan veri girişi kutusuna istediğini yazar ve OK tuşuna basar. İsterse bunu CANCEL tuşuna basarak iptal edebilir. Veya `key:Esc` tuşu da aynı işlevi görür.
 
 Eğer kullanıcı değer girdiyse bunu dönderir, eğer girmediyse ve o ekrandan `key:Esc` veya CANCEL butonu ile çıktıysa `null` dönderir.
 
