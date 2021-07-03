@@ -21,7 +21,7 @@ function yasKontrolu(yas) {
 }
 ```
 
-Bu fonksiyondan if kaldırılırsa çalışması fark olur mu?
+Bu fonksiyondan else kaldırılırsa çalışması fark olur mu?
 
 ```js
 function yasKontrolu(yas) {
