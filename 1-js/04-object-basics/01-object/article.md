@@ -13,7 +13,7 @@ Obje bir dolap gibi düşünülebilir. Bu dolabın içindeki her klasörün bir 
 
 ![](object.svg)
 
-Boş obje ( boş dolap ) iki türlü oluşturulabilir.
+Boş obje ("boş dolap") iki türlü oluşturulabilir.
 
 ```js
 let kullanici = new Object(); 
@@ -22,9 +22,9 @@ let kullanici = {};
 
 ![](object-user-empty.svg)
 
-Genelde `{...}` kullanılmaktadır. Bu şekilde tanımlamaya **obje kelimesi**
+Genelde `{...}` kullanılmaktadır. Bu şekilde tanımlamaya **obje kelimesi (object literal)** denir.
 
-## **kelimeler** ve özellikler
+## **Kelimeler** ve özellikler
 
 Doğrudan `{...}` içerisine "anahtar:değer" ikilisi ile özellik eklemek mümkündür:
 
@@ -34,7 +34,7 @@ let kullanici = {     // obje
   yas: 30        // yaş anahtarı 30 değerini tutar.
 };
 ```
-Özellik obje anahtarı ve değerden oluşur. Obje anahtarı (tanımlayıcısı) `":"`'den önce tanımlanmalı değeri ise `":"` den sonra.
+Özellik obje anahtarı ve değerden oluşur. Obje anahtarı (tanımlayıcısı) `":"`'den önce, değeriyse `":"` den sonra tanımlanmalıdır.
 
 `kullanici` objesinde iki tip özellik vardır.
 
@@ -120,7 +120,7 @@ alert(kullanici["Nemrudun Kızı"]); // true
 delete kullanici["Nemrudun Kızı"];
 ```
 
-Herşey beklendiği gibi çalışıyor. Dikkat ederseniz köşeli parantez içerisindeki kelimeler tırnak içerisinde yazılır, tek tırnak veya çift tırnak önemli değildir. Her ikisi de aynı görevi görür.
+Her şey beklendiği gibi çalışıyor. Dikkat ederseniz köşeli parantez içerisindeki kelimeler tırnak içerisinde yazılır, tek tırnak veya çift tırnak önemli değildir. Her ikisi de aynı görevi görür.
 
 Bunun yanında aşağıdaki gibi değişken üzerinden de gidilebilir:
 
@@ -214,15 +214,15 @@ let obj = {};
 obj.__proto__ = 5;
 alert(obj.__proto__); // [object Object], beklendiği gibi çalışmadı.
 ```
-Kodda göründüğü üzere, 5, ilkel bir tip olduğundan dolayı atanamadı ve görmezden gelindi.
+Kodda görüldüğü üzere, 5, ilkel bir tip olduğundan dolayı atanamadı ve görmezden gelindi.
 
-Bundan dolayı eğer kullanıcıya `anahtar` tanımlattırılırsa bu aslında hatalara ve güvenlik açıklarına neden olabilir.
+Bundan dolayı eğer kullanıcıya bir `anahtar` tanımlattırılırsa bu aslında hatalara ve güvenlik açıklarına neden olabilir.
 
 Böyle bir durumda kullanıcı "__proto__" seçerse tüm mantık yukarıdaki gibi çalışmaz hale gelir.
 
 `__proto__`'yu normal özellik olarak tanıtma yöntemi de bulunmaktadır, bunu ilerleyen zamanlarda işlenecektir. 
 
-Farklı bir veri yapısı daha vardır  [Map](info:map-set-weakmap-weakset). Bu <info:map-set-weakmap-weakset> bölümünden incelenebilir, ki bu her türlü anahtarı kabul eder.
+[Map](info:map-set-weakmap-weakset) adında farklı bir veri yapısı daha vardır ve her türlü anahtarı kabul eder. <info:map-set-weakmap-weakset> bölümünden incelenebilir.
 ````
 
 
@@ -252,8 +252,8 @@ Yukarıdaki örnekte özellikler değişkenler ile aynı isme sahipler. Bu çeş
 function kullaniciOlustur(isim, yas) {
 *!*
   return {
-    isim, //  isim: name ile aynı
-    yas   // age: age ile aynı
+    isim, //  isim: isim ile aynı
+    yas   // yas: yas ile aynı
     // ...
   };
 */!*
@@ -293,9 +293,9 @@ alert( "yas" in kullanici ); // true, kullanici.age özelliği mevcut.
 alert( "blabla" in kullanici ); // false, kullanici.blabla namevcut.
 ```
 
-Yazıma dikkat edersenin `in` in sol tarafında *özellik ismi* tırnak içinde yazılır.
+Yazıma dikkat ederseniz `in` in sol tarafında *özellik ismi* tırnak içinde yazılır.
 
-Eğer tırnağı unutursanız bu durumda değişkenin değerini obje içinde arar halbuki bizim amacımız değişkenin isminin obje içinde aranmasıydı.
+Eğer tırnağı unutursanız bu durumda değişkenin değerini obje içinde arar. Halbuki bizim amacımız değişkenin isminin obje içinde aramaktır.
 
 Örneğin:
 
@@ -306,10 +306,10 @@ let anahtar = "yas";
 alert( *!*anahtar*/!* in kullanici ); // true, değişkenden değerini alır ve kontrol eder.
 ```
 
-````smart header="Özellik undefined dönderiyorsa nasıl kontrol edilmeli?"
-Genelde sıkı karşılaştırma `"=== undefined"` doğru çalışır. Fakat burada özel bir durum mevcuttur ve sıkı karşılaştırma da başarısız olur, fakat bu durumda bile `"in"` doğru çalışır.
+````smart header="Eğer özellik undefined döndürüyorsa nasıl kontrol edilmelidir?"
+Genelde sıkı karşılaştırma `"=== undefined"` doğru çalışır. Fakat burada özel bir durum mevcuttur ve sıkı karşılaştırma da başarısız olur. Bu durumda bile `"in"` doğru çalışır.
 
-Bu olay objenin özelliğinin var olduğu fakat `undefined` döndürdüğü durumda meydana gelir.
+Bu olay objenin özelliğinin var olduğu fakat `undefined` döndürdüğü durumlarda meydana gelir.
 
 ```js run
 let obj = {
@@ -360,9 +360,9 @@ Elbette `anahtar` yerine istediğiniz herhangi bir değişken ismini koyabilirsi
 
 ### Obje sıralaması
 
-Objeler sıralı mıdır? Diğer bir deyişle, eğer döngü içerisinde obje yazdırılırsa bu objeye yerleştirme sırasına göre mi yazılır?
+Objeler sıralı mıdır? Diğer bir deyişle; eğer döngü içerisinde obje yazdırılırsa bu objeye yerleştirme sırasına göre mi yazılır?
 
-Kısa cevap: "özel bir şekilde sıralanır", eğer tamsayı ise değerlerine göre, diğer türlü objeye eklenme sırasına göre sıralanır. 
+Kısa cevap: "özel bir şekilde sıralanır". Eğer tam sayı ise değerlerine göre, tam sayı değil ise türlü objeye eklenme sırasına göre sıralanır. 
 
 Örneğin telefon kodları:
 
@@ -412,7 +412,7 @@ for (let ozellik in kullanici) {
   alert( ozellik ); // isim, soyisim, yas
 }
 ```
-Peki telefon kodları ( tam sayı değerleri) nasıl eklenme sırasına göre kullanılabilir? Bunun için her koddan önce `"+"` işaretini kullanmak yeterli olacaktır.
+Peki telefon kodları (tam sayı değerleri) nasıl eklenme sırasına göre kullanılabilir? Bunun için her koddan önce `"+"` işaretini kullanmak yeterli olacaktır.
 
 Şu şekilde:
 
@@ -432,9 +432,9 @@ for(let kod in kodlar) {
 
 Olması gerektiği gibi çalışır.
 
-## Referans İle Kopyalama
+## Referans ile kopyalama
 
-Objeler ile ilkel tipler ( karakter dizisi, sayı, boolean vs.) arasındaki temel fark objelerin saklanması ve kopyalanması "referans" ile olur.
+Objeler ile ilkel tipler (karakter dizisi, sayı, boolean vs.) arasındaki temel fark objelerin saklanması ve kopyalanması "referans" ile olur.
 
 Fakat ilkel tipler tamamen kopyalanır.
 
@@ -464,7 +464,7 @@ let kullanici = {
 
 Obje hafızada herhangi bir yerde saklandı ve `kullanici` değişkeni buna "referans" oldu.
 
-**Obje değişkeni kopyalandığında aslında objenin referansı kopyalanır hafızadaki obje kopyalanmaz**
+**Obje değişkeni kopyalandığında aslında objenin referansı kopyalanır, hafızadaki obje kopyalanmaz.**
 
 Yine objeyi bir dolap olarak düşünürseniz değişken bu dolabın anahtarıdır. Kopyaladığınız zaman dolabı değil de anahtarı kopyalamış olursunuz.
 
@@ -493,7 +493,7 @@ yonetici.isim = 'İhsan'; // yonetici referansı kullanılarak değiştirildi.
 alert(*!*kullanici.isim*/!*); // 'İhsan', değişikliği kullanici referansında da etkili oldu. `Mümtaz` değişerek `İhsan` oldu.
 ```
 
-Bu örnekten de anlaşılacağı üzere sadece bir tane obje var. Bir dolabın iki anahtarı olması gibi. Bu anahtarlardan biri `yonetici` diğeri `kullanici` dır. Yonetici ile dolabı açıp bir şey değiştirip daha sonra `kullanici` anahtarı ile açtığınızda dolabın içindeki değişikliği görebilirsiniz.
+Bu örnekten de anlaşılacağı üzere sadece bir tane obje var. Bir dolabın iki anahtarı olması gibi. Bu anahtarlardan biri `yonetici` diğeri `kullanici` dır. `yonetıcı` ile dolabı açıp bir şey değiştirip daha sonra `kullanici` anahtarı ile açtığınızda dolabın içindeki değişikliği görebilirsiniz.
 
 ### Referansların karşılaştırılması
 
