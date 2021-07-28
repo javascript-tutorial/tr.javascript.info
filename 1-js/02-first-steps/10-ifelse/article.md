@@ -1,11 +1,19 @@
+<<<<<<< HEAD
 # Koşul operatörleri: if, '?'
+=======
+# Conditional branching: if, '?'
+>>>>>>> ef8d576821ff28c69bfb7410dc79fd216b0a315b
 
 
 Bazı durumlarda koşula göre farklı eylemler yapmak isteyebilirsiniz.
 
 `"?"` operatörü veya `if` cümlesi bu koşulları kontrol etmenizi sağlar. 
 
+<<<<<<< HEAD
 ## "if" cümlesi
+=======
+The `if(...)` statement evaluates a condition in parentheses and, if the result is `true`, executes a block of code.
+>>>>>>> ef8d576821ff28c69bfb7410dc79fd216b0a315b
 
 "if" cümlesi koşulu alır ve kontrol eder sonucunda `true` ise kodu çalıştırır.
 
@@ -68,6 +76,10 @@ if (sonuc) {
 
 `if` cümlesi opsiyonel olarak "else" bloğu da içerebilir. Bu eğer `if` parantezi içerisinde yazdığımız kod yanlış ise çalışır.
 
+<<<<<<< HEAD
+=======
+The `if` statement may contain an optional "else" block. It executes when the condition is falsy.
+>>>>>>> ef8d576821ff28c69bfb7410dc79fd216b0a315b
 
 Örneğin:
 ```js run
@@ -215,7 +227,11 @@ Koşula göre `firma =='Netscap'`, soru işaretinden sonra birinci bölüm veya 
 Sonucu bir değere atanmamıştır. Amaç duruma göre doğrudan kodu çalıştırmak.
 
 
+<<<<<<< HEAD
 **Soru işaretinin bu amaç doğrultusunda kullanılması önerilmez.**
+=======
+**It's not recommended to use the question mark operator in this way.**
+>>>>>>> ef8d576821ff28c69bfb7410dc79fd216b0a315b
 
 Yazımı if yazımından daha kısa olsa bile daha az okunabilir durumdadır.
 Aşağıda `if` ile yazımını görmektesiniz.
