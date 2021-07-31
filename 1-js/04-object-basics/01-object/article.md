@@ -418,11 +418,11 @@ Peki telefon kodları ( tam sayı değerleri) nasıl eklenme sırasına göre ku
 
 ```js run
 let kodlar = {
-  "49": "Almanya",
-  "41": "İsveç",
-  "44": "İngiltere",
+  "+49": "Almanya",
+  "+41": "İsveç",
+  "+44": "İngiltere",
   // ..,
-  "1": "Amerika Birleşik Devletleri"
+  "+1": "Amerika Birleşik Devletleri"
 };
 
 for(let kod in kodlar) {
