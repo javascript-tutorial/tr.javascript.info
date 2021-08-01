@@ -221,25 +221,25 @@ Bu daha güzel görünüyor:
 
 Bir olay işleyicide, bazı eylemleri olay kabarıp tüm seviyelerde işlenene kadar ertelemeye karar verebiliriz. Bunu, kodu sıfır gecikmeli `setTimeout` içine sararak yapabiliriz.
 
-<info:dispatch-events> bölümünde bir örnek gördük: `menu-open` özel olayı(custom event) `setTimeout` içinde gönderilir, böylece click" olayı tamamen işlendikten sonra gerçekleşir.
+<bilgi:olayları gönderme(dispatch-events)> bölümünde bir örnek gördük: `menu-open` özel olayı(custom event) `setTimeout` içinde gönderilir, böylece "click" olayı tamamen işlendikten sonra gerçekleşir.
 
 ```js
 menu.onclick = function() {
   // ...
 
-  // create a custom event with the clicked menu item data
+  // tıklanan menü öğesi verileriyle özel bir olay oluşturun
   let customEvent = new CustomEvent("menu-open", {
     bubbles: true
   });
 
-  // dispatch the custom event asynchronously
+  // özel olayı eşzamansız(asynchronously) olarak gönder
   setTimeout(() => menu.dispatchEvent(customEvent));
 };
 ```
 
 ## Macrotasks ve Microtasks
 
-Bu bölümde açıklanan *macrotasks* ile birlikte, <info:microtasks-sırası> bölümünde bahsedilen *microtasks* vardır.
+Bu bölümde açıklanan *macrotask*'ler ile birlikte, <bilgi:microtasks-sırası> bölümünde bahsedilen *microtask*'ler vardır.
 
 Microtask'ler yalnızca kodumuzdan gelir. Genellikle promise'larla oluşturulurlar: `.then/catch/finally` işleyicisinin yürütülmesi bir microtask haline gelir. Microtask'ler, bir başka promise işleme biçimi olduğu için, `wait`'in "örtüsü altında" da kullanılır.
 
@@ -258,23 +258,24 @@ Promise.resolve()
 alert("code");
 ```
 
-What's going to be the order here?
+Buradaki sıra ne olacak?
 
-1. `code` shows first, because it's a regular synchronous call.
-2. `promise` shows second, because `.then` passes through the microtask queue, and runs after the current code.
-3. `timeout` shows last, because it's a macrotask.
+1. Sıradan bir eşzamanlı(synchronous) çağrı olduğu için önce `kod` gösterilir.
+2. `promise` ikinci sıradadır, çünkü `.then` microtask kuyruğundan geçer ve geçerli koddan sonra çalışır.
+3. `timeout`'u en son gösterir, çünkü bu bir macrotask'dir.
 
-The richer event loop picture looks like this (order is from top to bottom, that is: the script first, then microtasks, rendering and so on):
+Daha zengin olay döngüsü resmi şöyle görünür (sıra yukarıdan aşağıya doğrudur, yani: önce script, ardından microtask'ler, oluşturma(rendering) vb.):
 
 ![](eventLoop-full.svg)
 
-All microtasks are completed before any other event handling or rendering or any other macrotask takes place.
+Tüm microtask'ler, başka herhangi bir olay işleme(handling) veya oluşturma(rendering) veya başka herhangi bir macrotask gerçekleşmeden önce tamamlanır.
 
-That's important, as it guarantees that the application environment is basically the same (no mouse coordinate changes, no new network data, etc) between microtasks.
+Uygulama ortamının microtask'ler arasında temelde aynı olmasını (fare koordinat değişikliği yok, yeni ağ verisi yok, vb.) garanti ettiği için bu önemlidir.
 
-If we'd like to execute a function asynchronously (after the current code), but before changes are rendered or new events handled, we can schedule it with `queueMicrotask`.
+Bir fonksiyonu eşzamansız(asynchronously) olarak (geçerli koddan sonra) yürütmek istiyorsak, ancak değişiklikler oluşturulmadan(rendered) veya yeni olaylar işlenmeden(handled) önce, bunu `queueMicrotask` ile zamanlayabiliriz.
 
 Here's an example with "counting progress bar", similar to the one shown previously, but `queueMicrotask` is used instead of `setTimeout`. You can see that it renders at the very end. Just like the synchronous code:
+Burada, daha önce gösterilene benzer bir "sayan ilerleme çubuğu" örneği verilmiştir, ancak `setTimeout` yerine `queueMicrotask` kullanılmıştır. En sonunda oluştuğunu(render) görebilirsiniz. Tıpkı senkron kod gibi:
 
 ```html run
 <div id="progress"></div>
@@ -284,7 +285,7 @@ Here's an example with "counting progress bar", similar to the one shown previou
 
   function count() {
 
-    // do a piece of the heavy job (*)
+    // ağır işin bir parçasını yap (*)
     do {
       i++;
       progress.innerHTML = i;
@@ -302,39 +303,39 @@ Here's an example with "counting progress bar", similar to the one shown previou
 </script>
 ```
 
-## Summary
+## Özet
 
-A more detailed event loop algorithm (though still simplified compared to the [specification](https://html.spec.whatwg.org/multipage/webappapis.html#event-loop-processing-model)):
+Daha ayrıntılı bir olay döngüsü algoritması (yine de [spesifikasyona](https://html.spec.whatwg.org/multipage/webappapis.html#event-loop-processing-model) kıyasla basitleştirilmiş olsa da):
 
-1. Dequeue and run the oldest task from the *macrotask* queue (e.g. "script").
-2. Execute all *microtasks*:
-    - While the microtask queue is not empty:
-        - Dequeue and run the oldest microtask.
-3. Render changes if any.
-4. If the macrotask queue is empty, wait till a macrotask appears.
-5. Go to step 1.
+1. En eski görevi *macrotask* kuyruğundan ayırın ve çalıştırın (ör. "script").
+2. Tüm *microtask*'leri yürütün:
+    - Microtask kuyruğu boş değilken:
+        - En eski microtask'i sıraya alın ve çalıştırın.
+3. Varsa oluşturme(render) değişiklikleri.
+4. Macrotask kuyruğu boşsa, bir macrotask görünene kadar bekleyin.
+5. 1.Adıma gidin.
 
-To schedule a new *macrotask*:
-- Use zero delayed `setTimeout(f)`.
+Yeni bir *macrotask* zamanlamak için:
+- Sıfır gecikmeli `setTimeout(f)` kullanın.
 
-That may be used to split a big calculation-heavy task into pieces, for the browser to be able to react to user events and show progress between them.
+Bu, tarayıcının kullanıcı olaylarına tepki verebilmesi ve aralarındaki ilerlemeyi gösterebilmesi için büyük bir hesaplama ağırlıklı görevi parçalara ayırmak için kullanılabilir.
 
-Also, used in event handlers to schedule an action after the event is fully handled (bubbling done).
+Ayrıca, olay tamamen işlendikten (köpürme işlemi) sonra bir eylem zamanlamak için olay işleyicilerinde kullanılır.
 
-To schedule a new *microtask*
-- Use `queueMicrotask(f)`.
-- Also promise handlers go through the microtask queue.
+Yeni bir *microtask* planlamak için
+- `queueMicrotask(f)` kullanın.
+- Ayrıca promise işleyicileri microtask kuyruğundan geçer.
 
-There's no UI or network event handling between microtasks: they run immediately one after another.
+Microtask'ler arasında UI veya ağ olayı işleme yoktur: Bunlar birbiri ardına hemen çalışır.
 
-So one may want to `queueMicrotask` to execute a function asynchronously, but within the environment state.
+Bu nedenle, bir fonksiyonu eşzamansız(asynchronously) olarak ancak ortam durumu içinde yürütmek için `queueMicrotask` isteyebilirsiniz.
 
 ```smart header="Web Workers"
-For long heavy calculations that shouldn't block the event loop, we can use [Web Workers](https://html.spec.whatwg.org/multipage/workers.html).
+Olay döngüsünü engellememesi gereken uzun ağır hesaplamalar için [Web Workers](https://html.spec.whatwg.org/multipage/workers.html)'ı kullanabiliriz.
 
-That's a way to run code in another, parallel thread.
+Bu, başka bir paralel iş parçacığında(thread) kod çalıştırmanın bir yoludur.
 
-Web Workers can exchange messages with the main process, but they have their own variables, and their own event loop.
+Web Workers ana süreçle mesaj alışverişinde bulunabilirler, ancak kendi değişkenleri ve kendi olay döngüleri vardır.
 
-Web Workers do not have access to DOM, so they are useful, mainly, for calculations, to use multiple CPU cores simultaneously.
+Web Worker'larının DOM'a erişimi yoktur, bu nedenle, esas olarak hesaplamalar için, aynı anda birden fazla CPU çekirdeği kullanmak için yararlıdırlar.
 ```
