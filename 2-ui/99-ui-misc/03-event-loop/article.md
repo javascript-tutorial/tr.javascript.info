@@ -1,64 +1,64 @@
 
-# Event loop: microtasks and macrotasks
+# Olay döngüsü: microtasks ve macrotasks
 
-Browser JavaScript execution flow, as well as in Node.js, is based on an *event loop*.
+Node.js'de olduğu gibi tarayıcı JavaScript yürütme akışı da bir *olay döngüsüne* dayanır.
 
-Understanding how event loop works is important for optimizations, and sometimes for the right architecture.
+Olay döngüsünün nasıl çalıştığını anlamak, optimizasyonlar ve bazen de doğru mimari için önemlidir.
 
-In this chapter we first cover theoretical details about how things work, and then see practical applications of that knowledge.
+Bu bölümde önce işlerin nasıl yürüdüğüyle ilgili teorik ayrıntıları ele alacağız ve ardından bu bilginin pratik uygulamalarını göreceğiz.
 
-## Event Loop
+## Olay Döngüsü
 
-The *event loop* concept is very simple. There's an endless loop, where the JavaScript engine waits for tasks, executes them and then sleeps, waiting for more tasks.
+*Olay döngüsü* kavramı çok basittir. JavaScript motorunun görevleri beklediği, yürüttüğü ve daha sonra uyuyarak daha fazla görev beklediği sonsuz bir döngü vardır.
 
-The general algorithm of the engine:
+Motorun genel algoritması:
 
-1. While there are tasks:
-    - execute them, starting with the oldest task.
-2. Sleep until a task appears, then go to 1.
+1. Görevler varken:
+    - en eski görevden başlayarak bunları yürütün.
+2. Bir görev görünene kadar uyuyun, ardından 1'e gidin.
 
-That's a formalization for what we see when browsing a page. The JavaScript engine does nothing most of the time, it only runs if a script/handler/event activates.
+Bu, bir sayfaya göz atarken gördüğümüz şeyin biçimselleştirilmesidir. JavaScript motoru çoğu zaman hiçbir şey yapmaz, yalnızca bir script/işleyici/olay etkinleştirildiğinde çalışır.
 
-Examples of tasks:
+Görev örnekleri:
 
-- When an external script `<script src="...">` loads, the task is to execute it.
-- When a user moves their mouse, the task is to dispatch `mousemove` event and execute handlers.
-- When the time is due for a scheduled `setTimeout`, the task is to run its callback.
-- ...and so on.
+- Harici bir script `<script src="...">` yüklendiğinde, görev onu yürütmektir.
+- Bir kullanıcı faresini hareket ettirdiğinde, görev `mousemove` olayını göndermek ve işleyicileri yürütmektir.
+- Zamanlanmış bir `setTimeout` için zaman geldiğinde, görev callback'i çalıştırmaktır.
+- ...ve benzeri.
 
-Tasks are set -- the engine handles them -- then waits for more tasks (while sleeping and consuming close to zero CPU).
+Görevler belirlenir - motor bunları işler - sonra daha fazla görev bekler (uyurken ve sıfıra yakın CPU tüketirken).
 
-It may happen that a task comes while the engine is busy, then it's enqueued.
+Motor meşgulken bir görev gelebilir, sonra sıraya girebilir.
 
-The tasks form a queue, so-called "macrotask queue" (v8 term):
+Görevler, "macrotask sırası" (v8 terimi) olarak adlandırılan bir sıra oluşturur:
 
 ![](eventLoop.svg)
 
-For instance, while the engine is busy executing a `script`, a user may move their mouse causing `mousemove`, and `setTimeout` may be due and so on, these tasks form a queue, as illustrated on the picture above.
+Örneğin, motor bir `script`'i yürütmekle meşgulken, bir kullanıcı faresini hareket ettirerek `mousemove`'a neden olabilir ve `setTimeout` zamanı gelmiş olabilir ve benzeri, yukarıdaki resimde gösterildiği gibi bu görevler bir kuyruk oluşturur.
 
-Tasks from the queue are processed on "first come – first served" basis. When the engine browser is done with the `script`, it handles `mousemove` event, then `setTimeout` handler, and so on.
+Kuyruktaki görevler "ilk gelene ilk hizmet" esasına göre işlenir. Tarayıcı motoru `script` ile işi bittiğinde, `mousemove` olayını, ardından `setTimeout` işleyicisini vb. işler.
 
-So far, quite simple, right?
+Buraya kadar oldukça basit, değil mi?
 
-Two more details:
-1. Rendering never happens while the engine executes a task. It doesn't matter if the task takes a long time. Changes to the DOM are painted only after the task is complete.
-2. If a task takes too long, the browser can't do other tasks, such as processing user events. So after a time, it raises an alert like "Page Unresponsive", suggesting killing the task with the whole page. That happens when there are a lot of complex calculations or a programming error leading to an infinite loop.
+İki ayrıntı daha:
+1. Motor bir görevi yürütürken oluşturma(Render) asla gerçekleşmez. Görevin uzun sürmesi önemli değil. DOM'daki değişiklikler yalnızca görev tamamlandıktan sonra boyanır.
+2. Bir görev çok uzun sürerse tarayıcı, kullanıcı olaylarını işleme gibi diğer görevleri yapamaz. Bu yüzden bir süre sonra "Sayfa Yanıt Vermiyor" gibi bir uyarı vererek görevi tüm sayfayla sonlandırmayı önerir. Bu, çok sayıda karmaşık hesaplama olduğunda veya sonsuz bir döngüye yol açan bir programlama hatası olduğunda olur.
 
-That was the theory. Now let's see how we can apply that knowledge.
+Teori buydu. Şimdi bu bilgiyi nasıl uygulayabileceğimizi görelim.
 
-## Use-case 1: splitting CPU-hungry tasks
+## Kullanım Senaryosu 1: CPU'ya aç görevleri bölme
 
-Let's say we have a CPU-hungry task.
+Diyelim ki CPU'ya aç bir görevimiz var.
 
-For example, syntax-highlighting (used to colorize code examples on this page) is quite CPU-heavy. To highlight the code, it performs the analysis, creates many colored elements, adds them to the document -- for a large amount of text that takes a lot of time.
+Örneğin, sözdizimi vurgulama(syntax-highlighting) (bu sayfadaki kod örneklerini renklendirmek için kullanılır) oldukça CPU ağırlıklıdır. Kodu vurgulamak için, analizi gerçekleştirir, birçok renkli öğe oluşturur, bunları belgeye ekler - çok fazla zaman alan büyük miktarda metin için.
 
-While the engine is busy with syntax highlighting, it can't do other DOM-related stuff, process user events, etc. It may even cause the browser to "hiccup" or even "hang" for a bit, which is unacceptable.
+Motor sözdizimi vurgulama ile meşgulken, DOM ile ilgili diğer işlemleri yapamaz, kullanıcı olaylarını işleyemez vb. Hatta tarayıcının bir süre "hıçkırmasına" ve hatta "takılmasına" neden olabilir ki bu kabul edilemez bir durumdur.
 
-We can avoid problems by splitting the big task into pieces. Highlight first 100 lines, then schedule `setTimeout` (with zero-delay) for the next 100 lines, and so on.
+Büyük görevi parçalara bölerek sorunlardan kaçınabiliriz. İlk 100 satırı vurgulayın, ardından sonraki 100 satır için "setTimeout" (sıfır gecikmeli) zamanlayın, vb.
 
-To demonstrate this approach, for the sake of simplicity, instead of text-highlighting, let's take a function that counts from `1` to `1000000000`.
+Bu yaklaşımı göstermek için, basitlik adına, metin vurgulama yerine `1` ile `1000000000` arasında sayan bir fonksiyon alalım.
 
-If you run the code below, the engine will "hang" for some time. For server-side JS that's clearly noticeable, and if you are running it in-browser, then try to click other buttons on the page -- you'll see that no other events get handled until the counting finishes.
+Aşağıdaki kodu çalıştırırsanız, motor bir süre "askıda kalır". Açıkça fark edilen sunucu tarafı JS için ve tarayıcıda çalıştırıyorsanız, sayfadaki diğer düğmeleri tıklamayı deneyin - sayım bitene kadar başka hiçbir olayın işlenmediğini göreceksiniz.
 
 ```js run
 let i = 0;
@@ -67,7 +67,7 @@ let start = Date.now();
 
 function count() {
 
-  // do a heavy job
+  // ağır bir iş yap
   for (let j = 0; j < 1e9; j++) {
     i++;
   }
@@ -78,9 +78,9 @@ function count() {
 count();
 ```
 
-The browser may even show a "the script takes too long" warning.
+Tarayıcı, "script çok uzun sürüyor" uyarısı bile gösterebilir.
 
-Let's split the job using nested `setTimeout` calls:
+İşi iç içe `setTimeout` çağrılarını kullanarak bölelim:
 
 ```js run
 let i = 0;
@@ -89,7 +89,7 @@ let start = Date.now();
 
 function count() {
 
-  // do a piece of the heavy job (*)
+  // ağır işin bir parçasını yap (*)
   do {
     i++;
   } while (i % 1e6 != 0);
@@ -97,7 +97,7 @@ function count() {
   if (i == 1e9) {
     alert("Done in " + (Date.now() - start) + 'ms');
   } else {
-    setTimeout(count); // schedule the new call (**)
+    setTimeout(count); // yeni cağrıyı planla (**)
   }
 
 }
@@ -105,21 +105,22 @@ function count() {
 count();
 ```
 
-Now the browser interface is fully functional during the "counting" process.
+Artık tarayıcı arayüzü "sayma" işlemi sırasında tamamen işlevseldir.
 
 A single run of `count` does a part of the job `(*)`, and then re-schedules itself `(**)` if needed:
+Tek bir `count` çalıştırması `(*)` işinin bir bölümünü yapar ve ardından gerekirse kendisini `(**)` olarak yeniden zamanlar:
 
-1. First run counts: `i=1...1000000`.
-2. Second run counts: `i=1000001..2000000`.
-3. ...and so on.
+1. İlk çalıştırma sayar: `i=1...1000000`.
+2. İkinci çalıştırma sayar: `i=1000001..2000000`.
+3. ...ve benzeri.
 
-Now, if a new side task (e.g. `onclick` event) appears while the engine is busy executing part 1, it gets queued and then executes when part 1 finished, before the next part. Periodic returns to the event loop between `count` executions provide just enough "air" for the JavaScript engine to do something else, to react to other user actions.
+Şimdi, motor bölüm 1'i yürütmekle meşgulken yeni bir yan görev (örneğin `onclick` olayı) ortaya çıkarsa, sıraya alınır ve sonraki bölümden önce bölüm 1 bittiğinde yürütülür. `count` yürütmeleri arasındaki olay döngüsüne periyodik geri dönüşler, JavaScript motorunun başka bir şey yapması, diğer kullanıcı eylemlerine tepki vermesi için yeterli "hava" sağlar.
 
-The notable thing is that both variants -- with and without splitting the job by `setTimeout` -- are comparable in speed. There's not much difference in the overall counting time.
+Dikkate değer olan şey, her iki varyantın da -- işi `setTimeout` ile bölerek ve bölmeden -- hız açısından karşılaştırılabilir olmasıdır. Toplam sayım süresinde pek bir fark yok.
 
-To make them closer, let's make an improvement.
+Onları daha da yakınlaştırmak için bir iyileştirme yapalım.
 
-We'll move the scheduling to the beginning of the `count()`:
+Zamanlamayı `count()`un başına taşıyacağız:
 
 ```js run
 let i = 0;
@@ -128,9 +129,9 @@ let start = Date.now();
 
 function count() {
 
-  // move the scheduling to the beginning
+  // zamanlamayı en başa taşı
   if (i < 1e9 - 1e6) {
-    setTimeout(count); // schedule the new call
+    setTimeout(count); // yeni cağrıyı planla 
   }
 
   do {
@@ -146,25 +147,25 @@ function count() {
 count();
 ```
 
-Now when we start to `count()` and see that we'll need to `count()` more, we schedule that immediately, before doing the job.
+Şimdi `count()` yapmaya başladığımızda ve daha fazla `count()` yapmamız gerektiğini gördüğümüzde, işi yapmadan önce bunu hemen zamanlıyoruz.
 
-If you run it, it's easy to notice that it takes significantly less time.
+Çalıştırırsanız, önemli ölçüde daha az zaman aldığını fark etmek kolaydır.
 
-Why?  
+Neden?  
 
-That's simple: as you remember, there's the in-browser minimal delay of 4ms for many nested `setTimeout` calls. Even if we set `0`, it's `4ms` (or a bit more). So the earlier we schedule it - the faster it runs.
+Çok basit: Hatırladığınız gibi, iç içe geçmiş birçok `setTimeout` çağrısı için tarayıcıda minimum 4 ms gecikme vardır. `0` ayarlasak bile, `4ms` (veya biraz daha fazla). Yani ne kadar erken zamanlarsak o kadar hızlı çalışır.
 
-Finally, we've split a CPU-hungry task into parts - now it doesn't block the user interface. And its overall execution time isn't much longer.
+Son olarak, CPU'ya aç bir görevi parçalara ayırdık - artık kullanıcı arayüzünü engellemiyor. Ve genel yürütme süresi çok daha uzun değil.
 
-## Use case 2: progress indication
+## Kullanım Senaryosu 2: ilerleme göstergesi
 
-Another benefit of splitting heavy tasks for browser scripts is that we can show progress indication.
+Tarayıcı komut dosyaları için ağır görevleri bölmenin bir başka yararı da ilerleme göstergesi gösterebilmemizdir.
 
-As mentioned earlier, changes to DOM are painted only after the currently running task is completed, irrespective of how long it takes.
+Daha önce belirtildiği gibi, DOM'daki değişiklikler, ne kadar sürdüğüne bakılmaksızın, yalnızca şu anda çalışan görev tamamlandıktan sonra boyanır.
 
-On one hand, that's great, because our function may create many elements, add them one-by-one to the document and change their styles -- the visitor won't see any "intermediate", unfinished state. An important thing, right?
+Bir yandan, bu harika, çünkü fonksiyonumuz birçok öğe oluşturabilir, bunları tek tek belgeye ekleyebilir ve stillerini değiştirebilir -- ziyaretçi herhangi bir "ara", tamamlanmamış durum görmez. Önemli bir şey, değil mi?
 
-Here's the demo, the changes to `i` won't show up until the function finishes, so we'll see only the last value:
+İşte demo, `i`'deki değişiklikler fonksiyon bitene kadar görünmeyecek, bu yüzden yalnızca son değeri göreceğiz:
 
 
 ```html run
@@ -183,11 +184,11 @@ Here's the demo, the changes to `i` won't show up until the function finishes, s
 </script>
 ```
 
-...But we also may want to show something during the task, e.g. a progress bar.
+...Ancak görev sırasında da bir şey göstermek isteyebiliriz, örneğin bir ilerleme çubuğu.
 
-If we split the heavy task into pieces using `setTimeout`, then changes are painted out in-between them.
+Eğer ağır görevi `setTimeout` kullanarak parçalara ayırırsak, o zaman değişiklikler aralarında boyanır.
 
-This looks prettier:
+Bu daha güzel görünüyor:
 
 ```html run
 <div id="progress"></div>
@@ -197,7 +198,7 @@ This looks prettier:
 
   function count() {
 
-    // do a piece of the heavy job (*)
+    // ağır işin bir parçasını yap (*)
     do {
       i++;
       progress.innerHTML = i;
@@ -213,14 +214,14 @@ This looks prettier:
 </script>
 ```
 
-Now the `<div>` shows increasing values of `i`, a kind of a progress bar.
+Şimdi `<div>`, bir tür ilerleme çubuğu olan `i`'nin artan değerlerini gösteriyor.
 
 
-## Use case 3: doing something after the event
+## Kullanım Senaryosu 3: olaydan sonra bir şeyler yapmak
 
-In an event handler we may decide to postpone some actions until the event bubbled up and was handled on all levels. We can do that by wrapping the code in zero delay `setTimeout`.
+Bir olay işleyicide, bazı eylemleri olay kabarıp tüm seviyelerde işlenene kadar ertelemeye karar verebiliriz. Bunu, kodu sıfır gecikmeli `setTimeout` içine sararak yapabiliriz.
 
-In the chapter <info:dispatch-events> we saw an example: custom event `menu-open` is dispatched in `setTimeout`, so that it happens after the "click" event is fully handled.
+<info:dispatch-events> bölümünde bir örnek gördük: `menu-open` özel olayı(custom event) `setTimeout` içinde gönderilir, böylece click" olayı tamamen işlendikten sonra gerçekleşir.
 
 ```js
 menu.onclick = function() {
@@ -236,17 +237,17 @@ menu.onclick = function() {
 };
 ```
 
-## Macrotasks and Microtasks
+## Macrotasks ve Microtasks
 
-Along with *macrotasks*, described in this chapter, there are *microtasks*, mentioned in the chapter <info:microtask-queue>.
+Bu bölümde açıklanan *macrotasks* ile birlikte, <info:microtasks-sırası> bölümünde bahsedilen *microtasks* vardır.
 
-Microtasks come solely from our code. They are usually created by promises: an execution of `.then/catch/finally` handler becomes a microtask. Microtasks are used "under the cover" of `await` as well, as it's another form of promise handling.
+Microtask'ler yalnızca kodumuzdan gelir. Genellikle promise'larla oluşturulurlar: `.then/catch/finally` işleyicisinin yürütülmesi bir microtask haline gelir. Microtask'ler, bir başka promise işleme biçimi olduğu için, `wait`'in "örtüsü altında" da kullanılır.
 
-There's also a special function `queueMicrotask(func)` that queues `func` for execution in the microtask queue.
+Ayrıca, microtask kuyruğunda yürütülmek üzere `func`'u sıraya sokan özel bir `queueMicrotask(func)` fonksiyonu da vardır.
 
-**Immediately after every *macrotask*, the engine executes all tasks from *microtask* queue, prior to running any other macrotasks or rendering or anything else.**
+**Her macrotask'dan hemen sonra, motor, diğer macrotask'ları çalıştırmadan veya oluşturmadan veya başka herhangi bir şeyden önce tüm görevleri microtask kuyruğundan yürütür.**
 
-For instance, take a look:
+Örneğin, bir göz atın:
 
 ```js run
 setTimeout(() => alert("timeout"));
