@@ -1,3 +1,3 @@
-# Obje özelliklerinin düzenlenmesi
+# Nesne özelliklerinin düzenlenmesi
 
-Bu bölümde objelere geri dönülerek özellikleri daha detaylı incelenecektir.
+Bu bölümde, nesneler konusuna geri dönülerek nesne özellikleri daha ayrıntılı incelenecektir.
