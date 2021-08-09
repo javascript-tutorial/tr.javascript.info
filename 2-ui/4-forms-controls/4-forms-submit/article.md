@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 # Form gönderme: Olay veya metod olarak
+=======
+# Forms: event and method submit
+>>>>>>> bc08fd1b32285304b14afea12a9deaa10d13452b
 
 Form gönderildiğinde `submit` olayı tetiklenir, genellikle formu sunucuya göndermeden önce doğrulamak veya gönderimi iptal edip JavaScript'te işlemek için kullanılır.
 

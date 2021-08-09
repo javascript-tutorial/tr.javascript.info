@@ -4,7 +4,11 @@ Burada aslında 3 tane test var, fakat bunların hepsi bir fonksiyon içine tık
 
 Bazen böyle yazmak kolay olsa da bir hata olursa bu gizli saklı kalır ve nerede hata olduğu anlaşılamaz.
 
+<<<<<<< HEAD
 Eğer karmaşık bir akış içinde bir hata olursa ve bunun nedenini testler vasıtasıyla çözmeye çalışırsanız, testleri **ayıklamanız** gerekir.
+=======
+If an error happens in the middle of a complex execution flow, then we'll have to figure out the data at that point. We'll actually have to *debug the test*.
+>>>>>>> bc08fd1b32285304b14afea12a9deaa10d13452b
 
 Bunun yerine testi birden çok `it` bloğuna ayırırsanız bu problemden kurtulursunuz.
 
