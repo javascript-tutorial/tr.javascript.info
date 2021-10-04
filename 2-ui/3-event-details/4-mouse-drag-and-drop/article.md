@@ -19,7 +19,7 @@ Temel sürükle ve bırak algoritması şuna benzer:
 3. Daha sonra `mousemove` olayı sırasında `left/top` ve `position:absolute` değerlerini değiştirerek ögeyi hareket ettirin.
 4.  `mouseup` olayı (fareyi bıraktığımız zaman) -- Sürükle bırak olayı bittiği zaman yapılacak aksiyonları yapın.
 
-Bunlar temel bilgilerdir. Örneğin, üzerine gelindiğinde bırakılabilir (bırakımaya müsait) öğeleri ışıklandırma gibi bu algoritmayı genişletebiliriz.
+Bunlar temel bilgilerdir. Örneğin, üzerine gelindiğinde bırakılabilir (bırakmaya müsait) öğeleri ışıklandırma gibi bu algoritmayı genişletebiliriz.
 
 İşte bir topu sürükleyip bırakmanın uygulaması:
 
@@ -58,7 +58,7 @@ ball.onmousedown = function(event) { // (1) start the process
 };
 ```
 
-Kodu çalıştırırsak tuhaf bir şey fark edebiliriz. Sürükleyip bırakmanın başlangıcında, top "klonlanır": "klonunu" sürüklemeye başlarız.
+Kodu çalıştırırsak tuhaf bir şey fark edebiliriz. Sürükleyip bırakmanın başlangıcında, top "klonlanır" ve "klonunu" sürüklemeye başlarız.
 
 ```online
 İşte bir örnek:
@@ -68,7 +68,7 @@ Kodu çalıştırırsak tuhaf bir şey fark edebiliriz. Sürükleyip bırakmanı
 Fareyi sürükleyip bırakmaya çalıştığınızda garip davranışı göreceksiniz.
 ```
 
-Bunun nedeni, tarayıcının resimler için otomatik olarak çalışan ve bizimkilerle çakışan kendi Sürükle ve Bırak özelliğine ve diğer bazı öğelere sahip olmasıdır.
+Bunun nedeni, tarayıcının resimler için otomatik olarak çalışan ve bizimkilerle çakışan kendi sürükle ve bırak özelliğine ve diğer bazı öğelere sahip olmasıdır.
 
 Bunu deve dışarı bırakmak için:
 
@@ -86,9 +86,9 @@ In action:
 [iframe src="ball2" height=230]
 ```
 
-Bir diğer önemli husus - "top" üzerinde değil, "belge" üzerinde `mousemove` yani fare hareketini izliyoruz. İlk bakışta, farenin her zaman topun üstündeymiş gibi olacagını düşünebiliriz ve bu yüzden topun üzerinden de dinleyebiliriz diye düşünebiliriz ( ball.eventLıstener ile) .
+Bir diğer önemli husus - "top" üzerinde değil, "belge" üzerinde `mousemove` yani fare hareketini izliyoruz. İlk bakışta, farenin her zaman topun üstündeymiş gibi olacagını düşünebiliriz ve bu yüzden topun üzerinden de dinleyebiliriz diye düşünebiliriz ( ball.eventLıstener ile).
 
-Ancak hatırlarsak, `mousemove` sık sık tetiklenmesine rağmen, aynı zamanda bazı pikselleri atlayabilir. Bu yüzden ani bir hareketin ardından, imleç topun üzerinden atlayarak, pencerenin başka bir yerine gidebilir ve hatta pencerenin dışına çıkabilir.
+Ancak hatırlarsak, `mousemove` sık sık tetiklenmesine rağmen, aynı zamanda bazı pikselleri atlayabilir. Bu yüzden ani bir hareketin ardından imleç topun üzerinden atlayarak pencerenin başka bir yerine gidebilir ve hatta pencerenin dışına çıkabilir.
 
 Bu yüzden yakalamak için `document` i dinlemeliyiz. (document.eventListener ile)
 
@@ -196,7 +196,7 @@ Topu sağ alt köşesinden sürüklediğimizde fark özellikle belirgindir. Önc
 
 Ancak bu işe yaramayacak.
 
-Problem şu ki, biz elementi alıp sürüklerken, bu element her zaman diğerlerinin üstünde ( z-index den ötürü). Ve fare olayları sadece üstteki element üzerinde olur, alttakileri görmez.
+Problem şu ki, biz elementi alıp sürüklerken, bu element her zaman diğerlerinin üstünde (z-index'ten ötürü) ve fare olayları sadece üstteki element üzerinde olur, alttakileri görmez.
 
 Örneğin, aşağıda mavinin üzerinde kırmızı olmak üzere iki `<div>` ögesi var. Mavi elementin üzerinde bir fare olayı yakalamak imkansız çünkü üstünde kırmızı element var.
 
@@ -213,7 +213,7 @@ Problem şu ki, biz elementi alıp sürüklerken, bu element her zaman diğerler
 <div style="background:red" onmouseover="alert('kırmızının üzerinde!')"></div>
 ```
 
-Aynı durum sürüklediğimiz elementte de geçerli. Top her zaman diğer elementlerin üzerinde olduğu için, fare olayı onun üzerinde gerçekleşir. Örneğin bırakacagımız noktada da fare olayı dinlemek istersek, çalışmayacak.
+Aynı durum sürüklediğimiz element için de geçerli. Top her zaman diğer elementlerin üzerinde olduğu için, fare olayı onun üzerinde gerçekleşir. Örneğin bırakacagımız noktada da fare olayı dinlemek istersek, işlev çalışmayacaktır.
 
 Bu nedenle, olay dinleyicileri potansiyel hedeflere yerleştirme fikri pratikte işe yaramaz.
 
@@ -233,12 +233,12 @@ ball.hidden = false;
 
 Not: bu z çağırmadan önce topu saklamamız gerekir `(*)`. Yoksa muhtemelen bu koordinatlar topun koordinatları olur, çünkü imlecin göreceği ilk element olacaktır: `elemBelow=ball`.
 
-Bu kodu istediğimiz zaman diğer elementlerin "üzerinden geçip geçmediğimizi" kontrol etmek için kullanabiliriz. Ve gerçekleştiğinde sürüklediğimiz elementi buraya birakabileceğimiz anlamına gelir.
+Bu kodu istediğimiz zaman diğer elementlerin "üzerinden geçip geçmediğimizi" kontrol etmek için kullanabiliriz ve gerçekleştiğinde sürüklediğimiz elementi buraya bırakabileceğımız anlamına gelir.
 
 "Bırakılabilir" öğeleri bulmak için genişletilmiş bir `onMouseMove` kodu:
 
 ```js
-let currentDroppable = null; // potansiyel birakacağımız yer
+let currentDroppable = null; // potansiyel bırakacağımız yer
 
 function onMouseMove(event) {
   moveAt(event.pageX, event.pageY);
@@ -256,11 +256,11 @@ function onMouseMove(event) {
 
   if (currentDroppable != droppableBelow) { // eğer bir değişiklik varsa
     // not: iki değer de boş olabilir
-    //   currentDroppable=null eğer bırakabileceğimiz bir noktadan geçmediysel (örneğin boş bir alandan geçtiysek) 
+    //   currentDroppable=null eğer bırakabileceğimiz bir noktadan geçmediysek (örneğin boş bir alandan geçtiysek) 
     //   droppableBelow=null şu an bu olay sırasında bırakabileceğimiz alanda değilsek
 
     if (currentDroppable) {
-      // bırabileceğimiz alandan gelip geçme mantığı (ışıklandırmayı kaldır)
+      // bırakabileceğimiz alandan gelip geçme mantığı (ışıklandırmayı kaldır)
       leaveDroppable(currentDroppable);
     }
     currentDroppable = droppableBelow;
@@ -276,7 +276,7 @@ Aşağıdaki örnekte, top futbol kalesinin üzerinden sürüklendiğinde, kale 
 
 [codetabs height=250 src="ball4"]
 
-Artık tüm süreç boyunca `currentDroppable` değişkeninde mevcut "bırakacağımız noktanın hedefi" var ve onu ışıklandırmak veya başka şeyler için kullanabiliriz.
+Artık tüm süreç boyunca `currentDroppable` değişkeninde mevcut olan "bırakacağımız noktanın hedefi" var ve onu ışıklandırmak veya başka şeyler için kullanabiliriz.
 
 ## Özet
 
@@ -290,10 +290,10 @@ Anahtar nokatalar:
 
 Bu temele çok şey katabiliriz.
 
-- `mouseup` olayıyla elementi bırakışı sonlandırabiliriz: veriyi değiştirebiliriz, ögeleri yerinden oynatabiliriz.
+- `mouseup` olayıyla elementi bırakışı sonlandırabiliriz; veriyi değiştirebiliriz, ögeleri yerinden oynatabiliriz.
 - Üstünden geçtiğimiz elementleri ışıklandırabiliriz.
 - Sürüklemeyi belli bir yönde ve belli bir alanda sınırlandırabiliriz.
--  `mousedown/up` için olay delegeasyonu kullanabiliriz. "Event.target" öğesini kontrol eden geniş alanlı bir olay işleyicisi, yüzlerce öğe için sürükle bırak işlevini yönetebilir.
+-  `mousedown/up` için olay delegasyonu kullanabiliriz. "Event.target" öğesini kontrol eden geniş alanlı bir olay işleyicisi, yüzlerce öğe için sürükle bırak işlevini yönetebilir.
 - Bunu daha da ilerletebilirsiniz.
 
 Bunun üzerine yazılım mimarisi oluşturan bazı yazılım kütüphaneler (framework) var: `DragZone`, `Droppable`, `Draggable`. Çoğu yukarıdakine benzer algoritmalar içerir. Bu yüzden bu kütühaneleri anlamanız daha kolay olacaktır. Ya da kendiniz yapın, bu süreci nasıl işleyeceğinizi artık biliyorsunuz, muhtemelen başka bir kütüphaneyi kendi kodunuza adapte etmekten daha kolay olacaktır. 
