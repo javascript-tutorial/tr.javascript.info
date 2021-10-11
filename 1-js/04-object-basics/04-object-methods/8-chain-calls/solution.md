@@ -21,7 +21,7 @@ let merdiven = {
     return this;
 */!*
   }
-}
+};
 
 merdiven.yukari().yukari().asagi().yukari().asagi().adimiGoster();//1
 ```
