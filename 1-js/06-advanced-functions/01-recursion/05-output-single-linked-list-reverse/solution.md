@@ -34,7 +34,11 @@ geriListeYazdır(list);
 
 # Döngü versiyonu
 
+<<<<<<< HEAD
 Döngü versiyonu da bir öncekine göre biraz daha karmaşıktır.
+=======
+The loop variant is also a little bit more complicated than the direct output.
+>>>>>>> eda333d423db8ade41f75d2e2d30ea06c7d997ef
 
 `list`'teki son değerin alınması gibi bir yol yoktur. Ayrıca "geri doğru" gidilemez.
 
