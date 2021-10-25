@@ -1,6 +1,10 @@
 # Mantıksal Operatörler
 
+<<<<<<< HEAD
 JavaScript dilinde üç tane mantıksal operatör bulunmaktadır: `||` (OR - VEYA ), `&&`(AND - VE ), `!` (NOT - DEĞİL )
+=======
+There are four logical operators in JavaScript: `||` (OR), `&&` (AND), `!` (NOT), `??` (Nullish Coalescing). Here we cover the first three, the `??` operator is in the next article.
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 
 Mantıksal operatörler olarak adlandırılsalar bile, her tipteki değer için uygulanabilirler. Sadece boolean ( doğru-yanlış) değerleri için değil. Sonuçta her tipte olabilir.
 
@@ -64,7 +68,11 @@ if (saat < 10 || saat > 18 || haftaSonu) {
 }
 ```
 
+<<<<<<< HEAD
 ## VEYA ilk doğru değeri arar
+=======
+## OR "||" finds the first truthy value [#or-finds-the-first-truthy-value]
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 
 Yukarıda belirtilen mantık klasik mantıktır. JavaScript'in "ekstra" özelliklerine bakılacak olursa
 
@@ -83,23 +91,37 @@ VEYA `"||"` operatörü şunları yapar:
 - Her operandın değerini boolean'a çevirir. Eğer sonuç `doğru` ise durur ve o operandın orjinal değerini döner.
 - Eğer tüm operandlar kontrol edildi ve tamamı yanlış ise son operandı döner.
 
+<<<<<<< HEAD
 Eğer VEYA zincirinde bir tane doğru bulunursa o an dönülür. Eğer bulunamazsa sonuncusu döner.
+=======
+In other words, a chain of OR `||` returns the first truthy value or the last one if no truthy value is found.
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 
 Örneğin:
 
 ```js run
+<<<<<<< HEAD
 alert( 1 || 0 ); // 1 (1 doğru)
 alert( true || 'önemsiz' ); // (true doğru)
 
 alert( null || 1 ); // 1 (1 tek doğru veri)
 alert( null || 0 || 1 ); // 1 (1 tek doğru veri)
 alert( undefined || null || 0 ); // 0 (Hepsi yanlış sonuncusunu döner)
+=======
+alert( 1 || 0 ); // 1 (1 is truthy)
+
+alert( null || 1 ); // 1 (1 is the first truthy value)
+alert( null || 0 || 1 ); // 1 (the first truthy value)
+
+alert( undefined || null || 0 ); // 0 (all falsy, returns the last value)
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 ```
 
 Bu klasik "boolean" VEYA tanımını aşarak ilginç kullanımlara neden olmaktadır.
 
 1. **Değişken veya ifadeler dizisinde ilk doğru(true) değeri bulmak için**
 
+<<<<<<< HEAD
     Düşünün bir diziniz var ve içinde `null/undefined` değerler barındırmakta. Siz ilk veriyi bulduğunuzda döndermek istiyorsunuz.
 
     Bunun için `||` kullanabilirsiniz:
@@ -113,10 +135,25 @@ Bu klasik "boolean" VEYA tanımını aşarak ilginç kullanımlara neden olmakta
     */!*
 
     alert( isim ); // "Akif" seçilir – ilk doğru değeri bulduğundan dolayı buradan dönülür ve ekrana "Akif" çıkar.
+=======
+    For instance, we have `firstName`, `lastName` and `nickName` variables, all optional (i.e. can be undefined or have falsy values).
+
+    Let's use OR `||` to choose the one that has the data and show it (or `"Anonymous"` if nothing set):
+
+    ```js run
+    let firstName = "";
+    let lastName = "";
+    let nickName = "SuperCoder";
+
+    *!*
+    alert( firstName || lastName || nickName || "Anonymous"); // SuperCoder
+    */!*
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
     ```
     
     Eğer `simdikiKullanici` ve `varsayilanKullanici` yanlış(false) olsaydı `"isimsiz"` yazısı ekrana çıkacaktı.
 
+<<<<<<< HEAD
 2. **Kısa devre değerlendirmesi**
     
     Operantlar sadece değer değil ifade de olabilir. VEYA testlerini soldan sağa doğru yapar. Doğru değer bulunduğunda döndürülür. Bu olaya kısa devre değerlendirmesi denir, çünkü soldan sağa en kısa yoldan gitmektedir.
@@ -128,21 +165,31 @@ Bu klasik "boolean" VEYA tanımını aşarak ilginç kullanımlara neden olmakta
     
     ```js run no-beautify
     let x;
+=======
+    If all variables were falsy, `"Anonymous"` would show up.
 
-    *!*true*/!* || (x = 1);
+2. **Short-circuit evaluation.**
 
+    Another feature of OR `||` operator is the so-called "short-circuit" evaluation.
+
+    It means that `||` processes its arguments until the first truthy value is reached, and then the value is returned immediately, without even touching the other argument.
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
+
+    The importance of this feature becomes obvious if an operand isn't just a value, but an expression with a side effect, such as a variable assignment or a function call.
+
+<<<<<<< HEAD
     alert(x); // tanımsız, çünkü (x = 1) ifadesi çalıştırılmadı
     ```
 
     Eğer `if` yapısında ilk değer `false` ise bir sonrakine bakılır bu da şu şekilde sonuç verir:
 
+=======
+    In the example below, only the second message is printed:
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 
     ```js run no-beautify
-    let x;
-
-    *!*false*/!* || (x = 1);
-
-    alert(x); // 1
+    *!*true*/!* || alert("not printed");
+    *!*false*/!* || alert("printed");
     ```
     Gördüğünüz gibi değer atandı. Böyle basit bir durumda yan etki görmezden gelinebilir.
     
@@ -151,7 +198,13 @@ Bu klasik "boolean" VEYA tanımını aşarak ilginç kullanımlara neden olmakta
     Çoğu zaman normal `if` yapısını kullanmanız daha iyidir çünkü kod daha anlaşılır olur. Fakat bazen kısa yoldan `if` yapmakta işinize yarayabilir.
     
 
+<<<<<<< HEAD
 ## && (AND - VE )
+=======
+    In the first line, the OR `||` operator stops the evaluation immediately upon seeing `true`, so the `alert` isn't run.
+
+    Sometimes, people use this feature to execute commands only if the condition on the left part is falsy.
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 
 Ve operatörü iki tane `&` işaretiyle tanımlanmaktadır.
 
@@ -188,7 +241,13 @@ if (1 && 0) { // true && false şeklinde değerlendirilmiştir.
 
 ## VE ilk `yanlış` değeri görür
 
+<<<<<<< HEAD
 Aşağıda 3 tane AND işlemine sokulmuş değer bulunmaktadır:
+=======
+## AND "&&" finds the first falsy value
+
+Given multiple AND'ed values:
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 
 ```js
 sonuc = deger1 && deger2 && deger3;
@@ -240,7 +299,12 @@ alert( 5 || 1 && 0 ); // 5
 ````
 VEYA'da olduğu gibi VE'de de operatör bazen `if` yerine kullanılabilir.
 
+<<<<<<< HEAD
 Örneğin:
+=======
+````warn header="Don't replace `if` with `||` or `&&`"
+Sometimes, people use the AND `&&` operator as a "shorter way to write `if`".
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 
 
 ```js run
@@ -256,14 +320,23 @@ Aslında aşağıdaki ile benzerdir:
 ```js run
 let x = 1;
 
+<<<<<<< HEAD
 if (x > 0) {
   alert( 'Sıfırdan büyük!' );
 }
+=======
+if (x > 0) alert( 'Greater than zero!' );
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 ```
 `&&` ile yazılan çeşidi daha kısa gibi görünse de aslında `if` ile yazılanın daha okunabilir olduğu açıktır.
 
 Bundan dolayı her yapıyı amacına göre kullanmanız önerilir. Eğer `if` kullanmak istiyorsanız `if` yazarak kullanın. Eğer VE kullanmak istiyorsnaız `&&` yazarak kullanın.
 
+<<<<<<< HEAD
+=======
+Although, the variant with `&&` appears shorter, `if` is more obvious and tends to be a little bit more readable. So we recommend using every construct for its purpose: use `if` if we want `if` and use `&&` if we want AND.
+````
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 
 
 ## ! (DEĞİL)

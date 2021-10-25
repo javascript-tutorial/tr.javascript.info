@@ -14,6 +14,10 @@ JavaScript dilinde değişken `let` kelimesiyle üretilir.
 
 Aşağıdaki cümle "mesaj" isminde bir değişken üretir ( diğer bir deyişle *tanımlar* )
 
+<<<<<<< HEAD
+=======
+The statement below creates (in other words: *declares*) a variable with the name "message":
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 
 ```js
 let mesaj;
@@ -24,7 +28,11 @@ Artık bunun içerisine bilgi koyulabilir. Bunu atama operatörü ile `=` yapabi
 let mesaj;
 
 *!*
+<<<<<<< HEAD
 mesaj = 'Merhaba'; // Merhaba karakter dizisini mesaja atadınız
+=======
+message = 'Hello'; // store the string 'Hello' in the variable named message
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 */!*
 ```
 
@@ -79,9 +87,14 @@ let kullanici = 'Ahmet'
 
 Teknik olarak bu yazımların hepsi doğrudur. Gerisi sizin yazım tarzınıza kalmış. Her yiğidin yoğurt yiyişi farklıdır.
 
+<<<<<<< HEAD
 ````smart header=" `let` yerine `var` kullanma"
 Eski kodlarda `let` yerine `var` kullanıldığını görürsünüz.
 
+=======
+````smart header="`var` instead of `let`"
+In older scripts, you may also find another keyword: `var` instead of `let`:
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 
 ```js
 *!*var*/!* mesaj = 'Merhaba';
@@ -115,7 +128,11 @@ Değer değiştiğinde, değişkenin eski değeri silinir.
 
 ![](variable-change.svg)
 
+<<<<<<< HEAD
 Ayrıca iki değişken tanımlayıp içerilerindeki değerleri bir diğerine aktarabilirsiniz.
+=======
+![](variable-change.svg)
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 
 
 ```js run
@@ -133,9 +150,28 @@ alert(merhaba); // Merhaba Dünya!
 alert(mesaj); // Merhaba Dünya!
 ```
 
+<<<<<<< HEAD
 ```smart header="Fonksiyonel Diller"
 
 İlginç bir bilgi olarak [Scala](http://www.scala-lang.org/) veya [Erlang](http://www.erlang.org/) gibi [fonksiyonel](https://tr.wikipedia.org/wiki/Fonksiyonel_programlama) diller değişkenin değerinin değiştirilmesine izin vermez.
+=======
+````warn header="Declaring twice triggers an error"
+A variable should be declared only once.
+
+A repeated declaration of the same variable is an error:
+
+```js run
+let message = "This";
+
+// repeated 'let' leads to an error
+let message = "That"; // SyntaxError: 'message' has already been declared
+```
+So, we should declare a variable once and then refer to it without `let`.
+````
+
+```smart header="Functional languages"
+It's interesting to note that there exist [functional](https://en.wikipedia.org/wiki/Functional_programming) programming languages, like [Scala](http://www.scala-lang.org/) or [Erlang](http://www.erlang.org/) that forbid changing variable values.
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 
 Böyle dillerde değer bir kutunun içerisinde sonsuza kadar saklanır. Eğer farklı bir değer kaydetmek istenirse bu diller bizi yeni bir kutu oluşturmaya iter. Eskisi yeniden kullanıp değeri değiştirilemez.
 
@@ -189,7 +225,12 @@ Herhangi bir dili kullanmak mümkündür. Hatta aşağıdaki gibi resim yazısı
 let имя = '...';
 let 我 = '...';
 ```
+<<<<<<< HEAD
 Teknik olarak bir hata olmamasına ve bu şekilde kullanıma izin verilesine rağmen genel olarak uluslararası gelenek olarak değişkenler İngilizce isimlendirilirler. En basit bir kod parçasının bile önünde uzun bir hayat olabilir. Diğer ülkedeki insanların bu kodları okuması gerekebilir.
+=======
+
+Technically, there is no error here. Such names are allowed, but there is an international convention to use English in variable names. Even if we're writing a small script, it may have a long life ahead. People from other countries may need to read it some time.
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 ````
 
 ````warn header="Saklı tutulan isimler"
@@ -237,8 +278,12 @@ Sabit(değişmeyen) tanımlamak için `let` yerine `const` kullanabilirsiniz.
 const benimDogumGunum = '18.04.1982';
 ```
 
+<<<<<<< HEAD
 `const` ile tanımlanan değişkenler "constants" (Sabit) olarak tanımlanır. Bunlar değiştirilemezler, değiştirilmek istendiğinde hata alınır:
 
+=======
+Variables declared using `const` are called "constants". They cannot be reassigned. An attempt to do so would cause an error:
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 
 ```js run
 const benimDogumGunum = '18.04.1982';
@@ -290,7 +335,11 @@ Diğer bir deyişle büyük harfle yazılan değişken simleri sadece önceden b
 İsimlendirmeden konuşuyorsak düzgün isimlendirmeyi atlamamak gereklidir. Aslında en önemli konu da budur.
 Eğer değişken için isim bulamıyorsanız lütfen biraz daha düşünüp mantıklı bir isim bulun.
 
+<<<<<<< HEAD
 Proje daha karmaşıklaştıkça isimlendirmenin önemi daha da anlaşılır. Değişken isimlerine göre kodun yeni kodlamaya başlayan birisi tarafından mı yoksa tecrübeli birisi tarafından mı yazıldığını anlaşılabilir.
+=======
+A variable name should have a clean, obvious meaning, describing the data that it stores.
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 
 Çoğu projede zaman var olan kodların değiştirilmesi, bu kodlardan yeni fonksiyonlar yapılması üzerinedir. Yeni bir şey yapılacağında çoğunlukla eskisinin üzerine yapılır. Eski kodlara baktığınızda değişkenlere bakarak konuyu anlamak daha kolay olacaktır. 
 
@@ -322,8 +371,14 @@ Modern JavaScript sıkıştırıcılar ve tarayıcılar kodları oldukça iyi op
 
 Verileri saklamak için değişken tanımlayabilirsiniz. Bu işlemi `var` veya `let` veya `const` ile yapabilirsiniz.
 
+<<<<<<< HEAD
 - `let` -- modern değişken tanımlama. Chrome üzerinde `let` ile değişken tanımlamak istiyorsanız sıkı modda ( strict mode ) çalışmanız gerekmekte.
 - `var` -- eski tip değişken tanımlama. Normale bu tarz değişken oluşturma hiç kullılmayacka. İleride `let` ile `var` arasındaki nüans farkı <info:var> bölümünde incelenecek.
 - `const` -- bu da `let` gibi fakat değeri değiştirilemez.
+=======
+- `let` -- is a modern variable declaration.
+- `var` -- is an old-school variable declaration. Normally we don't use it at all, but we'll cover subtle differences from `let` in the chapter <info:var>, just in case you need them.
+- `const` -- is like `let`, but the value of the variable can't be changed.
+>>>>>>> 3699f73b4ccb2a57ac5ef990d2687bf31ccf564c
 
 Değişkenler bulundukları yerdeki anlamlarına göre isimlendirilmelidirler.
