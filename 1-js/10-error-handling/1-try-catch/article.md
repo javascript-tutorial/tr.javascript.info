@@ -256,7 +256,7 @@ throw <error object>
 ```
 Teknik olarak herşeyi hata objesi olarak kullanmak mümküdür. Hatta bu ilkel tipler olan sayı, karakter dizisi gibi yapılar da olabilir. Fakat obje kullanmak, daha sı `name` ve `message` özelliklerine sahip obje kullanmak daha iyidir. ( Böylece gömülü gelen hatalar ile uyumlu olacaktır.)
 
-JavaScript bir çok standart hataya sahitir:`Error`, `SyntaxError`, `ReferenceError`, `TypeError` vs. Bunları kullanarak da hata objesiyaratmak mümkündür.
+JavaScript bir çok standart hataya sahitir:`Error`, `SyntaxError`, `ReferenceError`, `TypeError` vs. Bunları kullanarak da hata objesi yaratmak mümkündür.
 
 Yazımı:
 
@@ -268,7 +268,7 @@ let error = new ReferenceError(message);
 // ...
 ```
 
-Gömülü hatalar ( objeler değil sadece hatalar ) `name` özelliği yapıcının aynı isme sahip özelliğindne meydana gelir. `message` ise argümandan alınır.
+Gömülü hatalar ( objeler değil sadece hatalar ) `name` özelliği yapıcının aynı isme sahip özelliğinde meydana gelir. `message` ise argümandan alınır.
 
 Örneğin:
 
