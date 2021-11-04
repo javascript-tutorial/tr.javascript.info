@@ -4,7 +4,7 @@ Uzun süredir JavaScript uyumluluk sorunu olmadan gelişmeye devam etmektedir. Y
 
 Bu eski kodlarınızın çalışacağı garantisini verir. Kötü yanı ise JavaScript geliştiricileri tarafından eskiden verilen kötü bir kararın veya hatanın sürekli tekrar edilmesine neden olur. 
 
-ECMAScript 5 (ES5) standardı 2009 yılında kabul edilmiştir. Bu standar yeni özellikler eklediği gibi eskide olanlardan bazılarını da düzenlemiştir. Eski kodun çalışabilirliğini garanti altına almak için çoğu düzenleme varsayılan olarak kapalı durumda gelir. Bunları açmak için `"use strict"` kullanılmalıdır.
+ECMAScript 5 (ES5) standardı 2009 yılında kabul edilmiştir. Bu standart yeni özellikler eklediği gibi eskide olanlardan bazılarını da düzenlemiştir. Eski kodun çalışabilirliğini garanti altına almak için çoğu düzenleme varsayılan olarak kapalı durumda gelir. Bunları açmak için `"use strict"` kullanılmalıdır.
 
 ## "use strict"
 
