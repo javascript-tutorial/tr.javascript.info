@@ -43,7 +43,12 @@ for(let key in count) {
   alert(`${key}: ${count[key]}`);
 }
 ```
+<<<<<<< HEAD
 ( Temmuz 2017 itibari ile sonuçlar aşağıdaki gibidir.)
+=======
+
+An example result (depends on JS engine):
+>>>>>>> 4541b7af7584014a676da731f6e8774da5e059f6
 
 ```js
 123: 250706
@@ -63,10 +68,23 @@ Neden çalışmadı? Genel olarak konuşmak gerekirse `sort` kara kutudur: biz b
 Bu problem bir kaç yöntemle çözülebilir. [Fisher-Yates shuffle](https://en.wikipedia.org/wiki/Fisher%E2%80%93Yates_shuffle). Fikre göre dizi tersten başlayarak rasgele sayı ile değiştirilecek şekilde yazılmalıdır:
 
 ```js
+<<<<<<< HEAD
 function karistir(array) {
   for(let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i+1)); // random index  0 ile i arasında
     [array[i], array[j]] = [array[j], array[i]]; // elemanların yer değiştirmesi için.
+=======
+function shuffle(array) {
+  for (let i = array.length - 1; i > 0; i--) {
+    let j = Math.floor(Math.random() * (i + 1)); // random index from 0 to i
+
+    // swap elements array[i] and array[j]
+    // we use "destructuring assignment" syntax to achieve that
+    // you'll find more details about that syntax in later chapters
+    // same can be written as:
+    // let t = array[i]; array[i] = array[j]; array[j] = t
+    [array[i], array[j]] = [array[j], array[i]];
+>>>>>>> 4541b7af7584014a676da731f6e8774da5e059f6
   }
 }
 ```

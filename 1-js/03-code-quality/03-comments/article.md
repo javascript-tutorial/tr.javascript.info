@@ -5,7 +5,11 @@ Genelde  yorum satırları kodun nasıl ve niçin çalıştığını anlatmak i�
 
 İlk görüşte yorum yapmanın gereklilik olduğu aşikardır. Fakat programlama yeni başlayanlayanlar bunu ilk önce genelde yanlış anlamaktadırlar.
 
+<<<<<<< HEAD
 ## Kötü Yorum
+=======
+At first sight, commenting might be obvious, but novices in programming often use them wrongly.
+>>>>>>> 4541b7af7584014a676da731f6e8774da5e059f6
 
 Programlamaya yeni başlayanlar yorumları genelde "kodda ne oluyor"'u anlatmak için kullanırlar. Örneğin:
 
@@ -17,9 +21,13 @@ karmaşık;
 kod;
 ```
 
+<<<<<<< HEAD
 Fakat iyi kod aslında kendi kendini açıklayan koddur. Yorum satırlarının olabildiğince az olması beklenir. Gerçekten, kod yorum satırı olmadan da kolayca anlaşılabilir olmalı.
 
 Bunun için harika bir kural var: "Eğer bir kod yorum yapmayı gerektirecek kadar karmaşıksa, kodu tekrar yazmanızda yarar var"
+=======
+But in good code, the amount of such "explanatory" comments should be minimal. Seriously, the code should be easy to understand without them.
+>>>>>>> 4541b7af7584014a676da731f6e8774da5e059f6
 
 ### Çözüm: Fonksiyonları dışarıya atın.
 
@@ -116,6 +124,7 @@ Gerçekte neyin olup bittiğini söyleyen yorumu tamamen çıkarmak olanaksızd�
 
 Peki, fonksiyonun ne yaptığını anlatan yorumlar kötü ise, hangi yorumlar iyi?
 
+<<<<<<< HEAD
 Mimariyi tanımla
 : Üst seviyede bileşenlere genel bakış, nasıl birbirleriyle iletişim kurdukları, farklı durumlarda akışın nasıl değişeceği gibi konular anlatılmalıdır. Kusaca kuş bakışı kodun ne yaptığını anlatmalısınız. Bununla ilgili şema diline [UML](https://tr.wikipedia.org/wiki/UML) bakabilirsiniz. Kesinlikle üstünde çalışılmaya değer.
 
@@ -140,6 +149,33 @@ Fonksiyon kullanımını dökümante etme
     Bu arada [WebStorm](https://www.jetbrains.com/webstorm/) gibi editörler size JSDoc yazma konusunda yardımcı olur. Otomatik olarak kodu kontrol edebilir.
 
     Ayrıca  [JSDoc 3](https://github.com/jsdoc3/jsdoc) gibi araçlar doğrudan HTML formatında dökümantasyon yapmanızı sağlar. Daha fazla bilgiyi <http://usejsdoc.org/> adresinden okuyabilirsiniz.
+=======
+Describe the architecture
+: Provide a high-level overview of components, how they interact, what's the control flow in various situations... In short -- the bird's eye view of the code. There's a special language [UML](http://wikipedia.org/wiki/Unified_Modeling_Language) to build high-level architecture diagrams explaining the code. Definitely worth studying.
+
+Document function parameters and usage
+: There's a special syntax [JSDoc](http://en.wikipedia.org/wiki/JSDoc) to document a function: usage, parameters, returned value.
+
+For instance:
+```js
+/**
+ * Returns x raised to the n-th power.
+ *
+ * @param {number} x The number to raise.
+ * @param {number} n The power, must be a natural number.
+ * @return {number} x raised to the n-th power.
+ */
+function pow(x, n) {
+  ...
+}
+```
+
+Such comments allow us to understand the purpose of the function and use it the right way without looking in its code.
+
+By the way, many editors like [WebStorm](https://www.jetbrains.com/webstorm/) can understand them as well and use them to provide autocomplete and some automatic code-checking.
+
+Also, there are tools like [JSDoc 3](https://github.com/jsdoc3/jsdoc) that can generate HTML-documentation from the comments. You can read more information about JSDoc at <http://usejsdoc.org/>.
+>>>>>>> 4541b7af7584014a676da731f6e8774da5e059f6
 
 Neden bu yöntemle çözüldü?
 : Ne yazıldığı önemlidir. Fakat ne *yazılmadığı* nelerin olup bittiği hakkında belki daha önemlidir. Bu problem neden bu şekilde çözüldü? Size bunun cevabını kod veremez.
@@ -169,7 +205,12 @@ Eğer kodda nerede kullanıldığına veya özelliklerine dair ipuçları bulmak
 
 **Bunlar için yorum yazmayın:**
 
+<<<<<<< HEAD
 - Kodun "nasıl çalıştığını", "ne yaptığını" anlatmak için
 - Sadece eğer yorum yazmadan fonksiyon kendisini anlatamıyorsa bunları yazın.
+=======
+- That tell "how code works" and "what it does".
+- Put them in only if it's impossible to make the code so simple and self-descriptive that it doesn't require them.
+>>>>>>> 4541b7af7584014a676da731f6e8774da5e059f6
 
 Yorumlar ayrıca otomatik bir dökümantasyon oluşturmanızda yardımcı olur. Örneğin JsDoc3 aracı ile yorumlarınızdan HTML dökümantasyonu çıktısı alabilirsiniz. ( diğer formatları da destekler )

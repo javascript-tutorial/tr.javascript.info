@@ -9,7 +9,11 @@ Now let's show that the match should capture all the text: start at the beginnin
 Finally:
 
 ```js run
+<<<<<<< HEAD
 let regexp = /^[0-9a-fA-F]{2}(:[0-9a-fA-F]{2}){5}$/i;
+=======
+let regexp = /^[0-9a-f]{2}(:[0-9a-f]{2}){5}$/i;
+>>>>>>> 4541b7af7584014a676da731f6e8774da5e059f6
 
 alert( regexp.test('01:32:54:67:89:AB') ); // true
 

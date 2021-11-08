@@ -1,6 +1,10 @@
 # Türkçe Modern JavaScript Eğitimi
 
+<<<<<<< HEAD
 Bu kaynak <https://javascript.info> sitesinin Türkçe çevirisini içermektedir.
+=======
+This repository hosts the English content of the Modern JavaScript Tutorial, published in [https://javascript.info](https://javascript.info).
+>>>>>>> 4541b7af7584014a676da731f6e8774da5e059f6
 
 **Şu şekilde yardımda bulunabilirsiniz:**
 
@@ -19,7 +23,11 @@ Eğer cevap vermiyorlar ise, ve siz yöneticiliğe geçmek istiyorsanız, [ana r
 
 **Başkalarına çeviri yaptığınızı bildirerek onların da bize katılmalarını isteyebilirsiniz**
 
+<<<<<<< HEAD
 🎉 Teşekkürler!
+=======
+**You can edit the text in any editor.** The tutorial uses enhanced "markdown" format, easy to grasp. And if you want to see how it looks on-site, there's a server to run the tutorial locally at <https://github.com/javascript-tutorial/server>.
+>>>>>>> 4541b7af7584014a676da731f6e8774da5e059f6
 
 İsminiz ve paylaşımınız proje yayınlandığında "Proje Hakkında" bölümünde yer alacaktır.
 
@@ -32,9 +40,15 @@ Klasör `N-url` şeklinde `N`-sırası ( makaleler sıralıdır ) ve `url` sited
 
 Klasörler aşağıdaki dosyalardan oluşur:
 
+<<<<<<< HEAD
 - Bölüm için `index.md`,
 - Makale için `article.md`,
 - Görev için `task.md` ve çözüm var ise `solution.md`.
+=======
+  - `index.md` stands for a chapter
+  - `article.md` stands for an article
+  - `task.md` stands for a task (solution must be provided in `solution.md` file as well)
+>>>>>>> 4541b7af7584014a676da731f6e8774da5e059f6
 
 Dosya `# Title Header` başında diyez ile başlar ve bu metnin hepsi Markdown-benzeri bir format ile yazılmalıdır. Böylece basit metin editörleri ile yazabilirsiniz.
 
@@ -123,4 +137,8 @@ Bazı başlıklar sonunda `[#çapa]`'ya sahiptir.
 ```
 Lütfen bunu tercüme etmeyiniz veya silmeyiniz. Burası URL'i ayarlamak için yazılmıştır.
 
+<<<<<<< HEAD
+=======
+---  
+>>>>>>> 4541b7af7584014a676da731f6e8774da5e059f6
 ♥  
