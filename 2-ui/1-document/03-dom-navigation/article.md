@@ -9,7 +9,11 @@ libs:
 
 DOM, elementler ve içerikleri ile her şeyi yapmamıza izin verir, ancak önce ilgili DOM nesnesine ulaşmamız gerekir.
 
+<<<<<<< HEAD
 DOM üzerindeki tüm işlemler `document` nesnesiyle başlar. Bu nesneden herhangi bir düğüme erişebiliriz.
+=======
+All operations on the DOM start with the `document` object. That's the main "entry point" to DOM. From it we can access any node.
+>>>>>>> a82915575863d33db6b892087975f84dea6cb425
 
 DOM düğümleri arasında dolaşmaya izin veren bağlantıların bir görüntüsü:
 
@@ -22,7 +26,11 @@ Bunlara daha ayrıntılı değinelim.
 En üstteki ağaç düğümleri doğrudan `document` özellikleri olarak kullanılabilir:
 
 `<html>` = `document.documentElement`
+<<<<<<< HEAD
 : En üstteki belge düğümü `document.documentElement`'tir. Bu, `<html>` etiketinin DOM düğümüdür.
+=======
+: The topmost document node is `document.documentElement`. That's the DOM node of the `<html>` tag.
+>>>>>>> a82915575863d33db6b892087975f84dea6cb425
 
 `<body>` = `document.body`
 : Yaygın olarak kullanılan başka bir DOM düğümü, `<body>` elementidir -- `document.body`.
@@ -88,9 +96,9 @@ For instance, here `<body>` has children `<div>` and `<ul>` (and few blank text 
 </html>
 ```
 
-...And all descendants of `<body>` are not only direct children `<div>`, `<ul>` but also more deeply nested elements, such as `<li>` (a child of `<ul>`) and `<b>` (a child of `<li>`) -- the entire subtree.
+...And descendants of `<body>` are not only direct children `<div>`, `<ul>` but also more deeply nested elements, such as `<li>` (a child of `<ul>`) and `<b>` (a child of `<li>`) -- the entire subtree.
 
-**The `childNodes` collection provides access to all child nodes, including text nodes.**
+**The `childNodes` collection lists all child nodes, including text nodes.**
 
 The example below shows children of `document.body`:
 
@@ -151,7 +159,7 @@ There are two important consequences:
 The first thing is nice. The second is tolerable, because we can use `Array.from` to create a "real" array from the collection, if we want array methods:
 
   ```js run
-  alert( Array.from(document.body.childNodes).filter ); // now it's there
+  alert( Array.from(document.body.childNodes).filter ); // function
   ```
 
 ```warn header="DOM collections are read-only"
@@ -184,35 +192,39 @@ Please, don't. The `for..in` loop iterates over all enumerable properties. And c
 
 ## Siblings and the parent
 
-*Siblings* are nodes that are children of the same parent. For instance, `<head>` and `<body>` are siblings:
+*Siblings* are nodes that are children of the same parent.
+
+For instance, here `<head>` and `<body>` are siblings:
+
+```html
+<html>
+  <head>...</head><body>...</body>
+</html>
+```
 
 - `<body>` is said to be the "next" or "right" sibling of `<head>`,
 - `<head>` is said to be the "previous" or "left" sibling of `<body>`.
 
+The next sibling is in `nextSibling` property, and the previous one - in `previousSibling`.
+
 The parent is available as `parentNode`.
 
-The next node in the same parent (next sibling) is `nextSibling`, and the previous one is `previousSibling`.
+For example:
 
-For instance:
+```js run
+// parent of <body> is <html>
+alert( document.body.parentNode === document.documentElement ); // true
 
-```html run
-<html><head></head><body><script>
-  // HTML is "dense" to evade extra "blank" text nodes.
+// after <head> goes <body>
+alert( document.head.nextSibling ); // HTMLBodyElement
 
-  // parent of <body> is <html>
-  alert( document.body.parentNode === document.documentElement ); // true
-
-  // after <head> goes <body>
-  alert( document.head.nextSibling ); // HTMLBodyElement
-
-  // before <body> goes <head>
-  alert( document.body.previousSibling ); // HTMLHeadElement
-</script></body></html>
+// before <body> goes <head>
+alert( document.body.previousSibling ); // HTMLHeadElement
 ```
 
 ## Element-only navigation
 
-Navigation properties listed above refer to *all* nodes. For instance, in `childNodes` we can see both text nodes, element nodes, and even comment nodes if there exist.
+Navigation properties listed above refer to *all* nodes. For instance, in `childNodes` we can see both text nodes, element nodes, and even comment nodes if they exist.
 
 But for many tasks we don't want text or comment nodes. We want to manipulate element nodes that represent tags and form the structure of the page.
 
@@ -224,7 +236,7 @@ The links are similar to those given above, just with `Element` word inside:
 
 - `children` -- only those children that are element nodes.
 - `firstElementChild`, `lastElementChild` -- first and last element children.
-- `previousElementSibling`, `nextElementSibling` -- neighbour elements.
+- `previousElementSibling`, `nextElementSibling` -- neighbor elements.
 - `parentElement` -- parent element.
 
 ````smart header="Why `parentElement`? Can the parent be *not* an element?"
@@ -237,12 +249,12 @@ alert( document.documentElement.parentNode ); // document
 alert( document.documentElement.parentElement ); // null
 ```
 
-In other words, the `documentElement` (`<html>`) is the root node. Formally, it has `document` as its parent. But `document` is not an element node, so `parentNode` returns it and `parentElement` does not.
+The reason is that the root node `document.documentElement` (`<html>`) has `document` as its parent. But `document` is not an element node, so `parentNode` returns it and `parentElement` does not.
 
-This loop travels up from an arbitrary element `elem` to `<html>`, but not to the `document`:
+This detail may be useful when we want to travel up from an arbitrary element `elem` to `<html>`, but not to the `document`:
 ```js
-while(elem = elem.parentElement) {
-  alert( elem ); // parent chain till <html>
+while(elem = elem.parentElement) { // go up till <html>
+  alert( elem );
 }
 ```
 ````
@@ -278,12 +290,12 @@ Till now we described the basic navigation properties.
 
 Certain types of DOM elements may provide additional properties, specific to their type, for convenience.
 
-Tables are a great example and important particular case of that.
+Tables are a great example of that, and represent a particularly important case:
 
 **The `<table>`** element supports (in addition to the given above) these properties:
 - `table.rows` -- the collection of `<tr>` elements of the table.
 - `table.caption/tHead/tFoot` -- references to elements `<caption>`, `<thead>`, `<tfoot>`.
-- `table.tBodies` -- the collection of `<tbody>` elements (can be many according to the standard).
+- `table.tBodies` -- the collection of `<tbody>` elements (can be many according to the standard, but there will always be at least one -- even if it is not in the source HTML, the browser will put it in the DOM).
 
 **`<thead>`, `<tfoot>`, `<tbody>`** elements provide the `rows` property:
 - `tbody.rows` -- the collection of `<tr>` inside.
@@ -309,8 +321,9 @@ An example of usage:
 </table>
 
 <script>
-  // get the content of the first row, second cell
-  alert( table.*!*rows[0].cells[1]*/!*.innerHTML ) // "two"
+  // get td with "two" (first row, second column)
+  let td = table.*!*rows[0].cells[1]*/!*;
+  td.style.backgroundColor = "red"; // highlight it
 </script>
 ```
 
@@ -318,9 +331,9 @@ The specification: [tabular data](https://html.spec.whatwg.org/multipage/tables.
 
 There are also additional navigation properties for HTML forms. We'll look at them later when we start working with forms.
 
-# Summary
+## Summary
 
-Given a DOM node, we can go to its immediate neighbours using navigation properties.
+Given a DOM node, we can go to its immediate neighbors using navigation properties.
 
 There are two main sets of them:
 
