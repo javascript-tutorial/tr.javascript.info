@@ -2,7 +2,7 @@
 
 Bu bölüm JavaScript'i çevre bağımsız yani tarayıcı veya server farketmeksizin olduğu gibi kapsar.
 
-Fakat şu anda eğitimler tarayıcı üzerinde yapılmaktadır. Bundan dolayı en azından kullanıcı arayüzüne dair fonksiyon bilmenizde fayda var. Bu bölümde tarayıcıda çalışan `aler`, `prompt`, `confirm` fonksiyonları incelenecek.
+Fakat şu anda eğitimler tarayıcı üzerinde yapılmaktadır. Bundan dolayı en azından kullanıcı arayüzüne dair fonksiyon bilmenizde fayda var. Bu bölümde tarayıcıda çalışan `alert`, `prompt`, `confirm` fonksiyonları incelenecek.
 
 ## alert
 

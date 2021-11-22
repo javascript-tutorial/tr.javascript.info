@@ -109,7 +109,7 @@ function addJuice(kap) {
 ```
 Tekrardan söylemek gerekirse nelerin olup bittiğini yorum değil, fonksiyonun kendisi söylemeli.Ayrıca kod yapısı fonksiyonlar şeklinde ayrık olduğunda daha düzgün olur. Her fonksiyonun ne argüman aldığı ne geri döndürdüğü bellidir.
 
-Gerçekte neyin olup bittiğini söyleyen yorumu tamamen çıkarmak olanaksızdır. Bazen karmaşık algorimalara olabilir. Bazen akıllıca yapılmış kısa yollar olabilir. Fakat genel olarak kod basit ve kendi kendini açıklayıcı olmalı.
+Gerçekte neyin olup bittiğini söyleyen yorumu tamamen çıkarmak olanaksızdır. Bazen karmaşık algorimalara olabilir. Bazen akıllıca yapılmış kısayollar olabilir. Fakat genel olarak kod basit ve kendi kendini açıklayıcı olmalı.
 
 
 ## İyi yorum

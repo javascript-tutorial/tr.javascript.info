@@ -46,7 +46,7 @@ Sonuç şu şekildedir:
 
 Görselde  `"prototip"` yataydaki oktur, sıranda bir özelliktir. `[[Prototype]]` ise dikeydir ve `rabbit`'in `animal`'dan miras aldığını ifade eder.
 
-## Sıradan F.prototype, yapıcı( contructor) özelliği
+## Sıradan F.prototype, yapıcı (contructor) özelliği
 
 Her fonksiyonun `"prototype"` özelliği bulunmaktadır. Siz belirtmeseniz bile bu geçerlidir.
 

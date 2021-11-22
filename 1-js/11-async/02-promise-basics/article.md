@@ -25,7 +25,7 @@ let promise = new Promise(function(resolve, reject) {
 
 Sonuçlanan `promise` objesinin dahili özellikleri şu şekildedir:
 
-- `durum` - ilk önce "bekleniyor ( pending )" sonrasında "yerine getirildi" veya "red edildi" durumuna getirilir.
+- `durum` - ilk önce "bekleniyor (pending)" sonrasında "yerine getirildi" veya "red edildi" durumuna getirilir.
 - `sonuç` - ilk başlangıçta `undefined`'dır.
 
 Çalıştırıcı işini bitirdiğinde, aşağıdaki fonksiyonları belirtilen argümanlar ile çağırmalıdır:

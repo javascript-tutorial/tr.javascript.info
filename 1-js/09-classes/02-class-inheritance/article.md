@@ -94,7 +94,7 @@ Sınıflar bunun için `"super"` anahtar kelimesini sağlarlar.
 
 - `super.method(...)` üst class'ın metodunu çağırmak için.
 
-- `super(...)` üst metodun yapıcısını ( constructor) çağırmak için kullanılır.
+- `super(...)` üst metodun yapıcısını (constructor) çağırmak için kullanılır.
 
 Örneğin, Rabbit otomatik olarak durduğunda gizlensin.
 

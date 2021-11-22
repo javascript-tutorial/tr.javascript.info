@@ -229,7 +229,7 @@ Komiktir ki `Set` içerisindeki forEach` fonksiyonu 3 argümana sahiptir: bir de
 
 Bu, 3 argüman alan `forEach` fonksiyonuna sahip olan `Map` ile uyumlu olması için yapılmıştır.
 
-`Map`in sahip olduğu yineleme yapan fonksiyonlar burda da vardır:
+`Map`in sahip olduğu yineleme yapan fonksiyonlar burada da vardır:
 
 - `set.keys()` -- değerler için bir yinelenebilir nesne döndürür,
 - `set.values()` -- `set.keys` ile aynı, `Map` ile uyumlu olması için yapılmış,

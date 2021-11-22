@@ -10,7 +10,7 @@ Hataları "yakalamak" için "try..catch" kullanarak doğrudan kodun ölmesine am
 
 ## "try..catch" yazımı
 
-`try..catch` yapısı iki ana bloktan oluşur: `try` ( dene ) ve sonrasında `catch` ( yakala ):
+`try..catch` yapısı iki ana bloktan oluşur: `try` (dene) ve sonrasında `catch` (yakala):
 
 ```js
 try {
@@ -322,7 +322,7 @@ try {
 
 Artık `catch` tüm hata idaresinin yapılacağı yerdir: Buna `JSON.parse` ve diğer durumlar dahildir.
 
-## Tekrar atma ( Rethrowing )
+## Tekrar atma (Rethrowing)
 
 Yukarıdaki örnekte yanlış veri ile başa çıkmak için `try..catch` kullandık. Peki başka beklenmeyen hata varsa ne yapacağız? Mesela değişken tanımsız olabilir veya bilmediğimiz bir hata ile de karşılaşabiliriz.
 
@@ -332,7 +332,7 @@ Yukarıdaki örnekte yanlış veri ile başa çıkmak için `try..catch` kulland
 let json = '{ "age": 30 }'; // tamamlanmamış veri
 
 try {
-  user = JSON.parse(json); // <-- user'dan önce  "let" kullanmayı unuttuysak
+  user = JSON.parse(json); // <-- user'dan önce "let" kullanmayı unuttuysak
 
   // ...
 } catch(err) {
@@ -340,9 +340,9 @@ try {
   // (hata aslında JSON ile alakalı değil)
 }
 ```
-Tabiki her şey mümkün! Programcılar da hata yapar. Yıllardır milyonlarca kişinin kullandığı open-source projelerde bile hata vardır. Hatta öyle hatalar vardır ki bulunduğunda çok büyük belaya neden olabilir ( `ssh`'ta bulunan hata)
+Tabii ki her şey mümkün! Programcılar da hata yapar. Yıllardır milyonlarca kişinin kullandığı open-source projelerde bile hata vardır. Hatta öyle hatalar vardır ki bulunduğunda çok büyük belaya neden olabilir (`ssh`'ta bulunan hata)
 
-Biz denemelerimizde `try..catch`i "doğru olmayan veri"'yi yakalamak için kullandık. Fakat aslında `catch` `try`'da olabilecek *tüm* hataları alır.Yukarıdaki örnekte beklenmeyecen bir hata almasına rağmen bundan dolayı `"JSON Error" mesajı verir. Bu aslında kod ayıklamayı zorlaştıran bir şeydir ve yanlış kullanımdır.
+Biz denemelerimizde `try..catch`i "doğru olmayan veri"yi yakalamak için kullandık. Fakat aslında `catch` `try`'da olabilecek *tüm* hataları alır.Yukarıdaki örnekte beklenmeyecen bir hata almasına rağmen bundan dolayı `"JSON Error" mesajı verir. Bu aslında kod ayıklamayı zorlaştıran bir şeydir ve yanlış kullanımdır.
 
 Yine de ne hatası olduğunu `name`'den çıkarmak mümkündür.
 
@@ -396,7 +396,7 @@ try {
 
 }
 ```
-`try..catch` içerisinde eğer `(*)` hata tekrar atılırsa bu `try..catch` in dışına taşar. Bu daha üstte bulunan başka bir `try..catch` tarafından yakalanması gerekmektedir. Böyle bir ihtimal yoksa kod burada sona ermelidir.
+`try..catch` içerisinde eğer `(*)` hata tekrar atılırsa bu, `try..catch` in dışına taşar. Bunun daha üstte bulunan başka bir `try..catch` tarafından yakalanması gerekmektedir. Böyle bir ihtimal yoksa kod burada sona ermelidir.
 
 Böylece `catch` bloğu aslında sadece bildiği hataları idare eder ve diğerlerini hiç kontrol etmeden paslar diyebiliriz.
 
@@ -472,7 +472,7 @@ Kod iki türlü çalışabilir:
 1. Eğer "Make an error?"'a "Yes" cevabını verirseniz, `try -> catch -> finally` şeklinde sona erer.
 2. Eğer "No" derseniz `try-> finally` şeklinde sona erer.
 
-`finally` genelde `try..catch`'den önce bir şey yapıp bunu sona erdirmek ( finally ) istediğiniz durumlarda kullanılır.
+`finally` genelde `try..catch`'den önce bir şey yapıp bunu sona erdirmek (finally) istediğiniz durumlarda kullanılır.
 
 Örneğin Fibonacci sayılarını hesaplayan bir fonksiyonun ne kadar sürdüğünü ölçmek istediğinizde, doğal olarak işlem başlamadan süre başlar ve işlem bittikten sonra süre biter. Fakat diyelimki fonksiyonda bir hata var. Aşağıda uygulaması görünen `fib(n)`'e negatif bir sayı gönderdiğinizde veya integer olmayan bir sayı gönderdiğinizde hata döner.
 
