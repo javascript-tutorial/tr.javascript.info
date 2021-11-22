@@ -145,10 +145,10 @@ Gördüğünüz gibi,`setHours` gibi bazı metodlar birden fazla bileşeni aynı
 ```js run
 let today = new Date();
 
-bugun.setHours(0);
+today.setHours(0);
 alert(today); // bugün ve saat 0
 
-bugun.setHours(0, 0, 0, 0);
+today.setHours(0, 0, 0, 0);
 alert(today); // bugün ve saniye 00:00:00.
 ```
 
