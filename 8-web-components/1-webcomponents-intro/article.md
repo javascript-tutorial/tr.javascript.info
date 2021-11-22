@@ -1,4 +1,4 @@
-# From the orbital height
+# Yörünge yüksekliğinden
 
 Bu bölüm, "web bileşenleri" için bir dizi modern standardı tanımlayacaktır.
 
