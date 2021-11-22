@@ -184,7 +184,7 @@ for (; i < 3;) {
 ```
 Döngü `while(i<3)` ile aynı oldu.
 
-Aslında herşeyi silebiliriz:
+Aslında her şeyi silebiliriz:
 
 ```js
 for (;;) {
@@ -330,7 +330,7 @@ Aşağıdaki gibi:
     // Eğer iptal edildi veya boş bir değer girildiyse dışarıdaki döngüyü de kır.
     if (!giris) *!*break ust_dongu*/!*; // (*)
 
-    // değer ile birşeyler yap.
+    // değer ile bir şeyler yap.
   }
 }
 alert('Bitti!');

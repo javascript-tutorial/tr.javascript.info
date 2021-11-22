@@ -1,4 +1,4 @@
-Bu gün geçen zamanı alabilmek için bu günün 00:00:00'ı için bir `tarih` objesi oluşturup bunu `şimdi`'nin `tarih` objesinden çıkarabilirsiniz. 
+Bugün geçen zamanı alabilmek için bugünün 00:00:00'ı için bir `tarih` objesi oluşturup bunu `şimdi`'nin `tarih` objesinden çıkarabilirsiniz. 
 
 Bunun sonucu milisaniye cinsinden olacaktır, bundan dolayı dönen değeri 1000'e bölerseniz saniye alırsınız:
 
@@ -15,7 +15,7 @@ function bugundenSaniye() {
 
 alert( bugundenSaniye() );
 ```
-Bunun alternativi, saat/dakika/saniye gibi bilgilerin saniyeye çevrilmesidir:
+Bunun alternatifi, saat/dakika/saniye gibi bilgilerin saniyeye çevrilmesidir:
 
 ```js run
 function bugundenSaniye() {

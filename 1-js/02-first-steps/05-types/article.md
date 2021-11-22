@@ -110,7 +110,7 @@ alert( `Hello, *!*${isim}*/!*!` ); // Merhaba Ahmet!
 // ifade gömme
 alert( `sonuç : *!*${1 + 2}*/!*` ); //sonuç :  3
 ```
-`${...}` içerisinde yazılan ifade çalıştığında karakter dizisinin bir parçası olur. `${...}` içerisine herşeyi koyabiliriz: değişken ismi `adi` veya matematiksel ifade `1+2` gibi.
+`${...}` içerisinde yazılan ifade çalıştığında karakter dizisinin bir parçası olur. `${...}` içerisine her şeyi koyabiliriz: değişken ismi `adi` veya matematiksel ifade `1+2` gibi.
 
 Lütfen unutmayın ki bunu sadece kesme tırnak "`" ile yapabilirsiniz.
 ```js run
@@ -193,7 +193,7 @@ Fakat bu şekilde tanımlanmasa daha iyi olur. Normalde `null` kullanılarak de�
 ## Objeler ve Semboller
 `Obje` özel bir tiptir.
 
-Diğer tüm tipler "primitive" yani basit veya ilkel tiplerdir. Bu değişkenler sadece birşey tutabilirler( karakter dizisi veya sayı ). Buna karşılık objeler veri koleksiyonları (collections) veya karmaşık yapılar tutabilirler. <info:object> konusunda Obje daha derinlemesine incelenecektir. 
+Diğer tüm tipler "primitive" yani basit veya ilkel tiplerdir. Bu değişkenler sadece bir şey tutabilirler( karakter dizisi veya sayı ). Buna karşılık objeler veri koleksiyonları (collections) veya karmaşık yapılar tutabilirler. <info:object> konusunda Obje daha derinlemesine incelenecektir. 
 
 `symbol` objeler için benzersiz tanımlayıcılar oluşturmak için kullanılır. Bu konuyu objeleri öğrendikten sonra öğrenmek daha iyi olacaktır.
 

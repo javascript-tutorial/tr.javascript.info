@@ -104,4 +104,4 @@ Yukarıdaki metodlar için iki tane sınırlama vardır.
 1. Bu açılan modal'ın yeri genelde sayfanın ortasıdır.
 2. Ayrıca ekranın stili, bu da tarayıcıdan tarayıcıya değişmektedir. Bunu değiştiremezsiniz.
 
-Bu da herşeyi basite indirgemenin karşılığı. Tabi farklı yollarla daha güzel ekranlar göstermek mümkün fakat görüntü o kadar da önemli değil, işlevsellik önemli derseniz, bu durumda bu metodları kullanabilirsiniz.
+Bu da her şeyi basite indirgemenin karşılığı. Tabi farklı yollarla daha güzel ekranlar göstermek mümkün fakat görüntü o kadar da önemli değil, işlevsellik önemli derseniz, bu durumda bu metodları kullanabilirsiniz.

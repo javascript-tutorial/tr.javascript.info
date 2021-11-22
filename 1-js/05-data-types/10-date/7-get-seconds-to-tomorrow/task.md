@@ -12,4 +12,4 @@ importance: 5
 yarinaKacSn() == 3600
 ```
 
-Not: Fonksiyon her gün çalışabilmelidir. Bu demek oluyor ki elle bu günün değerini almamalısınız.
+Not: Fonksiyon her gün çalışabilmelidir. Bu demek oluyor ki elle bugünün değerini almamalısınız.

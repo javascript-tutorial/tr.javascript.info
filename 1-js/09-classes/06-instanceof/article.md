@@ -56,7 +56,7 @@ Dikkat edin `arr` ayrıca `Object` sınıfına da aittir. Çünkü `Array` proto
 1. Eğer `Symbol.hasInstance` statik metodu var ise onu kullan. Şu şekilde:
 
     ```js run
-    // canEat yapabilen herşeyi animal varsayalım.
+    // canEat yapabilen her şeyi animal varsayalım.
     class Animal {
       static [Symbol.hasInstance](obj) {
         if (obj.canEat) return true;

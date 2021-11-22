@@ -170,7 +170,7 @@ Matematiksel olarak yukarıda gördüğünüz örnekler imkansız. En sondaki ö
 
 Bunun nedeni eşitlik kontrolü `==` ve karşılaştırma kontrollerinin `> < >= <=` farklı çalışmasından dolayıdır. Karşılaştırma iki tarafta bulunan değerleri önce sayıya çevirmeye çalışır. Bundan dolayı sonuncu örnekte `null>=0` null `0` a dönüşür. En üst örnekte de `null>0` bunu şekilde çalışır. Bundan dolayı en üstte false, en altta ise true döner.
 
-Diğer bir taraftan eşitlik kontrolü `==`, `undefined`ve `null`için kurala göre bir değişikliğe uğramaz. Sadece birbirleri arasında (`undefined` ile `null`) eşitliğe sahiptirler. Diğer türlü hiç birşeye eşit değildirler. Bundan dolayı `null == 0` false olur.
+Diğer bir taraftan eşitlik kontrolü `==`, `undefined`ve `null`için kurala göre bir değişikliğe uğramaz. Sadece birbirleri arasında (`undefined` ile `null`) eşitliğe sahiptirler. Diğer türlü hiç bir şeye eşit değildirler. Bundan dolayı `null == 0` false olur.
 
 ### Karşılaştırılamaz tanımsız ( undefined )
 

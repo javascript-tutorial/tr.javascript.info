@@ -1,6 +1,6 @@
 # Düzenlenmiş hatalar, hataların geliştirilmesi
 
-Birşey geliştirirken, genelde kendi hata sınıflarımıza sahip olmak isteriz, böylece bize has yerlerde oluşabilecek hataları idare edebiliriz. Örneğin network hataları için `HttpError`, veri tabanı hataları için `DbError`, arama hataları için `NotFoundError` gibi.
+Bir şey geliştirirken, genelde kendi hata sınıflarımıza sahip olmak isteriz, böylece bize has yerlerde oluşabilecek hataları idare edebiliriz. Örneğin network hataları için `HttpError`, veri tabanı hataları için `DbError`, arama hataları için `NotFoundError` gibi.
 
 Hatalarımız basit hata özelliklerini `message`, `name` ve `stack`'i desteklemelidir. Bunun ile birlikte kendine has özellikleri de olabilir. Örneğin `HttpError` objesi `statusCode` özelliğine sahip olabilir. Bu özelliğin değeri de `404`, `403`, `500` gibi hata kodları olacaktır.
 

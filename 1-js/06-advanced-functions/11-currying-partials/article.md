@@ -184,16 +184,16 @@ log(new Date(), "DEBUG", "some debug");
 ```js
 log(new Date())("DEBUG")("some debug"); // log(a)(b)(c)
 ```
-Bu günün loglarını daha kolay bir şekilde alabileceğimiz bir fonksiyon yazalım:
+Bugünün loglarını daha kolay bir şekilde alabileceğimiz bir fonksiyon yazalım:
 
 ```js
-// todayLog bu günün değeri sabit olacak şekilde oluşturulmuş bir kısmi fonksiyondur
+// todayLog bugünün değeri sabit olacak şekilde oluşturulmuş bir kısmi fonksiyondur
 let todayLog = log(new Date());
 
 // kullanımı
 todayLog("INFO", "message"); // [HH:mm] INFO message
 ```
-Şimdi ise bu günün Debug değerlerini alabileceğimiz diğer bir fonksiyon yapalım:
+Şimdi ise bugünün Debug değerlerini alabileceğimiz diğer bir fonksiyon yapalım:
 
 ```js
 let todayDebug = todayLog("DEBUG");

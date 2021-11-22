@@ -43,7 +43,7 @@ Sağ üst taraftaki "Play" ( Çalıştır ) butonuna basarak örneği çalışt�
 
 ## Modern yazım
 
-Bu günlerde `<script>` etiketi genelde özellikler eklenmeden yazılmakta. Fakat eski kodlara baktınızda aşağıdaki gibi kodları görmek mümkündür:
+Bugünlerde `<script>` etiketi genelde özellikler eklenmeden yazılmakta. Fakat eski kodlara baktınızda aşağıdaki gibi kodları görmek mümkündür:
 
  `type` özelliği: <code>&lt;script <u>type</u>=...&gt;</code>
  : Eski HTML4 standardı script etiketi içerisinde tip gelirmeyi zorunlu kılıyordu. Genelde bu `type="text/javascript"` idi. Günümüzde ise HTML standartları `type` özelliğini varsayılan olarak kabul edebiliyor.

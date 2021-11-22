@@ -5,7 +5,7 @@ importance: 4
 
 `kacGunOnce(tarih,gün)` adında bir fonksiyon ile verilen `tarih`'ten `gün` kadar öncesini bulunuz.
 
-Örneğin, eğer bu gün 20'si ise, `kacGunOnce(new Date(),1)` size 19 döndürmeli. Yine `kacGunOnce(new Date(),2)` size 18 döndermeli.
+Örneğin, eğer bugün 20'si ise, `kacGunOnce(new Date(),1)` size 19 döndürmeli. Yine `kacGunOnce(new Date(),2)` size 18 döndermeli.
 
 Should also work over months/years reliably:
 

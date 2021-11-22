@@ -44,11 +44,11 @@ Motor bu sürecin her bir adımında iyileştirme yapar. Hatta derlenmiş ve ça
 
 ## Tarayıcı içerisindeki JavaScript neler yapabilir?
 
-Günümüz JavaScript'i "güvenli" bir programlama dilidir. Düşük düzeydeki diller gibi bellek veya işlemciye doğrudan erişim sağlamaz. Tarayıcı için olduğundan dolayı böyle birşeye gereksinim duymaz.
+Günümüz JavaScript'i "güvenli" bir programlama dilidir. Düşük düzeydeki diller gibi bellek veya işlemciye doğrudan erişim sağlamaz. Tarayıcı için olduğundan dolayı böyle bir şeye gereksinim duymaz.
 
 JavaScript'in yapabilecekçeleri büyük bir oranda ortama dayanır. Örneğin [Node.JS](https://wikipedia.org/wiki/Node.js), JavaScript işlevleri ile dosyaları okuma, yazma veya ağ üzerinden isteme işlemlerini yapabilir.
 
-Tarayıcı içerisindeki JavaScript ise web sayfasında görsel değişikliklere ve kullanıcı ile sunucu arasındaki etkileşimle ilgili herşeyi yapabilir.
+Tarayıcı içerisindeki JavaScript ise web sayfasında görsel değişikliklere ve kullanıcı ile sunucu arasındaki etkileşimle ilgili her şeyi yapabilir.
 
 Örneğin tarayıcı içerisindeki JavaScript şunları yapabilir:
 

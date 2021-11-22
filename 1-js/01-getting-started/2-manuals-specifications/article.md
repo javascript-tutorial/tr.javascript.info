@@ -13,7 +13,7 @@ Son taslağına <https://tc39.es/ecma262/> adresinden erişebilirsiniz.
 
 Daha geniş kitleler tarafından kullanılmayan yeni özelliklere ve önerilere <https://github.com/tc39/proposals> adresinden erişebilirsiniz.
 
-Ayrıca, tarayıcı için geliştirme yapıyorsanız, ikinci [second part](info:browser-environment) bölümünden farklı eğitimlere bakabilirsiniz.
+Ayrıca, tarayıcı için geliştirme yapıyorsanız, [ikinci bölümden](info:browser-environment) farklı eğitimlere bakabilirsiniz.
 
 ## Kılavuz
 

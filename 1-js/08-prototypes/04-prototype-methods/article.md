@@ -202,7 +202,7 @@ for(let prop in rabbit) alert(prop); // jumps, sonra  eats
 ```
 Eğer kalıtılmış özellikler ayrıştırılmak istenirse bunun için varolan [obj.hasOwnProperty(key)](mdn:js/Object/hasOwnProperty) kullanılabilir: Eğer `obj` `key` adında kalıtımsal olmayan bir özelliğe sahipse `true` dönderir.
 
-Kalıtımsal özellikleri bu şekilde filtreleyebilir veya başka birşey yapabiliriz:
+Kalıtımsal özellikleri bu şekilde filtreleyebilir veya başka bir şey yapabiliriz:
 
 ```js run
 let animal = {

@@ -429,7 +429,7 @@ try {
 */!*
 }
 ```
-Burada `readData` sadece `SyntaxError` ile nasıl başa çıkacağını biliyor. Bunun yanında dıştaki `try..catch` ise geri kalan herşeyi idare ediyor.
+Burada `readData` sadece `SyntaxError` ile nasıl başa çıkacağını biliyor. Bunun yanında dıştaki `try..catch` ise geri kalan her şeyi idare ediyor.
 
 ## try..catch..finally
 

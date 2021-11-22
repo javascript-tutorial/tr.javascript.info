@@ -68,7 +68,7 @@ alert("Hata alacaksınız")
 
 Eğer yukarıdaki kodu çalıştırısanız sadece ilk uyarı mesajını görecek ve sonrasında hata alacaksınız.
 
-Fakat aşağıdaki gibi noktalı virgül kullanırsanız herşeyin beklenen şekilde çalıştığını göreceksiniz:
+Fakat aşağıdaki gibi noktalı virgül kullanırsanız her şeyin beklenen şekilde çalıştığını göreceksiniz:
 
 ```js run
 alert("Şimdi ise beklendiği gibi hatasız");
