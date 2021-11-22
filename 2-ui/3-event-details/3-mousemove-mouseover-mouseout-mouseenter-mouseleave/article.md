@@ -50,7 +50,7 @@ Bu, eğer kullanıcı fareyi çok hızlı hareket ettiriyorsa, bazı DOM ögeler
 
 Eğer fare `#FROM` ögesinden`#TO` ögesine çok hızlı bir şekilde hareket ederse, ortadaki `<div>` ögeleri (ya da bazıları) atlanabilir. `mouseout` olayı `#FROM` ogesinde ve ardından aniden `#TO` ögesi üzerinde tetiklenir.
 
-Bu, performans için iyidir, çünkü arada bir çok öge bulunabilir. Her birinde olay tetiklemeyi her zaman istemeyiz.
+Bu, performans için iyidir, çünkü arada birçok öge bulunabilir. Her birinde olay tetiklemeyi her zaman istemeyiz.
 
 Öte yandan, fare ımlecinin yol boyunca tüm öğeleri "ziyaret etmediğini" unutmamalıyız. Bu ögelerin üzerinden "zıplayabilir".
 
@@ -65,7 +65,7 @@ Hızlı fare hareketi durumunda, ortadaki elementler olay tetiklemeyebilirler. A
 ```online
 Aşağıdaki test standında "canlı" olarak kontrol edebilirsiniz.
 
-HTML iç içe geçmiş `<div>` ögelerinden oluşuyor. Eğer farenizi onların üzerinden hızlıca hareket ettirirseniz, hiç bir olay tetiklenmeyebilir, belki sadece kırmızı div olay tetikleyebilir ya da sadece yeşil div tetikleyebilir.
+HTML iç içe geçmiş `<div>` ögelerinden oluşuyor. Eğer farenizi onların üzerinden hızlıca hareket ettirirseniz, hiçbir olay tetiklenmeyebilir, belki sadece kırmızı div olay tetikleyebilir ya da sadece yeşil div tetikleyebilir.
 
 Ayrıca, fareyi kırmızı "div" nin üzerine getirmeyi deneyin ve ardından hızlıca yeşil olandan aşağı doğru hareket ettirin. Hareket yeterince hızlıysa, ana öğe göz ardı edilir.
 

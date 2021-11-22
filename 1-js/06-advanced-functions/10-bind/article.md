@@ -37,7 +37,7 @@ let f = user.sayHi;
 setTimeout(f, 1000); // lost kullanıcı kaynağı kayboldu
 ```
 
-Tarayıcıda `setTimeout` kullanımı biraz özeldir: `this=window` olarak ayarlanır. ( Node.JS için `this` timer objesi olur, fakat burada pek de önemli değil.) Öyleyse `this.firstName` bu değeri `window.firstName`'den almaya çalışır, fakat böyle birşey yok. Buna benzer durumlarda siz de göreceksiniz `this` genelde `undefined` olur.
+Tarayıcıda `setTimeout` kullanımı biraz özeldir: `this=window` olarak ayarlanır. ( Node.JS için `this` timer objesi olur, fakat burada pek de önemli değil.) Öyleyse `this.firstName` bu değeri `window.firstName`'den almaya çalışır, fakat böyle bir şey yok. Buna benzer durumlarda siz de göreceksiniz `this` genelde `undefined` olur.
 
 Aslında yapmak istediğimiz çok basit obje metodunu çağrılan yere ( -- ) iletmek istiyoruz ( burada -- zamanlayıcıdır.) Bunun doğru kaynakta çağırıldığına nasıl emin olunabilir?
 
@@ -88,7 +88,7 @@ user = { sayHi() { alert("Another user in setTimeout!"); } };
 // Another user in setTimeout?!?
 ```
 
-Bir sonraki çözüm içe böyle birşeyin olmasını engeller.
+Bir sonraki çözüm içe böyle bir şeyin olmasını engeller.
 
 ## Çözüm 2: bağlama
 
@@ -198,5 +198,5 @@ Bu şekilde büyük bağlama olayları için bazı JavaScript kütüphanelerinde
 
 `func.bind(kaynak, ...args)` `func` fonksiyonunun "bağlanmış hali"'ni döndürür. Bu bağlanmış halde `this` ve argümanlar sabitlenir.
 
-Bind genelde obje metodlarındaki `this`'in sabitlenmesi amacıyla kullanılır, sonrasında istenilen yere iletilebilir. `setTimeout` örneği gibi. `bind`'in modern geliştirmede kullanılmasının bir çok nedeni vardır bunlara ilerleyen konularda değineceğiz.
+Bind genelde obje metodlarındaki `this`'in sabitlenmesi amacıyla kullanılır, sonrasında istenilen yere iletilebilir. `setTimeout` örneği gibi. `bind`'in modern geliştirmede kullanılmasının birçok nedeni vardır bunlara ilerleyen konularda değineceğiz.
 

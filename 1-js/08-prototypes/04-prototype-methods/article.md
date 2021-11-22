@@ -54,7 +54,7 @@ Tanımlayıcıların <info:property-descriptors> bölümünde üstünden geçilm
 // Objenin yüzeysel klonu
 let clone = Object.create(Object.getPrototypeOf(obj), Object.getOwnPropertyDescriptors(obj));
 ```
-Bu tam olarak `obj`'nin aynısını verir. Tüm özellikler: dönülebilir veya dönülemez, veri özellikleri, alıcı ve ayarlayıcılar --  herşey, ayrıca doğru `[[Prototype]]` ile
+Bu tam olarak `obj`'nin aynısını verir. Tüm özellikler: dönülebilir veya dönülemez, veri özellikleri, alıcı ve ayarlayıcılar --  her şey, ayrıca doğru `[[Prototype]]` ile
 
 ## Tarihçe
 
@@ -100,7 +100,7 @@ Böyle bir olay sadece `__proto__`'da meydana gelir diğer tüm özellikler norm
 
 Bu problemden nasıl kaçınılabilir?
 
-Öncelikle `Map` kullanılabilir, herşey doğru çalışır.
+Öncelikle `Map` kullanılabilir, her şey doğru çalışır.
 
 Fakat burada bize `Obje` yardımcı olabilir, çünkü dili yaratıcılar bu konuları uzun zaman önce düşünmüşler.
 
@@ -133,7 +133,7 @@ Bundan dolayı `__proto__`  için atadan kalan alıcı/ayarlayıcı bulunmamakta
 
 Böyle objelere "en basit" veya "saf sözlük objeleri" denir, Çünkü bunlar sıradan objelerden `{...}` bile daha basittirler.
 
-Bu objelerin kötü tarafı ise, içinde hiç bir varsayılan metod bulunmaz, Örneğin: `toString`:
+Bu objelerin kötü tarafı ise, içinde hiçbir varsayılan metod bulunmaz, Örneğin: `toString`:
 
 ```js run
 *!*

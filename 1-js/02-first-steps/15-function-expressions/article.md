@@ -79,7 +79,7 @@ let func = selamVer;
 // ...
 ```
 
-Herşey aynı olduğu gibi çalışırdı. Hatta neyin ne olduğu daha açık değil mi?
+Her şey aynı olduğu gibi çalışırdı. Hatta neyin ne olduğu daha açık değil mi?
 
 
 ````smart header="Neden sonunda noktalı virgül var"
@@ -161,7 +161,7 @@ sor(
 );
 */!*
 ```
-Gördüğünüz gibi yukarıda fonksiyonlar doğrudan `sor(...)` içerisinde tanımlandı. Hiç bir isim kullanılmadığından dolayı. Böyle fonksiyonlara *anonim* veya *anonymous* fonksiyonlar denir. Bu fonksiyonlar `sor` fonksiyonu dışında ulaşılabilir değillerdir(çünkü hiç bir değişkene atanmazlar).
+Gördüğünüz gibi yukarıda fonksiyonlar doğrudan `sor(...)` içerisinde tanımlandı. hiçbir isim kullanılmadığından dolayı. Böyle fonksiyonlara *anonim* veya *anonymous* fonksiyonlar denir. Bu fonksiyonlar `sor` fonksiyonu dışında ulaşılabilir değillerdir(çünkü hiçbir değişkene atanmazlar).
 
 Bu şekilde isimsiz kullanım JavaScript içerisinde çok doğaldır. Bu JavaScript'in ruhunda var diyebiliriz.
 
@@ -298,7 +298,7 @@ if (yas < 18) {
 
 } else {
 
-  function merhaba() {     //  Yaş 16 olduğundan burası hiç bir zaman çalışmaz.
+  function merhaba() {     //  Yaş 16 olduğundan burası hiçbir zaman çalışmaz.
     alert("Merhabalar!");
   }
 }

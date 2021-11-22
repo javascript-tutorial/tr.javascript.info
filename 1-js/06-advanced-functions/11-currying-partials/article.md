@@ -161,7 +161,7 @@ function curry(f) {
 
 Tımarlayarak hem fonksiyon normal olarak çağırılabilir  hem de kısmi olarak alınabilir. Yararını anlayabilmek için gerçekten de iyi bir örneğe gerek var.
 
-Örneğin, bir loglama fonksiyonu olsun `log(data, importance, message)` gelen veriye göre çıktıyı formatlayabilsin. Projelerde böyle fonksiyonlar bunun yanında bir çok özelliğe sahip olabilir. Örneğin bunları ağ üzerinden iletmek veya filtrelemek gibi.
+Örneğin, bir loglama fonksiyonu olsun `log(data, importance, message)` gelen veriye göre çıktıyı formatlayabilsin. Projelerde böyle fonksiyonlar bunun yanında birçok özelliğe sahip olabilir. Örneğin bunları ağ üzerinden iletmek veya filtrelemek gibi.
 
 ```js
 function log(date, importance, message) {
@@ -202,7 +202,7 @@ todayDebug("message"); // [HH:mm] DEBUG message
 ```
 
 Sonuç olarak:
-1. Tımarladıktan sonra `log` fonksiyonundan birşey kaybetmedik. Hala aynı şekilde çağırabiliriz.
+1. Tımarladıktan sonra `log` fonksiyonundan bir şey kaybetmedik. Hala aynı şekilde çağırabiliriz.
 2. Kısmi fonksiyonlar ile işimize yarar birçok yeni fonksiyon geliştirebiliriz.
 
 

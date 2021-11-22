@@ -173,7 +173,7 @@ alert(user.name); // Pete
 
 user.name = ""; // İsim çok kısa...
 ```
-Teknik olarak, dışarıdan hala `user._name` ile erişilebilir. Fakat genel bir kural olarak `"_"` ile başlayan özellikler içte kullanılan değişkenlerdir ve dışarıdan hiç bir zaman erişilmemelidir.
+Teknik olarak, dışarıdan hala `user._name` ile erişilebilir. Fakat genel bir kural olarak `"_"` ile başlayan özellikler içte kullanılan değişkenlerdir ve dışarıdan hiçbir zaman erişilmemelidir.
 
 
 ## Uyumluluk için kullanma

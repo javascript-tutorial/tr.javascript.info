@@ -160,7 +160,7 @@ Değişkenler aynı fakat satır değiştir, şimdiki kaynak şu şekilde:
 
 Dallanma işleminin yapılabilmesi için JavaScript'in öncelikle o anki çalışma durumunu *çalışma kaynağı yığını*na atması gerekmektedir.
 
-Burada `us` fonksiyonu çağrılmıştır. Bu herhangi bir fonksiyon da olabilirdi, aralarında bu yönden hiç bir farklılık bulunmamaktadır:
+Burada `us` fonksiyonu çağrılmıştır. Bu herhangi bir fonksiyon da olabilirdi, aralarında bu yönden hiçbir farklılık bulunmamaktadır:
 
 1. O anki kaynak yığının en üstüne "hatırlatılır"
 2. Alt çağrı için yeni bir kaynak yaratılır.
@@ -181,7 +181,7 @@ Aşağıda `pow(2,2)` altçağrısına girildiğinde kaynak yığınının durum
 
 Üst tarafta o anda çalışan kaynak ( kalın harflerle ), alt tarafta ise "hatırlatılan" kaynak bulunmaktadır.
 
-Altçağrı bittiğinde, daha önceki kalınan kaynaktan devam etmek kolaydır. Çünkü bu her iki değişkeni ve kaldığı satırı tutmaktadır. Burada "satır" denmesine rağmen aslında bunun daha net birşey olduğu bilinmelidir.
+Altçağrı bittiğinde, daha önceki kalınan kaynaktan devam etmek kolaydır. Çünkü bu her iki değişkeni ve kaldığı satırı tutmaktadır. Burada "satır" denmesine rağmen aslında bunun daha net bir şey olduğu bilinmelidir.
 
 ### us(2, 1)
 

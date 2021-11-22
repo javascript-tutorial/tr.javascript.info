@@ -34,7 +34,7 @@ switch(x) {
 
 - Eğer eşitlik bulunursa en yakın `break` olan yere kadar çalışmaya devam eder. Eğer `break` yoksa döngüyü kıramayacağından dolayı `switch` sonuna kadar çalışır.
 
-- Eğer hiç bir eşitlik sağlanamazsa `default` içinde olan kod çalışır.
+- Eğer hiçbir eşitlik sağlanamazsa `default` içinde olan kod çalışır.
 
 ## Örnek
 Aşağıda bulunan örnekte çalışacak `case` bloğu vurgulanmıştır.
@@ -61,7 +61,7 @@ Başlangıçta `switch` cümlesi `a` değişkenini ilk önce 3 `case`'i ile kar�
 
 `4` ise eşitliği sağlar `4`den itibaren en yakın `break`e kadar olan bölüm çalışır.
 
-**Eğer `break` konulmazsa sonraki `case` de hiç bir kontrol olmadan çalışır**
+**Eğer `break` konulmazsa sonraki `case` de hiçbir kontrol olmadan çalışır**
 
 `break` olmadan yazılmış hali:
 
@@ -161,7 +161,7 @@ switch (arg) {
     break;
 
   case 3:
-    alert( 'Hiç bir zaman çalışmaz!' );
+    alert( 'hiçbir zaman çalışmaz!' );
     break;
   default:
     alert( 'Bilinmeyen bir değer' )
@@ -169,4 +169,4 @@ switch (arg) {
 ```
 1. `0` ve `1` değerleri için ilk `alert` çalışır.
 2. `2` değeri için ikinci `alert` çalışır.
-3. `prompt` her zaman karakter dizisi döndüreceğinden dolayı kontrol eğer `3` şeklinde yapılsaydı bu durumda ekrana mesaj çıkacaktı. Fakat kontrol sayı olan 3 ile yapıldığından dolayı bu ölü koddur ve hiç bir zaman çalışmaz. Bunun yerine `default` kodu çalışacaktır.
+3. `prompt` her zaman karakter dizisi döndüreceğinden dolayı kontrol eğer `3` şeklinde yapılsaydı bu durumda ekrana mesaj çıkacaktı. Fakat kontrol sayı olan 3 ile yapıldığından dolayı bu ölü koddur ve hiçbir zaman çalışmaz. Bunun yerine `default` kodu çalışacaktır.

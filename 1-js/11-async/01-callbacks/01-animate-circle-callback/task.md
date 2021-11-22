@@ -7,7 +7,7 @@
 Diyelim ki sadece çember değil, bunun içinde mesaj da olsun. Mesaj animasyon *tamamlandıktan* sonra ( çemberin en büyük halinde ) görünmelidir. Aksi halde çirkin görünecektir.
 
 
-Görevin çözümünde, `showCircle(cx, cy, radius)` çemberi çizmektedir, fakat hazır olup olmadığına dair hiç bir bilgi vermemektedir.
+Görevin çözümünde, `showCircle(cx, cy, radius)` çemberi çizmektedir, fakat hazır olup olmadığına dair hiçbir bilgi vermemektedir.
 
 Yeni bir callback argümanı ekle: `showCircle(cx, cy, radius, callback)` animasyon tamamlandığında çağırılmalıdır. `callback` çemberin `<div>`'ini argüman olarak almalı.
 

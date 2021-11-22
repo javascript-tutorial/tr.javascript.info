@@ -18,7 +18,7 @@ Neden? Ne olduğuna `(*)` satırından bakarsanız:
 2. Bundan dolayı obje `test` özelliğini alır.
 3. "obje kabı" kaybolur ve işlem tamamlanır.
 
-Öyleyse `str` nin son satırında özelliğe ait hiç bir iz yoktur. İlkel tipin üzerinde yapılan değişiklik için yeni obje kabı üretilir.
+Öyleyse `str` nin son satırında özelliğe ait hiçbir iz yoktur. İlkel tipin üzerinde yapılan değişiklik için yeni obje kabı üretilir.
 
 Bazı tarayıcılar ilkel tiplere yeni özellik tanımlanmasına izin vermezler. Bundan dolayı `(*)` bölümünde `undefined` değil de hata da görebilirsiniz. Bu aslında özelliklerin dışında bir uygulamadır.
 

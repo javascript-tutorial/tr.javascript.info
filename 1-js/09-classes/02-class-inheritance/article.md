@@ -263,7 +263,7 @@ Artık `super`'in derinliklerine dalma vakti geldi. Altında yatan ilginç şeyl
 
 Öncelikle, şimdiye kadar öğrendiklerimizle `super` ile çalışmak mümkün değil.
 
-Ever gerçekten, kendimize soralım, nasıl teknik olarak böyle birşey çalışabilir? Bir obje metodu çalıştığında var olan objeyi `this` olarak alır. Eğer biz `super.method()`'u çağırırsak `metod`'u nasıl alabilir? Doğal olarak `method`'u var olan objenin prototipinden almak gerekmektedir. Peki teknik olarak bunu JavaScript motoru nasıl halledebilir?
+Ever gerçekten, kendimize soralım, nasıl teknik olarak böyle bir şey çalışabilir? Bir obje metodu çalıştığında var olan objeyi `this` olarak alır. Eğer biz `super.method()`'u çağırırsak `metod`'u nasıl alabilir? Doğal olarak `method`'u var olan objenin prototipinden almak gerekmektedir. Peki teknik olarak bunu JavaScript motoru nasıl halledebilir?
 
 Belki `this`in `[[Prototype]]`'ını `this.__proto__.method` olarak alıyordur? Malesef böyle çalışmıyor.
 
@@ -317,7 +317,7 @@ let rabbit = {
 let longEar = {
   __proto__: rabbit,
   eat() {
-    // ...uzun kulaklar ile birşeyler yap ve üst sınıfı çağır.
+    // ...uzun kulaklar ile bir şeyler yap ve üst sınıfı çağır.
     this.__proto__.eat.call(this); // (**)
   }
 };

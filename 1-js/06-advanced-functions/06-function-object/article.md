@@ -40,7 +40,7 @@ function f(selamVer = function() {}) {
 
 f();
 ```
-Tanımda bu özelliğe "bağlamsal isim" denir. Eğer fonksiyonda böyle birşey yoksa, tanımlama bunu içerikten alır.
+Tanımda bu özelliğe "bağlamsal isim" denir. Eğer fonksiyonda böyle bir şey yoksa, tanımlama bunu içerikten alır.
 
 Object metodlarının da isimleri vardır:
 ```js run
@@ -217,7 +217,7 @@ Peki buradaki mantık ne? Ayrıca bir `"func"` eklemenin ne anlamı var?
 
 Tekrar etmek gerekirse, hala bir Fonksiyon İfadeniz var. Fonksiyon ifadesine `"function"` 'dan sonra `"func"` eklemek bu fonksiyonu Fonksiyon Tanımı haline getirmez çünkü hala bir atama operasyonu ile tanımlanmıştır.
 
-Böyle bir isim eklemek hiç bir soruna neden olmaz. 
+Böyle bir isim eklemek hiçbir soruna neden olmaz. 
 
 Fonksiyon hala `selamVer()` şeklinde kullanılabilir:
 
@@ -309,9 +309,9 @@ hosGeldin(); // Selam, Misafir (iç çağrı çalışır)
 
 Şimdi çalışır, bunun nedeni `"func"`'in lokal fonksiyon olmasındandır. Dışarıdan alınmaz ( dışarıdan görünmez de ). Bu şekilde yazıldığında var olan fonksiyonu referans vereceği garantidir.
 
-Dışta bulunan kod hala `selamVer` veya `hosGeldin` değişkenlerine sahiptir. Dıştaki değişkenlere birşey olsa bile `func`"iç fonksiyon ismi"'dir. Kendisini gizli biçimde çağırabilir.
+Dışta bulunan kod hala `selamVer` veya `hosGeldin` değişkenlerine sahiptir. Dıştaki değişkenlere bir şey olsa bile `func`"iç fonksiyon ismi"'dir. Kendisini gizli biçimde çağırabilir.
 
-```smart header="Fonksiyon Tanımı diye birşey yoktur."
+```smart header="Fonksiyon Tanımı diye bir şey yoktur."
 "içsel isim" olarak tanımlanan özellik sadece Fonksiyon İfadeleri için geçerlidir. Fonksiyon Tanımlarında çalışmaz. Fonksiyon tanımları için "içsel" bir isim ekleme yöntemi yoktur.
 
 Bazen güvenli bir isme ihtiyaç duyulduğunda Fonksiyon Tanımı tekrardan İsimlendirilmiş Fonksiyon İfadesi şekline getirilir.

@@ -10,7 +10,7 @@ JavaScript'te hafıza yönetimi *erişilebilirlik* konsepti üzerinden olur.
 
 Basit bir şekilde; *erişilebilir* değerler yararlıdır mantığı vardır. Bunlar kesinlikle hafızada yer alır.
 
-1. Başlangıçta varsayılan olarak var olan *erişilebilir* değerler bulunmaktadır bunlar hiç bir zaman silinemez.
+1. Başlangıçta varsayılan olarak var olan *erişilebilir* değerler bulunmaktadır bunlar hiçbir zaman silinemez.
 
     Örneğin:
     - O anda içinde bulunulan fonksiyonların yerel değişkenleri.
@@ -118,7 +118,7 @@ Fakat ikisini birden silerseniz, İhsan'a erişilemez:
 
 ![](family-no-father.svg)
 
-Dışarı giden referanslar önemli değildir. Sadece içeri gelenler o objeyi *ulaşılabilir* yapar. Öyleyse artık İhsan erişilemez ve hafızadan silinecektir. Ayrıca hiç bir verisine de erişilemez.
+Dışarı giden referanslar önemli değildir. Sadece içeri gelenler o objeyi *ulaşılabilir* yapar. Öyleyse artık İhsan erişilemez ve hafızadan silinecektir. Ayrıca hiçbir verisine de erişilemez.
 
 Çöp toplmaa işleminden sonra:
 
@@ -179,7 +179,7 @@ Son adım olarak ziyaret edilmeyen objeler "ulaşılamaz" addedilip silinir:
 
 ![](garbage-collection-5.svg)
 
-JavaScript motoru bunu hızlıca çalıştırmak ve kodun çalışmasını etkilememek için bir çok optimizsyon yapar.
+JavaScript motoru bunu hızlıca çalıştırmak ve kodun çalışmasını etkilememek için birçok optimizsyon yapar.
 
 
 Bazı Optimizasyonlar:
@@ -208,6 +208,6 @@ Genel bir kitap önerisi olarak "The Garbage Collection Handbook: The Art of Aut
 
 Eğer alt seviye diller ile aranız iyi ise, daha derinlemesine bilgiyi aşağıdaki makaleden edinebilirsiniz: [A tour of V8: Garbage Collection](http://jayconrod.com/posts/55/a-tour-of-v8-garbage-collection).
 
-[V8 blog](http://v8project.blogspot.com/) Arada bir hafıza yönetimi hakkında belge yayınlamaktadır. Doğal olarak, çöp toplama hakkında bilgi sahibi olunmak isteniyorsa dahili yapıların bilinmesi gerekmektedir. Bu yapılar [Vyacheslav Egorov](http://mrale.ph) takip edilerek öğrenilebilir. Kendisi "V8" motoru mühendislerindendir. "V8"in önerilmesinin nedeni internette hakkında çokça bilgi bulunabilmesinden dolayıdır. Diğer motorlar için çoğu yaklaşım benzerdir fakat çöp toplama bir çok yönden farklılık gösterir.
+[V8 blog](http://v8project.blogspot.com/) Arada bir hafıza yönetimi hakkında belge yayınlamaktadır. Doğal olarak, çöp toplama hakkında bilgi sahibi olunmak isteniyorsa dahili yapıların bilinmesi gerekmektedir. Bu yapılar [Vyacheslav Egorov](http://mrale.ph) takip edilerek öğrenilebilir. Kendisi "V8" motoru mühendislerindendir. "V8"in önerilmesinin nedeni internette hakkında çokça bilgi bulunabilmesinden dolayıdır. Diğer motorlar için çoğu yaklaşım benzerdir fakat çöp toplama birçok yönden farklılık gösterir.
 
 Alt-seviye optimizasyonu istendiğinde derinlemesine bilgi sahibi olunması gerekmektedir. JavaScript dilini öğrendikten sonra bu yolda ilerlenmesi daha mantıklı olur.

@@ -7,7 +7,7 @@ importance: 4
 
 `arr` alan ve `filterRangeInPlace(arr,a,b)` fonksiyonu ile `a` ile `b` arasındaki değerleri alıp ve bunun haricindekileri bu diziden silen fonksiyonu yazınız.
 
-Fonksiyon diziyi modifiye etmeli. Birşey döndürmemeli.
+Fonksiyon diziyi modifiye etmeli. Bir şey döndürmemeli.
 
 
 Örneğin:

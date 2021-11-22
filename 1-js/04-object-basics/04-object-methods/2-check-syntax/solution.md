@@ -22,7 +22,7 @@ let kullanici = { selamVer:... }(kullanici.selamVer)()
 
 Bu şekilde çağırıldığında, `let kullanici` ile çağrı aynı satırda yapılmış olur. Ayrıca bu tanımlanan fonksiyon `(kullanici.selamVer)` şeklinde aynı satırda argüman olarak kullanılmıştır. Bundan dolayı da hata oluşmaktadır.
 
-Eğer noktalı virgül koyarsanız herşey beklediğiniz gibi çalışır:
+Eğer noktalı virgül koyarsanız her şey beklediğiniz gibi çalışır:
 
 ```js run
 let kullanici = {

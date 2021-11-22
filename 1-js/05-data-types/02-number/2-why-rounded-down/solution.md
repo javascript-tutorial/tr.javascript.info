@@ -20,7 +20,7 @@ Tam sayı değerini yuvarlama değerine yaklaştırılırsa problem çözülür:
 ```js run
 alert( (6.35 * 10).toFixed(20) ); // 63.50000000000000000000
 ```
-`63.5` hiç bir kayba uğramıyor dikkat ederseniz. Çünkü `0.5` lik fark aslında `1/2`. `2` ve üstü ile yapılan işlemler binary sistemde tam olarak ifade edildiğinden dolayı bu problem çözülmektedir.
+`63.5` hiçbir kayba uğramıyor dikkat ederseniz. Çünkü `0.5` lik fark aslında `1/2`. `2` ve üstü ile yapılan işlemler binary sistemde tam olarak ifade edildiğinden dolayı bu problem çözülmektedir.
 
 
 ```js run

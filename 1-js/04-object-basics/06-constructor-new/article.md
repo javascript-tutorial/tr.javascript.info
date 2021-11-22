@@ -78,7 +78,7 @@ let kullanici = new function() {
   // mantıklar veya yerel değişkenler
 };
 ```
-Yapıcı fonksiyon tekrar çağırılamaz çünkü hiç bir yere kayıt edilmemiştir, sadece yaratılır ve çağırılır. Böylece yapıcı metod ilerde tekrar kullanılmayacağına garanti verir.
+Yapıcı fonksiyon tekrar çağırılamaz çünkü hiçbir yere kayıt edilmemiştir, sadece yaratılır ve çağırılır. Böylece yapıcı metod ilerde tekrar kullanılmayacağına garanti verir.
 ````
 
 ## Yapıcı modu testi: new.target
@@ -117,7 +117,7 @@ function Kullanici(isim) {
 let ihsan = Kullanici("John"); // çağrıyı new Kullanici(isim) fonksiyonuna yönlendirir.
 alert(ihsan.isim); // İhsan
 ```
-Bu yaklaşım bazı kütüphanelerde yazımı daha esnek yapabilmek amacıyla kullanılır.  Her yerde kullanılması o kadar da iyi değildir. Çünkü `new` ne olup bittiği hakkında bilgi vermektedir. `new` ile yeni bir obje yaratıldığını anlayabiliyorsunuz ki bu da iyi birşeydir.
+Bu yaklaşım bazı kütüphanelerde yazımı daha esnek yapabilmek amacıyla kullanılır.  Her yerde kullanılması o kadar da iyi değildir. Çünkü `new` ne olup bittiği hakkında bilgi vermektedir. `new` ile yeni bir obje yaratıldığını anlayabiliyorsunuz ki bu da iyi bir şeydir.
 
 ## Yapıcı metodun return sözcüğü
 
@@ -142,7 +142,7 @@ function BuyukKullanici() {
 
 alert( new BuyukKullanici().isim );  // Muhsin, objeyi aldık ^^
 ```
-Şimdi ise boş bir `return` cümlesi yazalım( eğer ilkel bir tipte kullanılsa birşey değiştirmez)
+Şimdi ise boş bir `return` cümlesi yazalım( eğer ilkel bir tipte kullanılsa bir şey değiştirmez)
 
 ```js run
 function KucukKullanici() {

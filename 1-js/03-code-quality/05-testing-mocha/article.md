@@ -10,7 +10,7 @@ Fonksiyon yazıldığında, genelde ne olması gerektiğini düşünürüz: hang
 
 Geliştirme yaparken, bu fonksiyonun çıktısı ile bekleneni birbiri ile karşılaştırılabilir. Örneğin bu konsolda yapılabilir.
 
-Eğer birşey yanlışsa kod değiştirilir ve tekrar çalıştırılır, ta ki doğru çalışana dek.
+Eğer bir şey yanlışsa kod değiştirilir ve tekrar çalıştırılır, ta ki doğru çalışana dek.
 
 Fakat bunları tekrar tekrar çalıştırmak iyi bir yöntem değildir.
 
@@ -18,7 +18,7 @@ Fakat bunları tekrar tekrar çalıştırmak iyi bir yöntem değildir.
 
 Örneğin, `f` diye bir fonksiyon yazılırken. Test: `f(1)` çalışır fakat `f(2)` çalışmaz. Kod düzeltildi, şimdi  `f(2)`çalışmakta. Tamamlandı mı? Fakat `f(1)` tekrar test edilmedi. Bu bir hataya neden olabilir.
 
-Bu çok tipiktir. Birşey geliştirirken çoğu zaman muhtemel olan durumları aklımızda tutarız. Fakat programcıların bu durumların tamamını aklında tutması beklenemez. Bundan dolayı bir tanesini düzeltirken diğerini kırmak çokça yaşanılan bir durumdur.
+Bu çok tipiktir. Bir şey geliştirirken çoğu zaman muhtemel olan durumları aklımızda tutarız. Fakat programcıların bu durumların tamamını aklında tutması beklenemez. Bundan dolayı bir tanesini düzeltirken diğerini kırmak çokça yaşanılan bir durumdur.
 
 
 **Otomatik testlerin koddan ayrı yazılması demektir. Kolayca çalıştırılır ve tüm durumları kontrol edebilir**
@@ -74,7 +74,7 @@ Genelde akış şu şekildedir:
 
 1. Başlangıçta en basit fonksiyonalite test edilir.
 2. Bunun uygulaması yapılmıştır.
-3. Çalışıp çalışmadığını  [Mocha](http://mochajs.org/) kullanarak yapabilirsiniz. Hata alındığında kod tekrar düzeltilmeli, taki herşey düzgün şekilde çalışana kadar.
+3. Çalışıp çalışmadığını  [Mocha](http://mochajs.org/) kullanarak yapabilirsiniz. Hata alındığında kod tekrar düzeltilmeli, taki her şey düzgün şekilde çalışana kadar.
 4. Şu anda çalışan ve uygulaması yapılmmış bir testiniz var.
 5. Daha fazla koşul ekleyerek bunların uygulamasını yazdığınızda testlerde hata almaya başlarsınız.
 6. Üçüncü adıma dönüp bu testlerin hatalarını düzeltene kadar hata almaya devam edersiniz.
@@ -170,7 +170,7 @@ Birbiri arasındaki fark eğer birinci `it` içindeki `assert` de hata varsa do�
 
 Testleri ayrı ayrı yazmak ne olup bittiğini anlamak için daha iyidir, yani ikinci yöntem.
 
-Bunun haricinde bir takip edebileceğiniz ayrı bir kural da, **bir test birşeyi kontrol eder** mantığıdır. Eğer teste baktığınızda aslında kontrol edilmesi gereken iki şey vardır. Bundan dolayı ikiye ayırırsanız daha iyi olur.
+Bunun haricinde bir takip edebileceğiniz ayrı bir kural da, **bir test bir şeyi kontrol eder** mantığıdır. Eğer teste baktığınızda aslında kontrol edilmesi gereken iki şey vardır. Bundan dolayı ikiye ayırırsanız daha iyi olur.
 
 İkinci yöntem ile devam edecek olursak:
 
@@ -293,7 +293,7 @@ Testler bitti – tüm testlerden sonra (after)
 
 [edit src="beforeafter" title="Örneği sandbox'ta çalıştır"]
 
-Genelde `beforeEach/afterEach` (`before/each`) başlangıçta ösellikleri ayarlama, sayacı sıfırlama veya testler arasında birşey yapma gibi aksiyonları gerçekleştirir.
+Genelde `beforeEach/afterEach` (`before/each`) başlangıçta ösellikleri ayarlama, sayacı sıfırlama veya testler arasında bir şey yapma gibi aksiyonları gerçekleştirir.
 ````
 
 ## Özellikleri geliştirme
@@ -383,12 +383,12 @@ BDD'de önce özellikler yazılır sonra bunların uygulamaları yapılır. Sonu
 
 Özelliklere bakarak, güvenli bir şekilde kod geliştirilebilir, değiştirilebilir hatta fonksiyonlar yeniden yazılabilir.
 
-Bu aslında büyük projeler için daha önemlidir. Örneğin fonksiyonda bir yeri değiştirdiniz ve bir çok yerde aynı fonksiyon kullanılmış olsun. Bunu kullanan her yeri teker teker kontrol etmek oldukça zahmetli bir iştir. Fakat eğer test başarılı ise istediğinizi elde etmişsiniz demektir.
+Bu aslında büyük projeler için daha önemlidir. Örneğin fonksiyonda bir yeri değiştirdiniz ve birçok yerde aynı fonksiyon kullanılmış olsun. Bunu kullanan her yeri teker teker kontrol etmek oldukça zahmetli bir iştir. Fakat eğer test başarılı ise istediğinizi elde etmişsiniz demektir.
 
 Testler olmazsa geliştiriciler iki şekilde devam edebilir:
 
-1. Değişiklik ne olursa olsun yapılır. Sonrasında kullanıcılar bug bulur ve bunları bize bildirir. Tabi bu sizin için normal birşeyse eğer. 
-2. Veya geliştiriciler bu fonksiyona dokunmaya çekinir, eğer gerçekten önemli bir fonksiyonsa bunun altından kalkılamayabilir. Bundan dolayı fonksiyonlara dokunmaya dokunmaya bir çok fonksiyon yazılır ve herkes kendine ait kodu kullanır.
+1. Değişiklik ne olursa olsun yapılır. Sonrasında kullanıcılar bug bulur ve bunları bize bildirir. Tabi bu sizin için normal bir şeyse eğer. 
+2. Veya geliştiriciler bu fonksiyona dokunmaya çekinir, eğer gerçekten önemli bir fonksiyonsa bunun altından kalkılamayabilir. Bundan dolayı fonksiyonlara dokunmaya dokunmaya birçok fonksiyon yazılır ve herkes kendine ait kodu kullanır.
 
 **Otomatik test edilmiş kod ise bunun tam anlamıyla zıttıdır**
 
@@ -404,6 +404,6 @@ Gerçek hayatta bu bazen kolay olmayabilir. Bazen gerçekten özellikleri yazmak
 
 ## Sırada ne var?
 
-Bu ders sonunda bir çok test ile iç içi görev bulacaksınız. Böylece daha pratiğe dayalı örnekler yapabileceksiniz.
+Bu ders sonunda birçok test ile iç içi görev bulacaksınız. Böylece daha pratiğe dayalı örnekler yapabileceksiniz.
 
 Test yazmak iyi JavaScript bilgisi gerektirir. Fakat siz daha yeni öğrenmeye başladınız. Bundan dolayı şimdilik bu kadar yeterli, bundan sonra test yazmanıza gerek yok. Eğer daha karmaşık olsalar bile bu derste gördüğünüz örneklerden yola çıkarak bunları okuyabilirsiniz.

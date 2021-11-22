@@ -176,7 +176,7 @@ function selamVer() {
 }
 ```
 
-`this`'in değeri çalışma anında değerlendirilir. Herşey olabilir.
+`this`'in değeri çalışma anında değerlendirilir. Her şey olabilir.
 
 Örneğin `this` farklı objelerden çağırıldıklarında değerler alabilirler:
 

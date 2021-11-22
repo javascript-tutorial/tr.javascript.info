@@ -159,7 +159,7 @@ Pratikte, modüller şunlardan birini içerir:
 - Bir kütüphane, fonksiyonlar paketi, `lib.js` gibi.
 - Veya bir varlık,`user.js` de `class User` tanımlanmıştır. Bütün modül bu sınıfa sahiptir.
 
-Çoğunlukla ikinci yaklaşım tercih edilir. Böylece her "şey" kendi modulünde bulunur.
+Çoğunlukla ikinci yaklaşım tercih edilir. Böylece her " şey" kendi modulünde bulunur.
 
 Doğal olarak bu çok fazla dosya gerektirir, her şeyin kendi modülünü istediği gibi, ama bu hiç sorun değil. Aslında, dosyalar iyi adlandırılmışsa ve klasörler halinde yapılandırılmışsa kod gezinme işlemi kolaylaşır.
 

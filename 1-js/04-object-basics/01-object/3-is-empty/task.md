@@ -4,7 +4,7 @@ importance: 5
 
 # Boş olup olmadığını kontrol et
 
-`bosMu(obj)` adında bir fonksiyon tanımla ve eğer objenin hiç bir özelliği yok ise `true`, var ise `false` döndersin.
+`bosMu(obj)` adında bir fonksiyon tanımla ve eğer objenin hiçbir özelliği yok ise `true`, var ise `false` döndersin.
 
 Should work like that:
 

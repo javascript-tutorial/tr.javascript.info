@@ -113,7 +113,7 @@ Tüm fare olayları, basılan değiştirici tuşlarla ilgili bilgileri içerir.
 ```warn header="Dikkat: Mac için genellikle `Ctrl` yerine `Cmd` kullanılır."
 Windows ve Linux işletim sistemlerinde `key:Alt`, `key:Shift` and `key:Ctrl` değiştiricileri bulunur. Mac için bir değiştirici daha var: `key:Cmd`, bu `metaKey` özelliğine karşılık gelir.
 
-Çoğu zaman Windows/Linux üzerinde bir durum için `key:Ctrl` kullanılırken, Mac üzerinde `key:Cmd` kullanılır. Bu yüzden Windows kullanıcısı `key:Ctrl+Enter` ya da `key:Ctrl+A` kullandığı zaman, Mac kullanıcısı `key:Cmd+Enter` ya da `key:Cmd+A` kullanır. Bir çok uygulama da `key:Ctrl` yerine `key:Cmd` kullanır.
+Çoğu zaman Windows/Linux üzerinde bir durum için `key:Ctrl` kullanılırken, Mac üzerinde `key:Cmd` kullanılır. Bu yüzden Windows kullanıcısı `key:Ctrl+Enter` ya da `key:Ctrl+A` kullandığı zaman, Mac kullanıcısı `key:Cmd+Enter` ya da `key:Cmd+A` kullanır. Birçok uygulama da `key:Ctrl` yerine `key:Cmd` kullanır.
 
 Dolayısıyla, Ctrl + tıklama gibi kombinasyonları kullanacagımız zaman, Mac için Cmd + tıklamayı kullanmak mantıklıdır. Bu, Mac kullanıcıları için fiziksel açıdan da daha rahat bir çözümdür.
 

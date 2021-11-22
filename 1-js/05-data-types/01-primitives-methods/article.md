@@ -38,7 +38,7 @@ Objeler ilkellere göre daha "ağırdırlar". Daha fazla kaynak gerektirirler. F
 
 Burada JavaScript'i oluşturan kişiler ikilem ile karşılaşmışlardır:
 
-- Karakter dizisi veya sayı gibi ilkel tipler ile bir çok şey yapılmak istenebilir. Bunlara metod eklenmesine izin vermek harika olur.
+- Karakter dizisi veya sayı gibi ilkel tipler ile birçok şey yapılmak istenebilir. Bunlara metod eklenmesine izin vermek harika olur.
 - İlkel tipler olabildiğince hızlı olmalıdır.
 
 Çözüm biraz garip :

@@ -20,7 +20,7 @@ Ayrıca sembollere tanım açıklama ( sembol ismi ) verilebilir. Bu genelde hat
 // id açıklaması "id" olan bir semboldür.
 let id = Symbol("id");
 ```
-Sembollerin eşsiz oldukları garantidir. Eğer aynı açıklamaya ( sembol ismi ) ait iki sembol olsa bile değerleri farklıdır. Bu açıklama sadece etikettir. Hiç birşeyi etkilemez.
+Sembollerin eşsiz oldukları garantidir. Eğer aynı açıklamaya ( sembol ismi ) ait iki sembol olsa bile değerleri farklıdır. Bu açıklama sadece etikettir. hiçbir şeyi etkilemez.
 
 Örneğin aşağıdaki iki sembol aynı açıklamalara aittir -- eşit değillerdir:
 
@@ -86,7 +86,7 @@ let id = Symbol("id");
 
 kullanici[id] = "Id değeri";
 ```
-Artık birbiri ile hiç bir ayrılık olmayacaktır, hatta aynı isme sahip olsalar bile.
+Artık birbiri ile hiçbir ayrılık olmayacaktır, hatta aynı isme sahip olsalar bile.
 
 Şimdi bu `"id"`'nin karakter dizisi olduğunu varsayın, eğer başkası aynı isim ile `id` objeye veri eklemeye çalışırsa bu durumda *ayrılık* olacaktır.
 
@@ -235,7 +235,7 @@ alert( Symbol.keyFor(Symbol("isim2")) ); // tanımsız, bu argüman sembol kayı
 
 ## System sembolleri
 
-JavaScript içinde tanımlı bir çok "sistem" sembolü bulunmaktadır. Bunları farklı yönlerden objeler içinde kullanmak mümkündür.
+JavaScript içinde tanımlı birçok "sistem" sembolü bulunmaktadır. Bunları farklı yönlerden objeler içinde kullanmak mümkündür.
 
 Bu semboller [Bilinen semboller](https://tc39.github.io/ecma262/#sec-well-known-symbols) tablosundan kontrol edilebilir:
 

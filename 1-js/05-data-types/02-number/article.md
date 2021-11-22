@@ -4,7 +4,7 @@ JavaScript'te tüm sayılar 64-bit formatında tutulur [IEEE-754](http://en.wiki
 
 Sayılar ile ilgili bilinenlerin üzerinden tekrar geçecek olunursa.
 
-## Sayıyı yazmanın bir çok yolu
+## Sayıyı yazmanın birçok yolu
 
 Diyelim ki 1 milyar yazmak istiyorsunuz. Şu şekilde:
 
@@ -188,7 +188,7 @@ alert( 0.1 + 0.2 ); // 0.30000000000000004
 ```
 Yok artık! Burada yanlış karşılaştırmanın sonuçlarını gördünüz. Düşünün bir e-ticaret sitesi yapıyorsunuz. Kullanıcı `0.10₺` ve `0.20₺` lik iki tane çiklet ekledi sepetine. Sonuçta toplam `$0.30000000000000004` oldu. Sitenize gelen kişinin kafası karışacaktır.
 
-Peki neden böyle birşey oluyor?
+Peki neden böyle bir şey oluyor?
 
 Sayı hafızada binary formatta tutulur. Fakat ondalık bölümleri `0.1`, `0.2` gibi desimal sistemde çok basit gibi duran sayılar aslında bitmez bir binary forma sahiptir.
 
@@ -232,7 +232,7 @@ Bu problemden nasıl kurtulunur? Tabi bunun için bir kaç yöntem mevcuttur:
     ```js run
     alert( (0.1 * 10 + 0.2 * 10) / 10 ); // 0.3
     ```
-    Aşağıdaki gibi çalışır `0.1 * 10 = 1` ve `0.2 * 10 = 2` sonrasında iki tam sayı hiç bir ondalık bölüm olmadan toplanır böylece küsürat kaybı ortadan kalkar.
+    Aşağıdaki gibi çalışır `0.1 * 10 = 1` ve `0.2 * 10 = 2` sonrasında iki tam sayı hiçbir ondalık bölüm olmadan toplanır böylece küsürat kaybı ortadan kalkar.
 
 3. Eğer e-ticaret sitesi üzerinde çalışıyorsanız. En radikal çözüm tüm küsüratları kuruş olarak kaydedip hiç küsürat kullanmamak olabilir. Fakat ya %30 indirip yapmak isterseniz? Pratikte bu kullanım çok nadirdir. Bundan dolayı yukarıdaki iki şekilde problem çözülebilir.
 
@@ -275,7 +275,7 @@ Her ikisi de `number` tipine aittirler, fakat "normal" sayı değildirler. Bunda
     alert( isNaN("str") ); // true
     ```
     
-    Bu fonksiyona ihtiyacınız var mı? Sadece === NaN kullanılsa ? Malesef ihtiyaç var. `NaN` kendi başına hiç bir şeye eşit değildir, hatta kendisine bile:
+    Bu fonksiyona ihtiyacınız var mı? Sadece === NaN kullanılsa ? Malesef ihtiyaç var. `NaN` kendi başına hiçbir şeye eşit değildir, hatta kendisine bile:
     
     ```js run
     alert( NaN === NaN ); // false
@@ -334,7 +334,7 @@ alert( parseFloat('12.5em') ); // 12.5
 alert( parseInt('12.3') ); // 12, sadece tamsayı bölümü alındı
 alert( parseFloat('12.3.4') ); // 12.3, birinci noktadan sonra yeniden nokta gördüğünde işlemi tamamladı
 ```
-Eğer hiç bir basamak okunamazsa `NaN` dönderirler.
+Eğer hiçbir basamak okunamazsa `NaN` dönderirler.
 
 ```js run
 alert( parseInt('a123') ); // NaN, ilk harf işlemi durdurur.

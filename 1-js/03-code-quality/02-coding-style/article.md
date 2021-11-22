@@ -38,7 +38,7 @@ if (n < 0) {
 -->
 Şimdi bu kurallar ve nedenleri hakkında konuşabiliriz.
 
-Buradaki hiç bir şey kanun değildir. Hepsi sizin zevgine kalmıştır ve değişebilir. Buradaki kodlama kuralları dogmalara dayanmaz.
+Buradaki hiçbir şey kanun değildir. Hepsi sizin zevgine kalmıştır ve değişebilir. Buradaki kodlama kuralları dogmalara dayanmaz.
 
 ### Süslü Parantez
 

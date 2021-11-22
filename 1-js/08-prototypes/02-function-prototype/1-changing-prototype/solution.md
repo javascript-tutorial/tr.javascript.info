@@ -14,7 +14,7 @@ Cevaplar:
     
 3. `true`.
 
-    Tüm  `delete` operasyonları objeye doğrudan etki eder. Mesela `delete rabbit.eats` `rabbit`'ten `eats` özelliğini silmeye çalışır fakat yapaz. Bundan dolayı bu operasyonun hiç bir etkisi olayacaktır.
+    Tüm  `delete` operasyonları objeye doğrudan etki eder. Mesela `delete rabbit.eats` `rabbit`'ten `eats` özelliğini silmeye çalışır fakat yapaz. Bundan dolayı bu operasyonun hiçbir etkisi olayacaktır.
     
 4. `undefined`.
 

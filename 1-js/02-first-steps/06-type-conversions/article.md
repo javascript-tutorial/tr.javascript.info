@@ -62,7 +62,7 @@ Sayısal dönüştürme kuralları:
 |`undefined`|`NaN`|
 |`null`|`0`|
 |<code>true&nbsp;ve&nbsp;false</code> | `1` veya `0` |
-| `string` | Önce başta ve sondaki whitespace'ler silinir. Sonra eğer kalan değerde hiç bir karakter yok ise sonuç `0`. Eğer içerisinde sayısal olmayan bir değer var ise bu durumda `NaN` değeri alınır. |
+| `string` | Önce başta ve sondaki whitespace'ler silinir. Sonra eğer kalan değerde hiçbir karakter yok ise sonuç `0`. Eğer içerisinde sayısal olmayan bir değer var ise bu durumda `NaN` değeri alınır. |
 
 Örnekler:
 
@@ -137,7 +137,7 @@ Dönüştürme işlemi aşağıdaki kuralları kapsar:
 |`undefined`|`NaN`|
 |`null`|`0`|
 |<code>true&nbsp;/&nbsp;false</code> | `1 / 0` |
-| `string` | Önce başta ve sondaki whitespace'ler silinir. Sonra eğer kalan değerde hiç bir karakter yok ise sonuç `0`. Eğer içerisinde sayısal olmayan bir değer var ise bu durumda `NaN` değeri alınır. |
+| `string` | Önce başta ve sondaki whitespace'ler silinir. Sonra eğer kalan değerde hiçbir karakter yok ise sonuç `0`. Eğer içerisinde sayısal olmayan bir değer var ise bu durumda `NaN` değeri alınır. |
 
 **`ToBoolean`** -- Lojik operatörlerde otomatik çalışır ayrıca  `Boolean(value)` ile de dönüştürme işlemi yapılabilir.
 

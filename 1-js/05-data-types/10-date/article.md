@@ -303,7 +303,7 @@ Vay be! `getTime()` ile yapılan işlem çok daha hızlı! Bunun nedeni tip dön
 
 Bir değer aldık fakat bu henüz iyi bir karşılaştırma olmadı.
 
-Diyelim ki `karsilastirma(cikarma)` çalışırken işlemci paralelde başka birşeyler ile uğraşıyor olsun. Bu uğraştığı işlemler `karsilastirma(tarihFarki)` zamanında bitsin.
+Diyelim ki `karsilastirma(cikarma)` çalışırken işlemci paralelde başka bir şeyler ile uğraşıyor olsun. Bu uğraştığı işlemler `karsilastirma(tarihFarki)` zamanında bitsin.
 
 Bu aslında oldukça gerçekçi bir senaryodur.
 

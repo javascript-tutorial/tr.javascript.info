@@ -14,7 +14,7 @@ Javascript objeleri gizli bir özellik olan `[[Prototype]]` özelliğine sahipti
 
 `[[Prototip]]`'in "büyülü" bir anlamı bulunmaktadır. Objeden bir özellik okunmak istendiğinde, ve bu obje bulunamadığında JavaScript bunu otomatik olarak prototip'ten alır. Programlamada buna `prototip kalıtımı` denir. Birçok dil özelliği ve programlama tekniği bunun üzerine kuruludur.
 
-`[[Prototpe]]` gizli bir özelliktir, fakat bunu ayarlamanın bir çok yolu vardır.
+`[[Prototpe]]` gizli bir özelliktir, fakat bunu ayarlamanın birçok yolu vardır.
 
 Bunlardan biri `__proto__` kullanmaktır:
 
@@ -197,7 +197,7 @@ admin.fullName = "Alice Cooper"; // (**)
 
 Yukarıdaki örnekte aklınıza şöyle bir soru gelebilir. `set fullName(value)` içerisinde `this`'in değeri nedir? `this.name` ve `this.surname` yazılan yerlerde `admin` mi yoksa `user` mı kullanılır?
 
-Cevap basittir: `this` prototip tarafından hiç bir şekilde etkilenmez.
+Cevap basittir: `this` prototip tarafından hiçbir şekilde etkilenmez.
 
 **Metodun bulunduğu yerin önemi olmaksızın, metod çağrısında `this` her zaman noktadan önceki bölümdür.**
 

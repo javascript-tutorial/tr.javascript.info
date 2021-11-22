@@ -40,7 +40,7 @@ Her `if` kullandığınızda süslü parantez kullanmanız okunurluğu artıraca
 - `0`, boş karakter `""`, `null`, `undefined` ve `NaN` `false` olarak döndürülür. Bunlara `falsy` yani `yanlış` değerler de diyebiliriz.
 - Diğer değerler ise `true` olur ve bunlara `truthy` veya `doğru` değerler de denebilir. ( Not: Bunların tam karşılıklarını bulamadım )
 
-Örneğin aşağıdaki kod satırı hiç bir zaman çalışmayacaktır:
+Örneğin aşağıdaki kod satırı hiçbir zaman çalışmayacaktır:
 
 ```js
 if (0) { // 0 false döndürür

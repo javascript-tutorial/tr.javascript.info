@@ -2,14 +2,14 @@
 
 Diyelim ki çok iyi bir sanatçısınız ve fanlarınız size sabah akşam ne zaman yeni şarkılarınızın geleceğini soruyor.
 
-Siz de biraz rahatlamak için yeni şarkı yayınladığınızda onlara göndereceğinize söz verdiniz. Onlara bir liste verdiniz ve güncellemeleri buradan yayınlayacağınızı söylediniz. Böylece onlar da kendi email adreslerini yazar ve yeni şarkılar geldiğinde hemen bunları görebilir. Diyelimki birşey yanış gitti ve yeni şarkıyı yayınlayamadınız bu şekliyle bile onlara bildirim gider.
+Siz de biraz rahatlamak için yeni şarkı yayınladığınızda onlara göndereceğinize söz verdiniz. Onlara bir liste verdiniz ve güncellemeleri buradan yayınlayacağınızı söylediniz. Böylece onlar da kendi email adreslerini yazar ve yeni şarkılar geldiğinde hemen bunları görebilir. Diyelimki bir şey yanış gitti ve yeni şarkıyı yayınlayamadınız bu şekliyle bile onlara bildirim gider.
 
-Böylece herkes mutlu, sizi artık kimse darlamayacak, ve hiç bir yeni şarkınızı kaçırmayacaklar.
+Böylece herkes mutlu, sizi artık kimse darlamayacak, ve hiçbir yeni şarkınızı kaçırmayacaklar.
 
 Bu programlamada karşılaştığımız olayların gerçek-hayattaki analojisi:
 
 1. Zaman alan "Kod üretme". Örneğin ağ üzerinden veri yükleyen bir uygulama, yani "Şarkıcı"
-2. Üretilen kodu hazır olduğunda "tüketmek isteyen" kod. Bir çok fonksiyon bu sonuca ihtiyaç duyabilir. Bu da "fanlar"'dır.
+2. Üretilen kodu hazır olduğunda "tüketmek isteyen" kod. Birçok fonksiyon bu sonuca ihtiyaç duyabilir. Bu da "fanlar"'dır.
 3. *promise*(söz) bir çeşif özel JavaScript objesidir. Bu obje "üreten kod" ile "tüketen kod'u" birleştirir. Bizim kurduğumuz analoji'de bu "üyelik listesi"'ne denk gelir. "Kod üreten"'in ne kadar sürede üreteceği belli değildir.  Bu söz hazır olduğunda tüm üyelere bunu bildirir.
 
 Bu analoji tam olarak doğru değildir, aslında JavaScript promise'leri üyelik listesinden çok daha karmaşıktır: Bazı ek özellikleri ve sınırlılıkları mevcuttur. Fakat başlangıç olarak iyi diyebiliriz.
@@ -108,7 +108,7 @@ let promise = new Promise(function(resolve, reject) {
 });
 ```
 
-Bu durum işe başladığınızda fakat sonrasında değişen birşey olmadığının görünüp hiç çalışmadan gönderilmek istendiğinde gerçekleştirilebilir.
+Bu durum işe başladığınızda fakat sonrasında değişen bir şey olmadığının görünüp hiç çalışmadan gönderilmek istendiğinde gerçekleştirilebilir.
 
 Bu aslında iyi bir çözüm. Böylece söz hemen çözülmüş olur.
 ````

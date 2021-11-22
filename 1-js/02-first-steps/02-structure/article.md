@@ -146,6 +146,6 @@ alert( 'Dünya' );
 
 Lütfen kod yazarken yorum satırı yazmaktan çekinmeyin.
 
-Yorumlar elbette dosyanızın biraz daha büyük olmasına sebep olabilir, fakat bu sorun değildir. Kodunuzu küçültmek için bir çok sıkıştırıcı bulunmaktadır. Bunlar kodunuzu canlı sisteme alırken yorumlardan arındırarak server'a koyarlar böylece yazdığınız kod hiç yer kaplamaz.
+Yorumlar elbette dosyanızın biraz daha büyük olmasına sebep olabilir, fakat bu sorun değildir. Kodunuzu küçültmek için birçok sıkıştırıcı bulunmaktadır. Bunlar kodunuzu canlı sisteme alırken yorumlardan arındırarak server'a koyarlar böylece yazdığınız kod hiç yer kaplamaz.
 
 Daha fazla örneği ve daha iyi nasıl yorum yazabileceğinizi <info:coding-style> bölümünde göreceksiniz.
