@@ -1,34 +1,35 @@
-# Anchors: string start ^ and end $
+# Çapalar: karakter dizisi (string) başlangıç ^ ve bitiş $
 
-The caret `pattern:^` and dollar `pattern:$` characters have special meaning in a regexp. They are called "anchors".
+Düzeltme `pattern:^` ve dolar `pattern:$` işaretlerinin, karakter dizisi (regexp) için özel anlamları vardır. Bunlar "çapalar" olarak adlandırılırlar.
 
-The caret `pattern:^` matches at the beginning of the text, and the dollar `pattern:$` -- at the end.
+Düzeltme işareti `pattern:^` metnin başlangıcı ile, dolar işareti ise `pattern:$` -- metnin sonu ile eşleşir.
 
-For instance, let's test if the text starts with `Mary`:
+Örneğin, metnin `Mary` ile başlayıp başlamadığını test edelim:
 
 ```js run
 let str1 = "Mary had a little lamb";
 alert( /^Mary/.test(str1) ); // true
 ```
 
-The pattern `pattern:^Mary` means: "string start and then Mary".
+`pattern:^Mary` kalıbının anlamı: "dize (string) başlangıcı (^) ve ardından Mary".
 
-Similar to this, we can test if the string ends with `snow` using `pattern:snow$`:
+Buna benzer olarak, metnin `snow` ile bitip bitmediğini `pattern:snow$` kullanarak test edebiliriz:
 
 ```js run
 let str1 = "it's fleece was white as snow";
 alert( /snow$/.test(str1) ); // true
 ```
 
-In these particular cases we could use string methods `startsWith/endsWith` instead. Regular expressions should be used for more complex tests.
 
-## Testing for a full match
+Bu gibi özel durumlarda (başlangıç ve bitiş), çapaların (^, $) yerine `startsWith/endsWith` string methodlarını kullanabiliriz. Düzenli ifadeler (regex), karmaşık testler için kullanılmalıdır. In these particular cases we could use string methods `startsWith/endsWith` instead. Regular expressions should be used for more complex tests.
 
-Both anchors together `pattern:^...$` are often used to test whether or not a string fully matches the pattern. For instance, to check if the user input is in the right format.
+## Tam eşleşme için test
 
-Let's check whether or not a string is a time in `12:34` format. That is: two digits, then a colon, and then another two digits.
+İki çapanın birlikte kullanımıyla `pattern:^...$`, string ile kalıbın tam olarak eşleşip eşleşmediği kontrol ediliir. Örneğin, kullanıcı girişinin doğru biçimde olup olmadığını kontrol edelim. Both anchors together `pattern:^...$` are often used to test whether or not a string fully matches the pattern. For instance, to check if the user input is in the right format.
 
-In regular expressions language that's `pattern:\d\d:\d\d`:
+Verilen dizinin (string) `12:34` biçiminde bir zaman olup olmadığını kontrol edelim. Biçim şu şekilde olmalı: iki basamak, ardından iki nokta üst üste ve iki basamak daha. Let's check whether or not a string is a time in `12:34` format. That is: two digits, then a colon, and then another two digits.
+
+Düzenli ifadeler (RegExp) dilinde `pattern:\d\d:\d\d` karşılık gelir: In regular expressions language that's `pattern:\d\d:\d\d`:
 
 ```js run
 let goodInput = "12:34";
@@ -36,7 +37,7 @@ let badInput = "12:345";
 
 let regexp = /^\d\d:\d\d$/;
 alert( regexp.test(goodInput) ); // true
-alert( regexp.test(badInput) ); // false
+alert( regexp.test(badInput) ); // false, ":" ifadesinden sonra 2 basamak yerine 3 basamak vardır
 ```
 
 Here the match for `pattern:\d\d:\d\d` must start exactly after the beginning of the text `pattern:^`, and the end `pattern:$` must immediately follow.
