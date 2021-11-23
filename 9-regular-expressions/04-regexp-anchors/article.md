@@ -29,7 +29,7 @@ Bu gibi özel durumlarda (başlangıç ve bitiş), çapaların (^, $) yerine `st
 
 Verilen dizinin (string) `12:34` biçiminde bir zaman olup olmadığını kontrol edelim. Biçim şu şekilde olmalı: iki basamak, ardından iki nokta üst üste ve iki basamak daha. Let's check whether or not a string is a time in `12:34` format. That is: two digits, then a colon, and then another two digits.
 
-Düzenli ifadeler (RegExp) dilinde `pattern:\d\d:\d\d` karşılık gelir: In regular expressions language that's `pattern:\d\d:\d\d`:
+Yukarda bahsedilen kalıp, düzenli ifadeler (RegExp) dilinde `pattern:\d\d:\d\d` karşılık gelir: In regular expressions language that's `pattern:\d\d:\d\d`:
 
 ```js run
 let goodInput = "12:34";
@@ -40,14 +40,14 @@ alert( regexp.test(goodInput) ); // true
 alert( regexp.test(badInput) ); // false, ":" ifadesinden sonra 2 basamak yerine 3 basamak vardır
 ```
 
-Here the match for `pattern:\d\d:\d\d` must start exactly after the beginning of the text `pattern:^`, and the end `pattern:$` must immediately follow.
+Burada `pattern:\d\d:\d\d` eşleşmesi yapmak için; metnin başlangıcından`pattern:^` hemen sonra `pattern:\d\d:\d\d` konulmalı ve ardından `pattern:$` eklenmelidir. Here the match for `pattern:\d\d:\d\d` must start exactly after the beginning of the text `pattern:^`, and the end `pattern:$` must immediately follow.
 
-The whole string must be exactly in this format. If there's any deviation or an extra character, the result is `false`.
+Dizi (string) tam olarak bu biçimde olmalıdır. Herhangi bir sapma ya da fazla bir karakter varsa sonuç `false` olur. The whole string must be exactly in this format. If there's any deviation or an extra character, the result is `false`.
 
-Anchors behave differently if flag `pattern:m` is present. We'll see that in the next article.
+Çapalar, `pattern:m` bayrağı kullanıldığında farklı davranır. Bir sonraki bölümde bu konuya değineceğiz. Anchors behave differently if flag `pattern:m` is present. We'll see that in the next article.
 
-```smart header="Anchors have \"zero width\""
-Anchors `pattern:^` and `pattern:$` are tests. They have zero width.
+```smart header="Çapalar \"sıfır genişlik\" tedir. Anchors have \"zero width\""
+`pattern:^` ve `pattern:$` çapaları testlerdir. Genişliği yoktur BunlarAnchors `pattern:^` and `pattern:$` are tests. They have zero width.
 
-In other words, they do not match a character, but rather force the regexp engine to check the condition (text start/end).
+Bir başka deyişle, çapalar herhangi bir karakterle eşleşmezler ancak regexp motorunu kullanılan kalıp (metin başlangıç/bitiş) için test etmeye zorlar. In other words, they do not match a character, but rather force the regexp engine to check the condition (text start/end).
 ```
