@@ -3,6 +3,7 @@
 
 Bu kitap aslında bir *eğitim süreci*'dir. Amacı sizin kademeli olarak JavaScript öğrenmenizi sağlamaktır. Önce temellere alıştıktan sonra diğer kaynaklar üzerinde durulacaktır.
 
+<<<<<<< HEAD
 ## Şartname
 
 **ECMA-262 Şartnamesi** JavaScript için olabilecek en derin bilgilerin bulunduğu kaynaktır. Dili tanımlar.
@@ -16,13 +17,31 @@ Daha geniş kitleler tarafından kullanılmayan yeni özelliklere ve önerilere 
 Ayrıca, tarayıcı için geliştirme yapıyorsanız, ikinci [second part](info:browser-environment) bölümünden farklı eğitimlere bakabilirsiniz.
 
 ## Kılavuz
+=======
+## Specification
+
+[The ECMA-262 specification](https://www.ecma-international.org/publications/standards/Ecma-262.htm) contains the most in-depth, detailed and formalized information about JavaScript. It defines the language.
+
+But being that formalized, it's difficult to understand at first. So if you need the most trustworthy source of information about the language details, the specification is the right place. But it's not for everyday use.
+
+A new specification version is released every year. In-between these releases, the latest specification draft is at <https://tc39.es/ecma262/>.
+
+To read about new bleeding-edge features, including those that are "almost standard" (so-called "stage 3"), see proposals at <https://github.com/tc39/proposals>.
+
+Also, if you're developing for the browser, then there are other specifications covered in the [second part](info:browser-environment) of the tutorial.
+>>>>>>> a82915575863d33db6b892087975f84dea6cb425
 
 - **MDN (Mozilla) JavaScript Reference** örnek ve kılavuzların yeraldığı bir diğer kaynaktır. İstediğiniz konular derinlemesine incelemek için harika bir kaynaktır.
 
+<<<<<<< HEAD
     Buradan erişebilirsiniz: <https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference>
+=======
+- **MDN (Mozilla) JavaScript Reference** is the main manual with examples and other information. It's great to get in-depth information about individual language functions, methods etc.
+>>>>>>> a82915575863d33db6b892087975f84dea6cb425
 
     Google'da "MDN [term]" şeklinde aratırsanız aslında çok daha kolay erişebilirsiniz. Örneğin : `parseInt`'i aramak için <https://google.com/search?q=MDN+parseInt> kullanabilirsiniz.
 
+<<<<<<< HEAD
 - **MSDN** – Microsoft kılavuzu da çok fazla bilgi içermektedir. Buna JavaScript ( JScript olarak da alandırılmakta ) veya Internet Explorer gibi konular da dahildir; <http://msdn.microsoft.com/> adresinden ulaşılabilir.
 
     Ayrıca "RegExp MSDN" veya "RegExp MSDN jscript" şeklinde arayabilirsiniz.
@@ -32,6 +51,11 @@ Ayrıca, tarayıcı için geliştirme yapıyorsanız, ikinci [second part](info:
 JavaScript çok hızlı gelişen bir dildir, sürekli olarak yeni özellikler eklenir.
 
 Bunların tarayıcılarda desteklenip desteklenmediğini görmek için:
+=======
+Although, it's often best to use an internet search instead. Just use "MDN [term]" in the query, e.g. <https://google.com/search?q=MDN+parseInt> to search for `parseInt` function.
+
+## Compatibility tables
+>>>>>>> a82915575863d33db6b892087975f84dea6cb425
 
 - <http://caniuse.com> - özellik bazlı tablo mevcuttur. Örneğin hangi JavaScript motorları cryptography özelliğini destekliyor sorusunun cevabını <http://caniuse.com/#feat=cryptography> adresinden bulabilirsiniz.
 
