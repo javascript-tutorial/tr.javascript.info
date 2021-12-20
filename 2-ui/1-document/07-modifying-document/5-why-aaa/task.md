@@ -4,7 +4,15 @@ importance: 1
 
 # Why does "aaa" remain?
 
+<<<<<<< HEAD
 Örneği çalıstırın. Niçin `table.remove()`, `"aaa"` metnini silmez?
+=======
+In the example below, the call `table.remove()` removes the table from the document.
+
+But if you run it, you can see that the text `"aaa"` is still visible.
+
+Why does that happen?
+>>>>>>> 8d04d0d2db97276dbb2b451c30a7bd3e05d65831
 
 ```html height=100 run
 <table id="table">
