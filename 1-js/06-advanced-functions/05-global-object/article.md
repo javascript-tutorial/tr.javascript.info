@@ -1,14 +1,25 @@
 
 # Evrensel Objeler
 
+<<<<<<< HEAD
 JavaScript dili yazılırken "evren obje" diye bir obje fikri vardı. Bu obje tüm değişken ve fonksiyonları içinde barındırark tarayıcıda bulunan kodların evrensel obje yardımıyla değişkenleri paylaşabileceği düşünülmüştü.
+=======
+The global object provides variables and functions that are available anywhere. By default, those that are built into the language or the environment.
+>>>>>>> 3c934b5a46a76861255e3a4f29da6fd54ab05c8c
 
 Tabi o zamandan beri JavaScript çok değişti, artık evrensel obje göze batar oldu. Modern JavaScript'te bu objenin yerini module yapısı aldı.
 
+<<<<<<< HEAD
 Global obje hala dil içerisinde yer almaktadır.
+=======
+Recently, `globalThis` was added to the language, as a standardized name for a global object, that should be supported across all environments. It's supported in all major browsers.
+
+We'll use `window` here, assuming that our environment is a browser. If your script may run in other environments, it's better to use `globalThis` instead.
+>>>>>>> 3c934b5a46a76861255e3a4f29da6fd54ab05c8c
 
 Tarayıcı için bu "window" ve NodeJs için ise "global"'dir. Diğer ortamlar da kendine ait evrensel objelere sahiptirler.
 
+<<<<<<< HEAD
 İki şeyi yapmaktadır:
 
 1. Dil dahilindeki fonksiyon ve değişkenlere erişim sağlar.
@@ -16,6 +27,15 @@ Tarayıcı için bu "window" ve NodeJs için ise "global"'dir. Diğer ortamlar d
 
     ```js run
     alert("Merhaba");
+=======
+```js run
+alert("Hello");
+// is the same as
+window.alert("Hello");
+```
+
+In a browser, global functions and variables declared with `var` (not `let/const`!) become the property of the global object:
+>>>>>>> 3c934b5a46a76861255e3a4f29da6fd54ab05c8c
 
     // aynısı 
     window.alert("Merhaba");
@@ -24,6 +44,7 @@ Tarayıcı için bu "window" ve NodeJs için ise "global"'dir. Diğer ortamlar d
 
 2. Global `var` değişkeni tanımlamaya olanak tanır. `window` özellikleri ile okuma ve yazma sağlanabilir. Örneğin
 
+<<<<<<< HEAD
     <!-- no-strict to move variables out of eval -->
     ```js untrusted run no-strict refresh
     var selam = "Merhaba";
@@ -31,6 +52,13 @@ Tarayıcı için bu "window" ve NodeJs için ise "global"'dir. Diğer ortamlar d
     function selamVer() {
       alert(selam);
     }
+=======
+The same effect have function declarations (statements with `function` keyword in the main code flow, not function expressions).
+
+Please don't rely on that! This behavior exists for compatibility reasons. Modern scripts use [JavaScript modules](info:modules) where such a thing doesn't happen.
+
+If we used `let` instead, such thing wouldn't happen:
+>>>>>>> 3c934b5a46a76861255e3a4f29da6fd54ab05c8c
 
     // window'dan okunabilir
     alert( window.terim ); // Merhaba (global var)
@@ -52,6 +80,7 @@ alert(window.kullanici); // tanımsız, let ile tanımlama yapılamaz.
 alert("kullanici" in window); // false
 ```
 
+<<<<<<< HEAD
 ```smart header="Global Obje global ortam kaydı değildir"
 ECMAScript ES-2015 öncesi `let/const` değişkenleri bulunmamaktaydı, sadece `var` değişkeni vardı. Global objeler global ortam kaydı olarak kullanılıyordu.
 
@@ -163,6 +192,9 @@ Bazen, `this`'in değeri tamamen evrensel obje olur. Bu çok nadir de olsa bazı
     ```
 
     Tanım gereği, `this` bu durumda evrensel obje olmalı, Node.JS ortamında olmasa bile `this` evrensel objedir. Bu eski kodlar ile uyumluluk amacıyladır, sıkı modda `this` tanımsız olabilir.
+=======
+That said, using global variables is generally discouraged. There should be as few global variables as possible. The code design where a function gets "input" variables and produces certain "outcome" is clearer, less prone to errors and easier to test than if it uses outer or global variables.
+>>>>>>> 3c934b5a46a76861255e3a4f29da6fd54ab05c8c
 
 ## Using for polyfills
 
@@ -190,7 +222,7 @@ if (!window.Promise) {
     That includes JavaScript built-ins, such as `Array` and environment-specific values, such as `window.innerHeight` -- the window height in the browser.
 - The global object has a universal name `globalThis`.
 
-    ...But more often is referred by "old-school" environment-specific names, such as `window` (browser) and `global` (Node.js). As `globalThis` is a recent proposal, it's not supported in non-Chromium Edge (but can be polyfilled).
+    ...But more often is referred by "old-school" environment-specific names, such as `window` (browser) and `global` (Node.js).
 - We should store values in the global object only if they're truly global for our project. And keep their number at minimum.
 - In-browser, unless we're using [modules](info:modules), global functions and variables declared with `var` become a property of the global object.
 - To make our code future-proof and easier to understand, we should access properties of the global object directly, as `window.x`.
