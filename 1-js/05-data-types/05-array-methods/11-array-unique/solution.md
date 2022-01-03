@@ -35,4 +35,10 @@ Yani `arr.length` `10000` olduğundan dolayı biz `10000*10000` = 100 milyon kar
 
 Bundan dolayı bu çözüm az elemana sahip diziler için kullanılabilir.
 
+<<<<<<< HEAD
 Bu optimizasyonu <info:map-set-weakmap-weakset> bölümünde göreceksiniz. 
+=======
+So the solution is only good for small arrays.
+
+Further in the chapter <info:map-set> we'll see how to optimize it.
+>>>>>>> 3c934b5a46a76861255e3a4f29da6fd54ab05c8c

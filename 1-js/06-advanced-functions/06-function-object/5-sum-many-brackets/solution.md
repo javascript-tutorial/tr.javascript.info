@@ -5,8 +5,13 @@
 
 Kod:
 
+<<<<<<< HEAD
 ```js run
 function topla(a) {
+=======
+```js demo run
+function sum(a) {
+>>>>>>> 3c934b5a46a76861255e3a4f29da6fd54ab05c8c
 
   let anlikToplam = a;
 
@@ -51,4 +56,8 @@ function f(b) {
 }
 ```
 
+<<<<<<< HEAD
 `f` değeri bir sonraki çağrıda kullanılacaktır, ne kadar çağırılırsa o kadar kullanılır. Ne zaman ki sayı veya karakter dizisi olarak kullanılacak olursa - `toString` metodu `anlikToplam` değerini döner. Bunun yanında `Symbol.toPrimitive` veya `valueOf` da kullanılabilirdi.
+=======
+This `f` will be used in the next call, again return itself, as many times as needed. Then, when used as a number or a string -- the `toString` returns the `currentSum`. We could also use `Symbol.toPrimitive` or `valueOf` here for the conversion.
+>>>>>>> 3c934b5a46a76861255e3a4f29da6fd54ab05c8c
