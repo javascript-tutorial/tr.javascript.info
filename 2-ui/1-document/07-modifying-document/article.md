@@ -1,14 +1,24 @@
 # Modifying the document
 
+<<<<<<< HEAD
 DOM değişiklikleri "canlı" sayfalar oluşturmak için anahtardır.
+=======
+DOM modification is the key to creating "live" pages.
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
 
 Burada, "anında" nasıl yeni öğeler yaratmayı ve var olan sayfa içeriğini değiştirmeyi göreceğiz.
 
+<<<<<<< HEAD
 İlk önce, basit bir örnek göreceğiz ve ondan sonra yöntemleri açıklacağız.
 
 ## Example: show a message
 
 Başlangıç için,  sayfa üzerinde `alert`ten daha güzel görünen bir mesajın nasıl eklendiğini görelim.
+=======
+## Example: show a message
+
+Let's demonstrate using an example. We'll add a message on the page that looks nicer than `alert`.
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
 
 İşte nasıl görüneceği:
 
@@ -30,12 +40,20 @@ Başlangıç için,  sayfa üzerinde `alert`ten daha güzel görünen bir mesaj�
 */!*
 ```
 
+<<<<<<< HEAD
 Bu bir HTML örneğidir. Şimdi aynı `div`i JavaScript ile oluşturalım (farzedelim ki, styles(strong kelimesine referans) hala HTML içinde veya bir dışsal CSS dosyasıdır).
 
 ## Creating an element
 
 
 DOM düğümleri(nodes) oluşturmak icin iki yöntem vardır:
+=======
+That was the HTML example. Now let's create the same `div` with JavaScript (assuming that the styles are in the HTML/CSS already).
+
+## Creating an element
+
+To create DOM nodes, there are two methods:
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
 
 `document.createElement(tag)`
 : Verilen etiketle birlikte yeni bir *element düğümü(element node)* oluşturur:
@@ -51,12 +69,20 @@ DOM düğümleri(nodes) oluşturmak icin iki yöntem vardır:
     let textNode = document.createTextNode('Here I am');
     ```
 
+Most of the time we need to create element nodes, such as the `div` for the message.
+
 ### Creating the message
 
+<<<<<<< HEAD
 Bizim durumumuzda, verilen sınıflarla ve içindeki mesajla bir “div” yapmak istiyoruz:
+=======
+Creating the message div takes 3 steps:
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
 
 ```js
+// 1. Create <div> element
 let div = document.createElement('div');
+<<<<<<< HEAD
 div.className = "alert alert-success";
 div.innerHTML = "<strong>Merhaba</strong> Onemli bir mesaj okudunuz.";
 ```
@@ -68,6 +94,23 @@ Bundan sonra, DOM elementimiz hazırdır. Şu anda, o sadece bir değişkendir v
 `Div`i göstermek için, onu `document` içinde bir yere eklememiz gerekir. Örneğin, `document.body` içinde.
 
 Bunun için özel bir yöntem `appendChild` vardır: `document.body.appendChild(div)`.
+=======
+
+// 2. Set its class to "alert"
+div.className = "alert";
+
+// 3. Fill it with the content
+div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
+```
+
+We've created the element. But as of now it's only in a variable named `div`, not in the page yet. So we can't see it.
+
+## Insertion methods
+
+To make the `div` show up, we need to insert it somewhere into `document`. For instance, into `<body>` element, referenced by `document.body`.
+
+There's a special method `append` for that: `document.body.append(div)`.
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
 
 İste tam kod:
 
@@ -84,15 +127,21 @@ Bunun için özel bir yöntem `appendChild` vardır: `document.body.appendChild(
 
 <script>
   let div = document.createElement('div');
+<<<<<<< HEAD
   div.className = "alert alert-success";
   div.innerHTML = "<strong>Hi there</strong>You've read an important message.";
+=======
+  div.className = "alert";
+  div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
 
 *!*
-  document.body.appendChild(div);
+  document.body.append(div);
 */!*
 </script>
 ```
 
+<<<<<<< HEAD
 Burada, bir üst öğeye(parent element) düğüm(node) eklemek için kullanılan yöntemlerin kısa bir listesi (kısaca `parentElem`):
 
 `parentElem.appendChild(node)`
@@ -151,9 +200,13 @@ Bu yöntemler "eskimiştir": eski zamanlardan beri varlar ve onlarla birçok esk
 Örneğin, bir string olarak varsa *html* nasıl eklenir? Ya da, verilen bir düğüm, üst öğeye(parent) başvurmadan nasıl kaldırılır? Elbette ki, bu yapılabilinir, ama zarif bir şekilde değil.
 
 Bu yüzden, tüm durumları kolayca idare etmek için iki ekleme yöntemi daha vardır.
+=======
+Here we called `append` on `document.body`, but we can call `append` method on any other element, to put another element into it. For instance, we can append something to `<div>` by calling `div.append(anotherElement)`.
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
 
-### prepend/append/before/after
+Here are more insertion methods, they specify different places where to insert:
 
+<<<<<<< HEAD
 Bu yöntemler kümesi daha esnek eklemeler sunar.
 
 - `node.append(...nodes or strings)` -- düğümün sonuna veya düğümlerin sonundaki stringlere `node`(düğüm) ekler,
@@ -165,6 +218,19 @@ Bu yöntemler kümesi daha esnek eklemeler sunar.
 Bunlarin hepsi DOM düğümler ve/veya stringlerinin bir listesini kabul eder. Eğer bir string verilirse, metin düğümü(text node) olarak eklenir.
 
 İşte bir listeye daha fazla madde(item) ve onun öncesinde/sonrasında metin eklemek için bu yöntemleri kullanmanın bir örneği:
+=======
+- `node.append(...nodes or strings)` -- append nodes or strings *at the end* of `node`,
+- `node.prepend(...nodes or strings)` -- insert nodes or strings *at the beginning* of `node`,
+- `node.before(...nodes or strings)` –- insert nodes or strings *before* `node`,
+- `node.after(...nodes or strings)` –- insert nodes or strings *after* `node`,
+- `node.replaceWith(...nodes or strings)` –- replaces `node` with the given nodes or strings.
+
+Arguments of these methods are an arbitrary list of DOM nodes to insert, or text strings (that become text nodes automatically).
+
+Let's see them in action.
+
+Here's an example of using these methods to add items to a list and the text before/after it:
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
 
 ```html autorun 
 <ol id="ol">
@@ -174,20 +240,24 @@ Bunlarin hepsi DOM düğümler ve/veya stringlerinin bir listesini kabul eder. E
 </ol>
 
 <script>
-  ol.before('before');
-  ol.after('after');
+  ol.before('before'); // insert string "before" before <ol>
+  ol.after('after'); // insert string "after" after <ol>
 
-  let prepend = document.createElement('li');
-  prepend.innerHTML = 'prepend';
-  ol.prepend(prepend);  
+  let liFirst = document.createElement('li');
+  liFirst.innerHTML = 'prepend';
+  ol.prepend(liFirst); // insert liFirst at the beginning of <ol>
 
-  let append = document.createElement('li');
-  append.innerHTML = 'append';
-  ol.append(append);
+  let liLast = document.createElement('li');
+  liLast.innerHTML = 'append';
+  ol.append(liLast); // insert liLast at the end of <ol>
 </script>
 ```
 
+<<<<<<< HEAD
 İşte yöntemlerin ne yaptığına dair küçük bir resim:
+=======
+Here's a visual picture of what the methods do:
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
 
 ![](before-prepend-append-after.svg)
 
@@ -205,7 +275,11 @@ before
 after
 ```
 
+<<<<<<< HEAD
 Bu yöntemler, tek bir çağrıda çoklu düğümler ve metin parçalarının listesi ekleyebilir.
+=======
+As said, these methods can insert multiple nodes and text pieces in a single call.
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
 
 Örneğin, buraya bir string ve bir element eklenir:
 
@@ -216,7 +290,11 @@ Bu yöntemler, tek bir çağrıda çoklu düğümler ve metin parçalarının li
 </script>
 ```
 
+<<<<<<< HEAD
 Tüm metinler *metin olarak* eklenir.
+=======
+Please note: the text is inserted "as text", not "as HTML", with proper escaping of characters such as `<`, `>`.
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
 
 Öyleyse son HTML:
 
@@ -232,11 +310,19 @@ Diğer bir deyişle, stringler `elem.textContent`in yaptığı gibi güvenli bir
 
 Böylece, bu yöntemler sadece DOM düğümleri veya metin parçaları eklemek için kullanılabilinir. 
 
+<<<<<<< HEAD
 Ama HTML'yi "html olarak", eklemek istersek, tüm etiketler(tags) ve elementlerle `elem.innerHTML` gibi çalışıyorsa?
+=======
+But what if we'd like to insert an HTML string "as html", with all tags and stuff working, in the same manner as `elem.innerHTML` does it?
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
 
-### insertAdjacentHTML/Text/Element
+## insertAdjacentHTML/Text/Element
 
+<<<<<<< HEAD
 Başka, oldukça çok yönlü bir yöntem var: `elem.insertAdjacentHTML(where, html)`.
+=======
+For that we can use another, pretty versatile method: `elem.insertAdjacentHTML(where, html)`.
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
 
 İlk parametre, "elem" e göre nereye ekleneceğini belirleyen bir kod kelimesidir. Aşağıdakilerden biri olmalıdır: 
 
@@ -265,7 +351,11 @@ Başka, oldukça çok yönlü bir yöntem var: `elem.insertAdjacentHTML(where, h
 <p>Bye</p>
 ```
 
+<<<<<<< HEAD
 Bu şekilde sayfamıza isteğe bağlı bir HTML ekleyebiliriz.
+=======
+That's how we can append arbitrary HTML to the page.
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
 
 İşte ekleme türevlerinin resmi:
 
@@ -294,9 +384,53 @@ Esas olarak sözdizimini(syntax) "düzgün" yapmak için vardırlar. Uygulamada,
 </style>
 
 <script>
-  document.body.insertAdjacentHTML("afterbegin", `<div class="alert alert-success">
+  document.body.insertAdjacentHTML("afterbegin", `<div class="alert">
     <strong>Hi there!</strong> You've read an important message.
   </div>`);
+</script>
+```
+
+## Node removal
+
+To remove a node, there's a method `node.remove()`.
+
+Let's make our message disappear after a second:
+
+```html run untrusted
+<style>
+.alert {
+  padding: 15px;
+  border: 1px solid #d6e9c6;
+  border-radius: 4px;
+  color: #3c763d;
+  background-color: #dff0d8;
+}
+</style>
+
+<script>
+  let div = document.createElement('div');
+  div.className = "alert";
+  div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
+
+  document.body.append(div);
+*!*
+  setTimeout(() => div.remove(), 1000);
+*/!*
+</script>
+```
+
+Please note: if we want to *move* an element to another place -- there's no need to remove it from the old one.
+
+**All insertion methods automatically remove the node from the old place.**
+
+For instance, let's swap elements:
+
+```html run height=50
+<div id="first">First</div>
+<div id="second">Second</div>
+<script>
+  // no need to call remove
+  second.after(first); // take #second and after it insert #first
 </script>
 ```
 
@@ -336,7 +470,6 @@ Mesaji kopyalamanın bir örneği:
 */!*
 </script>
 ```
-
 
 ## DocumentFragment [#document-fragment]
 
@@ -404,12 +537,19 @@ ul.append(...getListContent()); // append + "..." operator = friends!
 
 Temel olarak `DocumentFragment` ifadesinden bahsediyoruz. çünkü bunun üzerinde [template](info:template-element) element, gibi bazı kavramlar vardır, ki daha sonra bunlari ele alacağız. 
 
+## Old-school insert/remove methods
 
-## Removal methods
+[old]
 
+<<<<<<< HEAD
 Düğümleri kaldırmak için, aşağıdaki yöntemler vardır:
+=======
+There are also "old school" DOM manipulation methods, existing for historical reasons.
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
 
+These methods come from really ancient times. Nowadays, there's no reason to use them, as modern methods, such as `append`, `prepend`, `before`, `after`, `remove`, `replaceWith`, are more flexible.
 
+<<<<<<< HEAD
 `parentElem.removeChild(node)`
 : `parentElem`den `node`ı kaldırır (Farzedelim ki, o bir alt öğedir(child)).
 
@@ -436,30 +576,78 @@ Eğer biz bir öğeyi baska bir yere *taşımak* istiyorsak --- Onu eskisinden k
 ````
 
 Mesajımız bir saniye sonra ortadan kaybolsun:
+=======
+The only reason we list these methods here is that you can find them in many old scripts:
 
-```html run untrusted
-<style>
-.alert {
-  padding: 15px;
-  border: 1px solid #d6e9c6;
-  border-radius: 4px;
-  color: #3c763d;
-  background-color: #dff0d8;
-}
-</style>
+`parentElem.appendChild(node)`
+: Appends `node` as the last child of `parentElem`.
 
-<script>
-  let div = document.createElement('div');
-  div.className = "alert alert-success";
-  div.innerHTML = "<strong>Hi there!</strong> You've read an important message.";
+    The following example adds a new `<li>` to the end of `<ol>`:
 
-  document.body.append(div);
-*!*
-  setTimeout(() => div.remove(), 1000);
-  // or setTimeout(() => document.body.removeChild(div), 1000);
-*/!*
-</script>
-```
+    ```html run height=100
+    <ol id="list">
+      <li>0</li>
+      <li>1</li>
+      <li>2</li>
+    </ol>
+
+    <script>
+      let newLi = document.createElement('li');
+      newLi.innerHTML = 'Hello, world!';
+
+      list.appendChild(newLi);
+    </script>
+    ```
+
+`parentElem.insertBefore(node, nextSibling)`
+: Inserts `node` before `nextSibling` into `parentElem`.
+
+    The following code inserts a new list item before the second `<li>`:
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
+
+    ```html run height=100
+    <ol id="list">
+      <li>0</li>
+      <li>1</li>
+      <li>2</li>
+    </ol>
+    <script>
+      let newLi = document.createElement('li');
+      newLi.innerHTML = 'Hello, world!';
+
+    *!*
+      list.insertBefore(newLi, list.children[1]);
+    */!*
+    </script>
+    ```
+    To insert `newLi` as the first element, we can do it like this:
+
+    ```js
+    list.insertBefore(newLi, list.firstChild);
+    ```
+
+`parentElem.replaceChild(node, oldChild)`
+: Replaces `oldChild` with `node` among children of `parentElem`.
+
+`parentElem.removeChild(node)`
+: Removes `node` from `parentElem` (assuming `node` is its child).
+
+    The following example removes first `<li>` from `<ol>`:
+
+    ```html run height=100
+    <ol id="list">
+      <li>0</li>
+      <li>1</li>
+      <li>2</li>
+    </ol>
+
+    <script>
+      let li = list.firstElementChild;
+      list.removeChild(li);
+    </script>
+    ```
+
+All these methods return the inserted/removed node. In other words, `parentElem.appendChild(node)` returns `node`. But usually the returned value is not used, we just run the method.
 
 ## A word about "document.write"
 
@@ -502,16 +690,25 @@ Eğer onu daha sonra çağırırsak, var olan belge içeriği silinmiş olur.
 
 Öyleyse, yukarıda bahsettiğimiz diğer DOM yöntemlerinin aksine, "yüklendikten sonra" aşamasında kullanılamaz olur.
 
+<<<<<<< HEAD
 Bu olumsuz tarafıydı.
 
 Teknik olarak, internet tarayıcı gelen HTML'yi okurken, ("parsing/ayrıştırma") `document.write` çağrılır ve bir şey yazar, tarayıcı HTML metninde ilk başta olduğu gibi onu işler.
 
 Ki bize olumlu tarafı verir -- o çok hızlı çalışır, çünkü *DOM değişikligi yoktur*. DOM henüz oluşturulmamışken, onu doğrudan sayfadaki metne yazar, ve  internet tarayıcı oluşum-süresinde onu DOM'a yerleştirir. 
+=======
+That's the downside.
+
+There's an upside also. Technically, when `document.write` is called while the browser is reading ("parsing") incoming HTML, and it writes something, the browser consumes it just as if it were initially there, in the HTML text.
+
+So it works blazingly fast, because there's *no DOM modification* involved. It writes directly into the page text, while the DOM is not yet built.
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
 
 Öyleyse, HTML'ye dinamik olarak çok fazla metin eklememiz gerekirse ve biz sayfa yükleme aşamasındayız ve hız önemlidir, bu yardım edebilir. Ama uygulamada bu gereksinimler pek nadir bir araya gelir. Ve genellikle biz bu yöntemi sadece eski olan scriptlerde görebiliriz.
 
 ## Summary
 
+<<<<<<< HEAD
 Yeni düğümler yaratma yöntemleri:
 
 - `document.createElement(tag)` -- verilen etiketle(tag) bir element yaratır,
@@ -550,3 +747,40 @@ Yeni düğümler yaratma yöntemleri:
   - `document.write(html)`
 
   Sayfa yüklendikten sonra böyle bir çağrı belgeyi siler. Çoğunlukla eski scriptlerde  görülür
+=======
+- Methods to create new nodes:
+    - `document.createElement(tag)` -- creates an element with the given tag,
+    - `document.createTextNode(value)` -- creates a text node (rarely used),
+    - `elem.cloneNode(deep)` -- clones the element, if `deep==true` then with all descendants.  
+
+- Insertion and removal:
+    - `node.append(...nodes or strings)` -- insert into `node`, at the end,
+    - `node.prepend(...nodes or strings)` -- insert into `node`, at the beginning,
+    - `node.before(...nodes or strings)` –- insert right before `node`,
+    - `node.after(...nodes or strings)` –- insert right after `node`,
+    - `node.replaceWith(...nodes or strings)` –- replace `node`.
+    - `node.remove()` –- remove the `node`.
+
+    Text strings are inserted "as text".
+
+- There are also "old school" methods:
+    - `parent.appendChild(node)`
+    - `parent.insertBefore(node, nextSibling)`
+    - `parent.removeChild(node)`
+    - `parent.replaceChild(newElem, node)`
+
+    All these methods return `node`.
+
+- Given some HTML in `html`, `elem.insertAdjacentHTML(where, html)` inserts it depending on the value of `where`:
+    - `"beforebegin"` -- insert `html` right before `elem`,
+    - `"afterbegin"` -- insert `html` into `elem`, at the beginning,
+    - `"beforeend"` -- insert `html` into `elem`, at the end,
+    - `"afterend"` -- insert `html` right after `elem`.
+
+    Also there are similar methods, `elem.insertAdjacentText` and `elem.insertAdjacentElement`, that insert text strings and elements, but they are rarely used.
+
+- To append HTML to the page before it has finished loading:
+    - `document.write(html)`
+
+    After the page is loaded such a call erases the document. Mostly seen in old scripts.
+>>>>>>> 246c600f11b4e6c52b4ae14f83e65319671f998f
