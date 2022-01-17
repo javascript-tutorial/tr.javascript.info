@@ -16,7 +16,11 @@ let str = `1st place: Winnie
 3rd place: Eeyore`;
 
 *!*
+<<<<<<< HEAD
 alert( str.match(/^\d/gm) ); // 1, 2, 3
+=======
+console.log( str.match(/^\d/gm) ); // 1, 2, 3
+>>>>>>> a6fdfda09570a8ce47bb0b83cd7a32a33869cfad
 */!*
 ```
 
@@ -28,14 +32,22 @@ let str = `1st place: Winnie
 3rd place: Eeyore`;
 
 *!*
+<<<<<<< HEAD
 alert( str.match(/^\d/g) ); // 1
+=======
+console.log( str.match(/^\d/g) ); // 1
+>>>>>>> a6fdfda09570a8ce47bb0b83cd7a32a33869cfad
 */!*
 ```
 
 That's because by default a caret `pattern:^` only matches at the beginning of the text, and in the multiline mode -- at the start of any line.
 
 ```smart
+<<<<<<< HEAD
 "Start of a line" formally means "immediately after a line break": the test  `pattern:^` in multiline mode matches at all positions preceeded by a newline character `\n`.
+=======
+"Start of a line" formally means "immediately after a line break": the test  `pattern:^` in multiline mode matches at all positions preceded by a newline character `\n`.
+>>>>>>> a6fdfda09570a8ce47bb0b83cd7a32a33869cfad
 
 And at the text start.
 ```
@@ -51,10 +63,17 @@ let str = `Winnie: 1
 Piglet: 2
 Eeyore: 3`;
 
+<<<<<<< HEAD
 alert( str.match(/\d$/gm) ); // 1,2,3
 ```
 
 Without the flag `m`, the dollar `pattern:$` would only match the end of the whole text, so only the very last digit would be found.
+=======
+console.log( str.match(/\d$/gm) ); // 1,2,3
+```
+
+Without the flag `pattern:m`, the dollar `pattern:$` would only match the end of the whole text, so only the very last digit would be found.
+>>>>>>> a6fdfda09570a8ce47bb0b83cd7a32a33869cfad
 
 ```smart
 "End of a line" formally means "immediately before a line break": the test  `pattern:$` in multiline mode matches at all positions succeeded by a newline character `\n`.
@@ -75,7 +94,11 @@ let str = `Winnie: 1
 Piglet: 2
 Eeyore: 3`;
 
+<<<<<<< HEAD
 alert( str.match(/\d\n/gm) ); // 1\n,2\n
+=======
+console.log( str.match(/\d\n/g) ); // 1\n,2\n
+>>>>>>> a6fdfda09570a8ce47bb0b83cd7a32a33869cfad
 ```
 
 As we can see, there are 2 matches instead of 3.

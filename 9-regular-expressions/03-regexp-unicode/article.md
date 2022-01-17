@@ -1,5 +1,6 @@
 # Unicode: flag "u" and class \p{...}
 
+<<<<<<< HEAD
 JavaScript uses [Unicode encoding](https://en.wikipedia.org/wiki/Unicode) for strings. Most characters are encoding with 2 bytes, but that allows to represent at most 65536 characters.
 
 That range is not big enough to encode all possible characters, that's why some rare characters are encoded with 4 bytes, for instance like `𝒳` (mathematical X) or `😄` (a smile), some hieroglyphs and so on.
@@ -7,6 +8,15 @@ That range is not big enough to encode all possible characters, that's why some 
 Here are the unicode values of some characters:
 
 | Character  | Unicode | Bytes count in unicode  |
+=======
+JavaScript uses [Unicode encoding](https://en.wikipedia.org/wiki/Unicode) for strings. Most characters are encoded with 2 bytes, but that allows to represent at most 65536 characters.
+
+That range is not big enough to encode all possible characters, that's why some rare characters are encoded with 4 bytes, for instance like `𝒳` (mathematical X) or `😄` (a smile), some hieroglyphs and so on.
+
+Here are the Unicode values of some characters:
+
+| Character  | Unicode | Bytes count in Unicode  |
+>>>>>>> a6fdfda09570a8ce47bb0b83cd7a32a33869cfad
 |------------|---------|--------|
 | a | `0x0061` |  2 |
 | ≈ | `0x2248` |  2 |
@@ -33,27 +43,40 @@ Unlike strings, regular expressions have flag `pattern:u` that fixes such proble
 
 ## Unicode properties \p{...}
 
+<<<<<<< HEAD
 ```warn header="Not supported in Firefox and Edge"
 Despite being a part of the standard since 2018, unicode properties are not supported in Firefox ([bug](https://bugzilla.mozilla.org/show_bug.cgi?id=1361876)) and Edge ([bug](https://github.com/Microsoft/ChakraCore/issues/2969)).
 
 There's [XRegExp](http://xregexp.com) library that provides "extended" regular expressions with cross-browser support for unicode properties.
 ```
 
+=======
+>>>>>>> a6fdfda09570a8ce47bb0b83cd7a32a33869cfad
 Every character in Unicode has a lot of properties. They describe what "category" the character belongs to, contain miscellaneous information about it.
 
 For instance, if a character has `Letter` property, it means that the character belongs to an alphabet (of any language). And `Number` property means that it's a digit: maybe Arabic or Chinese, and so on.
 
 We can search for characters with a property, written as `pattern:\p{…}`. To use `pattern:\p{…}`, a regular expression must have flag `pattern:u`.
 
+<<<<<<< HEAD
 For instance, `\p{Letter}` denotes a letter in any of language. We can also use `\p{L}`, as `L` is an alias of `Letter`. There are shorter aliases for almost every property.
 
 In the example below three kinds of letters will be found: English, Georgean and Korean.
+=======
+For instance, `\p{Letter}` denotes a letter in any language. We can also use `\p{L}`, as `L` is an alias of `Letter`. There are shorter aliases for almost every property.
+
+In the example below three kinds of letters will be found: English, Georgian and Korean.
+>>>>>>> a6fdfda09570a8ce47bb0b83cd7a32a33869cfad
 
 ```js run
 let str = "A ბ ㄱ";
 
 alert( str.match(/\p{L}/gu) ); // A,ბ,ㄱ
+<<<<<<< HEAD
 alert( str.match(/\p{L}/g) ); // null (no matches, as there's no flag "u")
+=======
+alert( str.match(/\p{L}/g) ); // null (no matches, \p doesn't work without the flag "u")
+>>>>>>> a6fdfda09570a8ce47bb0b83cd7a32a33869cfad
 ```
 
 Here's the main character categories and their subcategories:
@@ -93,7 +116,11 @@ Here's the main character categories and their subcategories:
   - control `Cc`,
   - format `Cf`,
   - not assigned `Cn`,
+<<<<<<< HEAD
   -- private use `Co`,
+=======
+  - private use `Co`,
+>>>>>>> a6fdfda09570a8ce47bb0b83cd7a32a33869cfad
   - surrogate `Cs`.
 
 
@@ -113,7 +140,11 @@ Unicode supports many different properties, their full list would require a lot 
 
 ### Example: hexadecimal numbers
 
+<<<<<<< HEAD
 For instance, let's look for hexadecimal numbers, written as `xFF`, where `F` is a hex digit (0..1 or A..F).
+=======
+For instance, let's look for hexadecimal numbers, written as `xFF`, where `F` is a hex digit (0..9 or A..F).
+>>>>>>> a6fdfda09570a8ce47bb0b83cd7a32a33869cfad
 
 A hex digit can be denoted as `pattern:\p{Hex_Digit}`:
 
@@ -127,7 +158,11 @@ alert("number: xAF".match(regexp)); // xAF
 
 Let's look for Chinese hieroglyphs.
 
+<<<<<<< HEAD
 There's a unicode property `Script` (a writing system), that may have a value: `Cyrillic`, `Greek`, `Arabic`, `Han` (Chinese) and so on, [here's the full list]("https://en.wikipedia.org/wiki/Script_(Unicode)").
+=======
+There's a Unicode property `Script` (a writing system), that may have a value: `Cyrillic`, `Greek`, `Arabic`, `Han` (Chinese) and so on, [here's the full list](https://en.wikipedia.org/wiki/Script_(Unicode)).
+>>>>>>> a6fdfda09570a8ce47bb0b83cd7a32a33869cfad
 
 To look for characters in a given writing system we should use `pattern:Script=<value>`, e.g. for Cyrillic letters: `pattern:\p{sc=Cyrillic}`, for Chinese hieroglyphs: `pattern:\p{sc=Han}`, and so on:
 
@@ -141,7 +176,11 @@ alert( str.match(regexp) ); // 你,好
 
 ### Example: currency
 
+<<<<<<< HEAD
 Characters that denote a currency, such as `$`, `€`, `¥`, have unicode property  `pattern:\p{Currency_Symbol}`, the short alias: `pattern:\p{Sc}`.
+=======
+Characters that denote a currency, such as `$`, `€`, `¥`, have Unicode property  `pattern:\p{Currency_Symbol}`, the short alias: `pattern:\p{Sc}`.
+>>>>>>> a6fdfda09570a8ce47bb0b83cd7a32a33869cfad
 
 Let's use it to look for prices in the format "currency, followed by a digit":
 
