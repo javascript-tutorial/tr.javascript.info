@@ -158,7 +158,7 @@ rabbit.walk = function() {
 
 rabbit.walk(); // Rabbit! Bounce-bounce!
 ```
-Artık `rabbit.wal()` metodu doğrudan kendi içerisinde bulur ve çalıştırır. Prototip kullanmaz:
+Artık `rabbit.walk()` metodu doğrudan kendi içerisinde bulur ve çalıştırır. Prototip kullanmaz:
 
 ![](proto-animal-rabbit-walk-2.svg)
 
