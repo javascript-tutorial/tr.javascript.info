@@ -18,9 +18,15 @@ Neden? Ne olduğuna `(*)` satırından bakarsanız:
 2. Bundan dolayı obje `test` özelliğini alır.
 3. "obje kabı" kaybolur ve işlem tamamlanır.
 
+<<<<<<< HEAD
 Öyleyse `str` nin son satırında özelliğe ait hiç bir iz yoktur. İlkel tipin üzerinde yapılan değişiklik için yeni obje kabı üretilir.
 
 Bazı tarayıcılar ilkel tiplere yeni özellik tanımlanmasına izin vermezler. Bundan dolayı `(*)` bölümünde `undefined` değil de hata da görebilirsiniz. Bu aslında özelliklerin dışında bir uygulamadır.
+=======
+1. When a property of `str` is accessed, a "wrapper object" is created.
+2. In strict mode, writing into it is an error.
+3. Otherwise, the operation with the property is carried on, the object gets the `test` property, but after that the "wrapper object" disappears, so in the last line `str` has no trace of the property.
+>>>>>>> bae0ef44d0208506f6e9b7f3421ee640ab41af2b
 
 **Bu örnekten de gördüğünüz gibi ilkel tipler kesinlikle obje değillerdir.**
 

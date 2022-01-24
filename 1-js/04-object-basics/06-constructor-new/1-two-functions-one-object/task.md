@@ -4,7 +4,11 @@ importance: 2
 
 # İki fonksiyon - bir obje
 
+<<<<<<< HEAD
 `new A() == new B()` şeklinde `A` ve `B` fonksiyonları yaratmak mümkün müdür?
+=======
+Is it possible to create functions `A` and `B` so that `new A() == new B()`?
+>>>>>>> bae0ef44d0208506f6e9b7f3421ee640ab41af2b
 
 ```js no-beautify
 function A() { ... }
