@@ -46,7 +46,7 @@ Motor bu sürecin her bir adımında iyileştirme yapar. Hatta derlenmiş ve ça
 
 Günümüz JavaScript'i "güvenli" bir programlama dilidir. Düşük düzeydeki diller gibi bellek veya işlemciye doğrudan erişim sağlamaz. Tarayıcı için olduğundan dolayı böyle bir şeye gereksinim duymaz.
 
-JavaScript'in yapabilecekçeleri büyük bir oranda ortama dayanır. Örneğin [Node.JS](https://wikipedia.org/wiki/Node.js), JavaScript işlevleri ile dosyaları okuma, yazma veya ağ üzerinden isteme işlemlerini yapabilir.
+JavaScript'in yapabilecekleri büyük bir oranda ortama dayanır. Örneğin [Node.JS](https://wikipedia.org/wiki/Node.js), JavaScript işlevleri ile dosyaları okuma, yazma veya ağ üzerinden isteme işlemlerini yapabilir.
 
 Tarayıcı içerisindeki JavaScript ise web sayfasında görsel değişikliklere ve kullanıcı ile sunucu arasındaki etkileşimle ilgili her şeyi yapabilir.
 
@@ -97,7 +97,7 @@ Yeni bir teknolojiyi öğrenmeye başlarken, sunacağı avantajlar için öngör
 
 ## JavaScript'e üstün diller
 
-JavaScript'in sözdizimi ve yazımı herkese uymayabilir. Her yiğidin yoğurt yiyişi ayrıdır.
+JavaScript'in söz dizimi ve yazımı herkese uymayabilir. Her yiğidin yoğurt yiyişi ayrıdır.
 
 Bu olağan bir durum, çünkü tasarımlar ve gereksinimler kişiden kişiye göre değişir.
 

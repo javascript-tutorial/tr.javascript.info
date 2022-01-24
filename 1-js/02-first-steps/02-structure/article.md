@@ -26,13 +26,14 @@ alert('Dünya');
 ## Noktalı Virgüller [#semicolon]
 Eğer ifadeleri satır bırakarak yazarsanız noktalı virgül kullanmanıza gerek yoktur.
 
-Örneğin aşağıdaki kod bloğu da çalışacaktır
+Örneğin aşağıdaki kod bloğu da çalışacaktır.
 
 ```js run no-beautify
 alert('Merhaba')
 alert('Dünya')
 ```
 JavaScript dilinde bu şekilde satır bırakarak ifadeyi bitirme olayına "üstü kapalı" noktalı virgül denilmektedir. Ayrıca [otomatik noktalı virgül koyma](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion) da denir
+
 
 **Çoğu durumda yeni satır, noktalı virgül anlamına gelir. Unutulmamalı ki çoğu durum, her zaman anlamına gelmez.**
 
@@ -66,7 +67,7 @@ alert("Hata alacaksınız")
 [1, 2].forEach(alert)
 ```
 
-Eğer yukarıdaki kodu çalıştırısanız sadece ilk uyarı mesajını görecek ve sonrasında hata alacaksınız.
+Eğer yukarıdaki kodu çalıştırırsanız sadece ilk uyarı mesajını görecek ve sonrasında hata alacaksınız.
 
 Fakat aşağıdaki gibi noktalı virgül kullanırsanız her şeyin beklenen şekilde çalıştığını göreceksiniz:
 
@@ -86,7 +87,7 @@ Bundan dolayı noktalı virgül koyulmaz, bu durumda ilk kod bloğunda tüm blok
 alert("Bir hata gerçekleşecek")[1, 2].forEach(alert)
 ```
 
-Fakat normalde sizinde bildiğiniz gibi bunu iki satır görmesi gerekmektedir. Bu ve bunun gibi hatalar ile kod yazdığınız sürece karşılaşabileceğiniz hatalardır.
+Fakat normalde sizin de bildiğiniz gibi bunu iki satır görmesi gerekmektedir. Bu ve bunun gibi hatalar ile kod yazdığınız sürece karşılaşabileceğiniz hatalardır.
 ````
 
 Eğer yeni satıra geçmek istiyorsanız önerilen yöntem noktalı virgül kullanmanızdır. Bu kural JavaScript toplumu tarafından benimsenmiştir. Tekrar belitelim JavaScript yazarken noktalı virgül kullanmadan yeni satıra geçmek çoğu zaman -- *mümkündür* -- fakat başlangıçta noktalı virgül kullanmanız daha güvenlidir ve önerilir.

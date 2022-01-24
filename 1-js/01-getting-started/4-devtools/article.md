@@ -4,7 +4,7 @@ Kod yazmak hataya meyilli bir iştir. Bu süreç içerisinde muhtemelen hatalar 
 
 Kullanıcı, tarayıcıda meydana gelen hataları göremez. Eğer yazdığınız kodda bir yanlışlık varsa, hatalı kısımları göremez ve bunu düzeltemezsiniz.
 
-Hataları ve diğer kullanışlı bilgileri görebilmek için tarayıcılara entegre edilmiş "Geliştirici Araçları"'nı kullanmalısınız.
+Hataları ve diğer kullanışlı bilgileri görebilmek için tarayıcılara entegre edilmiş "Geliştirici Araçlarını" kullanmalısınız.
 
 Genelde geliştiriciler Chrome veya Firefox'a yoğunlaşmaktadırlar çünkü ikisinin de geliştirme aracı çok iyidir. Diğer tarayıcılar da geliştirme araçları sunarlar, bazen daha farklı özelliklerle bile olsa genelde amaçları Chrome veya Firefox'u yakalamaktır.  Bundan dolayı çoğu kişi "favori" tarayıcıya sahiptir ve eğer tarayıcı tabanlı bir problemle karşılaşırsa diğer tarayıcıyı kontrol eder.
 

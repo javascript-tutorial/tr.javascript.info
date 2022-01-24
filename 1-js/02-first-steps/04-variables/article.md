@@ -146,7 +146,7 @@ Böyle dillerde değer bir kutunun içerisinde sonsuza kadar saklanır. Eğer fa
 
 JavaScript dilinde değişken oluştururken iki sınırlama vardır.
 
-1. Değişken ismi sadece harfler, rakamlar, `$` ve `_` karakterlerindne oluşabilir.
+1. Değişken ismi sadece harfler, rakamlar, `$` ve `_` karakterlerinden oluşabilir.
 2. İlk karakter rakam olamaz.
 
 Geçerli bir kaç örnek şu şekildedir:
@@ -207,7 +207,7 @@ let return = 5; // değişken ismi return verilemez, hata!
 
 ````warn header="`use strict` kullanmadan değer atama"
 
-Normalde değişkeni kullanmak için önce tanımlamanız gerekmektedir. Fakat eski zamanlarda tanımlamadan da , `let` kullanmadan da , değer atamak mümkündü. Eğer `use strict` kullanmıyorsanız hala eskisi gibi kullanabilirsiniz. Bu davranış eski kodlarla uyumluluk açısından olduğu gibi bırakılmıştır.
+Normalde değişkeni kullanmak için önce tanımlamanız gerekmektedir. Fakat eski zamanlarda tanımlamadan da , `let` kullanmadan da , değer atamak mümkündü. Eğer `use strict` kullanmıyorsanız hâlâ eskisi gibi kullanabilirsiniz. Bu davranış eski kodlarla uyumluluk açısından olduğu gibi bırakılmıştır.
 
 
 ```js run no-strict
@@ -250,7 +250,7 @@ Programcı değişkenin değerinin değişmeyeceğine eminse `const` bunu garant
 
 ### Sabitlerin Büyük Harf İle İsimlendirilmesi
 
-Genel kullanımta sabitler büyük harf ile isimlendirilirler. Eğer birden fazla kelimeden oluşuyorsa "_" ile bu kelimeleri ayırmak mümkündür.
+Genel kullanımda sabitler büyük harf ile isimlendirilirler. Eğer birden fazla kelimeden oluşuyorsa "_" ile bu kelimeleri ayırmak mümkündür.
 
 
 Örneğin:
@@ -281,7 +281,7 @@ Sabitler için ne zaman büyük harf kullanılmalı ne zaman kullanılmamalı ?
 const sayfaYuklenmeSuresi = /* Sayfanın yüklenme süresini tutar. */;
 ```
 
-`sayfaYuklenmeSuresi` çalışmadan önce değeri bilinmeyen bir değerdir. Bundan dolayı normal isimlendirme kullanılır. Çalıştıktan sonra sadece bir defa tanımlanıp daha da değişmeyen bir değer olduğundan hala "sabit" denilebilir.
+`sayfaYuklenmeSuresi` çalışmadan önce değeri bilinmeyen bir değerdir. Bundan dolayı normal isimlendirme kullanılır. Çalıştıktan sonra sadece bir defa tanımlanıp daha da değişmeyen bir değer olduğundan hâlâ "sabit" denilebilir.
 
 Diğer bir deyişle büyük harfle yazılan değişken simleri sadece önceden bilinen değerleri tanımlamak için kullanılır.
 

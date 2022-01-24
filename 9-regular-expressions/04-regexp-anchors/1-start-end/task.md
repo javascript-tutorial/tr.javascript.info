@@ -1,3 +1,3 @@
 # Regexp ^$
 
-Which string matches the pattern `pattern:^$`?
+Hangi dizi(string) `pattern:^$` kalıbı ile eşleşir?
