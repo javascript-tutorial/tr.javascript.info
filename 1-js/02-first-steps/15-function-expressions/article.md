@@ -360,7 +360,7 @@ merhaba(); // artık çalışır.
 
 Ayrıca fonksiyon içerisinde `function f(...){}` ile araştırmak `let f= function(....){..}`e göre daha kolaydır. Fonksiyon Tanımı daha fazla göze batar.
 
-Fakat eğer Fonksiyon Tanımı işimize yaramaz ise(yukarıda örnğin Fonksiyon ifadesini kullandık), bu durumda Fonksiyon İfadesi yöntemi kullanılmalıdır.
+Fakat eğer Fonksiyon Tanımı işimize yaramaz ise(yukarıda örneğin Fonksiyon ifadesini kullandık), bu durumda Fonksiyon İfadesi yöntemi kullanılmalıdır.
 ```
 
 ## Özet
