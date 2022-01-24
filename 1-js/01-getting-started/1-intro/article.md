@@ -44,11 +44,11 @@ Motor bu sürecin her bir adımında iyileştirme yapar. Hatta derlenmiş ve ça
 
 ## Tarayıcı içerisindeki JavaScript neler yapabilir?
 
-Günümüz JavaScript'i "güvenli" bir programlama dilidir. Düşük düzeydeki diller gibi bellek veya işlemciye doğrudan erişim sağlamaz. Tarayıcı için olduğundan dolayı böyle birşeye gereksinim duymaz.
+Günümüz JavaScript'i "güvenli" bir programlama dilidir. Düşük düzeydeki diller gibi bellek veya işlemciye doğrudan erişim sağlamaz. Tarayıcı için olduğundan dolayı böyle bir şeye gereksinim duymaz.
 
-JavaScript'in yapabilecekçeleri büyük bir oranda ortama dayanır. Örneğin [Node.JS](https://wikipedia.org/wiki/Node.js), JavaScript işlevleri ile dosyaları okuma, yazma veya ağ üzerinden isteme işlemlerini yapabilir.
+JavaScript'in yapabilecekleri büyük bir oranda ortama dayanır. Örneğin [Node.JS](https://wikipedia.org/wiki/Node.js), JavaScript işlevleri ile dosyaları okuma, yazma veya ağ üzerinden isteme işlemlerini yapabilir.
 
-Tarayıcı içerisindeki JavaScript ise web sayfasında görsel değişikliklere ve kullanıcı ile sunucu arasındaki etkileşimle ilgili herşeyi yapabilir.
+Tarayıcı içerisindeki JavaScript ise web sayfasında görsel değişikliklere ve kullanıcı ile sunucu arasındaki etkileşimle ilgili her şeyi yapabilir.
 
 Örneğin tarayıcı içerisindeki JavaScript şunları yapabilir:
 
@@ -97,7 +97,7 @@ Yeni bir teknolojiyi öğrenmeye başlarken, sunacağı avantajlar için öngör
 
 ## JavaScript'e üstün diller
 
-JavaScript'in sözdizimi ve yazımı herkese uymayabilir. Her yiğidin yoğurt yiyişi ayrıdır.
+JavaScript'in söz dizimi ve yazımı herkese uymayabilir. Her yiğidin yoğurt yiyişi ayrıdır.
 
 Bu olağan bir durum, çünkü tasarımlar ve gereksinimler kişiden kişiye göre değişir.
 
@@ -109,7 +109,7 @@ Bu dillere örnek vermek gerekirse:
 
 - [Typescript](http://www.typescriptlang.org/) durağan veri yapıları ile JavaScript yazılmasını sağlar. Karmaşık programlar geliştirmeyi kolaylaştırır. Microsoft tarafından geliştirilmiştir.
 
-- [Dart](https://www.dartlang.org/) kendi başına ayrı bir dildir. Tarayıcı üzerinde veya telefon uygulamalarında kendi motoru üzerinden çalıştırılır. Google'ın tarayıcılarda JavaScript yerine Dart'ı önermiş olmasına karşın, bu günlerde JavaScript'e çeviri yapılarak kullanılmaktadır.
+- [Dart](https://www.dartlang.org/) kendi başına ayrı bir dildir. Tarayıcı üzerinde veya telefon uygulamalarında kendi motoru üzerinden çalıştırılır. Google'ın tarayıcılarda JavaScript yerine Dart'ı önermiş olmasına karşın, bugünlerde JavaScript'e çeviri yapılarak kullanılmaktadır.
 
 Bunlara daha fazla örnek eklenebilir. Yukarıdakileri bilseniz bile ne yaptığınızı tam olarak anlamak için JavaScript bilmelisiniz.
 
@@ -117,4 +117,4 @@ Bunlara daha fazla örnek eklenebilir. Yukarıdakileri bilseniz bile ne yaptığ
 
 - JavaScript başlangıçta yalnızca ağ tarayıcılarında kullanılmak üzere geliştirilmiş bir dildi. Ancak günümüzde, birçok çevrede çalışabilir durumda.
 - JavaScript şu anda HTML/CSS ile bütünleşik olmasından ve geniş uyumluluğundan dolayı benzersizdir.
-- Bir çok JavaScript'e çevirici dil bulunmaktadır. JavaScript'i iyi bir biçimde öğrendikten sonra bu dillere de bir bakmanızı öneririz.
+- Birçok JavaScript'e çevirici dil bulunmaktadır. JavaScript'i iyi bir biçimde öğrendikten sonra bu dillere de bir bakmanızı öneririz.

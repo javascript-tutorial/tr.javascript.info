@@ -55,7 +55,7 @@ JavaScript üzerinden matematik hesapları yapmak güvenlidir. Her işlemi yapab
 
 Kodunuzun tamamı hiç durmadan çalışacaktır. En kötü ihtimalle `NaN` sonucunu alınır.
 ```
-Özel sayısal değerler "number" tipine aittir. Tabiki sayı bizim bildiğimiz tipte sayı değillerdir. 
+Özel sayısal değerler "number" tipine aittir. Tabii ki sayı bizim bildiğimiz tipte sayı değillerdir. 
 <info:number> bölümünde sayısal değerler ile çalışmayı daha derinlemesine göreceksiniz.
 
 ## BigInt - Büyük Sayı
@@ -110,7 +110,7 @@ alert( `Hello, *!*${isim}*/!*!` ); // Merhaba Ahmet!
 // ifade gömme
 alert( `sonuç : *!*${1 + 2}*/!*` ); //sonuç :  3
 ```
-`${...}` içerisinde yazılan ifade çalıştığında karakter dizisinin bir parçası olur. `${...}` içerisine herşeyi koyabiliriz: değişken ismi `adi` veya matematiksel ifade `1+2` gibi.
+`${...}` içerisinde yazılan ifade çalıştığında karakter dizisinin bir parçası olur. `${...}` içerisine her şeyi koyabiliriz: değişken ismi `adi` veya matematiksel ifade `1+2` gibi.
 
 Lütfen unutmayın ki bunu sadece kesme tırnak "`" ile yapabilirsiniz.
 ```js run
@@ -193,7 +193,7 @@ Fakat bu şekilde tanımlanmasa daha iyi olur. Normalde `null` kullanılarak de�
 ## Objeler ve Semboller
 `Obje` özel bir tiptir.
 
-Diğer tüm tipler "primitive" yani basit veya ilkel tiplerdir. Bu değişkenler sadece birşey tutabilirler( karakter dizisi veya sayı ). Buna karşılık objeler veri koleksiyonları (collections) veya karmaşık yapılar tutabilirler. <info:object> konusunda Obje daha derinlemesine incelenecektir. 
+Diğer tüm tipler "primitive" yani basit veya ilkel tiplerdir. Bu değişkenler sadece bir şey tutabilirler( karakter dizisi veya sayı ). Buna karşılık objeler veri koleksiyonları (collections) veya karmaşık yapılar tutabilirler. <info:object> konusunda Obje daha derinlemesine incelenecektir. 
 
 `symbol` objeler için benzersiz tanımlayıcılar oluşturmak için kullanılır. Bu konuyu objeleri öğrendikten sonra öğrenmek daha iyi olacaktır.
 
@@ -236,7 +236,7 @@ typeof alert // "function"  (3)
 
 Son üç satır diğerlerinden farklıdır. Şu şekilde;
 
-1. `Math` matematiksal operasyonlar için kullanılacak JavaScript dilinde var olan bir objedir. <info:number> konusunda buna değinilecektir.  Burada sadece objenin örneklenmesi için kullanılmıştır.
+1. `Math` matematiksel operasyonlar için kullanılacak JavaScript dilinde var olan bir objedir. <info:number> konusunda buna değinilecektir.  Burada sadece objenin örneklenmesi için kullanılmıştır.
 2. `typeof null` sonucu `"object"` dir. Aslında yanlış. Bu `typeof` fonksiyonunun bilinen bir hatasıdır. Eski versiyonlara uygunluk açısından bu şekliyle bırakılmıştır. Yoksa `null` bir obje değildir. Kendine has bir tiptir. Tekrar söylemek gerekirse bu JavaScript dilinin bir hatasıdır.
 3. `typeof alert` fonksiyondur. Çünkü `alert` dilde doğrudan var olan bir fonksiyondur. `Math` ile farklı gördüğünüz gibi. Bir sonraki bölümde fonksiyonlar anlatılacaktır. Fonksiyonlar obje tipine dahildir. Fakat `typeof` bunları farklı yorumlar. Resmi olarak yanlış olsa da pratikte çokça kullanılan bir özelliktir.
 

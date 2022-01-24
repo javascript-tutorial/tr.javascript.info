@@ -26,7 +26,7 @@ alert('Dünya');
 ## Noktalı Virgüller [#semicolon]
 Eğer ifadeleri satır bırakarak yazarsanız noktalı virgül kullanmanıza gerek yoktur.
 
-Örneğin aşağıdaki kod bloğu da çalışacaktır
+Örneğin aşağıdaki kod bloğu da çalışacaktır.
 
 ```js run no-beautify
 alert('Merhaba')
@@ -34,7 +34,7 @@ alert('Dünya')
 ```
 JavaScript dilinde bu şekilde satır bırakarak ifadeyi bitirme olayına "üstü kapalı" noktalı virgül denilmektedir. Ayrıca [otomatik noktalı virgül koyma](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion) da denir
 
-**Çoğu durumda yeni satır noktalı virgül anlamına gelir. Unutulmamalı ki çoğu durum herzaman demek değildir.**
+**Çoğu durumda yeni satır noktalı virgül anlamına gelir. Unutulmamalı ki çoğu durum her zaman demek değildir.**
 
 Aşağıdaki örnekte görüleceği üzeri yeni satır noktalı virgül anlamına gelmemektedir.
 
@@ -66,9 +66,9 @@ alert("Hata alacaksınız")
 [1, 2].forEach(alert)
 ```
 
-Eğer yukarıdaki kodu çalıştırısanız sadece ilk uyarı mesajını görecek ve sonrasında hata alacaksınız.
+Eğer yukarıdaki kodu çalıştırırsanız sadece ilk uyarı mesajını görecek ve sonrasında hata alacaksınız.
 
-Fakat aşağıdaki gibi noktalı virgül kullanırsanız herşeyin beklenen şekilde çalıştığını göreceksiniz:
+Fakat aşağıdaki gibi noktalı virgül kullanırsanız her şeyin beklenen şekilde çalıştığını göreceksiniz:
 
 ```js run
 alert("Şimdi ise beklendiği gibi hatasız");
@@ -86,7 +86,7 @@ Bundan dolayı noktalı virgül koyulmaz, bu durumda ilk kod bloğunda tüm blok
 alert("Bir hata gerçekleşecek")[1, 2].forEach(alert)
 ```
 
-Fakat normalde sizinde bildiğiniz gibi bunu iki satır görmesi gerekmektedir. Bu ve bunun gibi hatalar ile kod yazdığınız sürece karşılaşabileceğiniz hatalardır.
+Fakat normalde sizin de bildiğiniz gibi bunu iki satır görmesi gerekmektedir. Bu ve bunun gibi hatalar ile kod yazdığınız sürece karşılaşabileceğiniz hatalardır.
 ````
 
 Eğer yeni satıra geçmek istiyorsanız önerilen yöntem noktalı virgül kullanmanızdır. Bu kural JavaScript toplumu tarafından benimsenmiştir. Tekrar belitelim JavaScript yazarken noktalı virgül kullanmadan yeni satıra geçmek çoğu zaman -- *mümkündür* -- fakat başlangıçta noktalı virgül kullanmanız daha güvenlidir ve önerilir.
@@ -146,6 +146,6 @@ alert( 'Dünya' );
 
 Lütfen kod yazarken yorum satırı yazmaktan çekinmeyin.
 
-Yorumlar elbette dosyanızın biraz daha büyük olmasına sebep olabilir, fakat bu sorun değildir. Kodunuzu küçültmek için bir çok sıkıştırıcı bulunmaktadır. Bunlar kodunuzu canlı sisteme alırken yorumlardan arındırarak server'a koyarlar böylece yazdığınız kod hiç yer kaplamaz.
+Yorumlar elbette dosyanızın biraz daha büyük olmasına sebep olabilir, fakat bu sorun değildir. Kodunuzu küçültmek için birçok sıkıştırıcı bulunmaktadır. Bunlar kodunuzu canlı sisteme alırken yorumlardan arındırarak server'a koyarlar böylece yazdığınız kod hiç yer kaplamaz.
 
 Daha fazla örneği ve daha iyi nasıl yorum yazabileceğinizi <info:coding-style> bölümünde göreceksiniz.

@@ -38,7 +38,7 @@ Aşağıdaki hafif düzenleyiciler ilginizi çekebilir:
 - [Atom](https://atom.io/) (tüm işletim sistemlerinde çalışır, ücretsiz).
 - [Sublime Text](http://www.sublimetext.com) (tüm işletim sistemlerinde çalışır, ücretli).
 - [Notepad++](https://notepad-plus-plus.org/) (sadece Windows'ta çalışır, ücretsiz).
-- Vim and Emacs gibi düzenleyiciler de oldukça iyidir fakat öğrenme süresi diğerler hafif düzenleyicilere göre daha uzundur.
+- Vim ve Emacs gibi düzenleyiciler de oldukça iyidir fakat öğrenme süresi diğerler hafif düzenleyicilere göre daha uzundur.
 
 ## Lütfen Tartışmayalım
 
