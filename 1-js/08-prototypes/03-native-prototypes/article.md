@@ -48,7 +48,7 @@ alert(Object.prototype.__proto__); // null
 
 Örneğin, `[1,2,3]` bir array yarattığınızda içte varsayılan `new Array()` yapıcısı kullanılır. Bundan dolayı dizi dizi objesi yeni bir objeye yazılır ve `Array.prototype` bunun prototipi olur ve metodlar sağlar. Bu hafızayı oldukça etkin kullanmaya yarar.
 
-Tanım gereği, tüm gömülü prototipler üstünde `Object.prototype`'a sahip olmalıdır. Bazen "herşey objelerden kalıtım alır" sözünü duyarsınız.
+Tanım gereği, tüm gömülü prototipler üstünde `Object.prototype`'a sahip olmalıdır. Bazen "her şey objelerden kalıtım alır" sözünü duyarsınız.
 
 Aşağıda bunun etraflı bir görselini görebilirsiniz. 
 

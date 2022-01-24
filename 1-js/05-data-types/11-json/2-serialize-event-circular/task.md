@@ -8,7 +8,7 @@ Basit dairesel referanslarda özelliğin ismi verilip seri hale getirilirken gö
 
 Fakat bazen çok fazla dairesel referans olabilir. Ayrıca isimleri hem dairesel referanslarda hem de normal özelliklerde kullanılabilir.
 
-`degistirici` fonksiyonu ile herşeyi karaktere çevirin, fakat `tanisma`'ya referans veren özellikleri silin:
+`degistirici` fonksiyonu ile her şeyi karaktere çevirin, fakat `tanisma`'ya referans veren özellikleri silin:
 
 ```js run
 let oda = {

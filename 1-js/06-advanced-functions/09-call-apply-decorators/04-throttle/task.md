@@ -23,7 +23,7 @@ Bundan dolayı `update()` yerine, her bir fare hareketinde çalışacak `throttl
 Şu şekilde görünecektir:
 
 1. İlk fare hareketinde dekoratör çağrıyı doğrudan `update`'e yönlendirecektir. Bu önemlidir, kullanıcı böylece hareketinin sonucunu doğrudan görür.
-2. Sonrasında fare hareket etse de `100ms` geçene kadar hiç birşey olmaz. Dekoratör çağrıları görmezden gelir.
+2. Sonrasında fare hareket etse de `100ms` geçene kadar hiçbir şey olmaz. Dekoratör çağrıları görmezden gelir.
 3. `100ms` sonunda son koordinatlar ile tekrardan bir `update` çalışır.
 4. En sonunda fare bir yerlerde durur. Dekoratör `100ms` bekler ve bu bekleme bittikten sonra `update` fonksiyonu son koordinatlar ile çalışır. Belki de en önemlisi son fare koordinatlarının da işlenmiş olmasıdır.
 

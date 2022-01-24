@@ -46,7 +46,7 @@ Sonuç şu şekildedir:
 
 Görselde  `"prototip"` yataydaki oktur, sıranda bir özelliktir. `[[Prototype]]` ise dikeydir ve `rabbit`'in `animal`'dan miras aldığını ifade eder.
 
-## Sıradan F.prototype, yapıcı( contructor) özelliği
+## Sıradan F.prototype, yapıcı (contructor) özelliği
 
 Her fonksiyonun `"prototype"` özelliği bulunmaktadır. Siz belirtmeseniz bile bu geçerlidir.
 
@@ -74,7 +74,7 @@ function Rabbit() {}
 alert( Rabbit.prototype.constructor == Rabbit ); // true
 ```
 
-Eğer hiç birşey yapmazsak doğal olarak `contructor` özelliği tüm rabbit objelerine `[[Prototype]]` vasıtasıyla iletilir.
+Eğer hiçbir şey yapmazsak doğal olarak `contructor` özelliği tüm rabbit objelerine `[[Prototype]]` vasıtasıyla iletilir.
 
 ```js run
 function Rabbit() {}
@@ -111,7 +111,7 @@ Muhtemelen `"contructor"` hakkındaki en önemli şey...
 
 **... JavaScript `"contructor"` değerinin doğru olduğuna garanti vermez.**
 
-Evet, varsayılan `"prototype"` da bulunur fakat hepsi budur, sonrasındaki herşey bize aittir.
+Evet, varsayılan `"prototype"` da bulunur fakat hepsi budur, sonrasındaki her şey bize aittir.
 
 Daha özelde, eğer prototip'i tamamen değiştirirsek, bu durumda içinde `"contructor"` olmayacaktır.
 
@@ -158,7 +158,7 @@ Rabbit.prototype = {
 
 Bu bölümde kısaca yapıcı fonksiyonlar ile oluşturulan objelerin `[[Prototip]]`'lerinin nasıl ayarlanabileceğinden bahsettik. İlerde bunların daha gelişmişini programlama kalıpları üzerinde öğreneceksiniz.
 
-Herşey aslında çok basit, birkaç cümle ile daha net anlatmak gerekirse:
+Her şey aslında çok basit, birkaç cümle ile daha net anlatmak gerekirse:
 
 - `F.prototype` özelliği `[[Prototype]]` ile aynı değildir. `F.prototype` aslında `new F()` çağırıldığında  `[[Prototype]]`'ı  ayarlar.
 - `F.prototype` değeri ya obje ya da null olmalıdır: diğer değerler çalışmaz.
@@ -168,7 +168,7 @@ Normal objeler `prototype`'ın ayrı bir önemi yoktur:
 ```js
 let user = {
   name: "John",
-  prototype: "Bla-bla" // hiç bir büyüsü yok
+  prototype: "Bla-bla" // hiçbir büyüsü yok
 };
 ```
 Varsayılan durumda tüm  fonksiyonlar `F.prototype = { constructor: F}` şeklinde tanımlıdır, bundan dolayı, bir objenin yapıcısına `"constructor"` özelliği ile erişilebilir.

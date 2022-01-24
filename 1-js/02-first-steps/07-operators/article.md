@@ -52,7 +52,7 @@ alert( '1' + 2 ); // "12"
 alert( 2 + '1' ); // "21"
 ```
 
-Gördüğünüz gibi, ilk operand veya ikinci operandın karakter dizisi olması birşeyi değiştirmiyor. Kural basit, her iki taraftan birisi karakter dizisi ise diğerini de karakter dizisine çevir ve birleştir.
+Gördüğünüz gibi, ilk operand veya ikinci operandın karakter dizisi olması bir şeyi değiştirmiyor. Kural basit, her iki taraftan birisi karakter dizisi ise diğerini de karakter dizisine çevir ve birleştir.
 
 Yani `"+"` işlemi hem birleştirme hem de tip değiştirme yapmaktadır. Bu sadece `"+"` operatörüne has bir olaydır.
 
@@ -67,7 +67,7 @@ alert( '6' / '2' ); // 3
 
 `+` iki formda bulunur. Yukarıda kullandığımız binary form(iki tane operand olma olayı) veya unary form(tek operand olması).
 
-Eğer unary `+` veya tek bir değerle kullanılan `+` işareti sayılar ile birşey yapmaz. Fakat eğer bu bir sayı değilse sayıya çevrilir.
+Eğer unary `+` veya tek bir değerle kullanılan `+` işareti sayılar ile bir şey yapmaz. Fakat eğer bu bir sayı değilse sayıya çevrilir.
 
 
 Örneğin:
@@ -436,4 +436,4 @@ for (*!*a = 1, b = 3, c = a * b*/!*; a < 10; a++) {
 }
 ```
 
-Bu tarz numaralar bir çok JavaScript frameworklerinde kullanılır. Bu yüzden bunladan bahsettik. Ama genelde bunlar kodun okunabilirliğini azaltıyorlar. Bu yüzden kullanmadan önce iyi düşünmek gerekir.
+Bu tarz numaralar birçok JavaScript frameworklerinde kullanılır. Bu yüzden bunladan bahsettik. Ama genelde bunlar kodun okunabilirliğini azaltıyorlar. Bu yüzden kullanmadan önce iyi düşünmek gerekir.

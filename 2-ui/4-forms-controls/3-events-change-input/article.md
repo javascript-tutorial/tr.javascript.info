@@ -8,7 +8,7 @@ Hadi veri güncellemelerine eşlik eden çeşitli olayları tartışalım.
 
 Bu olay metin girişleri için odak kaybedildiği zaman meydana gelir.
 
-Örneğin, aşağıdaki metin alanına birşey yazarken olay yok. Ama odağı başka bir yere taşıdığımızda, örneğin, butona tıkladığımızda bir `change` olayı olacak:
+Örneğin, aşağıdaki metin alanına bir şey yazarken olay yok. Ama odağı başka bir yere taşıdığımızda, örneğin, butona tıkladığımızda bir `change` olayı olacak:
 
 ```html autorun height=40 run
 <input type="text" onchange="alert(this.value)">

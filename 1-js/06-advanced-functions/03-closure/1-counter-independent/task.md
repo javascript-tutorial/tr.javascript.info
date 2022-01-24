@@ -6,7 +6,7 @@ importance: 5
 
 `sayac` ve `sayac2` aynı `sayacUret` fonksiyonu kullanmaktadır.
 
-Bu sayaçlar birbirlerinden bağımsız mıdır? İkinci sayaç ne gösterecek ? `0,1` veya `2,3` veya tamamen başka birşey mi?
+Bu sayaçlar birbirlerinden bağımsız mıdır? İkinci sayaç ne gösterecek ? `0,1` veya `2,3` veya tamamen başka bir şey mi?
 
 ```js
 function sayacUret() {

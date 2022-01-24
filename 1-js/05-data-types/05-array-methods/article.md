@@ -1,6 +1,6 @@
 # Dizi Metodları
 
-Diziler bir çok metod sunarlar. İşleri daha kolaylaştırmak için bu bölüm ikiye ayrılacaktır.
+Diziler birçok metod sunarlar. İşleri daha kolaylaştırmak için bu bölüm ikiye ayrılacaktır.
 
 ## Elaman silme/ekleme
 
@@ -80,7 +80,7 @@ let removed = arr.splice(0, 2);
 
 alert( removed ); // "Ben", "şu" <-- silinen elemanlar
 ```
-`splice` metodu ayrıca hiç birşey silmeden de ekleme yapabilir. Bunun için `deleteCount`'u `0` yapmanız gerekmektedir:
+`splice` metodu ayrıca hiçbir şey silmeden de ekleme yapabilir. Bunun için `deleteCount`'u `0` yapmanız gerekmektedir:
 
 ```js run
 let arr = ["Ben", "JavaScript", "çalışıyorum"];
@@ -186,14 +186,14 @@ let arr = [1, 2];
 
 let arrayLike = {
   0: "başka",
-  1: "birşey",
+  1: "bir şey",
 *!*
   [Symbol.isConcatSpreadable]: true,
 */!*
   length: 2
 };
 
-alert( arr.concat(arrayLike) ); // 1,2,başka,birşey
+alert( arr.concat(arrayLike) ); // 1,2,başka,bir şey
 ```
 
 ## Dizide arama
@@ -330,7 +330,7 @@ arr.sort();
 
 alert( arr );  // *!*1, 15, 2*/!*
 ```
-Çıktısında birşey fark ettiniz mi?
+Çıktısında bir şey fark ettiniz mi?
 
 Sıralama `1, 15, 2` oldu. Yanlış. Neden peki?
 
@@ -370,7 +370,7 @@ alert(arr);  // *!*1, 2, 15*/!*
 ```
 Şimdi beklendiği gibi çalışmakta.
 
-Ne olduğunu düşünürsek. `arr` herşeyi tutabilir, değil mi? Sayı, karakter veya html elementi vs. tutabilir. İçinde bulunanları sıralamak için karşılaştırmayı yapan *sıralama fonksiyonu*na ihtiyaç vardır. Bunun da varsayılanı karakter sıralamadır.
+Ne olduğunu düşünürsek. `arr` her şeyi tutabilir, değil mi? Sayı, karakter veya html elementi vs. tutabilir. İçinde bulunanları sıralamak için karşılaştırmayı yapan *sıralama fonksiyonu*na ihtiyaç vardır. Bunun da varsayılanı karakter sıralamadır.
 
 `arr.sort(fn)` metodu içinde sıralama algoritmasına sahiptir. Bu sıralamanın nasıl çalıştığına dair bir bilgimiz olmasına gerek yok (Çoğu zaman [quicksort](https://en.wikipedia.org/wiki/Quicksort) kullanılır). Diziyi dolanır ve elemanları verilen algoritmaya göre karşılaştırır ve sıralar. Tek bilmeniz gereken `fn` fonksiyonunun karşılaştırmayı yaptığıdır.
 
@@ -567,7 +567,7 @@ Bundan dolayı her zaman başlangıç değeri kullanılması önerilir.
 Yazımı:
 ```js
 arr.forEach(function(item, index, array) {
-  // ... elemanla birşeyler yap
+  // ... elemanla bir şeyler yap
 });
 ```
 Örneğin aşağıdaki kod dizinin her elemanını göstermeye yarar:
@@ -675,7 +675,7 @@ Dizi metodlarının kısa açıklamaları:
   - `reduce(func, initial)` -- dizide bulunan elemanlar sıra ile `func` fonksiyonu üzerinden hesaplanır ve son değer döndürülür.
   
 - Elemanlar üzerinden dönme:
-  - `forEach(func)` -- dizide bulunan her eleman için `func` çağrılır. Hiç birşey döndürmez.
+  - `forEach(func)` -- dizide bulunan her eleman için `func` çağrılır. hiçbir şey döndürmez.
 
 - Ek olarak:
   - `Array.isArray(arr)`  `arr`'in dizi olup olmadığını kontrol eder.
@@ -699,5 +699,5 @@ Görünürde çok fazla metod varmış gibi ve ezberlemesi zormuş gibi görüns
 
 Sadece tanımların bulunduğu sayfaya bakmanız yeterlid. Ardından bu bölümdeki örnekleri çözerek pratik yaparsanız metodlar ile ilgili yeteri kadar bilgi sahibi olmuş olursunuz.
 
-Daha sonrasında metodlar ile ilgili birşey yapmak istediğinizde, nasıl yapıldığını bilmiyorsanız, buraya tekrar gelip doğru metodu bulabilirsiniz.
-Buradaki örnekler doğru bir şekilde yazmanıza yardımcı olacaktır. Sonrasında metodları hiç bir özel çaba harcamadan hatırlayacak duruma gelebilirsiniz.
+Daha sonrasında metodlar ile ilgili bir şey yapmak istediğinizde, nasıl yapıldığını bilmiyorsanız, buraya tekrar gelip doğru metodu bulabilirsiniz.
+Buradaki örnekler doğru bir şekilde yazmanıza yardımcı olacaktır. Sonrasında metodları hiçbir özel çaba harcamadan hatırlayacak duruma gelebilirsiniz.

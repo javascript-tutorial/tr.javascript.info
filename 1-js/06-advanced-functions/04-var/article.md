@@ -123,7 +123,7 @@ function selamVer() {
 ```
 Bu davranışa "yükseltilme" davranışı da denir, çünkü tüm `var` ile tanımlamalar fonksiyonun başına "yükseltilme"
 
-Bundan dolayı yukarıdaki örnekte `if(false)` hiç bir zaman çalışmayacaktır, zaten önemli de değildir. İçinde bulunan `var` fonksiyonun başında işlenir. Yani `(*)` anında zaten `terim` değişkeni vardır.
+Bundan dolayı yukarıdaki örnekte `if(false)` hiçbir zaman çalışmayacaktır, zaten önemli de değildir. İçinde bulunan `var` fonksiyonun başında işlenir. Yani `(*)` anında zaten `terim` değişkeni vardır.
 
 **Tanımlar yükseltilir fakat atamalar yükseltilmez**
 

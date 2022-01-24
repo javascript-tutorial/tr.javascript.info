@@ -59,7 +59,7 @@ Fakat ES-2015 sonrası, bu varlıklar ayrıldı. Artık evrensel sözcük ortam�
 
 Uygulamada evrensel `let/cons` değişkenleri global Evrensel Kayıtta tanımlanmış özelliklerdir fakat evrensel obje'de bulunmamaktadırlar.
 
-Doğal olarak, evrensel objenin "evrensel olan herşeye erişebilir" fikri eski zamanlarda kalmıştır. Artık bu iyi birşey olarak görülmemektedir. `let/const` gibi dil özellikleri bunu desteklememektedir, fakat eski olanlara hala destek verir.
+Doğal olarak, evrensel objenin "evrensel olan her şeye erişebilir" fikri eski zamanlarda kalmıştır. Artık bu iyi bir şey olarak görülmemektedir. `let/const` gibi dil özellikleri bunu desteklememektedir, fakat eski olanlara hala destek verir.
 ```
 ## "window"'un kullanım alanları
 

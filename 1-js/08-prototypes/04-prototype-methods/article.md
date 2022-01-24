@@ -54,7 +54,7 @@ Tanımlayıcıların <info:property-descriptors> bölümünde üstünden geçilm
 // Objenin yüzeysel klonu
 let clone = Object.create(Object.getPrototypeOf(obj), Object.getOwnPropertyDescriptors(obj));
 ```
-Bu tam olarak `obj`'nin aynısını verir. Tüm özellikler: dönülebilir veya dönülemez, veri özellikleri, alıcı ve ayarlayıcılar --  herşey, ayrıca doğru `[[Prototype]]` ile
+Bu tam olarak `obj`'nin aynısını verir. Tüm özellikler: dönülebilir veya dönülemez, veri özellikleri, alıcı ve ayarlayıcılar --  her şey, ayrıca doğru `[[Prototype]]` ile
 
 ## Tarihçe
 
@@ -100,11 +100,11 @@ Böyle bir olay sadece `__proto__`'da meydana gelir diğer tüm özellikler norm
 
 Bu problemden nasıl kaçınılabilir?
 
-Öncelikle `Map` kullanılabilir, herşey doğru çalışır.
+Öncelikle `Map` kullanılabilir, her şey doğru çalışır.
 
 Fakat burada bize `Obje` yardımcı olabilir, çünkü dili yaratıcılar bu konuları uzun zaman önce düşünmüşler.
 
-`__proto__` objenin bir özelliği değildir. Fakat `Object.prototype`'a erişimsağlar( accessor ):
+`__proto__` objenin bir özelliği değildir. Fakat `Object.prototype`'a erişim sağlar (accessor):
 
 ![](object-prototype-2.svg)
 
@@ -133,7 +133,7 @@ Bundan dolayı `__proto__`  için atadan kalan alıcı/ayarlayıcı bulunmamakta
 
 Böyle objelere "en basit" veya "saf sözlük objeleri" denir, Çünkü bunlar sıradan objelerden `{...}` bile daha basittirler.
 
-Bu objelerin kötü tarafı ise, içinde hiç bir varsayılan metod bulunmaz, Örneğin: `toString`:
+Bu objelerin kötü tarafı ise, içinde hiçbir varsayılan metod bulunmaz, Örneğin: `toString`:
 
 ```js run
 *!*
@@ -202,7 +202,7 @@ for(let prop in rabbit) alert(prop); // jumps, sonra  eats
 ```
 Eğer kalıtılmış özellikler ayrıştırılmak istenirse bunun için varolan [obj.hasOwnProperty(key)](mdn:js/Object/hasOwnProperty) kullanılabilir: Eğer `obj` `key` adında kalıtımsal olmayan bir özelliğe sahipse `true` dönderir.
 
-Kalıtımsal özellikleri bu şekilde filtreleyebilir veya başka birşey yapabiliriz:
+Kalıtımsal özellikleri bu şekilde filtreleyebilir veya başka bir şey yapabiliriz:
 
 ```js run
 let animal = {
@@ -232,8 +232,8 @@ Zincire bakarsanız `rabbit.hasOwnProperty` nereden geliyor görebilirsiniz. `Ob
 Bu bölümde anlatılanların üzerinden kısaca geçecek olursak:
 
 - [Object.create(proto[, descriptors])](mdn:js/Object/create) -- verilen `proto` ile yeni bir obje yaratır, ayrıca opsiyonel olarak özellik tanımlıyıcılar verilebilir.
-- [Object.getPrototypeOf(obj)](mdn:js/Object.getPrototypeOf) -- `obj`'nin `[[Prototype]]`ını döner ( `__proto__` alıcısı ( getter ) ile aynı işi yapar)).
-- [Object.setPrototypeOf(obj, proto)](mdn:js/Object.setPrototypeOf) -- `obj`'nin `[[Prototype]]`'ını verilen `proto`'ya ayarlar. ( `__proto__` ayarlayıcısı ( setter) ile aynı işi yapar)
+- [Object.getPrototypeOf(obj)](mdn:js/Object.getPrototypeOf) -- `obj`'nin `[[Prototype]]`ını döner ( `__proto__` alıcısı (getter) ile aynı işi yapar)).
+- [Object.setPrototypeOf(obj, proto)](mdn:js/Object.setPrototypeOf) -- `obj`'nin `[[Prototype]]`'ını verilen `proto`'ya ayarlar. ( `__proto__` ayarlayıcısı (setter) ile aynı işi yapar)
 - [Object.keys(obj)](mdn:js/Object/keys) / [Object.values(obj)](mdn:js/Object/values) / [Object.entries(obj)](mdn:js/Object/entries) -- döngülenebilir karakter dizisi/ değerler/ anahtar-değer ikilisi dizisi döner.
 - [Object.getOwnPropertySymbols(obj)](mdn:js/Object/getOwnPropertySymbols) -- tüm sembolik özelliklerin dizisini döner.
 - [Object.getOwnPropertyNames(obj)](mdn:js/Object/getOwnPropertyNames) -- özelliklerin tüm karakter dizisi isimlerini dizi olarak döner.

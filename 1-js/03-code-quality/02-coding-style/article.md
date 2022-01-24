@@ -38,7 +38,7 @@ if (n < 0) {
 -->
 Şimdi bu kurallar ve nedenleri hakkında konuşabiliriz.
 
-Buradaki hiç bir şey kanun değildir. Hepsi sizin zevgine kalmıştır ve değişebilir. Buradaki kodlama kuralları dogmalara dayanmaz.
+Buradaki hiçbir şey kanun değildir. Hepsi sizin zevgine kalmıştır ve değişebilir. Buradaki kodlama kuralları dogmalara dayanmaz.
 
 ### Süslü Parantez
 
@@ -92,7 +92,7 @@ Satır uzunluğu limitine takım seviyesinde karar verilir. Genelde 80-120 karak
 
 - **Yatay boşluklar:2(4) boşluk.**
     
-    Yatay boşluklar genelde 2 veya 4 veya "Tab" sembolünden oluşur. Bunlardan hangisinin seçilmesi gerektiği bir çeşit savaştır. Bu günlerde boşluk tuşu ile boşluk bırakmak daha fazla kullanılan yöntemdir.
+    Yatay boşluklar genelde 2 veya 4 veya "Tab" sembolünden oluşur. Bunlardan hangisinin seçilmesi gerektiği bir çeşit savaştır. Bugünlerde boşluk tuşu ile boşluk bırakmak daha fazla kullanılan yöntemdir.
 
     Boşluk tuşu ile satıra başlamanın "Tab" a göre üstünlü daha esnek ayarlanabilir olmasından dolayıdır.
 

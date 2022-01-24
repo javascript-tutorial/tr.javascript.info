@@ -2,7 +2,7 @@ importance: 5
 
 ---
 
-# Şu anda bu günün başlangıcından itibaren kaç saniye geçti?
+# Şu anda bugünün başlangıcından itibaren kaç saniye geçti?
 
 `bugundenSaniye()` adında bir fonksiyon yazın ve bu fonksiyon günün başlangıcından itibaren geçen saniyeyi dönsün.
 
@@ -12,4 +12,4 @@ importance: 5
 getSecondsToday() == 36000 // (3600 * 10)
 ```
 
-Fonksiyon her gün çalışabilmelidir. Bu demek oluyor ki elle bu günün değerini almamalısınız.
+Fonksiyon her gün çalışabilmelidir. Bu demek oluyor ki elle bugünün değerini almamalısınız.

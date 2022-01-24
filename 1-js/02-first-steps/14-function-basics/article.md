@@ -4,7 +4,7 @@
 
 Örneğin kullanıcı hesabına giriş yaptığında veya çıktığında güzel görünümlü bir mesaj göstermek istenebilir.
 
-Fonksiyonlar programın "yapı taşıdır". Bir çok defa bu fonksiyonlar çağırılarak tekrardan bu kodları yazmaktan kurtulunur.
+Fonksiyonlar programın "yapı taşıdır". Birçok defa bu fonksiyonlar çağırılarak tekrardan bu kodları yazmaktan kurtulunur.
 
 Aslında var olan `alert(mesaj)`, `prompt(mesaj,varsayilan)` ve `confirm(soru)` gibi fonksiyonları gördük. Fakat artık bunları yazmanın zamanı geldi.
 
@@ -290,7 +290,7 @@ function filmGoster(age) {
 ```
 Yukarıdaki kodda  eğer `yasKontrolu(yas)` `false` dönderir ise  `filmGoster` fonksiyonu `alert`e erişemeyecektir.
 
-````smart header="boş veya birşey döndermeyen fonksiyon `undefined` dönderir"
+````smart header="boş veya bir şey döndermeyen fonksiyon `undefined` dönderir"
 Eğer bir fonksiyon değer döndermiyor ise bu fonksiyon `undefined` dönderiyor ile aynı anlama gelir.
 
 
@@ -311,7 +311,7 @@ alert( biseyYapma() === undefined ); // true
 ```
 ````
 
-````warn header="`return` ve `değer` arasına hiç bir zaman satır eklemeyin"
+````warn header="`return` ve `değer` arasına hiçbir zaman satır eklemeyin"
 
 Uzun `return` ifadelerinde, yeni bir satırda yazmak size kullanışlı gelebilir, örneğin aşağıdaki gibi:
 
@@ -335,14 +335,14 @@ Fonksiyonlar eylemdir. Bundan dolayı isimleri yüklem olmalıdır. Net olmalı 
 
 Genel itibari ile eylemi tanımlayan önek kullanmak iyi bir yöntemdir. Bu önekler ile ilgili birlikte kod yazdığınız kişiler ile uyum içerisinde olmalısınız. 
 
-Örneğin `"show"` fonksiyonu her zaman birşeyleri `gösterir`.
+Örneğin `"show"` fonksiyonu her zaman bir şeyleri `gösterir`.
 
 Fonksiyonlar şöyle başlayabilir.
 
 - `"get…"` -- değer dönderir,
-- `"calc…"` -- birşeyler hesaplar,
-- `"create…"` -- birşeyler yaratır,
-- `"check…"` -- birşeyleri kontrol eder ve boolean dönderir.
+- `"calc…"` -- bir şeyler hesaplar,
+- `"create…"` -- bir şeyler yaratır,
+- `"check…"` -- bir şeyleri kontrol eder ve boolean dönderir.
 
 Böyle isimlere örnek:
 
@@ -365,7 +365,7 @@ Bir fonksiyon sadece isminin tanımladığı işi yapmalı.
 Bu kurallar şu şekilde bozulabilir:
 
 - `getAge` -- Eğer bu fonksiyon içeride `alert` ile yaş gösteriyor ise yanlış olur. Bu fonksiyonun sadece yaşı alıp döndermesi gerekmekte.
-- `createForm` -- Eğer dökümanı değiştiriyorsa veya forma birşey ekliyorsa yanlış olur. ( Sadece formu yaratmalı ve geri dönmelidir )
+- `createForm` -- Eğer dökümanı değiştiriyorsa veya forma bir şey ekliyorsa yanlış olur. ( Sadece formu yaratmalı ve geri dönmelidir )
 - `checkPermission` -- Eğer `izin verildi/reddedildi` gibi mesajları bu fonksiyon gösterirse yanlış olur. Sadece kontrol etmeli ve geri dönmelidir.
 
 Bu örnekler genel olarak öneklerin nasıl tahmin edilmesi gerektiğini gösterir. Bunların ne anlama geleceği siz ve takımınıza kalmıştır. Belki sizin kodunuz için farklı bir şekilde davranması gayet doğal olabilir. Fakat yine de öneklere ait bir anlamlandırmanız olmalıdır. Ön ek ne yapabilir ne yapamaz vs. Tüm aynı önekli fonksiyonlar sizin koyduğunuz kurala uymalı ve tüm takım bu kuralları biliyor olmalıdır.
@@ -382,7 +382,7 @@ Bunlar istisnadır. Genel olarak fonksiyon isimleri kısa ve açıklayıcı olma
 
 ## Fonksiyonlar == Yorumlar
 
-Fonksiyonlar kısa olmalı ve sadece birşeyi yapmalıdırlar. Eğer uzun ise bu durumda ayırıp yeni bir fonksiyon yapmanız daha iyi olabilir. Bazen bu kuralı takip etmek zor olabilir. Fakat kesinlikle iyi birşeydir.
+Fonksiyonlar kısa olmalı ve sadece bir şeyi yapmalıdırlar. Eğer uzun ise bu durumda ayırıp yeni bir fonksiyon yapmanız daha iyi olabilir. Bazen bu kuralı takip etmek zor olabilir. Fakat kesinlikle iyi bir şeydir.
 
 Farklı fonksiyon daha kolay bir şekilde çalışması kontrol edilebilir. Varlığı harika bir yorumdur.
 
@@ -440,13 +440,13 @@ function fonksiyon ismi(parametreler, virgül , ile, ayrilirlar) {
 
 Kodun daha anlaşılır ve okunabilir olması için, fonksiyonlar içerisinde yerel değişken kullanılması önerilir. Dış değişkenler kullanılması önerilmez.
 
-Eğer fonksiyon parametre ile değer alır ve bu değer üzerinde çalışıp değer geri dönderirse anlaşılırlığı artar. Fakat eğer fonksiyon hiç bir parametre almadan sadece dışarıdaki değişkenleri değiştiriyor ise kodun anlaşılırlığı büyük ölçüde azalır.
+Eğer fonksiyon parametre ile değer alır ve bu değer üzerinde çalışıp değer geri dönderirse anlaşılırlığı artar. Fakat eğer fonksiyon hiçbir parametre almadan sadece dışarıdaki değişkenleri değiştiriyor ise kodun anlaşılırlığı büyük ölçüde azalır.
 
 Fonksiyon isimlendirme:
 
 - Bir isim fonksiyonun ne işe yaradığını açıklayabiliyor olmalıdır. İyi bir isim fonksiyonun okunmadan ne iş yaptığına dair fikir verir.
 - Fonksiyon bir fiili yerine getirdiğinden, fonksiyon isimleri yüklem olmalıdır.
-- Bunlar için ön ek kullanabilirsiniz. Türkçe sondan eklemeli bir dil olduğundan dolayı fonksiyon ekleri sona gelmektedir. Örneğin `asalGoster`, bu tip kullanım aslında okunurluk açısından pekte iyi değil benim kanaatimce. Çünkü okurken önce ne yaptığını anlaşılmıyor. Fakat İngilizce örneğine bakarsanız `showPrime`, burada önce ne yaptığını söylüyor. Farzedin ki bir çok fonksiyonunuz var ve okuduğunuzda önce ne iş yaptığını bilmek bunları filtrelemenizde size yardımcı olacaktır.
+- Bunlar için ön ek kullanabilirsiniz. Türkçe sondan eklemeli bir dil olduğundan dolayı fonksiyon ekleri sona gelmektedir. Örneğin `asalGoster`, bu tip kullanım aslında okunurluk açısından pekte iyi değil benim kanaatimce. Çünkü okurken önce ne yaptığını anlaşılmıyor. Fakat İngilizce örneğine bakarsanız `showPrime`, burada önce ne yaptığını söylüyor. Farzedin ki birçok fonksiyonunuz var ve okuduğunuzda önce ne iş yaptığını bilmek bunları filtrelemenizde size yardımcı olacaktır.
 - Örnek kaç tane ek , `create...` , `show...`, `get...`, `check...` vs.
 
 Fonksiyonlar kod yazarken kullanılan ana yapılardır. Artık temellerini anlaşıldığına göre kullanılmaya başlanabilir. Fakat sadece temellerinin gösterildiğini bilmekte fayda var. ileride defalaraca fonksiyonlar konusuna geri dönülecektir.

@@ -53,7 +53,7 @@ if (saat < 10 || saat > 18) {
   alert( 'Ofis Kapalı' );
 }
 ```
-Bir çok şart cümlesi ile if yapısını kurabilirsiniz.
+Birçok şart cümlesi ile if yapısını kurabilirsiniz.
 
 ```js run
 let saat = 12;

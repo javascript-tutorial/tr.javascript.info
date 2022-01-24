@@ -94,7 +94,7 @@ Tarayıcı hatalı biçimlendirilmiş HTML ile karşılaşırsa, DOM oluştururk
 
 Örneğin, en üstteki etiket her zaman <html> olur. Belgede olmasa bile - DOM'da bulunacak, tarayıcı onu oluşturacaktır. Aynısı <body> için de geçerlidir .
 
-Örnek olarak, HTML dosyası tek bir kelimeyse yani "Hello" gibi birşey ise , tarayıcı onu <html> içine saracak, gerekli olan <body> ve <head> kısmını ekleyecek ve DOM şu şekilde olacaktır:
+Örnek olarak, HTML dosyası tek bir kelimeyse yani "Hello" gibi bir şey ise , tarayıcı onu <html> içine saracak, gerekli olan <body> ve <head> kısmını ekleyecek ve DOM şu şekilde olacaktır:
 
 
 <div class="domtree"></div>

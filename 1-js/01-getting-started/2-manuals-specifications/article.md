@@ -7,13 +7,13 @@ Bu kitap aslında bir *eğitim süreci*'dir. Amacı sizin kademeli olarak JavaSc
 
 **ECMA-262 Şartnamesi** JavaScript için olabilecek en derin bilgilerin bulunduğu kaynaktır. Dili tanımlar.
 
-Fakat formal bir dil kullanıldığından dolayı ilk seferde anlaması zordur. Eğer en güvenilir kaynak neredir diye soracak olursanız bunun cevabı **ECMA-262 Şartnamesi**'dir. Fakat her an gidip kolayca bilgi alabileceğiniz bir kaynak değildir.
+Fakat resmi bir dil kullanıldığından dolayı ilk seferde anlaması zordur. Eğer en güvenilir kaynak neredir diye soracak olursanız bunun cevabı **ECMA-262 Şartnamesi**'dir. Fakat her an gidip kolayca bilgi alabileceğiniz bir kaynak değildir.
 
 Son taslağına <https://tc39.es/ecma262/> adresinden erişebilirsiniz.
 
 Daha geniş kitleler tarafından kullanılmayan yeni özelliklere ve önerilere <https://github.com/tc39/proposals> adresinden erişebilirsiniz.
 
-Ayrıca, tarayıcı için geliştirme yapıyorsanız, ikinci [second part](info:browser-environment) bölümünden farklı eğitimlere bakabilirsiniz.
+Ayrıca, tarayıcı için geliştirme yapıyorsanız, [ikinci bölümden](info:browser-environment) farklı eğitimlere bakabilirsiniz.
 
 ## Kılavuz
 

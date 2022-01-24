@@ -8,7 +8,7 @@ importance: 5
 
 Fakat bu bir hataya neden oluyor. Neden?
 
-Sadece üstü çizili satırda değişiklik yaparak herşeyin doğru çalışmasını sağlayınız. ( diğer satırlarda değişiklik yapılmamalıdır)
+Sadece üstü çizili satırda değişiklik yaparak her şeyin doğru çalışmasını sağlayınız. ( diğer satırlarda değişiklik yapılmamalıdır)
 
 ```js run
 function askPassword(ok, fail) {

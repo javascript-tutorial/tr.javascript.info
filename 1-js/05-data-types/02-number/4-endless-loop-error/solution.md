@@ -1,4 +1,4 @@
-Çünkü `i` hiç bir zaman `10` olmaz.
+Çünkü `i` hiçbir zaman `10` olmaz.
 
 Aşağıdaki kodu çalıştırın ve gerçek `i` değerini görün:
 
@@ -9,7 +9,7 @@ while (i < 11) {
   if (i > 9.8 && i < 10.2) alert( i );
 }
 ```
-Hiç birisi tam olarak `10` olmayacaktır.
+hiçbirisi tam olarak `10` olmayacaktır.
 
 Bunun olmasının nedeni `0.2` eklediğimizde kesinlik kaybı olur.
 

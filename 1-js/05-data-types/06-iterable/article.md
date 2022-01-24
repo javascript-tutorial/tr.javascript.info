@@ -154,7 +154,7 @@ while(true) {
   alert(result.value); //karakterlerin bir bir çıktısını verir.
 }
 ```
-Buna çok nadir ihtiyaç olur. Fakat bu bize `for..of`'tan daha fazla kontrol yetkisi verir. Örneğin bu sıralı erişim olayını bazen çalıştırıp bazen çalıştırma veya o ara birşeyler yaptırma mümkün olmaktadır.
+Buna çok nadir ihtiyaç olur. Fakat bu bize `for..of`'tan daha fazla kontrol yetkisi verir. Örneğin bu sıralı erişim olayını bazen çalıştırıp bazen çalıştırma veya o ara bir şeyler yaptırma mümkün olmaktadır.
 
 ## Döngüler ve dizi-benzerleri
 

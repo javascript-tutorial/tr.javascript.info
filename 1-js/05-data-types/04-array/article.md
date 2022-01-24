@@ -221,7 +221,7 @@ Fakat bu durumda JavaScript motoru bizim diziler ile değil de normal objeler ü
 Diziyi yanlış kullanma biçimleri:
 
 - Sayısal olmayan bir özellik ekle `arr.test = 5`
-- Delikler yap: `arr[0]` ekle sonra `arr[1000]` ekle ( arada hiç bir değer yok)
+- Delikler yap: `arr[0]` ekle sonra `arr[1000]` ekle ( arada hiçbir değer yok)
 - Diziyi ters sıralı şekilde doldur, `arr[1000]`, `arr[999]` vs.
 
 Dizileri sıralı şekilde veri tutan özel bir yapı olarak düşünün. Bunun için özel metodlara sahiptir. JavaScript motoru içerisinde diziler çok etkili ve hızlı bir şekilde çalıştırılmak üzere ayarlanmıştır. Sizde bu şekilde kullanmaya hassasiyet gösterin. Eğer özelliği belirtmek istiyorsanız, belki de normal obje kullanmanız gerekmektedir `{}`
@@ -261,7 +261,7 @@ fruits.pop(); // Sondan bir eleman al
 
 ![](array-pop.svg)
 
-**`pop` hiç birşey taşımaz çünkü diğer elemanların `index`'i değişmez. Bundan dolayı aşırı derecede hızlıdır**
+**`pop` hiçbir şey taşımaz çünkü diğer elemanların `index`'i değişmez. Bundan dolayı aşırı derecede hızlıdır**
 
 `push`'da aynı şekilde sona ekler.
 
@@ -329,7 +329,7 @@ Genelde diziler bu şekilde kullanılmaz.
 
 `length` hakkında diğer bir ilginç bilgi ise bu özelliğin yazılabilir olmasıdır.
 
-Eğer elle bu değeri yükseltirseniz hiç birşey olmaz, fakat düşürürseniz dizideki elemanlar silinir. Bu işlem geri döndürülemez, örneğin:
+Eğer elle bu değeri yükseltirseniz hiçbir şey olmaz, fakat düşürürseniz dizideki elemanlar silinir. Bu işlem geri döndürülemez, örneğin:
 
 ```js run
 let arr = [1, 2, 3, 4, 5];
@@ -353,7 +353,7 @@ let arr = *!*new Array*/!*("Elma", "Armut", "vs");
 
 Bu şekilde yazım daha nadir kullanılır, `[]` kullanımı daha kısadır. Farklı bir özelliği daha vardır:
 
-Eğer `new Array` sayı argümanı ile çağırılırsa, yeni bir boş dizi yaratır. İçerisine birşey koymaz ve dizinin boyutunu belirtilen değer kadar tanımlar.
+Eğer `new Array` sayı argümanı ile çağırılırsa, yeni bir boş dizi yaratır. İçerisine bir şey koymaz ve dizinin boyutunu belirtilen değer kadar tanımlar.
 
 Bu özellik yanlış kullanıma müsaittir:
 

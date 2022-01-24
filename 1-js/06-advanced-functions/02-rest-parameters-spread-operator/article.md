@@ -217,7 +217,7 @@ Sonuç `[...str]` ile aynıdır. Fakat `Array.from(obj)` and `[...obj]` ince bir
 - `Array.from` hem dizi-benzerlerinde hem de döngüye alınabilirlerde ( array-likes, iterables ) kullanılabilirler.
 - Yayma operatörü ise sadece döngüye alınabilirlerde uygulanır.
 
-Bundan dolayı, birşeyi diziye çevirmek için `Array.from` kullanmak daha mantıklı olacaktır.
+Bundan dolayı, bir şeyi diziye çevirmek için `Array.from` kullanmak daha mantıklı olacaktır.
 
 
 ## Özet

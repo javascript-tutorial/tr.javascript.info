@@ -4,7 +4,7 @@ Kod yazmak hataya meyilli bir iştir. Bu süreç içerisinde muhtemelen hatalar 
 
 Kullanıcı, tarayıcıda meydana gelen hataları göremez. Eğer yazdığınız kodda bir yanlışlık varsa, hatalı kısımları göremez ve bunu düzeltemezsiniz.
 
-Hataları ve diğer kullanışlı bilgileri görebilmek için tarayıcılara entegre edilmiş "Geliştirici Araçları"'nı kullanmalısınız.
+Hataları ve diğer kullanışlı bilgileri görebilmek için tarayıcılara entegre edilmiş "Geliştirici Araçlarını" kullanmalısınız.
 
 Genelde geliştiriciler Chrome veya Firefox'a yoğunlaşmaktadırlar çünkü ikisinin de geliştirme aracı çok iyidir. Diğer tarayıcılar da geliştirme araçları sunarlar, bazen daha farklı özelliklerle bile olsa genelde amaçları Chrome veya Firefox'u yakalamaktır.  Bundan dolayı çoğu kişi "favori" tarayıcıya sahiptir ve eğer tarayıcı tabanlı bir problemle karşılaşırsa diğer tarayıcıyı kontrol eder.
 
@@ -22,13 +22,13 @@ Geliştirici araçları konsol paneliyle açılacaktır. Aşağıdaki ekranda il
 
 ![chrome](chrome.png)
 
-Chrome'un geliştirme aracı versiyona göre değişiklik gösterecektir. Fakat genel hatları itibariyle bu anda gördüğünüze benzeyecektir.
+Chrome'un geliştirme aracı versiyona göre değişiklik gösterecektir. Fakat genel hatları itibariyle şu anda gördüğünüze benzeyecektir.
 
 - Konsol panelinde kırmızı renk ile hatayı görebilirsiniz. Bu durumda kodunuz bilinmeyen "lalala" komutunda hata vermiş.
 
 - Sağ tarafında hatanın hangi satırda olduğunu görebilirsiniz. Bu alan tıklanabilirdir. Şu anda hata `bug.html:12`'de bulunmaktadır.
 
-Hatanın altında `>` sembolünü görebilirsiniz. Bu "komut satırı"'nı işaret eder. Komutunuzu yazdıktan sonra `key:Enter`'a basarak o satırdaki komutu çalıştırabilirsiniz. Birden fazla satır kod yazabilmek için ise `key:Shift+Enter` tuş kombinasyonunu kullanabilirsiniz.
+Hatanın altında `>` sembolünü görebilirsiniz. Bu, "komut satırı"'nı işaret eder. Komutunuzu yazdıktan sonra `key:Enter`'a basarak o satırdaki komutu çalıştırabilirsiniz. Birden fazla satır kod yazabilmek için ise `key:Shift+Enter` tuş kombinasyonunu kullanabilirsiniz.
 
 Başlangıç için hataları görmek yeterli olacaktır. Daha sonra geliştirme aracını <info:debugging-chrome> bölümünde derinlemesine öğreneceksiniz.
 
