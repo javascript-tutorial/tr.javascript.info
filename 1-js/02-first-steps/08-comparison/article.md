@@ -55,7 +55,7 @@ alert( 'Bee' > 'Be' ); // doğru ( true )
 
 İkincisinde `"Kum"` ve `"Kan"`  karakter karakter karşılaştırılıyor:
 
-1. `K` is the same as `K`.
+1. `K` eşittir `K` 'ya.
 2. `u`  `a`'dan büyük. Burada bitirilir ve birincisi ikincisinden büyüktür sonucu doğru(true) döner.
 
 
