@@ -283,7 +283,7 @@ const sayfaYuklenmeSuresi = /* Sayfanın yüklenme süresini tutar. */;
 
 `sayfaYuklenmeSuresi` çalışmadan önce değeri bilinmeyen bir değerdir. Bundan dolayı normal isimlendirme kullanılır. Çalıştıktan sonra sadece bir defa tanımlanıp daha da değişmeyen bir değer olduğundan hâlâ "sabit" denilebilir.
 
-Diğer bir deyişle büyük harfle yazılan değişken simleri sadece önceden bilinen değerleri tanımlamak için kullanılır.
+Diğer bir deyişle büyük harfle yazılan değişken isimleri sadece önceden bilinen değerleri tanımlamak için kullanılır.
 
 ## İsimlendirmeyi doğru yapmak
 
@@ -300,6 +300,7 @@ Birkaç kural şu şekildedir:
 
 - İnsan-okuyabilir değişken ismi verin `kullaniciAdi` veya `alisverisSepeti` gibi.
 - `a`, `b`, `c` gibi kısaltmaları kullanmayın. Tabi ne yaptığınızı kesin olarak biliyorsanız kullanabilirsiniz.
+
 - İsimlerin açıklayıcı olmasına önem verin. Örneğin `veri` ve `deger` adindaki değişkenler bir şey ifade etmezler. Tabi eğer kod bloğunda bunların bir anlamı var ise kullanılabilir.
 - Bazı tanımları kafanızda takımınızın kullandığı şekil ile uyumlu şekilde oturtun. Örneğin sizeyi ziyaret eden kişi `kullanici` ise kullanıcı ile olan değişkenleri `anlikKullanici` veya `yeniKullanici` gibi kullanın fakat `yeniZiyaretci` veya `yeniCocuk` gibi kullanmayın.
 
