@@ -75,7 +75,7 @@ Yeni başlayan arkadaşlar bazen yanlışlıkla fonksiyonun sonuna `()` ekleyebi
 setTimeout(selamVer(), 1000);
 ```
 
-Bu çalışmaz, çünkü `setTimeout` referans bir fonksiyon beklemektedir. Burada `selamVer()` derseniz fonksiyonu çalıştırırsınız ve *bunun sonucu* `setTimeout` fonksiyonu tarafından kullanılır. Bizim durumumuzda `selamVer()` `undefined` döndürür. ( fonksiyon ile alakalı bir sorun yok ) bundan dolayı hiç birşey zamanlanmaz.
+Bu çalışmaz, çünkü `setTimeout` referans bir fonksiyon beklemektedir. Burada `selamVer()` derseniz fonksiyonu çalıştırırsınız ve *bunun sonucu* `setTimeout` fonksiyonu tarafından kullanılır. Bizim durumumuzda `selamVer()` `undefined` döndürür. ( fonksiyon ile alakalı bir sorun yok ) bundan dolayı hiçbir şey zamanlanmaz.
 ````
 
 ### clearTimeout fonksiyonu ile iptal etme
@@ -93,14 +93,14 @@ Aşağıdaki kodda önce bir zamanlayıcı test eder sonrasında ise bunu iptal 
 
 
 ```js run no-beautify
-let timerId = setTimeout(() => alert("Birşey olmayacak"), 1000);
+let timerId = setTimeout(() => alert("Bir şey olmayacak"), 1000);
 alert(timerId); // timer identifier
 
 clearTimeout(timerId);
 alert(timerId); // same identifier (iptal ettikten sonra null olmaz)
 ```
 
-`alert` çıktısından da göreceğiniz gibi timer bir id numarası ile tanımlanır. Diğer ortamlarda bu başka birşey olabilir. Örneğin Node.Js bir sayı yerine farklı metodları olan timer objesi döner.
+`alert` çıktısından da göreceğiniz gibi timer bir id numarası ile tanımlanır. Diğer ortamlarda bu başka bir şey olabilir. Örneğin Node.Js bir sayı yerine farklı metodları olan timer objesi döner.
 
 Tekrar söylemek gerekirse üzerinde anlaşılmış bir şartname bulunmamaktadır.
 
@@ -228,7 +228,7 @@ Bunun nedeni yeni çağrının önceki çağrının bitiminde hesaplanmasından 
 
 ````smart header="Garbage collection" ( Çöp Toplama)
 
-Bir fonksiyon `setInterval/setTimeout`'a gönderildiğinde içeride bir referansını oluşturup zamanlayıcıya kaydeder. Bundan dolayı bu fonksiyon Çöp toplama işlemine girmez. Dışarıda hiç bir referans olmasa bile bu fonksiyon yok olmaz.
+Bir fonksiyon `setInterval/setTimeout`'a gönderildiğinde içeride bir referansını oluşturup zamanlayıcıya kaydeder. Bundan dolayı bu fonksiyon Çöp toplama işlemine girmez. Dışarıda hiçbir referans olmasa bile bu fonksiyon yok olmaz.
 
 ```js
 // zamanlayıcı çağırana kadar fonksiyon hafızada kalır.
@@ -262,13 +262,13 @@ alert("Merhaba");
 
 `setTimeout` ile CPU-aç görevlerin kullanılabilmesi şöyle bir yöntem kullanılabilir.
 
-Örneğin, yazıların renklerini değiştiren ( şu anki sayfa gibi ) bir uygulama tam olarak CPU-aç bir uygulamadır. Analiz eder, bir çok renkli eleman yaratır, bunları dökümana ekler dosya büyüdükçe bu da gittikçe daha fazla işlemci gerektirir. Hatta tarayıcının "hang " durumuna yani tepki vermemesine kadar gidebilir, bu da kabul edilemez.
+Örneğin, yazıların renklerini değiştiren ( şu anki sayfa gibi ) bir uygulama tam olarak CPU-aç bir uygulamadır. Analiz eder, birçok renkli eleman yaratır, bunları dökümana ekler dosya büyüdükçe bu da gittikçe daha fazla işlemci gerektirir. Hatta tarayıcının "hang " durumuna yani tepki vermemesine kadar gidebilir, bu da kabul edilemez.
 
 Bundan dolayı uzun metinleri ayırabiliriz. Önce 100 satır, sonra diğer bir 100 satır vs.
 
 Daha basit bir örnekten anlatmaya çalışırsak. Bir fonksiyonunuz olsun ve `1`'den `100000000000`'a kadar saysın
 
-Eğer kodu çalıştırırsanız işlemci tepki vermemeye başlar. Sunucu tabanlı JS kodlarında bu kolay bir şekilde fark edilebilir fakat eğer bu kodu tarayıcı üzerinde çalıştırıyorsanız diğer butonlara tıkladığınızda JavaScript'in durduğunu ve bunun bitene kadar da başka birşeyin çalışmadığını görürsünüz.
+Eğer kodu çalıştırırsanız işlemci tepki vermemeye başlar. Sunucu tabanlı JS kodlarında bu kolay bir şekilde fark edilebilir fakat eğer bu kodu tarayıcı üzerinde çalıştırıyorsanız diğer butonlara tıkladığınızda JavaScript'in durduğunu ve bunun bitene kadar da başka bir şeyin çalışmadığını görürsünüz.
 
 ```js run
 let i = 0;
@@ -460,7 +460,7 @@ Artık `<div>` `i` nin yükselen değerini gösterecektir.
 - CPU-aç görevleri parçalara ayırmak için, böylece kod sürekli tepki verebilir.
 - Böylece görev devam ederken tarayıcının başka işlere ( ilerleme çubuğu ) zaman ayırır.
 
-Tüm zamanlama metodları tam olarak gecikmeyi *garantilemez*. Zamanlayıcıda bu varsayımın üzerine birşey inşa etmeyin.
+Tüm zamanlama metodları tam olarak gecikmeyi *garantilemez*. Zamanlayıcıda bu varsayımın üzerine bir şey inşa etmeyin.
 
 Örneğin, tarayıcı zamanı birçok nedenden ötürü yavaşlayabilir:
 - İşlemcinin yükü artarsa.

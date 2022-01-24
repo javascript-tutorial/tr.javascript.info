@@ -45,7 +45,7 @@ alert( "Tekrar: " + slow(2) ); // bir önceki ile aynısı döndü.
 
 Yuarkıdaki kodda `cachingDecorator` bir *dekoratör*'dür: Diğer bir fonksiyonu alan ve bunun davranışını değiştiren özel bir fonksiyon fonksiyon.
 
-Aslında her bir fonksiyon için `cachingDecorator` çağrılabilir ve o da saklama mekanizmasını kullanır. Harika, bu şekilde ihtiyacı olacak bir çok fonksiyonumuz olabilir. Tek yapmamız gereken bu fonksiyonlara `cachingDecorator` uygulamak.
+Aslında her bir fonksiyon için `cachingDecorator` çağrılabilir ve o da saklama mekanizmasını kullanır. Harika, bu şekilde ihtiyacı olacak birçok fonksiyonumuz olabilir. Tek yapmamız gereken bu fonksiyonlara `cachingDecorator` uygulamak.
 
 Saklama olayını ana fonksiyonldan ayırarak aslında daha temiz bir yapıya da geçmiş olduk.
 
@@ -306,7 +306,7 @@ let wrapper = function() {
   return anotherFunction.apply(this, arguments);
 };
 ```
-Buna *çağrı iletme* denir. Saklayıcı sahip olduğu herşeyi iletir: `this` ile argümanları `anotherFunction`'a iletir ve sonucunu döner.
+Buna *çağrı iletme* denir. Saklayıcı sahip olduğu her şeyi iletir: `this` ile argümanları `anotherFunction`'a iletir ve sonucunu döner.
 
 Böyle bir saklayıcı kod çağırıldığında içerideki orjinal fonksiyon çağıran tarafından ayrıştırılamaz.
 

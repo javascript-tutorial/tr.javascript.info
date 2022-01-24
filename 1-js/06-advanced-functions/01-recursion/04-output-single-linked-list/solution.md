@@ -41,7 +41,7 @@ function listeYaz(list) {
 
 }
 ```
-... Fakat çok akıllıca bir yöntem değil. İleride fonksiyonu genişletmek gerekebilir. Liste ile birşeyler yapmak gerekebilir. Eğer `list` değişirse bu gerekliliklerin hiç biri yerine getirilemez.
+... Fakat çok akıllıca bir yöntem değil. İleride fonksiyonu genişletmek gerekebilir. Liste ile bir şeyler yapmak gerekebilir. Eğer `list` değişirse bu gerekliliklerin hiçbiri yerine getirilemez.
 
 Değişken isimlerinden konuşmak gerekirse `list` burada liste'nin kendisidir, `ilk` elemanıdır ve öyle kalmalıdır. Temiz ve güvenilir.
 

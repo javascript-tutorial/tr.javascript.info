@@ -145,11 +145,11 @@ Gördüğünüz gibi,`setHours` gibi bazı metodlar birden fazla bileşeni aynı
 ```js run
 let today = new Date();
 
-bugun.setHours(0);
-alert(today); // bu gün ve saat 0
+today.setHours(0);
+alert(today); // bugün ve saat 0
 
-bugun.setHours(0, 0, 0, 0);
-alert(today); // bu gün ve saniye 00:00:00.
+today.setHours(0, 0, 0, 0);
+alert(today); // bugün ve saniye 00:00:00.
 ```
 
 ## Otomatik Düzenleme
@@ -299,17 +299,17 @@ alert( 'Time of diffSubtract: ' + bench(diffSubtract) + 'ms' );
 alert( 'Time of diffGetTime: ' + bench(diffGetTime) + 'ms' );
 ```
 
-`getTime()` ile yapılan işlem çok daha hızlı! Bunun nedeni tip dönüşümü olmaması, böylece JavaScript motoru çok daha iyi optimize edebilmektedir.
+Vay be! `getTime()` ile yapılan işlem çok daha hızlı! Bunun nedeni tip dönüşümü olmaması, böylece JavaScript motoru çok daha iyi optimize edebilmektedir.
 
 Bir değer aldık fakat bu henüz iyi bir karşılaştırma olmadı.
 
-Diyelim ki`karsilastirma(cikarma)` çalışırken işlemci paralelde başka birşeyler ile uğraşıyor olsun. Bu uğraştığı işlemler `karsilastirma(tarihFarki)` zamanında bitsin.
+Diyelim ki `karsilastirma(cikarma)` çalışırken işlemci paralelde başka bir şeyler ile uğraşıyor olsun. Bu uğraştığı işlemler `karsilastirma(tarihFarki)` zamanında bitsin.
 
 Bu aslında oldukça gerçekçi bir senaryodur.
 
 A pretty real scenario for a modern multi-process OS.
 
-Sonuç olarak `karsilastirm(cikarma)` için daha az işlemci kaynağı kullanılanılır ve bu da yanlış sonuca neden olur.
+Sonuç olarak `karsilastirma(cikarma)` için daha az işlemci kaynağı kullanılanılır ve bu da yanlış sonuca neden olur.
 
 **Daha güvenilir karşılaştırma yapabilmek için bu karşılaştırma paketi bir kaç defa çalıştırılmalıdır**
 
@@ -400,11 +400,11 @@ alert(date);
 
 ## Özet
 - Tarih ve saat bilgisi JavaScript'te [Date](mdn:js/Date) objesiyle temsil edilir. Sadece tarih veya saadece saat bilgisiyle obje oluşturulamaz: `Date` objesi her zaman iki bilgiyi de taşır.
-- Aylar 0'dan başlar. ( Evet, Ocak ayı 0. aydır)
-- Haftanın günü `getDate()` de 0'dan başlar ( Pazar günü )
-- `Date` objesi eğer belirttiğiniz tarih mevcut değilse bunu hesaplayabilir. Bu gün,saat,ay ekleme/çıkarmak için kullanışlı bir özelliktir.
+- Aylar 0'dan başlar. (Evet, Ocak ayı 0. aydır)
+- Haftanın günü `getDate()` de 0'dan başlar (Pazar günü)
+- `Date` objesi eğer belirttiğiniz tarih mevcut değilse bunu hesaplayabilir. Bu; gün, saat, ay ekleme/çıkarmak için kullanışlı bir özelliktir.
 - Tarihler çıkartılabilir, aradaki fark sarise olarak döndürülür. Bunun nedeni `Date` sayıya çevrildiğinde zaman damgası olur.
-- O anki zaman damgasını( timestamp ) almak için `Date.now()` kullanabilirsiniz.
+- O anki zaman damgasını (timestamp) almak için `Date.now()` kullanabilirsiniz.
 
 Diğer sistemlerin aksine, zaman damgası javascripte saniye değil sarise cinsindendir.
 

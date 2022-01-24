@@ -210,7 +210,7 @@ Yukarıdaki kodda:
 2. Hata yoksa `2.js`'yi yükle.
 3. Hata yoksa `3.js`'yi ve en sonda da `(*)` çalıştırılır.
 
-Çağrılar çoğaldıkça kod daha derinlere inmekte ve bunun yönetimi de zorlaşmaktadır, özellikle içerisinde `...` yerine gerçek kod varsa bu bir çok döngüye, koşula sahip olacaktır.
+Çağrılar çoğaldıkça kod daha derinlere inmekte ve bunun yönetimi de zorlaşmaktadır, özellikle içerisinde `...` yerine gerçek kod varsa bu birçok döngüye, koşula sahip olacaktır.
 
 Bunun için "callback cehennemi" veya "Kıyamet piramidi" denilebilir.
 

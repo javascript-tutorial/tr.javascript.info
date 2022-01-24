@@ -9,7 +9,7 @@ describe("filterRangeInPlace", function () {
     assert.deepEqual(arr, [3, 1]);
   });
 
-  it("hiçbirşey döndürmez", function () {
+  it("hiçbir şey döndürmez", function () {
     assert.isUndefined(filterRangeInPlace([1, 2, 3], 1, 4));
   });
 

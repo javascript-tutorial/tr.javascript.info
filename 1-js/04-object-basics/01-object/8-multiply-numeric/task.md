@@ -26,7 +26,7 @@ menu = {
 };
 ```
 
-Dikkat ederseniz `multiplyNumeric` birşey döndürmedi, öyleyse değişikliği olduğu yerde yapmak zorunda.
+Dikkat ederseniz `multiplyNumeric` bir şey döndürmedi, öyleyse değişikliği olduğu yerde yapmak zorunda.
 Not: `typeof` ile objenin tipinin `numeric` olup olmadığını kontrol edebilirsiniz.
 
 

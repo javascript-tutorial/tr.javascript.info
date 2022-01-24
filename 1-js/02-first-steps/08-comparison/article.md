@@ -145,7 +145,7 @@ Sıkı eşitlik kontrolü için `===`: Bu değerler farklıdır, çünkü her bi
     alert( null === undefined ); // false
     ```
 
-Sıkı olmayan eşitlik kontrolüne göre `==`: bunlar birbirlerine eşit fakat başka hiç bir değere eşit değildirler.
+Sıkı olmayan eşitlik kontrolüne göre `==`: bunlar birbirlerine eşit fakat başka hiçbir değere eşit değildirler.
 
 
     ```js run
@@ -170,11 +170,11 @@ Matematiksel olarak yukarıda gördüğünüz örnekler imkansız. En sondaki ö
 
 Bunun nedeni eşitlik kontrolü `==` ve karşılaştırma kontrollerinin `> < >= <=` farklı çalışmasından dolayıdır. Karşılaştırma iki tarafta bulunan değerleri önce sayıya çevirmeye çalışır. Bundan dolayı sonuncu örnekte `null>=0` null `0` a dönüşür. En üst örnekte de `null>0` bunu şekilde çalışır. Bundan dolayı en üstte false, en altta ise true döner.
 
-Diğer bir taraftan eşitlik kontrolü `==`, `undefined`ve `null`için kurala göre bir değişikliğe uğramaz. Sadece birbirleri arasında (`undefined` ile `null`) eşitliğe sahiptirler. Diğer türlü hiç birşeye eşit değildirler. Bundan dolayı `null == 0` false olur.
+Diğer bir taraftan eşitlik kontrolü `==`, `undefined`ve `null`için kurala göre bir değişikliğe uğramaz. Sadece birbirleri arasında (`undefined` ile `null`) eşitliğe sahiptirler. Diğer türlü hiçbir şeye eşit değildirler. Bundan dolayı `null == 0` false olur.
 
 ### Karşılaştırılamaz tanımsız ( undefined )
 
-`undefined` hiç bir zaman karşılaştırma içerisine girmemelidir.
+`undefined` hiçbir zaman karşılaştırma içerisine girmemelidir.
 
 ```js run
 alert( undefined > 0 ); // false (1)
@@ -185,7 +185,7 @@ Neden hep false çıktı?
 
 Bu sonuçları şunlardan dolayı aldık
 - `(1.)` ve `(2.)` örneklerde `false` döndü çünkü `undefined` `NaN` oldu. `Nan` özel bir sayısal değişkendir ve hangi sayı ile karşılaştırılırsa karşılaştırılsın, sonuç `false` çıkar.
-- `(3.)` maddedeki eşitlik kontrolü ise `undefined`'ın sadece `null` ile eşit olabilmesinden dolayıdır. `null` haricinde hiç bir değere eşit değildir.
+- `(3.)` maddedeki eşitlik kontrolü ise `undefined`'ın sadece `null` ile eşit olabilmesinden dolayıdır. `null` haricinde hiçbir değere eşit değildir.
 
 ### Problemlerden Kaçınma
 
@@ -199,5 +199,5 @@ Neden peki bu örnekleri yaptık?  Bu şeyleri her zaman hatırlamamıza gerek v
 - Karşılaştırma operatörleri mantıksal değerler döndürür. (true/false) gibi
 - Karakter dizileri harf harf alfabe sırasına göre kontrol edilir.
 - Karşılaştırmalarda eğer farklı tipler kullanılıyorsa bunlar sayıya işlem yapılmadan sayıya çevirilir. ( Eğer sıkı eşittir kullanıyorsanız çevirilmez)
-- `null` ve `undefined` eşittir. Bu değerler başka hiç bir değere eşit değildirler.
+- `null` ve `undefined` eşittir. Bu değerler başka hiçbir değere eşit değildirler.
 - Değeri `null/undefined` olabilen bir değişken ile `>` veya `<` karşılaştırması yaparken dikkat edin. Ayrı bir `null/undefined` kontrolü yapmakta fayda var.s

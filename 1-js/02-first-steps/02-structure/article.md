@@ -8,7 +8,7 @@
 
 Şu ana kadar `alert('Merhaba Dünya')` ifadesini gördük ve bunun uyarı mesajı verdiğini biliyorsunuz.
 
-Kodun içerisinde istediğiniz kadar ifadeye. Diğer kod cümlesi bir birinden noktalı virgül ile ayrılır.
+Kodun içerisinde istediğimiz kadar ifadeye sahip olabiliriz. Diğer kod cümlesi bir birinden noktalı virgül ile ayrılır.
 
 Örneğin burada mesaj ikiye ayrılmıştır.
 
@@ -34,7 +34,8 @@ alert('Dünya')
 ```
 JavaScript dilinde bu şekilde satır bırakarak ifadeyi bitirme olayına "üstü kapalı" noktalı virgül denilmektedir. Ayrıca [otomatik noktalı virgül koyma](https://tc39.github.io/ecma262/#sec-automatic-semicolon-insertion) da denir
 
-**Çoğu durumda yeni satır noktalı virgül anlamına gelir. Unutulmamalı ki çoğu durum her zaman demek değildir.**
+
+**Çoğu durumda yeni satır, noktalı virgül anlamına gelir. Unutulmamalı ki çoğu durum, her zaman anlamına gelmez.**
 
 Aşağıdaki örnekte görüleceği üzeri yeni satır noktalı virgül anlamına gelmemektedir.
 
@@ -99,7 +100,7 @@ Yorum satırları kodun içerisinde herhangi bir yere koyulabilir. Kodun çalı�
 
 **Tek satır olarak yazmak istiyorsanız `//` kullanarak yorum yazabilirsiniz** 
 
-Kesik çizgi işaretlerinden sonra istediğiniz yorumu yazabilirsiniz.
+Eğik çizgi işaretlerinden sonra istediğiniz yorumu yazabilirsiniz.
 
 Örneğin:
 ```js run
@@ -109,7 +110,7 @@ alert('Merhaba');
 alert('Dünya'); // Bu yorum ise ifadeyi takip eder
 ```
 
-**Eğer birden çok satırda yorum yazmak istiyorsanız kesik çizgi + yıldız ile ( <code>/&#42;</code> ) yoruma başlayıp yıldız ve kesik çizgi ile bu kod bloğunu bitirebilirsiniz <code>&#42;/</code>.**
+**Eğer birden çok satırda yorum yazmak istiyorsanız eğik çizgi + yıldız ile ( <code>/&#42;</code> ) yoruma başlayıp, yıldız ve eğik çizgi ile bu kod bloğunu bitirebilirsiniz <code>&#42;/</code>.**
 
 Örneğin:
 
@@ -128,9 +129,9 @@ alert('Hello');
 alert('Dünya');
 ```
 
-```smart header="Klavye kısa yollarını kullanın!"
+```smart header="Klavye kısayollarını kullanın!"
 
-Çoğu editör `key:Ctrl+/` kısa yolunu kullanarak tek satır veya `key:Ctrl+Shift+/` kullanarak çok satır yorum yapmanıza yardımcı olur. Mac için `key:Cmd` tuşu windows için ise `key:Ctrl` tuşudur.
+Çoğu editör `key:Ctrl+/` kısayolunu kullanarak tek satır veya `key:Ctrl+Shift+/` kullanarak çok satır yorum yapmanıza yardımcı olur. Mac için `key:Cmd` tuşu windows için ise `key:Ctrl` tuşudur.
 ```
 
 ````warn header="Yorum satırı içerisinde ayrı bir yorum satırı yapılamaz!"

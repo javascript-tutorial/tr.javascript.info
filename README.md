@@ -103,7 +103,7 @@ Eğer dış kaynak linkleri Wikipedia ise ve iyi bir kaynak olarak görüyorsan�
 
 MDN'de eğer bir bölümü tercüme edilmiş ise buraya link verebilirsiniz.
 
-Eğer hiç bir çevirisi yoksa linki olduğu gibi bırakın.
+Eğer hiçbir çevirisi yoksa linki olduğu gibi bırakın.
 
 ### Metadata
 

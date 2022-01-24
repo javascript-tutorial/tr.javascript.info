@@ -1,7 +1,7 @@
 
 # Objeler
 
-<info:types> bölümünde hatırlanacağı üzere, JavaScript'te yedi tane farklı tip olduğundan bahsedilmşiti. Altı tanesi "basit" tipler, değerleri sadece tek birşeye eşit olabilir. ( karakter dizisi, sayı vs.)
+<info:types> bölümünde hatırlanacağı üzere, JavaScript'te yedi tane farklı tip olduğundan bahsedilmşiti. Altı tanesi "basit" tipler, değerleri sadece tek bir şeye eşit olabilir. ( karakter dizisi, sayı vs.)
 
 Buna karşın objeler anahtar bilgileri ile değerlerini tutar ve daha karmaşık veri yapıları oluşturabilirler. JavaScript'te bu objeler dilin neredeyse her alanına etki etmiş durumdadır. Bundan dolayı daha derinlere inmeden nasıl çalıştıklarının öğrenilmesi gerekmekte.
 
@@ -707,7 +707,7 @@ Eğer objenin "gerçek kopyası" , veya diğer bir deyişle `klonu` yapılmak is
 
 Bu bölümde "basit obje" veya `Obje` konusunu işlendi.
 
-JavaScript'te bir çok çeşit obje bulunmaktadır:
+JavaScript'te birçok çeşit obje bulunmaktadır:
 
 - `Dizi` sıralı olarak verileri tutar.,
 - `Date` Tarih ve saat bilgilerini tutar.,

@@ -2,7 +2,7 @@ importance: 4
 
 ---
 
-# Fonksiyonlara Düzenleyici ( Decorator ) ekleyiniz.
+# Fonksiyonlara Düzenleyici (Decorator) ekleyiniz.
 
 Tüm fonksiyonların prototiplerini `defer(ms)` metodunu ekleyiniz. Bu metod çağrılan fonksiyonu `ms` kadar geciktiren bir kapsayıcıdır.
 

@@ -93,7 +93,7 @@ Sağ tarafta bulunan dikdörtgenler evrensel Sözcük Ortamının çalışırken
 3. `ifade`'ye değer atanır.
 4. `ifade` yeni bir defere referans olur.
 
-Herşey çok basit görünüyor değil mi?
+Her şey çok basit görünüyor değil mi?
 
 Özetlemek gerekirse:
 
@@ -140,7 +140,7 @@ Fonksiyon çağrıldığında ise iki tane sözcüksel ortam bulunmaktadır: iç
 
 **Kod değişkene ulaşmak istediğinde -- önce İç Sözcük ortamında arara, daha sonra dış sözcüm ortamına bakar ve daha sonra daha dıştakine bakar bu şekilde zincirin en sonuna kadar devam eder**
 
-Eğer değişken hiç bir yerde bulunamazsa, sıkı modda hata verir. `use strict` kullanılmazsa tanımsız değişken yeni bir global değişken yaratır.
+Eğer değişken hiçbir yerde bulunamazsa, sıkı modda hata verir. `use strict` kullanılmazsa tanımsız değişken yeni bir global değişken yaratır.
 
 Arama olayı bizim yazdığımız kodlarda nasıl işliyor buna bakalım:
 
@@ -307,7 +307,7 @@ Muhetemelen, aklınızda dış değişkenlerin nasıl çalıştığı açıklı�
 
 Şu anda clouse'ların genel olarak nasıl çalıştığını biliyorsunuz, artık daha derinine inme vakti geldi.
 
-Aşağıda `sayacUret` fonksiyonunun adımları gösterilmektedir, herşeyi anladığınıza emin olun. Basamaklarda göreceğiniz `[[Environment]]` henüz işlenmedi.
+Aşağıda `sayacUret` fonksiyonunun adımları gösterilmektedir, her şeyi anladığınıza emin olun. Basamaklarda göreceğiniz `[[Environment]]` henüz işlenmedi.
 
 1. Kod çalışmaya başkadığında sadece bir tane Sözcüksel Ortam bulunmaktadır:
 
@@ -351,7 +351,7 @@ Aşağıda `sayacUret` fonksiyonunun adımları gösterilmektedir, herşeyi anla
 
     Bu fonksiyonun sadece bir satır kodu var: `return sayac++`, sadece bu çalışacaktır.
     
-5. `sayac()` çağrıldığında, "boş" bir Sözcüksel Ortam yaratılır. Hiç bir yerel değişkeni yoktur. Fakat `sayac`'ın `[[Environment]]`'i dış referans olarak kullanılır. Bundan dolayı, daha önceden yapılan `sayacUret()`'in değişkenlerine erişebilir. Oluşturulduğu yerder:
+5. `sayac()` çağrıldığında, "boş" bir Sözcüksel Ortam yaratılır. hiçbir yerel değişkeni yoktur. Fakat `sayac`'ın `[[Environment]]`'i dış referans olarak kullanılır. Bundan dolayı, daha önceden yapılan `sayacUret()`'in değişkenlerine erişebilir. Oluşturulduğu yerder:
 
     ![](lexenv-nested-makecounter-5.svg)
 
@@ -513,7 +513,7 @@ JavaScript'e başka yollarla da Fonksiyon İfadesini belirtmek mümkündür.
 }*!*)*/!*();
 
 (function() {
-  alert("Herşeyin etrafında parantez");
+  alert("Her şeyin etrafında parantez");
 }()*!*)*/!*;
 
 *!*!*/!*function() {

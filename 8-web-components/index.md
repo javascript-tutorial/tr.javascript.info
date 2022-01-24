@@ -1,3 +1,3 @@
-# Web components
+# Web bileşenleri
 
-Web components is a set of standards to make self-contained components: custom HTML-elements with their own properties and methods, encapsulated DOM and styles.
+Web bileşenleri, kendi içinde bir bütün oluşturan bileşenler oluşturmak için var olan bir dizi standarttır. Bunlar; kendi özelliklerine ve metotlarına sahip, DOM ve stilleri sarmalayan özel HTML elementleridir.

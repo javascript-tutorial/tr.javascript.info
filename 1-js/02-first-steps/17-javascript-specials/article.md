@@ -52,7 +52,7 @@ JavaScript'in tüm modern özelliklerini kullanabilmek için, `"use strict"` kul
 ```
 Bu talimatı dosyanın başında veya fonksiyonun başında belirtmeniz gerekmektedir.
 
-`"use strict"` kullanmadan da herşey çalışır. Fakat eski tipte ve uyumluluk modunda çalışır. Modern davranışı seçerseniz böylece son yenilikleri uyumluluk modu olmadan da çalıştırabilirsiniz.
+`"use strict"` kullanmadan da her şey çalışır. Fakat eski tipte ve uyumluluk modunda çalışır. Modern davranışı seçerseniz böylece son yenilikleri uyumluluk modu olmadan da çalıştırabilirsiniz.
 
 Bazı modern özellikler ise uyumluluk modunda da çalışmaz sadece sıkı modda çalışır. Bunlara ilerleyen zamanlarda değinilecektir.
 Dahası için: <info:strict-mode>.
@@ -70,7 +70,7 @@ Değişkenler isimlendirilirken aşağıdakileri içerebilir:
 - `$` ve `_` gibi karakterler diğer karakterle aynı niteliktedir ve her yerde kullanılabilir.
 - Latin olmayan yani Arapça, Japonca, Çince gibi diller de kullanılabilir fakat genelde kullanılmaz. 
 
-Değişkenler dinamik yazıma sahiptir ve herşeyi tutabilirler:
+Değişkenler dinamik yazıma sahiptir ve her şeyi tutabilirler:
 
 ```js
 let x = 5;
@@ -157,7 +157,7 @@ Karşılaştırma
     ```
     `sıkı eşitlik` operatörü `===` bu çeviriyi yapmamaktadır: farklı tipler her zaman farklı değerler ifade eder, öyleyse:
 
-    `null` ve `undefined` değerleri özeldir: `==` şeklinde birbirlerine eşittirler. Fakat başka hiç bir değere eşit değildirler.
+    `null` ve `undefined` değerleri özeldir: `==` şeklinde birbirlerine eşittirler. Fakat başka hiçbir değere eşit değildirler.
     Büyüktür/Küçüktür karşılaştırmasında karakter dizileri karakter karakter karşılaştırılır. Diğer tipler sayıya çevrilir.
 
 
@@ -261,7 +261,7 @@ Detaylı bilgi için: <info:switch>.
 
 - Fonksiyonlar yerel değişkenlere sahip olabilirler: Bu değişkenler fonksiyon gövdesinde yazılır ve sadece fonksiyon içerisinde kullanılabilir.
 - Parametreler varsayılan değerlere sahip olabilirler: `function sum(a = 1, b = 2){...}`
-- Fonksiyonlar her zaman birşey döndürürler. Eğer `return` kelimesi yoksa sonuçta yine de `undefined` döner.
+- Fonksiyonlar her zaman bir şey döndürürler. Eğer `return` kelimesi yoksa sonuçta yine de `undefined` döner.
 
 
 | Fonksiyon Tanımlama | Fonksiyon ifadesi |

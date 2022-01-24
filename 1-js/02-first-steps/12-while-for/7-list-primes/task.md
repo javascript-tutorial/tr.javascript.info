@@ -4,7 +4,7 @@ importance: 3
 
 # Output prime numbers
 
-`1` den büyük olup `1` veya kendisi haricinde hiç bir sayıya kalansız bölünemeyen sayılara [asal sayı](https://tr.wikipedia.org/wiki/Asal_say%C4%B1) denir.
+`1` den büyük olup `1` veya kendisi haricinde hiçbir sayıya kalansız bölünemeyen sayılara [asal sayı](https://tr.wikipedia.org/wiki/Asal_say%C4%B1) denir.
 
 Örneğin `5` bir asal sayıdır. Çünkü `2`,`3` ve `4` e kalansız bölünemez.
 

@@ -4,7 +4,7 @@ Ninja programcıların eskiden bu kurnazlıkları yaparak kodu tekrardan düzenl
 
 Dikkatlice oku ve hangisisin bul bakalım - ninja, çaylak, veya kod eleştirmeni.
 
-```warn header="İroni tesbit edildi!"
+```warn header="İroni tespit edildi!"
 Bu kodlar kötü yazıma örnektirler.!!!
 ```
 
@@ -15,7 +15,7 @@ Kodunuzu olabildiğince kısa tutmalısınız. Bu sizin ne kadar zeki olduğunuz
 Örneğin aşağıdaki `'?'` kullanımına bakın:
 
 ```js
-// meşur bir javascript kütüphanesinden.
+// meşhur bir javascript kütüphanesinden.
 i = i ? i < 0 ? Math.max(0, len + i) : i : 0;
 ```
 Harika değil mi? Eğer böyle yazarsanız, daha sonra gelen programcı bu satıra bakar ve `i` nin ne olduğunu ve ne yapmaya çalıştığınızı anlamak için uğraşır. Sonra size cevap almaya gelir.
@@ -31,7 +31,7 @@ Diğer bir şekilde daha hızlı ( ve daha beter!) kod yazma yöntemi de tek-har
 
 Kısa değişken isimleri kodun içerisinde aynen bir ninjanın ormanda kaybolduğu gibi kaybolurlar. Kimse onları "arayarak" bulamaz. Hatta birisi bulsa bile ne olduğunu çözemez
 
-.... Fakat bir istisna var. Gerçek ninja hiç bir zaman `for` döngüsünde sayaç için `i` kullanmaz. Her yerde kullanır ama orada kullanmaz. Biraz kurcalayın daha çok garip harf var. Örneğin `x` veya `y` gibi.
+.... Fakat bir istisna var. Gerçek ninja hiçbir zaman `for` döngüsünde sayaç için `i` kullanmaz. Her yerde kullanır ama orada kullanmaz. Biraz kurcalayın daha çok garip harf var. Örneğin `x` veya `y` gibi.
 
 Garip değişkenler eğer döngü gövdesi 1-2 sayfaysa daha harika olurlar. ( olabildiğince uzun olsun). Eğer birisi daha derinlemesine bakarsa, kolayca `x` in döngü sayacı olduğunu anlayamasın.
 
@@ -71,7 +71,7 @@ While choosing a name try to use the most abstract word. Like `obj`, `data`, `va
 - **Değişkeni tipi ile tanımlayın: `str`, `num`...**
     Bir defa deneyin. Genç ninjanın ağzı açık kalsın -- böyle isimler gerçekten de kodu kötü mü yapar? Evet!
 
-    Bir taraftan değişken isimleri hala birşey ifade ediyor. Değişkenin içinde ne var bunu söylüyor: karakter, sayı veya başka birşey. Fakat dışından başkası kodu anlamaya çalıştığında, şaşıracak ve aslında hiç bir bilgi olmadığını anlayacak
+    Bir taraftan değişken isimleri hala bir şey ifade ediyor. Değişkenin içinde ne var bunu söylüyor: karakter, sayı veya başka bir şey. Fakat dışından başkası kodu anlamaya çalıştığında, şaşıracak ve aslında hiçbir bilgi olmadığını anlayacak
 
     Gerçektende değerin tipi hata ayıklarken kolayca bulunabilir. Fakat ya anlamı? Hangi karakter veya sayıyı tutuyor? Bu sorunun cevabı anca iyi bir meditasyon ile bulunabilir!
 
@@ -97,9 +97,9 @@ Hepsinden zoru karanlık odada kara kediyi bulmak, hele bir de odada kedi yoksa.
 
 *Aynı şeyler* için *birbirine yakın* şeyler kullanmak hayatı daha ilginç kılar ve sizin yaratıcılığınız topluma gösterme açısından iyi bir fırsattır.
 
-Örneğin, fonksiyon öneklerini kullanın. Eğer bir fonksiyon ekrana çıktı veriyorsa `display_` ön eki ile başlayın. Örneğin `displayMessage`. Sonrasında başka bir fonksiyonda ekrana yine birşey yazdırmak isterseniz bu defa `show_` kullanın. Örneğin `showName`
+Örneğin, fonksiyon öneklerini kullanın. Eğer bir fonksiyon ekrana çıktı veriyorsa `display_` ön eki ile başlayın. Örneğin `displayMessage`. Sonrasında başka bir fonksiyonda ekrana yine bir şey yazdırmak isterseniz bu defa `show_` kullanın. Örneğin `showName`
 
-Bu fonksiyonlar için hiç bir farklılık olmasada sanki farklılık varmış hissi yaratın.
+Bu fonksiyonlar için hiçbir farklılık olmasada sanki farklılık varmış hissi yaratın.
 
 Diğer ninjalarla birleşip: Eğer Ahmet ekranda yazı gösteren fonksiyona `display..` ile başlıyorsa, Mehmet `render..` ile başlasın, Mehtapta `paint..` kullansın gibi kararlar verebilirsiniz. Düşünün kod ne kadar da ilginç ve çeşitli olur.
 
@@ -146,7 +146,7 @@ function ninjaFonksiyonu(elem) {
 
 ## Eğlence için alttan çizgi kullanmak.
 
-Değişken isimlerinden önce alttan çizgi kullanın `_`, `__` gibi. Örneğin `_isim` veya `__deger` gibi. Bunun anlamını sadece siz biliyorsanız harika olur. Veya, daha iyisi, bunları eğlencesine ekleyin. Hiç bir anlamı olmasın. Farklı yerlerde farklı anlamlara gelsin.
+Değişken isimlerinden önce alttan çizgi kullanın `_`, `__` gibi. Örneğin `_isim` veya `__deger` gibi. Bunun anlamını sadece siz biliyorsanız harika olur. Veya, daha iyisi, bunları eğlencesine ekleyin. hiçbir anlamı olmasın. Farklı yerlerde farklı anlamlara gelsin.
 
 Bir taşla iki kuş vurdunuz. Önce kodu daha uzun ve daha az okunabilir yaptınız, ikinci olarak, yazılımcı dostunuzu tongaya düşürerek alttan çizginin ne anlama geldiğini bulması için uzunca bir süre uğraşmasını sağladınız.
 
@@ -156,14 +156,14 @@ Zeki bir ninja bir yerde alttan çizgi kullanır, başka bir yerde kullanmaz. B�
 
 Herkese varlık(entity)larınızın ne kadar mükemel olduğunu gösterin. Örneğin `harikaElement`, `guzelAlert`, `cokAkilliNinja` gibi isimlendirmeler kodunuzu okuyanları aydınlatacaktır.
 
-Gerçekten de bir yandan `super...`, `harika...`, `mega...` gibi kullanmış fakat diğer yandan hiç bir detay vermemiş olursunuz. Okuyucunun bunun altında yatan anlamı bulması için bir kaç saat meditasyon yapıp hayatını sorgulaması gerekmektedir.
+Gerçekten de bir yandan `super...`, `harika...`, `mega...` gibi kullanmış fakat diğer yandan hiçbir detay vermemiş olursunuz. Okuyucunun bunun altında yatan anlamı bulması için bir kaç saat meditasyon yapıp hayatını sorgulaması gerekmektedir.
 
 
 ## Global değişkenlerin veya dıştaki değişkenlerin üzerine başka değer yazın
 
 ```quote author="Guan Yin Zi"
-Işıktayken karanlıktaki hiç bir şey görünmez<br>
-Karanlıktayken, aydınlıktaki herşey görünür.
+Işıktayken karanlıktaki hiçbir şey görünmez<br>
+Karanlıktayken, aydınlıktaki her şey görünür.
 ```
 
 Fonksiyonun içinde ve dışında aynı değişken isimleri kullanın. Basit, fazladan efora hiç gerek yok!
@@ -190,11 +190,11 @@ Sonrasında dışta bulunan `kullanici` değişkenine bakacak ve `kullaniciBilgi
 
 ## Her yerde yan etki!
 
-Bazı fonksiyonlar hiç birşey değiştirmiyormuş gibi görünür. Örneğin `hazirMi()`, `izinKontrol()`, `tagbul()` gibi. Hesaplamaları yapıp veriyi geri döndürdüğü ve bunun dışında bir değişiklik yapılmadığı tahmin edilsin. Diğer bir deyişle "yan etkisi" olmadığı.
+Bazı fonksiyonlar hiçbir şey değiştirmiyormuş gibi görünür. Örneğin `hazirMi()`, `izinKontrol()`, `tagbul()` gibi. Hesaplamaları yapıp veriyi geri döndürdüğü ve bunun dışında bir değişiklik yapılmadığı tahmin edilsin. Diğer bir deyişle "yan etkisi" olmadığı.
 
 **En güzel kurnazlık bunlara kendi görevleri dışında "işe yarar" bir eylem yaptırın** 
 
-İş arkadaşınızın yüzündeki şaşkınlığı düşünebiliyor musunuz? `hazirMi`,`kontrolEt`, `bul...` gibi fonksiyonlar birşeyleri değiştiriyor. Gerçekten de sınırları zorlayan bir yöntem.
+İş arkadaşınızın yüzündeki şaşkınlığı düşünebiliyor musunuz? `hazirMi`,`kontrolEt`, `bul...` gibi fonksiyonlar bir şeyleri değiştiriyor. Gerçekten de sınırları zorlayan bir yöntem.
 
 **Yine bir başka şaşkınlık yaratacak yöntem ise standart olmayan bir sonuç döndürmek**
 
@@ -218,7 +218,7 @@ Ek eylemler fonksiyonun isminde kesinlikle belirtilmesin. Gerçek bir ninja prog
 
 **Birçok eylemi bir fonksiyona yazın ki kodun tekrardan kullanılmasını engelleyin**
 
-Düşünün ki, diğer yazılımcı sadece email'i kontrol etmek istiyor ve ekrana çıktı vermek istemiyor. Sizin fonksiyonunuz `emailDogrula(email)` ve hem doğruluk kontrolü yapıyor hemde ekrana hata çıktısı veriyor. Bundan dolayı size bu yazılımcının soracağı birşey olamaz. Siz zaten ikisini de yapmışsınız.
+Düşünün ki, diğer yazılımcı sadece email'i kontrol etmek istiyor ve ekrana çıktı vermek istemiyor. Sizin fonksiyonunuz `emailDogrula(email)` ve hem doğruluk kontrolü yapıyor hemde ekrana hata çıktısı veriyor. Bundan dolayı size bu yazılımcının soracağı bir şey olamaz. Siz zaten ikisini de yapmışsınız.
 
 ## Özet
 

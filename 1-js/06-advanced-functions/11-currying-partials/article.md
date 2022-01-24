@@ -161,7 +161,7 @@ function curry(f) {
 
 Tımarlayarak hem fonksiyon normal olarak çağırılabilir  hem de kısmi olarak alınabilir. Yararını anlayabilmek için gerçekten de iyi bir örneğe gerek var.
 
-Örneğin, bir loglama fonksiyonu olsun `log(data, importance, message)` gelen veriye göre çıktıyı formatlayabilsin. Projelerde böyle fonksiyonlar bunun yanında bir çok özelliğe sahip olabilir. Örneğin bunları ağ üzerinden iletmek veya filtrelemek gibi.
+Örneğin, bir loglama fonksiyonu olsun `log(data, importance, message)` gelen veriye göre çıktıyı formatlayabilsin. Projelerde böyle fonksiyonlar bunun yanında birçok özelliğe sahip olabilir. Örneğin bunları ağ üzerinden iletmek veya filtrelemek gibi.
 
 ```js
 function log(date, importance, message) {
@@ -184,16 +184,16 @@ log(new Date(), "DEBUG", "some debug");
 ```js
 log(new Date())("DEBUG")("some debug"); // log(a)(b)(c)
 ```
-Bu günün loglarını daha kolay bir şekilde alabileceğimiz bir fonksiyon yazalım:
+Bugünün loglarını daha kolay bir şekilde alabileceğimiz bir fonksiyon yazalım:
 
 ```js
-// todayLog bu günün değeri sabit olacak şekilde oluşturulmuş bir kısmi fonksiyondur
+// todayLog bugünün değeri sabit olacak şekilde oluşturulmuş bir kısmi fonksiyondur
 let todayLog = log(new Date());
 
 // kullanımı
 todayLog("INFO", "message"); // [HH:mm] INFO message
 ```
-Şimdi ise bu günün Debug değerlerini alabileceğimiz diğer bir fonksiyon yapalım:
+Şimdi ise bugünün Debug değerlerini alabileceğimiz diğer bir fonksiyon yapalım:
 
 ```js
 let todayDebug = todayLog("DEBUG");
@@ -202,7 +202,7 @@ todayDebug("message"); // [HH:mm] DEBUG message
 ```
 
 Sonuç olarak:
-1. Tımarladıktan sonra `log` fonksiyonundan birşey kaybetmedik. Hala aynı şekilde çağırabiliriz.
+1. Tımarladıktan sonra `log` fonksiyonundan bir şey kaybetmedik. Hala aynı şekilde çağırabiliriz.
 2. Kısmi fonksiyonlar ile işimize yarar birçok yeni fonksiyon geliştirebiliriz.
 
 

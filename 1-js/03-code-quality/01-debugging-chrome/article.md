@@ -37,7 +37,7 @@ Eğer `Esc` tuşuna basarsanız altta `konsol` açılır. Buraya komutları yaz�
 
 Komut çalıştıktan sonra sonucunu hemen altında gösterir.
 
-Örneğin burada `1+2` `3`  çıktısını verir. `hello("debugger")` dediğinizde hiç birşey bulamadığından `undefined` döndürür.
+Örneğin burada `1+2` `3`  çıktısını verir. `hello("debugger")` dediğinizde hiçbir şey bulamadığından `undefined` döndürür.
 
 ![](chrome-sources-console.svg)
 
@@ -55,7 +55,7 @@ Aşağıdaki gibi görünmeli. (tıkladığınız yerler mavi olmalı)
 
 Kod durdurulduğunda, o anki değişken değerlerini inceleyebilir veya konsoldan kod çalıştırabilirsiniz. Diğer bir deyişle *hata ayıklayabilirsiniz*
 
-Oluşturulan bu kesme noktalarını sağ taraftaki panelde list halinde görmek mümkündür. Bu farklı dosyalarda eğer kesme noktaları varsa bunları görme açısından yararlı bir özelliktir. Eğer bir çok dosyada kesme noktası varsa bu panel vasıtasıyla:
+Oluşturulan bu kesme noktalarını sağ taraftaki panelde list halinde görmek mümkündür. Bu farklı dosyalarda eğer kesme noktaları varsa bunları görme açısından yararlı bir özelliktir. Eğer birçok dosyada kesme noktası varsa bu panel vasıtasıyla:
 
 - İstenilen herhangi bir kesme noktasına doğrudan üstüne tıklayarak gidilebilir.
 - Geçici olarak kesme noklarını devre dışı bırakılabilir.
@@ -147,7 +147,7 @@ Satır numaralarına sağ tıklayıp "Buradan devam et" özelliği ile kodu bir 
 
 ## Loglama
 
-Konsola basit birşey yazdıracağınız zaman `console.log` fonksiyonunu kullanabilirsiniz. Aşağıdaki örnekte ekrana 0 ile 4 arasındaki değerler yazılır.
+Konsola basit bir şey yazdıracağınız zaman `console.log` fonksiyonunu kullanabilirsiniz. Aşağıdaki örnekte ekrana 0 ile 4 arasındaki değerler yazılır.
 
 ```js run
 // çalışmasını görmek için lütfen geliştirici konsolunu açınız.

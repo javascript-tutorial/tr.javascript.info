@@ -171,7 +171,7 @@ Bir diğer özel değer ise `undefined`dır. Kendi başına `null` gibi bir değ
 
 `undefined` anlam olarak "herhangi bir değer atanmamıştır" anlamına gelir.
 
-Eğer bir değişken tanımlanmış fakat hiç bir değer atanmamışsa tam olarak bu değeri alır.
+Eğer bir değişken tanımlanmış fakat hiçbir değer atanmamışsa tam olarak bu değeri alır.
 
 ```js run
 let x;

@@ -2,7 +2,7 @@
 
 Bu bölüm JavaScript'i çevre bağımsız yani tarayıcı veya server farketmeksizin olduğu gibi kapsar.
 
-Fakat şu anda eğitimler tarayıcı üzerinde yapılmaktadır. Bundan dolayı en azından kullanıcı arayüzüne dair fonksiyon bilmenizde fayda var. Bu bölümde tarayıcıda çalışan `aler`, `prompt`, `confirm` fonksiyonları incelenecek.
+Fakat şu anda eğitimler tarayıcı üzerinde yapılmaktadır. Bundan dolayı en azından kullanıcı arayüzüne dair fonksiyon bilmenizde fayda var. Bu bölümde tarayıcıda çalışan `alert`, `prompt`, `confirm` fonksiyonları incelenecek.
 
 ## alert
 
@@ -104,4 +104,4 @@ Yukarıdaki metodlar için iki tane sınırlama vardır.
 1. Bu açılan modal'ın yeri genelde sayfanın ortasıdır.
 2. Ayrıca ekranın stili, bu da tarayıcıdan tarayıcıya değişmektedir. Bunu değiştiremezsiniz.
 
-Bu da herşeyi basite indirgemenin karşılığı. Tabi farklı yollarla daha güzel ekranlar göstermek mümkün fakat görüntü o kadar da önemli değil, işlevsellik önemli derseniz, bu durumda bu metodları kullanabilirsiniz.
+Bu da her şeyi basite indirgemenin karşılığı. Tabi farklı yollarla daha güzel ekranlar göstermek mümkün fakat görüntü o kadar da önemli değil, işlevsellik önemli derseniz, bu durumda bu metodları kullanabilirsiniz.

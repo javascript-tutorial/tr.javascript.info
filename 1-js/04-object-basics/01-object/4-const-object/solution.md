@@ -1,4 +1,4 @@
-Tabi ki çalışır, hiç bir problem yok.
+Tabi ki çalışır, hiçbir problem yok.
 
 `const` sadece değişkenin kendisinin değişmesine engel olur.
 

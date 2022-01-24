@@ -38,7 +38,7 @@ Bu oldukça komik çünkü hiç tıklama yoktu.
 Örnek:
 ```html autorun height=60
 <form onsubmit="return false">
- <input type="text" size="30" value="Buraya tıkla ve birşeyler yaz sonra enter'e bas">
+ <input type="text" size="30" value="Buraya tıkla ve bir şeyler yaz sonra enter'e bas">
  <input type="submit" value="Submit" *!*onclick="alert('click')"*/!*>
 </form>
 ```

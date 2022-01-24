@@ -134,4 +134,4 @@ new Function('a,b', ' return a + b; '); // virgül ile ayrılmış yazım
 new Function('a , b', ' return a + b; '); //virgül ve boşluk ile ayrılmış yazım.
 ```
 
-`new Function` kullanılarak yaratılan fonksiyonlar, `[[Ortam]]` olarak Evrensel Sözcük Ortamını referans verir, dış değil. Bundan dolayı dıştaki değişkeni kullanamazlar. Fakat bu aslında iyi birşeydir, bizi hatalardan korur. Bire bir parametre gönderme de mimari olarak çok başarılır. Ayrıca *sıkıştırıcı* ile de probleme neden olmamaktadır.
+`new Function` kullanılarak yaratılan fonksiyonlar, `[[Ortam]]` olarak Evrensel Sözcük Ortamını referans verir, dış değil. Bundan dolayı dıştaki değişkeni kullanamazlar. Fakat bu aslında iyi bir şeydir, bizi hatalardan korur. Bire bir parametre gönderme de mimari olarak çok başarılır. Ayrıca *sıkıştırıcı* ile de probleme neden olmamaktadır.

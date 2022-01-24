@@ -19,7 +19,7 @@ Bu direktif için kod dosyanızın başına `"use strict"` veya `'use strict'` y
 ...
 ```
 
-Yakında fonksiyonları ( komutları gruplama ) göreceksiniz. 
+Yakında fonksiyonları (komutları gruplama yolu) göreceksiniz. 
 
 `"use strict"` birden çok fonksiyonda kullanılacağı gibi tek fonksiyon için de kullanılabilir. Fakat genelde tüm dosya için kullanılır.
 

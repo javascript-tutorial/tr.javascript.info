@@ -44,7 +44,7 @@ let ikiKati = n => n * 2;
 alert( ikiKati(3) ); // 6
 ```
 
-Eğer hiç bir değer yoksa parantez eklenmelidir. ( Bir değer olduğunda yukarıdaki gibi kullanılabilir.)
+Eğer hiçbir değer yoksa parantez eklenmelidir. (Bir değer olduğunda yukarıdaki gibi kullanılabilir.)
 
 
 ```js run

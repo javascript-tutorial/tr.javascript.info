@@ -1,6 +1,6 @@
 # Düzenlenmiş hatalar, hataların geliştirilmesi
 
-Birşey geliştirirken, genelde kendi hata sınıflarımıza sahip olmak isteriz, böylece bize has yerlerde oluşabilecek hataları idare edebiliriz. Örneğin network hataları için `HttpError`, veri tabanı hataları için `DbError`, arama hataları için `NotFoundError` gibi.
+Bir şey geliştirirken, genelde kendi hata sınıflarımıza sahip olmak isteriz, böylece bize has yerlerde oluşabilecek hataları idare edebiliriz. Örneğin network hataları için `HttpError`, veri tabanı hataları için `DbError`, arama hataları için `NotFoundError` gibi.
 
 Hatalarımız basit hata özelliklerini `message`, `name` ve `stack`'i desteklemelidir. Bunun ile birlikte kendine has özellikleri de olabilir. Örneğin `HttpError` objesi `statusCode` özelliğine sahip olabilir. Bu özelliğin değeri de `404`, `403`, `500` gibi hata kodları olacaktır.
 
@@ -214,11 +214,11 @@ Böylece hata sınıfları kısalmış oldu, özellikle `"this.name=..."`'i att�
 
 Hatırlarsanız yukarıdaki `readUser` "kullanıcıların verilerini okumak" amacıyla yazılmıştı, değil mi? Farklı hatalar olabileceğinden dolayı şimdilik `SyntaxError`, `ValidationError` gibi hata sınıflarına sahibiz. Fakat `readUser` ileride daha da büyüyebilir: yeni kod yeni hatalara neden olacaktır.
 
-Bundan dolayı `readUser`'ı çağıran fonksiyon hataları ile başa çıkmalıdır. Şu anda bir çok `if`, `catch` ile kontrol edilip eğer bunlar dahilinde değil ise tekrar hata atma işlemini yapmaktayız. Fakat `readUser` fonksiyonu daha fazla hataya neden olursa, kendimize: gerçekten de tüm hataları birer birer kontrol etmemiz gerekli mi sorusunu sormalıyız.
+Bundan dolayı `readUser`'ı çağıran fonksiyon hataları ile başa çıkmalıdır. Şu anda birçok `if`, `catch` ile kontrol edilip eğer bunlar dahilinde değil ise tekrar hata atma işlemini yapmaktayız. Fakat `readUser` fonksiyonu daha fazla hataya neden olursa, kendimize: gerçekten de tüm hataları birer birer kontrol etmemiz gerekli mi sorusunu sormalıyız.
 
 Tabiki cevap "Hayır": Dıştaki kod her zaman "diğerlerinden bir üst seviyede" olmak ister. "veri okuma hatası" gibi bir hata olmak ister. Neden olduğu çok da önemli değildir. Tabi hataların detayları olsa iyi olur fakat sadece ihtiyaç olursa.
 
-Bunlar ışığında `ReadError` sınıfını yeniden yazacak olursak. Eğer `readUser` içerisinde bir hata olursa bunu yakalayacak ve `ReadError` üreteceğiz. Ayrıca orjinal hatanın `cause` ( neden ) özelliğine referans vereceğiz. Bundan dolayı dıştaki kod sadece `ReadError`'u kontrol etmeli.
+Bunlar ışığında `ReadError` sınıfını yeniden yazacak olursak. Eğer `readUser` içerisinde bir hata olursa bunu yakalayacak ve `ReadError` üreteceğiz. Ayrıca orjinal hatanın `cause` (neden) özelliğine referans vereceğiz. Bundan dolayı dıştaki kod sadece `ReadError`'u kontrol etmeli.
 
 Aşağıdaki kod `ReadError`'u tanımlamakta ve `readUser` ve `try..catch`'in nasıl kullanılacağını göstermektedir:
 

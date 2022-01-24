@@ -15,7 +15,7 @@ let cift = "çift-tırnak";
 
 let us_isareti = `üs işareti`; // Backticks
 ```
-Tek ve çift tırnak zaten aynıydı. Üs işareti ise JavaScript ifadelerini karakter dizisine yerleştirmenizi sağlar. Bu fonksiyon çağrısı dahil herşey olabilir:
+Tek ve çift tırnak zaten aynıydı. Üs işareti ise JavaScript ifadelerini karakter dizisine yerleştirmenizi sağlar. Bu fonksiyon çağrısı dahil her şey olabilir:
 
 ```js run
 function toplam(a, b) {
@@ -559,7 +559,7 @@ alert( '𝒳'[0] ); // garip semboller...
 alert( '𝒳'[1] ); // ...her biri ikilinin parçaları
 ```
 
-Dikkat ederseniz çifli karakterler tek başlarına birşey ifade etmezler. Yani yukarıdaki örnekler aslında hiç bir işe yaramaz.
+Dikkat ederseniz çifli karakterler tek başlarına bir şey ifade etmezler. Yani yukarıdaki örnekler aslında hiçbir işe yaramaz.
 
 Teknik olarak, bu çiftler kodlarına bakılarak ayırt edilebilir: Eğer bir karakter `0xd800..0xdbff` aralığında ise bu çiftin ilk karakteri demektir. İkinci karakter ise `0xd800..0xdbff` aralığında olmalıdır. Bu aralıklar özel olarak çiftler için ayrılmıştır.
 
@@ -571,7 +571,7 @@ Yukarıdaki duruma göre:
 alert( '𝒳'.charCodeAt(0).toString(16) ); // d835, 0xd800 ile 0xdbff arasında
 alert( '𝒳'.charCodeAt(1).toString(16) ); // dcb3, 0xdc00 ile 0xdfff arasında
 ```
-<info:iterable> bölümünde bu çifler ile ilgili daha fazla bilgi bulabilirsiniz. Muhtemelen bunun ile ilgili kütüphaneler de vardır, fakat burada önerecek kadar meşur olan yok henüz.
+<info:iterable> bölümünde bu çifler ile ilgili daha fazla bilgi bulabilirsiniz. Muhtemelen bunun ile ilgili kütüphaneler de vardır, fakat burada önerecek kadar meşhur olan yok henüz.
 
 ### Aksan işaretleri ve normalleştirme
 

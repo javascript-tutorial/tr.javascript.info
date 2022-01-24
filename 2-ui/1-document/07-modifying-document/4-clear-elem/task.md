@@ -4,7 +4,7 @@ importance: 5
 
 # Clear the element
 
-`clear(elem)` adında, elementten herşeyi kaldıran bir fonksiyon yarat.
+`clear(elem)` adında, elementten her şeyi kaldıran bir fonksiyon yarat.
 
 ```html run height=60
 <ol id="elem">

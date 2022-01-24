@@ -1,5 +1,5 @@
 # JavaScript Dili
 
-Bu bölümde başlangıçtan daha Nesne Yönelimli Programlama gibi daha derin konulara gireceğiz.
+Bu bölümde sıfırdan başlayarak, Nesne Yönelimli Programlama gibi daha derin konulara doğru ilerleyeceğiz.
 
-Dilin kendisi üzerinde duracağız, bu bölümde çevre-bazlı özelliklere çok az değineceğiz.
+Çevre bazlı özelliklere çok az değinerek burada dilin kendisi üzerinde duracağız.

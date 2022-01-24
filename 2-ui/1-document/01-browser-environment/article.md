@@ -1,6 +1,6 @@
 # Tarayıcı Ortamı, Özellikleri
 
-Javascript dili başlangıçta internet tarayıcıları için oluşturuldu. O zamandan beri geliştirildi ve bir çok kullanımı ve platformu ile bir dil haline geldi.
+Javascript dili başlangıçta internet tarayıcıları için oluşturuldu. O zamandan beri geliştirildi ve birçok kullanımı ve platformu ile bir dil haline geldi.
 
 
 Bir platform tarayıcı, bir web sunucusu, bir çamaşır makinesi veya başka bir sunucu olabilir. Bunların her biri platforma özgü fonksiyonlar sağlar. JavaScript özelliklerinde bunu bir sunucu ortamı olarak adlandırılır.
@@ -53,7 +53,7 @@ Burada `document.body.style` kullandık fakat daha fazla parametreler var. Özel
 
 DOM standartları : <https://dom.spec.whatwg.org>
 
-Eskiden hiç bir standart yoktu. -- her tarayıcı her ne istiyorsa onu uyguladı. Bu yüzden farklı tarayıcıların aynı şeyler için farklı metotları ve özellikleri vardı. Geliştiriciler her bir tarayıcı için farklı kodlar yazmak zorunda kalıyordu. Karanlık dağınık zamanlar.
+Eskiden hiçbir standart yoktu. -- her tarayıcı her ne istiyorsa onu uyguladı. Bu yüzden farklı tarayıcıların aynı şeyler için farklı metotları ve özellikleri vardı. Geliştiriciler her bir tarayıcı için farklı kodlar yazmak zorunda kalıyordu. Karanlık dağınık zamanlar.
 
 Şimdi bile bazen tarayıcılara özgü özellikleri kullanan ve uyumsuzluklar etrafında çalışan eski kodlarla çalışabiliriz ama bu derste modern şeyler kullanacağız: Onlara ihtiyacın olana kadar eski şeyler öğrenmeye gerek yok (şansın yüksek değil). 
 
@@ -77,7 +77,7 @@ HTML'in bir parçası (BOM), belge dışında her şey ile çalışmak için tar
 
 Örneğin:
 
-- [navigator](mdn:api/Window/navigator) nesnesi tarayıcı ve işletim sistemi hakkında arkaplan bilgisi sağlar. Bir çok özelliği var, fakat en çok bilinen ikisi şunlardır: `navigator.userAgent` -- mevcut tarayıcı hakkında, ve `navigator.platform` -- platform hakkında (Windows/Linux/Mac arasında farklılık olacağından yardım gerekebilir). 
+- [navigator](mdn:api/Window/navigator) nesnesi tarayıcı ve işletim sistemi hakkında arkaplan bilgisi sağlar. Birçok özelliği var, fakat en çok bilinen ikisi şunlardır: `navigator.userAgent` -- mevcut tarayıcı hakkında, ve `navigator.platform` -- platform hakkında (Windows/Linux/Mac arasında farklılık olacağından yardım gerekebilir). 
 - [location](mdn:api/Window/location) nesnesi geçerli adresi okumayı ve tarayıcıyı yenisine yönlendirmeyi sağlar
 
 `location` nesnesini bu şekilde kullanabiliriz: 
@@ -108,9 +108,9 @@ CSSOM tanımlaması
 : stil sayfaları ve stil kurallarını açıklar, bunlarla yapılan manipülasyonları ve belge bağlanmalarını sağlar, Bkz <https://www.w3.org/TR/cssom-1/>.
 
 HTML tanımlaması
-: HTML dilini (etiketler vs.) ve ayrıca BOM (tarayıcı nesne modeli) -- çeşitli tarayıcı fonksiyonlar: `setTimeout`, `alert`, `location` vb açıklar, Bkz <https://html.spec.whatwg.org>. DOM özelliğini alır ve bir çok ek özellik ve yöntemle geliştirir.
+: HTML dilini (etiketler vs.) ve ayrıca BOM (tarayıcı nesne modeli) -- çeşitli tarayıcı fonksiyonlar: `setTimeout`, `alert`, `location` vb açıklar, Bkz <https://html.spec.whatwg.org>. DOM özelliğini alır ve birçok ek özellik ve yöntemle geliştirir.
 
-Lütfen yukarıdaki bağlantıları kontrol edin. Çünkü öğrenecek bir çok şey var. Her şeyi hatırlamak imkansızdır.
+Lütfen yukarıdaki bağlantıları kontrol edin. Çünkü öğrenecek birçok şey var. Her şeyi hatırlamak imkansızdır.
 
 Bir özellik ve yöntem hakkında okumak istediğinizde -- Mozilla kılavuzu <https://developer.mozilla.org/en-US/search> güzel kılavuzlardan bir tanesidir, ancak ilgili özelliklerin okunması daha iyi olabilir: daha karmaşık ve okunması uzun fakat temel bilginiz eksiksiz ve sağlam hale gelecektir.
 

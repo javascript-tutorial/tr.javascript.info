@@ -10,7 +10,7 @@ Aşağıdaki iki kod parçacığını karşılaştırınız.
 
     ```js
     try {
-      birşeyler çalıştır
+      bir şeyler çalıştır
     } catch (e) {
       hatalarla uğraş
     } finally {
@@ -23,7 +23,7 @@ Aşağıdaki iki kod parçacığını karşılaştırınız.
 
     ```js
     try {
-      birşeyler çalıştır
+      bir şeyler çalıştır
     } catch (e) {
       hatalarla uğraş
     }

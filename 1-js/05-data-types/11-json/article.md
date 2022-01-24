@@ -23,7 +23,7 @@ alert(kullanici); // {adi: "Ahmet", yasi: 30}
 
 ... Fakat geliştirme esnasında yeni özellikler eklendi ve öncekiler ya silindi ya da isim değiştirdi. Böyle bir durumda `toString` metoduyla her zaman değişiklik yapmak oldukça zordur. Özellikleri döngüye sokup buradan değerler alınabilir. Bu durumda da iç içe objelere ne olacak? Bunlarında çevirimlerini yapmak gerekir. Ayrıca ağ üzerinden objeyi göndermeye çalıştığınızda ayrıca bu objenin alan yer tarafından nasıl okunacağına dair bilgi göndermek zorundasınız.
 
-Neyseki bunların hiç biri için kod yazmaya gerek yok. Bu problem bizim için çözülmüş durumda.
+Neyseki bunların hiçbiri için kod yazmaya gerek yok. Bu problem bizim için çözülmüş durumda.
 
 [cut]
 
@@ -273,7 +273,7 @@ sayi:       23
 */
 ```
 
-`degistirici` fonksiyonu içiçe objeler ve diziler dahil herşeyi alır. Tüm objelere yinelemeli olarak uygulanır. `this`'in değeri `degistirici` içerisinde o anki özellikleri tutar.
+`degistirici` fonksiyonu içiçe objeler ve diziler dahil her şeyi alır. Tüm objelere yinelemeli olarak uygulanır. `this`'in değeri `degistirici` içerisinde o anki özellikleri tutar.
 
 İlk çağrı özeldir. "Sarıcı obje" vasıtasıyla: `{"": tanisma}`. Diğer bir deyişle ilk `(anahtar, deger)` çifti boş anahtar ile gelir ve değeri hedef objenin tamamıdır. Bundan dolayı yukarıdaki örnekte ilk satır: `":[object Object]"`'dir.
 

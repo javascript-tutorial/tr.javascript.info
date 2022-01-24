@@ -11,7 +11,7 @@ describe("ikiIleCarp", function () {
     assert.equal(menu.baslik, "Menü");
   });
 
-  it("birşey döndürmez", function () {
+  it("bir şey döndürmez", function () {
     assert.isUndefined(ikiIleCarp({}));
   });
 
