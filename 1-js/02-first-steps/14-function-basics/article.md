@@ -23,7 +23,7 @@ function mesajGoster() {
 
 ![](function_basics.png)
 
-Yeni fonksyion ismiyle şu şekilde çağırılır: `mesaGoster()`.
+Yeni fonksyion ismiyle şu şekilde çağırılır: `mesajGoster()`.
 
 Örneğin:
 
@@ -349,7 +349,7 @@ Böyle isimlere örnek:
 Not: ingilizce de bu daha kolay önce eylemi yazıyorlar. Türkçe de fiil genelde sonda olduğundan dolayı sıkıntı yaşanmaktadır. Fonksiyonlarınızı adlandırırken ingilizce adlandırırsanız okunması daha kolay olacaktır.
 
 ```js no-beautify
-sendMessage(..)     // mesaj gösterir
+sendMessage(..)     // mesaj gönderir
 getAge(..)          // yaşı dönderir
 calcSum(..)         // toplamı hesaplar ve geri dönderir.
 createForm(..)      // form oluşturur ve genelde geri dönderir.
@@ -360,7 +360,7 @@ checkPermission(..) // izni kontor eder. true/false
 ```smart header="Bir fonksiyon -- bir eylem"
 Bir fonksiyon sadece isminin tanımladığı işi yapmalı.
 
-İki birbirinden farklı eylem çoğu zaman iki fonksiyon ile yazılmalıdır, birlikte çağılsalar bile ( bu durumda 3. bir fonksiyon bunları çağırmalıdır )
+İki birbirinden farklı eylem çoğu zaman iki fonksiyon ile yazılmalıdır, birlikte çağrılsalar bile ( bu durumda 3. bir fonksiyon bunları çağırmalıdır )
 
 Bu kurallar şu şekilde bozulabilir:
 
@@ -425,7 +425,7 @@ function asalMi(n) {
 
 Fonksiyonlar eğer tekrar kullanmayacağımızı bilsek bile oluşturulabilir. Kodu daha okunabilir yaparlar.
 
-## Summary
+## Özet
 
 Bir fonksiyonun tanımı aşağıdaki gibidir.
 ```js
