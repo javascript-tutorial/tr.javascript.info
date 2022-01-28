@@ -118,10 +118,10 @@ Satır uzunluğu limitine takım seviyesinde karar verilir. Genelde 80-120 karak
       let sonuc = 1;
       //              <--
       for (let i = 0; i < n; i++) {
-        result *= x;
+        sonuc *= x;
       }
       //              <--
-      return result;
+      return sonuc;
     }
     ```
 
