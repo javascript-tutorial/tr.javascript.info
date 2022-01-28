@@ -60,8 +60,7 @@ Harika nota karmaşık olandır,<br>
 Harika görselin belirli bir formu yoktur.
 ```
 
-Bir kelime seçerken soyut olmasına önem verin. Örneğin
-While choosing a name try to use the most abstract word. Like `obj`, `data`, `value`, `item`, `elem` vs. 
+Bir kelime seçerken soyut olmasına önem verin. Örneğin `obj`, `data`, `value`, `item`, `elem` vb. 
 
 - **Kusursuz değişken ismi `data`** nerede isterseniz kullanın. Gerçekten de tüm değişkenler *data* tutmuyorlar zaten, değil mi?
 
