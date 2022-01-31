@@ -87,7 +87,7 @@ Aşağıda aynı fonksiyonun `?` ile tekrar yazılmış hali bulunmaktadır.
 
 ```js run
 function us(x, n) {
-  return (n == 1) ? x : (x * pow(x, n-1));
+  return (n == 1) ? x : (x * us(x, n-1));
 }
 ```
 ````
