@@ -180,7 +180,7 @@ let diziBenzeri = { //  indekslere ve uzunluğa sahiptir => dizi-benzeri
 
 *!*
 // Hata Symbol.iterator bulunmamaktadır.
-for(let item of diziBenzeri) {}
+for(let eleman of diziBenzeri) {}
 */!*
 ```
 
