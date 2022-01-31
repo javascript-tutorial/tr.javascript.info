@@ -14,7 +14,7 @@ Kod aşağıdaki gibidir:
 
 ```js run
 function slow(x) {
-  // burada baya yoğun işlemci gücüne ihtiyaş duyan işler yapılmaktadır.
+  // burada baya yoğun işlemci gücüne ihtiyaç duyan işler yapılmaktadır.
   alert(`${x} ile çağırıldı`);
   return x;
 }
@@ -43,7 +43,7 @@ alert( slow(2) ); // slow(2) saklandı
 alert( "Tekrar: " + slow(2) ); // bir önceki ile aynısı döndü.
 ```
 
-Yuarkıdaki kodda `cachingDecorator` bir *dekoratör*'dür: Diğer bir fonksiyonu alan ve bunun davranışını değiştiren özel bir fonksiyon fonksiyon.
+Yuarkıdaki kodda `cachingDecorator` bir *dekoratör*'dür: Diğer bir fonksiyonu alan ve bunun davranışını değiştiren özel bir fonksiyon.
 
 Aslında her bir fonksiyon için `cachingDecorator` çağrılabilir ve o da saklama mekanizmasını kullanır. Harika, bu şekilde ihtiyacı olacak birçok fonksiyonumuz olabilir. Tek yapmamız gereken bu fonksiyonlara `cachingDecorator` uygulamak.
 
@@ -55,13 +55,13 @@ Detayına inmeye başlayabiliriz.
 
 ![](decorator-makecaching-wrapper.svg)
 
-Gördüğünüz gibi, saklayıcı `func(x)`'ı olduğu gibi dönderir. Saklayıcının dışındaki `yavaş` olan fonksiyon hala aynı şekilde çalışır. Aslında davranışın üstüne sadece saklama(caching) mekanizması gelmiştir.
+Gördüğünüz gibi, saklayıcı `func(x)`'ı olduğu gibi dönderir. Saklayıcının dışındaki `slow` olan fonksiyon hala aynı şekilde çalışır. Aslında davranışın üstüne sadece saklama(caching) mekanizması gelmiştir.
 
 Özetlersek, ayrı bir `cachingDecorator` kullanmanın faydaları şu şekildedir:
 
 - `cachingDecorator` tekrar kullanılabilir. Başka bir fonksiyona da uygulanabilir.
-- Saklama(caching) mantığı ayrılmıştır böylece `yavaş` kodun içine daha fazla kod yazıp karışıklaştırılmamaktadır.
-- Eğer ihtiyaç birden fazla dekoratör birlikte kullanılabilir.
+- Saklama(caching) mantığı ayrılmıştır böylece `slow` kodun içine daha fazla kod yazıp karışması önlenmiştir.
+- İhtiyaç halinde birden fazla dekoratör birlikte kullanılabilir.
 
 ## Kaynak için "func.all" kullanmak.
 
