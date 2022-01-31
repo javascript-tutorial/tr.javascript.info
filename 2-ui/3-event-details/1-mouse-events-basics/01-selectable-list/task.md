@@ -13,6 +13,12 @@ Demo:
 
 [iframe border="1" src="solution" height=180]
 
+<<<<<<< HEAD
 **NOT** Bu görev için, liste öğelerinin yalnızca metin olduğunu varsayabiliriz. İç içe geçmiş tag yok.
 
 **NOT** Tıklamalarda metnin yerel tarayıcı seçimini engelleyin.
+=======
+P.S. For this task we can assume that list items are text-only. No nested tags.
+
+P.P.S. Prevent the native browser selection of the text on clicks.
+>>>>>>> 0f748275e20a81700c8514f22a7cc80c4422d09c

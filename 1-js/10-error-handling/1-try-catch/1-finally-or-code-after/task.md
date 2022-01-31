@@ -6,6 +6,7 @@ importance: 5
 
 Aşağıdaki iki kod parçacığını karşılaştırınız.
 
+<<<<<<< HEAD
 1. İlki `finally` ile `try..catch`'den sonra kod çalıştırmaktadır:
 
     ```js
@@ -13,12 +14,22 @@ Aşağıdaki iki kod parçacığını karşılaştırınız.
       bir şeyler çalıştır
     } catch (e) {
       hatalarla uğraş
+=======
+1. The first one uses `finally` to execute the code after `try...catch`:
+
+    ```js
+    try {
+      work work
+    } catch (err) {
+      handle errors
+>>>>>>> 0f748275e20a81700c8514f22a7cc80c4422d09c
     } finally {
     *!*
       temizlik yap
     */!*
     }
     ```
+<<<<<<< HEAD
 2. İkinci bölümde ise temizliği doğrudan `try..catch` sonrasında yap:
 
     ```js
@@ -26,6 +37,15 @@ Aşağıdaki iki kod parçacığını karşılaştırınız.
       bir şeyler çalıştır
     } catch (e) {
       hatalarla uğraş
+=======
+2. The second fragment puts the cleaning right after `try...catch`:
+
+    ```js
+    try {
+      work work
+    } catch (err) {
+      handle errors
+>>>>>>> 0f748275e20a81700c8514f22a7cc80c4422d09c
     }
 
     *!*
