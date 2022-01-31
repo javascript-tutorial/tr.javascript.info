@@ -132,7 +132,7 @@ setTimeout(() => { clearInterval(timerId); alert('stop'); }, 5000);
 
 IE ve Firefox tarayıcılarda ekranda `alert/confirm/prompt` olduğu sürece zamanlayıcı çalışmaya devam eder, fakat Chrome, Opera ve Safari bu zamanı durdurur.
 
-Bundan dolayı eğer yukarıdi kodu çalıştırır ve iptal'e basmazsanız Firefox/IE'de bir sonraki `alert` durmadan gösterilir. Fakat Chrome/Opera/Safari'de kapatıldıktan sonra 2 sn sonra tekrar alert gelir.
+Bundan dolayı eğer yukarıdaki kodu çalıştırır ve iptal'e basmazsanız Firefox/IE'de bir sonraki `alert` durmadan gösterilir. Fakat Chrome/Opera/Safari'de kapatıldıktan sonra 2 sn sonra tekrar alert gelir.
 ```
 
 ## Tekrarlı setTimeout
@@ -156,11 +156,11 @@ let timerId = setTimeout(function tick() {
 
 `setTimeout` bir sonraki çağrıyı o anki çağrı bittiği ana planlar `(*)` 
 
-Kendini tekrar eden `setTimeout` `setInterval`'den daha esnektir. Bu şekliyle kullanıldığında bir sonraki planlanan çağrı ana çağrının durumuna göre ötelebilir veya daha geriye alınabilir.
+Kendini tekrar eden `setInterval` `setTimeout`'dan daha esnektir. Bu şekliyle kullanıldığında bir sonraki planlanan çağrı ana çağrının durumuna göre ötelebilir veya daha geriye alınabilir.
 
 Örneğin, her 5 sn'de bir sunucudan veri isteyen bir servis yazmamız gerekmektedir. Fakat sunucuya fazladan yük binerse bunun 10,20,40 sn olarak değiştirilmesi gerekmektedir.
 
-Sözde kod aşağıdaki gibidir:
+Bahsedilen kod aşağıdaki gibidir:
 ```js
 let delay = 5000;
 
@@ -180,7 +180,7 @@ let timerId = setTimeout(function request() {
 Eğer CPU-aç görevleriniz varsa bu görevlerin süresini ölçüp buna göre bir çalışma planı oluşturmak mümkündür.
 
 
-**Kendini tekrar eden `setTimeout` iki çağrı arasındaki süreyi garanti eder fkat `setInterval` bunu garanti etmez.**
+**Kendini tekrar eden `setInterval` iki çağrı arasındaki süreyi garanti eder fakat `setTimeout` bunu garanti etmez.**
 
 Aşağıdaki iki kod parçacığı karşılaştırılacak olursa:
 
