@@ -164,33 +164,34 @@ Bazen, `this`'in değeri tamamen evrensel obje olur. Bu çok nadir de olsa bazı
 
     Tanım gereği, `this` bu durumda evrensel obje olmalı, Node.JS ortamında olmasa bile `this` evrensel objedir. Bu eski kodlar ile uyumluluk amacıyladır, sıkı modda `this` tanımsız olabilir.
 
-## Using for polyfills
+## Polyfill'ler İçin Kullanma
 
-We use the global object to test for support of modern language features.
+Modern dil özelliklerinin desteğini test etmek için global nesneyi kullanıyoruz.
 
-For instance, test if a built-in `Promise` object exists (it doesn't in really old browsers):
+Örneğin, yerleşik bir "Promise" nesnesinin olup olmadığını test edelim (gerçekten eski tarayıcılarda yoktur):
 ```js run
 if (!window.Promise) {
-  alert("Your browser is really old!");
+  alert("Senin tarayıcın gerçekten çok yaşlı");
 }
 ```
 
-If there's none (say, we're in an old browser), we can create "polyfills": add functions that are not supported by the environment, but exist in the modern standard.
+Hiçbiri yoksa (örneğin, eski bir tarayıcıdayız), "pollyfills(çoklu dolgular)" oluşturabiliriz: çevre tarafından desteklenmeyen, ancak modern standartta var olan işlevler ekleyebiliriz.
 
 ```js run
 if (!window.Promise) {
-  window.Promise = ... // custom implementation of the modern language feature
+  window.Promise = ... // modern dil özelliğinin özel uygulaması
 }
 ```
 
-## Summary
+## Özet
 
-- The global object holds variables that should be available everywhere.
+- Global nesne, her yerde bulunması gereken değişkenleri tutar.
 
-    That includes JavaScript built-ins, such as `Array` and environment-specific values, such as `window.innerHeight` -- the window height in the browser.
-- The global object has a universal name `globalThis`.
+  Buna "Array" gibi JavaScript yerleşikleri ve "window.innerHeight" gibi ortama özgü değerler - tarayıcıdaki pencere yüksekliği dahildir.
+- Global nesnenin evrensel bir adı 'globalThis' vardır.
 
-    ...But more often is referred by "old-school" environment-specific names, such as `window` (browser) and `global` (Node.js). As `globalThis` is a recent proposal, it's not supported in non-Chromium Edge (but can be polyfilled).
-- We should store values in the global object only if they're truly global for our project. And keep their number at minimum.
-- In-browser, unless we're using [modules](info:modules), global functions and variables declared with `var` become a property of the global object.
-- To make our code future-proof and easier to understand, we should access properties of the global object directly, as `window.x`.
+    ...Ancak daha sık olarak "window(tarayıcı)" ve "global(Node.js)" gibi "eski tarz" çevreye özgü adlarla anılır. "globalThis" yeni bir teklif olduğundan, Chromium Edge dışında desteklenmemektedir (ancak polyfilled olabilir).
+    
+- Değerleri yalnızca projemiz için gerçekten küresellerse global nesnede saklamalıyız. Ve sayılarını minimumda tutun.
+- Tarayıcıda, [modules](info:modules) kullanmadığımız sürece, 'var' ile bildirilen global işlevler ve değişkenler global nesnenin bir özelliği haline gelir.
+- Kodumuzu geleceğe dönük ve daha kolay anlaşılır kılmak için global nesnenin özelliklerine doğrudan "window.x" olarak erişmeliyiz.
