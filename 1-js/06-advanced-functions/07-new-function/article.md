@@ -83,7 +83,7 @@ FonkAl()(); // *!*"test"*/!*, FonkAl'ın sözcüksel ortamından.
 
 `new Function` özelliği biraz garip dursa da çok kullanışlı ve pratiktir.
 
-Düşününkü gerçekten de karakter dizisinden fonksiyon yaratmanız gerekti. O fonksiyonun ne olduğu hangi kodları ihtiva ettiği baştan belli olmayacaktı ( bundan dolayı normal fonksiyonlar kullanılamaz ), fakat çalışma anında fonksiyon yaratılacak. Bu fonksiyon sunucudan veya diğer bir kaynaktan alınabilir.
+Düşününkü gerçekten de karakter dizisinden fonksiyon yaratmanız gerekti. O fonksiyonun ne olduğu hangi kodları kapsadığı baştan belli olmayacaktı ( bundan dolayı normal fonksiyonlar kullanılamaz ), fakat çalışma anında fonksiyon yaratılacak. Bu fonksiyon sunucudan veya diğer bir kaynaktan alınabilir.
 
 Yeni fonksiyon ana kod akışı ile etkileşime geçme ihtiyacında olabilir.
 
