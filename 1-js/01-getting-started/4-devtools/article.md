@@ -26,11 +26,23 @@ Chrome'un geliştirme aracı versiyona göre değişiklik gösterecektir. Fakat 
 
 - Konsol panelinde kırmızı renk ile hatayı görebilirsiniz. Bu durumda kodunuz bilinmeyen "lalala" komutunda hata vermiş.
 
+<<<<<<< HEAD
 - Sağ tarafında hatanın hangi satırda olduğunu görebilirsiniz. Bu alan tıklanabilirdir. Şu anda hata `bug.html:12`'de bulunmaktadır.
+=======
+Below the error message, there is a blue `>` symbol. It marks a "command line" where we can type JavaScript commands. Press `key:Enter` to run them.
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
 
 Hatanın altında `>` sembolünü görebilirsiniz. Bu, "komut satırı"'nı işaret eder. Komutunuzu yazdıktan sonra `key:Enter`'a basarak o satırdaki komutu çalıştırabilirsiniz. Birden fazla satır kod yazabilmek için ise `key:Shift+Enter` tuş kombinasyonunu kullanabilirsiniz.
 
+<<<<<<< HEAD
 Başlangıç için hataları görmek yeterli olacaktır. Daha sonra geliştirme aracını <info:debugging-chrome> bölümünde derinlemesine öğreneceksiniz.
+=======
+```smart header="Multi-line input"
+Usually, when we put a line of code into the console, and then press `key:Enter`, it executes.
+
+To insert multiple lines, press `key:Shift+Enter`. This way one can enter long fragments of JavaScript code.
+```
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
 
 ## Firefox, Edge ve diğerleri
 
@@ -46,11 +58,15 @@ Safari (sadece macOS için desteklenmektedir) biraz özeldir. Geliştirici araç
 
 Bu işlemi yaptıktan sonra `key:Cmd+Opt+C` ile geliştirici konsolunu açıp kapatabilirsiniz. Ayrıca dikkat ederseniz üst menüde "Develop" adında yeni bir başlık göreceksiniz. Buradan da birçok komutu çalıştırabilirsiniz.
 
+<<<<<<< HEAD
 ## Multi-line input
 
 Genelde konsol ekranında `key:Enter` yaparsanız bulunduğu satırı çalıştırır. Birden fazla satırı yazmak istiyorsanız `key:Shift+Enter` kullanabilirsiniz.
 
 ## Özet
+=======
+## Summary
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
 
 - Geliştirici araçları hataları görmenizi, komutları çalıştırmanızı, değişkenleri takip etmenizi sağlar.
 - Windows işletim sisteminde `key:f12` tuşu ile açılır (Çoğu tarayıcıda bu tuş çalışır). macOS işletim sistemi için ise Google Chrome: `key:Cmd+Opt+J`  ile Safari ise: `key:Cmd+Opt+C` tuşu ile açılır (Safari'de geliştirici modunu açmanız gerekmekte).

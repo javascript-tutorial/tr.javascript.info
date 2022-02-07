@@ -19,7 +19,7 @@ Both storage objects provide same methods and properties:
 - `key(index)` -- get the key on a given position.
 - `length` -- the number of stored items.
 
-As you can see, it's like a `Map` collection (`setItem/getItem/removeItem`), but also keeps elements order and allows to access by index with `key(index)`.
+As you can see, it's like a `Map` collection (`setItem/getItem/removeItem`), but also allows access by index with `key(index)`.
 
 Let's see how it works.
 
@@ -61,9 +61,10 @@ alert( localStorage.test ); // 2
 delete localStorage.test;
 ```
 
-That's allowed for historical reasons, and mostly works, but generally not recommended for two reasons:
+That's allowed for historical reasons, and mostly works, but generally not recommended, because:
 
 1. If the key is user-generated, it can be anything, like `length` or `toString`, or another built-in method of `localStorage`. In that case `getItem/setItem` work fine, while object-like access fails:
+
     ```js run
     let key = 'length';
     localStorage[key] = 5; // Error, can't assign length
@@ -119,7 +120,6 @@ for(let key of keys) {
 
 The latter works, because `Object.keys` only returns the keys that belong to the object, ignoring the prototype.
 
-
 ## Strings only
 
 Please note that both key and value must be strings.
@@ -127,17 +127,17 @@ Please note that both key and value must be strings.
 If were any other type, like a number, or an object, it gets converted to string automatically:
 
 ```js run
-sessionStorage.user = {name: "John"};
-alert(sessionStorage.user); // [object Object]
+localStorage.user = {name: "John"};
+alert(localStorage.user); // [object Object]
 ```
 
 We can use `JSON` to store objects though:
 
 ```js run
-sessionStorage.user = JSON.stringify({name: "John"});
+localStorage.user = JSON.stringify({name: "John"});
 
 // sometime later
-let user = JSON.parse( sessionStorage.user );
+let user = JSON.parse( localStorage.user );
 alert( user.name ); // John
 ```
 
@@ -148,7 +148,6 @@ Also it is possible to stringify the whole storage object, e.g. for debugging pu
 alert( JSON.stringify(localStorage, null, 2) );
 ```
 
-
 ## sessionStorage
 
 The `sessionStorage` object is used much less often than `localStorage`.
@@ -157,7 +156,7 @@ Properties and methods are the same, but it's much more limited:
 
 - The `sessionStorage` exists only within the current browser tab.
   - Another tab with the same page will have a different storage.
-  - But it is shared between iframes in the tab (assuming they come from the same origin).
+  - But it is shared between iframes in the same tab (assuming they come from the same origin).
 - The data survives page refresh, but not closing/opening the tab.
 
 Let's see that in action.
@@ -180,7 +179,7 @@ That's exactly because `sessionStorage` is bound not only to the origin, but als
 
 ## Storage event
 
-When the data gets updated in `localStorage` or `sessionStorage`, [storage](https://www.w3.org/TR/webstorage/#the-storage-event) event triggers, with properties:
+When the data gets updated in `localStorage` or `sessionStorage`, [storage](https://html.spec.whatwg.org/multipage/webstorage.html#the-storageevent-interface) event triggers, with properties:
 
 - `key` – the key that was changed (`null` if `.clear()` is called).
 - `oldValue` – the old value (`null` if the key is newly added).
@@ -202,7 +201,7 @@ If both windows are listening for `window.onstorage`, then each one will react o
 
 ```js run
 // triggers on updates made to the same storage from other documents
-window.onstorage = event => {
+window.onstorage = event => { // can also use window.addEventListener('storage', event => {
   if (event.key != 'now') return;
   alert(event.key + ':' + event.newValue + " at " + event.url);
 };
@@ -212,17 +211,18 @@ localStorage.setItem('now', Date.now());
 
 Please note that the event also contains: `event.url` -- the url of the document where the data was updated.
 
-Also, `event.storageArea` contains the storage object -- the event is the same for both `sessionStorage` and `localStorage`, so `storageArea` references the one that was modified. We may even want to set something back in it, to "respond" to a change.
+Also, `event.storageArea` contains the storage object -- the event is the same for both `sessionStorage` and `localStorage`, so `event.storageArea` references the one that was modified. We may even want to set something back in it, to "respond" to a change.
 
 **That allows different windows from the same origin to exchange messages.**
 
-Modern browsers also support [Broadcast channel API](https://developer.mozilla.org/en-US/docs/Web/API/Broadcast_Channel_API), the special API for same-origin inter-window communication, it's more full featured, but less supported. There are libraries that polyfill that API, based on `localStorage`, that make it available everywhere.
+Modern browsers also support [Broadcast channel API](mdn:/api/Broadcast_Channel_API), the special API for same-origin inter-window communication, it's more full featured, but less supported. There are libraries that polyfill that API, based on `localStorage`, that make it available everywhere.
 
 ## Summary
 
 Web storage objects `localStorage` and `sessionStorage` allow to store key/value in the browser.
+
 - Both `key` and `value` must be strings.
-- The limit is 2mb+, depends on the browser.
+- The limit is 5mb+, depends on the browser.
 - They do not expire.
 - The data is bound to the origin (domain/port/protocol).
 
@@ -245,5 +245,5 @@ API:
 Storage event:
 
 - Triggers on `setItem`, `removeItem`, `clear` calls.
-- Contains all the data about the operation, the document `url` and the storage object.
+- Contains all the data about the operation (`key/oldValue/newValue`), the document `url` and the storage object `storageArea`.
 - Triggers on all `window` objects that have access to the storage except the one that generated it (within a tab for `sessionStorage`, globally for `localStorage`).

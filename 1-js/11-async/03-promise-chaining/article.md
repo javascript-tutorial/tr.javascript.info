@@ -1,7 +1,11 @@
 
 # Promise Zinciri
 
+<<<<<<< HEAD
 <info:callbacks> bölümünde bahsettiğimiz probleme tekrar göz atalım. Burada bir seri asenkron görevin ardaşık bir biçimde çağırılması gerekmekte. Örneğin script dosyalarının yüklenmesi. Bunu Promise ile nasıl yapabiliriz?
+=======
+Let's return to the problem mentioned in the chapter <info:callbacks>: we have a sequence of asynchronous tasks to be performed one after another — for instance, loading scripts. How can we code it well?
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
 
 Promise bize bunu gerçekleştirebilmemiz için bazı yöntemler sunmakta.
 
@@ -34,20 +38,33 @@ new Promise(function(resolve, reject) {
 
 Buradaki yaklaşım, elde edilen sonuçların `.then` zincirinde tekrar işleme alınmasıdır.
 
+<<<<<<< HEAD
 Genel akış şu şekilde:
 1. İlk Promise 1 saniye içerisinde sonuçlanır `(*)`,
 2. Sonrasında ilk `.then` işleyicisi çağrılır  `(**)`.
 3. Bu fonksiyondan dönen değer bir sonraki `.then` işleyicisine aktarılır `(***)`
 4. ...ve zincirleme süreç böyle işlemeye devam eder.
+=======
+Here the flow is:
+1. The initial promise resolves in 1 second `(*)`,
+2. Then the `.then` handler is called `(**)`, which in turn creates a new promise (resolved with `2` value).
+3. The next `then` `(***)` gets the result of the previous one, processes it (doubles) and passes it to the next handler.
+4. ...and so on.
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
 
 Sonucun işleyiciler arasında aktarılmasıyla birlikte `alert` fonsiyonlarının çağırıldığını ve sırasıyla `1` -> `2` -> `4` çıktılarını verdiğini görürüz. 
 
 ![](promise-then-chain.svg)
 
+<<<<<<< HEAD
 `promise.then` çağrısı bir Promise döndürür, böylelikle bir sonraki `.then` işleyicisi çağırılabilir.
+=======
+The whole thing works, because every call to a `.then` returns a new promise, so that we can call the next `.then` on it.
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
 
 İşleyiciden bir değer döndüğünde, bu Promise' in sonucu olur. Böylece bir sonraki `.then` işleyicisi bu değer ile çağrılır. 
 
+<<<<<<< HEAD
 Promise Zinciri şöyle başlamakta:
 
 ```js run
@@ -67,6 +84,9 @@ new Promise(function(resolve, reject) {
 `.then` işleyicisinden dönen değer yine Promise' dir, böylece zinciri oluşturacak olan diğer `.then` işleyicileri `(1)` ve `(2)` değerleri üzerinden çağrılabilmektedir. 
 
 **Aşağıda genel olarak yapılan bir hata görülmekte. Tanımlanmış olan Promise objesinin bir değişkene atanıp bunun üzerinden tekil şekilde `.then` işleyicisinin çağırılması bir Promise Zinciri oluşturmaz.**
+=======
+**A classic newbie error: technically we can also add many `.then` to a single promise. This is not chaining.**
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
 
 Örnek:
 ```js run
@@ -90,7 +110,11 @@ promise.then(function(result) {
 });
 ```
 
+<<<<<<< HEAD
 Burada tek bir Promise objesine birden fazla işleyicinin eklenmesi ve bu işleyicilerin birbirleri arasında veriyi aktarmadan, yanlızca ilk dönütü birbirlerinden bağımsız olarak işledikleri görülmektedir. 
+=======
+What we did here is just several handlers to one promise. They don't pass the result to each other; instead they process it independently.
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
 
 Burada durumu niteleyen akışı görebiliriz (bunu yukarıdaki zincir akışını göz önüne alarak inceleyiniz):
 
@@ -101,9 +125,15 @@ Aynı Promise üzerindeki tüm `.then` işleyicileri yukarıdaki örnekte aynı 
 Genel olarak uygulamalarımızda bir Promise üzerinde birden fazla işleyiciye nadiren ihtiyaç duyulur. Fakat, zincir yapısı ise çok daha sık şekilde kullanılmaktadır. 
 
 
+<<<<<<< HEAD
 ## Promise Dönütü
 
 Normal koşullarda `.then` işleyicisinden dönen değer doğrudan sonraki işleyiciye bir parametre olarak aktarılır. Fakat burada bir istisna var.
+=======
+A handler, used in `.then(handler)` may create and return a promise.
+
+In that case further handlers wait until it settles, and then get its result.
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
 
 Şayet dönen değer yine bir Promise ise zincirleme akış bu Promise sonuçlanana dek durur, yeni değerin gelmesini bekler. Sonrasında gelen dönüt bir sonraki `.then` işleyicisine aktarılır.
 
@@ -139,15 +169,25 @@ new Promise(function(resolve, reject) {
 });
 ```
 
+<<<<<<< HEAD
 Buradaki ilk `.then` işleyicisi `alert` fonksiyonu ile `1` değerini gösterir ve yeni bir Promise objesi oluşturarak döndürür. Bir sonraki `.then` işleyicisi `result` parametresi olarak gönderdiğimiz Promise' i alır. 1000ms sonrasında bu Promise sonuçlanır ve kendi tanım aralığındaki `result` değerini kullanarak `result * 2` değerini döner.`(**)` satırında tanımlanmış olan işleyici içerisindeki `alert` fonksiyonu çalışır ve `2` değerini gösterir.
 
 Sonuç olarak `alert` fonksiyonları birer saniyelik gecikmeyle birlikte sırasıyla 1 -> 2 -> 4 çıktılarını gösterir.
+=======
+Here the first `.then` shows `1` and returns `new Promise(…)` in the line `(*)`. After one second it resolves, and the result (the argument of `resolve`, here it's `result * 2`) is passed on to the handler of the second `.then`. That handler is in the line `(**)`, it shows `2` and does the same thing.
+
+So the output is the same as in the previous example: 1 -> 2 -> 4, but now with 1 second delay between `alert` calls.
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
 
 Promise dönütü oluşturabiliyo olmak bize asenkron zincir yapıları oluşturma kolaylığı sağlar.
 
 ## Örnek: loadScript
 
+<<<<<<< HEAD
 Yukarıda bahsettiğimiz zincir yapısını, önceki bölümlerde tanımladığımız [previous chapter](/promise-basics#loadscript) örneğindeki içeriği kullanmak için tanımlayalım:
+=======
+Let's use this feature with the promisified `loadScript`, defined in the [previous chapter](info:promise-basics#loadscript), to load scripts one by one, in sequence:
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
 
 ```js run
 loadScript("/article/promise-chaining/one.js")
@@ -183,7 +223,15 @@ Burada her `loadScript` çağrısı bir Promise döndürmekte ve takip eden `.th
 
 Yukarıdaki kod bloğunun halen sade bir yapı halinde olduğuna da dikkat etmekte fayda var. Kod bloğu sağ tarafa doğru değil aşağı yönde genişleme göstermekte. Burada herhangi bir şekilde "kıyamet piramidi / callback cehennemi" yapısının oluşmadığını görebiliriz.
 
+<<<<<<< HEAD
 `.then` işleyicisini doğrudan `loadScript` fonksiyonu üzerinden de çağırabiliriz:
+=======
+Here each `loadScript` call returns a promise, and the next `.then` runs when it resolves. Then it initiates the loading of the next script. So scripts are loaded one after another.
+
+We can add more asynchronous actions to the chain. Please note that the code is still "flat" — it grows down, not to the right. There are no signs of the "pyramid of doom".
+
+Technically, we could add `.then` directly to each `loadScript`, like this:
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
 
 ```js run
 loadScript("/article/promise-chaining/one.js").then(script1 => {
@@ -205,12 +253,19 @@ Promise yapısını yeni kullanmaya başlayan kişiler bazen zincir yapısı hak
 Fakat bunun da istisnai olarak kullanılması gereken durumlar ortaya çıkabilmektedir. Örneğin; `script1`, `script2` ve `script3` parametrelerine en içteki işleyiciden erişilmesi gereken bir durumun oluşabilmesi gibi.
 
 
+<<<<<<< HEAD
 ````smart header="Thenable"
 `.then` işleyicisi herhangi bir "thenable" obje döndürebilir ve bu, aynı bir Promise objesi gibi işlem görür.
 
 Bir "thenable" objesi, üzerinde `.then` metodu tanımlı herhangi bir objedir.
 
 Buradaki düşünce, 3. parti kütüphanelere kendi Promise uyumlu objelerini geliştirebilme esnekliği sunmaktır. Bu kütüphaneler kendi istekleri doğrultusunda farklı metodları objelerine ekleyebilirler.
+=======
+````smart header="Thenables"
+To be precise, a handler may return not exactly a promise, but a so-called "thenable" object - an arbitrary object that has a method `.then`. It will be treated the same way as a promise.
+
+The idea is that 3rd-party libraries may implement "promise-compatible" objects of their own. They can have an extended set of methods, but also be compatible with native promises, because they implement `.then`.
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
 
 Aşağıda bir "thenable" obje örneği mevcut:
 
@@ -228,15 +283,23 @@ class Thenable {
 
 new Promise(resolve => resolve(1))
   .then(result => {
+*!*
     return new Thenable(result); // (*)
+*/!*
   })
   .then(alert); // 2 değerini 1000ms sonra gösterir
 ```
 JavaScript `(*)` olan satırda `.then` tarafından dönen objeyi kontrol eder: eğer bu obje üzerinde `.then` metodu tanımlıysa `resolve` ve `reject` fonksiyonlarını parametre olarak `.then` fonksiyonuna sağlar ve bu metodlardan biri çağırılıncaya dek bekler.
 
+<<<<<<< HEAD
 Yukarıdaki örnekte `resolve(2)` metodu `(**)` satırı yorumlandıktan 1 saniye sonra çağrılır. Ortaya çıkan sonuç sonrasında Promise Zinciri üzerinde aşağı doğru gidecektir.
 
 Bu özellik sayesinde Promise Zinciri özelliğine sahip objelerin yaratımı `Promise` objesinden kalıtılmak zorunda olmaksızın yapılabilir.
+=======
+JavaScript checks the object returned by the `.then` handler in line `(*)`: if it has a callable method named `then`, then it calls that method providing native functions `resolve`, `reject` as arguments (similar to an executor) and waits until one of them is called. In the example above `resolve(2)` is called after 1 second `(**)`. Then the result is passed further down the chain.
+
+This feature allows us to integrate custom objects with promise chains without having to inherit from `Promise`.
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
 ````
 
 
@@ -244,7 +307,11 @@ Bu özellik sayesinde Promise Zinciri özelliğine sahip objelerin yaratımı `P
 
 Ön-yüz programla içinde promise çoğunlukla ağ üzerinde yapılan isteklerde kullanılır. Bunu gerçekleştiren bir örnekle devam edelim.
 
+<<<<<<< HEAD
 Burada [fetch](mdn:api/WindowOrWorkerGlobalScope/fetch) metodunu uzak bir sağlayıcıdan veri almak için kullanacağız. Bu metod birçok parametreye sahip fakat basitçe kullanımı aşağıdaki gibi:
+=======
+We'll use the [fetch](info:fetch) method to load the information about the user from the remote server. It has a lot of optional parameters covered in [separate chapters](info:fetch), but the basic syntax is quite simple:
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
 
 ```js
 let promise = fetch(url);
@@ -252,15 +319,20 @@ let promise = fetch(url);
 
 Bu, verilmiş olan `url` adresine bir istek yollar ve Promise döner. Promise, uzaktaki sağlayıcıdan istenen veriyi aldığında bir `response` objesi olarak çözümlenir.
 
+<<<<<<< HEAD
 Tüm dönütü elde edebilmek için `response.text()` metodunu çağırmamız gerekir. Bu çağrı, uzak sunucudan tüm içerik alındıktan sonra çözümlenecek olan bir Promise döner.
 
 Aşağıdaki örnekte `user.json` dosyasına çağrı yapılmakta ve dönüt `alert` fonksiyonu ile gösterilmekte:
+=======
+To read the full response, we should call the method `response.text()`: it returns a promise that resolves when the full text is downloaded from the remote server, with that text as a result.
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
 
 
 ```js run
 fetch('/article/promise-chaining/user.json')
   // uzak sunucudan cevap geldiğinde aşağıdaki `.then` çalışır
   .then(function(response) {
+<<<<<<< HEAD
     // response.text() tüm içeriği çözümleyecek olan promise' i döner
     // sonrasında içeriği indirir
     return response.text();
@@ -268,17 +340,32 @@ fetch('/article/promise-chaining/user.json')
   .then(function(text) {
     // ...ve uzak sunucudan gelen içerik
     alert(text); // {"name": "iliakan", isAdmin: true}
+=======
+    // response.text() returns a new promise that resolves with the full response text
+    // when it loads
+    return response.text();
+  })
+  .then(function(text) {
+    // ...and here's the content of the remote file
+    alert(text); // {"name": "iliakan", "isAdmin": true}
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
   });
 ```
 Ayrıca `response.json()` metodu gelen veriyi doğruca JSON formatına çözümler. Örnekteki senaryoya daha uygun olduğundan kodda bu kısmı değiştirelim.
 
+<<<<<<< HEAD
 Arrow fonksiyon kullanarak da daha sade bir biçime ulaşabilmek için kodu tekrar düzenleyelim.
+=======
+The `response` object returned from `fetch` also includes the method `response.json()` that reads the remote data and parses it as JSON. In our case that's even more convenient, so let's switch to it.
+
+We'll also use arrow functions for brevity:
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
 
 ```js run
 // yukarıdan farklı olarak response.json() kullanıyoruz
 fetch('/article/promise-chaining/user.json')
   .then(response => response.json())
-  .then(user => alert(user.name)); // iliakan
+  .then(user => alert(user.name)); // iliakan, got user name
 ```
 
 Şimdi de elde ettiğimiz kullanıcı verisiyle bir şeyler yapalım.
@@ -305,7 +392,11 @@ fetch('/article/promise-chaining/user.json')
   });
 ```
 
+<<<<<<< HEAD
 Yukarıdaki kod bloğu istediğimiz şekilde çalışmakta fakat burada potansiyel bir sorun da mevcut.
+=======
+The code works; see comments about the details. However, there's a potential problem in it, a typical error for those who begin to use promises.
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
 
 `(*)` işaretli satıra bakıcak olursak, gösterdiğimiz avatar resmi DOM üzerinden silindikten sonra herhangi bir şey yapmak istiyorsak bunu nasıl yapabiliriz? Örneğin sayfa üzerde bu kullanıcının verilerini düzenlemek için bir form göstermek istiyor olalım. Mevcut durumda bunu yapamayız, çünkü son `.then` işleyicisi herhangi bir değer döndürmemekte. Bundan dolayı, tekrar `.then` fonksiyonu çağırılamaz.
 
@@ -319,7 +410,7 @@ fetch('/article/promise-chaining/user.json')
   .then(user => fetch(`https://api.github.com/users/${user.name}`))
   .then(response => response.json())
 *!*
-  .then(githubUser => new Promise(function(resolve, reject) {
+  .then(githubUser => new Promise(function(resolve, reject) { // (*)
 */!*
     let img = document.createElement('img');
     img.src = githubUser.avatar_url;
@@ -329,7 +420,7 @@ fetch('/article/promise-chaining/user.json')
     setTimeout(() => {
       img.remove();
 *!*
-      resolve(githubUser);
+      resolve(githubUser); // (**)
 */!*
     }, 3000);
   }))
@@ -337,11 +428,17 @@ fetch('/article/promise-chaining/user.json')
   .then(githubUser => alert(`Finished showing ${githubUser.name}`));
 ```
 
+<<<<<<< HEAD
 Yapılan değişiklikten sonra `img.remove()` metodu ayn şekilde 3 saniye sonra çalışacak. Fakat, sonrasında `resolve(githubUser)` ile kullanıcı bilgilerini bir sonraki zincirde kullanılabilmesi için çözümleyecek.
 
 Genel bir kural olarak, asenkron eylemler her zaman bir promise döndürmelidir.
 
 Bu, asenkron eylemlerden sonra gerçekleştirilecek işlemler için olanak sağlamaktadır. Şu anda, zincirin son işleyicisinden sonra herhangi bir genişlemeye ihtiyaç duymuyor olsak dahi, ileriye dönük olarak buna ihtiyacımız olabileceğini göz önüne almamız gerekir.
+=======
+That is, the `.then` handler in line `(*)` now returns `new Promise`, that becomes settled only after the call of `resolve(githubUser)` in `setTimeout` `(**)`. The next `.then` in the chain will wait for that.
+
+As a good practice, an asynchronous action should always return a promise. That makes it possible to plan actions after it; even if we don't plan to extend the chain now, we may need it later.
+>>>>>>> 71da17e5960f1c76aad0d04d21f10bc65318d3f6
 
 Nihayetinde, kodu daha yönetilebilir parçalara ayrıştırarak tekrar kullanılabilir fonksiyonlarımızı yazıyoruz:
 
@@ -352,8 +449,7 @@ function loadJson(url) {
 }
 
 function loadGithubUser(name) {
-  return fetch(`https://api.github.com/users/${name}`)
-    .then(response => response.json());
+  return loadJson(`https://api.github.com/users/${name}`);
 }
 
 function showAvatar(githubUser) {
