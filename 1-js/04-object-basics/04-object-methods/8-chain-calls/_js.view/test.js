@@ -33,8 +33,22 @@ describe('merdiven', function () {
     assert.equal(merdiven.asagi().yukari().yukari().yukari().adim, 2);
   });
 
+<<<<<<< HEAD
   after(function () {
     merdiven.adim = 0;
     alert.kaydet();
+=======
+  it('showStep() should return this', function() {
+    assert.equal(ladder.showStep(), ladder);
+  });
+ 
+  it('up().up().down().showStep().down().showStep()', function () {
+    assert.equal(ladder.up().up().down().showStep().down().showStep().step, 0)
+  });
+  
+  after(function() {
+    ladder.step = 0;
+    alert.restore();
+>>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
   });
 });

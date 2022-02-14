@@ -1,8 +1,14 @@
 Bir fonksiyon içerisinden baktığımızda farklılıklar daha aşikar olmakta.
 
+<<<<<<< HEAD
 "dışarı sıçra" seçeneği olduğunda `try..catch` davranışı daha farklı olmaktadır.
 
 Örneğin `try..catch` içerieinde bir `return` olduğunda. `try..catch` bloğunun sonunda her türlü `finally`'e uğramak zorunludur, bu `return` bile olsa.
+=======
+The behavior is different if there's a "jump out" of `try...catch`.
+
+For instance, when there's a `return` inside `try...catch`. The `finally` clause works in case of *any* exit from `try...catch`, even via the `return` statement: right after `try...catch` is done, but before the calling code gets the control.
+>>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
 
 ```js run
 function f() {
@@ -11,7 +17,7 @@ function f() {
 *!*
     return "result";
 */!*
-  } catch (e) {
+  } catch (err) {
     /// ...
   } finally {
     alert('cleanup!');
@@ -27,11 +33,11 @@ function f() {
   try {
     alert('start');
     throw new Error("an error");
-  } catch (e) {
+  } catch (err) {
     // ...
     if("can't handle the error") {
 *!*
-      throw e;
+      throw err;
 */!*
     }
 
@@ -42,4 +48,9 @@ function f() {
 
 f(); // cleanup!
 ```
+<<<<<<< HEAD
 Burada `finally` temizliğin yapılacağının garantisini verir. Eğer temizlik kodunu `f`'in sonuna koyarsanız çalışmayabilir.
+=======
+
+It's `finally` that guarantees the cleanup here. If we just put the code at the end of `f`, it wouldn't run in these situations.
+>>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834

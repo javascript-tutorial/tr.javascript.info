@@ -21,12 +21,17 @@ let merdiven = {
     return this;
 */!*
   }
-}
+};
 
+<<<<<<< HEAD
 merdiven.yukari().yukari().asagi().yukari().asagi().adimiGoster();//1
+=======
+ladder.up().up().down().showStep().down().showStep(); // shows 1 then 0
+>>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
 ```
 Ayrıca her satır için tek çağrı da yazılabilir. Uzun zincirleme fonksiyonlar için bu daha okunabilirdir.
 
+<<<<<<< HEAD
 ```js 
 merdiven
   .yukari()
@@ -35,4 +40,16 @@ merdiven
   .up()
   .asagi()
   .adimiGoster(); // 1
+=======
+We also can write a single call per line. For long chains it's more readable:
+
+```js
+ladder
+  .up()
+  .up()
+  .down()
+  .showStep() // 1
+  .down()
+  .showStep(); // 0
+>>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
 ```
