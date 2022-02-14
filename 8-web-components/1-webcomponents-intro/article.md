@@ -26,9 +26,15 @@ Uluslararası Uzay İstasyonu:
 
 ... Ayrıca bu şey, içerisinde insanları canlı tutarak uzayda uçar!
 
+<<<<<<< HEAD
 Bu kadar karmaşık cihazlar nasıl oluşturulur?
 
 Geliştirmemizi aynı düzeyde güvenilir ve ölçeklenebilir hale getirmek için hangi prensipleri ödünç alabiliriz? En azından, yaklaşabilmek için.
+=======
+How are such complex devices created?
+
+Which principles could we borrow to make our development same-level reliable and scalable? Or, at least, close to it?
+>>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
 
 ## Bileşen mimarisi
 
@@ -56,15 +62,27 @@ Bileşenler alt bileşenlere sahip olabilir; örneğin mesajlar, bir üst seviye
 
 Bir bileşenin ne olduğuna nasıl karar vereceğiz? Bu biraz da sezgiden, deneyimden ve sağduyudan gelir. Genellikle ne yaptığını ve sayfa ile nasıl etkileşimde bulunduğunu tanımlayabildiğimiz, ayrılmış bir görsel varlıktır. Yukarıdaki durumda sayfa bloklara sahiptir, bunların herbiri kendi rolünü oynar. Bu durumda bunları bileşen yapmak mantıklıdır.
 
+<<<<<<< HEAD
 Bir bileşen şunlara sahiptir:
 - kendi JavaScript sınıfı.
 - yalnızca kendi sınıfı tarafından yönetilen DOM mimarisi, dış kod buna erişemez ("kapsülleme" prensibi).
 - Bileşen tarafından uygulanan CSS stilleri
 - API: diğer bileşenlerle etkileşime geçmek için olaylar, sınıf metotları vs.
+=======
+A component has:
+- Its own JavaScript class.
+- DOM structure, managed solely by its class, outside code doesn't access it ("encapsulation" principle).
+- CSS styles, applied to the component.
+- API: events, class methods etc, to interact with other components.
+>>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
 
 Bir kez daha değinelim, tüm bu "bileşen" yapısı özel bir şey değildir.
 
+<<<<<<< HEAD
 Bunları oluşturmak için çok fazla framework ve geliştirme metodolojisi vardır, herbirinin kendi gösterişi vardır. Genellikle "bileşen hissi" sağlamak adına, CSS kapsamı ve DOM kapsülleme için özel CSS sınıfları ve kuralları kullanır.
+=======
+There exist many frameworks and development methodologies to build them, each with its own bells and whistles. Usually, special CSS classes and conventions are used to provide "component feel" -- CSS scoping and DOM encapsulation.
+>>>>>>> 29216730a877be28d0a75a459676db6e7f5c4834
 
 "Web bileşenleri" bunun için yerleşik tarayıcı özellikleri sağlar, bu yüzden bunları artık taklit etmemize gerek yok.
 
