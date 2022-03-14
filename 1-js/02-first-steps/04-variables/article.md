@@ -302,7 +302,7 @@ Birkaç kural şu şekildedir:
 - `a`, `b`, `c` gibi kısaltmaları kullanmayın. Tabi ne yaptığınızı kesin olarak biliyorsanız kullanabilirsiniz.
 
 - İsimlerin açıklayıcı olmasına önem verin. Örneğin `veri` ve `deger` adindaki değişkenler bir şey ifade etmezler. Tabi eğer kod bloğunda bunların bir anlamı var ise kullanılabilir.
-- Bazı tanımları kafanızda takımınızın kullandığı şekil ile uyumlu şekilde oturtun. Örneğin sizeyi ziyaret eden kişi `kullanici` ise kullanıcı ile olan değişkenleri `anlikKullanici` veya `yeniKullanici` gibi kullanın fakat `yeniZiyaretci` veya `yeniCocuk` gibi kullanmayın.
+- Bazı tanımları kafanızda takımınızın kullandığı şekil ile uyumlu şekilde oturtun. Örneğin siteyi ziyaret eden kişi `kullanici` ise kullanıcı ile olan değişkenleri `anlikKullanici` veya `yeniKullanici` gibi kullanın fakat `yeniZiyaretci` veya `yeniCocuk` gibi kullanmayın.
 
 Basit değil mi? Gerçekten öyle, fakat pratikte bu kadar da basit değil. Umarım bunu siz gerçekleştirirsiniz.
 
@@ -324,7 +324,7 @@ Modern JavaScript sıkıştırıcılar ve tarayıcılar kodları oldukça iyi op
 Verileri saklamak için değişken tanımlayabilirsiniz. Bu işlemi `var` veya `let` veya `const` ile yapabilirsiniz.
 
 - `let` -- modern değişken tanımlama. Chrome üzerinde `let` ile değişken tanımlamak istiyorsanız sıkı modda ( strict mode ) çalışmanız gerekmekte.
-- `var` -- eski tip değişken tanımlama. Normale bu tarz değişken oluşturma hiç kullılmayacka. İleride `let` ile `var` arasındaki nüans farkı <info:var> bölümünde incelenecek.
+- `var` -- eski tip değişken tanımlama. Yeni kodlarda çok nadir kullanılır, belki yakında hiç kullanılmayacak. Bu konu ileride `let` ile `var` arasındaki nüans farkı <info:var> bölümünde incelenecek.
 - `const` -- bu da `let` gibi fakat değeri değiştirilemez.
 
 Değişkenler bulundukları yerdeki anlamlarına göre isimlendirilmelidirler.
