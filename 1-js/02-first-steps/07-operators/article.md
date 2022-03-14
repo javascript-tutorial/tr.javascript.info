@@ -2,7 +2,7 @@
 
 Çoğu operatörü okuldan hatırlarsınız. Toplama `+`, çarpma `*`, çıkarma `-` vs. 
 
-Bu bölümde okulda görmediğiniz aritmediği işleyeceğiz.
+Bu bölümde okulda görmediğiniz aritmetiği işleyeceğiz.
 
 ## Tanımlamalar: "unary", "binary", "operand"
 
@@ -21,7 +21,7 @@ Başlamadan önce terminolojiyi öğrenmekte fayda var.
     */!*
     alert( x ); // -1, unary işlemi gerçekleşti
     ```
-- Eğer operatörün iki tane operandı var ise buna binary operand denir. Örneğin çıkarma işlemi aşağıda bu formda bulunur.
+- Eğer operatörün iki tane operand'ı var ise buna **binary operand** denir. Örneğin çıkarma işlemi aşağıda bu formda bulunur.
 
     ```js run no-beautify
     let x = 1, y = 3;
@@ -116,7 +116,7 @@ alert( +elma + +portakal ); // 5
 
 // şeklinde yapabilirsiniz.
 ```
-Olaya bir matematikçi gözünden bakarsanız `+` kullanımı garip gelebilir. Fakat bir programcının gözünden özel bir olay yok aslında: operand'ı bir tane olan(unary) toplama işlemi önce uygulanıyor ve karakter dizisini sayıya çeviriyor. Daha sonra iki tane operandlı ( binary) toplama işlemi bunları topluyor.
+Olaya bir matematikçi gözünden bakarsanız `+` kullanımı garip gelebilir. Fakat bir programcının gözünden özel bir olay yok aslında: operand'ı bir tane olan(unary) toplama işlemi önce uygulanıyor ve karakter dizisini sayıya çeviriyor. Daha sonra iki tane operand'lı ( binary) toplama işlemi bunları topluyor.
 
 Neden önce "unary" işlemi gerçekleşiyor da "binary" işlemi gerçekleşmiyor? Buna *yüksek öncelik* diyebiliriz.
 
@@ -128,7 +128,7 @@ Okuldan hepinizin hatırlayacağı gibi çarpma işlemi toplamadan önce yapıl�
 
 Parantez, bu öncelikleri çiğner ve eğer bu *önceliklerden* memnun değilseniz bunları tekrar tanımlamanıza olanak verir. Örneğin `(1 + 2 ) * 2`
 
-JavaScript' dilinde birçok operatör vardır. Her operatörün de bir önceliği. Yüksek öncelik sayısına sahip operatör önce çalışır. Eğer öncelik değerleri eşit ise soldan sağa doğru çalışır.
+JavaScript dilinde birçok operatör vardır. Her operatörün de bir önceliği. Yüksek öncelik sayısına sahip operatör önce çalışır. Eğer öncelik değerleri eşit ise soldan sağa doğru çalışır.
 
 [öncelik tablosu](https://developer.mozilla.org/en/JavaScript/Reference/operators/operator_precedence) ( Ezberlemenize gerek yok sadece unary operatörlerin binary olanlara göre daha üstün olduğunu hatırlayın yeter). Yani `+elma + +portakal` işleminde önce unary ile `elma`'nın değerini sayı yapar sonra `portakal`'ın değerini sayı yapar ve en sonunda toplar.
 
@@ -171,7 +171,7 @@ alert( a ); // 4
 alert( b ); // 4
 alert( c ); // 4
 ```
-Zincirleme atama sağdan sola doğru olur. Önce en sağdaki değişkene değer atanır. `2+2` değeri önce `c`'ye ardından `b` ve son olarakta `a` ya atanır. En sonunda tüm değişkenler tek bir değeri alırlar.
+Zincirleme atama sağdan sola doğru olur. Önce en sağdaki değişkene değer atanır. `2+2` değeri önce `c`'ye ardından `b` ve son olarak da `a`'ya atanır. En sonunda tüm değişkenler tek bir değeri alırlar.
 
 
 ````smart header="`\"=\"` operatörü değer döndürür"
@@ -362,7 +362,7 @@ Operatörlerin listesi:
 - RIGHT SHIFT -- SAĞ KAYDIRMA ( `>>` )
 - ZERO-FILL RIGHT SHIFT -- SIFIR DOLDURARAK SAĞ KAYDIRMA ( `>>>` )
 
-Bu oparatörlerin çok nadir kullanılır.  Onları anlamak için düşük seviyeli sayı temsiline girmemiz gerekiyor ve özellikle de yakın zamanda onlara ihtiyaç duymayacağımızdan şu anda bunu yapmak uygun olmayacaktır. Merak ediyorsanız, MDN ile ilgili [Bitwise Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) makalesini okuyabilirsiniz. Gerçek bir ihtiyacınız olduğunda bunu yapmak daha pratik olacaktır.
+Bu oparatörler çok nadir kullanılır.  Onları anlamak için düşük seviyeli sayı temsiline girmemiz gerekiyor ve özellikle de yakın zamanda onlara ihtiyaç duymayacağımızdan şu anda bunu yapmak uygun olmayacaktır. Merak ediyorsanız, MDN ile ilgili [Bitwise Operators](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Operators/Bitwise_Operators) makalesini okuyabilirsiniz. Gerçekten ihtiyacınız olduğunda bunu yapmak daha doğru olacaktır.
 
 ## Modify-in-place (Yerinde Değiştir)
 
@@ -376,7 +376,6 @@ n = n + 5;
 n = n * 2;
 ```
 
-This notation can be shortened using the operators `+=` and `*=`:
 Bu işlemler `+=` ve `*=` kullanılarak kısaltılabilir:
 
 ```js run
@@ -396,7 +395,7 @@ let n = 2;
 
 n *= 3 + 5;
 
-alert( n ); // 16  (önce sağ kısımda işleem yapıldı, n *= 8 gibi)
+alert( n ); // 16  (önce sağ kısımda işlem yapıldı, n *= 8 gibi)
 ```
 
 ## Virgül
@@ -418,14 +417,14 @@ alert( a ); // 7 (3 + 4 işleminin sonucu)
 Burada, ilk ifade olan `1 + 2` işleme giriyor fakat sonucu çöpe atılıyor. Sonrasında gelen `3 + 4` işleme giriyor ve sonuç olarak geri döndürülüyor.
 
 ```smart header="Virgül operatörünün önceliği çok düşüktür"
-Unutmamak gerekir ki virgül oparatörü çok düşük bir önceliğe sahiptir, önceliği `=` den bile daha düşüktür; bu yüzden yukardaki örnekte gördüğümüz gibi parantezler çok önemlidir.
+Unutmamak gerekir ki; virgül operatörü çok düşük bir önceliğe sahiptir, önceliği `=`'den bile daha düşüktür. Bu yüzden yukarıdaki örnekte gördüğümüz gibi parantezler çok önemlidir.
 
-Parantezler olmadan: `a = 1 + 2, 3 + 4` ifadesinde önce `+` işleme alınır, değerler toplanarak `a = 3, 7` ifadesine çevirilir, ondan sonra atama operatörü `=` ile `a = 3` ataması yapılır, ve sonuç olarak virgülden sonraki sayı olan `7` işlenmeyerek yok sayılır.
+Parantezler olmadan: `a = 1 + 2, 3 + 4` ifadesinde önce `+` işleme alınır, değerler toplanarak `a = 3, 7` ifadesine çevirilir, ondan sonra atama operatörü `=` ile `a = 7` ataması yapılır, ve sonuç olarak virgülden önceki sayı olan `3` işlenmeyerek yok sayılır.
 ```
 
-Peki neden son kısım hariç her şeyi yok sayan bir operatöre neden ihtiyacımız var?
+Peki neden son kısım hariç her şeyi yok sayan bir operatöre ihtiyacımız var?
 
-Bazen bizler, bir satırda birkaç işlem yapılan karmaşık yapılarda bu operatörü kullanırız.
+Bazen bizler; bir satırda birkaç işlem yapılan karmaşık yapılarda bu operatörü kullanırız.
 
 Örneğin:
 
@@ -436,4 +435,4 @@ for (*!*a = 1, b = 3, c = a * b*/!*; a < 10; a++) {
 }
 ```
 
-Bu tarz numaralar birçok JavaScript frameworklerinde kullanılır. Bu yüzden bunladan bahsettik. Ama genelde bunlar kodun okunabilirliğini azaltıyorlar. Bu yüzden kullanmadan önce iyi düşünmek gerekir.
+Bu tarz numaralar birçok JavaScript frameworklerinde kullanılır. Bu yüzden bunlardan bahsettik. Ama genelde bunlar kodun okunabilirliğini azaltıyorlar. Bu yüzden kullanmadan önce iyi düşünmek gerekir.
