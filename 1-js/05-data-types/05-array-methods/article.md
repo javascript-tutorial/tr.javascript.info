@@ -466,7 +466,7 @@ alert( str.split('') ); // t,e,s,t
 ```js run
 let dizi = ['Bilbo', 'Gandalf', 'Nazgul'];
 
-let str = arr.join(';');
+let str = dizi.join(';');
 
 alert( str ); // Bilbo;Gandalf;Nazgul
 ```
