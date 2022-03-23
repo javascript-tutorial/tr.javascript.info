@@ -1,11 +1,11 @@
 
 # Evrensel Objeler
 
-JavaScript dili yazılırken "evren obje" diye bir obje fikri vardı. Bu obje tüm değişken ve fonksiyonları içinde barındırark tarayıcıda bulunan kodların evrensel obje yardımıyla değişkenleri paylaşabileceği düşünülmüştü.
+JavaScript dili yazılırken "evrensel obje" diye bir obje fikri vardı. Bu obje tüm değişken ve fonksiyonları içinde barındırarak tarayıcıda bulunan kodların evrensel obje yardımıyla değişkenleri paylaşabileceği düşünülmüştü.
 
 Tabi o zamandan beri JavaScript çok değişti, artık evrensel obje göze batar oldu. Modern JavaScript'te bu objenin yerini module yapısı aldı.
 
-Global obje hala dil içerisinde yer almaktadır.
+Evrensel obje hala dil içerisinde yer almaktadır.
 
 Tarayıcı için bu "window" ve NodeJs için ise "global"'dir. Diğer ortamlar da kendine ait evrensel objelere sahiptirler.
 
@@ -42,7 +42,7 @@ Tarayıcı için bu "window" ve NodeJs için ise "global"'dir. Diğer ortamlar d
 
     alert(test); // 5
     ```
-...Fakat global obje `let/cons` ile tanımlanmış değişkenler barındıramaz.
+...Fakat global obje `let/const` ile tanımlanmış değişkenler barındıramaz.
 
 ```js untrusted run no-strict refresh
 *!*let*/!* kullanici = "Ahmet";
@@ -52,12 +52,12 @@ alert(window.kullanici); // tanımsız, let ile tanımlama yapılamaz.
 alert("kullanici" in window); // false
 ```
 
-```smart header="Global Obje global ortam kaydı değildir"
+```smart header="Evrensel Obje global ortam kaydı değildir"
 ECMAScript ES-2015 öncesi `let/const` değişkenleri bulunmamaktaydı, sadece `var` değişkeni vardı. Global objeler global ortam kaydı olarak kullanılıyordu.
 
-Fakat ES-2015 sonrası, bu varlıklar ayrıldı. Artık evrensel sözcük ortamı ve bunun ortam kaydı. İkinci olarak evrensel obje ve bunun sunduğu *bazı" evrensel değişkenler bulunmaktadır.
+Fakat ES-2015 sonrası, bu varlıklar ayrıldı. Artık evrensel sözcük ortamı ve bunun ortam kaydı. İkinci olarak evrensel obje ve bunun sunduğu bazı "evrensel değişkenler" bulunmaktadır.
 
-Uygulamada evrensel `let/cons` değişkenleri global Evrensel Kayıtta tanımlanmış özelliklerdir fakat evrensel obje'de bulunmamaktadırlar.
+Uygulamada evrensel `let/const` değişkenleri global Evrensel Kayıtta tanımlanmış özelliklerdir fakat evrensel obje'de bulunmamaktadırlar.
 
 Doğal olarak, evrensel objenin "evrensel olan her şeye erişebilir" fikri eski zamanlarda kalmıştır. Artık bu iyi bir şey olarak görülmemektedir. `let/const` gibi dil özellikleri bunu desteklememektedir, fakat eski olanlara hala destek verir.
 ```
@@ -89,9 +89,7 @@ Genelde, kullanmak çok iyi bir fikir olmasa da, aşağıda bazı örnekleri gö
     
 3. Global bir değişkenin var olup olmadığına bakar.
 
-    Örneğin, `XMLHttpRequest`'in global bir fonksiyon olup olmadığını kontrol etmek isterseniz.
-    
-    `if (XMLHttpRequest)` şeklinde yazamazsınız, çünkü `XMLHttpRequest` yoksa hata verecektir.
+    Örneğin, `XMLHttpRequest`'in global bir fonksiyon olup olmadığını kontrol etmek isterseniz, `if (XMLHttpRequest)` şeklinde yazamazsınız, çünkü `XMLHttpRequest` yoksa hata verecektir.
     
     Bunu `window.XMLHttpRequest` üzerinden okuyabilirsiniz.
     
@@ -114,7 +112,7 @@ Genelde, kullanmak çok iyi bir fikir olmasa da, aşağıda bazı örnekleri gö
 
 3. Doğru pencereden değişken alma. Bu en uygun kullanım şeklidir.
 
-    Tarayıcıda birçok tab ve pencere açılabilir. Bir pencere diğerini `<iframe>` içerisinde gösterebilir. Her tarayıcı kendine ait `window` objesine ve bunun global değişkenlerine sahiptir. JavaScript pencerelerin (aynı site içerisinde ise) birbirlerinden değişken almalarına izin verir.
+    Tarayıcıda birçok sekme ve pencere açılabilir. Bir pencere diğerini `<iframe>` içerisinde gösterebilir. Her tarayıcı kendine ait `window` objesine ve bunun global değişkenlerine sahiptir. JavaScript pencerelerin (aynı site içerisinde ise) birbirlerinden değişken almalarına izin verir.
     
     Bu biraz amacının dışında da olsa şuna benzer:
     ```html run
