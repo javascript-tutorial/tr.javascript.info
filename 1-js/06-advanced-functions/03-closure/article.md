@@ -114,7 +114,7 @@ Aşağıdaki kodda Sözcüksel Ortam başlangıçta boş değildir. `say`'e sahi
 
 `say()` fonksiyonu çağrısı sırasında dış değişkenler çağrılır, bu olaya daha detaylı bakacak olursak.
 
-Fonksiyon ilk çalıştığında yeni bir Sözcüksel Çevre otomatik olarak yaratılır. Bu tüm fonksiyonlar için genel bir kuraldır. Bu Sözcüksel Çevre yerel değişkenlerin tutulması ve çağrının tüm parametrelerini tutar.
+Fonksiyon ilk çalıştığında yeni bir Sözcüksel Ortam otomatik olarak yaratılır. Bu tüm fonksiyonlar için genel bir kuraldır. Bu Sözcüksel Ortam yerel değişkenlerin tutulması ve çağrının tüm parametrelerini tutar.
 
 <!--
 ```js
@@ -129,7 +129,7 @@ say("Ahmet"); // Merhaba, Ahmet
 -->
 `say("Ahmet")` fonksiyonu çalıştığı sırada Sözcüksel Ortam aşağıdaki gibi olur:
 
-![Sözcüksel Çevre](lexical-environment-simple.svg)
+![Sözcüksel Oram](lexical-environment-simple.svg)
 
 Fonksiyon çağrıldığında ise iki tane sözcüksel ortam bulunmaktadır: içte olan(fonksiyon çağrısı için) ve dışta olan(evrensel):
 
@@ -138,7 +138,7 @@ Fonksiyon çağrıldığında ise iki tane sözcüksel ortam bulunmaktadır: iç
 
 İç Sözcük ortamı `outer` ile Dış Sözcük Ortamına referans olur.
 
-**Kod değişkene ulaşmak istediğinde -- önce İç Sözcük ortamında arara, daha sonra dış sözcüm ortamına bakar ve daha sonra daha dıştakine bakar bu şekilde zincirin en sonuna kadar devam eder**
+**Kod değişkene ulaşmak istediğinde -- önce İç Sözcük ortamında arar, daha sonra dış sözcüm ortamına bakar ve daha sonra daha dıştakine bakar bu şekilde zincirin en sonuna kadar devam eder**
 
 Eğer değişken hiçbir yerde bulunamazsa, sıkı modda hata verir. `use strict` kullanılmazsa tanımsız değişken yeni bir global değişken yaratır.
 
@@ -151,7 +151,7 @@ Arama olayı bizim yazdığımız kodlarda nasıl işliyor buna bakalım:
 
 Şimdi bölümün ilk başında sorulan sorulara cevap bulunabilir.
 
-**Bir fonksiyon dışta bulunan değişkenin en son değerini alır**
+**Bir fonksiyon dışta bulunan değişkenin en son değerini alır.**
 
 Bunun nedeni tanımlanan mekanizmadan dolayıdır. Eski değişkenler bir yere kaydedilmezler. Fonksiyon bunları istediğinde iç sözcük ortamından veya dış sözcük ortamından o anki değeri alır.
 
@@ -167,7 +167,7 @@ function selamVer() {
 adi = "Mehmet"; // (*)
 
 *!*
-selamVer(); // Pete
+selamVer(); // Mehmet
 */!*
 ```
 
@@ -179,7 +179,7 @@ selamVer(); // Pete
 3. `selamVer()` fonksiyonu çalıştığında `adi` dğeişkenini dışarıdan alır. Bu `dış` sözcüksel ortamda değişkenin değeri `"Mehmet"`tir.
 
 
-```smart header="Bir çağrı -- bir Sözcüksel Ortam"
+```smart header="Bir Çağrı -- Bir Sözcüksel Ortam"
 
 Fonksiyon Sözcük Ortamı her fonksiyon çağrıldığında yeniden yaratılır.
 
@@ -279,7 +279,7 @@ Okumaya devam etmeden yukarıdaki sorulara cevap vermeye çalışın.
 Peki o zaman, şimdi cevaplar.
 
 1. Hayır sıfırlayamaz. `sayac` yerel bir değişkendir ve dışarıdan erişilemez.
-2. Her `sayacUret` çağrısı o fonksiyona ait Sözcüksel Çevre üretir, bunun da kendine ait `sayac` değişkeni bulunmaktadır. Öyleyse `sayac` değişkenleri her fonksiyon için bağımsızdır denebilir.
+2. Her `sayacUret` çağrısı o fonksiyona ait Sözcüksel Ortam üretir, bunun da kendine ait `sayac` değişkeni bulunmaktadır. Öyleyse `sayac` değişkenleri her fonksiyon için bağımsızdır denebilir.
 
 Örneğin:
 
@@ -315,7 +315,7 @@ Aşağıda `sayacUret` fonksiyonunun adımları gösterilmektedir, her şeyi anl
 
     Başlangıçta sadece `sayacUret` fonksiyonu bulunmaktadır, çünkü bu fonksiyon tanımıdır. Henüz çalışmadı.
 
-    Tüm fonksiyonlar başlangıçta gizli bir `[[Environment]]` değişkeni alırlar, bu yaratılmaya dair üretilecek Sözcüksel Çevreye referans olur. Bunun hakkında henüz bilgi verilmedi, fakat teknik olarak bunu fonksiyonun nerede yaratıldığını bilmesi olarak anlayabilirsiniz.
+    Tüm fonksiyonlar başlangıçta gizli bir `[[Environment]]` değişkeni alırlar, bu yaratılmaya dair üretilecek Sözcüksel Ortama referans olur. Bunun hakkında henüz bilgi verilmedi, fakat teknik olarak bunu fonksiyonun nerede yaratıldığını bilmesi olarak anlayabilirsiniz.
 
     Burada `sayacUret` Evrensel Sözcüksel Ortamda yaratıldı. Bundan dolayı `[[Environemnt]]` bu ortamın referansıdır.
     
@@ -327,7 +327,7 @@ Aşağıda `sayacUret` fonksiyonunun adımları gösterilmektedir, her şeyi anl
 
     `sayacUret()` fonksiyonu çağrıldığında, bu fonksiyonun değişkenlerini ve argümanlarını tutmak için Sözcüksel Ortam yaratılır.
 
-    Her Sözcüksel Çevre iki şeyi tutar:
+    Her Sözcüksel Ortam iki şeyi tutar:
     1. Yerel değişkenlere ait Ortamsal Kayıtlar. Bu durumda `let sayac` çalıştırıldığında yerel değişken olarak `sayac` tutulmaktadır.
     
     2. Dış sözcüksel referans, bu fonksiyonun `[[Environment]]`'i dir. Burada `sayacUret` fonksiyonunun `[[Environment]]`'i evrensel sözcüksel ortama referans verir.
@@ -336,7 +336,7 @@ Aşağıda `sayacUret` fonksiyonunun adımları gösterilmektedir, her şeyi anl
     
 3. `sayacUret()` fonksiyonu çalıştığında küçük bir iç fonksiyon yaratılır.
 
-    Fonksiyonun nasıl yaratıldığı yani Fonksiyon Tanımıyla mı yoksa Fonksiyon ifadesiyle mi yaratıldığı önemli değildir. Tüm fonksiyonlar bulunduğu sözcüksel ortama referans eden `[[Environment]]` özelliği ile yaratılırlar. Bundan dolayı en küçük fonksiyon bile bu özelliği içerir.
+    Fonksiyonun nasıl yaratıldığı yani Fonksiyon Tanımıyla mı yoksa Fonksiyon İfadesiyle mi yaratıldığı önemli değildir. Tüm fonksiyonlar bulunduğu sözcüksel ortama referans eden `[[Environment]]` özelliği ile yaratılırlar. Bundan dolayı en küçük fonksiyon bile bu özelliği içerir.
     
     İçte olan yeni fonksiyon için `[[Environment]]` dğeişkeni var olan `sayacUret`'in Sözcüksel Ortamıdır.( Doğduğu yer )
 
@@ -351,20 +351,20 @@ Aşağıda `sayacUret` fonksiyonunun adımları gösterilmektedir, her şeyi anl
 
     Bu fonksiyonun sadece bir satır kodu var: `return sayac++`, sadece bu çalışacaktır.
     
-5. `sayac()` çağrıldığında, "boş" bir Sözcüksel Ortam yaratılır. hiçbir yerel değişkeni yoktur. Fakat `sayac`'ın `[[Environment]]`'i dış referans olarak kullanılır. Bundan dolayı, daha önceden yapılan `sayacUret()`'in değişkenlerine erişebilir. Oluşturulduğu yerder:
+5. `sayac()` çağrıldığında, "boş" bir Sözcüksel Ortam yaratılır. hiçbir yerel değişkeni yoktur. Fakat `sayac`'ın `[[Environment]]`'i dış referans olarak kullanılır. Bundan dolayı, daha önceden yapılan `sayacUret()`'in değişkenlerine erişebilir. Oluşturulduğu yer:
 
     ![](lexenv-nested-makecounter-5.svg)
 
     Değişkene erişmesi gerekirse önce kendi yerel sözcüksel ortamına(boş), sonra daha önce çağrılan `sayacUret()`'in sözcüksel ortamına, en son evrensel ortama bakar.
     
-    `sayac` için arama yaptığında, en yakınında `sayacUret`'in sözcüksel çevresi bulunmaktadır.
+    `sayac` için arama yaptığında, en yakınında `sayacUret`'in sözcüksel ortamı bulunmaktadır.
     
     Buradaki hafıza yönetimine dikkat ederseniz. `sayacUret()` çağrısı bittikten bir süre sonra, Sözcüksel ortam hafızada tutulur, çünkü içte bulunan fonksiyonun `[[Environment]]`'i `sayacUret`'e referans vermektedir.
     
     Genel olarak, sözcüksel ortam objesi fonksiyon kullanılabilir olduğu sürece yaşar. Fonksiyon kullanılmadığında silinir.
   
 
-6. `sayac()` sadece `sayac` değişkenini döndürmekle kalmaz, artırırda. Dikkat ederseniz değişiklik sadece "olduğu yerde" yapıldı. Var olan `sayac` değişkeni bulunduğu ortamda değiştirildi.
+6. `sayac()` fonksiyonu sadece `sayac` değişkenini döndürmekle kalmaz, artırırda. Dikkat ederseniz değişiklik sadece "olduğu yerde" yapıldı. Var olan `sayac` değişkeni bulunduğu ortamda değiştirildi.
 
     ![](lexenv-nested-makecounter-6.svg)
 
@@ -416,7 +416,7 @@ alert(kullanici); // Hata, böyle bir değişken bulunamamakta!
 
 ![](lexenv-if.svg)
 
-Yeni sözcüksel ortam bilgileri dış çevreden alabilir, bundan dolayı `ifade` erişilebilirdir. Fakat `if` içerisindeki tüm değişkenler ve Fonksiyonel ifadeler kendi Sözcüksel Çevresinden erişilebilir, dışarıdan erişilemez.
+Yeni sözcüksel ortam bilgileri dış çevreden alabilir, bundan dolayı `ifade` erişilebilirdir. Fakat `if` içerisindeki tüm değişkenler ve Fonksiyonel ifadeler kendi Sözcüksel Ortamdan erişilebilir, dışarıdan erişilemez.
 
 Örneğin `if` bittikten sonra `kullanici` değişkeni görünmez olacaktır.
 
@@ -446,7 +446,7 @@ Döngüden sonra `i` görünmez olur.
 
 Bu değişken isimleri genel kullanılırsa ve kod yazan kişi diğer değişkenin kullanıldığını bilmiyor ise yaşanılacak bir olaydır.
 
-Bunlardan kaçınmak için bir kod bloğu oluşturarak dışarıda bulunan evrensel ortamdan isole edilebilir:
+Bunlardan kaçınmak için bir kod bloğu oluşturarak dışarıda bulunan evrensel ortamdan izole edilebilir:
 
 ```js run
 {
@@ -568,13 +568,12 @@ Sözcüksel Ortam objeleri aynı normal değerler gibi hafıza yönetimine konu 
       return function() { alert(deger); };
     }
 
-    // 3 functions in array, every of them links to Lexical Environment
     // Dizideki 3 fonksiyon da kendine ait sözcüksel ortama sahiptirler.
     //         LE   LE   LE
     let arr = [f(), f(), f()];
     ```
 
-- Sözcüksel Ortam objesi erişim kalmayınca ölür. Bu iç içe fonksiyonların referansı kalmadığında meydana gelir. Aşağıdaki kodda `g` erişilemez olduğunda `value`'da hafızadan silinir.
+- Sözcüksel Ortam objesi erişim olmayınca ölür. Bu iç içe fonksiyonların referansı kalmadığında meydana gelir. Aşağıdaki kodda `g` erişilemez olduğunda `value`'da hafızadan silinir.
     ```js
     function f() {
       let value = 123;
@@ -584,21 +583,18 @@ Sözcüksel Ortam objeleri aynı normal değerler gibi hafıza yönetimine konu 
       return g;
     }
 
-    let g = f(); // g canlı olursa
-    ona karşılık gelen Sözcüksel Ortam'da hayatta kalır.
+    let g = f(); // g canlı olursa ona karşılık gelen Sözcüksel Ortam'da hayatta kalır.
     
     g = null; // şimdi hafıza temizlendi.
     ```
 
-### Gerçek-hayat Optimizasyonu
+### Gerçek-Hayat Optimizasyonu
 
 Görüldüğü üzere, teoride bir fonksiyon hayatta olduğun sürece onun dışındaki ona bağlı değişkenler de hayatta kalır.
 
 Pratikte ise, JavaScript motoru bunu optimize eder. Değişken kullanımını analiz eder ve eğer dışarıdaki fonksiyonun kullanılmadığı açık ise silinir.
 
-**An important side effect in V8 (Chrome, Opera) is that such variable will become unavailable in debugging.**
-
-**Bunun V8 ( Chrome, Opera)'daki yan etkisi ise böyle değişkenlerin debugging sırasında da görünememesidir.
+**Bunun V8 ( Chrome, Opera)'daki yan etkisi ise böyle değişkenlerin debugging sırasında da görünememesidir.**
 
 Aşağıdaki örneğin Chrome'da konsolu açarak test ediniz.
 
@@ -642,8 +638,8 @@ g();
 
 ```warn header="Görüşmek üzere!"
 
-V8'in bu özelliğini bilmekte fayda var. Eğer Chrome/Opera ile ayıklama yapıyorsanız, er geç bu özellikle tanışacaksınız.
+V8'in bu özelliğini bilmekte fayda var. Eğer Chrome/Opera ile debugging yapıyorsanız, er ya da geç bu özellikle tanışacaksınız.
 
-Bu ayıklayıcının(debugger) bir problemi değil, V8 motorunun bir özelliğidir. Belki ileride bu özellik değişebilir.
-Bu sayfayadaki örneği çalıştırarak her zaman kontrol edebilirsiniz.
+Bu bir debugger problemi değil, V8 motorunun bir özelliğidir. Belki ileride bu özellik değişebilir.
+Bu sayfayadaki örneği çalıştırarak her zaman bunu kontrol edebilirsiniz.
 ```
