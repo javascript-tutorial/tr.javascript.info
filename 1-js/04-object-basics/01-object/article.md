@@ -289,7 +289,7 @@ Yazımı:
 ```js run
 let kullanici = { isim: "Mazlum", yas: 30 };
 
-alert( "yas" in kullanici ); // true, kullanici.age özelliği mevcut.
+alert( "yas" in kullanici ); // true, kullanici.yas özelliği mevcut.
 alert( "blabla" in kullanici ); // false, kullanici.blabla namevcut.
 ```
 
@@ -672,7 +672,7 @@ let klon = Object.assign({}, kullanici);
 alert( kullanici.beden === klon.beden ); // true, doğru aynı obje
 
 // diyelim ki kullanicida değişiklik yaptınız
-kullanici.boyut.en++;       // change a property from one place
+kullanici.boyut.en++;       // bir özelliği bir yerde değiştirelim
 alert(klon.boyut.en); // 51, gördüğünüz üzere birinde yaptığınız değişiklik diğerini de etkiledi.
 ```
 
