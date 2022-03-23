@@ -127,7 +127,7 @@ let fiyatlar = {
 
 *!*
 let ikiKatiFiyatlar = Object.fromEntries(
-  // convert to array, map, and then fromEntries gives back the object
+  // diziye dönüştürür, Map ve sonra fromEntries nesneyi geri döndürür
   Object.entries(fiyatlar).map(([key, value]) => [key, value * 2])
 );
 */!*
