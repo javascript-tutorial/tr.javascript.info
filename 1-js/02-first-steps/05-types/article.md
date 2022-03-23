@@ -134,8 +134,8 @@ Genelde bu tip veriler doğru - yanlış sorularını tutmak için kullanılır.
 Örneğin:
 
 ```js
-let isimKontrolu = true; // isimKontrolu yapıldi
-let yasKontrolu = false; // yas kontrolü yapılmadı.
+let isimKontrolu = true; // İsim kontrolü yapıldı.
+let yasKontrolu = false; // Yaş kontrolü yapılmadı.
 ```
 
 Ayrıca karşılaştırma sonuçları boolean verir.
@@ -195,9 +195,9 @@ Fakat bu şekilde tanımlanmasa daha iyi olur. Normalde `null` kullanılarak de�
 
 Diğer tüm tipler "primitive" yani basit veya ilkel tiplerdir. Bu değişkenler sadece bir şey tutabilirler( karakter dizisi veya sayı ). Buna karşılık objeler veri koleksiyonları (collections) veya karmaşık yapılar tutabilirler. <info:object> konusunda Obje daha derinlemesine incelenecektir. 
 
-`symbol` objeler için benzersiz tanımlayıcılar oluşturmak için kullanılır. Bu konuyu objeleri öğrendikten sonra öğrenmek daha iyi olacaktır.
+`Symbol` objeler için benzersiz tanımlayıcılar oluşturmak için kullanılır. Bu konuyu objeleri öğrendikten sonra öğrenmek daha iyi olacaktır.
 
-## typeof operatörü [#type-typeof]
+## typeof Operatörü [#type-typeof]
 `typeof` argüman tipini bildirir. Farklı tipler için farklı akışlarınız varsa bunu kullanabilirsiniz.
 
 İki türlü yazımı vardır:
@@ -258,6 +258,6 @@ Javascript dilinde 8 tane basit tip bulunmaktadır.
 `typeof` operatörü değişkenin tipini verir.
 - İki türlü kullanılabilir: `typeof x` veya `typeof(x)`
 - Geriye karakter dizisi olarak değişkenin tipini döndürür. Örneğin: `"string"`
-- `null` için `"object"` der. Fakat bu dile ait bir hatadır. Normalde `null` obje değildir.
+- İstisna olarak `null` kontrolünde `"object"` çıktısı verir. Fakat bu dile ait bir hatadır. Normalde `null` obje değil, kendi başına bir tiptir.
 
 Bir sonraki bölümde basit tiplere yoğunlaşılacaktır. Bu tipleri kullanmak alışkanlık haline geldiğinde objelere geçilebilir.
