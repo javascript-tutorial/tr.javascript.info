@@ -473,8 +473,8 @@ Burada görüldüğü üzere her obje `deger`e sahiptir ve komşusu olan `sonrak
 Liste kolayca birçok parçaya bölünebilir ve sonradan tek bir yapı haline getirilebilir:
 
 ```js
-let ikinciList = list.next.next;
-list.next.next = null;
+let ikinciList = list.sonraki.sonraki;
+list.sonraki.sonraki = null;
 ```
 
 ![linked list ayırma](linked-list-split.svg)
@@ -482,7 +482,7 @@ list.next.next = null;
 Birleştirme:
 
 ```js
-list.next.next = ikinciList;
+list.sonraki.sonraki = ikinciList;
 ```
 Ve istenildiği gibi elemanlar bir yerden silinebilir veya eklenebilir.
 
