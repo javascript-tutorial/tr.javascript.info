@@ -56,7 +56,7 @@ alert( 'Bee' > 'Be' ); // doğru ( true )
 İkincisinde `"Kum"` ve `"Kan"`  karakter karakter karşılaştırılıyor:
 
 1. `K` eşittir `K` 'ya.
-2. `u`  `a`'dan büyük. Burada bitirilir ve birincisi ikincisinden büyüktür sonucu doğru(true) döner.
+2. `u`,  `a`'dan büyük. Burada bitirilir ve birincisi ikincisinden büyüktür sonucu doğru(true) döner.
 
 
 ```smart header="Tam olarak sözlükteki sıralama gibi değildir, unicode bir sıralama var"
@@ -116,7 +116,7 @@ Aynı şey boş karakterler:
 alert( '' == false ); // true
 ```
 
-Bunun nedeni farklı tiplerdeki verilerin karşılaştırılmaya çalışılmasıdır. Her iki tarafta sayısal değerlere çevrilir. Örneğin  `''` 0 olur, aynen `false`'ın 0 olması gibi.
+Bunun nedeni farklı tiplerdeki verilerin karşılaştırılmaya çalışılmasıdır. Her iki taraf da sayısal değerlere çevrilir. Örneğin  `''` 0 olur, aynen `false`'ın 0 olması gibi.
 
 Peki `false` ile `0`'ın birbirinden farklı olarak tanımlamak için ne yapılmalıdır?
 
@@ -168,9 +168,9 @@ alert( null >= 0 ); // (3) *!*true*/!*
 
 Matematiksel olarak yukarıda gördüğünüz örnekler imkansız. En sondaki örneğe bakarsanız 0'a eşit veya büyüklük durumunu kontrol ediyor. Eğer en alttaki doğru ise üsttekilerden en az birisinin doğru olması zorunludur. Fakat ikisi de yanlış.
 
-Bunun nedeni eşitlik kontrolü `==` ve karşılaştırma kontrollerinin `> < >= <=` farklı çalışmasından dolayıdır. Karşılaştırma iki tarafta bulunan değerleri önce sayıya çevirmeye çalışır. Bundan dolayı sonuncu örnekte `null>=0` null `0` a dönüşür. En üst örnekte de `null>0` bunu şekilde çalışır. Bundan dolayı en üstte false, en altta ise true döner.
+Bunun nedeni eşitlik kontrolü `==` ve karşılaştırma kontrollerinin `> < >= <=` farklı çalışmasından dolayıdır. Karşılaştırma iki tarafta bulunan değerleri önce sayıya çevirmeye çalışır. Bundan dolayı sonuncu örnekte `null>=0` null `0` a dönüşür. En üst örnekte de `null>0` bu şekilde çalışır. Bundan dolayı en üstte false, en altta ise true döner.
 
-Diğer bir taraftan eşitlik kontrolü `==`, `undefined`ve `null`için kurala göre bir değişikliğe uğramaz. Sadece birbirleri arasında (`undefined` ile `null`) eşitliğe sahiptirler. Diğer türlü hiçbir şeye eşit değildirler. Bundan dolayı `null == 0` false olur.
+Diğer bir taraftan; eşitlik kontrolü `==`, `undefined`ve `null`için kurala göre bir değişikliğe uğramaz. Sadece birbirleri arasında (`undefined` ile `null`) eşitliğe sahiptirler. Diğer türlü hiçbir şeye eşit değildirler. Bundan dolayı `null == 0` false olur.
 
 ### Karşılaştırılamaz tanımsız ( undefined )
 
@@ -198,6 +198,6 @@ Neden peki bu örnekleri yaptık?  Bu şeyleri her zaman hatırlamamıza gerek v
 ## Özet
 - Karşılaştırma operatörleri mantıksal değerler döndürür. (true/false) gibi
 - Karakter dizileri harf harf alfabe sırasına göre kontrol edilir.
-- Karşılaştırmalarda eğer farklı tipler kullanılıyorsa bunlar sayıya işlem yapılmadan sayıya çevirilir. ( Eğer sıkı eşittir kullanıyorsanız çevirilmez)
+- Karşılaştırmalarda eğer farklı tipler kullanılıyorsa bu işlem yapılmadan sayıya çevirilir. ( Eğer sıkı eşittir kullanıyorsanız çevirilmez)
 - `null` ve `undefined` eşittir. Bu değerler başka hiçbir değere eşit değildirler.
-- Değeri `null/undefined` olabilen bir değişken ile `>` veya `<` karşılaştırması yaparken dikkat edin. Ayrı bir `null/undefined` kontrolü yapmakta fayda var.s
+- Değeri `null/undefined` olabilen bir değişken ile `>` veya `<` karşılaştırması yaparken dikkat edin. Ayrı bir `null/undefined` kontrolü yapmakta fayda var.
