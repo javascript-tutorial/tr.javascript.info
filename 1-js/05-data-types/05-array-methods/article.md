@@ -148,7 +148,7 @@ arr.concat(arg1, arg2...)
 
 Sonuç `arr`, ardından `arg1`, `arg2` şeklinde tüm dizileri ve değerleri içeren bir dizi olur.
 
-Eğer bir argüman dizi ve `Symbol.isConcatSpreadable` özelliğine sahip ise ise bunun tüm alt elemanları kopyalanır. Diğer türlü argümanın sadece kendisi kopyalanır.
+Eğer bir argüman dizi ve `Symbol.isConcatSpreadable` özelliğine sahip ise bunun tüm alt elemanları kopyalanır. Diğer türlü argümanın sadece kendisi kopyalanır.
 
 Örneğin:
 
