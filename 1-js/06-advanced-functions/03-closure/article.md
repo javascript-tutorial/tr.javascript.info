@@ -15,7 +15,7 @@ Bu sorulara farklı diller farklı cevaplar vermektedir, bu bölümde JavaScript
 
 ## Birkaç soru
 
-Örnek olması amacıyla iki soru formülize edilecek olursa, sonrasında içsel mekanizması parça parça incelenecektir, ileride daha karmaşık sorularacevap verebilirsiniz.
+Örnek olması amacıyla iki soru formülize edilecek olursa, sonrasında içsel mekanizması parça parça incelenecektir, ileride daha karmaşık sorulara cevap verebilirsiniz.
 
 1. `selamVer` fonksiyonu dışarıda bulunan `isim` değişkenini kullanmaktadır. Fonksiyon çalıştığında, hangi `isim` değişkeni kullanılacaktır?
 
