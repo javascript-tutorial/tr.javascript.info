@@ -100,7 +100,7 @@ Bu klasik "boolean" VEYA tanımını aşarak ilginç kullanımlara neden olmakta
 
 1. **Değişken veya ifadeler dizisinde ilk doğru(true) değeri bulmak için**
 
-    Düşünün bir diziniz var ve içinde `null/undefined` değerler barındırmakta. Siz ilk veriyi bulduğunuzda döndermek istiyorsunuz.
+    Düşünün bir diziniz var ve içinde `null/undefined` değerler barındırmakta. Siz ilk veriyi bulduğunuzda döndürmek istiyorsunuz.
 
     Bunun için `||` kullanabilirsiniz:
 
@@ -114,18 +114,18 @@ Bu klasik "boolean" VEYA tanımını aşarak ilginç kullanımlara neden olmakta
 
     alert( isim ); // "Akif" seçilir – ilk doğru değeri bulduğundan dolayı buradan dönülür ve ekrana "Akif" çıkar.
     ```
-    
+
     Eğer `simdikiKullanici` ve `varsayilanKullanici` yanlış(false) olsaydı `"isimsiz"` yazısı ekrana çıkacaktı.
 
 2. **Kısa devre değerlendirmesi**
-    
+
     Operantlar sadece değer değil ifade de olabilir. VEYA testlerini soldan sağa doğru yapar. Doğru değer bulunduğunda döndürülür. Bu olaya kısa devre değerlendirmesi denir, çünkü soldan sağa en kısa yoldan gitmektedir.
 
     Tabi bunun ifadelere yan etkisi olabilir. Örneğin değer atama
 
     Aşağıdaki örnek çalıştığında `x`'e değer atanmayacak:
 
-    
+
     ```js run no-beautify
     let x;
 
@@ -145,11 +145,11 @@ Bu klasik "boolean" VEYA tanımını aşarak ilginç kullanımlara neden olmakta
     alert(x); // 1
     ```
     Gördüğünüz gibi değer atandı. Böyle basit bir durumda yan etki görmezden gelinebilir.
-    
+
     Kısa yoldan `if` yapısında olduğu gibi ilk operand boolean'a çevrilir ve eğer yanlışsa ikinci değer çalıştırılır.
-    
+
     Çoğu zaman normal `if` yapısını kullanmanız daha iyidir çünkü kod daha anlaşılır olur. Fakat bazen kısa yoldan `if` yapmakta işinize yarayabilir.
-    
+
 
 ## && (AND - VE )
 
@@ -197,8 +197,8 @@ sonuc = deger1 && deger2 && deger3;
 AND `"&&"` operatörü aşağıdaki gibi çalışır:
 
 - Operandları soldan sağa doğru değerlendir.
-- Her bir operandı boolean değere çevir. Eğer sonuç `yanlış` ise dur ve operatörün orijinal değerini dönder.
-- Eğer diğer operandlara erişim sağlandıysa ( hepsinin doğru olma durumu ) sondaki operandı dönder.
+- Her bir operandı boolean değere çevir. Eğer sonuç `yanlış` ise dur ve operatörün orijinal değerini döndür.
+- Eğer diğer operandlara erişim sağlandıysa ( hepsinin doğru olma durumu ) sondaki operandı döndür.
 
 Yukarıdaki kurallar VEYA kuralları ile benzerlik göstermektedir. Farklılık AND operatörünün ilk `yanlış` bulduğunda dönmesi. OR operatörü ise ilk `doğru` bulduğunda dönmekteydi.
 
@@ -278,7 +278,7 @@ result = !value;
 Operatör tek operanddan oluşur ve aşağıdaki şekilde çalışır:
 
 1. Operand değerini boolean tipine çevir: `true/false`
-2. Tersini geri dönder.
+2. Tersini geri döndür.
 
 
 Örneğin:
