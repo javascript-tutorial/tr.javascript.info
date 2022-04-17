@@ -38,7 +38,7 @@ mesajGoster();
 */!*
 ```
 
-`mesajGoster()` fonksiyonu kodu çalıştırır. Bu kod sonrasında `Merhaba millet` uyarsını iki defa göreceksiniz.
+`mesajGoster()` fonksiyonu kodu çalıştırır. Bu kod sonrasında `Merhaba millet` uyarısını iki defa göreceksiniz.
 
 Bu örnek açıkça fonksiyonların ana amacını gösteriyor: Kod tekrarından kaçınma.
 
@@ -128,12 +128,12 @@ Fonksiyonların dışına yazılan her değişken, yukarıda bulunan `kullaniciA
 
 Global değişkenlere her fonksiyon içerisinden erişilebilir.(Yerel değişkenler tarafından aynı isimle bir değişken tanımlanmamışsa)
 
-Genelde fonksiyonlar yapacakları işe ait tüm değişkenleri tanımlarlara, global değişkenler ise sadece proje seviyesinde bilgi tutarlar, çünkü proje seviyesinde bilgilerin projenin her yerinden erişilebilir olması oldukça önemlidir. Modern kodda az veya hiç global değer olmaz. Çoğu fonksiyona ait değişkenlerdir.
+Genelde fonksiyonlar yapacakları işe ait tüm değişkenleri tanımlarlar, global değişkenler ise sadece proje seviyesinde bilgi tutarlar, çünkü proje seviyesinde bilgilerin projenin her yerinden erişilebilir olması oldukça önemlidir. Modern kodda az veya hiç global değer olmaz. Çoğu fonksiyona ait değişkenlerdir.
 
 ```
 
 ## Parametreler
-Paramterelere isteğe bağlı olarak veri paslanabilir. Bunlara *fonksiyon argümanları* da denir.
+Parametrelere isteğe bağlı olarak veri paslanabilir. Bunlara *fonksiyon argümanları* da denir.
 
 Aşağıdaki fonksiyon iki tane parametreye sahiptir. `gonderen` ve `metin`
 
@@ -232,7 +232,7 @@ function mesajGoster(gonderen, metin) {
 ````
 
 
-## Değer dönderme
+## Değer döndürme
 
 Fonksiyon çağırıldığı yere değer döndürebilir.
 
@@ -272,7 +272,7 @@ if ( yasKontrolu(yas) ) {
   alert( 'Reddedildi' );
 }
 ```
-`return` değer döndermek zorunda değildir. Bu fonksiyondan anında çıkmayı sağlar.
+`return` değer döndürmek zorunda değildir. Bu fonksiyondan anında çıkmayı sağlar.
 
 Örneğin:
 
@@ -288,10 +288,10 @@ function filmGoster(age) {
   // ...
 }
 ```
-Yukarıdaki kodda  eğer `yasKontrolu(yas)` `false` dönderir ise  `filmGoster` fonksiyonu `alert`e erişemeyecektir.
+Yukarıdaki kodda  eğer `yasKontrolu(yas)` `false` döndürür ise  `filmGoster` fonksiyonu `alert`e erişemeyecektir.
 
-````smart header="boş veya bir şey döndermeyen fonksiyon `undefined` dönderir"
-Eğer bir fonksiyon değer döndermiyor ise bu fonksiyon `undefined` dönderiyor ile aynı anlama gelir.
+````smart header="boş veya bir şey döndürmeyen fonksiyon `undefined` döndürür"
+Eğer bir fonksiyon değer döndürmüyor ise bu fonksiyon `undefined` döndürüyor ile aynı anlama gelir.
 
 
 ```js run
@@ -300,7 +300,7 @@ function biseyYapma() { /* boş */ }
 alert( biseyYapma() === undefined ); // true
 ```
 
-Boş dönderen `return`, `return undefined` ile aynıdır.
+Boş döndüren `return`, `return undefined` ile aynıdır.
 
 ```js run
 function biseyYapma() {
@@ -325,7 +325,7 @@ Bu çalışmaz, çünkü JavaScript `return` kelimesinden sonra `;` varsayara ve
 return*!*;*/!*
   (bazı + uzun + ifade + veya + baska + birsey  * f(a) + f(b))
 ```
-Bundan dolayı, tam olarak boş return olur. Geri döndereceğimiz değer ile return aynı satırda olmalıdır.
+Bundan dolayı, tam olarak boş return olur. Geri döndüreceğimiz değer ile return aynı satırda olmalıdır.
 
 ````
 
@@ -339,10 +339,10 @@ Genel itibari ile eylemi tanımlayan önek kullanmak iyi bir yöntemdir. Bu öne
 
 Fonksiyonlar şöyle başlayabilir.
 
-- `"get…"` -- değer dönderir,
+- `"get…"` -- değer döndürür,
 - `"calc…"` -- bir şeyler hesaplar,
 - `"create…"` -- bir şeyler yaratır,
-- `"check…"` -- bir şeyleri kontrol eder ve boolean dönderir.
+- `"check…"` -- bir şeyleri kontrol eder ve boolean döndürür.
 
 Böyle isimlere örnek:
 
@@ -350,9 +350,9 @@ Not: ingilizce de bu daha kolay önce eylemi yazıyorlar. Türkçe de fiil genel
 
 ```js no-beautify
 sendMessage(..)     // mesaj gönderir
-getAge(..)          // yaşı dönderir
-calcSum(..)         // toplamı hesaplar ve geri dönderir.
-createForm(..)      // form oluşturur ve genelde geri dönderir.
+getAge(..)          // yaşı döndürür
+calcSum(..)         // toplamı hesaplar ve geri döndürür.
+createForm(..)      // form oluşturur ve genelde geri döndürür.
 checkPermission(..) // izni kontor eder. true/false
 ```
 Önek ile fonksiyonlar bir anlamda ipucu verir ve ne tür değerler dönmesi gerektiğini anlatır.
@@ -364,7 +364,7 @@ Bir fonksiyon sadece isminin tanımladığı işi yapmalı.
 
 Bu kurallar şu şekilde bozulabilir:
 
-- `getAge` -- Eğer bu fonksiyon içeride `alert` ile yaş gösteriyor ise yanlış olur. Bu fonksiyonun sadece yaşı alıp döndermesi gerekmekte.
+- `getAge` -- Eğer bu fonksiyon içeride `alert` ile yaş gösteriyor ise yanlış olur. Bu fonksiyonun sadece yaşı alıp döndürmesi gerekmekte.
 - `createForm` -- Eğer dökümanı değiştiriyorsa veya forma bir şey ekliyorsa yanlış olur. ( Sadece formu yaratmalı ve geri dönmelidir )
 - `checkPermission` -- Eğer `izin verildi/reddedildi` gibi mesajları bu fonksiyon gösterirse yanlış olur. Sadece kontrol etmeli ve geri dönmelidir.
 
@@ -436,11 +436,11 @@ function fonksiyon ismi(parametreler, virgül , ile, ayrilirlar) {
 
 - Fonksiyona paslanan parametreler yerel değişken olarak fonksiyon içerisinde kopyalanırlar.
 - Fonksiyon dışarıdaki değişkene erişebilir. Fakat içeride yaratılmış bir değişken dışarıda kullanılamaz.
-- Fonksiyon değer dönderebilir. Eğer döndermezse `undefined`olarak tanımlanır.
+- Fonksiyon değer döndürebilir. Eğer döndürmezse `undefined`olarak tanımlanır.
 
 Kodun daha anlaşılır ve okunabilir olması için, fonksiyonlar içerisinde yerel değişken kullanılması önerilir. Dış değişkenler kullanılması önerilmez.
 
-Eğer fonksiyon parametre ile değer alır ve bu değer üzerinde çalışıp değer geri dönderirse anlaşılırlığı artar. Fakat eğer fonksiyon hiçbir parametre almadan sadece dışarıdaki değişkenleri değiştiriyor ise kodun anlaşılırlığı büyük ölçüde azalır.
+Eğer fonksiyon parametre ile değer alır ve bu değer üzerinde çalışıp değer geri döndürürse anlaşılırlığı artar. Fakat eğer fonksiyon hiçbir parametre almadan sadece dışarıdaki değişkenleri değiştiriyor ise kodun anlaşılırlığı büyük ölçüde azalır.
 
 Fonksiyon isimlendirme:
 
