@@ -4,7 +4,7 @@ importance: 4
 
 # "else" gerekli mi?
 
-Aşağıdaki fonksiyon eğer `yas` parametresi `18`'den büyükse `true` dönderir. 
+Aşağıdaki fonksiyon eğer `yas` parametresi `18`'den büyükse `true` döndürür.
 
 Diğer türlü onay sorar ve sonucunu döndürür.
 

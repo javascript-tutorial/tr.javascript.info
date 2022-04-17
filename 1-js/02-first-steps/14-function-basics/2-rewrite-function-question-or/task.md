@@ -4,9 +4,7 @@ importance: 4
 
 # Fonksiyonu '?' veya '||' kullanarak tekrar yazınız.
 
-Aşağıdaki fonksiyon 
-
-Aşağıdaki fonksiyon eğer `yas` parametresi `18`'den büyükse `true` dönderir. 
+Aşağıdaki fonksiyon eğer `yas` parametresi `18`'den büyükse `true` döndürür.
 
 Diğer türlü onay sorar ve sonucunu döndürür.
 
@@ -25,4 +23,4 @@ function yasKontrolu(yas) {
 `yasKontrolu` fonksiyonunun iki türlü versiyonunu yazınız.
 
 1. `'?'` operatörünü kullanarak.
-2. veya kullanarak `||`. 
+2. veya kullanarak `||`.
