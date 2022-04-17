@@ -319,7 +319,7 @@ Uzun `return` ifadelerinde, yeni bir satırda yazmak size kullanışlı gelebili
 return
  (bazı + uzun + ifade + veya + baska + birsey  * f(a) + f(b))
 ```
-Bu çalışmaz, çünkü JavaScript `return` kelimesinden sonra `;` varsayara ve `undefined` döner. Bu aşağoıdaki ifade ile aynıdır:
+Bu çalışmaz, çünkü JavaScript `return` kelimesinden sonra `;` varsayar ve `undefined` döner. Bu aşağıdaki ifade ile aynıdır:
 
 ```js
 return*!*;*/!*
@@ -331,9 +331,9 @@ Bundan dolayı, tam olarak boş return olur. Geri döndüreceğimiz değer ile r
 
 ## Fonksiyonu isimlendirme [#fonksiyon-isimlendirme]
 
-Fonksiyonlar eylemdir. Bundan dolayı isimleri yüklem olmalıdır. Net olmalı ve fonksiyonun ne işe yaradığını ifade edebilmelidir. Böylece kim ki kodu okur, ne yazıldığınına dair bir fikri olur.
+Fonksiyonlar eylemdir. Bundan dolayı isimleri yüklem olmalıdır. Net olmalı ve fonksiyonun ne işe yaradığını ifade edebilmelidir. Böylece kim ki kodu okur, ne yazıldığına dair bir fikri olur.
 
-Genel itibari ile eylemi tanımlayan önek kullanmak iyi bir yöntemdir. Bu önekler ile ilgili birlikte kod yazdığınız kişiler ile uyum içerisinde olmalısınız.
+Genel itibari ile eylemi tanımlayan ön ek kullanmak iyi bir yöntemdir. Bu ön ekler ile ilgili birlikte kod yazdığınız kişiler ile uyum içerisinde olmalısınız.
 
 Örneğin `"show"` fonksiyonu her zaman bir şeyleri `gösterir`.
 
@@ -346,7 +346,7 @@ Fonksiyonlar şöyle başlayabilir.
 
 Böyle isimlere örnek:
 
-Not: ingilizce de bu daha kolay önce eylemi yazıyorlar. Türkçe de fiil genelde sonda olduğundan dolayı sıkıntı yaşanmaktadır. Fonksiyonlarınızı adlandırırken ingilizce adlandırırsanız okunması daha kolay olacaktır.
+Not: İngilizce'de bu daha kolay önce eylemi yazıyorlar. Türkçe'de fiil genelde sonda olduğundan dolayı sıkıntı yaşanmaktadır. Fonksiyonlarınızı adlandırırken İngilizce adlandırırsanız okunması daha kolay olacaktır.
 
 ```js no-beautify
 sendMessage(..)     // mesaj gönderir
@@ -355,7 +355,7 @@ calcSum(..)         // toplamı hesaplar ve geri döndürür.
 createForm(..)      // form oluşturur ve genelde geri döndürür.
 checkPermission(..) // izni kontor eder. true/false
 ```
-Önek ile fonksiyonlar bir anlamda ipucu verir ve ne tür değerler dönmesi gerektiğini anlatır.
+Ön ek ile fonksiyonlar bir anlamda ipucu verir ve ne tür değerler dönmesi gerektiğini anlatır.
 
 ```smart header="Bir fonksiyon -- bir eylem"
 Bir fonksiyon sadece isminin tanımladığı işi yapmalı.
@@ -368,7 +368,7 @@ Bu kurallar şu şekilde bozulabilir:
 - `createForm` -- Eğer dökümanı değiştiriyorsa veya forma bir şey ekliyorsa yanlış olur. ( Sadece formu yaratmalı ve geri dönmelidir )
 - `checkPermission` -- Eğer `izin verildi/reddedildi` gibi mesajları bu fonksiyon gösterirse yanlış olur. Sadece kontrol etmeli ve geri dönmelidir.
 
-Bu örnekler genel olarak öneklerin nasıl tahmin edilmesi gerektiğini gösterir. Bunların ne anlama geleceği siz ve takımınıza kalmıştır. Belki sizin kodunuz için farklı bir şekilde davranması gayet doğal olabilir. Fakat yine de öneklere ait bir anlamlandırmanız olmalıdır. Ön ek ne yapabilir ne yapamaz vs. Tüm aynı önekli fonksiyonlar sizin koyduğunuz kurala uymalı ve tüm takım bu kuralları biliyor olmalıdır.
+Bu örnekler genel olarak öneklerin nasıl tahmin edilmesi gerektiğini gösterir. Bunların ne anlama geleceği siz ve takımınıza kalmıştır. Belki sizin kodunuz için farklı bir şekilde davranması gayet doğal olabilir. Fakat yine de ön eklere ait bir anlamlandırmanız olmalıdır. Ön ek ne yapabilir ne yapamaz vs. Tüm aynı önekli fonksiyonlar sizin koyduğunuz kurala uymalı ve tüm takım bu kuralları biliyor olmalıdır.
 ```
 
 ```smart header="Aşırı derecede kısa fonksiyon isimleri"
@@ -449,4 +449,4 @@ Fonksiyon isimlendirme:
 - Bunlar için ön ek kullanabilirsiniz. Türkçe sondan eklemeli bir dil olduğundan dolayı fonksiyon ekleri sona gelmektedir. Örneğin `asalGoster`, bu tip kullanım aslında okunurluk açısından pekte iyi değil benim kanaatimce. Çünkü okurken önce ne yaptığını anlaşılmıyor. Fakat İngilizce örneğine bakarsanız `showPrime`, burada önce ne yaptığını söylüyor. Farzedin ki birçok fonksiyonunuz var ve okuduğunuzda önce ne iş yaptığını bilmek bunları filtrelemenizde size yardımcı olacaktır.
 - Örnek kaç tane ek , `create...` , `show...`, `get...`, `check...` vs.
 
-Fonksiyonlar kod yazarken kullanılan ana yapılardır. Artık temellerini anlaşıldığına göre kullanılmaya başlanabilir. Fakat sadece temellerinin gösterildiğini bilmekte fayda var. ileride defalaraca fonksiyonlar konusuna geri dönülecektir.
+Fonksiyonlar kod yazarken kullanılan ana yapılardır. Artık temellerini anlaşıldığına göre kullanılmaya başlanabilir. Fakat sadece temellerinin gösterildiğini bilmekte fayda var. İleride defalarca fonksiyonlar konusuna geri dönülecektir.
