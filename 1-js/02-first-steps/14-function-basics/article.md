@@ -19,7 +19,7 @@ function mesajGoster() {
 }
 ```
 
-`function` kelimesi önce yazılır, ardından *fonksiyonun adı* ve sonra parametlerin yazılacağı parantez açılır ve ihtiyaç duyulan parametreler yazılır, sonrasında ise kapatılıp süslü parantez ile *fonksiyon gövdesi*ne başlanır.
+`function` kelimesi önce yazılır, ardından *fonksiyonun adı* ve sonra parametrelerin yazılacağı parantez açılır ve ihtiyaç duyulan parametreler yazılır, sonrasında ise kapatılıp süslü parantez ile *fonksiyon gövdesi*ne başlanır.
 
 ![](function_basics.png)
 
@@ -93,11 +93,11 @@ function mesajGoster() {
   alert(mesaj);
 }
 
-alert( kullaniciAdi ); // Fonksiyon çağırılmadan  *!*Adem*/!* 
+alert( kullaniciAdi ); // Fonksiyon çağırılmadan  *!*Adem*/!*
 
 mesajGoster();
 
-alert( kullaniciAdi ); // fonksiyon çağırıldıktan sonra *!*Yusuf*/!*, 
+alert( kullaniciAdi ); // fonksiyon çağırıldıktan sonra *!*Yusuf*/!*,
 ```
 
 Dışarıda bulunan değişkenler eğer yerel değişken yoksa kullanılırlar. Bazen eğer `let` ile değişken oluşturulmazsa karışıklık olabilir.
@@ -333,7 +333,7 @@ Bundan dolayı, tam olarak boş return olur. Geri döndereceğimiz değer ile re
 
 Fonksiyonlar eylemdir. Bundan dolayı isimleri yüklem olmalıdır. Net olmalı ve fonksiyonun ne işe yaradığını ifade edebilmelidir. Böylece kim ki kodu okur, ne yazıldığınına dair bir fikri olur.
 
-Genel itibari ile eylemi tanımlayan önek kullanmak iyi bir yöntemdir. Bu önekler ile ilgili birlikte kod yazdığınız kişiler ile uyum içerisinde olmalısınız. 
+Genel itibari ile eylemi tanımlayan önek kullanmak iyi bir yöntemdir. Bu önekler ile ilgili birlikte kod yazdığınız kişiler ile uyum içerisinde olmalısınız.
 
 Örneğin `"show"` fonksiyonu her zaman bir şeyleri `gösterir`.
 
@@ -373,7 +373,7 @@ Bu örnekler genel olarak öneklerin nasıl tahmin edilmesi gerektiğini göster
 
 ```smart header="Aşırı derecede kısa fonksiyon isimleri"
 
-Çokça kullanılan fonksiyonlar genelde aşırı derece kısa isimlere sahip olurlar. 
+Çokça kullanılan fonksiyonlar genelde aşırı derece kısa isimlere sahip olurlar.
 
 Örneğin, [jQuery](http://jquery.com) kütüphanesi `$` fonksiyonu ile tanımlanır.  [LoDash](http://lodash.com/) kütüphanesi de keza kendine has fonksiyon `_` kullanır.
 
