@@ -205,7 +205,7 @@ Yukarıdaki kurallar VEYA kuralları ile benzerlik göstermektedir. Farklılık 
 Örnek:
 
 ```js run
-// Eğer ilk opedan doğru ise her halükarda ikincinin değeri dönecek.
+// Eğer ilk operand doğru ise her halükarda ikincinin değeri dönecek.
 alert( 1 && 0 ); // 0
 alert( 1 && 5 ); // 5
 
