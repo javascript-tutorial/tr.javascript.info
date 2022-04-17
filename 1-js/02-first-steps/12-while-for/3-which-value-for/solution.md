@@ -1,4 +1,4 @@
-**Cevap: Her iki drum için de `0` dan `4`'e kadardır**
+**Cevap: Her iki durum için de `0` dan `4`'e kadardır**
 
 ```js run
 for (let i = 0; i < 5; ++i) alert( i );
