@@ -3,7 +3,7 @@
 <info:structure> bölümünden de bildiğiniz üzre, yorumlar tek satır `//` olabileceği gibi birden çok satır da olabilir `/* .. */`.
 Genelde  yorum satırları kodun nasıl ve niçin çalıştığını anlatmak için kullanılır.
 
-İlk görüşte yorum yapmanın gereklilik olduğu aşikardır. Fakat programlama yeni başlayanlayanlar bunu ilk önce genelde yanlış anlamaktadırlar.
+İlk görüşte yorum yapmanın gereklilik olduğu aşikardır. Fakat programlama yeni başlayanlar bunu ilk önce genelde yanlış anlamaktadırlar.
 
 ## Kötü Yorum
 
@@ -51,7 +51,7 @@ function asalSayilariGoster(n) {
   for (let i = 2; i < n; i++) {
     *!*if (!asalMi(i)) continue;*/!*
 
-    alert(i);  
+    alert(i);
   }
 }
 
@@ -109,7 +109,7 @@ function addJuice(kap) {
 ```
 Tekrardan söylemek gerekirse nelerin olup bittiğini yorum değil, fonksiyonun kendisi söylemeli.Ayrıca kod yapısı fonksiyonlar şeklinde ayrık olduğunda daha düzgün olur. Her fonksiyonun ne argüman aldığı ne geri döndürdüğü bellidir.
 
-Gerçekte neyin olup bittiğini söyleyen yorumu tamamen çıkarmak olanaksızdır. Bazen karmaşık algorimalara olabilir. Bazen akıllıca yapılmış kısayollar olabilir. Fakat genel olarak kod basit ve kendi kendini açıklayıcı olmalı.
+Gerçekte neyin olup bittiğini söyleyen yorumu tamamen çıkarmak olanaksızdır. Bazen karmaşık algorimalar olabilir. Bazen akıllıca yapılmış kısayollar olabilir. Fakat genel olarak kod basit ve kendi kendini açıklayıcı olmalı.
 
 
 ## İyi yorum
@@ -117,10 +117,10 @@ Gerçekte neyin olup bittiğini söyleyen yorumu tamamen çıkarmak olanaksızd�
 Peki, fonksiyonun ne yaptığını anlatan yorumlar kötü ise, hangi yorumlar iyi?
 
 Mimariyi tanımla
-: Üst seviyede bileşenlere genel bakış, nasıl birbirleriyle iletişim kurdukları, farklı durumlarda akışın nasıl değişeceği gibi konular anlatılmalıdır. Kusaca kuş bakışı kodun ne yaptığını anlatmalısınız. Bununla ilgili şema diline [UML](https://tr.wikipedia.org/wiki/UML) bakabilirsiniz. Kesinlikle üstünde çalışılmaya değer.
+: Üst seviyede bileşenlere genel bakış, nasıl birbirleriyle iletişim kurdukları, farklı durumlarda akışın nasıl değişeceği gibi konular anlatılmalıdır. Kısaca kuş bakışı kodun ne yaptığını anlatmalısınız. Bununla ilgili şema diline [UML](https://tr.wikipedia.org/wiki/UML) bakabilirsiniz. Kesinlikle üstünde çalışılmaya değer.
 
 Fonksiyon kullanımını dökümante etme
-: Fonksiyonu dökümante edebilmek için standart özel bir yazım vardır[JSDoc](http://tr.wikipedia.org/wiki/JSDoc). Fonksiyon: kullım, parametreler, dönen değer.
+: Fonksiyonu dökümante edebilmek için standart özel bir yazım vardır[JSDoc](http://tr.wikipedia.org/wiki/JSDoc). Fonksiyon: kullanım, parametreler, dönen değer.
 
     Örneğin:
     ```js
@@ -135,7 +135,7 @@ Fonksiyon kullanımını dökümante etme
       ...
     }
     ```
-    Bu yorumlar gize bu fonksiyonun amacının ne olduğunu koda bakmadan anlatır.
+    Bu yorumlar bize bu fonksiyonun amacının ne olduğunu koda bakmadan anlatır.
 
     Bu arada [WebStorm](https://www.jetbrains.com/webstorm/) gibi editörler size JSDoc yazma konusunda yardımcı olur. Otomatik olarak kodu kontrol edebilir.
 

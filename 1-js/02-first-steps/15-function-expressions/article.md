@@ -65,11 +65,11 @@ Detayına bakılacak olursa:
 1.`(1)` fonksiyon tanımlanır ve `selamVer` değişkenine atanır.
 2. `(2)` bunu `func` değişkenine kopyalar.
 
-Tekrardan hatırlatmak gerekirse: `selamVer` etrafında parantez bulunmamaktadır. Eğer `func = selamVer()` şeklinde parantez ile yazılacak olsaydı, 
+Tekrardan hatırlatmak gerekirse: `selamVer` etrafında parantez bulunmamaktadır. Eğer `func = selamVer()` şeklinde parantez ile yazılacak olsaydı,
 func değişkenine atanan değer `selamVer` fonksiyonunun kendisi değil, bu fonksiyonun çıktısı olurdu.
 
 3. Fonksiyon bundan sonra `selamVer()` ve `func()` şeklinde çağırılabilir.
- 
+
 Ayrıca ilk satır için *fonksiyon ifadesi* de kullanılabilirdi:
 
 ```js
@@ -99,7 +99,7 @@ let selamVer = function() {
 
 Cevap basit:
 - Kod bloklarının sonunda `;` e gerek yoktur. Örneğin `if{ ...}`, `for{ ... }`, `for { }`, `function f{}` vs.
-- Fonksiyon ifadesi bir ifade içinde kullanıldığından `let selamVer = ....;` bir değerdir. Kod bloğu değildir. Cümle sonlarında değer ne olursa olsun `;` kullanılması önerilir. Bundan dolayı `;` *fonksiyon ifadesi* ile alaklı değildir. Sadece tanımlamanın sonunu göstermek içindir. Tıpkı diğer tanımlamalarda olduğu gibi.
+- Fonksiyon ifadesi bir ifade içinde kullanıldığından `let selamVer = ....;` bir değerdir. Kod bloğu değildir. Cümle sonlarında değer ne olursa olsun `;` kullanılması önerilir. Bundan dolayı `;` *fonksiyon ifadesi* ile alakalı değildir. Sadece tanımlamanın sonunu göstermek içindir. Tıpkı diğer tanımlamalarda olduğu gibi.
 ````
 
 ## Geriçağrım Fonksiyonları ( Callback functions )
@@ -139,7 +139,7 @@ function iptalGoster() {
 sor("Kabul ediyor musunuz?", tamamGoster, iptalGoster);
 ```
 
-Daha kısa yolunu yazmadan önce söylemek gerekir ki bu tür fonksiyonlar oldukça sıkça kullanılmaktadır. Gerçek hayattaki örnekleri ile yukarıdaki arasında fark ise gerçek hayatta basit bir `confirm` yerine daha karmaşık olaylar için kullanılıyor olmalarıdır. 
+Daha kısa yolunu yazmadan önce söylemek gerekir ki bu tür fonksiyonlar oldukça sıkça kullanılmaktadır. Gerçek hayattaki örnekleri ile yukarıdaki arasında fark ise gerçek hayatta basit bir `confirm` yerine daha karmaşık olaylar için kullanılıyor olmalarıdır.
 
 **`sor` fonksiyonunun argümanları *callbacks* veya *geri çağrım fonksiyonları* olarak adlandırılırlar.
 
@@ -203,7 +203,7 @@ Yazım: Kodda neyin ne olduğunu görme.
 
 Daha ince bir değişiklik ise fonksiyonun JavaScript motorunda ne zaman yaratılacağıdır.
 
-**Fonksiyon ifadesi kod çalışırken fonksiyona geldikten sonra kullılır**
+**Fonksiyon ifadesi kod çalışırken fonksiyona geldikten sonra kullanılır**
 
 Çalışma atamanın sağ tarafına geçince `let sum = function...`, bu noktadan sonra fonksiyon artık yaratıldı. Bundan böyle çağırılabilir veya başka bir değişkene atanabilir.
 
@@ -288,9 +288,9 @@ if (yas < 18) {
   merhaba();               // \   (çalışır)
 */!*
                            //  |
-  function merhaba() {     //  |  
+  function merhaba() {     //  |
     alert("Merhaba!");     //  |  Fonksiyon tanımı bu blok içirisinde her yerden çağırılabilir.
-  }                        //  |  
+  }                        //  |
                            //  |
 *!*
   merhaba();               // /   (çalışır)
@@ -370,7 +370,7 @@ Fakat eğer Fonksiyon Tanımı işimize yaramaz ise(yukarıda örneğin Fonksiyo
 - Fonksiyon tanımları kod çalıştırmadan önce işlenir. Böylece kodun her yerinden ulaşılabilir olurlar.
 - Fonksiyon tanımları ise kod çalışırken bu tanıma erişirse çalışır.
 
-Çoğu zaman Fonksiyon Tanımı metodu tercih edilmelidir. Çünkü bu şekilde fonksiyon tanımlanmadan önce fonksiyon çağrısı yapmak mümkündür. Bu kodun daha düzenli tutulmasında yarcımdı olur. Ayrıca daha okunabilirdir.
+Çoğu zaman Fonksiyon Tanımı metodu tercih edilmelidir. Çünkü bu şekilde fonksiyon tanımlanmadan önce fonksiyon çağrısı yapmak mümkündür. Bu kodun daha düzenli tutulmasında yardımcı olur. Ayrıca daha okunabilirdir.
 
 Fonksiyon ifadesi sadece Fonksiyon Tanımı yetersiz kalırsa kullanılmalıdır. Bu örnek daha önce yukarıda yapılmıştı.
 

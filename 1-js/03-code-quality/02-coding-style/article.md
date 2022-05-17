@@ -9,7 +9,7 @@ Buna yardımcı olan bir şey de iyi kodlama stilidir.
 
 ## Yazım
 
-Kodlar için yazımış bir kopya kağıdı(detayları aşağıda):
+Kodlar için yazılmış bir kopya kağıdı(detayları aşağıda):
 
 ![](code-style.svg)
 <!--
@@ -38,7 +38,7 @@ if (n < 0) {
 -->
 Şimdi bu kurallar ve nedenleri hakkında konuşabiliriz.
 
-Buradaki hiçbir şey kanun değildir. Hepsi sizin zevgine kalmıştır ve değişebilir. Buradaki kodlama kuralları dogmalara dayanmaz.
+Buradaki hiçbir şey kanun değildir. Hepsi sizin zevkinize kalmıştır ve değişebilir. Buradaki kodlama kuralları dogmalara dayanmaz.
 
 ### Süslü Parantez
 
@@ -47,7 +47,7 @@ Buradaki hiçbir şey kanun değildir. Hepsi sizin zevgine kalmıştır ve deği
 
 ```js
 if (kosul) {
-  // şunu yap 
+  // şunu yap
   // ...bunu yap
   // ...sonra bunu yap
 }
@@ -91,7 +91,7 @@ Satır uzunluğu limitine takım seviyesinde karar verilir. Genelde 80-120 karak
 İki türlü satır başı standardı vardır.
 
 - **Yatay boşluklar:2(4) boşluk.**
-    
+
     Yatay boşluklar genelde 2 veya 4 veya "Tab" sembolünden oluşur. Bunlardan hangisinin seçilmesi gerektiği bir çeşit savaştır. Bugünlerde boşluk tuşu ile boşluk bırakmak daha fazla kullanılan yöntemdir.
 
     Boşluk tuşu ile satıra başlamanın "Tab" a göre üstünlü daha esnek ayarlanabilir olmasından dolayıdır.
@@ -100,7 +100,7 @@ Satır uzunluğu limitine takım seviyesinde karar verilir. Genelde 80-120 karak
 
     ```js no-beautify
     goster(parametreler,
-         hizalandı, // soldan 5 boşluk  
+         hizalandı, // soldan 5 boşluk
          ilki,
          sonra,
          digeri
@@ -125,7 +125,7 @@ Satır uzunluğu limitine takım seviyesinde karar verilir. Genelde 80-120 karak
     }
     ```
 
-    Eğer okunurluluğa etki edecekse yeni bir satır arası vermekten çekinmeyin. Kanıya göre 9 satıdan fazla kod varsa arada kesin bir satır arası olmalıdır.
+    Eğer okunurluluğa etki edecekse yeni bir satır arası vermekten çekinmeyin. Kanıya göre 9 satırdan fazla kod varsa arada kesin bir satır arası olmalıdır.
 
 ### Noktalı virgül
 
@@ -179,7 +179,7 @@ function ust(x, n) {
     }
 
     return sonuc;
-  }  
+  }
 }
 ```
 
@@ -202,11 +202,11 @@ function ust(x, n) {
 }
 ```
 
-... fakat ikincisi daha okunaklıdır, çünkü `n<0` koşulu ilk önce kontrol edildi ve buna göre aksiyon alındı sonrsında ana kod akışına devam edildi, ayrıca bir `else` yazmaya gerek kalmadı.
+... fakat ikincisi daha okunaklıdır, çünkü `n<0` koşulu ilk önce kontrol edildi ve buna göre aksiyon alındı sonrasında ana kod akışına devam edildi, ayrıca bir `else` yazmaya gerek kalmadı.
 
 ## Kodun altında fonksiyonlar
 
-Eğer bir kaç tane "helper"(yardımcı) fonksiyon yazıyorsanız bunları yerleştirmenin üç farklı yolu var.
+Eğer birkaç tane "helper"(yardımcı) fonksiyon yazıyorsanız bunları yerleştirmenin üç farklı yolu var.
 
 1. Kullanan kodun üstünde fonksiyonları tanımlamak:
 
@@ -258,7 +258,7 @@ Eğer bir kaç tane "helper"(yardımcı) fonksiyon yazıyorsanız bunları yerle
 
 ## Stil Klavuzu
 
-Stil klavuzları genel olarak "nasıl yazılmalı" sorusunun cevabını verir: Kaç satır bırakılmalıdırı, nerede yeni satıra geçilmelidir vs. çok küçük küçük şeyler.
+Stil klavuzları genel olarak "nasıl yazılmalı" sorusunun cevabını verir: Kaç satır bırakılmalıdır, nerede yeni satıra geçilmelidir vs. çok küçük küçük şeyler.
 
 Genel olarak tüm takım üyeleri bu kurallara uyduğunda kod tek bir elden çıkmış gibi görünür. Kimin yazdığı önemini yitirir.
 
@@ -279,7 +279,7 @@ Kod stilinizi otomatik olarak denetleyen araçlar bulunmaktadır. Bunlara "düze
 
 Bunların en önemli özelliği stili kontrol etmesinin yanında yazımdaki hataları, fonksiyon isimlerindeki problemleri bulur.
 
-Bundan dolayı bir tanesini kullanmanız öneririli. Sadece kelime hatalarını düzeltmeniz için bile olsa kullanmanız iyidir.
+Bundan dolayı bir tanesini kullanmanız öneririlir. Sadece kelime hatalarını düzeltmeniz için bile olsa kullanmanız iyidir.
 
 En çok bilinen araçlar:
 
@@ -287,7 +287,7 @@ En çok bilinen araçlar:
 - [JSHint](http://www.jshint.com/) -- JSLintden daha fazla özelliğe sahip.
 - [ESLint](http://eslint.org/) -- en yenilerinden.
 
-Hepside işinizi görür. Yazar  [ESLint](http://eslint.org/) kullanmatadır.
+Hepside işinizi görür. Yazar  [ESLint](http://eslint.org/) kullanmaktadır.
 
 Çoğu otomatik düzenleyici editör ile entegre çalışır. Sadece plugin'i aktif edin, kod stilini ayarlayın yeterli.
 
@@ -317,7 +317,7 @@ Buradaki `"extends"` normalde `eslint:recommended` i kullanacağımız fakat bun
 
 Bunun ardından editörünüzde ESLint eklentisini aktif edin. Çoğu editörde bu eklenti bulunmaktadır.
 
-Bunun yanında bu stilleri internetten indirip kullanmakta mümkündür. Bunun için 
+Bunun yanında bu stilleri internetten indirip kullanmakta mümkündür. Bunun için
 <http://eslint.org/docs/user-guide/getting-started> adresine bakabilirsiniz.
 
 Bunun yanında otomatik düzenleyici kullanmanın yan etkileri de vardır. Kod düzenleyiciler eğer tanımlanmamış bir değişken kullanılmışsa, bunu anlar ve vurgular. Fakat çoğu defa bunun nedeni yanlış yazımdır. Tabi bunu farkederseniz düzeltmesi de hemen yapılabilir.
@@ -329,7 +329,7 @@ Ayrıca bazı IDEler bu otomatik düzenleyicileri kendileri doğrudan entegre ed
 
 ## Özet
 
-Bu bölümdeki tüm yazım kurallar ve stil klavuzlarının amacı okunabilrliği artırmaktır. Bundan dolayı tamamı tartışılabilir.
+Bu bölümdeki tüm yazım kurallar ve stil klavuzlarının amacı okunabilirliği artırmaktır. Bundan dolayı tamamı tartışılabilir.
 
 "Nasıl daha iyi yazarız?" sorusu hakkında düşündüğümüzde, kriter "Nasıl daha iyi okunur kod yazabilir, nasıl yazarken hatalardan kaçabiliriz?" sorularını aklımızda tutmamız gereklidir. Buna göre stil seçip hangisinin daha iyi olduğuna karar verebiliriz.
 

@@ -6,7 +6,7 @@ Daha karmaşık kodlara geçmeden, hata ayıklama hakkında konuşmamız gerekme
 
 Geliştirici özellikleri en iyi olan tarayıcı Chrome olduğundan bu tarayıcı ile çalışacağız.
 
-## "Kaynak" paneli 
+## "Kaynak" paneli
 
 Şu anda sizin kullandığınız Chrome biraz farklı olabilir. Fakat bu panel kesinlikle orada biryerde olmalı
 
@@ -25,9 +25,9 @@ Bu panelde `hello.js` i seçtiğinizde aşağıdaki gibi bir ekran görmeniz ger
 ![](chrome-tabs.svg)
 
 Bu bölüm üçe ayrılmıştır:
-1. **Dosya Gezgini**: Html, javascript, css ve diğer dosyalar görseller de dahil olmak üzere açılan sayfaya iat olan kaynakları gösterir. Chrome eklentileri de burada yer alabilir.
+1. **Dosya Gezgini**: Html, javascript, css ve diğer dosyalar görseller de dahil olmak üzere açılan sayfaya ait olan kaynakları gösterir. Chrome eklentileri de burada yer alabilir.
 2. **Kod Editörü** burası ise kaynak kodu gösterir.
-3. **Bilgi ve kontrol bölgesi** burada ise hata ayıklama yapılır. 
+3. **Bilgi ve kontrol bölgesi** burada ise hata ayıklama yapılır.
 
 Şimdi geliştirici araçlarının sol köşesinde bulunan <span class="devtools" style="background-position:-172px -122px"></span> açma kapama bölümünü kullanarak kendinize biraz yer açabilirsiniz.
 
@@ -97,10 +97,10 @@ Lütfen bilgilerin görüneceği dropdownları sağ panelden açınız. Bu böl�
 
 1. **`Watch` -- herhangi bir ifadenin o anki değerini gösterir.**
     `+` işaretine basarak ifade girebilirsiniz. Bu ifadenin değerini kod ayıklayıcı her halükarda gösterir. Kod çalışırken bu değerleri her adımda kontrol eder ve sonucunu yazar.
-    
+
 2. **`Call Stack` -- İç içe çağrı zincirlerini gösterir.**
 
-    Şu anda hata ayıklayıcı `merhaba()` fonksiyonunun içindedir ve `index.html` tarafından çağırılmıştır. Eğer  yığın(stack) bölgesine dikkat ederseniz fonksiyona girdiğinde nereden çağırıldığını gösterir. ( her hangi bir fonksiyondan çağırılmadığından dolayı "anonymous" olarak göreceksiniz)
+    Şu anda hata ayıklayıcı `merhaba()` fonksiyonunun içindedir ve `index.html` tarafından çağırılmıştır. Eğer  yığın(stack) bölgesine dikkat ederseniz fonksiyona girdiğinde nereden çağırıldığını gösterir. ( herhangi bir fonksiyondan çağırılmadığından dolayı "anonymous" olarak göreceksiniz)
 
     Eğer yığın maddesine tıklayacak olursanız hangi fonksiyondan çağırıldığını görebilirsiniz.
 3. **`Scope` -- kesme anında var olan değişkenlerin değerlerini gösterir**
@@ -134,7 +134,7 @@ Sağ panelin üstünde sadece bu işe has butonlar bulunmaktadır.
 : Bir öncekinin aynısı, bir adım gider fakat bu defa eğer bir fonksiyon varsa onun "içine girer"(step into).
 
 <span class="devtools" style="background-position:-104px -76px"></span> -- içinde bulunulan fonksiyonun sonuna kadar devam et, `key:Shift+F11`.
-: Çalışma içinde bulunan fonksiyonun sonuna gelir ve orada durur.Yanlışlıkla iç içe çağrının içine girilirse çıkmak için kullanışlı bir özelliktir.<span class="devtools" style="background-position:-72px -76px"></span>, 
+: Çalışma içinde bulunan fonksiyonun sonuna gelir ve orada durur.Yanlışlıkla iç içe çağrının içine girilirse çıkmak için kullanışlı bir özelliktir.<span class="devtools" style="background-position:-72px -76px"></span>,
 
 <span class="devtools" style="background-position:-7px -28px"></span> -- Tüm kesme noktalarını etkinleştirme/devre dışı bırakma.
 
@@ -166,10 +166,10 @@ Bahsettiğimiz gibi çalışan kodu durdurmanın üç farklı yönü vardır. Bu
 2. `debugger` kelimesi ile durdurma
 3. Eğer hata olduğunda aç/kapa butonu aktifse çalışmada hata olduğunda  <span class="devtools" style="background-position:-264px -4px"></span> durdurma
 
-Bunların sonucunda çalışmada ne gibi hatalar olduğunu görebilirsiniz. 
+Bunların sonucunda çalışmada ne gibi hatalar olduğunu görebilirsiniz.
 
 Bunlara ek olarak <https://developers.google.com/web/tools/chrome-devtools> adresinden daha geniş ve yeni bilgilere ulaşabilirsiniz.
 
 Bu bölümdeki bilgiler sizin hata ayıklama işlemine başlamanızda yardımcı olacaktır. Fakat tarayıcı ile alakalı çok fazla işlem yapıyorsanız bu durumda geliştirici  derinlemesine incelemeniz gerekmektedir.
 
-Tabi bunun yanında deneme yanılma yöntemiy ile de geliştirici araçlarının özelliklerini keşfedebilirsiniz. Unutmayın sağ tıklayarak farklı bölgelerde farklı fonksiyonları görebilirsiniz.
+Tabi bunun yanında deneme yanılma yöntemi ile de geliştirici araçlarının özelliklerini keşfedebilirsiniz. Unutmayın sağ tıklayarak farklı bölgelerde farklı fonksiyonları görebilirsiniz.

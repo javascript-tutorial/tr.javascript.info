@@ -3,7 +3,7 @@
 
 Bazı durumlarda koşula göre farklı eylemler yapmak isteyebilirsiniz.
 
-`"?"` operatörü veya `if` cümlesi bu koşulları kontrol etmenizi sağlar. 
+`"?"` operatörü veya `if` cümlesi bu koşulları kontrol etmenizi sağlar.
 
 ## "if" cümlesi
 
@@ -64,7 +64,7 @@ if (sonuc) {
 }
 ```
 
-## "else" cümlesi 
+## "else" cümlesi
 
 `if` cümlesi opsiyonel olarak "else" bloğu da içerebilir. Bu eğer `if` parantezi içerisinde yazdığımız kod yanlış ise çalışır.
 
@@ -97,7 +97,7 @@ if (yil < 2015) {
   alert( 'Kesinlikle!' );
 }
 ```
-Yukarıdaki kodda önce `yil < 2015` kontrolü yapılır. Eğer bu değerlendirme yanlış ise bir sonraki koşula geçilir. Eğer `year > 2015` doğru ise bu koşul içindeki alarm fonksiyonu çalışır. Diğer hallerde son `alert` fonksiyonu çalışır. 
+Yukarıdaki kodda önce `yil < 2015` kontrolü yapılır. Eğer bu değerlendirme yanlış ise bir sonraki koşula geçilir. Eğer `year > 2015` doğru ise bu koşul içindeki alarm fonksiyonu çalışır. Diğer hallerde son `alert` fonksiyonu çalışır.
 
 Sonuncusunda bir tane daha `else if` bloğu olabilirdi: `else if ( yil == 2015 )`
 
@@ -210,7 +210,7 @@ let firma = prompt('JavaScript hangi firma tarafından yaratılmıştır?', '');
 */!*
 ```
 
-Koşula göre `firma =='Netscap'`, soru işaretinden sonra birinci bölüm veya ikinci bölüm çalışır.
+Koşula göre `firma =='Netscape'`, soru işaretinden sonra birinci bölüm veya ikinci bölüm çalışır.
 
 Sonucu bir değere atanmamıştır. Amaç duruma göre doğrudan kodu çalıştırmak.
 
@@ -235,4 +235,4 @@ if (firma == 'Netscape') {
 
 Okurken kodu dikey olarak okuruz. Bundan dolayı yazımın bir kaç satıra dağıtılması okumayı uzun satırlara göre daha kolay hale getirir.
 
-`'?'` işaretinin ideal kullanımı sadece o ya da bu sorusudur. Daha uzun bir cümle için `if` kullanmalısınız. 
+`'?'` işaretinin ideal kullanımı sadece o ya da bu sorusudur. Daha uzun bir cümle için `if` kullanmalısınız.

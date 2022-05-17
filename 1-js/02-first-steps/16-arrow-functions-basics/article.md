@@ -63,7 +63,7 @@ let merhaba = (yas < 18) ?
   () => alert('Merhaba') :
   () => alert("Merhabalar!");
 
-merhaba(); 
+merhaba();
 ```
 
 Ok fonksiyonları ilk yazılmaya başlandığında göze yabancı gelebilir. Fakat zamanla göz bu yapıya alışacak ve hemen ayak uyduracaktır.
@@ -100,5 +100,5 @@ alert( toplam(1, 2) ); // 3
 
 Ok Fonksiyonları tek satır için kullanışlıdır. İki türlüsü vardır:
 
-1. Süslü parantez olmadan: Fonksiyon sağ taraftaki ifadeyi çalıştırır ve sonucu dönderir. Tek satırda biten işlemler için kullanılmalıdır.
+1. Süslü parantez olmadan: Fonksiyon sağ taraftaki ifadeyi çalıştırır ve sonucu döndürür. Tek satırda biten işlemler için kullanılmalıdır.
 2. Süslü parantez ile `(...args) => { gövde }` -- süslü parantez bizim birden fazla satır yazmamızı sağlar.  Fakat gövde içerisinde `return` kullanılması gerekmektedir.
