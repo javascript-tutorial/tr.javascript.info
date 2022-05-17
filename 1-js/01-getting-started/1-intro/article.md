@@ -97,11 +97,11 @@ Yeni bir teknolojiyi öğrenmeye başlarken, sunacağı avantajlar için öngör
 
 ## JavaScript'e üstün diller
 
-JavaScript'in söz dizimi ve yazımı herkese uymayabilir. Her yiğidin yoğurt yiyişi ayrıdır.
+JavaScript'in söz dizimi ve yazımı herkese uymayabilir. Her yiğidin yoğurt yiyişi farklıdır.
 
 Bu olağan bir durum, çünkü tasarımlar ve gereksinimler kişiden kişiye göre değişir.
 
-Bundan dolayı yakın zamanda bir sürü yeni *transpiled* yani çevirilmiş diller türemiştir. Bu diller, çalıştırılmadan önce JavaScript'e çevriliyor. Günümüz araçları bu çeviri işini çok hızlı bir biçimde yapmaktadır. Gerçekte, doğrudan -siz yazarken bile- çevirme işini yapıp bu yeni dosyayı kullanılabilir duruma getirirler.
+Bundan dolayı yakın zamanda bir sürü yeni *transpiled* yani çevirilmiş diller türemiştir. Bu diller, çalıştırılmadan önce JavaScript'e çevriliyor. Günümüz araçları bu çeviri işini çok hızlı bir biçimde yapmaktadır. Gerçekte, doğrudan —siz yazarken bile— çevirme işini yapıp bu yeni dosyayı kullanılabilir duruma getirirler.
 
 Bu dillere örnek vermek gerekirse:
 

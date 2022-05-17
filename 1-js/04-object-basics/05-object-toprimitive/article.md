@@ -170,16 +170,6 @@ Eğer `Symbol.toPrimitive` ve `valueOf` yoksa `toString` metodu objeleri ilkel t
 
 Bu ilkel değeri alan operatör işine devam eder ve eğer gerekliyse başka çeviriler de yapabilir.
 
-```smart header="Historical notes"
-For historical reasons, if `toString` or `valueOf` returns an object, there's no error, but such value is ignored (like if the method didn't exist). That's because in ancient times there was no good "error" concept in JavaScript.
-
-In contrast, `Symbol.toPrimitive` *must* return a primitive, otherwise there will be an error.
-```
-
-## Further operations
-
-An operation that initiated the conversion gets that primitive, and then continues to work with it, applying further conversions if necessary.
-
 Örneğin:
 
 - Matematiksel operatörler( binary toplama dışında) `ToNumber` çevrimini kullanır:

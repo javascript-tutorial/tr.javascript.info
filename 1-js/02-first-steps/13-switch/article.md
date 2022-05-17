@@ -1,7 +1,7 @@
 # "switch" cümleleri
 
 ```
-Türkçe olarak buradaki anlamıyla koşullu ifade demektir.  
+Türkçe olarak buradaki anlamıyla koşullu ifade demektir.
 ```
 
 
@@ -81,7 +81,7 @@ switch (a) {
 */!*
 }
 ```
-Bu döngü çalıştırıldığında ekranda sıralı şekilde uyarılar göreceksiniz. 
+Bu döngü çalıştırıldığında ekranda sıralı şekilde uyarılar göreceksiniz.
 
 ```js
 alert( 'Kesinlikle!' );
@@ -108,13 +108,13 @@ switch (+a) {
     alert("Burası çalışmaz");
 }
 ```
-`+a` `1` değeri dönderir. `case` işleminde `b+1` ile karşılaştırıldığında sonuç `doğru` olduğundan içerideki `alert` çalışır.
+`+a` `1` değeri döndürür. `case` işleminde `b+1` ile karşılaştırıldığında sonuç `doğru` olduğundan içerideki `alert` çalışır.
 ````
 
 ## "case"'leri gruplama
 Gövdesinde aynı kodu çalıştıran birden fazla `case` gruplanabilir.
 
-Örneğin, diyelim ki `case 3` ve `case 5` için aynı kodu çalıştırmak isteniz:
+Örneğin, diyelim ki `case 3` ve `case 5` için aynı kodu çalıştırmak istedik:
 
 ```js run no-beautify
 let a = 2 + 2;
@@ -139,7 +139,7 @@ switch (a) {
 
 `3` ve `5` aynı mesajı gösterecek.
 
-Aslında "gruplama" `switch/case`'in break olmadan çalıştırılmış halidir. 
+Aslında "gruplama" `switch/case`'in break olmadan çalıştırılmış halidir.
 Yan etki de denebilir. `case 3` `(*)`'dan başlar ve arada `break` olmadığından `case 5` ile devam eder.
 
 ## Tipler önemlidir

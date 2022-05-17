@@ -42,7 +42,7 @@ f();
 ```
 Tanımda bu özelliğe "bağlamsal isim" denir. Eğer fonksiyonda böyle bir şey yoksa, tanımlama bunu içerikten alır.
 
-Object metodlarının da isimleri vardır:
+Nesne metodlarının da isimleri vardır:
 ```js run
 let kullanici = {
 
@@ -57,7 +57,7 @@ let kullanici = {
 }
 
 alert(kullanici.selamVer.name); // selamVer
-alert(kullanici.yolcuEt.name); // Güle güle
+alert(kullanici.yolcuEt.name); // yolcuEt
 ```
 Burada bir sihir yoktur. İsmin çıkarılamadığı birçok durum meydana gelebilir.
 
@@ -68,7 +68,7 @@ Böyle durumlarda aşağıdaki gibi boş dönerler:
 let arr = [function() {}];
 
 alert( arr[0].name ); // <boş>
-// motorun doğru ismi bulmasına imkan yok bundna dolayı boş dönüyor.
+// motorun doğru ismi bulmasına imkan yok bundan dolayı boş dönüyor.
 ```
 Pratikte çoğu fonksiyonun ismi bulunmaktadır.
 
@@ -95,7 +95,7 @@ Kullanıcı cevap verdiğinde `isleyici`(handler) çağırılır. İki türlü i
 - Argümansız fonksiyon, sadece pozitif cevaplarda çağırılır.
 - Argümanlı fonksiyonlar, cevap alınan her durumda çağırılır.
 
-Mantık şu şekildedir; cevap pozisit olduğunda argüman almayan isleyici calisir, fakat evrensel isleyiciye de izin verir.
+Mantık şu şekildedir; cevap pozitif olduğunda argüman almayan isleyici calisir, fakat evrensel isleyiciye de izin verir.
 
 `isleyici`'lerin doğru çalışması için, `length` özelliğinden faydalanılabilir.
 
@@ -130,7 +130,7 @@ function selamVer() {
 
   *!*
   // Kaç defa çağırıldığını tutar.
-  sayHi.counter++;
+  selamVer.counter++;
   */!*
 }
 selamVer.counter = 0; // ilk değer
@@ -230,7 +230,7 @@ selamVer("Ahmet"); // Selam, Ahmet
 ```
 `func` ismine ait iki tane özellik vardır:
 
-1.Bu şekilde fonksiyonun kendisine içerisinden referans vermek mümkündür.
+1. Bu şekilde fonksiyonun kendisine içerisinden referans vermek mümkündür.
 2. Fonksiyonun dışından erişilemez.
 
 Örneğin, `selamVer` fonksiyonu eğer bir parametre olmadan çağırılırsa kendisini `"Misafir"` ile tekrardan çağırabilir.

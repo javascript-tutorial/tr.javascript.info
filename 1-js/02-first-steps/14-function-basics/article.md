@@ -19,7 +19,7 @@ function mesajGoster() {
 }
 ```
 
-`function` kelimesi önce yazılır, ardından *fonksiyonun adı* ve sonra parametlerin yazılacağı parantez açılır ve ihtiyaç duyulan parametreler yazılır, sonrasında ise kapatılıp süslü parantez ile *fonksiyon gövdesi*ne başlanır.
+`function` kelimesi önce yazılır, ardından *fonksiyonun adı* ve sonra parametrelerin yazılacağı parantez açılır ve ihtiyaç duyulan parametreler yazılır, sonrasında ise kapatılıp süslü parantez ile *fonksiyon gövdesi*ne başlanır.
 
 ![](function_basics.png)
 
@@ -38,7 +38,7 @@ mesajGoster();
 */!*
 ```
 
-`mesajGoster()` fonksiyonu kodu çalıştırır. Bu kod sonrasında `Merhaba millet` uyarsını iki defa göreceksiniz.
+`mesajGoster()` fonksiyonu kodu çalıştırır. Bu kod sonrasında `Merhaba millet` uyarısını iki defa göreceksiniz.
 
 Bu örnek açıkça fonksiyonların ana amacını gösteriyor: Kod tekrarından kaçınma.
 
@@ -93,11 +93,11 @@ function mesajGoster() {
   alert(mesaj);
 }
 
-alert( kullaniciAdi ); // Fonksiyon çağırılmadan  *!*Adem*/!* 
+alert( kullaniciAdi ); // Fonksiyon çağırılmadan  *!*Adem*/!*
 
 mesajGoster();
 
-alert( kullaniciAdi ); // fonksiyon çağırıldıktan sonra *!*Yusuf*/!*, 
+alert( kullaniciAdi ); // fonksiyon çağırıldıktan sonra *!*Yusuf*/!*,
 ```
 
 Dışarıda bulunan değişkenler eğer yerel değişken yoksa kullanılırlar. Bazen eğer `let` ile değişken oluşturulmazsa karışıklık olabilir.
@@ -128,12 +128,12 @@ Fonksiyonların dışına yazılan her değişken, yukarıda bulunan `kullaniciA
 
 Global değişkenlere her fonksiyon içerisinden erişilebilir.(Yerel değişkenler tarafından aynı isimle bir değişken tanımlanmamışsa)
 
-Genelde fonksiyonlar yapacakları işe ait tüm değişkenleri tanımlarlara, global değişkenler ise sadece proje seviyesinde bilgi tutarlar, çünkü proje seviyesinde bilgilerin projenin her yerinden erişilebilir olması oldukça önemlidir. Modern kodda az veya hiç global değer olmaz. Çoğu fonksiyona ait değişkenlerdir.
+Genelde fonksiyonlar yapacakları işe ait tüm değişkenleri tanımlarlar, global değişkenler ise sadece proje seviyesinde bilgi tutarlar, çünkü proje seviyesinde bilgilerin projenin her yerinden erişilebilir olması oldukça önemlidir. Modern kodda az veya hiç global değer olmaz. Çoğu fonksiyona ait değişkenlerdir.
 
 ```
 
 ## Parametreler
-Paramterelere isteğe bağlı olarak veri paslanabilir. Bunlara *fonksiyon argümanları* da denir.
+Parametrelere isteğe bağlı olarak veri paslanabilir. Bunlara *fonksiyon argümanları* da denir.
 
 Aşağıdaki fonksiyon iki tane parametreye sahiptir. `gonderen` ve `metin`
 
@@ -232,7 +232,7 @@ function mesajGoster(gonderen, metin) {
 ````
 
 
-## Değer dönderme
+## Değer döndürme
 
 Fonksiyon çağırıldığı yere değer döndürebilir.
 
@@ -272,7 +272,7 @@ if ( yasKontrolu(yas) ) {
   alert( 'Reddedildi' );
 }
 ```
-`return` değer döndermek zorunda değildir. Bu fonksiyondan anında çıkmayı sağlar.
+`return` değer döndürmek zorunda değildir. Bu fonksiyondan anında çıkmayı sağlar.
 
 Örneğin:
 
@@ -288,10 +288,10 @@ function filmGoster(age) {
   // ...
 }
 ```
-Yukarıdaki kodda  eğer `yasKontrolu(yas)` `false` dönderir ise  `filmGoster` fonksiyonu `alert`e erişemeyecektir.
+Yukarıdaki kodda  eğer `yasKontrolu(yas)` `false` döndürür ise  `filmGoster` fonksiyonu `alert`e erişemeyecektir.
 
-````smart header="boş veya bir şey döndermeyen fonksiyon `undefined` dönderir"
-Eğer bir fonksiyon değer döndermiyor ise bu fonksiyon `undefined` dönderiyor ile aynı anlama gelir.
+````smart header="boş veya bir şey döndürmeyen fonksiyon `undefined` döndürür"
+Eğer bir fonksiyon değer döndürmüyor ise bu fonksiyon `undefined` döndürüyor ile aynı anlama gelir.
 
 
 ```js run
@@ -300,7 +300,7 @@ function biseyYapma() { /* boş */ }
 alert( biseyYapma() === undefined ); // true
 ```
 
-Boş dönderen `return`, `return undefined` ile aynıdır.
+Boş döndüren `return`, `return undefined` ile aynıdır.
 
 ```js run
 function biseyYapma() {
@@ -319,43 +319,43 @@ Uzun `return` ifadelerinde, yeni bir satırda yazmak size kullanışlı gelebili
 return
  (bazı + uzun + ifade + veya + baska + birsey  * f(a) + f(b))
 ```
-Bu çalışmaz, çünkü JavaScript `return` kelimesinden sonra `;` varsayara ve `undefined` döner. Bu aşağoıdaki ifade ile aynıdır:
+Bu çalışmaz, çünkü JavaScript `return` kelimesinden sonra `;` varsayar ve `undefined` döner. Bu aşağıdaki ifade ile aynıdır:
 
 ```js
 return*!*;*/!*
   (bazı + uzun + ifade + veya + baska + birsey  * f(a) + f(b))
 ```
-Bundan dolayı, tam olarak boş return olur. Geri döndereceğimiz değer ile return aynı satırda olmalıdır.
+Bundan dolayı, tam olarak boş return olur. Geri döndüreceğimiz değer ile return aynı satırda olmalıdır.
 
 ````
 
 ## Fonksiyonu isimlendirme [#fonksiyon-isimlendirme]
 
-Fonksiyonlar eylemdir. Bundan dolayı isimleri yüklem olmalıdır. Net olmalı ve fonksiyonun ne işe yaradığını ifade edebilmelidir. Böylece kim ki kodu okur, ne yazıldığınına dair bir fikri olur.
+Fonksiyonlar eylemdir. Bundan dolayı isimleri yüklem olmalıdır. Net olmalı ve fonksiyonun ne işe yaradığını ifade edebilmelidir. Böylece kim ki kodu okur, ne yazıldığına dair bir fikri olur.
 
-Genel itibari ile eylemi tanımlayan önek kullanmak iyi bir yöntemdir. Bu önekler ile ilgili birlikte kod yazdığınız kişiler ile uyum içerisinde olmalısınız. 
+Genel itibari ile eylemi tanımlayan ön ek kullanmak iyi bir yöntemdir. Bu ön ekler ile ilgili birlikte kod yazdığınız kişiler ile uyum içerisinde olmalısınız.
 
 Örneğin `"show"` fonksiyonu her zaman bir şeyleri `gösterir`.
 
 Fonksiyonlar şöyle başlayabilir.
 
-- `"get…"` -- değer dönderir,
+- `"get…"` -- değer döndürür,
 - `"calc…"` -- bir şeyler hesaplar,
 - `"create…"` -- bir şeyler yaratır,
-- `"check…"` -- bir şeyleri kontrol eder ve boolean dönderir.
+- `"check…"` -- bir şeyleri kontrol eder ve boolean döndürür.
 
 Böyle isimlere örnek:
 
-Not: ingilizce de bu daha kolay önce eylemi yazıyorlar. Türkçe de fiil genelde sonda olduğundan dolayı sıkıntı yaşanmaktadır. Fonksiyonlarınızı adlandırırken ingilizce adlandırırsanız okunması daha kolay olacaktır.
+Not: İngilizce'de bu daha kolay önce eylemi yazıyorlar. Türkçe'de fiil genelde sonda olduğundan dolayı sıkıntı yaşanmaktadır. Fonksiyonlarınızı adlandırırken İngilizce adlandırırsanız okunması daha kolay olacaktır.
 
 ```js no-beautify
 sendMessage(..)     // mesaj gönderir
-getAge(..)          // yaşı dönderir
-calcSum(..)         // toplamı hesaplar ve geri dönderir.
-createForm(..)      // form oluşturur ve genelde geri dönderir.
+getAge(..)          // yaşı döndürür
+calcSum(..)         // toplamı hesaplar ve geri döndürür.
+createForm(..)      // form oluşturur ve genelde geri döndürür.
 checkPermission(..) // izni kontor eder. true/false
 ```
-Önek ile fonksiyonlar bir anlamda ipucu verir ve ne tür değerler dönmesi gerektiğini anlatır.
+Ön ek ile fonksiyonlar bir anlamda ipucu verir ve ne tür değerler dönmesi gerektiğini anlatır.
 
 ```smart header="Bir fonksiyon -- bir eylem"
 Bir fonksiyon sadece isminin tanımladığı işi yapmalı.
@@ -364,16 +364,16 @@ Bir fonksiyon sadece isminin tanımladığı işi yapmalı.
 
 Bu kurallar şu şekilde bozulabilir:
 
-- `getAge` -- Eğer bu fonksiyon içeride `alert` ile yaş gösteriyor ise yanlış olur. Bu fonksiyonun sadece yaşı alıp döndermesi gerekmekte.
+- `getAge` -- Eğer bu fonksiyon içeride `alert` ile yaş gösteriyor ise yanlış olur. Bu fonksiyonun sadece yaşı alıp döndürmesi gerekmekte.
 - `createForm` -- Eğer dökümanı değiştiriyorsa veya forma bir şey ekliyorsa yanlış olur. ( Sadece formu yaratmalı ve geri dönmelidir )
 - `checkPermission` -- Eğer `izin verildi/reddedildi` gibi mesajları bu fonksiyon gösterirse yanlış olur. Sadece kontrol etmeli ve geri dönmelidir.
 
-Bu örnekler genel olarak öneklerin nasıl tahmin edilmesi gerektiğini gösterir. Bunların ne anlama geleceği siz ve takımınıza kalmıştır. Belki sizin kodunuz için farklı bir şekilde davranması gayet doğal olabilir. Fakat yine de öneklere ait bir anlamlandırmanız olmalıdır. Ön ek ne yapabilir ne yapamaz vs. Tüm aynı önekli fonksiyonlar sizin koyduğunuz kurala uymalı ve tüm takım bu kuralları biliyor olmalıdır.
+Bu örnekler genel olarak öneklerin nasıl tahmin edilmesi gerektiğini gösterir. Bunların ne anlama geleceği siz ve takımınıza kalmıştır. Belki sizin kodunuz için farklı bir şekilde davranması gayet doğal olabilir. Fakat yine de ön eklere ait bir anlamlandırmanız olmalıdır. Ön ek ne yapabilir ne yapamaz vs. Tüm aynı önekli fonksiyonlar sizin koyduğunuz kurala uymalı ve tüm takım bu kuralları biliyor olmalıdır.
 ```
 
 ```smart header="Aşırı derecede kısa fonksiyon isimleri"
 
-Çokça kullanılan fonksiyonlar genelde aşırı derece kısa isimlere sahip olurlar. 
+Çokça kullanılan fonksiyonlar genelde aşırı derece kısa isimlere sahip olurlar.
 
 Örneğin, [jQuery](http://jquery.com) kütüphanesi `$` fonksiyonu ile tanımlanır.  [LoDash](http://lodash.com/) kütüphanesi de keza kendine has fonksiyon `_` kullanır.
 
@@ -436,11 +436,11 @@ function fonksiyon ismi(parametreler, virgül , ile, ayrilirlar) {
 
 - Fonksiyona paslanan parametreler yerel değişken olarak fonksiyon içerisinde kopyalanırlar.
 - Fonksiyon dışarıdaki değişkene erişebilir. Fakat içeride yaratılmış bir değişken dışarıda kullanılamaz.
-- Fonksiyon değer dönderebilir. Eğer döndermezse `undefined`olarak tanımlanır.
+- Fonksiyon değer döndürebilir. Eğer döndürmezse `undefined`olarak tanımlanır.
 
 Kodun daha anlaşılır ve okunabilir olması için, fonksiyonlar içerisinde yerel değişken kullanılması önerilir. Dış değişkenler kullanılması önerilmez.
 
-Eğer fonksiyon parametre ile değer alır ve bu değer üzerinde çalışıp değer geri dönderirse anlaşılırlığı artar. Fakat eğer fonksiyon hiçbir parametre almadan sadece dışarıdaki değişkenleri değiştiriyor ise kodun anlaşılırlığı büyük ölçüde azalır.
+Eğer fonksiyon parametre ile değer alır ve bu değer üzerinde çalışıp değer geri döndürürse anlaşılırlığı artar. Fakat eğer fonksiyon hiçbir parametre almadan sadece dışarıdaki değişkenleri değiştiriyor ise kodun anlaşılırlığı büyük ölçüde azalır.
 
 Fonksiyon isimlendirme:
 
@@ -449,4 +449,4 @@ Fonksiyon isimlendirme:
 - Bunlar için ön ek kullanabilirsiniz. Türkçe sondan eklemeli bir dil olduğundan dolayı fonksiyon ekleri sona gelmektedir. Örneğin `asalGoster`, bu tip kullanım aslında okunurluk açısından pekte iyi değil benim kanaatimce. Çünkü okurken önce ne yaptığını anlaşılmıyor. Fakat İngilizce örneğine bakarsanız `showPrime`, burada önce ne yaptığını söylüyor. Farzedin ki birçok fonksiyonunuz var ve okuduğunuzda önce ne iş yaptığını bilmek bunları filtrelemenizde size yardımcı olacaktır.
 - Örnek kaç tane ek , `create...` , `show...`, `get...`, `check...` vs.
 
-Fonksiyonlar kod yazarken kullanılan ana yapılardır. Artık temellerini anlaşıldığına göre kullanılmaya başlanabilir. Fakat sadece temellerinin gösterildiğini bilmekte fayda var. ileride defalaraca fonksiyonlar konusuna geri dönülecektir.
+Fonksiyonlar kod yazarken kullanılan ana yapılardır. Artık temellerini anlaşıldığına göre kullanılmaya başlanabilir. Fakat sadece temellerinin gösterildiğini bilmekte fayda var. İleride defalarca fonksiyonlar konusuna geri dönülecektir.

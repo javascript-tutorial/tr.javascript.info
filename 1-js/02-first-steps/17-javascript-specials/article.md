@@ -68,7 +68,7 @@ Dahası için: <info:strict-mode>.
 Değişkenler isimlendirilirken aşağıdakileri içerebilir:
 - Harf ve sayıları içerebilir fakat ilk karakter sayı olamaz.
 - `$` ve `_` gibi karakterler diğer karakterle aynı niteliktedir ve her yerde kullanılabilir.
-- Latin olmayan yani Arapça, Japonca, Çince gibi diller de kullanılabilir fakat genelde kullanılmaz. 
+- Latin olmayan yani Arapça, Japonca, Çince gibi diller de kullanılabilir fakat genelde kullanılmaz.
 
 Değişkenler dinamik yazıma sahiptir ve her şeyi tutabilirler:
 
@@ -86,7 +86,7 @@ x = "Ahmet";
 - `undefined` -- sadece `undefined` değerine sahiptir. Bu da "değer atanmamış" demektir,
 - `object` ve `symbol` -- karmaşık veri yapıları için ve tek tanıtıcı(unique identifier) için kullanılabilir. Bu konular henüz anlatılmadı.
 
-`typeof` operatörü değerin tipini dönderir, fakat şu hallerde hata verir:
+`typeof` operatörü değerin tipini döndürür, fakat şu hallerde hata verir:
 
 ```js
 typeof null == "object" // hata verir
@@ -100,15 +100,15 @@ Dahası için: <info:variables> ve <info:types> konularına bakabilirsiniz.
 Şu anda tarayıcıyı çalışma ortamı olarak kullandığınızdan dolayı, bazı basit arayüz fonksiyonlarını bilmekte fayda var:
 
 [`prompt(soru[, varsayılan])`](mdn:api/Window/prompt)
-: `soru` sor ve kullanıcının girdiği değeri dönder. Eğer kullanıcı "iptal" tuşuna bakarsa `null` dönder.
+: `soru` sor ve kullanıcının girdiği değeri döndür. Eğer kullanıcı "iptal" tuşuna bakarsa `null` döndür.
 
 [`confirm(soru)`](mdn:api/Window/confirm)
-: `soru` sor ve "Tamam" mı yoksa "İptal" mi diye seçenekler sun. Sonuçta seçilene göre  `true/false` dönder.
+: `soru` sor ve "Tamam" mı yoksa "İptal" mi diye seçenekler sun. Sonuçta seçilene göre  `true/false` döndür.
 
 [`alert(mesaj)`](mdn:api/Window/alert)
 : Mesajın çıktısını ekrana uyarı olarak ver.
 
-tüm bo fonksiyonlar *modal* dır. Tekrara hatırlatmak gerekirse modal kullanıcının etkileşimi olana kadar kodu durdururlar. Yani kullanıcıdan cevabı beklerler.
+Tüm bu fonksiyonlar *modal* dır. Tekrar hatırlatmak gerekirse modallar kullanıcının etkileşimi olana kadar kodu durdururlar. Yani kullanıcıdan cevabı beklerler.
 
 Örneğin:
 
@@ -143,7 +143,7 @@ Bit seviyesi işlemler
 : Bit seviye operatörleri şu şekilde kullanılabilir: [docs](mdn:/JavaScript/Reference/Operators/Bitwise_Operators)
 
 Üçlü operatör
-: Üç tane paremetreden oluşur: `koşul ? sonucA : sonucB`. Eğer `koşul` doğru ise `sonucA` döndürür, yanlış ise `sonucB` 
+: Üç tane paremetreden oluşur: `koşul ? sonucA : sonucB`. Eğer `koşul` doğru ise `sonucA` döndürür, yanlış ise `sonucB`
 
 Mantıksal operatörler:
 : Mantıksal VE `&&`, VEYA `||` operatörleri ile bu işlemler yapılabilir.
@@ -187,7 +187,7 @@ Geri kalan operatörleri daha derin bir biçimde <info:operators>, <info:compari
 - `for(let...)` içinde tanımlanan değişkenler sadece döngü içerisinden erişilebilirdir. Fakat `let`i pas geçip var olan değişkeni kullanmak da mümkündür.
 - Direktifler `break/continue` döngüden çıkılmasını sağlar. `label` kullanarak iç içe döngüde `break/continue` nereye dallanacağını belirleyebilirsiniz.
 
-Detaylaına <info:while-for> bölümünden erişebilirsiniz.
+Detaylarına <info:while-for> bölümünden erişebilirsiniz.
 
 İlerleyen bölümlerde döngülerin nasıl objelerle başa çıktığı üzerinde durulacaktır.
 
@@ -245,7 +245,7 @@ Detaylı bilgi için: <info:switch>.
     // ifada sağ tarafta
     let toplam = (a, b) => a + b;
 
-    // Çoklu satır için {..} kullanılmalı ve `return` ile değerin dönderilmesi gerekmektedir:
+    // Çoklu satır için {..} kullanılmalı ve `return` ile değerin döndürülmesi gerekmektedir:
     let toplam = (a, b) => {
       // ...
       return a + b;
@@ -269,7 +269,7 @@ Detaylı bilgi için: <info:switch>.
 | Tüm kod bloğunda görünür | kodların çalışması kendisine ulaşırsa çalışır |
 |   - | isme sahip olabilir, sadece fonksiyon içerisinde çalışır |
 
-Dahası için: <info:function-basics>, <info:function-expressions-arrows>. 
+Dahası için: <info:function-basics>, <info:function-expressions-arrows>.
 
 ## Dahası var
 

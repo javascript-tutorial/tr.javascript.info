@@ -60,7 +60,7 @@ Harika nota karmaşık olandır,<br>
 Harika görselin belirli bir formu yoktur.
 ```
 
-Bir kelime seçerken soyut olmasına önem verin. Örneğin `obj`, `data`, `value`, `item`, `elem` vb. 
+Bir isim seçerken en soyut kelimeyi kullanmaya çalışın. `obj`, `data`, `value`, `item`, `elem` gibi.
 
 - **Kusursuz değişken ismi `data`** nerede isterseniz kullanın. Gerçekten de tüm değişkenler *data* tutmuyorlar zaten, değil mi?
 
@@ -191,7 +191,7 @@ Sonrasında dışta bulunan `kullanici` değişkenine bakacak ve `kullaniciBilgi
 
 Bazı fonksiyonlar hiçbir şey değiştirmiyormuş gibi görünür. Örneğin `hazirMi()`, `izinKontrol()`, `tagbul()` gibi. Hesaplamaları yapıp veriyi geri döndürdüğü ve bunun dışında bir değişiklik yapılmadığı tahmin edilsin. Diğer bir deyişle "yan etkisi" olmadığı.
 
-**En güzel kurnazlık bunlara kendi görevleri dışında "işe yarar" bir eylem yaptırın** 
+**En güzel kurnazlık bunlara kendi görevleri dışında "işe yarar" bir eylem yaptırın**
 
 İş arkadaşınızın yüzündeki şaşkınlığı düşünebiliyor musunuz? `hazirMi`,`kontrolEt`, `bul...` gibi fonksiyonlar bir şeyleri değiştiriyor. Gerçekten de sınırları zorlayan bir yöntem.
 

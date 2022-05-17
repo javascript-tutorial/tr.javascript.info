@@ -10,9 +10,9 @@ Tabi bunun yanında doğrudan tipi sizin tarafınızdan değiştirilmesi gereken
 Bu bölümde objeler hakkında bilgi verilmeyecektir. Önce ilkel tiplerin iyice öğrenilmesi lazım, sonra objelerin öğrenilmesi ve daha sonra <info:object-toprimitive> bölümünde objelerin dönüştürülmesi öğrenilebilir. 
 ```
 
-## ToString
+## toString
 
-Bir değeri karakter dizisi olarak kullanmak istiyorsanız ToString'i kullanabilirsiniz.
+Bir değeri karakter dizisi olarak kullanmak istiyorsanız toString'i kullanabilirsiniz.
 
 Örneğin `alert(deger)` değeri gösterir. Ayrıca `String(deger)` de kullanılabilir.
 
@@ -27,7 +27,7 @@ alert(typeof value); // karakter dizisi
 ```
 Eğer `false` değeri karakter dizisi dönüştürme işlemine tabi tutarsanız `"false"`, `null`'u tutarsanız `"null"` olur.
 
-## ToNumber
+## Number
 
 Sayısal dünüştürme işlemleri matematiksel operasyonlarda otomatik olarak gerçekleşir.
 
@@ -47,10 +47,10 @@ let num = Number(str); // sayı olan 123
 
 alert(typeof num); // number
 ```
-Bu şekilde fonksiyon ile değer dönüştürme işlemi genelde karakter dizi olarak aldığımız formlarda kullanılır. Aslında sayı kullanılmak istenmektedir. Fakat yazı kutusunun içeriğine sayı dahilinde yazılanları kontrol etmeniz gerekmektedir. Böyle bir fonksiyona sayı olmayan bir değer geldiğinde fonksiyon `NaN` değeri döndürür. Yani (Not a number) sayı değil.
+Bu şekilde fonksiyon ile değer dönüştürme işlemi genelde karakter dizi olarak aldığımız formlarda kullanılır. Aslında sayı kullanılmak istenmektedir. Fakat yazı kutusunun içeriğine sayı dahilinde yazılanları kontrol etmeniz gerekmektedir. Böyle bir fonksiyona sayı olmayan bir değer geldiğinde fonksiyon `NaN` değeri döndürür. Yani (**N**ot **a** **N**umber) sayı değil.
 
 ```js run
-let age = Number("Bir sayı yerine her hangi bir yazı");
+let age = Number("Bir sayı yerine herhangi bir yazı");
 
 alert(age); // NaN, dönüştüremedi!
 ```
@@ -89,7 +89,7 @@ alert( '1' + 2 ); // '12' (Sol tarafta karakter var)
 Gördüğünüz gibi sadece bir tarafın karakter olması yeterlidir. Eğer iki tarafta sayıya dönüşebiliyorsa bu durumda gerçek toplama işlemi yapılır.
 ````
 
-## ToBoolean
+## Boolean
 
 Boolean dönüştürme en kolay olanıdır.
 
@@ -112,7 +112,7 @@ alert( Boolean("") ); // false
 
 ````warn header="Dikkat: karakter olan `\"0\"` `true`'dur"
 
-PHP giib bazı diller `"0"`'ı `false` olarak alırlar. Fakat JavaScript için boş olmayan karakter dizileri her zaman `true` olur.
+PHP gibi bazı diller `"0"`'ı `false` olarak alırlar. Fakat JavaScript için boş olmayan karakter dizileri her zaman `true` olur.
 
 ```js run
 alert( Boolean("0") ); // true
@@ -123,11 +123,11 @@ alert( Boolean(" ") ); // içerisinde boşluk olan karakter dizisi true olur.
 
 ## Özet
 
-Üç tane çok kullanılan tip dönüştürücü bulunmaktadır : Karakter Dizisine dönüştüren, sayıya dönüştüren ve boolean değere dönüştüren.
+Üç tane çok kullanılan tip dönüştürücü bulunmaktadır; karakter dizisine dönüştüren, sayıya dönüştüren ve boolean değere dönüştüren.
 
-**`ToString`** -- Bir çıktı verildiğinde otomatik olarak bu fonksiyon çalışır. `String(value)` kullanılarak da dönüştürme işlemi yapılabilir.
+**`toString`** -- Bir çıktı verildiğinde otomatik olarak bu fonksiyon çalışır. `String(value)` kullanılarak da dönüştürme işlemi yapılabilir.
 
-**`ToNumber`** -- Matematiksel operasyonlar otomatik olarak yaparlar. Ayrıca `Number(value)` ile de dönüştürme işlemi yapılabilir.
+**`Number`** -- Matematiksel operasyonlar otomatik olarak yaparlar. Ayrıca `Number(value)` ile de dönüştürme işlemi yapılabilir.
 
 
 Dönüştürme işlemi aşağıdaki kuralları kapsar:

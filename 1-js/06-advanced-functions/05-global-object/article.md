@@ -1,11 +1,11 @@
 
 # Evrensel Objeler
 
-JavaScript dili yazılırken "evren obje" diye bir obje fikri vardı. Bu obje tüm değişken ve fonksiyonları içinde barındırark tarayıcıda bulunan kodların evrensel obje yardımıyla değişkenleri paylaşabileceği düşünülmüştü.
+JavaScript dili yazılırken "evrensel obje" diye bir obje fikri vardı. Bu obje tüm değişken ve fonksiyonları içinde barındırarak tarayıcıda bulunan kodların evrensel obje yardımıyla değişkenleri paylaşabileceği düşünülmüştü.
 
 Tabi o zamandan beri JavaScript çok değişti, artık evrensel obje göze batar oldu. Modern JavaScript'te bu objenin yerini module yapısı aldı.
 
-Global obje hala dil içerisinde yer almaktadır.
+Evrensel obje hala dil içerisinde yer almaktadır.
 
 Tarayıcı için bu "window" ve NodeJs için ise "global"'dir. Diğer ortamlar da kendine ait evrensel objelere sahiptirler.
 
@@ -42,7 +42,7 @@ Tarayıcı için bu "window" ve NodeJs için ise "global"'dir. Diğer ortamlar d
 
     alert(test); // 5
     ```
-...Fakat global obje `let/cons` ile tanımlanmış değişkenler barındıramaz.
+...Fakat global obje `let/const` ile tanımlanmış değişkenler barındıramaz.
 
 ```js untrusted run no-strict refresh
 *!*let*/!* kullanici = "Ahmet";
@@ -52,12 +52,12 @@ alert(window.kullanici); // tanımsız, let ile tanımlama yapılamaz.
 alert("kullanici" in window); // false
 ```
 
-```smart header="Global Obje global ortam kaydı değildir"
+```smart header="Evrensel Obje global ortam kaydı değildir"
 ECMAScript ES-2015 öncesi `let/const` değişkenleri bulunmamaktaydı, sadece `var` değişkeni vardı. Global objeler global ortam kaydı olarak kullanılıyordu.
 
-Fakat ES-2015 sonrası, bu varlıklar ayrıldı. Artık evrensel sözcük ortamı ve bunun ortam kaydı. İkinci olarak evrensel obje ve bunun sunduğu *bazı" evrensel değişkenler bulunmaktadır.
+Fakat ES-2015 sonrası, bu varlıklar ayrıldı. Artık evrensel sözcük ortamı ve bunun ortam kaydı. İkinci olarak evrensel obje ve bunun sunduğu bazı "evrensel değişkenler" bulunmaktadır.
 
-Uygulamada evrensel `let/cons` değişkenleri global Evrensel Kayıtta tanımlanmış özelliklerdir fakat evrensel obje'de bulunmamaktadırlar.
+Uygulamada evrensel `let/const` değişkenleri global Evrensel Kayıtta tanımlanmış özelliklerdir fakat evrensel obje'de bulunmamaktadırlar.
 
 Doğal olarak, evrensel objenin "evrensel olan her şeye erişebilir" fikri eski zamanlarda kalmıştır. Artık bu iyi bir şey olarak görülmemektedir. `let/const` gibi dil özellikleri bunu desteklememektedir, fakat eski olanlara hala destek verir.
 ```
@@ -89,9 +89,7 @@ Genelde, kullanmak çok iyi bir fikir olmasa da, aşağıda bazı örnekleri gö
     
 3. Global bir değişkenin var olup olmadığına bakar.
 
-    Örneğin, `XMLHttpRequest`'in global bir fonksiyon olup olmadığını kontrol etmek isterseniz.
-    
-    `if (XMLHttpRequest)` şeklinde yazamazsınız, çünkü `XMLHttpRequest` yoksa hata verecektir.
+    Örneğin, `XMLHttpRequest`'in global bir fonksiyon olup olmadığını kontrol etmek isterseniz, `if (XMLHttpRequest)` şeklinde yazamazsınız, çünkü `XMLHttpRequest` yoksa hata verecektir.
     
     Bunu `window.XMLHttpRequest` üzerinden okuyabilirsiniz.
     
@@ -114,7 +112,7 @@ Genelde, kullanmak çok iyi bir fikir olmasa da, aşağıda bazı örnekleri gö
 
 3. Doğru pencereden değişken alma. Bu en uygun kullanım şeklidir.
 
-    Tarayıcıda birçok tab ve pencere açılabilir. Bir pencere diğerini `<iframe>` içerisinde gösterebilir. Her tarayıcı kendine ait `window` objesine ve bunun global değişkenlerine sahiptir. JavaScript pencerelerin (aynı site içerisinde ise) birbirlerinden değişken almalarına izin verir.
+    Tarayıcıda birçok sekme ve pencere açılabilir. Bir pencere diğerini `<iframe>` içerisinde gösterebilir. Her tarayıcı kendine ait `window` objesine ve bunun global değişkenlerine sahiptir. JavaScript pencerelerin (aynı site içerisinde ise) birbirlerinden değişken almalarına izin verir.
     
     Bu biraz amacının dışında da olsa şuna benzer:
     ```html run
@@ -164,33 +162,34 @@ Bazen, `this`'in değeri tamamen evrensel obje olur. Bu çok nadir de olsa bazı
 
     Tanım gereği, `this` bu durumda evrensel obje olmalı, Node.JS ortamında olmasa bile `this` evrensel objedir. Bu eski kodlar ile uyumluluk amacıyladır, sıkı modda `this` tanımsız olabilir.
 
-## Using for polyfills
+## Polyfill'ler İçin Kullanma
 
-We use the global object to test for support of modern language features.
+Modern dil özelliklerinin desteğini test etmek için global nesneyi kullanıyoruz.
 
-For instance, test if a built-in `Promise` object exists (it doesn't in really old browsers):
+Örneğin, yerleşik bir "Promise" nesnesinin olup olmadığını test edelim (gerçekten eski tarayıcılarda yoktur):
 ```js run
 if (!window.Promise) {
-  alert("Your browser is really old!");
+  alert("Senin tarayıcın gerçekten çok yaşlı");
 }
 ```
 
-If there's none (say, we're in an old browser), we can create "polyfills": add functions that are not supported by the environment, but exist in the modern standard.
+Hiçbiri yoksa (örneğin, eski bir tarayıcıdayız), "pollyfills(çoklu dolgular)" oluşturabiliriz: çevre tarafından desteklenmeyen, ancak modern standartta var olan işlevler ekleyebiliriz.
 
 ```js run
 if (!window.Promise) {
-  window.Promise = ... // custom implementation of the modern language feature
+  window.Promise = ... // modern dil özelliğinin özel uygulaması
 }
 ```
 
-## Summary
+## Özet
 
-- The global object holds variables that should be available everywhere.
+- Global nesne, her yerde bulunması gereken değişkenleri tutar.
 
-    That includes JavaScript built-ins, such as `Array` and environment-specific values, such as `window.innerHeight` -- the window height in the browser.
-- The global object has a universal name `globalThis`.
+  Buna "Array" gibi JavaScript yerleşikleri ve "window.innerHeight" gibi ortama özgü değerler - tarayıcıdaki pencere yüksekliği dahildir.
+- Global nesnenin evrensel bir adı 'globalThis' vardır.
 
-    ...But more often is referred by "old-school" environment-specific names, such as `window` (browser) and `global` (Node.js). As `globalThis` is a recent proposal, it's not supported in non-Chromium Edge (but can be polyfilled).
-- We should store values in the global object only if they're truly global for our project. And keep their number at minimum.
-- In-browser, unless we're using [modules](info:modules), global functions and variables declared with `var` become a property of the global object.
-- To make our code future-proof and easier to understand, we should access properties of the global object directly, as `window.x`.
+    ...Ancak daha sık olarak "window(tarayıcı)" ve "global(Node.js)" gibi "eski tarz" çevreye özgü adlarla anılır. "globalThis" yeni bir teklif olduğundan, Chromium Edge dışında desteklenmemektedir (ancak polyfilled olabilir).
+    
+- Değerleri yalnızca projemiz için gerçekten küresellerse global nesnede saklamalıyız. Ve sayılarını minimumda tutun.
+- Tarayıcıda, [modules](info:modules) kullanmadığımız sürece, 'var' ile bildirilen global işlevler ve değişkenler global nesnenin bir özelliği haline gelir.
+- Kodumuzu geleceğe dönük ve daha kolay anlaşılır kılmak için global nesnenin özelliklerine doğrudan "window.x" olarak erişmeliyiz.

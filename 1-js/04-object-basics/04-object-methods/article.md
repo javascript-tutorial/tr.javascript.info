@@ -139,7 +139,7 @@ let kullanici = {
 
 };
 ```
-... Fakat böyle bir koda güvenilez. Diyelim ki `kullanici` objesini kopyaladınız ve `yonetici = kullanici` yaptınız. Sonra `kullanici` objesinin üzerine yazdınız bu durumda yanlış objeye erişmiş olacaksınız. Bir örnekle açıklamak gerekirse:
+... Fakat böyle bir koda güvenilmez. Diyelim ki `kullanici` objesini kopyaladınız ve `yonetici = kullanici` yaptınız. Sonra `kullanici` objesinin üzerine yazdınız bu durumda yanlış objeye erişmiş olacaksınız. Bir örnekle açıklamak gerekirse:
 
 ```js run
 let kullanici = {
