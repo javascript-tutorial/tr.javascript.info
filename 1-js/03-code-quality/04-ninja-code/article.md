@@ -60,7 +60,6 @@ Harika nota karmaşık olandır,<br>
 Harika görselin belirli bir formu yoktur.
 ```
 
-Bir kelime seçerken soyut olmasına önem verin. Örneğin
 Bir isim seçerken en soyut kelimeyi kullanmaya çalışın. `obj`, `data`, `value`, `item`, `elem` gibi.
 
 - **Kusursuz değişken ismi `data`** nerede isterseniz kullanın. Gerçekten de tüm değişkenler *data* tutmuyorlar zaten, değil mi?
