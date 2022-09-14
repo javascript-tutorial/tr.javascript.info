@@ -36,7 +36,7 @@ Tarayıcı için bu "window" ve NodeJs için ise "global"'dir. Diğer ortamlar d
     alert( window.terim ); // Merhaba (global var)
     alert( window.selamVer ); // function (global function declaration)
 
-    // window'a yazılabilir. ( yeni global değişken oluşturur.
+    // window'a yazılabilir. (yeni global değişken oluşturur.)
 
     window.test = 5;
 
@@ -119,7 +119,7 @@ Genelde, kullanmak çok iyi bir fikir olmasa da, aşağıda bazı örnekleri gö
     <iframe src="/" id="iframe"></iframe>
 
     <script>
-      alert( innerWidth ); //  içerideki boyutu olır ( sadece tarayıcı için) 
+      alert( innerWidth ); //  içerideki boyutu alır ( sadece tarayıcı için) 
       alert( Array ); // o anki pencerenin dizisini alır.get Array of the current window (javascript core builtin)
 
       // when the iframe loads...
