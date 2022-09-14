@@ -17,7 +17,7 @@ Eğer böyle bir yazımla karşılaşmayacağınıza eminseniz bu bölümü geç
 
 ```js run
 function selamVer() {
-  var terim = "Merhaba"; // yeerl değişken "let" yerine "var" kullanılmıştır.
+  var terim = "Merhaba"; // yerel değişken "let" yerine "var" kullanılmıştır.
   alert(terim); // Merhaba
 }
 
