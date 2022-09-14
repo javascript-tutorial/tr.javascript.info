@@ -49,7 +49,7 @@ Aşağıda ilk iki değişken alınır geriye kalanlar ise `basliklar`'a atanır
 function showName(adi, soyadi, ...basliklar) {
   alert( adi + ' ' + soyadi ); // Julius Caesar
 
-  // geri kalanlar basliklar degikenine atanır.
+  // geri kalanlar basliklar degiskenine atanır.
   // Ör: basliklar = ["Konsil", "İmparator"]
   alert( basliklar[0] ); // Konsil
   alert( basliklar[1] ); // İmparator
@@ -224,13 +224,13 @@ Bundan dolayı, bir şeyi diziye çevirmek için `Array.from` kullanmak daha man
 
 `"..."`'karakterlerini kodda görünce bunların geriye kalan veya yayma karakterleri olduğu söylenebilir.
 
-Bunların ayrımını daha kılay yapabilmek için
+Bunların ayrımını daha kolay yapabilmek için
 
 - Eğer `...` fonksiyonun sonunda yer alırsa "geriye kalanlar" parametresidir ve geriye kalanlar diziye alınırlar.
 - Eğer `...` fonksiyon çağrımında veya benzeri bir olayda kullanılırsa buna "yayma operatörü" denir ve diziyi listeye çevirir.
 
 Kalıpların kullanılması:
-- Geriye akaln parametresi isteğe göre argüman girilmesine yardımcı olur.
+- Geriye kalan parametresi isteğe göre argüman girilmesine yardımcı olur.
 - Yayma operatörü diziyi normalde argüman listesi bekleyen fonksiyona atmaya yarar.
 
 Birlikte parametrelerin dizisi ve listesi arasında dolanırlar.
