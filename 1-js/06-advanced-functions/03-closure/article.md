@@ -91,7 +91,7 @@ Sağ tarafta bulunan dikdörtgenler evrensel Sözcük Ortamının çalışırken
 1. Kod çalışmaya başladığında, Sözcüksel Ortam boştur.
 2. `let ifade`  tanımlaması görünür. İlk başta bir değeri bulunmamaktadır bundan `undefined` olarak saklanır.
 3. `ifade`'ye değer atanır.
-4. `ifade` yeni bir defere referans olur.
+4. `ifade` yeni bir değere referans olur.
 
 Her şey çok basit görünüyor değil mi?
 
@@ -209,13 +209,13 @@ function selamYolcu(adi, soyadi) {
     return adi + " " + soyadi;
   }
 
-  alert( "Merhaba, " + tamIsım() );
-  alert( "Güle Güle, " + tamIsım() );
+  alert( "Merhaba, " + tamIsim() );
+  alert( "Güle Güle, " + tamIsim() );
 
 }
 ```
 
-*iç içe* fonksiyon `tamIsım()` kullanım kolaylığı sağlaması amacıyla yapılmıştır. Dışta bulunan değişkenlere erişebilir ve tam ismi döndürebilir.
+*iç içe* fonksiyon `tamIsim()` kullanım kolaylığı sağlaması amacıyla yapılmıştır. Dışta bulunan değişkenlere erişebilir ve tam ismi döndürebilir.
 
 Daha ilginci, iç içe bir fonksiyon geri döndürülebilir:  Bu yeni objenin bir özelliği olarak veya sonucun kendisi dönebilir. Sonra başka yerde kullanılabilir. Nerede olduğu önemli olmaksızın, hala aynı dış değişkene erişebilir.
 
@@ -264,7 +264,7 @@ Peki sayaç içeride nasıl çalışmakta?
 2. Dışta bulunan fonksiyonların değişkenleri.
 3. ...Bu evrensel değişkenlere kadar gider.
 
-`sayac` orneğinde `2`. adımda bulundu. Dıştaki değişken değiştirildiğinde, bulunduğu yerde değişiklik olur. Bundan dolayı `sayac++` dıştaki değşikeni bulur ve dıştaki değişkenin Sözcüksel Ortamında bu değişkenin değerini değiştirir. Saki `let sayac = 1` yapıyormuş gibi.
+`sayac` örneğinde `2`. adımda bulundu. Dıştaki değişken değiştirildiğinde, bulunduğu yerde değişiklik olur. Bundan dolayı `sayac++` dıştaki değşikeni bulur ve dıştaki değişkenin Sözcüksel Ortamında bu değişkenin değerini değiştirir. Sanki `let sayac = 1` yapıyormuş gibi.
 
 
 Size iki tane sorum var:
