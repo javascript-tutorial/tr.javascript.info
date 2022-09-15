@@ -39,7 +39,7 @@ let loadScriptPromise = function(src) {
 // loadScriptPromise('path/script.js').then(...)
 ```
 
-Şimdi `loadScriptPromise` promise-based kodumuza çok iyi uyuyor.
+Artık `loadScriptPromise` promise-based kodumuza çok iyi uyuyor.
 
 Görebileceğimiz gibi, tüm işi orijinal `loadScript`e devrederek, `resolve/reject` promise'ına dönüşen kendi callback'ini sağlar.
 
@@ -77,7 +77,7 @@ Burada orijinal fonksiyonun iki argümanlı bir callback beklediğini varsayıyo
 
 Ama ya orijinal `f` daha fazla argümanlı bir callback bekliyorsa `callback(err, res1, res2)`?
 
-İşte bir dizi çoklu callback sonucu döndüren bir `promisify` modifikasyonu:
+İşte bir dizi çoklu callback sonucu döndüren bir `promisify` değişikliği:
 
 ```js
 // bir dizi sonuç elde etmek için promisify(f, true) 
@@ -105,7 +105,7 @@ f = promisify(f, true);
 f(...).then(arrayOfResults => ..., err => ...)
 ```
 
-Bazı durumlarda `err` olmayabilir: `callback(result)` veya callback biçiminde egzotik bir şey varsa, bu tür fonksiyonları helper kullanmadan manuel olarak promisify edebiliriz.
+Bazı durumlarda `err` olmayabilir: `callback(result)` veya callback biçiminde farklı bir şey varsa, bu tür fonksiyonları helper kullanmadan manuel olarak promisify edebiliriz.
 
 Biraz daha esnek promisification fonksiyonlarına sahip modüller de vardır, örnek [es6-promisify](https://github.com/digitaldesignlabs/es6-promisify). Node.js'de bunun için yerleşik bir `util.promisify` fonksiyonu vardır. 
 
