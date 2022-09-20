@@ -111,7 +111,7 @@ Tarayıcılar için zamanlayıcılar [zamanlayıcı bölümünde](https://www.w3
 `setInterval` `setTimeout` ile aynı yazıma sahiptir:
 
 ```js
-let timerId = setInterval(func|code, delay[, arg1, arg2...])
+let timerId = setInterval(func|code, [delay], [arg1], [arg2], ...)
 ```
 
 Tüm argümanlar aynı anlama gelir. Fakat `setTimeout`'a nazaran fonksiyonu sadece bir defa değil belirtilen zamanda sürekli olarak çalıştırır.
