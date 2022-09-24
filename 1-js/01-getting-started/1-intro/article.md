@@ -1,6 +1,6 @@
 # JavaScript'e Giriş
 
-Bakalım JavaScript nedir, ne yapılır ve hangi teknolojilerle birlikte çalışır.
+JavaScript nedir, ne yapar ve hangi teknolojilerle çalışır? İnceleyelim!
 
 ## JavaScript Nedir?
 
@@ -8,7 +8,7 @@ Bakalım JavaScript nedir, ne yapılır ve hangi teknolojilerle birlikte çalı�
 
 Bu dilde yazılan kod kümelerine betik denir. Doğrudan HTML kodu içerisine yazılıp sayfa yüklendiğinde doğrudan çalışabilir.
 
-Komutlar herhangi bir derleme ve hazırlığa gereksinim duymadan doğrudan çalışırlar.
+Komutlar herhangi bir derleme ve hazırlığa gereksinim duymadan doğrudan çalışır.
 
 Bu yönden bakınca JavaScript diğer dillere kıyasla oldukça farklıdır. Bkz: [Java](https://en.wikipedia.org/wiki/Java_(programming_language)).
 
@@ -18,18 +18,19 @@ JavaScript ilk yazıldığında, başka bir adı vardı: "LiveScript". Ancak Jav
 Ancak JavaScript gelişerek kendince yönergeleri [ECMAScript](http://en.wikipedia.org/wiki/ECMAScript) olan bağımsız bir dil haline geldi. Şu anda Java ile hiçbir ilgisi bulunmamaktadır.
 ```
 
-Günümüzde JavaScript yalnızca ağ tarayıcıda değil, sunucuda veya
+Günümüzde JavaScript yalnızca web tarayıcıda değil, sunucuda veya
 [JavaScript motoru](https://en.wikipedia.org/wiki/JavaScript_engine) olan her yerde çalışmaktadır.
 
 Tarayıcılar bu JavaScript motoru gömülü bir biçimde gelirler. Bu ayrıca "JavaScript sanal makinesi" olarak da adlandırılır.
 
 Bu JavaScript motorlarından bazıları şunlardır;
 
-- [V8](https://en.wikipedia.org/wiki/V8_(JavaScript_engine)) --  Chrome ve Opera.
-- [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) --  Firefox.
-- Internet Explorer'ın "Trident", "Chakra" takma adlı motorlarının yanında Microsoft Edge için "ChakraCore" adında ayrı bir motoru bulunmaktadır. Safari ise "Nitro", "SquirrelFish" ve "SquirrelFish Extreme" gibi takma adlarla adlandırılan JavaScript motorunu kullanmaktadır.
+- [V8](https://tr.wikipedia.org/wiki/V8_(JavaScript_engine)) --  Chrome, Opera, Microsoft Edge'in yeni versiyonu veya Yandex Browser gibi Chromium tabanlı tarayıcılar tarafından kullanılır. En çok kullanılan JavaScript motorudur.
+- [SpiderMonkey](https://en.wikipedia.org/wiki/SpiderMonkey) --  Firefox'un kendi JavaScript motorudur. [GNOME Shell](https://tr.wikipedia.org/wiki/GNOME_Shell) uzantı desteği için kullanır.
+- [JavaScriptCore](https://tr.wikipedia.org/wiki/WebKit) -- Apple'ın Safari tarayıcısı için kullandığı motordur. Diğer WebKit tabanlı tarayıcılar da bunu kullanır. 
+- Internet Explorer'ın "Trident", "Chakra" takma adlı motorlarının yanında Microsoft Edge'in eski versiyonu için "ChakraCore" adında ayrı bir motoru bulunmaktadır.
 
-Yukarıdaki terimleri aklınızda tutarsanız iyi olur, çünkü ileride şu tür tümcelerle karşılaşabilirsiniz: "V8'de A özelliğinin altyapısı", "Bu özelliğin altyapısının Chrome ve Opera'da bulunduğunu anlamanız gerekir."
+Yukarıdaki terimleri aklınızda tutarsanız iyi olur, çünkü ileride şu tür tümcelerle karşılaşabilirsiniz: "V8'de A özelliğinin altyapısı", "Bu özelliğin altyapısının Chromium tabanlı tarayıcılarda bulunduğunu anlamanız gerekir."
 
 ```smart header="JavaScript Motoru Nasıl Çalışır?"
 
@@ -44,7 +45,7 @@ Motor bu sürecin her bir adımında iyileştirme yapar. Hatta derlenmiş ve ça
 
 ## Tarayıcı içerisindeki JavaScript neler yapabilir?
 
-Günümüz JavaScript'i "güvenli" bir programlama dilidir. Düşük düzeydeki diller gibi bellek veya işlemciye doğrudan erişim sağlamaz. Tarayıcı için olduğundan dolayı böyle bir şeye gereksinim duymaz.
+Günümüz JavaScript'i "güvenli" bir programlama dilidir. Düşük seviye diller gibi bellek veya işlemciye doğrudan erişim sağlamaz. Tarayıcı için olduğundan dolayı böyle bir şeye gereksinim duymaz.
 
 JavaScript'in yapabilecekleri büyük bir oranda ortama dayanır. Örneğin [Node.JS](https://wikipedia.org/wiki/Node.js), JavaScript işlevleri ile dosyaları okuma, yazma veya ağ üzerinden isteme işlemlerini yapabilir.
 
@@ -72,7 +73,7 @@ Bu engellemeleri şu biçimde sıralayabiliriz :
 
 - Farklı sekmeler birbiri ile iletişime geçemez ve bilgi alışverişi yapamazlar. Bazı sitelerde aynı sekmeler iletişimde bulunabilir, örneğin bir sekmeden JavaScript ile diğer sekmeyi açabilirsiniz. Bu durumda bile, bir sayfa diğerinden farklı alan adı, kural veya kapılarda ise erişemez.
 
-    Bu olaya "Same Origin Policy" (Aynı kaynak kuralı) denir. Bunu çözmek için *her iki sayfa* özel bir JavaScript kodu ile birbirlerini onaylamalıdır. Bu engellemeler yine kullanıcının güvenliği içindir. Kullanıcının açtığı `http://örnekyerlik.com` sitesi diğer sekmede bulunan `http://gmail.com` sitesinden bilgi çalamamalıdır.
+    Bu olaya "Same Origin Policy" (Aynı kaynak kuralı) denir. Bunu çözmek için *her iki sayfa* özel bir JavaScript kodu ile birbirlerini onaylamalıdır. Bu engellemeler yine kullanıcının güvenliği içindir. Kullanıcının açtığı `http://örneksite.com` sitesi diğer sekmede bulunan `http://gmail.com` sitesinden bilgi çalamamalıdır.
 - JavaScript kolayca bulunduğu sayfadan veri alabilir. Ancak başka site veya alan adlarından veri alması sorunludur. Olanaklı olmasına karşın her iki yanın onayı gereklidir. Yine, bunun nedeni güvenlik sınırlarıdır diyebiliriz.
 
 ![Sınırlamalar](limitations.svg)
@@ -101,11 +102,11 @@ JavaScript'in söz dizimi ve yazımı herkese uymayabilir. Her yiğidin yoğurt 
 
 Bu olağan bir durum, çünkü tasarımlar ve gereksinimler kişiden kişiye göre değişir.
 
-Bundan dolayı yakın zamanda bir sürü yeni *transpiled* yani çevirilmiş diller türemiştir. Bu diller, çalıştırılmadan önce JavaScript'e çevriliyor. Günümüz araçları bu çeviri işini çok hızlı bir biçimde yapmaktadır. Gerçekte, doğrudan —siz yazarken bile— çevirme işini yapıp bu yeni dosyayı kullanılabilir duruma getirirler.
+Bundan dolayı yakın zamanda bir sürü yeni *transpiled* yani çevirilmiş/derlenmiş diller türemiştir. Bu diller, çalıştırılmadan önce JavaScript'e çevriliyor/derleniyor. Günümüz araçları bu çeviri/derleme işini çok hızlı bir biçimde yapmaktadır. Gerçekte, doğrudan —siz yazarken bile— çevirme/derleme işini yapıp bu yeni dosyayı kullanılabilir duruma getirirler.
 
 Bu dillere örnek vermek gerekirse:
 
-- [CofeeScript](http://coffeescript.org) JavaScript için "şeker yazım" denebilecek bir dildir. Yazılımı daha kısadır ve daha temiz kod yazmaya yardımcı olur. Genellikle [Ruby](https://www.ruby-lang.org/tr/) geliştiriciler bunu sever.
+- [CofeeScript](http://coffeescript.org) JavaScript için "tatlı yazım" denebilecek bir dildir. Yazılımı daha kısadır ve daha temiz kod yazmaya yardımcı olur. Genellikle [Ruby](https://www.ruby-lang.org/tr/) geliştiriciler bunu sever.
 
 - [Typescript](http://www.typescriptlang.org/) durağan veri yapıları ile JavaScript yazılmasını sağlar. Karmaşık programlar geliştirmeyi kolaylaştırır. Microsoft tarafından geliştirilmiştir.
 
@@ -115,6 +116,6 @@ Bunlara daha fazla örnek eklenebilir. Yukarıdakileri bilseniz bile ne yaptığ
 
 ## Özet
 
-- JavaScript başlangıçta yalnızca ağ tarayıcılarında kullanılmak üzere geliştirilmiş bir dildi. Ancak günümüzde, birçok çevrede çalışabilir durumda.
+- JavaScript başlangıçta yalnızca web tarayıcılarında kullanılmak üzere geliştirilmiş bir dildi. Ancak günümüzde, birçok ortamda çalışabilir durumda.
 - JavaScript şu anda HTML/CSS ile bütünleşik olmasından ve geniş uyumluluğundan dolayı benzersizdir.
-- Birçok JavaScript'e çevirici dil bulunmaktadır. JavaScript'i iyi bir biçimde öğrendikten sonra bu dillere de bir bakmanızı öneririz.
+- Birçok JavaScript'e çevirici/derleyici dil bulunmaktadır. JavaScript'i iyi bir biçimde öğrendikten sonra bu dillere de bir bakmanızı öneririz.
