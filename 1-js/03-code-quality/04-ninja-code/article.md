@@ -72,9 +72,9 @@ Bir isim seçerken en soyut kelimeyi kullanmaya çalışın. `obj`, `data`, `val
 
     Bir taraftan değişken isimleri hala bir şey ifade ediyor. Değişkenin içinde ne var bunu söylüyor: karakter, sayı veya başka bir şey. Fakat dışından başkası kodu anlamaya çalıştığında, şaşıracak ve aslında hiçbir bilgi olmadığını anlayacak
 
-    Gerçektende değerin tipi hata ayıklarken kolayca bulunabilir. Fakat ya anlamı? Hangi karakter veya sayıyı tutuyor? Bu sorunun cevabı anca iyi bir meditasyon ile bulunabilir!
+    Gerçekten de değerin tipi hata ayıklarken kolayca bulunabilir. Fakat ya anlamı? Hangi karakter veya sayıyı tutuyor? Bu sorunun cevabı anca iyi bir meditasyon ile bulunabilir!
 
-- **...Peki artık bu değişkenlerden kalmadıysa?** Tabiki yanlarına sayı ekleyebilirsiniz: `data1, item2, elem5` gibi.
+- **...Peki artık bu değişkenlerden kalmadıysa?** Tabii ki yanlarına sayı ekleyebilirsiniz: `data1, item2, elem5` gibi.
 
 
 ## Dikkat testi
@@ -84,7 +84,7 @@ Sadece gerçekten dikkatli programcılar kodu anlayabilmeli. Fakat bunu nasıl k
 
 **Bunlardan biri -- benzer değişken isimleri kullanın `date` ve `data` gibi.**
 
-Olabildiğince birbiri ile karıştırırn.
+Olabildiğince birbiri ile karıştırın.
 
 Karıştırın ki kodu okuyan kişi kolayca okuyamasın. Eğer bir yazım hatası falan varsa, uzun bir süre takılmışsan, bir çay arası versin.
 
@@ -98,13 +98,13 @@ Hepsinden zoru karanlık odada kara kediyi bulmak, hele bir de odada kedi yoksa.
 
 Örneğin, fonksiyon öneklerini kullanın. Eğer bir fonksiyon ekrana çıktı veriyorsa `display_` ön eki ile başlayın. Örneğin `displayMessage`. Sonrasında başka bir fonksiyonda ekrana yine bir şey yazdırmak isterseniz bu defa `show_` kullanın. Örneğin `showName`
 
-Bu fonksiyonlar için hiçbir farklılık olmasada sanki farklılık varmış hissi yaratın.
+Bu fonksiyonlar için hiçbir farklılık olmasa da sanki farklılık varmış hissi yaratın.
 
 Diğer ninjalarla birleşip: Eğer Ahmet ekranda yazı gösteren fonksiyona `display..` ile başlıyorsa, Mehmet `render..` ile başlasın, Mehtapta `paint..` kullansın gibi kararlar verebilirsiniz. Düşünün kod ne kadar da ilginç ve çeşitli olur.
 
 ... ve şimdi hatrick!!!
 
-birbirinden farklı olan iki önemli fonksioyonu aynı önek ile kullanın.
+birbirinden farklı olan iki önemli fonksiyonu aynı önek ile kullanın.
 
 Örneğin, fonksiyon  `printPage(page)` yazıcıyı kullansın. `printText(text)` ise ekrana yazdırsın. Diyelim ki sizin kodunuza aşina olmayan bir okur bu iki fonksiyonun birbirine yakın isimleri olduğundan karıştırabilir. `printMessage` "Mesajı nereye yazdırmaktadır? Ekrana mı yoksa yazıcıya mı?" Daha da işi çıkmaza götürmek ve ustalığınızı belli etmek için `printMessage(mesaj)` kullanabilirsiniz. Bu da mesajı yeni pencerede göstersin.
 
@@ -153,9 +153,9 @@ Zeki bir ninja bir yerde alttan çizgi kullanır, başka bir yerde kullanmaz. B�
 
 ## Aşkınızı gösterin
 
-Herkese varlık(entity)larınızın ne kadar mükemel olduğunu gösterin. Örneğin `harikaElement`, `guzelAlert`, `cokAkilliNinja` gibi isimlendirmeler kodunuzu okuyanları aydınlatacaktır.
+Herkese varlıklarınızın (entity) ne kadar mükemmel olduğunu gösterin. Örneğin `harikaElement`, `guzelAlert`, `cokAkilliNinja` gibi isimlendirmeler kodunuzu okuyanları aydınlatacaktır.
 
-Gerçekten de bir yandan `super...`, `harika...`, `mega...` gibi kullanmış fakat diğer yandan hiçbir detay vermemiş olursunuz. Okuyucunun bunun altında yatan anlamı bulması için bir kaç saat meditasyon yapıp hayatını sorgulaması gerekmektedir.
+Gerçekten de bir yandan `super...`, `harika...`, `mega...` gibi kullanmış fakat diğer yandan hiçbir detay vermemiş olursunuz. Okuyucunun bunun altında yatan anlamı bulması için birkaç saat meditasyon yapıp hayatını sorgulaması gerekmektedir.
 
 
 ## Global değişkenlerin veya dıştaki değişkenlerin üzerine başka değer yazın
@@ -204,7 +204,7 @@ Her kim ki `if(checkPermission(..))` yazarsa neden çalışmadığını anlayama
 ## Güçlü fonksiyonlar!
 
 ```quote author="Laozi (Tao Te Ching)"
-Büyük Tao heryerden akar,<br>
+Büyük Tao her yerden akar,<br>
 sağa ve sola.
 ```
 
@@ -217,13 +217,13 @@ Ek eylemler fonksiyonun isminde kesinlikle belirtilmesin. Gerçek bir ninja prog
 
 **Birçok eylemi bir fonksiyona yazın ki kodun tekrardan kullanılmasını engelleyin**
 
-Düşünün ki, diğer yazılımcı sadece email'i kontrol etmek istiyor ve ekrana çıktı vermek istemiyor. Sizin fonksiyonunuz `emailDogrula(email)` ve hem doğruluk kontrolü yapıyor hemde ekrana hata çıktısı veriyor. Bundan dolayı size bu yazılımcının soracağı bir şey olamaz. Siz zaten ikisini de yapmışsınız.
+Düşünün ki, diğer yazılımcı sadece email'i kontrol etmek istiyor ve ekrana çıktı vermek istemiyor. Sizin fonksiyonunuz `emailDogrula(email)` ve hem doğruluk kontrolü yapıyor hem de ekrana hata çıktısı veriyor. Bundan dolayı size bu yazılımcının soracağı bir şey olamaz. Siz zaten ikisini de yapmışsınız.
 
 ## Özet
 
 Yukarıda bulunan tavsiyeler gerçek kodlardan alınmıştır. Bazıları deneyimli geliştiriciler tarafından yazılmıştır. Belki de sizden bile deneyimli programcılardan ;)
 
 
-- Tavsiyelerden bazılarını uygularsanız kodunuz tamamen süprizlerle dolar.
+- Tavsiyelerden bazılarını uygularsanız kodunuz tamamen sürprizlerle dolar.
 - Çoğunu uygularsanız, kodunuz gerçekten de sadece size ait olur. Kimse değiştiremez.
 - Hepsini uygularsanız aydınlanma arayışında olan genç geliştiricilere iyi bir ders vermiş olursunuz.
