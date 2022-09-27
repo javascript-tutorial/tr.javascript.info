@@ -2,7 +2,7 @@
 
 Bundan sonraki görevlerde otomatik test kullanılacak.
 
-It's actually a part of the "educational minimum" of a developer.
+Otomatik test, aslında, bir geliştiricinin asgari eğitiminin bir parçasıdır.
 
 ## Neden teste ihtiyac var?
 
