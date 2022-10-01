@@ -1,6 +1,6 @@
 # JSON metodları, toJSON
 
-Diyelimki karmaşık bir yapı var, bunu karakter dizisine çevirip ağ üzerinden loglanması için başka bir yere iletilmek isteniyor.
+Diyelim ki karmaşık bir yapı var, bunu karakter dizisine çevirip ağ üzerinden loglanması için başka bir yere iletilmek isteniyor.
 
 Doğal olarak, bu karakter dizisi tüm önemli özellikleri içermeli
 
@@ -23,13 +23,13 @@ alert(kullanici); // {adi: "Ahmet", yasi: 30}
 
 ... Fakat geliştirme esnasında yeni özellikler eklendi ve öncekiler ya silindi ya da isim değiştirdi. Böyle bir durumda `toString` metoduyla her zaman değişiklik yapmak oldukça zordur. Özellikleri döngüye sokup buradan değerler alınabilir. Bu durumda da iç içe objelere ne olacak? Bunlarında çevirimlerini yapmak gerekir. Ayrıca ağ üzerinden objeyi göndermeye çalıştığınızda ayrıca bu objenin alan yer tarafından nasıl okunacağına dair bilgi göndermek zorundasınız.
 
-Neyseki bunların hiçbiri için kod yazmaya gerek yok. Bu problem bizim için çözülmüş durumda.
+Neyse ki bunların hiçbiri için kod yazmaya gerek yok. Bu problem bizim için çözülmüş durumda.
 
 [cut]
 
 ## JSON.stringify
 
-[JSON](http://en.wikipedia.org/wiki/JSON) (JavaScript Object Notation) genelde objelerin değerlerini ifade eder.[RFC 4627](http://tools.ietf.org/html/rfc4627) standardında tanımı yapılmıştır. Öncelikle JavaScript düşünülerek yapılmış olsa da birçok dil de kendine has kütüphanelerle JSON desteği vermektedir. Böylece client JavaScript kullanırken server Ruby/PHP/Java/Herneyse... kullansa bile JSON kullanımında bir sorun oluşturmaz.
+[JSON](http://en.wikipedia.org/wiki/JSON) (JavaScript Object Notation) genelde objelerin değerlerini ifade eder.[RFC 4627](http://tools.ietf.org/html/rfc4627) standardında tanımı yapılmıştır. Öncelikle JavaScript düşünülerek yapılmış olsa da birçok dil de kendine has kütüphanelerle JSON desteği vermektedir. Böylece client JavaScript kullanırken server Ruby/PHP/Java/Her neyse... kullansa bile JSON kullanımında bir sorun oluşturmaz.
 
 JavaScript aşağıdaki metodları destekler:
 
@@ -68,7 +68,7 @@ alert(json);
 ```
 `JSON.stringify(ogrenci)` metodu objeyi alır ve bunu karaktere çevirir, buna *Json-kodlanmış* , *seri hale getirilmiş* veya *karakter haline getirilmiş* denir. Bunu ağ üzerinden karşı tarafa göndermek veya basit bir şekilde kaydetmek mümkündür.
 
-JSON kodlanmış objenin normal obje ile arasında bir kaç tane önemli farklılık vardır:
+JSON kodlanmış objenin normal obje ile arasında birkaç tane önemli farklılık vardır:
 
 - Karakterler çift tırnak kullanır. JSON'da tek tırnak veya ters tırnak kullanılmaz. Bundan dolayı `'Ahmet'` -> `"Ahmet"` olur. 
 - Obje özelliklerinin isimleri de çift tırnak içinde alınır. Bu da zorunludur. Bundan dolayı `yas:30` , `"yas":30` olur.
@@ -98,7 +98,7 @@ alert( JSON.stringify(true) ); // true
 
 alert( JSON.stringify([1, 2, 3]) ); // [1,2,3]
 ```
-JSON sadece veriyi tanımlayan diller arası bir şartname bulunmaktadır. Bundan dolayı Javascript'e özel obje özelliklerikleri `JSON.stringify` tarafından pas geçilir.
+JSON sadece veriyi tanımlayan diller arası bir şartname bulunmaktadır. Bundan dolayı JavaScript'e özel obje özelliklerikleri `JSON.stringify` tarafından pas geçilir.
 
 Yani:
 
@@ -163,7 +163,7 @@ oda.dolduruldu = tanisma; // oda tanismaya referans veriyor
 JSON.stringify(tanisma); // Hata: Dairesel yapı JSON'a çevrilememiştir.
 */!*
 ```
-Çeviri yapılırken hata olmasının nedeni: `oda.dolduruldu` `tanisma`'ya referans olurken. `tanisma.yeri` `oda`'ya referans verir.
+Çeviri yapılırken hata olmasının nedeni: `oda.dolduruldu` `tanisma`'ya referans olurken, `tanisma.yeri` `oda`'ya referans verir.
 
 ![](json-meetup.svg)
 
@@ -180,7 +180,7 @@ deger
 : Kodlanacak metin.
 
 degistirici
-: Maplema ( haritalama ) fonksiyonu ( `function(key,value)`) veya kodlanacak özelliklerin dizisi.
+: Mapleme (haritalama) fonksiyonu ( `function(key,value)`) veya kodlanacak özelliklerin dizisi.
 
 boşluk
 : Formatlanmak için kullanılacak boşluk.
@@ -207,7 +207,7 @@ oda.dolduruldu = tanisma; // oda tanışmayı referans gösteriyor.
 alert( JSON.stringify(tanisma, *!*['baslik', 'katilimcilar']*/!*) );
 // {"baslik":"Konferans","katilimcilar":[{},{}]}
 ```
-Burada çok sıkı kullandık. Özellik listesi tüm yapı için kullanıldı. Bundan ddolayı katılımcılar boş döndür, `adi` alanı da istenseydi bu durumda değer gelecekti.
+Burada çok sıkı kullandık. Özellik listesi tüm yapı için kullanıldı. Bundan dolayı katılımcılar boş döndür, `adi` alanı da istenseydi bu durumda değer gelecekti.
 
 Dairesel referansa neden olabilecek `oda.dolduruldu` hariç hepsini içermek isterseniz:
 
@@ -236,9 +236,9 @@ alert( JSON.stringify(tanisma, *!*['baslik', 'katilimcilar', 'yer', 'adi', 'sayi
 ```
 Şimdi ise `dolduruldu` hariç her yer seri haline getirildi. Fakat özelliklerin listesi oldukça büyük oldu.
 
-Neyseki `degistirici` yerine fonksiyon kullanılabilir.
+Neyse ki `degistirici` yerine fonksiyon kullanılabilir.
 
-Bu fonksiyon her `(anahtar, deger)` ikilisi için çağırılabilir ve "değiştirilmiş" değeri çevirir, bu da orjinalinin yerine geçer.
+Bu fonksiyon her `(anahtar, deger)` ikilisi için çağırılabilir ve "değiştirilmiş" değeri çevirir, bu da orijinalinin yerine geçer.
 
 Daha önce yaptığımız örnekte `dolduruldu` özelliği hariç diğer özelliklerin  `deger`'in olduğu gibi kullanılabilir. `dolduruldu` özelliğini pas geçmek için aşağıdaki kod `undefined` döndürür.
 
@@ -273,7 +273,7 @@ sayi:       23
 */
 ```
 
-`degistirici` fonksiyonu içiçe objeler ve diziler dahil her şeyi alır. Tüm objelere yinelemeli olarak uygulanır. `this`'in değeri `degistirici` içerisinde o anki özellikleri tutar.
+`degistirici` fonksiyonu iç içe objeler ve diziler dahil her şeyi alır. Tüm objelere yinelemeli olarak uygulanır. `this`'in değeri `degistirici` içerisinde o anki özellikleri tutar.
 
 İlk çağrı özeldir. "Sarıcı obje" vasıtasıyla: `{"": tanisma}`. Diğer bir deyişle ilk `(anahtar, deger)` çifti boş anahtar ile gelir ve değeri hedef objenin tamamıdır. Bundan dolayı yukarıdaki örnekte ilk satır: `":[object Object]"`'dir.
 
@@ -285,7 +285,7 @@ Fikir `degistirici`'yi olabildiğince güçlü yapmaktır: Böylece gelen tüm o
 
 Önceden, karakter dizisi haline getirilmiş objelerin hiç boşlukları bulunmamaktaydı. Eğer bunu obje üzerinden göndermek istiyorsanız pek önemli değildir. `bosluk` sadece güzel çıktı vermek amacıyla kullanılır.
 
-Burada `bosluk = 2` kullanılmıştır, iç içe objelerin bir kaç satırda ve objeler arasında 2 boşluk olacak şekilde ayarlamasını söyler.
+Burada `bosluk = 2` kullanılmıştır, iç içe objelerin birkaç satırda ve objeler arasında 2 boşluk olacak şekilde ayarlamasını söyler.
 
 ```js run
 let kullanici = {
@@ -324,7 +324,7 @@ alert(JSON.stringify(kullanici, null, 2));
 
 ## İsteğe göre uyarlanmış "toJSON"
 
-Karakterlerin çeviriminde `toString` metodunun kullanılabileceğini daha önce söylemiştil. Objeler için `toJSON` metodu varsa `JSON.stringify` çağırıldığında bu otomatik olarak çağrılır.
+Karakterlerin çeviriminde `toString` metodunun kullanılabileceğini daha önce söylemiştik. Objeler için `toJSON` metodu varsa `JSON.stringify` çağırıldığında bu otomatik olarak çağırılır.
 
 Örneğin:
 
@@ -422,7 +422,7 @@ alert( kullanici.arkadaslar[1] ); // 1
 ```
 JSON gerektiği kadar karmaşık olabilir, içerisinde objeler diziler ve bu objelerin içerisinde objeler diziler olabilir. Tek yapması gereken formata uymaktır.
 
-Aşağıda elle yazılan JSON'da en çok karşılaşılan hatalar sıralanmıştır. ( Bazen test etme amaçlı elle JSON yazılabilir)
+Aşağıda elle yazılan JSON'da en çok karşılaşılan hatalar sıralanmıştır. (Bazen test etme amaçlı elle JSON yazılabilir)
 
 ```js
 let json = `{
@@ -441,7 +441,7 @@ JSON'un daha sıkı yazıma sahip olmasının nedeni geliştiricilerinin tembel 
 
 ## Alıcı kullanma 
 
-Diyelimki sunucunuzda `tanisma` diye bir objeyi metin şeklinde tutuyorsunuz.
+Diyelim ki sunucunuzda `tanisma` diye bir objeyi metin şeklinde tutuyorsunuz.
 
 Aşağıdaki gibi görünecektir:
 
