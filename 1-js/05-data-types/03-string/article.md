@@ -1,6 +1,6 @@
 # Karakter Dizisi - Strings
 
-JavaScript metinsel değerleri karakter dizisi olarak tutar. Bir karakter ile ( char ) karakter dizisi ( string ) arasında bir fark yoktur.
+JavaScript metinsel değerleri karakter dizisi olarak tutar. Bir karakter ile (char) karakter dizisi (string) arasında bir fark yoktur.
 
 Karakter dizisi formatı her zmaan [UTF-16](https://en.wikipedia.org/wiki/UTF-16)'dır ve sayfanın karakter setine bağlı değildir.
 
@@ -42,7 +42,7 @@ let davetliListesi = "Davetliler:  // Error: Unexpected token ILLEGAL
 ```
 Tek tırnak ve çift tırnak dil ilk yazılmaya başlandığı, çoklu satırların hesaba katılmadığı zamanlardan kalmadır. Garip tırnak ise ( alt + , ) çok sonraları oluşturulduğundan çok yönlüdür.
 
-İlk üs işareti öncesinde "şablon fonksiyonu" tanımlanması da mümkündür. Yazımı : <code>func&#96;string&#96;</code> şeklindedir. `func` fonksiyonu otomatik olarak çağrılır, karakter dizisi ile ve içine gömülü ifadeyi alır ve çalıştırır. Bunun ile ilgili daha fazla bilgiyi [dökümanda](mdn:JavaScript/Reference/Template_literals#Tagged_template_literals) bulabilirsiniz. Buna "etiketmiş şablon"(tagged templates) denir. Bu şekilde karakter dizilerini özel temalar içerisinde veya diğer fonksiyonlarda kullanmak daha kolay olur, fakat yine de nadiren kullanılırlar.
+İlk üs işareti öncesinde "şablon fonksiyonu" tanımlanması da mümkündür. Yazımı : <code>func&#96;string&#96;</code> şeklindedir. `func` fonksiyonu otomatik olarak çağrılır, karakter dizisi ile ve içine gömülü ifadeyi alır ve çalıştırır. Bunun ile ilgili daha fazla bilgiyi [dökümanda](mdn:JavaScript/Reference/Template_literals#Tagged_template_literals) bulabilirsiniz. Buna "etiketmiş şablon" (tagged templates) denir. Bu şekilde karakter dizilerini özel temalar içerisinde veya diğer fonksiyonlarda kullanmak daha kolay olur, fakat yine de nadiren kullanılırlar.
 
 
 ## Özel Karakterler
@@ -71,15 +71,15 @@ Dünya` );
 |`\n`|Yeni Satır|
 |`\r`|Carriage return|
 |`\t`|Tab|
-|`\uNNNN`| hex kodu ile bir unicode `NNNN`, örneğin `\u00A9` -- `©` kopyalama hakkı için kullanılan işaret. Kesinlikle 4 basamaklı hex değeri olmalıdır. |
-|`\u{NNNNNNNN}`|Bazı karakterler nadirde olsa iki unicode sembolü ile ifade edilirler. 4 bytten oluşan uzun bir yazımı vardır. Karakterlerin süslü parantez içine alınması gerekmektedir.
+|`\uNNNN`| hex kodu ile bir Unicode `NNNN`, örneğin `\u00A9` -- `©` kopyalama hakkı için kullanılan işaret. Kesinlikle 4 basamaklı hex değeri olmalıdır. |
+|`\u{NNNNNNNN}`|Bazı karakterler nadirde olsa iki Unicode sembolü ile ifade edilirler. 4 bytten oluşan uzun bir yazımı vardır. Karakterlerin süslü parantez içine alınması gerekmektedir.
 
 Unicode örnekleri:
 
 ```js run
 alert( "\u00A9" ); // ©
-alert( "\u{20331}" ); // 佫, Uzun bir çince hiyerograf (uzun unicode)
-alert( "\u{1F60D}"); // 😍, gülen yüz sembolü (uzun unicode)
+alert( "\u{20331}" ); // 佫, Uzun bir çince hiyerograf (uzun Unicode)
+alert( "\u{1F60D}"); // 😍, gülen yüz sembolü (uzun Unicode)
 ```
 
 Tüm özel karakterler her zaman `\` karakteri ile başlarlar. Karakterler normal akışında giderken başka bir iş yapması için var olan işlemi kesmesinden dolayı "kesme karakteri" denebilir..
@@ -115,7 +115,7 @@ alert( `\\` ); //  \
 ```js run
 alert( `Naber\n`.length ); // 6
 ```
-Dikkat ederseniz `\n` "özel karakter" oludğundan dolayı bir karakter olarak tanımlandı.
+Dikkat ederseniz `\n` "özel karakter" olduğundan dolayı bir karakter olarak tanımlandı.
 
 ```warn header="`length` bir özelliktir"
 
@@ -323,7 +323,7 @@ Hatırlatma: `if (~str.indexOf(...))`  "eğer bulunursa" diye okunur..
 
 ### includes, startsWith, endsWith
 
-Modern özelliklerin içerisinde [str.includes(substr, pos)](mdn:js/String/includes) `true/false` döndüren bir metod mulunmaktadır. 
+Modern özelliklerin içerisinde [str.includes(substr, pos)](mdn:js/String/includes) `true/false` döndüren bir metod bulunmaktadır. 
 
 Eğer sadece aradığınız karakterlerin var olup olmadığını kontrol etmek istiyorsanız ve pozisyonu sizin için önemli değilse bu metod kullanılabilir:
 
@@ -352,7 +352,7 @@ alert( "birader".endsWith("er") );   // true, "birader" "er" ile biter.
 Alt karakter dizisi alma JavaScript'te 3 metod ile yapılır: `substring`, `substr` ve `slice`
 
 `str.slice(basla [, bitir])`
-: Karakter dizisinin `başla` ile başlayan `bitir`(dahil değil) ile bitirilen aralıktaki karakterleri alır.
+: Karakter dizisinin `başla` ile başlayan `bitir` (dahil değil) ile bitirilen aralıktaki karakterleri alır.
 
     Örneğin:
 
@@ -469,18 +469,18 @@ Tük karakter dizileri [UTF-16](https://en.wikipedia.org/wiki/UTF-16) ile kodlan
     ```
 
 `String.fromCodePoint(code)`
-: Sayısal değere göre karakter dönderir.
+: Sayısal değere göre karakter döndürür.
 
     ```js run
     alert( String.fromCodePoint(90) ); // Z
     ```
-    Ayrıca `\u` ile birlikte kodun hexa decimal değerini kullanarak unicode karakter eklemeniz de mümkündür: 
+    Ayrıca `\u` ile birlikte kodun hexa decimal değerini kullanarak Unicode karakter eklemeniz de mümkündür: 
 
     ```js run
     // 90 hexa decimal sistemde 5a ya denk gelmektedir.
     alert( '\u005a' ); // Z
     ```
-`65..220` arasında sayısal değeri olan ( latin alfabesi ve bunun yanında sayılar vs. ) karakterleri ekrana basalım:
+`65..220` arasında sayısal değeri olan (Latin alfabesi ve bunun yanında sayılar vs.) karakterleri ekrana basalım:
 
 ```js run
 let str = '';
@@ -492,13 +492,13 @@ alert( str );
 // ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
 // ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜ
 ```
-Gördüğünüz gibi önce büyük harfler, sonrasında bir kaç özel harf ve küçük harfler şeklinde yazılmaktadır.
+Gördüğünüz gibi önce büyük harfler, sonrasında birkaç özel harf ve küçük harfler şeklinde yazılmaktadır.
 
 `a > Z` olduğu yukarıda açıkça görülmektedir.
 
 Karakterler sayısal kodları ile karşılaştırılmaktadır. Kod büyüdükçe karakter de büyür denebilir. `a` için yazılan kod (97) `Z`(90) kodundan büyüktür.
 - Tük küçük harfler büyük harflerden sonra gelir. Bundan dolayı küçük harflerin en küçüğü bile büyük harflerin tamamından büyüktür.
-- `Ö` gibi karakterler alfabaden tamamen farklı düşünmelidir. Bu karakterlerin kodları küçük harflerden büyüktür.
+- `Ö` gibi karakterler alfabeden tamamen farklı düşünmelidir. Bu karakterlerin kodları küçük harflerden büyüktür.
 
 
 ### Doğru Karşılaştırma
@@ -507,7 +507,7 @@ Karakter karşılaştırmasını "doğru" olarak yapmak göründüğünden daha 
 
 Tarayıcı hangi dil ile karşılaştıracağını bilmeli.
 
-Neyseki tüm modern tarayıcılar(IE10- ek kütüphanelere gerek duymaktadır [Intl.JS](https://github.com/andyearnshaw/Intl.js/) ) uluslararası dil standardına sahiptir [ECMA 402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf).
+Neyse ki tüm modern tarayıcılar(IE10- ek kütüphanelere gerek duymaktadır [Intl.JS](https://github.com/andyearnshaw/Intl.js/) ) uluslararası dil standardına sahiptir [ECMA 402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf).
 
 Bu özel bir metod ile farklı dillerde karakterlerin birbirleri ile karşılaştırılabilmesini sağlar. Kuralları şu şekildedir:
 
@@ -524,7 +524,7 @@ alert( 'Österreich'.localeCompare('Zealand') ); // -1
 ```
 Aslında bu metodun [dökümantasyon](mdn:js/String/localeCompare)'da belirtilen iki tane argümanı vardır. Bu argümanlar ile hangi dili kullanmak istediğinizi veya `"a"` ile `"á"`'nın aynı şekilde davranılmasını isteyip istemediğinizi belirtebilirsiniz.
 
-## Unicod ve Internaller.
+## Unicode ve Internaller.
 
 ```warn header="İleri derecede bilgiler"
 Bu bölümde karakter dizilerinin daha derin özelliklerine değinilecektir. Bu bilgiler emoji, hiyeroglif veya matematiksel ifadelerde yardımcı olur.
@@ -534,7 +534,7 @@ Eğer bu konuda bir ihtiyacınız yoksa bu bölümü atlayabilirsiniz.
 
 ### Vekil Çiftler
 
-Çoğu sembol 2-byte kod ile tanımlanır. Çoğu avrupa dili, sayılar ve çoğu hiyeroglifler iki byte ile tanımlanabilir.
+Çoğu sembol 2-byte kod ile tanımlanır. Çoğu Avrupa dili, sayılar ve çoğu hiyeroglifler iki byte ile tanımlanabilir.
 
 Fakat iki byte 65536 sembolü tanımlayabilir ve tüm semboller için bu yeterli değildir. Bundan dolayı nadir semboller bir çift 2-byte'lık karakter ile tanımlanır. Buna vekil çiftler veya "surrogate pair" adı verilir.
 
@@ -548,7 +548,7 @@ alert( '𩷶'.length ); // 2, a rare chinese hieroglyph
 ```
 Bu vekil çiftler JavaScript yaratıldığında meydanda yoktu, bundan dolayı dil tarafından doğru olarak işlenemez.
 
-Tek bir karakter olmasına rağmen `length`(uzunluk) `2` göstermektedir.
+Tek bir karakter olmasına rağmen `length` (uzunluk) `2` göstermektedir.
 
 `String.fromCodePoint` ve `str.codePointAt` az bilinen ve bu ikili karakterlerle uğraşan iki metoddur. Dile entegreleri yakın zamanda gerçekleşti. Bundan önce sadece [String.fromCharCode](mdn:js/String/fromCharCode) ve [str.charCodeAt](mdn:js/String/charCodeAt) bulunmaktadır. Bu metodlar aslında `fromCodePoint/codePointAt` ile aynıdır fakat ikili karakterler ile çalışmamaktadırlar.
 
@@ -559,7 +559,7 @@ alert( '𝒳'[0] ); // garip semboller...
 alert( '𝒳'[1] ); // ...her biri ikilinin parçaları
 ```
 
-Dikkat ederseniz çifli karakterler tek başlarına bir şey ifade etmezler. Yani yukarıdaki örnekler aslında hiçbir işe yaramaz.
+Dikkat ederseniz çiftli karakterler tek başlarına bir şey ifade etmezler. Yani yukarıdaki örnekler aslında hiçbir işe yaramaz.
 
 Teknik olarak, bu çiftler kodlarına bakılarak ayırt edilebilir: Eğer bir karakter `0xd800..0xdbff` aralığında ise bu çiftin ilk karakteri demektir. İkinci karakter ise `0xd800..0xdbff` aralığında olmalıdır. Bu aralıklar özel olarak çiftler için ayrılmıştır.
 
@@ -571,15 +571,15 @@ Yukarıdaki duruma göre:
 alert( '𝒳'.charCodeAt(0).toString(16) ); // d835, 0xd800 ile 0xdbff arasında
 alert( '𝒳'.charCodeAt(1).toString(16) ); // dcb3, 0xdc00 ile 0xdfff arasında
 ```
-<info:iterable> bölümünde bu çifler ile ilgili daha fazla bilgi bulabilirsiniz. Muhtemelen bunun ile ilgili kütüphaneler de vardır, fakat burada önerecek kadar meşhur olan yok henüz.
+<info:iterable> bölümünde bu çiftler ile ilgili daha fazla bilgi bulabilirsiniz. Muhtemelen bunun ile ilgili kütüphaneler de vardır, fakat burada önerecek kadar meşhur olan yok henüz.
 
 ### Aksan işaretleri ve normalleştirme
 
-Çoğu dilde temel karakterlerin altına veya üstünü sembol eklenerk oluşturulmuş yeni karakterler mevcuttur.
+Çoğu dilde temel karakterlerin altına veya üstünü sembol eklenerek oluşturulmuş yeni karakterler mevcuttur.
 
 Örneğin `a`, `àáâäãåā` şeklinde karakterlere sahiptir. Bu birleşik karakterler UTF-16 tablosunda kendine has kodlara sahiptir. Hepsi değil tabi fakat çoğu birleşik karakter bu tabloda yer alır.
 
-Elle bu karakterleri birleştirmek için, UTF-16 bazı unicode karakter kullanmamıza olanak verir. Böylece temel karakterin üzerine bir veya daha fazla "işaret" eklenerek yeni bir karakter "üretilebilir"
+Elle bu karakterleri birleştirmek için, UTF-16 bazı Unicode karakter kullanmamıza olanak verir. Böylece temel karakterin üzerine bir veya daha fazla "işaret" eklenerek yeni bir karakter "üretilebilir"
 
 Örneğin, `S` harfinin üstüne "nokta" eklemek isterseniz `\u0307` kullanabilirsiniz. Bunu kullandığınızda Ṡ elde etmiş olursunuz.
 
@@ -595,7 +595,7 @@ Eğer bu karakterin üstüne veya altına farklı işaretler eklemek istiyorsan�
 ```js run
 alert( 'S\u0307\u0323' ); // Ṩ
 ```
-Böylece çok farklı karakterler elde etmek mümkündür, fakat bu bir probleme neden olmaktadır: iki karakter görünüşte birbiri ile aynı olabilir, fakat iki farklı unicode'a sahip olabilir.
+Böylece çok farklı karakterler elde etmek mümkündür, fakat bu bir probleme neden olmaktadır: iki karakter görünüşte birbiri ile aynı olabilir, fakat iki farklı Unicode'a sahip olabilir.
 
 Örneğin:
 
@@ -605,7 +605,7 @@ alert( 'S\u0323\u0307' ); // Ṩ, S + alt nokta + üst nokta
 
 alert( 'S\u0307\u0323' == 'S\u0323\u0307' ); // false
 ```
-Bunu çözebilmek için "unicode normalleştirme" algoritmaları mevcuttur. Bu karakterleri tek bir "noram" forma çevirir.
+Bunu çözebilmek için "Unicode normalleştirme" algoritmaları mevcuttur. Bu karakterleri tek bir "noram" forma çevirir.
 
 [str.normalize()](mdn:js/String/normalize) şeklinde uygulaması yapılmaktadır.
 
@@ -627,9 +627,9 @@ Eğer normalizasyon kurallarını ve tiplerini daha derinlemesine öğrenmek ist
 
 ## Özet
 
-- 3 tip tırnak bulunmaktadır. "`" işareti ile birkaç satırdan oluşan karakter dizisi yazmak mümkündür
+- 3 tip tırnak bulunmaktadır. "`" işareti ile birkaç satırdan oluşan karakter dizisi yazmak mümkündür.
 - JavaScript'te karakterler UTF-16 ile kodlanmıştır.
-- `\n` gibi özel karakterler veya `\u..` ile unicode kullanılabilir.
+- `\n` gibi özel karakterler veya `\u..` ile Unicode kullanılabilir.
 - Karakteri almak için: `[]` kullanılır.
 - Alt karakter kümesi almak için `slice` veya `substring` kullanılır.
 - Küçük/büyük harf değişimi için: `toLowerCase/toUpperCase`.
@@ -639,7 +639,7 @@ Eğer normalizasyon kurallarını ve tiplerini daha derinlemesine öğrenmek ist
 Bunun yanında karakter dizileri için daha başka yardımcı metodlar bulunmaktadır:
 
 - `str.trim()` -- başlangıç ve bitişteki boşlukları siler.
-- `str.repeat(n)` -- `str`'yi istendiği kadar tekrar eder..
+- `str.repeat(n)` -- `str`'yi istendiği kadar tekrar eder.
 - ... Daha fazlası için [manual](mdn:js/String)  adresine bakabilirsiniz.
 
 Karakter dizileri bunun yanında arama/değiştirme veya regular expression için metodlar barındırmaktadır. Fakat bu konular ayrı bölümleri hak etmektedir. Bu konulara ilerleyen bölümlerde dönülecektir.
