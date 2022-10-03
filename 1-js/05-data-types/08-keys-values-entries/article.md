@@ -20,11 +20,11 @@ Basit objeler de aynı metodları destekler aslında, fakat yazımları biraz da
 
 Basit objeler için aşağıdaki metodlar kullanılabilir.
 
-- [Object.keys(obj)](mdn:js/Object/keys) -- anahtarları dizi şeklinde dönderir.
-- [Object.values(obj)](mdn:js/Object/values) -- değerleri dizi şeklinde dönderir
-- [Object.entries(obj)](mdn:js/Object/entries) --  `[anahtar, değer]` çiftini dizi şeklinde dönderir.
+- [Object.keys(obj)](mdn:js/Object/keys) -- anahtarları dizi şeklinde döndürür.
+- [Object.values(obj)](mdn:js/Object/values) -- değerleri dizi şeklinde döndürür.
+- [Object.entries(obj)](mdn:js/Object/entries) --  `[anahtar, değer]` çiftini dizi şeklinde döndürür.
 
-... Farklılıklarına dikkat edin. ( aşağıda map örneği gösterilmiştir):
+... Farklılıklarına dikkat edin. (aşağıda map örneği gösterilmiştir):
 
 |             | Map              | Object       |
 |-------------|------------------|--------------|
@@ -64,7 +64,7 @@ for(let deger of Object.values(kullanici)) {
 }
 ```
 
-```warn header="Object.keys/values/entries symbol özelliklerini görmezden gelir"
+```warn header="Object.keys/values/entries symbol özelliklerini görmezden gelir."
 
 `for..in` döngüsünde olduğu gibi, bu metodlar `Symbol(...)`'ü anahtar olarak kullanan özellikleri pas geçerler.
 
@@ -73,7 +73,7 @@ Bu baya işe yarar bir özelliktir. Fakat symbol özelliklerini almak istiyorsan
 
 ## Nesneleri dönüştürmek için Object.fromEntries
 
-Bazen bir nesneyi `Map`e dönüştürüp ardından onu objeye geri dönüştürmemiz gerekir
+Bazen bir nesneyi `Map`e dönüştürüp ardından onu objeye geri dönüştürmemiz gerekir.
 
 Halihazırda `obj`den `Map` yapmak için `new Map(Object.entries(obj))` var.
 
