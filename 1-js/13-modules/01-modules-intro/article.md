@@ -3,7 +3,7 @@
 
 Uygulamalarımız büyüdükçe, onu dosyalar halinde bölmek isteriz. Bu dosyalar modül olarak isimlendirilir. Bir modül genellikle bir sınıf ya da kullanışlı fonksiyonları barındıran bir kütüphane içerir.
 
-Uzun bir süredir JavaScript'de dil seviyesinde bir modül sözdizimi bulunmuyordu. Bu bir sorun değildi, çünkü başlangıçta program parçaları (scripts) küçük ve basitti. Dolayısıyla modüler yapıya ihtiyaç yoktu.
+Uzun bir süredir JavaScript'te dil seviyesinde bir modül sözdizimi bulunmuyordu. Bu bir sorun değildi, çünkü başlangıçta program parçaları (scripts) küçük ve basitti. Dolayısıyla modüler yapıya ihtiyaç yoktu.
 
 Ancak zamanla yazılan programlar karmaşıklaşınca, JavaScript topluluğu kodu modüller şeklinde organize etmenin çeşitli yollarını buldu.
 
@@ -256,7 +256,7 @@ Lütfen dikkat edin: ikinci program aslında ilkinden önce çalışır! Dolayı
 
 Bu modüllerin çalıştırılması belgenin işlenmesi tamamlanana kadar ertelendiği içindir. Sıradan programlar hemen çalışır ve dolayısıyla çıktısını önce görürüz.
 
-Modülleri kullanırken, HTML belgesinin JavaScript uygulamasının hazır olmasından önce görünebileceğinin farkında olmalıyız. Bazı fonksiyonlar henüz çalışmayabilir. When using modules, we should be aware that HTML-document can show up before the JavaScript application is ready. Some functionality may not work yet. Kullanıcıları bu durumdan haberdar etmek için sayfaya bir "yüklenme göstergesi" (loading indicators) koyabiliriz.
+Modülleri kullanırken, HTML belgesinin JavaScript uygulamasının hazır olmasından önce görünebileceğinin farkında olmalıyız. Bazı fonksiyonlar henüz çalışmayabilir. Kullanıcıları bu durumdan haberdar etmek için sayfaya bir "yüklenme göstergesi" (loading indicators) koyabiliriz.
 
 ### Async satır içi programlarda çalışır
 
