@@ -6,7 +6,7 @@ Dışa aktarma ve dahil etme yönergeleri çok yönlüdür.
 
 ## Bildirimler Önce Dışa Aktarım
 
-Bir değişken, fonksyion ya da bir sınıf olsun, herhangi bir bildirimi önce `export` diyerek dışa aktarılmış olarak etiketleyebiliriz.
+Bir değişken, fonksiyon ya da bir sınıf olsun, herhangi bir bildirimi önce `export` diyerek dışa aktarılmış olarak etiketleyebiliriz.
 
 Örneğin, buradaki tüm dışa aktarımlar geçerlidir:
 
@@ -26,11 +26,11 @@ Bir değişken, fonksyion ya da bir sınıf olsun, herhangi bir bildirimi önce 
 ```
 
 ````smart header="No semicolons after export class/function"
-Unutmayın ki, bir sınıf veya fonksyiondan önce `export` bir  [işlev ifadeleri](info:function-expressions-arrows) yapmaz. Dışarıya aktarılmasına rağmen hala bir işlev bildirgesidir.
+Unutmayın ki, bir sınıf veya fonksiyondan önce `export` bir  [işlev ifadeleri](info:function-expressions-arrows) yapmaz. Dışarıya aktarılmasına rağmen hala bir işlev bildirgesidir.
 
-Javascript stil kılavuzlarının çoğu ifadelerden sonra noktalı birgül önermektedir ama işlev ve sınıf bildirimlerinden sonra değil. 
+JavaScript stil kılavuzlarının çoğu ifadelerden sonra noktalı virgül önermektedir ama işlev ve sınıf bildirimlerinden sonra değil. 
 
-Bu nedenle `export class` ve `export function` sonuna noktalı virgül konuşmamalıdır..
+Bu nedenle `export class` ve `export function` sonuna noktalı virgül konulmamalıdır..
 
 ```js
 export function sayHi(user) {
@@ -91,7 +91,7 @@ say.sayBye('John');
 
 İlk bakışta, "her şeyi dahil etmek" kısa yazıldığı için güzel gözüküyor. İçeriye aktarmamız için neye ihtiyaç varsa neden açıkça listeleyelim?
 
-Bunun bir kaç nedeni var.
+Bunun birkaç nedeni var.
 
 1. Modern derleme araçları ([webpack](http://webpack.github.io) ve diğerleri) modülleri bir araya getirir ve kullanılmasını önleyen yükleme işlemlerini hızlandırmak ve kaldırmak için optimize eder.
 
@@ -111,7 +111,7 @@ Bunun bir kaç nedeni var.
     ...Ardından optimizer otomatik olarak algılar ve diğer işlevleri birlikte verilen koddan tamamen kaldırır, böylece yapı daha küçük hale gelir. Buna "tree-shaking" denilir.
 
 2. Açıkça listelemek ne içeri aktarılacaksa daha kısa isimler verilir: `lib.sayHi()` yerine `sayHi()`.
-3. Açıkça dahil etmek kod kod yapısında daha iyi genel bakışı sağlar: Nerede, ne kullanılır. Kod desteğini ve yeniden düzenlemeyi kolaylaştırır.
+3. Açıkça dahil etmek kod yapısında daha iyi genel bakışı sağlar: Nerede, ne kullanılır. Kod desteğini ve yeniden düzenlemeyi kolaylaştırır.
 
 ## Import "as"
 
@@ -159,7 +159,7 @@ Pratikte, modüller şunlardan birini içerir:
 - Bir kütüphane, fonksiyonlar paketi, `lib.js` gibi.
 - Veya bir varlık,`user.js` de `class User` tanımlanmıştır. Bütün modül bu sınıfa sahiptir.
 
-Çoğunlukla ikinci yaklaşım tercih edilir. Böylece her " şey" kendi modulünde bulunur.
+Çoğunlukla ikinci yaklaşım tercih edilir. Böylece her "şey" kendi modülünde bulunur.
 
 Doğal olarak bu çok fazla dosya gerektirir, her şeyin kendi modülünü istediği gibi, ama bu hiç sorun değil. Aslında, dosyalar iyi adlandırılmışsa ve klasörler halinde yapılandırılmışsa kod gezinme işlemi kolaylaşır.
 
@@ -167,10 +167,10 @@ Modüller, "modül başına bir şeyin" daha iyi görünmesini sağlamak için �
 
 `export` ve `import` ifadesini takip etmesi gerekir:
 
-1. Modulün "main export"'dan önce `export default` koyun
+1. Modulün "main export"tan önce `export default` koyun
 2. Süslü parantez olmadan `import` çağırın.
 
-Örneğin, Burada `user.js` `class User` ı dışarıya aktarır:
+Örneğin, burada `user.js` `class User` ı dışarıya aktarır:
 
 ```js
 // 📁 user.js
@@ -201,7 +201,7 @@ Doğal olarak, dosya başına yalnızca bir "varsayılan" dışa aktarma olabili
 
 Tek bir modülde hem varsayılan hem de adlandırılmış içeriye aktarma yapabiliriz ancak pratikte insanlar genellikle bunu karıştırmaz. Bir modül, dışa aktarma adını verir veya varsayılan olanıdır.
 
-**Unutulmaması gereken bir başka şey de, dışa aktarma adının (doğal olarak) bir adı olması gerekirken, `export default` adsız olabilir**
+**Unutulmaması gereken bir başka şey de, dışa aktarma adının (doğal olarak) bir adı olması gerekirken, `export default` adsız olabilir.**
 
 Örneğin, Bunların hepsi mükemmel ve doğru `default export` kullanımları:
 
@@ -228,7 +228,7 @@ export class { // Hata! (non-default export needs a name)
 
 ### "Default" Takma Adı
 
-"defaul" anahtar sözcüğü, varsayılan  içeriye aktarma, bağımsız içeriye aktarma ve referans göstermemiz gerektiğinde diğer seneryolar için "takma ad" kullanılır
+"default" anahtar sözcüğü, varsayılan  içeriye aktarma, bağımsız içeriye aktarma ve referans göstermemiz gerektiğinde diğer senaryolar için "takma ad" kullanılır.
 
 Örneğin, önceden bildirilmiş bir işlevimiz varsa , işte bunu `export default` nasıl yaparız (tanımdan ayrı olarak):
 
@@ -240,7 +240,7 @@ function sayHi(user) {
 export {sayHi as default}; // fonksiyondan önce "export default" eklediğimiz gibi
 ```
 
-Ya da bir `user.js` modulünün bir ana "varsayılan" şeyi ve bir kaç tane adlandırılmış olanı dışarı aktarıldığını varsayalım.
+Ya da bir `user.js` modulünün bir ana "varsayılan" şeyi ve birkaç tane adlandırılmış olanı dışarı aktarıldığını varsayalım.
 
 ```js
 // 📁 user.js
@@ -281,7 +281,7 @@ Varsayılan dışa aktarım kullanımlarında dikkat edilmelidir. Çünkü bakı
 
 Adlandırılmış açıktır. Aldıkları şeyi tam olarak açıklıyorlar. Bu yüzden onlardan bu bilgilere sahibiz. Bu iyi bir şey.
 
-Ayrıca, adlandırılmış dışa aktarma işlemleri bizi içe aktarmak için doğru adı kullanmaya zorlar.:
+Ayrıca, adlandırılmış dışa aktarma işlemleri bizi içe aktarmak için doğru adı kullanmaya zorlar:
 
 ```js
 import {User} from './user.js';
@@ -337,7 +337,7 @@ auth/
     ...
 ```
 
-Paket işlevselliğini tek bir giriş noktası üzerinden göstermek istiyoruz, "ana dosya" `auth/index.js` böyle kullanılmalı,
+Paket işlevselliğini tek bir giriş noktası üzerinden göstermek istiyoruz, "ana dosya" `auth/index.js` böyle kullanılmalı:
 
 ```js
 import {login, logout} from 'auth/index.js'
@@ -345,7 +345,7 @@ import {login, logout} from 'auth/index.js'
 
 Buradaki fikir, paketimizi kullanan geliştiricilerin iç yapısıyla karışmaması gerektiğidir. Paket klasörümüzdeki dosyaları aramamalılar. Sadece `auth/index.js`de gerekli olanları dışarıya aktarıyoruz ve gerisini meraklı gözlerden gizleriz.
 
-Şimdi, dışa aktarılan gerçek işlevsellik paketin arasına dağıl olduğundan, paket içinde "Yeniden dışa aktarma" ve toplayabiliriz.
+Şimdi, dışa aktarılan gerçek işlevsellik paketin arasına dağılmış olduğundan, paket içinde "Yeniden dışa aktarma" ve toplayabiliriz:
 `auth/index.js`:
 
 ```js
@@ -376,7 +376,7 @@ export {default as Github} from './providers/github.js';
 ```
 
 ````warn header="Yeniden dışa aktarma default is tricky"
-Lütfen unutmayın: `export User from './user.js'` çalışmayacak. Bu aslında sözdizimi hatası. Varsayılan içeriye aktarmayı yeniden dışa aktarm için açıkça belirtmeliyiz `{default as ...}`. Yukarıdaki örnekte olduğu gibi.
+Lütfen unutmayın: `export User from './user.js'` çalışmayacak. Bu aslında sözdizimi hatası. Varsayılan içeriye aktarmayı yeniden dışa aktarım için açıkça belirtmeliyiz `{default as ...}`. Yukarıdaki örnekte olduğu gibi.
 
 Ayrıca, başka bir tuhaflık var: `export * from './user.js'` varsayılan olan haric, yalnızca adlandırılmış dışa aktarımlar yeniden dışa aktarılır. Bir kez daha açıkça söylemeliyiz.
 
@@ -414,7 +414,7 @@ Aşağıda `export` türleri vardır:
 - Modulü içeriye aktarın (çalışır) ama değişkene atamayın:
   - `import "mod"`
 
-Import/export ifadelerini bir komus dosyasının en üstüne veya en altına koyabiliriz. Fark etmez.
+Import/export ifadelerini bir komut dosyasının en üstüne veya en altına koyabiliriz. Fark etmez.
 
 Yani teknik olarak bu iyi:
 ```js
@@ -426,8 +426,7 @@ import {sayHi} from './say.js'; // script'in sonunda içe aktar
 ```
 
 Uygulamada, daha iyi rahatlık için içeriye aktarma genellikle dosyanın başındadır.
-**Please note that import/export statements don't work if inside `{...}`.**
-**Unutmayın ki, import/export ifadeleri `{...}` içindeyse çalışmaz**
+**Unutmayın ki, import/export ifadeleri `{...}` içindeyse çalışmaz.**
 
 Bunun gibi koşullu bir içe aktarma çalışmaz: 
 ```js
@@ -436,6 +435,6 @@ if (something) {
 }
 ```
 
-...Ama ya gerçekten şartlı olarak bir şeyler ithal etmemiz gerekirse? Ya da doğru zamanda? Gibi. Gerçekten ihtiyaç duyulduğunda istek üzerine bir modül yükleyin?
+...Ama ya bir şeyi gerçekten şartlı olarak içeri aktarmamız gerekiyorsa? Ya da doğru zamanda? Örneğin, gerçekten ihtiyaç duyulduğunda istek üzerine bir modül yükleme?
 
 Bir sonraki bölümde dinamik içeriye aktarma göreceğiz.
