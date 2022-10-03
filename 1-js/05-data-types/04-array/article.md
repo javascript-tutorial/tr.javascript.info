@@ -2,7 +2,7 @@
 
 Objeler değerlerin anahtarlı bir şekilde koleksiyon halinde tutulmasını sağlar. 
 
-Fakat bazı durumlarda *sıralı koleksiyon* tutmak gerekebilir, 1., 2. ve 3. elemente ihtiyac olabilir. Örneğin kullanıcıların, ürünlerin, HTML elementlerinin liste halinde tutulmasını istediğinizde;
+Fakat bazı durumlarda *sıralı koleksiyon* tutmak gerekebilir, 1., 2. ve 3. elemente ihtiyaç olabilir. Örneğin kullanıcıların, ürünlerin, HTML elementlerinin liste halinde tutulmasını istediğinizde;
 
 Obje kullanmak mantıklı değildir, çünkü elemanların sırasını tutmaz bu objeler. Var olanların "arasına" yeni bir özellik girilemez. Objeler böyle kullanımlara uygun değildir.
 
@@ -35,7 +35,7 @@ Elamanı değiştirmek mümkündür:
 ```js
 meyveler[2] = 'Armut'; // Şimdi ["Elma", "Portakal", "Armut"]
 ```
-... Veya diziye yeni bir eleman eklemek mümküdür:
+... Veya diziye yeni bir eleman eklemek mümkündür:
 
 ```js
 meyveler[3] = 'Limon'; // Şimdi ["Elma", "Portakal", "Armut", "Limon"]
@@ -112,7 +112,7 @@ Yığın bir deste kart olarak düşünülebilir: yeni kartlar eklendiğinde en 
 
 ![](stack.svg)
 
-Yığına en son eklenen eleman ilk olarak alınır, Buna LIFO(Last-In-First-Out) Son giren ilk çıkar prensibi denir. Kuyruklar için ise FIFO(First-In-First-Out) yani ilk giren ilk çıkar prensibi kullanılır.
+Yığına en son eklenen eleman ilk olarak alınır, Buna LIFO (Last-In-First-Out) Son giren ilk çıkar prensibi denir. Kuyruklar için ise FIFO (First-In-First-Out) yani ilk giren ilk çıkar prensibi kullanılır.
 
 JavaScript'te diziler yığın veya kuyruk olarak kullanılabilirler. Başlangıca veya sona yeni eleman eklenebilir veya çıkartılabilir.
 
@@ -122,7 +122,7 @@ Bilgisayar biliminde bu işlemlere izin veren veri yapılarına [deque](https://
 **Dizilerin sonu ile ilgili metodlar:**
 
 `pop`
-: Dizinin son elemanını dönderir:
+: Dizinin son elemanını döndürür:
 
     ```js run
     let meyveler = ["Elma", "Portakal", "Armut"];
@@ -247,11 +247,11 @@ meyveler.shift(); // Başlangıçtan bir eleman al
 
 ![](array-shift.svg)
 
-**Daha fazla elaman, daha falza taşınma süresi , daha fazla hafıza içi işlem demektir**
+**Daha fazla elaman, daha fazla taşınma süresi , daha fazla hafıza içi işlem demektir.**
 
 Aynı şey `unshift` için de geçerlidir: dizilerin başına eleman ekleneceği zaman öncelikle elemanların sağa kaydırılarak indeks artırılması gerekir.
 
-Peki `push/pop` için böyle işlemlere gerek yokmu? Sondaki elemanı alabilmek için `pop` metodu indexi siler ve `length`'i bir azaltır.
+Peki `push/pop` için böyle işlemlere gerek yok mu? Sondaki elemanı alabilmek için `pop` metodu indexi siler ve `length`'i bir azaltır.
 
 `pop` metodunun yaptığı işlemler:
 
@@ -261,7 +261,7 @@ fruits.pop(); // Sondan bir eleman al
 
 ![](array-pop.svg)
 
-**`pop` hiçbir şey taşımaz çünkü diğer elemanların `index`'i değişmez. Bundan dolayı aşırı derecede hızlıdır**
+**`pop` hiçbir şey taşımaz çünkü diğer elemanların `index`'i değişmez. Bundan dolayı aşırı derecede hızlıdır.**
 
 `push`'da aynı şekilde sona ekler.
 
@@ -278,7 +278,7 @@ for (let i = 0; i < arr.length; i++) {
   alert( arr[i] );
 }
 ```
-Diziler için diğer yöntem ise, `for..of`'dur:
+Diziler için diğer yöntem ise, `for..of`'tur:
 
 ```js run
 let meyveler = ["Elma", "Portakal", "Erik"];
@@ -291,7 +291,7 @@ for(let meyve of meyveler) {
 
 `for..of` var olan elemanın kaçıncı eleman olduğunun görülmesine izin vermez, sadece değeri döner. Fakat çoğu durumda bu daha kısa ve yeterli bir kullanımdır.
 
-Teknik olarak diziler objedir, bundan dolayı `for..in` kullanmak mümküdür.
+Teknik olarak diziler objedir, bundan dolayı `for..in` kullanmak mümkündür.
 
 ```js run
 let arr = ["Elma", "Portakal", "Erik"];
@@ -308,7 +308,7 @@ Fakat bu bazı problemlere neden olur:
 
     "dizi-benzeri" objeler bazı tarayıcı ve diğer çevrelerde kullanılmaktadır. Bunlar "dizi gibi dururlar", `length` ve indeks özelliklerine sahiptirler fakat sayısal olmayan özelliklere sahip metodlar da bulunmaktadır. Genelde bunlara ihtiyaç duyulmaz. `for..in` döngüsü bunları da listeler. Bundan dolayı dizi-benzeri bir obje ile çalışılacaksa, bu "ekstra" özellikler problem teşkil edebilir.
     
-2. `for..in` döngüsü genel objeler için kullanışlıdır, diziler için değil. Bundan dolayı diziler için kullanıldığında 10-100 kata kadar daha yavaştır. Tabi hala hızlı sayılır. Bu hız sadece darboğaz(bottleneck) olduğunda önem kazanır, aksi halde anlamsızdır. Fakat yine de bu farkı bilmek iyidir.
+2. `for..in` döngüsü genel objeler için kullanışlıdır, diziler için değil. Bundan dolayı diziler için kullanıldığında 10-100 kata kadar daha yavaştır. Tabi hala hızlı sayılır. Bu hız sadece darboğaz (bottleneck) olduğunda önem kazanır, aksi halde anlamsızdır. Fakat yine de bu farkı bilmek iyidir.
 
 Genel olarak, `for..in` diziler ile kullanılmaz.
 
@@ -385,7 +385,7 @@ alert( matrix[1][1] ); // merkez eleman
 
 ## toString
 
-Dizilerin kendi `toString`uygulaması mevcuttur. Bu dizilerin arasına virgül konularak geri dönderilir.
+Dizilerin kendi `toString` uygulaması mevcuttur. Bu dizilerin arasına virgül konularak geri döndürülür.
 
 Örneğin:
 
@@ -404,7 +404,7 @@ alert( [1] + 1 ); // "11"
 alert( [1,2] + 1 ); // "1,21"
 ```
 
-Dizilerin `Symbol.toPrimitive` özellikleri yoktur, `valueOf` metodu da bulunmamaktadır. Sadece `toString` çevirimi mevcuttur. Bundan dolayı `[]` boş karakter dizisi dönderir ` ` , `[1]` 1, veya `[1,2]` `"1,2"` dönderir.
+Dizilerin `Symbol.toPrimitive` özellikleri yoktur, `valueOf` metodu da bulunmamaktadır. Sadece `toString` çevirimi mevcuttur. Bundan dolayı `[]` boş karakter dizisi döndürür ` ` , `[1]` 1, veya `[1,2]` `"1,2"` döndürür.
 
 `"+"` operatörü karakter dizisine ekleme yaptığında diğer bölümü de karakter dizisine çevirir. Bundan dolayı sonraki adım şu şekilde görülür:
 
@@ -436,8 +436,8 @@ Dizi özel bir çeşit objedir, verilerin sıralı bir şekilde saklanması içi
 Dizi üzerinde aşağıdaki işlemler yapılabilir:
 
 - `push(...items)` `items`'ı sona ekler.
-- `pop()` sondan bir eleman siler ve dönderir.
-- `shift()` başlangıçtan eleman siler ve bunu dönderir.
+- `pop()` sondan bir eleman siler ve döndürür.
+- `shift()` başlangıçtan eleman siler ve bunu döndürür.
 - `unshift(...items)` başlangıca `items` ekler.
 
 Dizinin elemanlarını `for` döngüsü ile dönme:
