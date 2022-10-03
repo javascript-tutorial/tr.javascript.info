@@ -2,14 +2,14 @@
 
 Kodunuz olabildiğince okunaklı ve temiz olmalıdır.
 
-Aslında bu programlama sanatıdır -- karmaşık bir görevi alın ve bunu olabildiğince doğru ve okunaklı bir şekile getirin.
+Aslında bu programlama sanatıdır -- karmaşık bir görevi alın ve bunu olabildiğince doğru ve okunaklı bir şekle getirin.
 
 Buna yardımcı olan bir şey de iyi kodlama stilidir.
 
 
 ## Yazım
 
-Kodlar için yazılmış bir kopya kağıdı(detayları aşağıda):
+Kodlar için yazılmış bir kopya kağıdı (detayları aşağıda):
 
 ![](code-style.svg)
 <!--
@@ -94,7 +94,7 @@ Satır uzunluğu limitine takım seviyesinde karar verilir. Genelde 80-120 karak
 
     Yatay boşluklar genelde 2 veya 4 veya "Tab" sembolünden oluşur. Bunlardan hangisinin seçilmesi gerektiği bir çeşit savaştır. Bugünlerde boşluk tuşu ile boşluk bırakmak daha fazla kullanılan yöntemdir.
 
-    Boşluk tuşu ile satıra başlamanın "Tab" a göre üstünlü daha esnek ayarlanabilir olmasından dolayıdır.
+    Boşluk tuşu ile satıra başlamanın "Tab" a göre üstünlüğü daha esnek ayarlanabilir olmasından dolayıdır.
 
     Örneğin argümanlar şu şekilde hizalanabilir:
 
@@ -109,9 +109,9 @@ Satır uzunluğu limitine takım seviyesinde karar verilir. Genelde 80-120 karak
     }
     ```
 
-- **Dikey boşluk: mantıksal blokları ayırlmak için satır arası bırakmak**
+- **Dikey boşluk: mantıksal blokları ayırmak için satır arası bırakmak**
 
-    En basit bir fonkiyonda bile mantıksal blokları ayırma ihtiyacınız olabilir. Aşağıdaki örnekte, değişkenlerin tanımlanması ve sonucun dikey olarak ayrılmasına dikkat edin:
+    En basit bir fonksiyonda bile mantıksal blokları ayırma ihtiyacınız olabilir. Aşağıdaki örnekte, değişkenlerin tanımlanması ve sonucun dikey olarak ayrılmasına dikkat edin:
 
     ```js
     function üst(x, n) {
@@ -254,15 +254,15 @@ Eğer birkaç tane "helper"(yardımcı) fonksiyon yazıyorsanız bunları yerle�
 
 3. Karışık: Fonksiyonu kullanıldığı yerde tanımlama.
 
-Çoğu zaman ikinci yöntem tercih edilmektedir.Çünkü kodu okumaya başladığınızda, öncelik bu kodun "ne yaptığı" olur. Eğer önce kod yazılırsa bu bazı bilgiler verir. Sonrasında belki de fonksiyonları okumamıza hiç gerek kalmayabilir. Özellikle isimlendirme iyi ise buna gerek yoktur.
+Çoğu zaman ikinci yöntem tercih edilmektedir. Çünkü kodu okumaya başladığınızda, öncelik bu kodun "ne yaptığı" olur. Eğer önce kod yazılırsa bu bazı bilgiler verir. Sonrasında belki de fonksiyonları okumamıza hiç gerek kalmayabilir. Özellikle isimlendirme iyi ise buna gerek yoktur.
 
-## Stil Klavuzu
+## Stil Kılavuzu
 
-Stil klavuzları genel olarak "nasıl yazılmalı" sorusunun cevabını verir: Kaç satır bırakılmalıdır, nerede yeni satıra geçilmelidir vs. çok küçük küçük şeyler.
+Stil kılavuzları genel olarak "nasıl yazılmalı" sorusunun cevabını verir: Kaç satır bırakılmalıdır, nerede yeni satıra geçilmelidir vs. çok küçük küçük şeyler.
 
 Genel olarak tüm takım üyeleri bu kurallara uyduğunda kod tek bir elden çıkmış gibi görünür. Kimin yazdığı önemini yitirir.
 
-Tabi takımın kendine ait bir stil klavuzu da olabilir. Fakat çoğu daha önce denendiğinden dolayı yenisini oluşturmaya gerek yoktur. Örneğin:
+Tabi takımın kendine ait bir stil kılavuzu da olabilir. Fakat çoğu daha önce denendiğinden dolayı yenisini oluşturmaya gerek yoktur. Örneğin:
 
 
 - [Google JavaScript Style Guide](https://google.github.io/styleguide/javascriptguide.xml)
@@ -271,7 +271,7 @@ Tabi takımın kendine ait bir stil klavuzu da olabilir. Fakat çoğu daha önce
 - [StandardJS](https://standardjs.com/)
 - (ve birçoğu)
 
-Eğer kodlamaya yeni başladıysanız, şimdilik yukarıda bahsettiğimiz kopya kağıdından faydalanabilirsiniz. Daha sonra stil klavuzlarına bakarak istediğinizi örnek alabilir ve bir tanesini seçebilirsiniz.
+Eğer kodlamaya yeni başladıysanız, şimdilik yukarıda bahsettiğimiz kopya kağıdından faydalanabilirsiniz. Daha sonra stil kılavuzlarına bakarak istediğinizi örnek alabilir ve bir tanesini seçebilirsiniz.
 
 ## Otomatik Düzenleyiciler
 
@@ -279,15 +279,15 @@ Kod stilinizi otomatik olarak denetleyen araçlar bulunmaktadır. Bunlara "düze
 
 Bunların en önemli özelliği stili kontrol etmesinin yanında yazımdaki hataları, fonksiyon isimlerindeki problemleri bulur.
 
-Bundan dolayı bir tanesini kullanmanız öneririlir. Sadece kelime hatalarını düzeltmeniz için bile olsa kullanmanız iyidir.
+Bundan dolayı bir tanesini kullanmanız önerilir. Sadece kelime hatalarını düzeltmeniz için bile olsa kullanmanız iyidir.
 
 En çok bilinen araçlar:
 
 - [JSLint](http://www.jslint.com/) -- ilk düzenleyicilerden
-- [JSHint](http://www.jshint.com/) -- JSLintden daha fazla özelliğe sahip.
+- [JSHint](http://www.jshint.com/) -- JSLint'ten daha fazla özelliğe sahip.
 - [ESLint](http://eslint.org/) -- en yenilerinden.
 
-Hepside işinizi görür. Yazar  [ESLint](http://eslint.org/) kullanmaktadır.
+Hepsi de işinizi görür. Yazar  [ESLint](http://eslint.org/) kullanmaktadır.
 
 Çoğu otomatik düzenleyici editör ile entegre çalışır. Sadece plugin'i aktif edin, kod stilini ayarlayın yeterli.
 
@@ -320,7 +320,7 @@ Bunun ardından editörünüzde ESLint eklentisini aktif edin. Çoğu editörde 
 Bunun yanında bu stilleri internetten indirip kullanmakta mümkündür. Bunun için
 <http://eslint.org/docs/user-guide/getting-started> adresine bakabilirsiniz.
 
-Bunun yanında otomatik düzenleyici kullanmanın yan etkileri de vardır. Kod düzenleyiciler eğer tanımlanmamış bir değişken kullanılmışsa, bunu anlar ve vurgular. Fakat çoğu defa bunun nedeni yanlış yazımdır. Tabi bunu farkederseniz düzeltmesi de hemen yapılabilir.
+Bunun yanında otomatik düzenleyici kullanmanın yan etkileri de vardır. Kod düzenleyiciler eğer tanımlanmamış bir değişken kullanılmışsa, bunu anlar ve vurgular. Fakat çoğu defa bunun nedeni yanlış yazımdır. Tabi bunu fark ederseniz düzeltmesi de hemen yapılabilir.
 
 Bundan dolayı eğer stil ile ilgilenmiyorsanız bile kullanmanız şiddetle tavsiye edilir.
 
@@ -329,8 +329,8 @@ Ayrıca bazı IDEler bu otomatik düzenleyicileri kendileri doğrudan entegre ed
 
 ## Özet
 
-Bu bölümdeki tüm yazım kurallar ve stil klavuzlarının amacı okunabilirliği artırmaktır. Bundan dolayı tamamı tartışılabilir.
+Bu bölümdeki tüm yazım kurallar ve stil kılavuzlarının amacı okunabilirliği artırmaktır. Bundan dolayı tamamı tartışılabilir.
 
 "Nasıl daha iyi yazarız?" sorusu hakkında düşündüğümüzde, kriter "Nasıl daha iyi okunur kod yazabilir, nasıl yazarken hatalardan kaçabiliriz?" sorularını aklımızda tutmamız gereklidir. Buna göre stil seçip hangisinin daha iyi olduğuna karar verebiliriz.
 
-Stil klavuzlarını okuyun ve son gelişmeler hakkında daha iyi bilgi sahibi olun, buna göre en iyiyi seçebilirsiniz.
+Stil kılavuzlarını okuyun ve son gelişmeler hakkında daha iyi bilgi sahibi olun, buna göre en iyiyi seçebilirsiniz.
