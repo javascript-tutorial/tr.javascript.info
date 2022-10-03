@@ -116,7 +116,7 @@ let timerId = setInterval(func|code, [delay], [arg1], [arg2], ...)
 
 Tüm argümanlar aynı anlama gelir. Fakat `setTimeout`'a nazaran fonksiyonu sadece bir defa değil belirtilen zamanda sürekli olarak çalıştırır.
 
-Bu zamanyalayıcı iptal etmek için `clearInterval(timerId)` kullanılmalıdır.
+Bu zamanlayıcıyı iptal etmek için `clearInterval(timerId)` kullanılmalıdır.
 
 Aşağıdaki örnekte mesaj her iki saniyede bir gönderilecektir. 5 saniye sonunda ise durdurulur.
 
