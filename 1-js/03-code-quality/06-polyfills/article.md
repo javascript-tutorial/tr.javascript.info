@@ -1,9 +1,9 @@
 
 # Polyfills
 
-JavaScript gün geçtikçe değişiyor. Sürekli yeni öneriler ekleniyor, analiz edliyor eğer değerli olduğu kararına varılırsa <https://tc39.github.io/ecma262/> listesine ekleniyor. Sonra ise [özelliklere](http://www.ecma-international.org/publications/standards/Ecma-262.htm) ekleniyor.
+JavaScript gün geçtikçe değişiyor. Sürekli yeni öneriler ekleniyor, analiz ediliyor eğer değerli olduğu kararına varılırsa <https://tc39.github.io/ecma262/> listesine ekleniyor. Sonra ise [özelliklere](http://www.ecma-international.org/publications/standards/Ecma-262.htm) ekleniyor.
 
-JavaScript motorlarını yazan kişiler bu uygulamaları kendi fikirlerine göre sıraya koyarlar. Örneğin aslında özellikler içinde olması gerekeni sonraya bırakıp daha önerileri uygulayabilirler. Özelliklerin çokta önemli olmayabilir veya uygulaması zor olabilir.
+JavaScript motorlarını yazan kişiler bu uygulamaları kendi fikirlerine göre sıraya koyarlar. Örneğin aslında özellikler içinde olması gerekeni sonraya bırakıp daha önerileri uygulayabilirler. Özelliklerin çok da önemli olmayabilir veya uygulaması zor olabilir.
 
 Bundan dolayı JavaScript motorunun standartların sadece bazı bölümlerini uygulaması çok normaldir.
 
@@ -20,7 +20,7 @@ Bu durumda bizi Babel kurtarır.
 
 Babel iki bölümden oluşmaktadır:
 
-1. Transpiler programi, yani kodu yeniden yazan program. Geliştiriciler bunu kendi bilgisayarlarında yaparlar. Kod eski standartlara göre tekrar yazılır. Ardından web sitesine ulaştırılarak kullanıma açılır. [webpack](http://webpack.github.io/) veya [brunch](http://brunch.io/) otomatik kurma(Build) işlemi yapan araçlar anlık olarak her kod değiştiğinde kodu eski standartlara çevireiblirler. Bundan dolayı bizim için çokta bir fark yoktur.
+1. Transpiler programı, yani kodu yeniden yazan program. Geliştiriciler bunu kendi bilgisayarlarında yaparlar. Kod eski standartlara göre tekrar yazılır. Ardından web sitesine ulaştırılarak kullanıma açılır. [webpack](http://webpack.github.io/) veya [brunch](http://brunch.io/) otomatik kurma (build) işlemi yapan araçlar anlık olarak her kod değiştiğinde kodu eski standartlara çevirebilirler. Bundan dolayı bizim için çok da bir fark yoktur.
 
 2. The polyfill.
 
@@ -32,7 +32,7 @@ Babel iki bölümden oluşmaktadır:
     - [babel polyfill](https://babeljs.io/docs/usage/polyfill/) çoğu özelliği destekler. Fakat dosya boyutu büyüktür.
     - [polyfill.io](http://polyfill.io) Bize gerekli olan bölüme göre özellikler ekler.
 
-Bundan dolayıdır ki, eski JavaScript motorlarını desteklemek için kod çevirici ( transpiler ) ve boşlukları dolduran pollyfill eklemeniz gerekir.
+Bundan dolayıdır ki, eski JavaScript motorlarını desteklemek için kod çevirici (transpiler) ve boşlukları dolduran pollyfill eklemeniz gerekir.
 
 Sadece her yerde desteklenen özellikleri kullanıyorsanız ve modern JavaScript motorlarına yönelik yazıyorsanız bu durumda Babel'e ihtiyacınız yoktur.
 
