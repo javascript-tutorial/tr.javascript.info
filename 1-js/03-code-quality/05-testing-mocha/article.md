@@ -4,7 +4,7 @@ Bundan sonraki görevlerde otomatik test kullanılacak.
 
 Otomatik test, aslında, bir geliştiricinin asgari eğitiminin bir parçasıdır.
 
-## Neden teste ihtiyac var?
+## Neden teste ihtiyaç var?
 
 Fonksiyon yazıldığında, genelde ne olması gerektiğini düşünürüz: hangi parametre hangi sonucu verecek gibi.
 
@@ -14,26 +14,26 @@ Eğer bir şey yanlışsa kod değiştirilir ve tekrar çalıştırılır, ta ki
 
 Fakat bunları tekrar tekrar çalıştırmak iyi bir yöntem değildir.
 
-**Bu tekrarları yaparken, bir şeyleri atlamak çokça karşılaşılan bir durumdur**
+**Bu tekrarları yaparken, bir şeyleri atlamak çokça karşılaşılan bir durumdur.**
 
 Örneğin, `f` diye bir fonksiyon yazılırken. Test: `f(1)` çalışır fakat `f(2)` çalışmaz. Kod düzeltildi, şimdi  `f(2)`çalışmakta. Tamamlandı mı? Fakat `f(1)` tekrar test edilmedi. Bu bir hataya neden olabilir.
 
 Bu çok tipiktir. Bir şey geliştirirken çoğu zaman muhtemel olan durumları aklımızda tutarız. Fakat programcıların bu durumların tamamını aklında tutması beklenemez. Bundan dolayı bir tanesini düzeltirken diğerini kırmak çokça yaşanılan bir durumdur.
 
 
-**Otomatik testlerin koddan ayrı yazılması demektir. Kolayca çalıştırılır ve tüm durumları kontrol edebilir**
+**Otomatik testlerin koddan ayrı yazılması demektir. Kolayca çalıştırılır ve tüm durumları kontrol edebilir.**
 
-## Davranışa Yönelik Geliştirme  - Behaviour Driven Development(BDD)
+## Davranışa Yönelik Geliştirme  - Behaviour Driven Development (BDD)
 
 Diyelim ki [Davranışa Yönelik Geliştirme](http://en.wikipedia.org/wiki/Behavior-driven_development) tekniğini kullandınız, BDD sadece test için değil, bundan daha fazlasıdır.
 
-**BDD üç şeyin içiçe bulunmasıdır. Bunlar: test,dökümantasyon ve örneklerdir.**
+**BDD üç şeyin iç içe bulunmasıdır. Bunlar: test, dökümantasyon ve örneklerdir.**
 
 Yeteri kadar konuştuk. Şimdi örneklere geçebiliriz.
 
 ## Üs fonksiyonunun geliştirilmesi: Özellikler
 
-Diyelimki `us(x,n)` adında bir fonksiyon yazmak isteyelim. Bu `x`i üssü olan `n` kadar artırsın. Ayrıca `n≥0` olduğunu varsayalım.
+Diyelim ki `us(x,n)` adında bir fonksiyon yazmak isteyelim. Bu `x`i üssü olan `n` kadar artırsın. Ayrıca `n≥0` olduğunu varsayalım.
 
 Bu görev sadece örnektir: Bunun yaptığını yapan `**` operatörü vardır ve aynı işi yapar. Burada bizim konsantre olacağımız olay bunun geliştirilmesi sürecidir. Bu daha karmaşık görevlerde de aynı şekilde kullanılabilir.
 
@@ -61,9 +61,9 @@ Bu özelliğin 3 ana bölümü vardır:
 
 
 `assert.equal(value1, value2)`
-: `it` bloğunun içindeki ko eğer doğru ise hatasız döner.
+: `it` bloğunun içindeki kod eğer doğru ise hatasız döner.
 
-    `assert*` fonksiyonu `us`'ün beklendiği gibi çalışıp çalışmadığını kontrol eder. Burada `assert.equal`'ı kullanılmaktadır. Argümanları karşılaştırarak eşitlik olmadığı durumda hata verir. Burada `us(2,3)`, `8` e eşit mi diye bakılır
+    `assert*` fonksiyonu `us`'ün beklendiği gibi çalışıp çalışmadığını kontrol eder. Burada `assert.equal`'ı kullanılmaktadır. Argümanları karşılaştırarak eşitlik olmadığı durumda hata verir. Burada `us(2,3)`, `8` e eşit mi diye bakılır.
 
     İleriki dönemlerde farklı karşılaştırmaları göreceksiniz.
 
@@ -74,15 +74,15 @@ Genelde akış şu şekildedir:
 
 1. Başlangıçta en basit fonksiyonalite test edilir.
 2. Bunun uygulaması yapılmıştır.
-3. Çalışıp çalışmadığını  [Mocha](http://mochajs.org/) kullanarak yapabilirsiniz. Hata alındığında kod tekrar düzeltilmeli, taki her şey düzgün şekilde çalışana kadar.
-4. Şu anda çalışan ve uygulaması yapılmmış bir testiniz var.
+3. Çalışıp çalışmadığını  [Mocha](http://mochajs.org/) kullanarak yapabilirsiniz. Hata alındığında kod tekrar düzeltilmeli, ta ki her şey düzgün şekilde çalışana kadar.
+4. Şu anda çalışan ve uygulaması yapılmış bir testiniz var.
 5. Daha fazla koşul ekleyerek bunların uygulamasını yazdığınızda testlerde hata almaya başlarsınız.
 6. Üçüncü adıma dönüp bu testlerin hatalarını düzeltene kadar hata almaya devam edersiniz.
 7. 3-6 arasını düzelterek tüm fonksiyonalite hazır oluncaya kadar devam edin.
 
 Öyleyse geliştirme süreklilik tekrar bu işlemler üzerinden geçerek devam eder. *Özellikleri* yazıldıktan sonra, bunların uygulaması yapılır, sonra daha fazla test yazılır ve çalıştığına emin olunur.
 
-Bizim durumumuzda ilk adım tamamlandı. Başlangıçta `us` için özelliği tanımladık. Şimdi bunun uygulamasını yapmaya geldi. Fakat öncesinde bir defa kodu çalıştıralım bakalım testler uygulamasını yazmadan çalışacak mı? ( hepsinin hata vermesi lazım )
+Bizim durumumuzda ilk adım tamamlandı. Başlangıçta `us` için özelliği tanımladık. Şimdi bunun uygulamasını yapmaya geldi. Fakat öncesinde bir defa kodu çalıştıralım bakalım testler uygulamasını yazmadan çalışacak mı? (hepsinin hata vermesi lazım)
 
 
 ## Özelliklerin uygulaması
@@ -93,7 +93,7 @@ Test için aşağıdaki JavaScript kütüphaneleri kullanılacaktır:
 - [Chai](http://chaijs.com) -- birçok assertion kullanmamıza neden olur. Assertion ( sav, iddia ) şimdilik sadece `assert.equal` kullanılacak.
 - [Sinon](http://sinonjs.org/) -- var olan fonksiyonların taklidini yapabilir. Buna daha sonra ihtiyaç duyulacak.
 
-Bu kütüphaneler hem tarayıcı, hemde sunucu tabanlı testlerde kullanılabilir. Burada tarayıcı versiyonunu kullanılacaktır.
+Bu kütüphaneler hem tarayıcı, hem de sunucu tabanlı testlerde kullanılabilir. Burada tarayıcı versiyonunu kullanılacaktır.
 
 HTML sayfasının tamamı bu çatılar ve `us` özellikleri ile:
 
@@ -106,7 +106,7 @@ Bu sayfa dört bölüme ayrılabilir:
 4. `<div id="mocha">` HTML elementi Mocha'nın çıktısını vermek için kullanılacaktır.
 5. Testler `mocha.run()` komutuyla başlar.
 
-Sonuc:
+Sonuç:
 
 [iframe height=250 src="pow-1" border=1 edit]
 
@@ -178,7 +178,7 @@ Sonuç:
 
 [iframe height=250 src="pow-2" edit border="1"]
 
-Beklendiği üzre ikinci test başarısız oldu. Bizim fonksiyonumuz her zaman `8` dönderiyordu, ikincide ise `assert` `27` cevaını bekledi.
+Beklendiği üzere ikinci test başarısız oldu. Bizim fonksiyonumuz her zaman `8` döndürüyordu, ikincide ise `assert` `27` cevabını bekledi.
 
 
 ## Test uygulamalarını geliştirme.
@@ -196,7 +196,7 @@ function us(x, n) {
   return sonuc;
 }
 ```
-Fonksiyonun doğruluğunu kontrol etme amaçlı, `it` bloğunu otomatik olarak `for` dönügüsü kontrol etsin.
+Fonksiyonun doğruluğunu kontrol etme amaçlı, `it` bloğunu otomatik olarak `for` döngüsü kontrol etsin.
 
 ```js
 describe("us", function() {
@@ -255,7 +255,7 @@ describe("us", function() {
 
 [iframe height=250 src="pow-4" edit border="1"]
 
-İleride daha fazla `it` ve `describe` eklendiğinde kendine air yardımcı fonksiyonlar da yazabilirsiniz. Bu fonksiyonlar `testEt`e erişemezler.
+İleride daha fazla `it` ve `describe` eklendiğinde kendine ait yardımcı fonksiyonlar da yazabilirsiniz. Bu fonksiyonlar `testEt`e erişemezler.
 
 
 ````smart header="`before/after` and `beforeEach/afterEach`"
@@ -293,7 +293,7 @@ Testler bitti – tüm testlerden sonra (after)
 
 [edit src="beforeafter" title="Örneği sandbox'ta çalıştır"]
 
-Genelde `beforeEach/afterEach` (`before/each`) başlangıçta ösellikleri ayarlama, sayacı sıfırlama veya testler arasında bir şey yapma gibi aksiyonları gerçekleştirir.
+Genelde `beforeEach/afterEach` (`before/each`) başlangıçta özellikleri ayarlama, sayacı sıfırlama veya testler arasında bir şey yapma gibi aksiyonları gerçekleştirir.
 ````
 
 ## Özellikleri geliştirme
@@ -302,7 +302,7 @@ Genelde `beforeEach/afterEach` (`before/each`) başlangıçta ösellikleri ayarl
 
 Belirtildiği üzere `us(x,y)` üs olarak sadece pozitif değerler alabilir. 
 
-Matematiksel hata için JavaScript fonksiyonları genelde `NaN` ( not a number ) dönderiyor. `n` in yanlış değerleri için `NaN` döndürülebilir. 
+Matematiksel hata için JavaScript fonksiyonları genelde `NaN` (Not a Number) döndürüyor. `n` in yanlış değerleri için `NaN` döndürülebilir. 
 
 Öncelikle bu davranışı özelliklere ekleyin:
 
@@ -330,7 +330,7 @@ Testin sonucu:
 
 [iframe height=530 src="pow-nan" edit border="1"]
 
-Yeni eklenen testler başarısız oldu çünkü daha uygulamasını yapılmadı. BDD( Behaviour Driven Development) bu şekilde yapılır. Önce başarısız testler yazılır sonra bu testlerin uygulamaları yazılır.
+Yeni eklenen testler başarısız oldu çünkü daha uygulamasını yapılmadı. BDD (Behaviour Driven Development) bu şekilde yapılır. Önce başarısız testler yazılır sonra bu testlerin uygulamaları yazılır.
 
 ```smart header="Diğer iddialar(assertion)"
 
@@ -347,7 +347,7 @@ Chai içinde daha farklı iddialar da bulunmaktadır bunlardan bazıları:
 - `assert.isFalse(value)` --  `value === false` değerini kontrol eder.
 - ...bu listenin tamamına [dökümantasyondan](http://chaijs.com/api/assert/) bakabilirsiniz.
 ```
-Demekki `us` fonksiyonuna bazı yeni kodlar eklemeniz lazım:
+Demek ki `us` fonksiyonuna bazı yeni kodlar eklemeniz lazım:
 
 ```js
 function us(x, n) {
@@ -372,7 +372,7 @@ function us(x, n) {
 [edit src="pow-full" title="Open the full final example in the sandbox."]
 
 ## Özet
-BDD'de önce özellikler yazılır sonra bunların uygulamaları yapılır. Sonunda hem özellikler hemde çalışan kod yazılmış olur.
+BDD'de önce özellikler yazılır sonra bunların uygulamaları yapılır. Sonunda hem özellikler hem de çalışan kod yazılmış olur.
 
 Özellikler üç farklı şekilde kullanılabilir:
 
@@ -390,17 +390,17 @@ Testler olmazsa geliştiriciler iki şekilde devam edebilir:
 1. Değişiklik ne olursa olsun yapılır. Sonrasında kullanıcılar bug bulur ve bunları bize bildirir. Tabi bu sizin için normal bir şeyse eğer. 
 2. Veya geliştiriciler bu fonksiyona dokunmaya çekinir, eğer gerçekten önemli bir fonksiyonsa bunun altından kalkılamayabilir. Bundan dolayı fonksiyonlara dokunmaya dokunmaya birçok fonksiyon yazılır ve herkes kendine ait kodu kullanır.
 
-**Otomatik test edilmiş kod ise bunun tam anlamıyla zıttıdır**
+**Otomatik test edilmiş kod ise bunun tam anlamıyla zıddıdır.**
 
 Eğer projede testler yazılmış olsaydı, böyle problemler olmazdı. Testleri çalıştırır ve yaptığınız değişikliklerin herhangi bir yeri etkileyip etkilemediğini anında görebilirdiniz.
 
-**Ayrıca iyi test edilmiş kodun mimarisi daha iyidir**
+**Ayrıca iyi test edilmiş kodun mimarisi daha iyidir.**
 
 Çünkü değiştirmek ve geliştirmek daha kolaydır. Sadece bu değil
 
 Kod öyle bir organize edilmelidir ki her fonksiyonun açık bir şekilde ne yapacağı belli olmalıdır. Hangi değerleri alacağı hangi değerler döneceği. Bu başlangıçtan itibaren iyi bir mimariye sahip olduğunun kanıtıdır.
 
-Gerçek hayatta bu bazen kolay olmayabilir. Bazen gerçekten özellikleri yazmak gerçek kodu yazmadan önce çok zor olabilir. Çünkü fonksiyonun nasıl davranacağı tam olarak kesitirilemeyebilir. Fakat genel olarak bakılacak olursa test yazma geliştirmeyi hızlandırır ve daha istikrarlı kılar.
+Gerçek hayatta bu bazen kolay olmayabilir. Bazen gerçekten özellikleri yazmak gerçek kodu yazmadan önce çok zor olabilir. Çünkü fonksiyonun nasıl davranacağı tam olarak kestirilemeyebilir. Fakat genel olarak bakılacak olursa test yazma geliştirmeyi hızlandırır ve daha istikrarlı kılar.
 
 ## Sırada ne var?
 
