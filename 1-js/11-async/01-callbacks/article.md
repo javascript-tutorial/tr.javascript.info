@@ -2,7 +2,7 @@
 
 # Callback fonksiyonlarına giriş
 
-Çoğu JavaScript eylemleri *asenkron*'dur
+Çoğu JavaScript eylemleri *asenkron*'dur.
 
 Aşağıdaki `loadScript(src)` fonksiyonuna bakacak olursanız:
 
@@ -32,7 +32,7 @@ loadScript('/my/script.js');
 // ...
 ```
 
-Diyelimki kod yüklendikten sonra yeni kodu kullanmak istiyor olalım. Yeni fonksiyonlar yaratılmışsa bunları kullanacağımızı varsaylım.
+Diyelim ki kod yüklendikten sonra yeni kodu kullanmak istiyor olalım. Yeni fonksiyonlar yaratılmışsa bunları kullanacağımızı varsayalım.
 
 Eğer bunu doğrudan `loadScript(…)` çağrısı sonrasına yaparsanız çalışmaz:
 
@@ -167,13 +167,13 @@ Yine bu yöntemin genel bir kullanım olduğunu söyleyebiliriz. Buna "error-fir
 Düzen şu şekildedir:
 
 1. `callback`'in ilk argümanı hata için ayrılır. Sonra `callback(err)` çağırılır.
-2. İkinci argüman ise başarılı bir sonuçta gönderilir. Sonra `callback(null, result1, result2...)` çağrılır.
+2. İkinci argüman ise başarılı bir sonuçta gönderilir. Sonra `callback(null, result1, result2...)` çağırılır.
 
 Böylece tek bir `callback` fonksiyonu ile hem hata gönderilebilir, hem de cevap dönülebilir.
 
 ## Kıyamet pramidi
 
-İlk bakıldığında asenkron kodlama mantıklı gelebilir. Gerçekten de öyle. Bir veya iki çağrılar fena görünmüyor.
+İlk bakıldığında asenkron kodlama mantıklı gelebilir. Gerçekten de öyle. Bir veya iki çağrı fena görünmüyor.
 
 Fakat birden çok asenkron iş için kod aşağıdaki gibi olacaktır:
 
@@ -251,11 +251,11 @@ function step3(error, script) {
   }
 };
 ```
-Gördüğünüz gibi aynısı, fakat iç içe yazılmış derinelemesine bir fonksiyon yok. Her iş ayrı bir fonksiyonda tamamlanıyor.
+Gördüğünüz gibi aynısı, fakat iç içe yazılmış derinlemesine bir fonksiyon yok. Her iş ayrı bir fonksiyonda tamamlanıyor.
 
-Tamamdır. Artık çalışıyor fakat ayrı ayrı bir tablo gibi duruyor. Okuması oldukça zor, sizin de farkedeceğiniz gibi okurken sürekli ileri geri kodları inceliyorsunuz. Bu kullanışsız bir yöntem oldu, hele ki kod okumayla pek uğraşmayanlar nereye zıplayacaklarını anlayamayacaklardır.
+Tamamdır. Artık çalışıyor fakat ayrı ayrı bir tablo gibi duruyor. Okuması oldukça zor, sizin de fark edeceğiniz gibi okurken sürekli ileri geri kodları inceliyorsunuz. Bu kullanışsız bir yöntem oldu, hele ki kod okumayla pek uğraşmayanlar nereye zıplayacaklarını anlayamayacaklardır.
 
-Ayrıca `step*` fonksiyonu tek kullanımlık oldu. Amaç sadece "kıyamet piramidi"'nden korunmak. Bu fonksiyonları başka kimse kullanmayacaktır. Böylece boş bir sürü isim kullandık ve çöplüğe çevirdik.
+Ayrıca `step*` fonksiyonu tek kullanımlık oldu. Amaç sadece "kıyamet piramidi"nden korunmak. Bu fonksiyonları başka kimse kullanmayacaktır. Böylece boş bir sürü isim kullandık ve çöplüğe çevirdik.
 
 Bu problemi çözmek için daha iyi bir yöntem mevcut.
 
