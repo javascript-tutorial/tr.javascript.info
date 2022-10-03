@@ -7,9 +7,9 @@ libs:
 
 Obje metodları ile `setTimeout` kullanıldığında veya obje metodları iletilirken, `this`'in kaybolması bilinen bir problemdir.
 
-Aniden, `this` kaybolur. Bu problem başlangıç seviyesi geliştiriciler için çok tipiktir, bazen deneyimli geliştiriceler de bu hataya düşerler.
+Aniden, `this` kaybolur. Bu problem başlangıç seviyesi geliştiriciler için çok tipiktir, bazen deneyimli geliştiriciler de bu hataya düşerler.
 
-## "this"'in kaybetme
+## "this"i kaybetme
 
 JavaScript'te `this` in ne kadar kolay bir şekilde kaybolduğunu zaten biliyorsunuz. Eğer bir metod objeden farklı bir yere iletilirse `this` kaybolur.
 
@@ -28,9 +28,9 @@ setTimeout(user.sayHi, 1000); // Hello, undefined!
 */!*
 ```
 
-Gördüğünüz gibi, çıktı "John"'u göstermedi bunun yerine `undefined` döndü!
+Gördüğünüz gibi, çıktı "John"u göstermedi bunun yerine `undefined` döndü!
 
-Bunun nedeni `setTimeout`'un `user.sayHi` fonksiyonunun objeden ayrı olmasıdır. Son satır şu şekilde yazılabilri:
+Bunun nedeni `setTimeout`'un `user.sayHi` fonksiyonunun objeden ayrı olmasıdır. Son satır şu şekilde yazılabilir:
 
 ```js
 let f = user.sayHi;
@@ -39,7 +39,7 @@ setTimeout(f, 1000); // lost kullanıcı kaynağı kayboldu
 
 Tarayıcıda `setTimeout` kullanımı biraz özeldir: `this=window` olarak ayarlanır. ( Node.JS için `this` timer objesi olur, fakat burada pek de önemli değil.) Öyleyse `this.firstName` bu değeri `window.firstName`'den almaya çalışır, fakat böyle bir şey yok. Buna benzer durumlarda siz de göreceksiniz `this` genelde `undefined` olur.
 
-Aslında yapmak istediğimiz çok basit obje metodunu çağrılan yere ( -- ) iletmek istiyoruz ( burada -- zamanlayıcıdır.) Bunun doğru kaynakta çağırıldığına nasıl emin olunabilir?
+Aslında yapmak istediğimiz çok basit obje metodunu çağırılan yere ( -- ) iletmek istiyoruz ( burada -- zamanlayıcıdır). Bunun doğru kaynakta çağırıldığına nasıl emin olunabilir?
 
 ## Çözüm 1: saklayıcı
 
@@ -101,7 +101,7 @@ Basitçe yazımı şu şekildedir:
 let boundFunc = func.bind(kaynak);
 ````
 
-`func.bind(kaynak)`'ın sonucu özel bir fonksiyon benzeri "egzotik obje"'dir. Fonksiyon gibi çağırılabilir ve saydam bir şekilde çağrıyı `func`'a `this=kaynak` olacak şekilde iletir.
+`func.bind(kaynak)`'ın sonucu özel bir fonksiyon benzeri "egzotik obje"dir. Fonksiyon gibi çağırılabilir ve saydam bir şekilde çağrıyı `func`'a `this=kaynak` olacak şekilde iletir.
 
 Diğer bir deyişle `boundFunc` aslında sabit `this`'e sahip `func`'dur.
 
@@ -162,7 +162,7 @@ sayHi(); // Hello, John!
 setTimeout(sayHi, 1000); // Hello, John!
 ```
 
-`(*)` satırında `user.sayHi` metodunu aıyoruz ve `user`'a bağlıyoruz. `sayHi` bu durumda `bağlanmış` fonksiyon oluyor. Böylece tek başına çağrılabilir veya `setTimeout` içerisinde çağrılabilir. Nereden çağırıldığı çok da önemli değidlir. Kaynağı her zaman doğru olacaktır.
+`(*)` satırında `user.sayHi` metodunu alıyoruz ve `user`'a bağlıyoruz. `sayHi` bu durumda `bağlanmış` fonksiyon oluyor. Böylece tek başına çağırılabilir veya `setTimeout` içerisinde çağırılabilir. Nereden çağırıldığı çok da önemli değildir. Kaynağı her zaman doğru olacaktır.
 
 Gördüğünüz gibi tüm argümanlar "olduğu gibi" iletilir, sadece `this` `bind` tarafından sabitlenmiştir:
 
@@ -181,7 +181,7 @@ say("Bye"); // Bye, John ("Bye" `say` fonksiyonuna iletildi.)
 ```
 
 ````smart header="Kullanışlı metod: `bindAll`"
-Eğer bir objenin birçok metodu var ise bunu aktik olarak gerekli yerlere iletep, bunları bir döngü içerisine alabiliriz:
+Eğer bir objenin birçok metodu var ise bunu aktif olarak gerekli yerlere iletip, bunları bir döngü içerisine alabiliriz:
 
 ```js
 for (let key in user) {
@@ -196,7 +196,7 @@ Bu şekilde büyük bağlama olayları için bazı JavaScript kütüphanelerinde
 
 ## Özet
 
-`func.bind(kaynak, ...args)` `func` fonksiyonunun "bağlanmış hali"'ni döndürür. Bu bağlanmış halde `this` ve argümanlar sabitlenir.
+`func.bind(kaynak, ...args)` `func` fonksiyonunun "bağlanmış hali"ni döndürür. Bu bağlanmış halde `this` ve argümanlar sabitlenir.
 
 Bind genelde obje metodlarındaki `this`'in sabitlenmesi amacıyla kullanılır, sonrasında istenilen yere iletilebilir. `setTimeout` örneği gibi. `bind`'in modern geliştirmede kullanılmasının birçok nedeni vardır bunlara ilerleyen konularda değineceğiz.
 
