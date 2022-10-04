@@ -1,6 +1,6 @@
 # Fare olaylarıyla ilgili temel bilgiler
 
-Fare olayları yalnızca "fare olayi ya da manipülasyonu" ile gerçekleşmez, aynı zamanda dokunmatik cihazlara da uyumlu hale getirmek için bu cihazlarda taklit edilir.
+Fare olayları yalnızca "fare olayı ya da manipülasyonu" ile gerçekleşmez, aynı zamanda dokunmatik cihazlara da uyumlu hale getirmek için bu cihazlarda taklit edilir.
 
 Bu bölümde fare olayları ve özellikleri hakkında daha fazla ayrıntıya gireceğiz.
 
@@ -49,7 +49,7 @@ Gerçekleşen eylemleri görmek için aşağıdaki butonu tıkla. Çift tıklama
 
 Aşağıdaki test standında, tüm fare olayları kaydedilir ve aralarında 1 saniyeden fazla gecikme varsa, yatay bir cetvel ile ayrılırlar.
 
-Ayrıca, fare butonuna tıklandıgında algılanmasını sağlayan "which" özelliğini görebilirsiniz.
+Ayrıca, fare butonuna tıklandığında algılanmasını sağlayan "which" özelliğini görebilirsiniz.
 
 <input onmousedown="return logMouse(event)" onmouseup="return logMouse(event)" onclick="return logMouse(event)" oncontextmenu="return logMouse(event)" ondblclick="return logMouse(event)" value="Click me with the right or the left mouse button" type="button"> <input onclick="logClear('test')" value="Clear" type="button"> <form id="testform" name="testform"> <textarea style="font-size:12px;height:150px;width:360px;"></textarea></form>
 ```
@@ -134,9 +134,9 @@ Ancak eğer kullanıcı klavyesiz kullanıyorsa -- o zaman aynısını yapmanın
 Tüm fare olaylarının iki farklı türde koordinatları vardır:
 
 1. Pencereye bağlı koordinatlar (Window-relative): `clientX` ve `clientY`.
-2. Belgeye bağlı koordınatlar (Document-relative): `pageX` ve `pageY`.
+2. Belgeye bağlı koordinatlar (Document-relative): `pageX` ve `pageY`.
 
-Kısaca, belgeye bağlı koordinatlar pageX / Y, belgenin en sol üst köşesinden sayılır ve sayfa kaydırıldığında da değişmez, clientX / Y ise geçerli pencerenin (wındow) sol üst köşesinden sayılır. Sayfa kaydırıldığında değişirler.
+Kısaca, belgeye bağlı koordinatlar pageX / Y, belgenin en sol üst köşesinden sayılır ve sayfa kaydırıldığında da değişmez, clientX / Y ise geçerli pencerenin (window) sol üst köşesinden sayılır. Sayfa kaydırıldığında değişirler.
 
 Örneğin, 500x500 boyutunda bir penceremiz varsa ve fare en sol üst köşedeyse, o zaman `clientX` ve `clientY` `0` olur. Fare tam ortadaysa, o zaman belgenin neresinde olursa olsun `clientX` ve `clientY` `250` olur. `position:fixed` ile benzer şekilde çalışır.
 
@@ -159,13 +159,13 @@ Fare tıklamalarının rahatsız edici olabilecek bir yan etkisi vardır. Çift 
 
 Bütün tıklama olaylarını kendimiz kontrole almak istiyorsak, "ekstra" olarak metin seçimi iyi olmayabilir.
 
-Örneğin, aşağıdaki metne çift tıklamak, işleyicimize ek olarak bir tıkladıgımız kelimeyi seçer:
+Örneğin, aşağıdaki metne çift tıklamak, işleyicimize ek olarak bir tıkladığımız kelimeyi seçer:
 
 ```html autorun height=50
 <b ondblclick="alert('dblclick')">Bana çift tıkla</b>
 ```
 
-Seçimi durdurmanın bir CSS yolu vardır: `user-select` özelliğini buradan incelyebilirsiniz. [CSS UI Draft](https://www.w3.org/TR/css-ui-4/).
+Seçimi durdurmanın bir CSS yolu vardır: `user-select` özelliğini buradan inceleyebilirsiniz. [CSS UI Draft](https://www.w3.org/TR/css-ui-4/).
 
 Çoğu tarayıcı bunu destekler:
 
@@ -221,7 +221,7 @@ Seçimi *önlemek* yerine, olay işleyicisini "post-factum" iptal edebiliriz.
 ...Sonra
 ```
 
-Kalın yazı tipiyle yazılmış öğeye çift tıklarsanız, seçim görünür ve hemen kaldırılır. Yine de bu hoş görünmüyor.````
+Kalın yazı tipiyle yazılmış öğeye çift tıklarsanız, seçim görünür ve hemen kaldırılır. Yine de bu hoş görünmüyor.
 
 ````smart header="Kopyalamayı önlemek"
 İçeriğimizi kopyalayıp yapıştırmaya karşı korumak için seçimi devre dışı bırakmak istiyorsak, başka bir özellik kullanabiliriz.
@@ -252,6 +252,6 @@ Fare olayları aşağıdaki özelliklere sahiptir:
 Ayrıca, tıklamaların istenmeyen bir yan etkisi olarak metin seçimiyle uğraşmak da önemlidir.
 
 Bunu yapmanın birkaç yolu vardır, örneğin:
-1. CSS methodu `user-select:none` tamamiyle metin seçimini engeller.
+1. CSS methodu `user-select:none` tamamıyla metin seçimini engeller.
 2. Ondan sonra gelecek metin seçimini iptal eder; `getSelection().removeAllRanges()`.
 3. Fare `mousedown` olayını engelleyerek varsayılan metin seçimi durumunu engeller (genellikle en iyi çözüm).
