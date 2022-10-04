@@ -10,7 +10,7 @@ Ancak bunlar yeterli olmayabiliyorlar. Bu yüzden `Map` ve `Set` diye yapılar b
 
 ## Map
 
-[Map](mdn:js/Map), anahtar değere sahip veriler tutan bir yapıdır(collection). Tıpkı `Obje` gibi. Fakat aralarındaki en önemli farklardan biri `Map`ler anahtar değer olarak herhangi bir tipte olabilirler.
+[Map](mdn:js/Map), anahtar değere sahip veriler tutan bir yapıdır (collection). Tıpkı `Obje` gibi. Fakat aralarındaki en önemli farklardan biri `Map`ler anahtar değer olarak herhangi bir tipte olabilirler.
 
 Ana fonksiyonlar şu şekildedir:
 
@@ -126,8 +126,8 @@ Burada, `Object.entries` anahtar/değer çifti dizisi döndürür: `[ ["name","J
 
 `Map` üzerinde döngü yapmak için 3 metod vardır:
 
-- `map.keys()` -- anahtarlar için bir yinelenebilir döndürür
-- `map.values()` -- değerler için bir yinelenebilir döndürür
+- `map.keys()` -- anahtarlar için bir yinelenebilir döndürür.
+- `map.values()` -- değerler için bir yinelenebilir döndürür.
 - `map.entries()` -- `[key, value]` girişleri için bir yinelenebilir döndürür, `for..of` içinde varsayılan olarak kullanılır.
 
 Örneğin:
@@ -171,7 +171,7 @@ yemekMap.forEach( (value, key, map) => {
 
 ## Set
 
-`Set` her değerin sadece birer kez olabileceği yapılardır(collection).
+`Set` her değerin sadece birer kez olabileceği yapılardır (collection).
 
 Ana fonksiyonlar şu şekildedir:
 
@@ -225,7 +225,7 @@ set.forEach((value, valueAgain, set) => {
 });
 ```
 
-Komiktir ki `Set` içerisindeki forEach` fonksiyonu 3 argümana sahiptir: bir değer, sonra *tekrardan bir değer*, ve hedef obje. Aslında aynı değeri argümanda 2 kez görürürüz.
+Komiktir ki `Set` içerisindeki forEach` fonksiyonu 3 argümana sahiptir: bir değer, sonra *tekrardan bir değer*, ve hedef obje. Aslında aynı değeri argümanda 2 kez görürüz.
 
 Bu, 3 argüman alan `forEach` fonksiyonuna sahip olan `Map` ile uyumlu olması için yapılmıştır.
 
@@ -237,7 +237,7 @@ Bu, 3 argüman alan `forEach` fonksiyonuna sahip olan `Map` ile uyumlu olması i
 
 ## WeakMap and WeakSet
 
-`WeakSet`, JavaScript'in WeakSet'teki öğeleri bellekten kaldırmasını engellemeyen özel bir tür `Set` dir. `WeakMap` de `Map` için aynı şeydir.
+`WeakSet`, JavaScript'in WeakSet'teki ögeleri bellekten kaldırmasını engellemeyen özel bir tür `Set` dir. `WeakMap` de `Map` için aynı şeydir.
 
 <info:garbage-collection> konusundan bildiğimiz üzere, JavaScript motoru bir değeri ona erişebildiği(ve potansiyel olarak kullanılabildiği) sürece bellekte tutar.
 
@@ -255,7 +255,7 @@ john = null;
 */!*
 ```
 
-Genellikle, bir veri yapısı hafızada bulunduğu sürece onun ögelerine(bir objenin özelliklerine veya bir dizinin elamanlarına) ulaşılabilir ve hafızada tutulabilir kabul edilir.
+Genellikle, bir veri yapısı hafızada bulunduğu sürece onun ögelerine (bir objenin özelliklerine veya bir dizinin elamanlarına) ulaşılabilir ve hafızada tutulabilir kabul edilir.
 
 Normal `Map`te bir objeyi anahtar veya değer olarak tutmamızın bir önemi yoktur. Başka referansı olmasa bile bellekte tutulur.
 
@@ -382,10 +382,10 @@ Sıradan `Map` ile, bir kullanıcı ayrıldıktan sonra temizlik yapmak sıkıc�
 `WeakSet` benzer şekilde davranır:
 
 - `Set`e benzer, ancak `WeakSet`e yalnızca nesneler ekleyebiliriz (ilkel değil).
-- Bir nesne ona başka bir yerden ulaşılabildiği sürece set içinde var olur
+- Bir nesne ona başka bir yerden ulaşılabildiği sürece set içinde var olur.
 - `Set` gibi, `add`, `has` ve `delete`yi destekler, ama `size`, `keys()` ve yinelemeleri desteklemez.
 
-Örneğin, bir öğenin kontrol edilip edilmediğini takip etmek için kullanabiliriz:
+Örneğin, bir ögenin kontrol edilip edilmediğini takip etmek için kullanabiliriz:
 
 ```js
 let messages = [
@@ -405,7 +405,7 @@ unreadSet.delete(messages[1]); // true
 // mesaj geçmişini kaydırdığımızda set otomatik olarak temizlenir
 messages.shift();
 // unreadSet'i temizlememize gerek yok, şu an 2 elemanı var
-// ne yazık ki, öğelerin tam sayısını elde etmek için bir yöntem yoktur, bu yüzden gösteremezsiniz
+// ne yazık ki, ögelerin tam sayısını elde etmek için bir yöntem yoktur, bu yüzden gösteremezsiniz
 ```
 
 `WeakMap` ve `WeakSet`in en dikkate değer sınırlaması, yinelemelerin olmaması ve mevcut tüm içeriğin alınamamasıdır. Bu rahatsız edici görünebilir, ancak aslında `WeakMap / WeakSet`in ana işlerini yapmasını engellemez -- başka bir yerde saklanan / yönetilen nesneler için "ek" veri depolama alanı olur.
