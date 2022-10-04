@@ -214,7 +214,7 @@ function User(name, birthday) {
   this.birthday = birthday;
 
 *!*
-  // age is calculated from the current date and birthday
+  // yaş, geçerli tarih ve doğum gününden hesaplanır
   Object.defineProperty(this, "age", {
     get() {
       let todayYear = new Date().getFullYear();
