@@ -542,9 +542,9 @@ Böyle sembollerin uzunluğu `2`'dir:
 
 
 ```js run
-alert( '𝒳'.length ); // 2, MATHEMATICAL SCRIPT CAPITAL X
-alert( '😂'.length ); // 2, FACE WITH TEARS OF JOY
-alert( '𩷶'.length ); // 2, a rare chinese hieroglyph
+alert( '𝒳'.length ); // 2, Matematiksel komut büyük X
+alert( '😂'.length ); // 2, Sevinçten ağlama emojisi
+alert( '𩷶'.length ); // 2, nadir bir Çin hiyeroglifi
 ```
 Bu vekil çiftler JavaScript yaratıldığında meydanda yoktu, bundan dolayı dil tarafından doğru olarak işlenemez.
 
