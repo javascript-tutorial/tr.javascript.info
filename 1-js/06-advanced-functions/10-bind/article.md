@@ -34,7 +34,7 @@ Bunun nedeni `setTimeout`'un `user.sayHi` fonksiyonunun objeden ayrı olmasıdı
 
 ```js
 let f = user.sayHi;
-setTimeout(f, 1000); // lost kullanıcı kaynağı kayboldu
+setTimeout(f, 1000); // kullanıcı kaynağı kayboldu
 ```
 
 Tarayıcıda `setTimeout` kullanımı biraz özeldir: `this=window` olarak ayarlanır. ( Node.JS için `this` timer objesi olur, fakat burada pek de önemli değil.) Öyleyse `this.firstName` bu değeri `window.firstName`'den almaya çalışır, fakat böyle bir şey yok. Buna benzer durumlarda siz de göreceksiniz `this` genelde `undefined` olur.
@@ -82,10 +82,10 @@ let user = {
 
 setTimeout(() => user.sayHi(), 1000);
 
-// ...within 1 second
+// ...kullanıcının değeri 1 saniye içinde değişir
 user = { sayHi() { alert("Another user in setTimeout!"); } };
 
-// Another user in setTimeout?!?
+//SetTimeout'da başka bir kullanıcı!
 ```
 
 Bir sonraki çözüm içe böyle bir şeyin olmasını engeller.
