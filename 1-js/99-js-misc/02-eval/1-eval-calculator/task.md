@@ -2,10 +2,10 @@ importance: 4
 
 ---
 
-# Eval-calculator
+# Eval-hesaplayıcı
 
-Create a calculator that prompts for an arithmetic expression and returns its result.
+Aritmetik bir ifade isteyen ve sonucunu döndüren bir hesap makinesi olutşurun.
 
-There's no need to check the expression for correctness in this task.
+Bu görevde ifadenin doğruluğunu kontrol etmenize gerek yok.
 
 [demo]
