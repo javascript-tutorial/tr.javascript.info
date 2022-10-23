@@ -45,7 +45,7 @@ alert("Bazı kodlar");
 ```warn header="`use strict`'i iptal eden bir direktif bulunmamaktadır"
 Modern JavaScript'i eski haline getiren `"no use strict"` gibi bir direktif bulunmamaktadır.
 
-Sıkı moda girdiğinizda artık eskiye dönüş yoktur.
+Sıkı moda girdiğinizde artık eskiye dönüş yoktur.
 ```
 
 ## Tarayıcı Konsolu
