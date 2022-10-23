@@ -6,7 +6,7 @@ importance: 5
 
 Aşağıdaki iki kod parçacığını karşılaştırınız.
 
-1. İlki `finally` ile `try..catch`'den sonra kod çalıştırmaktadır:
+1. İlki `finally` ile `try...catch`'den sonra kod çalıştırmaktadır:
 
     ```js
     try {
@@ -19,7 +19,7 @@ Aşağıdaki iki kod parçacığını karşılaştırınız.
     */!*
     }
     ```
-2. İkinci bölümde ise temizliği doğrudan `try..catch` sonrasında yap:
+2. İkinci bölümde ise temizliği doğrudan `try...catch` sonrasında yap:
 
     ```js
     try {
