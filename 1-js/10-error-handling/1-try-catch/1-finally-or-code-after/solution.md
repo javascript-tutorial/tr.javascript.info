@@ -1,8 +1,8 @@
 Bir fonksiyon içerisinden baktığımızda farklılıklar daha aşikar olmakta.
 
-"dışarı sıçra" seçeneği olduğunda `try..catch` davranışı daha farklı olmaktadır.
+"dışarı sıçra" seçeneği olduğunda `try...catch` davranışı daha farklı olmaktadır.
 
-Örneğin `try..catch` içerieinde bir `return` olduğunda. `try..catch` bloğunun sonunda her türlü `finally`'e uğramak zorunludur, bu `return` bile olsa.
+Örneğin `try...catch` içerieinde bir `return` olduğunda. `try...catch` bloğunun sonunda her türlü `finally`'e uğramak zorunludur, bu `return` bile olsa.
 
 ```js run
 function f() {
