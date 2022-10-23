@@ -35,7 +35,7 @@ Javascript programları html içerisine `<script>` etiketi ile eklenebilir.
 ```
 
 ```online
-Sağ üst taraftaki "Play" ( Çalıştır ) butonuna basarak örneği çalıştırabilirsiniz.
+Sağ üst taraftaki "Play" (Çalıştır) butonuna basarak örneği çalıştırabilirsiniz.
 ```
 
 `<script>` etiketi içerisine yazdığınız JavaScript komutu tarayıcı o koda geldiğinde doğrudan okunur.
@@ -43,10 +43,10 @@ Sağ üst taraftaki "Play" ( Çalıştır ) butonuna basarak örneği çalışt�
 
 ## Modern yazım
 
-Bugünlerde `<script>` etiketi genelde özellikler eklenmeden yazılmakta. Fakat eski kodlara baktınızda aşağıdaki gibi kodları görmek mümkündür:
+Bugünlerde `<script>` etiketi genelde özellikler eklenmeden yazılmakta. Fakat eski kodlara baktığınızda aşağıdaki gibi kodları görmek mümkündür:
 
  `type` özelliği: <code>&lt;script <u>type</u>=...&gt;</code>
- : Eski HTML4 standardı script etiketi içerisinde tip gelirmeyi zorunlu kılıyordu. Genelde bu `type="text/javascript"` idi. Günümüzde ise HTML standartları `type` özelliğini varsayılan olarak kabul edebiliyor.
+ : Eski HTML4 standardı script etiketi içerisinde tip getirmeyi zorunlu kılıyordu. Genelde bu `type="text/javascript"` idi. Günümüzde ise HTML standartları `type` özelliğini varsayılan olarak kabul edebiliyor.
 
 `language` (dil) özelliği: <code>&lt;script <u>language</u>=...&gt;</code>
 : Bu özellik yazılan script'in dilini göstermek amacıyla kullanılır. Fakat bu da artık önemini yitirmiştir. Javascript varsayılan dil olduğundan dolayı söylemeye gerek yoktur.
@@ -72,9 +72,9 @@ Sonrasında bu dosyayı aşağıdaki gibi yol göstererek sayfanızda çalışt�
 <script src="/kod/yolu/ana.js"></script>
 ```
 
-Buradaki `/kod/yolu/ana.js` site ana dizininden itibaren kesin(absolute) yol belirtir.
+Buradaki `/kod/yolu/ana.js` site ana dizininden itibaren kesin (absolute) yol belirtir.
 
-Tabi göreceli(relative) yol belirtmek de mümkündür. Örneğin `src="script.js"` HTML dosyasının kayıt edildiği klasördeki `"script.js"`'yi al anlamına gelir.
+Tabi göreceli (relative) yol belirtmek de mümkündür. Örneğin `src="script.js"` HTML dosyasının kayıt edildiği klasördeki `"script.js"`'yi al anlamına gelir.
 
 Tam URL vermek de mümkündür. Örneğin:
 
