@@ -1,6 +1,6 @@
 # Veri Tipleri
 
-Bir javascript değişkeni her türlü veriyi tutabilir. Önce karakter dizisi(String) atansa da sonra sayısal değer alabilir:
+Bir JavaScript değişkeni her türlü veriyi tutabilir. Önce karakter dizisi (string) atansa da sonra sayısal değer alabilir:
 
 ```js
 // Hata yok
@@ -8,7 +8,7 @@ let mesaj = "merhaba";
 mesaj = 123456;
 ```
 
-Bu şekilde olaylara izin veren tipdeki dillere "dinamik tip" dil denir. Veri yapıları olsa bile değişkenler bu yapılara bağlı değildir.
+Bu şekilde olaylara izin veren tipteki dillere "dinamik tip" dil denir. Veri yapıları olsa bile değişkenler bu yapılara bağlı değildir.
 
 JavaScript dilinde sekiz farklı veri tipi bulunmaktadır. Şimdilik bu tiplerden bahsedeceğiz gelecek bölümlerde ise daha derinlemesine bu tipleri inceleyeceğiz.
 
@@ -84,14 +84,14 @@ Bir tarayıcının hangi sürümlerinin desteklendiğini öğrenmek için [* MDN
 
 ## String - Karakter Dizisi
 
-JavaScriptte karakter dizileri çift tırnak içerisine alınmalıdır.
+JavaScript'te karakter dizileri çift tırnak içerisine alınmalıdır.
 
 ```js
 let str = "Merhaba";
 let str2 = 'Tek tırnak da çalışır';
 let phrase = `değer gömülebilir ${str}`;
 ```
-JavaScriptte 3 çeşit tırnak içine alma yöntemi vardır.
+JavaScript'te 3 çeşit tırnak içine alma yöntemi vardır.
 
 1. Çift tırnak: `"Hello"`.
 2. Tek tırnak: `'Hello'`.
@@ -121,10 +121,10 @@ Karakter dizileri konusunu <info:string> bölümünde daha derinlemesine incelen
 ```smart header="*Karakter* tipi diye bir tip yoktur."
 Bazı dillerde "character" - Karakter adında sadece bir karakteri tutan veri tipleri mevcuttur. Bu tip Java ve C'de `char` olarak tanımlanır.
 
-Javascriptte böyle bir tip bulunmamaktadır. Tek karakterli değişken de karakter dizisidir.(String). Karakter dizisi bir veya birden fazla karakteri tutar.
+JavaScript'te böyle bir tip bulunmamaktadır. Tek karakterli değişken de karakter dizisidir (string). Karakter dizisi bir veya birden fazla karakteri tutar.
 ```
 
-## Boolean ( doğru/yanlış) tipi
+## Boolean (doğru/yanlış) tipi
 
 Boolean tipi `true` ve `false` olmak üzere sadece iki değer tutabilir.
 
@@ -159,7 +159,7 @@ Kendi başına `null` değerini tutar.
 ```js
 let yas = null;
 ```
-Javascriptte `null` olmayan objeyi referans göstermez veya başka dillerdeki gibi "null pointer" değildir.
+JavaScript'te `null` olmayan objeyi referans göstermez veya başka dillerdeki gibi "null pointer" değildir.
 
 "olmayan", "boş", "bilinmeyen değer" anlamında bir özel değerdir.
 
@@ -193,7 +193,7 @@ Fakat bu şekilde tanımlanmasa daha iyi olur. Normalde `null` kullanılarak de�
 ## Objeler ve Semboller
 `Obje` özel bir tiptir.
 
-Diğer tüm tipler "primitive" yani basit veya ilkel tiplerdir. Bu değişkenler sadece bir şey tutabilirler( karakter dizisi veya sayı ). Buna karşılık objeler veri koleksiyonları (collections) veya karmaşık yapılar tutabilirler. <info:object> konusunda Obje daha derinlemesine incelenecektir. 
+Diğer tüm tipler "primitive" yani basit veya ilkel tiplerdir. Bu değişkenler sadece bir şey tutabilirler (karakter dizisi veya sayı). Buna karşılık objeler veri koleksiyonları (collections) veya karmaşık yapılar tutabilirler. <info:object> konusunda Obje daha derinlemesine incelenecektir. 
 
 `Symbol` objeler için benzersiz tanımlayıcılar oluşturmak için kullanılır. Bu konuyu objeleri öğrendikten sonra öğrenmek daha iyi olacaktır.
 
@@ -207,7 +207,7 @@ Diğer tüm tipler "primitive" yani basit veya ilkel tiplerdir. Bu değişkenler
 
 Diğer bir deyişle parantezli de çalışır parantez olmadan da çalışır. Sonuç aynı olacaktır.
 
-`typeof x`'i çalıştırdığınızda bu fonksiyon karakter dizisi(String) dönderir:
+`typeof x`'i çalıştırdığınızda bu fonksiyon karakter dizisi (string) döndürür:
 
 
 ```js
@@ -246,7 +246,7 @@ Son üç satır diğerlerinden farklıdır. Şu şekilde;
 Javascript dilinde 8 tane basit tip bulunmaktadır.
 
 
-- `number` her türlü sayı için ( integer veya floating point)
+- `number` her türlü sayı için (integer veya floating point)
 - `bigint` isteğe bağlı uzunluktaki tam sayılar içindir.
 - `string` bir veya birden fazla karakter için
 - `boolean` , `true`/`false` yani doğru-yanlış değerleri için.
