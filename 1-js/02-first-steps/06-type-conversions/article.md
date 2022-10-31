@@ -29,9 +29,9 @@ Eğer `false` değeri karakter dizisi dönüştürme işlemine tabi tutarsanız 
 
 ## Number
 
-Sayısal dünüştürme işlemleri matematiksel operasyonlarda otomatik olarak gerçekleşir.
+Sayısal dönüştürme işlemleri matematiksel operasyonlarda otomatik olarak gerçekleşir.
 
-Örnğin sayı olmayan iki değer `/` işlemine tutulduğunda:
+Örneğin sayı olmayan iki değer `/` işlemine tutulduğunda:
 
 ```js run
 alert( "6" / "2" ); // 3, karakterler sayılara dönüştürülür ve işlem öyle yapılır.
@@ -93,7 +93,7 @@ Gördüğünüz gibi sadece bir tarafın karakter olması yeterlidir. Eğer iki 
 
 Boolean dönüştürme en kolay olanıdır.
 
-Lojik operasyonlarda ( durum testlerinde bu operasyonları işlenecek ) otomatik olarak bu dönüştürme gerçekleşir. Bunun yanında gerekli olduğunda `Boolean(value)` da kullanılabilir.
+Lojik operasyonlarda (durum testlerinde bu operasyonları işlenecek) otomatik olarak bu dönüştürme gerçekleşir. Bunun yanında gerekli olduğunda `Boolean(value)` da kullanılabilir.
 
 Dönüştürücü kuralları:
 
@@ -148,7 +148,7 @@ Kuralları şu şekildedir:
 |`0`, `null`, `undefined`, `NaN`, `""` |`false`|
 |diğer her türlü değer| `true` |
 
-Bu kuralların çoğu akılda kalıcıdır. Genelde progamcıların hata yaptıkları yer:
+Bu kuralların çoğu akılda kalıcıdır. Genelde programcıların hata yaptıkları yer:
 
 - `undefined` sayı olarak `NaN`'dır halbuki `null` sayı olarak `0` dır. 
 - `"0"` bu ve `"  "` bu karakter dizisi boolean olarak ikisi de true olarak dönüşür.
