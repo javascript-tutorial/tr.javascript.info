@@ -8,7 +8,7 @@
 
 Şu ana kadar `alert('Merhaba Dünya')` ifadesini gördük ve bunun uyarı mesajı verdiğini biliyorsunuz.
 
-Kodun içerisinde istediğimiz kadar ifadeye sahip olabiliriz. Diğer kod cümlesi bir birinden noktalı virgül ile ayrılır.
+Kodun içerisinde istediğimiz kadar ifadeye sahip olabiliriz. Diğer kod cümlesi birbirinden noktalı virgül ile ayrılır.
 
 Örneğin burada mesaj ikiye ayrılmıştır.
 
@@ -90,7 +90,7 @@ alert("Bir hata gerçekleşecek")[1, 2].forEach(alert)
 Fakat normalde sizin de bildiğiniz gibi bunu iki satır görmesi gerekmektedir. Bu ve bunun gibi hatalar ile kod yazdığınız sürece karşılaşabileceğiniz hatalardır.
 ````
 
-Eğer yeni satıra geçmek istiyorsanız önerilen yöntem noktalı virgül kullanmanızdır. Bu kural JavaScript toplumu tarafından benimsenmiştir. Tekrar belitelim JavaScript yazarken noktalı virgül kullanmadan yeni satıra geçmek çoğu zaman -- *mümkündür* -- fakat başlangıçta noktalı virgül kullanmanız daha güvenlidir ve önerilir.
+Eğer yeni satıra geçmek istiyorsanız önerilen yöntem noktalı virgül kullanmanızdır. Bu kural JavaScript toplumu tarafından benimsenmiştir. Tekrar belirtelim JavaScript yazarken noktalı virgül kullanmadan yeni satıra geçmek çoğu zaman -- *mümkündür* -- fakat başlangıçta noktalı virgül kullanmanız daha güvenlidir ve önerilir.
 
 
 ## Yorum Satırları

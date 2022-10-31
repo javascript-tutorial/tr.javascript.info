@@ -8,11 +8,11 @@ Değişkenler bu bilgileri tutmak için kullanılırlar.
 
 ## Değişken
 
-[Değişken](https://tr.wikipedia.org/wiki/De%C4%9Fi%C5%9Fken)  "isimlendirilmiş hafıza" olarak adlandırılır. Değişkenler ile kullanıcıları, ürünleri ve diğer tipdeki bilgileri tutabiliriz.  
+[Değişken](https://tr.wikipedia.org/wiki/De%C4%9Fi%C5%9Fken)  "isimlendirilmiş hafıza" olarak adlandırılır. Değişkenler ile kullanıcıları, ürünleri ve diğer tipteki bilgileri tutabiliriz.  
 
 JavaScript dilinde değişken `let` kelimesiyle üretilir.
 
-Aşağıdaki cümle "mesaj" isminde bir değişken üretir ( diğer bir deyişle *tanımlar* )
+Aşağıdaki cümle "mesaj" isminde bir değişken üretir (diğer bir deyişle *tanımlar*):
 
 
 ```js
@@ -149,7 +149,7 @@ JavaScript dilinde değişken oluştururken iki sınırlama vardır.
 1. Değişken ismi sadece harfler, rakamlar, `$` ve `_` karakterlerinden oluşabilir.
 2. İlk karakter rakam olamaz.
 
-Geçerli bir kaç örnek şu şekildedir:
+Geçerli birkaç örnek şu şekildedir:
 
 ```js
 let kullaniciAdi;
@@ -197,7 +197,7 @@ Değişken olarak kullanılamayacak dilin kendisine saklı tuttuğu isimler mevc
 
 Örneğin : `let`, `class`, `return`, `function` gibi kelimeleri değişken ismi olarak adlandıramazsınız.
 
-Aşağıdaki örnek yazım yanlışı ( syntax error ) verecektir:
+Aşağıdaki örnek yazım yanlışı (syntax error) verecektir:
 
 ```js run no-beautify
 let let = 5; // değişken ismi "let" verilemez, hata!
@@ -323,7 +323,7 @@ Modern JavaScript sıkıştırıcılar ve tarayıcılar kodları oldukça iyi op
 
 Verileri saklamak için değişken tanımlayabilirsiniz. Bu işlemi `var` veya `let` veya `const` ile yapabilirsiniz.
 
-- `let` -- modern değişken tanımlama. Chrome üzerinde `let` ile değişken tanımlamak istiyorsanız sıkı modda ( strict mode ) çalışmanız gerekmekte.
+- `let` -- modern değişken tanımlama. Chrome üzerinde `let` ile değişken tanımlamak istiyorsanız sıkı modda (strict mode) çalışmanız gerekmekte.
 - `var` -- eski tip değişken tanımlama. Yeni kodlarda çok nadir kullanılır, belki yakında hiç kullanılmayacak. Bu konu ileride `let` ile `var` arasındaki nüans farkı <info:var> bölümünde incelenecek.
 - `const` -- bu da `let` gibi fakat değeri değiştirilemez.
 
