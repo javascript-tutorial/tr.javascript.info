@@ -38,7 +38,7 @@ Bu sorulara farklı diller farklı cevaplar vermektedir, bu bölümde JavaScript
     Öyleyse soru: son değişiklikleri alır mı?
     
 
-2. `calisanYarat` diğer bir fonksiyon yaratır ve bunu döner. Bu yeni fonksiyon herhangi bir yerden çağrılabilir. Peki yaratıldığı yerin dışındaki değişkenlere veya çağrılan yerin dışındaki değişkenlere veya ikisine birden erişebilece mi?
+2. `calisanYarat` diğer bir fonksiyon yaratır ve bunu döner. Bu yeni fonksiyon herhangi bir yerden çağrılabilir. Peki yaratıldığı yerin dışındaki değişkenlere veya çağrılan yerin dışındaki değişkenlere veya ikisine birden erişebilecek mi?
 
     ```js
     function calisanYarat() {
@@ -176,7 +176,7 @@ selamVer(); // Mehmet
 
 1. Evrensel Sözcük ortamında `adi:"Ahmet"` bulunmaktadır.
 2. `(*)` satırında evrensel değişken değişir, şimdi `adi:"Mehmet"` bulunmaktadır.
-3. `selamVer()` fonksiyonu çalıştığında `adi` dğeişkenini dışarıdan alır. Bu `dış` sözcüksel ortamda değişkenin değeri `"Mehmet"`tir.
+3. `selamVer()` fonksiyonu çalıştığında `adi` değişkenini dışarıdan alır. Bu `dış` sözcüksel ortamda değişkenin değeri `"Mehmet"`tir.
 
 
 ```smart header="Bir Çağrı -- Bir Sözcüksel Ortam"
@@ -317,7 +317,7 @@ Aşağıda `sayacUret` fonksiyonunun adımları gösterilmektedir, her şeyi anl
 
     Tüm fonksiyonlar başlangıçta gizli bir `[[Environment]]` değişkeni alırlar, bu yaratılmaya dair üretilecek Sözcüksel Ortama referans olur. Bunun hakkında henüz bilgi verilmedi, fakat teknik olarak bunu fonksiyonun nerede yaratıldığını bilmesi olarak anlayabilirsiniz.
 
-    Burada `sayacUret` Evrensel Sözcüksel Ortamda yaratıldı. Bundan dolayı `[[Environemnt]]` bu ortamın referansıdır.
+    Burada `sayacUret` Evrensel Sözcüksel Ortamda yaratıldı. Bundan dolayı `[[Environment]]` bu ortamın referansıdır.
     
     Diğer bir değişle fonksiyon üretildiğinde Sözcüksel Ortama ait bir "baskı" ile üretilir. Bu `[[Environment]]` gizli bir özellik olarak burayı referans verir.
     
@@ -338,7 +338,7 @@ Aşağıda `sayacUret` fonksiyonunun adımları gösterilmektedir, her şeyi anl
 
     Fonksiyonun nasıl yaratıldığı yani Fonksiyon Tanımıyla mı yoksa Fonksiyon İfadesiyle mi yaratıldığı önemli değildir. Tüm fonksiyonlar bulunduğu sözcüksel ortama referans eden `[[Environment]]` özelliği ile yaratılırlar. Bundan dolayı en küçük fonksiyon bile bu özelliği içerir.
     
-    İçte olan yeni fonksiyon için `[[Environment]]` dğeişkeni var olan `sayacUret`'in Sözcüksel Ortamıdır.( Doğduğu yer )
+    İçte olan yeni fonksiyon için `[[Environment]]` değişkeni var olan `sayacUret`'in Sözcüksel Ortamıdır.( Doğduğu yer )
 
     ![](lexenv-nested-makecounter-3.svg)
 
@@ -605,7 +605,7 @@ function f() {
   let deger = Math.random();
 
   function g() {
-    debugger; // konsolda: alert(deger) yazdırın; Böyle bir değişken bulunamamktadır.
+    debugger; // konsolda: alert(deger) yazdırın; Böyle bir değişken bulunamamaktadır.
   }
 
   return g;
