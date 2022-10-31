@@ -171,7 +171,7 @@ try {
 
 ## `try...catch` kullanımı
 
-Gerçek hayatta `try...catch`'ın nasıl kullanılabileceğine bakalım.
+Gerçek hayatta `try...catch`'in nasıl kullanılabileceğine bakalım.
 
 Bildiğiniz gibi, JavaScript [JSON.parse(str)](mdn:js/JSON/parse) metodu sayesinde JSON olarak tanımlanmış değerlerin okunmasına olanak tanır.
 
@@ -548,9 +548,9 @@ alert( func() ); // önce finally içerisindeki alert çalışır sonra bu.
 ```
 ````
 
-````smart header="`try..finally`"
+````smart header="`try...finally`"
 
-`catch` olmadan hazırlanan `try..finally` yapısı da kullanışlıdır. Bunu genelde hatayı o anda idare etmek istemediğimizde kullanırız, bununla birlikte başladığımız işlemin bittiğini de garanti altına almak isteriz.
+`catch` olmadan hazırlanan `try...finally` yapısı da kullanışlıdır. Bunu genelde hatayı o anda idare etmek istemediğimizde kullanırız, bununla birlikte başladığımız işlemin bittiğini de garanti altına almak isteriz.
 
 ```js
 function func() {
@@ -642,7 +642,7 @@ try {
   // try/catch'den sonra her halükarda burayı çalıştır.
 }
 ```
-`catch` bölümü veya `finally` bölümü olmadan da çalışır. `try...catch`, `try..finally`'de doğru kullanımdır.
+`catch` bölümü veya `finally` bölümü olmadan da çalışır. `try...catch`, `try...finally`'de doğru kullanımdır.
 
 Hata objeleri şu özellikleri taşır:
 
