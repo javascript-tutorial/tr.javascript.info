@@ -187,7 +187,7 @@ function Kullanici(isim) {
 }
 
 *!*
-let ihsan = new User("İhsan");
+let ihsan = new User("ihsan");
 
 ihsan.selamVer(); // Benim adım: İhsan
 */!*
