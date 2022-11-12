@@ -26,7 +26,7 @@ Bir değişken, fonksiyon ya da bir sınıf olsun, herhangi bir bildirimi önce 
 ```
 
 ````smart header="No semicolons after export class/function"
-Unutmayın ki, bir sınıf veya fonksiyondan önce `export` bir  [işlev ifadeleri](info:function-expressions-arrows) yapmaz. Dışarıya aktarılmasına rağmen hala bir işlev bildirgesidir.
+Unutmayın ki, bir sınıf veya fonksiyondan önce `export` bir  [işlev ifadeleri](info:arrow-functions-basics) yapmaz. Dışarıya aktarılmasına rağmen hala bir işlev bildirgesidir.
 
 JavaScript stil kılavuzlarının çoğu ifadelerden sonra noktalı virgül önermektedir ama işlev ve sınıf bildirimlerinden sonra değil. 
 
