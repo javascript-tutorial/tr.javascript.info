@@ -35,7 +35,7 @@ Her `if` kullandığınızda süslü parantez kullanmanız okunurluğu artıraca
 
 `if(...)` cümlesi parantez içine yazdığımız ifadeyi çalıştırır  ve bunu sonucu boolean tipinde dönderir.
 
-<info:type-conversation> bölümünü hatırlarsanız:
+<info:type-conversions> bölümünü hatırlarsanız:
 
 - `0`, boş karakter `""`, `null`, `undefined` ve `NaN` `false` olarak döndürülür. Bunlara `falsy` yani `yanlış` değerler de diyebiliriz.
 - Diğer değerler ise `true` olur ve bunlara `truthy` veya `doğru` değerler de denebilir. ( Not: Bunların tam karşılıklarını bulamadım )
