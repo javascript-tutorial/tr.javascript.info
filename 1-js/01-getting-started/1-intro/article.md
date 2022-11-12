@@ -72,7 +72,7 @@ Bu engellemeleri şu biçimde sıralayabiliriz :
 
 - Farklı sekmeler birbiri ile iletişime geçemez ve bilgi alışverişi yapamazlar. Bazı sitelerde aynı sekmeler iletişimde bulunabilir, örneğin bir sekmeden JavaScript ile diğer sekmeyi açabilirsiniz. Bu durumda bile, bir sayfa diğerinden farklı alan adı, kural veya kapılarda ise erişemez.
 
-    Bu olaya "Same Origin Policy" (Aynı kaynak kuralı) denir. Bunu çözmek için *her iki sayfa* özel bir JavaScript kodu ile birbirlerini onaylamalıdır. Bu engellemeler yine kullanıcının güvenliği içindir. Kullanıcının açtığı `http://örnekyerlik.com` sitesi diğer sekmede bulunan `http://gmail.com` sitesinden bilgi çalamamalıdır.
+    Bu olaya "Same Origin Policy" (Aynı kaynak kuralı) denir. Bunu çözmek için *her iki sayfa* özel bir JavaScript kodu ile birbirlerini onaylamalıdır. Bu engellemeler yine kullanıcının güvenliği içindir. Kullanıcının açtığı `http://example.com` sitesi diğer sekmede bulunan `http://example.org` sitesinden bilgi çalamamalıdır.
 - JavaScript kolayca bulunduğu sayfadan veri alabilir. Ancak başka site veya alan adlarından veri alması sorunludur. Olanaklı olmasına karşın her iki yanın onayı gereklidir. Yine, bunun nedeni güvenlik sınırlarıdır diyebiliriz.
 
 ![Sınırlamalar](limitations.svg)
