@@ -66,7 +66,7 @@ Modern programlamada `eval`, oldukça cüzi miktarda kullanılır. Kendisinden �
 
 Nedeni oldukça basit: uzun, çok uzun zaman önce JavaScript, çoğu şeyin yalnızca `eval` ile yapılabildiği, oldukça zayıf bir dildi. Fakat bu artık on yıl kadar öncede kaldı.
 
-Şu an `eval` kullanmak için neredeyse hiçbir neden bulunmuyor. Eğer birisi kullanıyorsa bunu modern bri dil yapısıyla veya bir [JavaScript Modülü](info:modules) ile değiştirmek için iyi bir fırsatı var.
+Şu an `eval` kullanmak için neredeyse hiçbir neden bulunmuyor. Eğer birisi kullanıyorsa bunu modern bir dil yapısıyla veya bir [JavaScript Modülü](info:modules) ile değiştirmek için iyi bir fırsatı var.
 
 Halen dinamik bir `eval` karakter dizisi şeklinde bir koda ihtiyacınız varsa lütfen bunun dış değişkenlere yan etkilere neden olarak erişebileceğinin farkında olun.
 
