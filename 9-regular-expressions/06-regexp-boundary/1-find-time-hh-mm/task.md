@@ -1,9 +1,9 @@
-# Find the time
+# Zamanı bul
 
-The time has a format: `hours:minutes`. Both hours and minutes has two digits, like `09:00`.
+Zaman, `saat:dakika` şeklinde bir formata sahiptir. Ancak saat ve dakika iki basamaklıdır, `09:00` gibi.
 
-Make a regexp to find time in the string: `subject:Breakfast at 09:00 in the room 123:456.`
+`subject:Kahvaltı 09:00'da oda 123:456'da.` karakter dizisi için zamanı bulacak bir regexp yazın.
 
-P.S. In this task there's no need to check time correctness yet, so `25:99` can also be a valid result.
+Not: Bu görevde zamanın doğruluğunu kontrol etmeye gerek yok, bu nedenle `25:99` gibi bir saat dahi doğru bir sonuç olarak kabul edilebilir.
 
-P.P.S. The regexp shouldn't match `123:456`.
+Not: Regexp, `123:456` ile eşleşmemeli.
