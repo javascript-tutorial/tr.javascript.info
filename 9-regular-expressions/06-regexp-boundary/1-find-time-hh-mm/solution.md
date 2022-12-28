@@ -1,6 +1,6 @@
 
-The answer: `pattern:\b\d\d:\d\d\b`.
+Yanıt: `pattern:\b\d\d:\d\d\b`.
 
 ```js run
-alert( "Breakfast at 09:00 in the room 123:456.".match( /\b\d\d:\d\d\b/ ) ); // 09:00
+alert( "Kahvaltı 09:00'da oda 123:456'da.".match( /\b\d\d:\d\d\b/ ) ); // 09:00
 ```
