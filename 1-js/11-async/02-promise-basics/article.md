@@ -130,7 +130,7 @@ Yazımı:
 ```js
 promise.then(
   function(result) { *!*/* başarılı bir sonucu işle */*/!* },
-  function(error) { *!*/* hayatı işle */*/!* }
+  function(error) { *!*/* hatayı işle */*/!* }
 );
 ```
 `.then`'in ilk argümanı:
