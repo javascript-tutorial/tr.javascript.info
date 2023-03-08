@@ -1,11 +1,11 @@
 
-# Fetch: Basics
+# Fetch: Temel Bilgiler
 
-Method `fetch()` is the modern way of sending requests over HTTP.
+`fetch()` yöntemi, HTTP üzerinden istek göndermenin modern bir yoludur.
 
-It evolved for several years and continues to improve, right now the support is pretty solid among browsers.
+Birkaç yılda geliştirildi ve gelişmeye devam ediyor, şu anda tarayıcılar arasında desteği oldukça sağlam.
 
-The basic syntax is:
+Temel sözdizimi şöyledir:
 
 ```js
 let promise = fetch(url, [options])
