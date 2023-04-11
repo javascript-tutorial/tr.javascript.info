@@ -8,7 +8,7 @@ function sayiOku() {
 
   if (sayi === null || sayi === '') return null;
   
-  return +saui;
+  return +sayi;
 }
 
 alert(`Oku: ${sayiOku()}`);
