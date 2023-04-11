@@ -1,36 +1,36 @@
-There are many ways to do it.
+Arama yapmanın birden fazla yolu vardır.
 
-Here are some of them:
+Bunlardan bazıları:
 
 ```js
-// 1. The table with `id="age-table"`.
+// 1. `id="age-table"` özniteliğine sahip form elementi seçilmektedir.
 let table = document.getElementById('age-table')
 
-// 2. All label elements inside that table
+// 2. tablo içerisinde yer alan bütün label elementleri seçilmektedir.
 table.getElementsByTagName('label')
-// or
+// veya
 document.querySelectorAll('#age-table label')
 
-// 3. The first td in that table (with the word "Age").
+// 3. Tablodaki ilk elementi bulmak için kullanılır. (İçerisinde bulunan metinde gelmektedir.)
 table.rows[0].cells[0]
-// or
+// veya
 table.getElementsByTagName('td')[0]
-// or
+// veya
 table.querySelector('td')
 
-// 4. The form with the name "search".
-// assuming there's only one element with name="search"
+// 4. "search" isimde bir elementi aramaktadır.
+// dönecek olan veriler içerisinden ilk olanı bulmak için kullanılır.
 let form = document.getElementsByName('search')[0]
-// or, form specifically
+// veya, form için isim özniteliğinden faydalanarak bulmak
 document.querySelector('form[name="search"]')
 
-// 5. The first input in that form.
+// 5. Form içerisinde bulunan ilk input elementini bulmak için kullanılır.
 form.getElementsByTagName('input')[0]
-// or
+// veya
 form.querySelector('input')
 
-// 6. The last input in that form.
-// there's no direct query for that
-let inputs = form.querySelectorAll('input') // search all
-inputs[inputs.length-1] // take last
+// 6. Form içerisinde bulunan son elementi bulmak için kullanılır.
+// Tek seferde ulaşabilmemizi mümkün değildir.
+let inputs = form.querySelectorAll('input') // Bütün input elementleri bulunur.
+inputs[inputs.length-1] // sonuncuyu bulabilmek için gerekli işlem yapılır.
 ```
