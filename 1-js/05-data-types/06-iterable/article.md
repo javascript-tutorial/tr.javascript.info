@@ -52,7 +52,7 @@ aralik[Symbol.iterator] = function() {
     // 3. next() is called on each iteration by the for..of loop
     // for..of her defasında next() metodunu çağırır.
     next() {
-      // 4. bu metod geriye şu şakilde obje döndürmeli {done:.., value :...}
+      // 4. bu metod geriye şu şekilde obje döndürmeli {done:.., value :...}
       if (this.current <= this.last) {
         return { done: false, value: this.current++ };
       } else {
