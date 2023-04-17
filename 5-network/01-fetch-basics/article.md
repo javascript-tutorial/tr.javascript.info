@@ -3,7 +3,7 @@
 
 `fetch()` yöntemi, HTTP üzerinden istek göndermenin modern bir yoludur.
 
-Birkaç yılda geliştirildi ve gelişmeye devam ediyor, şu anda tarayıcılar arasında desteği oldukça sağlam.
+Birkaç yılda geliştirildi ve geliştirilmeye devam ediliyor, şu anda tarayıcılar arasında desteği oldukça sağlam.
 
 Temel sözdizimi şöyledir:
 
@@ -11,26 +11,26 @@ Temel sözdizimi şöyledir:
 let promise = fetch(url, [options])
 ```
 
-- **`url`** -- the URL to access.
-- **`options`** -- optional parameters: method, headers etc.
+- **`url`** -- erişilecek URL.
+- **`options`** -- isteğe bağlı parametreler: method, headers vb.
 
-The browser starts the request right away and returns a `promise`.
+Tarayıcı isteği başlatır ve bir `promise` döndürür.
 
-Getting a response is usually a two-stage process.
+Yanıt alma işlemi genellikle iki aşamalıdır.
 
-**The `promise` resolves with an object of the built-in [Response](https://fetch.spec.whatwg.org/#response-class) class as soon as the server responds with headers.**
+**Sunucu başlıklarını yanıtladığında, `promise` otomatik olarak oluşturulmuş [Response](https://fetch.spec.whatwg.org/#response-class) sınıfının bir nesnesiyle çözümlenir.**
 
+Bu şekilde HTTP durumunu kontrol edebiliriz (status), başlıkları kontrol edebiliriz (head), ancak henüz gövdeyi (body) alamayız.
 
-So we can check HTTP status, to see whether it is successful or not, check headers, but don't have the body yet.
+`fetch`, HTTP isteği yapamadığında (örneğin, ağ sorunları varsa veya böyle bir site yoksa) 
+`promise `, reddeder. 404 veya 500 gibi HTTP hataları bile normal akış olarak kabul edilir.
 
-The promise rejects if the `fetch` was unable to make HTTP-request, e.g. network problems, or there's no such site. HTTP-errors, even such as 404 or 500, are considered a normal flow.
+Bunları response özelliklerinde görebiliriz:
 
-We can see them in response properties:
+- **`ok`** -- boolean, HTTP durum kodu 200-299 ise true döndürür.
+- **`status`** -- HTTP durum kodu.
 
-- **`ok`** -- boolean, `true` if the HTTP status code is 200-299.
-- **`status`** -- HTTP status code.
-
-For example:
+Örneğin:
 
 ```js
 let response = await fetch(url);
@@ -43,7 +43,7 @@ if (response.ok) { // if HTTP-status is 200-299
 }
 ```
 
-To get the response body, we need to use an additional method call.
+Response gövdesini (body) almak için, ek bir yöntem çağrısı yapmamız gerekiyor.
 
 `Response` provides multiple promise-based methods to access the body in various formats:
 
