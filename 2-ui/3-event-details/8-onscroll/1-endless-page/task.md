@@ -2,19 +2,19 @@ importance: 5
 
 ---
 
-# Endless page
+# Sonsuz sayfa
 
-Create an endless page. When a visitor scrolls it to the end, it auto-appends current date-time to the text (so that a visitor can scroll more).
+Sonsuz bir sayfa oluşturun. Ziyaretçi sayfayı sonuna kadar kaydırığında metnin sonuna otomatik olarak güncel tarih-saat eklenir (böylece ziyaretçi daha fazla kaydırabilir).
 
-Like this:
+Örnekteki gibi:
 
 [iframe src="solution" height=200]
 
-Please note two important features of the scroll:
+Lütfen kaydırmanın iki önemli özelliğine dikkat edin:
 
-1. **The scroll is "elastic".** We can scroll a little beyond the document start or end in some browsers/devices (empty space below is shown, and then the document will automatically "bounces back" to normal).
-2. **The scroll is imprecise.** When we scroll to page end, then we may be in fact like 0-50px away from the real document bottom.
+1. **Kaydırma "esnektir".** Bazı tarayıcılarda / cihazlarda belge başlangıcından veya sonundan biraz öteye kaydırabiliriz (altında boşluk görüntülenir ardından belge otomatik olarak normale "geri döner").
+2. **Kaydırma "belirsizdir".**  Sayfa sonuna kaydırdığımızda gerçek belgenin altından 0-50 piksel kadar uzakta olabiliriz.
 
-So, "scrolling to the end" should mean that the visitor is no more than 100px away from the document end.
+Dolayısıyla, "sonuna kadar kaydırma" ziyaretçinin belgenin sonundan 100 pikselden daha fazla uzaktlıkta olmadığı anlamına gelmelidir.
 
-P.S. In real life we may want to show "more messages" or "more goods".
+Not: Gerçek hayatta "daha fazla mesaj" veya "daha fazla ürün" göstermek isteyebiliriz.
