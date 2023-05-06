@@ -6,20 +6,20 @@
 
 <body>
 
-<h1>Scroll me</h1>
+<h1>Kaydır beni</h1>
 
 <script>
   function populate() {
     while(true) {
       let windowRelativeBottom = document.documentElement.getBoundingClientRect().bottom;
       if (windowRelativeBottom > document.documentElement.clientHeight + 100) break;
-      document.body.insertAdjacentHTML("beforeend", `<p>Date: ${new Date()}</p>`);
+      document.body.insertAdjacentHTML("beforeend", `<p>Tarih: ${new Date()}</p>`);
     }
   }
 
   window.addEventListener('scroll', populate);
 
-  populate(); // init document
+  populate(); // dosyayı başlat
 </script>
 
 </body>
