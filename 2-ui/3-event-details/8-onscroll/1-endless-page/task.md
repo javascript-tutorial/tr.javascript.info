@@ -4,7 +4,7 @@ importance: 5
 
 # Sonsuz sayfa
 
-Sonsuz bir sayfa oluşturun. Ziyaretçi sayfayı sonuna kadar kaydırığında metnin sonuna otomatik olarak güncel tarih-saat eklenir (böylece ziyaretçi daha fazla kaydırabilir).
+Sonsuz bir sayfa oluşturun. Ziyaretçi sayfayı sonuna kadar kaydırdığında metnin sonuna otomatik olarak güncel tarih-saat eklenir (böylece ziyaretçi daha fazla kaydırabilir).
 
 Örnekteki gibi:
 
