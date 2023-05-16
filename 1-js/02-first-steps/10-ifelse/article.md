@@ -163,7 +163,7 @@ let girisIzni = yas > 18;
 Birden fazla `"?"` işareti kullanarak birden fazla koşula göre değer döndürme işlemini sağlayabilirsiniz.
 
 
-ÖrneğiN:
+Örneğin:
 ```js run
 let yas = prompt('yaş?', 18);
 
