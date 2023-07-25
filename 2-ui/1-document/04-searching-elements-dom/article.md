@@ -1,14 +1,14 @@
 # Searching: getElement*, querySelector*
 
-DOM navigation properties are great when elements are close to each other. What if they are not? How to get an arbitrary element of the page?
+DOM gezinme özellikleri, öğeler birbirine yakın olduğunda harikadır. Peki ya değillerse? Sayfanın herhangi bir öğesini nasıl alabiliriz?
 
-There are additional searching methods for that.
+Bunun için ek arama yöntemleri bulunmaktadır.
 
 ## document.getElementById or just id
 
-If an element has the `id` attribute, then there's a global variable by the name from that `id`.
+Bir öğenin id özelliği varsa, o id adından bir global değişken bulunur.
 
-We can use it to immediately access the element no matter where it is:
+Bu değişkeni kullanarak, öğeye sayfanın neresinde olursa olsun hemen erişebiliriz.
 
 ```html run
 <div id="*!*elem*/!*">
@@ -25,9 +25,9 @@ We can use it to immediately access the element no matter where it is:
 </script>
 ```
 
-The behavior is described [in the specification](http://www.whatwg.org/specs/web-apps/current-work/#dom-window-nameditem), but it is supported mainly for compatibility. The browser tries to help us by mixing namespaces of JS and DOM. Good for very simple scripts, but there may be name conflicts. Also, when we look in JS and don't have HTML in view, it's not obvious where the variable comes from.
+Bu davranış, spesifikasyonda açıklandığı gibi, temel olarak uyumluluk için desteklenmektedir. Tarayıcı, JS ve DOM'un ad alanlarını karıştırarak bize yardımcı olmaya çalışır. Çok basit komut dosyaları için iyidir, ancak isim çakışmaları olabilir. Ayrıca, JS'a baktığımızda ve HTML'i görüntülemediğimizde, değişkenin nereden geldiği açık değildir.
 
-If we declare a variable with the same name, it takes precedence:
+Eğer aynı isimle bir değişken tanımlarsak, öncelik alır:
 
 ```html run untrusted height=0
 <div id="elem"></div>
@@ -39,7 +39,7 @@ If we declare a variable with the same name, it takes precedence:
 </script>
 ```
 
-The better alternative is to use a special method `document.getElementById(id)`.
+Daha iyi bir alternatif, özel bir yöntem olan `document.getElementById(id)` kullanmaktır.
 
 For instance:
 
@@ -57,12 +57,16 @@ For instance:
 </script>
 ```
 
-Here in the tutorial we'll often use `id` to directly reference an element, but that's only to keep things short. In real life `document.getElementById` is the preferred method.
+Bu dökümantasyonda sık sık bir öğeye doğrudan referans olmak için `id` kullanacağız, ancak bu sadece işleri kısa tutmak içindir. Gerçek hayatta tercih edilen yöntem `document.getElementById` kullanmaktır.
 
-```smart header="There can be only one"
-The `id` must be unique. There can be only one element in the document with the given `id`.
+```smart header="Sadece bir tane olabilir"
+`id` benzersiz olmalıdır. Belgede verilen `id` ile sadece bir öğe olabilir.
 
-If there are multiple elements with the same `id`, then the behavior of corresponding methods is unpredictable. The browser may return any of them at random. So please stick to the rule and keep `id` unique.
+
+
+
+
+Eğer aynı `id`'ye sahip birden fazla öğe varsa, ilgili yöntemlerin davranışı öngörülemeyebilir. Tarayıcı rastgele olarak herhangi birini döndürebilir. Bu nedenle lütfen kurala uyun ve `id`'yi benzersiz tutun.
 ```
 
 ```warn header="Only `document.getElementById`, not `anyNode.getElementById`"
@@ -70,10 +74,9 @@ The method `getElementById` that can be called only on `document` object. It loo
 ```
 
 ## querySelectorAll [#querySelectorAll]
+Şimdiye kadar en çok yönlü yöntem olan `elem.querySelectorAll(css)`, belirtilen CSS seçicisine uyan `elem` içindeki tüm öğeleri döndürür.
 
-By far, the most versatile method, `elem.querySelectorAll(css)` returns all elements inside `elem` matching the given CSS selector.
-
-Here we look for all `<li>` elements that are last children:
+Burada, son çocuk olan tüm `<li>` öğelerini arıyoruz:
 
 ```html run
 <ul>
@@ -96,26 +99,28 @@ Here we look for all `<li>` elements that are last children:
 ```
 
 This method is indeed powerful, because any CSS selector can be used.
+Bu yöntem gerçekten güçlüdür, çünkü herhangi bir CSS seçici kullanılabilir.
 
-```smart header="Can use pseudo-classes as well"
-Pseudo-classes in the CSS selector like `:hover` and `:active` are also supported. For instance, `document.querySelectorAll(':hover')` will return the collection with elements that the pointer is  over now (in nesting order: from the outermost `<html>` to the most nested one).
+```smart header="Sahte sınıfları da kullanabilir" 
+CSS seçicideki `:hover` ve ":active" gibi sözde sınıflar da desteklenir. Örneğin, `document.querySelectorAll(':hover')`, işaretçinin üzerinde olduğu öğeleri içeren koleksiyonu döndürür (iç içe yerleştirme sırasında: en dıştaki `<html>` den en iç içe geçmişe).
 ```
 
 ## querySelector [#querySelector]
 
-The call to `elem.querySelector(css)` returns the first element for the given CSS selector.
+`elem.querySelector(css)` çağrısı, belirtilen CSS seçicisi için ilk öğeyi döndürür.
 
-In other words, the result is the same as `elem.querySelectorAll(css)[0]`, but the latter is looking for *all* elements and picking one, while `elem.querySelector` just looks for one. So it's faster and shorter to write.
+Başka bir deyişle, sonuç `elem.querySelectorAll(css)[0]` ile aynıdır, ancak ikincisi *tüm* öğeleri arar ve birini seçerken, `elem.querySelector` yalnızca birini arar. Böylece yazmak daha hızlı ve daha kısadır.
 
 ## matches
 
-Previous methods were searching the DOM.
+Önceki yöntemler DOM'u arıyordu.
 
-The [elem.matches(css)](http://dom.spec.whatwg.org/#dom-element-matches) does not look for anything, it merely checks if `elem` matches the given CSS-selector. It returns `true` or `false`.
+[elem.matches(css)](http://dom.spec.whatwg.org/#dom-element-matches) hiçbir şey aramaz, yalnızca `elem` öğesinin verilen CSS seçiciyle eşleşip eşleşmediğini kontrol eder. `true` veya `false` döndürür. 
 
-The method comes handy when we are iterating over elements (like in array or something) and trying to filter those that interest us.
+Yöntem, öğeler üzerinde yineleme yaptığımızda (dizide veya başka bir şeyde olduğu gibi) ve bizi ilgilendirenleri filtrelemeye çalışırken kullanışlı olur. 
 
-For instance:
+Örneğin:
+
 
 ```html run
 <a href="http://example.com/file.zip">...</a>
