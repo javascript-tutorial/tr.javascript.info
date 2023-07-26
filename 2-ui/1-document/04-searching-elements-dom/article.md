@@ -140,21 +140,21 @@ Yöntem, öğeler üzerinde yineleme yaptığımızda (dizide veya başka bir ş
 
 ## closest
 
-*Ancestors* of an element are: parent, the parent of parent, its parent and so on. The ancestors together form the chain of parents from the element to the top.
+Bir öğenin *Ataları* şunlardır: ebeveyn, ebeveynin ebeveyni, ebeveyni vb. Atalar birlikte elementten tepeye ebeveyn zincirini oluşturur.
 
-The method `elem.closest(css)` looks the nearest ancestor that matches the CSS-selector. The `elem` itself is also included in the search.
+`elem.closest(css)` yöntemi, CSS seçiciyle eşleşen en yakın ataya bakar. `elem`in kendisi de aramaya dahil edilir.
 
-In other words, the method `closest` goes up from the element and checks each of parents. If it matches the selector, then the search stops, and the ancestor is returned.
+Başka bir deyişle, `closest` yöntemi öğeden yukarı çıkar ve her bir ebeveyni kontrol eder. Seçiciyle eşleşirse, arama durur ve ata döndürülür.
 
-For instance:
+Örneğin:
 
 ```html run
 <h1>Contents</h1>
 
 <div class="contents">
   <ul class="book">
-    <li class="chapter">Chapter 1</li>
-    <li class="chapter">Chapter 1</li>
+    <li class="chapter">Bölüm 1</li>
+    <li class="chapter">Bölüm 1</li>
   </ul>
 </div>
 
@@ -170,38 +170,39 @@ For instance:
 
 ## getElementsBy*
 
-There are also other methods to look for nodes by a tag, class, etc.
+Düğümleri bir etikete, sınıfa vb. göre aramak için başka yöntemler de vardır.
 
-Today, they are mostly history, as `querySelector` is more powerful and shorter to write.
+Bugün, `querySelector` daha güçlü ve yazması daha kısa olduğundan, çoğunlukla tarih oldular.
 
-So here we cover them mainly for completeness, while you can still find them in the old scripts.
+Bu yüzden, onları eski betiklerde hala bulabilmeniz için burada esas olarak bütünlük için ele alıyoruz.
 
-- `elem.getElementsByTagName(tag)` looks for elements with the given tag and returns the collection of them. The `tag` parameter can also be a star `"*"` for "any tags".
-- `elem.getElementsByClassName(className)` returns elements that have the given CSS class.
-- `document.getElementsByName(name)` returns elements with the given `name` attribute, document-wide. very rarely used.
+- `elem.getElementsByTagName(tag)` verilen etikete sahip öğeleri arar ve bunların koleksiyonunu döndürür. `tag` parametresi ayrıca "herhangi bir etiket" için bir yıldız `"*"` olabilir.
+- `elem.getElementsByClassName(className)` verilen CSS sınıfına sahip öğeleri döndürür.
+- `document.getElementsByName(name)`, belge genelinde verilen "name" özniteliğine sahip öğeleri döndürür. çok nadiren kullanılır.
 
-For instance:
+Örneğin:
 ```js
-// get all divs in the document
+
+// belgedeki tüm div'leri al
 let divs = document.getElementsByTagName('div');
 ```
 
-Let's find all `input` tags inside the table:
+Tablonun içindeki tüm `input` etiketlerini bulalım:
 
 ```html run height=50
 <table id="table">
   <tr>
-    <td>Your age:</td>
+    <td>Yaşınız:</td>
 
     <td>
       <label>
-        <input type="radio" name="age" value="young" checked> less than 18
+        <input type="radio" name="age" value="young" checked> 18'den az
       </label>
       <label>
-        <input type="radio" name="age" value="mature"> from 18 to 50
+        <input type="radio" name="age" value="mature"> 18'den 50'ye
       </label>
       <label>
-        <input type="radio" name="age" value="senior"> more than 60
+        <input type="radio" name="age" value="senior"> 60'tan fazla
       </label>
     </td>
   </tr>
@@ -219,22 +220,21 @@ Let's find all `input` tags inside the table:
 ```
 
 ```warn header="Don't forget the `\"s\"` letter!"
-Novice developers sometimes forget the letter `"s"`. That is, they try to call `getElementByTagName` instead of <code>getElement<b>s</b>ByTagName</code>.
+Acemi geliştiriciler bazen `"s"` harfini unuturlar. Yani, <code>getElement<b>s</b>ByTagName</code> yerine `getElementByTagName` çağırmaya çalışırlar.
 
-The `"s"` letter is absent in `getElementById`, because it returns a single element. But `getElementsByTagName` returns a collection of elements, so there's `"s"` inside.
+`getElementById` içinde `"s"` harfi yoktur, çünkü tek bir öğe döndürür. Ancak `getElementsByTagName`, bir öğe koleksiyonu döndürür, yani içinde `"s"` vardır.
 ```
-
-````warn header="It returns a collection, not an element!"
-Another widespread novice mistake is to write:
+````warn header="Bir öğe değil, bir koleksiyon döndürür!"
+Bir başka yaygın acemi hatası da şunu yazmaktır:
 
 ```js
-// doesn't work
-document.getElementsByTagName('input').value = 5;
+// çalışmıyor 
+Document.getElementsByTagName('input').value = 5;
 ```
 
-That won't work, because it takes a *collection* of inputs and assigns the value to it rather than to elements inside it.
+Bu işe yaramaz, çünkü bir girdi *koleksiyonunu* alır ve içindeki öğeler yerine ona değer atar.
 
-We should either iterate over the collection or get an element by its index, and then assign, like this:
+Koleksiyonu yinelemeli veya dizinine göre bir öğe almalı ve ardından şu şekilde atamalıyız:
 
 ```js
 // should work (if there's an input)
@@ -242,7 +242,7 @@ document.getElementsByTagName('input')[0].value = 5;
 ```
 ````
 
-Looking for `.article` elements:
+`.article` öğeleri aranıyor:
 
 ```html run height=50
 <form name="my-form">
@@ -251,23 +251,23 @@ Looking for `.article` elements:
 </form>
 
 <script>
-  // find by name attribute
+  // ad özniteliğine göre bul
   let form = document.getElementsByName('my-form')[0];
 
-  // find by class inside the form
+  // form içinde sınıfa göre bul
   let articles = form.getElementsByClassName('article');
   alert(articles.length); // 2, found two elements with class "article"
 </script>
 ```
 
-## Live collections
+## Canlı koleksiyonlar
 
-All methods `"getElementsBy*"` return a *live* collection. Such collections always reflect the current state of the document and "auto-update" when it changes.
+Tüm `"getElementsBy*"` yöntemleri bir *canlı* koleksiyon döndürür. Bu tür koleksiyonlar her zaman belgenin mevcut durumunu yansıtır ve değiştiğinde "auto-update" yapar.
+Aşağıdaki örnekte iki betik vardır.
 
-In the example below, there are two scripts.
+1. İlki, `<div>` koleksiyonuna bir başvuru oluşturur. Şu an itibariyle uzunluğu `1`. 
+2. İkinci betik, tarayıcı bir `<div>` ile karşılaştıktan sonra çalışır, dolayısıyla uzunluğu `2` olur.
 
-1. The first one creates a reference to the collection of `<div>`. As of now, its length is `1`.
-2. The second scripts runs after the browser meets one more `<div>`, so its length is `2`.
 
 ```html run
 <div>First div</div>
@@ -277,7 +277,7 @@ In the example below, there are two scripts.
   alert(divs.length); // 1
 </script>
 
-<div>Second div</div>
+<div>İkinci bölüm</div>
 
 <script>
 *!*
@@ -286,20 +286,20 @@ In the example below, there are two scripts.
 </script>
 ```
 
-In contrast, `querySelectorAll` returns a *static* collection. It's like a fixed array of elements.
+Buna karşılık, `querySelectorAll` bir *statik* koleksiyon döndürür. Sabit bir eleman dizisi gibi.
 
-If we use it instead, then both scripts output `1`:
+Bunun yerine kullanırsak, her iki betik de `1` çıktısı verir:
 
 
 ```html run
-<div>First div</div>
+<div>Birinci div</div>
 
 <script>
   let divs = document.querySelectorAll('div');
   alert(divs.length); // 1
 </script>
 
-<div>Second div</div>
+<div>İkinci div</div>
 
 <script>
 *!*
@@ -308,19 +308,19 @@ If we use it instead, then both scripts output `1`:
 </script>
 ```
 
-Now we can easily see the difference. The static collection did not increase after the appearance of a new `div` in the document.
+Artık farkı rahatlıkla görebiliriz. Belgede yeni bir `div` göründükten sonra statik koleksiyon artmadı.
 
-## Summary
+## Özet
 
-There are 6 main methods to search for nodes in DOM:
+DOM'da düğüm aramak için 6 ana yöntem vardır:
 
 <table>
 <thead>
 <tr>
-<td>Method</td>
-<td>Searches by...</td>
-<td>Can call on an element?</td>
-<td>Live?</td>
+<td>Metod</td>
+<td>Aramalar by...</td>
+<td>Bir öğeyi arayabilir miyim?</td>
+<td>Canlı?</td>
 </tr>
 </thead>
 <tbody>
@@ -363,12 +363,12 @@ There are 6 main methods to search for nodes in DOM:
 </tbody>
 </table>
 
-By far the most used are `querySelector` and `querySelectorAll`, but `getElementBy*` can be sporadically helpful or found in the old scripts.
+Şimdiye kadar en çok kullanılanlar `querySelector` ve `querySelectorAll` dır, ancak `getElementBy*` ara sıra yardımcı olabilir veya eski betiklerde bulunabilir.
+Bunun yanı sıra:
 
-Besides that:
 
-- There is `elem.matches(css)` to check if `elem` matches the given CSS selector.
-- There is `elem.closest(css)` to look for the nearest ancestor that matches the given CSS-selector. The `elem` itself is also checked.
+- `elem` öğesinin verilen CSS seçiciyle eşleşip eşleşmediğini kontrol etmek için `elem.matches(css)` var.
+- Verilen CSS seçiciyle eşleşen en yakın ataya bakmak için `elem.closest(css)` var. "elem"in kendisi de kontrol edilir.
 
-And let's mention one more method here to check for the child-parent relationship, as it's sometimes useful:
--  `elemA.contains(elemB)` returns true if `elemB` is inside `elemA` (a descendant of `elemA`) or when `elemA==elemB`.
+Çocuk-ebeveyn ilişkisini kontrol etmek için bazen yararlı olduğu için burada bir yöntemden daha bahsedelim: 
+- `elemA.contains(elemB)`, `elemB`, `elemA` içindeyse (a descendant of `elemA`) veya `elemA==elemB` olduğunda true değerini döndürür.
