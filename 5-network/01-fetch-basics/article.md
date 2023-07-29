@@ -45,28 +45,29 @@ if (response.ok) { // if HTTP-status is 200-299
 
 Response gövdesini (body) almak için, ek bir yöntem çağrısı yapmamız gerekiyor.
 
-`Response` provides multiple promise-based methods to access the body in various formats:
+`Response` gövdesine erişmek için birden fazla format ve özellik vardır:
 
-- **`response.json()`** -- parse the response as JSON object,
-- **`response.text()`** -- return the response as text,
-- **`response.formData()`** -- return the response as FormData object (form/multipart encoding),
-- **`response.blob()`** -- return the response as [Blob](info:blob) (binary data with type),
-- **`response.arrayBuffer()`** -- return the response as [ArrayBuffer](info:arraybuffer-binary-arrays) (pure binary data),
-- additionally, `response.body` is a [ReadableStream](https://streams.spec.whatwg.org/#rs-class) object, it allows to read the body chunk-by-chunk, we'll see an example later.
+- **`response.json()`** -- yanıtı JSON nesnesi olarak ayrıştırır,
+- **`response.text()`** -- yanıtı metin (text) olarak döndürür,
+- **`response.formData()`** -- yanıtı FormData nesnesi olarak döndürür (form/çok parçalı kodlama),
+- **`response.blob()`** -- yanıtı Blob türünde döndürür [Blob](info:blob) (binary data tipi (ikili)),
+- **`response.arrayBuffer()`** -- yanıtı [ArrayBuffer](info:arraybuffer-binary-arrays) türünde döndürür (saf ikili veri),
+- ek olarak,  `response.body` bir, [ReadableStream](https://streams.spec.whatwg.org/#rs-class) nesnesidir, gövdeyi parça parça okumaya izin verir, daha sonra bir örnek göreceğiz.
 
-For instance, here we get a JSON-object with latest commits from GitHub:
+
+Örneğin, burada GitHub'dan en son commitleri içeren bir JSON nesnesi alıyoruz:
 
 ```js run async
 let response = await fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits');
 
 *!*
-let commits = await response.json(); // read response body and parse as JSON
+let commits = await response.json(); // yanıt gövdesini okuyun ve JSON olarak ayrıştırın
 */!*
 
 alert(commits[0].author.login);
 ```
 
-Or, the same using pure promises syntax:
+Ya da promises sözdizimi kullanarak aynısını yapabilirsiniz:
 
 ```js run
 fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commits')
@@ -74,18 +75,18 @@ fetch('https://api.github.com/repos/javascript-tutorial/en.javascript.info/commi
   .then(commits => alert(commits[0].author.login));
 ```
 
-To get the text:
+Metni almak için:
 ```js
 let text = await response.text();
 ```
 
-And for the binary example, let's fetch and show an image (see chapter [Blob](info:blob) for details about operations on blobs):
+Ve binary örneği için, bir görsel getirelim ve gösterelim (bloblar üzerindeki işlemler hakkında ayrıntılar için [Blob](info:blob) bölümüne bakın):
 
 ```js async run
 let response = await fetch('/article/fetch/logo-fetch.svg');
 
 *!*
-let blob = await response.blob(); // download as Blob object
+let blob = await response.blob(); // Blob nesnesi olarak indirme
 */!*
 
 // create <img> for it
@@ -93,23 +94,23 @@ let img = document.createElement('img');
 img.style = 'position:fixed;top:10px;left:10px;width:100px';
 document.body.append(img);
 
-// show it
+// Gösterme
 img.src = URL.createObjectURL(blob);
 
-setTimeout(() => { // hide after two seconds
+setTimeout(() => { // 2 saniye sonra gizle
   img.remove();
   URL.revokeObjectURL(img.src);
 }, 2000);
 ```
 
 ````warn
-We can choose only one body-parsing method.
+Yalnızca bir gövde ayrıştırma yöntemi seçebiliriz.
 
-If we got the response with `response.text()`, then `response.json()` won't work, as the body content has already been processed.
+Yanıtı `response.text()` ile aldıysak, gövde içeriği zaten işlenmiş olduğundan `response.json()` çalışmayacaktır.
 
 ```js
-let text = await response.text(); // response body consumed
-let parsed = await response.json(); // fails (already consumed)
+let text = await response.text(); // yanıt gövdesi çevirildi
+let parsed = await response.json(); // hata (yukarıda zaten çevirilmişti)
 ````
 
 ## Headers
