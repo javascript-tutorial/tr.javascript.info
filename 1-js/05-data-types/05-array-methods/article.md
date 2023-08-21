@@ -312,7 +312,7 @@ Dizinin her elemanı için fonksiyonu çalıştırır ve sonuçlarını dizi ola
 Örneğin elemanların uzunlukları ile ilgili bir değişiklik yapılabilir:
 
 ```js run
-let uzuluklar = ["Bilbo", "Gandalf", "Nazgul"].map(eleman => eleman.length)
+let uzunluklar = ["Bilbo", "Gandalf", "Nazgul"].map(eleman => eleman.length)
 alert(uzunluklar); // 5,7,6
 ```
 
