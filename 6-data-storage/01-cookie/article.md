@@ -1,27 +1,27 @@
 # Cookies, document.cookie
 
-Cookies are small strings of data that are stored directly in the browser. They are a part of HTTP protocol, defined by [RFC 6265](https://tools.ietf.org/html/rfc6265) specification.
+Çerezler, doğrudan tarayıcıda depolanan küçük veri dizileridir. Çerezler [RFC 6265](https://tools.ietf.org/html/rfc6265) teknik şartnamesi tarafından tanımlanan HTTP protokolünün bir parçasıdırlar.
 
-Most of the time, cookies are set by a web server. Then they are automatically added to every request to the same domain.
+Çoğu zaman, çerezler bir web sunucus tarafından ayarlanır. Daha sonra aynı alan adına yapılan her isteğe otomatik olarak eklenirler.
 
-One of the most widespread use cases is authentication:
+En yaygın kullanım alanlarından biri kimlik doğrulamadır:
 
-1. Upon sign in, the server uses `Set-Cookie` HTTP-header in the response to set a cookie with "session identifier".
-2. Next time when the request is set to the same domain, the browser sends the over the net using `Cookie` HTTP-header.
-3. So the server knows who made the request.
+1. Oturum açıldığında, sunucu "session identifier" içeren bir çerez ayarlamak için yanıtta `Set-Cookie` HTTP başlığını kullanır.
+2. Gelecek sefere istek aynı alan adından yapıldığında, tarayıcı `Cookie` HTTP-header başlağını kullanarak ağ üzerinden gönderir.
+3. Böylece sunucu isteğin kim tarafından yapıldığını bilir.
 
-We can also access cookies from the browser, using `document.cookie` property.
+Ayrıca `document.cookie` özelliğini kullarak çerezelere tarayıcıdan da erişebiliriz.
 
-There are many tricky things about cookies and their options. In this chapter we'll cover them in detail.
+Çerezler ve seçenekleri hakkında birçok ince detay var. Bu bölümde bunları ayrıntılı olarak ele alacağız.
 
 ## Reading from document.cookie
 
 ```online
-Do you have any cookies on this site? Let's see:
+Bu sitede hiç çerezin var mı? Hadi görelim:
 ```
 
 ```offline
-Assuming you're on a website, it's possible to see the cookies, like this:
+Bir web sitesinde olduğunuzu varsayarsak, çerezleri şu şekilde görmek mümkündür:
 ```
 
 ```js run
@@ -29,30 +29,29 @@ Assuming you're on a website, it's possible to see the cookies, like this:
 // so there should be some cookies
 alert( document.cookie ); // cookie1=value1; cookie2=value2;...
 ```
+`document.cookie` değeri `; ` ile ayrılmış `name=value` çiftlerinden oluşur. Herbiri ayrı bir çerezdir.
 
+Bellirli bir çerezi bulmak için, `document.cookie` yi `; ` ile ayırabiliriz ve sonra doğru ismi bulabiliriz. Bunu yapmak için düzenli ifadeler (regular expresion) veya dizi methodlarını kullanabiliriz.
 
-The value of `document.cookie` consists of `name=value` pairs, delimited by `; `. Each one is a separate cookie.
+Bunu okuyucu için bir egseriz olarak bırakıyoruz. Aynı amanda bu bölümün sonunda yardımcı fonksiyonlar ve üzerinde değişiklik yapabileceğiniz çerezler bulacaksınız.
 
-To find a particular cookie, we can split `document.cookie` by `; `, and then find the right name. We can use either a regular expression or array functions to do that.
+## document.cookie' ye yazma
 
-We leave it as an exercise for the reader. Also, at the end of the chapter you'll find helper functions to manipulate cookies.
+`document.cookie` ye yazabilir. Ancak bu bir veri özelliği değildir, bu bir erişimdir.
 
-## Writing to document.cookie
+**`document.cookie` yazılan bir işlemi, tarayıcında sayesinde belirttiğimiz çerezleri günceller fakat bu, diğer çerezleri etkilemez.**
 
-We can write to `document.cookie`. But it's not a data property, it's an accessor.
-
-**A write operation to `document.cookie` passes through the browser that updates cookies mentioned in it, but doesn't touch other cookies.**
-
-For instance, this call sets a cookie with the name `user` and value `John`:
+Örneğin, bu ismi `user` ve değeri `John` olan bir çerezi ayarlar :
 
 ```js run
-document.cookie = "user=John"; // update only cookie named 'user'
-alert(document.cookie); // show all cookies
+document.cookie = "user=John"; // sadece 'user' isimli çerezi günceller
+alert(document.cookie); // tüm çerezleri göster
 ```
+Eğer komutu çalıştırırsanız, muhtemelen birden fazla çerez göreceksiniz. Bunun nedeni `document.cookie=` işlem tüm çerezleri etkilemediği içindir. Sadece `user` adlı çerezi değiştirir.
 
-If you run it, then probably you'll see multiple cookies. That's because `document.cookie=` operation does not overwrite all cookies. It only sets the mentioned cookie `user`.
+Tekinik olarak, isim ve değer herhangi bir karakter içerebilir, fakat geçerli bir atama yapmak için `encodeURIComponent` yerleşik fonksiyonu kullanılmalıdır:
 
-Technically, name and value can have any characters, but to keep the formatting valid they should be escaped using a built-in `encodeURIComponent` function:
+
 
 ```js run
 // special values, need encoding
@@ -67,30 +66,31 @@ alert(document.cookie); // ...; my%20name=John%20Smith
 
 
 ```warn header="Limitations"
-There are few limitations:
-- The `name=value` pair, after `encodeURIComponent`, should not exceed 4kb. So we can't store anything huge in a cookie.
-- The total number of cookies per domain is limited to around 20+, the exact limit depends on a browser.
+Birkaç kısıtlama vardır:
+- `encodeURIComponent` fonksiyonunu kullanırken `name=value` çifti 4kb yi geçmemelidir. Yani br çerezde çok büyük bir değer tutulamaz.
+- 
+- Kesin sınır tarayıcının türüne bağlı olmakla birlilte, alan adı başına toplam çerez sayısı 20+ ile sınırlıdır.
 ```
 
-Cookies have several options, many of them are important and should be set.
+Çerezlerin birkaç seçeneği vardır, bunların çoğu önemli ve ayarlanması gerekir. 
 
-The options are listed after `key=value`, delimited by `;`, like this:
+Seçenekler `key=value` ile belirtilmiş ve `;` ile ayrılmış, aşağıdaki gibi listelenir:
 
 ```js run
 document.cookie = "user=John; path=/; expires=Tue, 19 Jan 2038 03:14:07 GMT"
 ```
 
-## path
+## yol
 
 - **`path=/mypath`**
 
-The url path prefix, where the cookie is accessible. Must be absolute. By default, it's the current path.
+Çerezin url öneki ulaşılabilir olmalıdır. Tam olmalıdır. Varsayılan olarak, geçerli yoldur.
 
-If a cookie is set with `path=/admin`, it's visible at pages `/admin` and `/admin/something`, but not at `/home` or `/adminpage`.
+Eğer bir çerez `path=/admin` olarak ayarlandıysa, bu çerez `/admin` ve `/admin/something` sayfalarında görülebilir, ancak `/home` ya da `/adminpage` görünmez.
 
-Usually, we set `path=/` to make the cookie accessible from all website pages.
+Genelde, biz  çereiz tüm web sayfalarında  erişebilir olması için `path=/` şeklinde ayarlarız. 
 
-## domain
+## alan adı
 
 - **`domain=site.com`**
 
