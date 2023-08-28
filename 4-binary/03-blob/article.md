@@ -1,73 +1,73 @@
 # Blob
 
-`ArrayBuffer` and views are a part of ECMA standard, a part of JavaScript.
+`ArrayBuffer` ve view'lar, JavaScript'in bir parçası olan ECMA standardının bir parçasıdır.
 
-In the browser, there are additional higher-level objects, described in [File API](https://www.w3.org/TR/FileAPI/), in particular `Blob`.
+Tarayıcıda başta `Blob` olmak üzere, [File API](https://www.w3.org/TR/FileAPI/)'da tanımlanmış olan çeşitli ek yüksek seviye nesneler de bulunur.
 
-`Blob` consists of an optional string `type` (a MIME-type usually), plus `blobParts` -- a sequence of other `Blob` objects, strings and `BufferSources`.
+`Blob`, isteğe bağlı bir `type` karakter dizisi (genellikle bir MIME tipi) ve buna ek olarak `blobParts` - Başka `Blob` objelerinin, stringlerin ve `BufferSource`ların bir dizisi - bölümlerinden meydana gelir.
 
 ![](blob.svg)
 
-The constructor syntax is:
+Kurucu sözdizimi şu şekildedir:
 
 ```js
 new Blob(blobParts, options);
 ```
 
-- **`blobParts`** is an array of `Blob`/`BufferSource`/`String` values.
-- **`options`** optional object:
-  - **`type`** -- blob type, usually MIME-type, e.g. `image/png`,
-  - **`endings`** -- whether to transform end-of-line to make the blob correspond to current OS newlines (`\r\n` or `\n`). By default `"transparent"` (do nothing), but also can be `"native"` (transform).
+- **`blobParts`**, `Blob`/`BufferSource`/`String` değerlerinden oluşan bir dizidir.
+- **`options`** isteğe bağlı objesi:
+  - **`type`** blob tipidir ve genellikle örneğin `image/png` gibi bir MIME tipidir.
+  - **`endings`**, blob'un mevcut işletim sisteminin yeni satır karakterlerine (`\r\n\` veya `\n`) uyumlu olabilmesi için, için satır sonu karakterlerinin dönüştürülüp dönüştürülmeyeceği ayarı. Varsayılan olarak `"şeffaf"` (hiçbir şey yapma) şeklindedir, fakat aynı şekilde `"yerel"` (dönüştür) değeri de alabilir.
 
-For example:
+Örneğin:
 
 ```js
-// create Blob from a string
+// bir karakter dizisinden Blob oluştur
 let blob = new Blob(["<html>…</html>"], {type: 'text/html'});
-// please note: the first argument must be an array [...]
+// not: ilk argüman bir dizi olmalıdır [...]
 ```
 
 ```js
-// create Blob from a typed array and strings
-let hello = new Uint8Array([72, 101, 108, 108, 111]); // "hello" in binary form
+// tipli dizi ve karakter dizilerinden bir Blob oluştur
+let hello = new Uint8Array([72, 101, 108, 108, 111]); // ikili formatta "hello" değeri
 
 let blob = new Blob([hello, ' ', 'world'], {type: 'text/plain'});
 ```
 
 
-We can extract blob slices with:
+Blob dilimlerini şöyle çıkartabiliriz:
 
 ```js
 blob.slice([byteStart], [byteEnd], [contentType]);
 ```
 
-- **`byteStart`** -- the starting byte, by default 0.
-- **`byteEnd`** -- the last byte (exclusive, by default till the end).
-- **`contentType`** -- the `type` of the new blob, by default the same as the source.
+- **`byteStart`** başlangıç Byte'ı, varsayılan olarak 0'dır.
+- **`byteEnd`** son Byte (özel, varsayılan olarak sona kadardır)
+- **`contentType`** yeni blob'un `type`ı, varsayılan olarak kaynakla aynıdır
 
-The arguments are similar to `array.slice`, negative numbers are allowed too.
+Argümanlar `array.slice` ile benzerdir, negatif sayılar da kabul edilir.
 
-```smart header="Blobs are immutable"
-We can't change data directly in a blob, but we can slice parts of blobs, create new blobs from them, mix them into a new blob and so on.
+```smart header="Blob'lar değişmezdir"
+Blob'taki bir veriyi doğrudan değiştiremeyiz fakat blob'u parçalara bölerek bunlardan yeni blob'lar yaratıp bunları da yeni bir blob'ta birleştirebiliriz vesaire.
 
-This behavior is similar to JavaScript strings: we can't change a character in a string, but we can make a new corrected string.
+Bu durum JavaScript karakter dizilerininkine benzerdir: bir karakter dizisindeki bir karakteri değiştiremeyiz, fakat düzeltilmiş yeni bir karakter dizisi oluşturabiliriz.
 ```
 
-## Blob as URL
+## URL olarak Blob
 
-A Blob can be easily used as an URL for `<a>`, `<img>` or other tags, to show its contents.
+Bir Blob `<a>`, `<img>` gibi etiketler için, içeriklerini göstermek adına kolayca URL olarak kullanılabilir.
 
-Thanks to `type`, we can allso download/upload blobs, and it naturally becomes `Content-Type` in network requests.
+`type` özelliği sağ olsun aynı zamanda blob indirip yükleyebiliriz ve doğal bir şekilde `Content-Type` değerini de ağ isteği içerisinde taşıyor olacaktır.
 
-Let's start with a simple example. By\
- clicking on a link you download a dynamically-generated blob with `hello world` contents as a file:
+Basit bir örnekle başlayalım. Linke\
+ tıkladığınızda `Merhaba Dünya` içeriğini taşıyan, dinamik olarak oluşturulmuş bir blob'u bir dosya olarak indirebiliyor olun.
 
 ```html run
-<!-- download attribute forces the browser to download instead of navigating -->
-<a download="hello.txt" href='#' id="link">Download</a>
+<!-- download özelliği tarayıcıyı adrese gitmektense indirmeye zorlayacaktır -->
+<a download="hello.txt" href='#' id="link">İndir</a>
 
 <script>
-let blob = new Blob(["Hello, world!"], {type: 'text/plain'});
+let blob = new Blob(["Merhaba Dünya!"], {type: 'text/plain'});
 
 link.href = URL.createObjectURL(blob);
 </script>
