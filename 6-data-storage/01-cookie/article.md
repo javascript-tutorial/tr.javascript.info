@@ -341,7 +341,7 @@ function deleteCookie(name) {
 Önemli not: bir çerezi güncellediğimizde ya da sildiğimizde, daha önce kullandığımız path ve domain seçeneklerinin tam olarak aynısını kullanmalıyız.
 ```
 
-Together: [cookie.js](cookie.js).
+Tüm fonksiyonlar: [cookie.js](cookie.js).
 
 ## Appendix: Third-party cookies
 
