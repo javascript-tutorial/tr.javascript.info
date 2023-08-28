@@ -343,7 +343,6 @@ function deleteCookie(name) {
 
 Together: [cookie.js](cookie.js).
 
-
 ## Appendix: Third-party cookies
 
 Bir çerez, kullanıcının ziyaret ettiği başka bir etki alanı tarafından yerleştirilmişse buna "third-party" (üçüncü taraf) denir.
