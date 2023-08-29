@@ -104,17 +104,17 @@ Oluşturulmuş URL (ve dolayısıyla onunla bağlantılı link) yalnızca içind
 
 Ancak burada bir yan etki vardır. Bir blob adreslendiğinde blob'un kendisi hafızada bulunur. Tarayıcı onu hafızadan silemez.
 
-The mapping is automatically cleared on document unload, so blobs are freed then. But if an app is long-living, then that doesn't happen soon.
+Adresleme döküman kapatıldığında otomatik olarak silinir, böylece blob'lar temizlenmiş olur. Ancak uygulama uzun ömürlü bir yapıdaysa bu hemen gerçekleşmeyecektir.
 
-**So if we create an URL, that blob will hang in memory, even if not needed any more.**
+**Bu nedenle yeni bir URL oluşturduğumuzda ona ihtiyacımız kalmasa bile blob hafızada tutulmaya devam edecektir.**
 
-`URL.revokeObjectURL(url)` removes the reference from the internal mapping, thus allowing the blob to be deleted (if there are no other references), and the memory to be freed.
+`URL.revokeObjectURL(url)`, referansı iç adreslemeden silecektir; böylece blob'un silinmesini (eğer başka referans kalmadıysa) ve hafızanın boşaltılmasını sağlayacaktır.
 
-In the last example, we intend the blob to be used only once, for instant downloading, so we call `URL.revokeObjectURL(link.href)` immediately.
+Son örnekte blob'un yalnızca bir kere anlık indirme için kullanılacağı bir senaryo oluşturduk ve direkt olarak `URL.revokeObjectURL(link.href)` metodunu çağırdık.
 
-In the previous example though, with the clickable HTML-link, we don't call `URL.revokeObjectURL(link.href)`, because that would make the blob url invalid. After the revocation, as the mapping is removed, the url doesn't work any more.
+Ancak tıklanabilir bir HTML linki bulunan önceki örnekte `URL.revokeObjectURL(link.href)` metodunu çağırmadık çünkü bu durum blob'u geçersiz kılacaktı. Kaldırmanın ardından adreslemenin silinmesiyle URL bir daha çalışmayacaktı.
 
-## Blob to base64
+## Blob'tan base64'e
 
 An alternative to `URL.createObjectURL` is to convert a blob into a base64-encoded string.
 
