@@ -116,87 +116,87 @@ Ancak tıklanabilir bir HTML linki bulunan önceki örnekte `URL.revokeObjectURL
 
 ## Blob'tan base64'e
 
-An alternative to `URL.createObjectURL` is to convert a blob into a base64-encoded string.
+`URL.createObjectURL`'a bir alternatif de blob'u base64 olarak kodlanmış bir karakter dizisine dönüştürmek.
 
-That encoding represents binary data as a string of ultra-safe "readable" characters with ASCII-codes from 0 to 64. And what's more important -- we can use this encoding in "data-urls".
+Bu kodlama, ikili veriyi oldukça güvenilir şekilde 0'dan 64'e ASCII kodlarından oluşan "okunabilir" karakterlerle temsil eder ve daha da önemlisi bu kodlamayı "veri URL'leri" içinde kullanabiliriz.
 
-A [data url](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) has the form `data:[<mediatype>][;base64],<data>`. We can use such urls everywhere, on par with "regular" urls.
+Bir [veri URL'i](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) `data:[<mediatype>][;base64],<data>` formundadır. Bu tür URL'leri sıradan URL'lerle birebir aynı şekilde her yerde kullanabiliriz.
 
-For instance, here's a smiley:
+Örneğin bu bir gülümseme ifadesi:
 
 ```html
 <img src="data:image/png;base64,R0lGODlhDAAMAKIFAF5LAP/zxAAAANyuAP/gaP///wAAAAAAACH5BAEAAAUALAAAAAAMAAwAAAMlWLPcGjDKFYi9lxKBOaGcF35DhWHamZUW0K4mAbiwWtuf0uxFAgA7">
 ```
 
-The browser will decode the string and show the image: <img src="data:image/png;base64,R0lGODlhDAAMAKIFAF5LAP/zxAAAANyuAP/gaP///wAAAAAAACH5BAEAAAUALAAAAAAMAAwAAAMlWLPcGjDKFYi9lxKBOaGcF35DhWHamZUW0K4mAbiwWtuf0uxFAgA7">
+Tarayıcı bu karakter dizisini çözecek ve resmi gösterecek: <img src="data:image/png;base64,R0lGODlhDAAMAKIFAF5LAP/zxAAAANyuAP/gaP///wAAAAAAACH5BAEAAAUALAAAAAAMAAwAAAMlWLPcGjDKFYi9lxKBOaGcF35DhWHamZUW0K4mAbiwWtuf0uxFAgA7">
 
 
-To transform a blob into base64, we'll use the built-in `FileReader` object. It can read data from Blobs in multiple formats. In the [next chapter](info:file) we'll cover it more in-depth.
+Blob'u base64'e çevirmek için `FileReader` yerleşik objesini kullanacağız. Bu, blob'lardan birçok formatta veri okuyabilmekte. [bir sonraki bölümde](info:file) bunu daha derinlemesine ele alacağız.
 
-Here's the demo of downloading a blob, now via base-64:
+Aşağıdaki bir blob indirmenin şimdi base64 ile olan bir demosu:
 
 ```js run
 let link = document.createElement('a');
-link.download = 'hello.txt';
+link.download = 'merhaba.txt';
 
-let blob = new Blob(['Hello, world!'], {type: 'text/plain'});
+let blob = new Blob(['Merhaba Dünya'], {type: 'text/plain'});
 
 *!*
 let reader = new FileReader();
-reader.readAsDataURL(blob); // converts the blob to base64 and calls onload
+reader.readAsDataURL(blob); // blob'u base64'e çevirir ve onload'ı çağırır
 */!*
 
 reader.onload = function() {
-  link.href = reader.result; // data url
+  link.href = reader.result; // veri URL'i
   link.click();
 };
 ```
 
-Both ways of making an URL of a blob are usable. But usually `URL.createObjectURL(blob)` is simpler and faster.
+Bir blog oluşturmanın bu iki yolu da kullanılabilir ancak genellikle `URL.createObjectURL(blob)` daha basit ve hızlıdır.
 
-```compare title-plus="URL.createObjectURL(blob)" title-minus="Blob to data url"
-+ We need to revoke them if care about memory.
-+ Direct access to blob, no "encoding/decoding"
-- No need to revoke anything.
-- Performance and memory losses on big blobs for encoding.
+```compare title-plus="URL.createObjectURL(blob)" title-minus="Blob'tan veri URL'i"
++ Hafızaya önem veriyorsak kaldırmamız gerekiyor..
++ Blob'a doğrudan erişim. "Kodlama/çözme" yok.
+- Herhangi bir şey kaldırmamız gerekmiyor.
+- Performans ve hafıza büyük blob'ların kodlanması için harcanır.
 ```
 
-## Image to blob
+## Resim'den blob'a
 
-We can create a blob of an image, an image part, or even make a page screenshot. That's handy to upload it somewhere.
+Bir resmin blob'unu oluşturabiliriz, bir resim parçası olabilir veya sayfanın ekran görüntüsünü dahi oluşturabiliriz. Bir yerlere yükleme yapmak için oldukça kullanışlı.
 
-Image operations are done via `<canvas>` element:
+Resim işlemleri `<canvas>` öğesi aracılığıyla yapılır:
 
-1. Draw an image (or its part) on canvas using [canvas.drawImage](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage).
-2. Call canvas method [.toBlob(callback, format, quality)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob) that creates a blob and runs `callback` with it when done.
+1. Canvas üzerinde [canvas.drawImage](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage) kullanarak bir resim çiz (veya bir parçasını).
+2. Canvas'ın bir blob oluşturan ve tamamlandığında `callback`ini çalıştıran [.toBlob(callback, format, quality)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob) metodunu çağır.
 
-In the example below, an image is just copied, but we could cut from it, or transform it on canvas prior to making a blob:
+Aşağıdaki örnekte resim henüz kopyalanmış ancak bu durumda onu kesebiliriz veya bir blob oluşturmadan önce dönüştürebiliriz:
 
 ```js run
-// take any image
+// bir resim al
 let img = document.querySelector('img');
 
-// make <canvas> of the same size
+// aynı boyutlarda <canvas> oluştur
 let canvas = document.createElement('canvas');
 canvas.width = img.clientWidth;
 canvas.height = img.clientHeight;
 
 let context = canvas.getContext('2d');
 
-// copy image to it (this method allows to cut image)
+// resmi içine kopyala (bu metot resmi kesmeye izin verir)
 context.drawImage(img, 0, 0);
-// we can context.rotate(), and do many other things on canvas
+// context.rotate() yapabiliriz ve canvas üzerinde birçok başka işlemde bulunabiliriz
 
-// toBlob is async opereation, callback is called when done
+// toBlob asenkron bir işlem, tamamlandığında callback çağırılacak
 canvas.toBlob(function(blob) {
-  // blob ready, download it
+  // blob hazır, indir
   let link = document.createElement('a');
   link.download = 'example.png';
 
   link.href = URL.createObjectURL(blob);
   link.click();
 
-  // delete the internal blob reference, to let the browser clear memory from it
+  // tarayıcının hafızadan temizleyebilmesi için iç blob referansını sil
   URL.revokeObjectURL(link.href);
 }, 'image/png');
 ```
@@ -208,14 +208,14 @@ let blob = await new Promise(resolve => canvasElem.toBlob(resolve, 'image/png'))
 
 For screenshotting a page, we can use a library such as <https://github.com/niklasvh/html2canvas>. What it does is just walks the page and draws it on `<canvas>`. Then we can get a blob of it the same way as above.
 
-## From Blob to ArrayBuffer
+## Blob'tan ArrayBuffer'a
 
-The `Blob` constructor allows to create a blob from almost anything, including any `BufferSource`.
+`Blob` kurucu metodu, herhangi bir `BufferSource` içeren neredeyse her şeyden bir blob yaratabilmeye olanak sağlar.
 
-But if we need to perform low-level processing, we can get the lowest-level `ArrayBuffer` from it using `FileReader`:
+Yine de düşük seviye bir işleme ihtiyacımız varsa `FileReader`ı kullanarak en düşük seviyeli `ArrayBuffer`ı alabiliriz:
 
 ```js
-// get arrayBuffer from blob
+// blob'tan fileReader al
 let fileReader = new FileReader();
 
 *!*
@@ -228,15 +228,15 @@ fileReader.onload = function(event) {
 ```
 
 
-## Summary
+## Özet
 
-While `ArrayBuffer`, `Uint8Array` and other `BufferSource` are "binary data", a [Blob](https://www.w3.org/TR/FileAPI/#dfn-Blob) represents "binary data with type".
+`ArrayBuffer`, `Uint8Array` ve diğer `BufferSource`lar "ikili veri"ler iken [Blob](https://www.w3.org/TR/FileAPI/#dfn-Blob) "tipi olan ikili veri"yi temsil eder.
 
-That makes Blobs convenient for upload/download operations, that are so common in the browser.
+Bu, Blob'ları tarayıcıda çok yaygın olan indirme/yükleme işlemleri için uygun hale getirir.
 
-Methods that perform web-requests, such as [XMLHttpRequest](info:xmlhttprequest), [fetch](info:fetch-basics) and so on, can work with `Blob` natively, as well as with other binary types.
+[XMLHttpRequest](info:xmlhttprequest), [fetch](info:fetch-basics) gibi web isteği gerçekleştiren metotlar, diğer ikili verilerle olduğu gibi `Blob` ile de doğal olarak çalışabilir.
 
-We can easily convert betweeen `Blob` and low-level binary data types:
+`Blob` ve düşük seviye ikili veri tiplerini kolayca birbiri arasında dönüştürebiliriz:
 
-- We can make a Blob from a typed array using `new Blob(...)` constructor.
-- We can get back `ArrayBuffer` from a Blob using `FileReader`, and then create a view over it for low-level binary processing.
+- `new Blob(...)` kurucu metodunu kullanarak tipli bir diziden bir blob oluşturabiliriz.
+- Blob'tan `ArrayBuffer`a `FileReader` kullanarak dönebiliriz ve ardından düşük seviye ikili veri işleme işlemleri için bir view oluşturabiliriz.
