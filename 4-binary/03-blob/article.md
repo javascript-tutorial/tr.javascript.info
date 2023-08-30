@@ -152,7 +152,7 @@ reader.onload = function() {
 };
 ```
 
-Bir blog oluşturmanın bu iki yolu da kullanılabilir ancak genellikle `URL.createObjectURL(blob)` daha basit ve hızlıdır.
+Bir blob oluşturmanın bu iki yolu da kullanılabilir ancak genellikle `URL.createObjectURL(blob)` daha basit ve hızlıdır.
 
 ```compare title-plus="URL.createObjectURL(blob)" title-minus="Blob'tan veri URL'i"
 + Hafızaya önem veriyorsak kaldırmamız gerekiyor..
