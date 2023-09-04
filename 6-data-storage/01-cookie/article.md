@@ -1,58 +1,55 @@
 # Cookies, document.cookie
 
-Cookies are small strings of data that are stored directly in the browser. They are a part of HTTP protocol, defined by [RFC 6265](https://tools.ietf.org/html/rfc6265) specification.
+Çerezler, doğrudan tarayıcıda depolanan küçük veri dizileridir. Çerezler [RFC 6265](https://tools.ietf.org/html/rfc6265) teknik şartnamesi tarafından tanımlanan HTTP protokolünün bir parçasıdırlar.
 
-Most of the time, cookies are set by a web server. Then they are automatically added to every request to the same domain.
+Çoğu zaman, çerezler bir web sunucusu tarafından ayarlanır. Daha sonra aynı etki alanına yapılan her isteğe otomatik olarak eklenirler.
 
-One of the most widespread use cases is authentication:
+En yaygın kullanım alanlarından biri kimlik doğrulamadır:
 
-1. Upon sign in, the server uses `Set-Cookie` HTTP-header in the response to set a cookie with "session identifier".
-2. Next time when the request is set to the same domain, the browser sends the over the net using `Cookie` HTTP-header.
-3. So the server knows who made the request.
+1. Oturum açıldığında, sunucu "session identifier" içeren bir çerez ayarlamak için, gönderilen isteğe verdiği yanıtta `Set-Cookie` HTTP başlığını kullanır.
+2. Gelecek sefere istek aynı etki alanından yapıldığında, tarayıcı `Cookie` HTTP-header başlağını kullanarak ağ üzerinden gönderir.
+3. Böylece sunucu isteğin kim tarafından yapıldığını bilir.
 
-We can also access cookies from the browser, using `document.cookie` property.
+Ayrıca `document.cookie` özelliğini kullarak çerezelere tarayıcıdan da erişebiliriz.
 
-There are many tricky things about cookies and their options. In this chapter we'll cover them in detail.
+Çerezler ve seçenekleri hakkında birçok ince detay var. Bu bölümde bunları ayrıntılı olarak ele alacağız.
 
 ## Reading from document.cookie
 
 ```online
-Do you have any cookies on this site? Let's see:
+Bu sitede hiç çerezin var mı? Hadi görelim:
 ```
 
 ```offline
-Assuming you're on a website, it's possible to see the cookies, like this:
+Bir web sitesinde olduğunuzu varsayalım, çerezleri şu şekilde görmek mümkündür:
 ```
 
 ```js run
-// At javascript.info, we use Google Analytics for statistics,
-// so there should be some cookies
+// javascript.info sitesinde, biz istatistikler için Google Analytics kullanırız,
+// bu yüzden bazı çerezler olmalı
 alert( document.cookie ); // cookie1=value1; cookie2=value2;...
 ```
+`document.cookie` değeri `; ` ile ayrılmış `name=value` çiftlerinden oluşur. Her biri ayrı bir çerezdir.
 
+Bellirli bir çerezi bulmak için, `document.cookie` yi `; ` ile ayırabiliriz ve sonra doğru ismi bulabiliriz. Ayrıca bunu yapmak için düzenli ifadeler (regular expresion) veya dizi methodlarını da kullanabiliriz.
 
-The value of `document.cookie` consists of `name=value` pairs, delimited by `; `. Each one is a separate cookie.
+Bunu okuyucu için bir egseriz olarak bırakıyoruz. Ayrıca, bu bölümün sonunda yardımcı fonksiyonlar ve üzerinde değişiklik yapabileceğiniz çerezler bulacaksınız.
 
-To find a particular cookie, we can split `document.cookie` by `; `, and then find the right name. We can use either a regular expression or array functions to do that.
+## document.cookie' ye yazma
 
-We leave it as an exercise for the reader. Also, at the end of the chapter you'll find helper functions to manipulate cookies.
+`document.cookie` ye yazabilir. Ancak bu bir veri özelliği değildir, bu bir erişimdir.
 
-## Writing to document.cookie
+**`document.cookie` yazılan bir işlemi, tarayıcında sayesinde belirttiğimiz çerezleri günceller fakat bu, diğer çerezleri etkilemez.**
 
-We can write to `document.cookie`. But it's not a data property, it's an accessor.
-
-**A write operation to `document.cookie` passes through the browser that updates cookies mentioned in it, but doesn't touch other cookies.**
-
-For instance, this call sets a cookie with the name `user` and value `John`:
+Örneğin, bu ismi `user` ve değeri `John` olan bir çerezi ayarlar :
 
 ```js run
-document.cookie = "user=John"; // update only cookie named 'user'
-alert(document.cookie); // show all cookies
+document.cookie = "user=John"; // sadece 'user' isimli çerezi günceller
+alert(document.cookie); // tüm çerezleri göster
 ```
+Eğer komutu çalıştırırsanız, muhtemelen birden fazla çerez göreceksiniz. Bunun nedeni `document.cookie=` işlem tüm çerezleri etkilemediği içindir. Sadece `user` adlı çerezi değiştirir.
 
-If you run it, then probably you'll see multiple cookies. That's because `document.cookie=` operation does not overwrite all cookies. It only sets the mentioned cookie `user`.
-
-Technically, name and value can have any characters, but to keep the formatting valid they should be escaped using a built-in `encodeURIComponent` function:
+Tekinik olarak, isim ve değer herhangi bir karakter içerebilir, fakat geçerli bir atama yapmak için `encodeURIComponent` yerleşik fonksiyonu kullanılmalıdır:
 
 ```js run
 // special values, need encoding
@@ -65,16 +62,16 @@ document.cookie = encodeURIComponent(name) + '=' + encodeURIComponent(value);
 alert(document.cookie); // ...; my%20name=John%20Smith
 ```
 
-
 ```warn header="Limitations"
-There are few limitations:
-- The `name=value` pair, after `encodeURIComponent`, should not exceed 4kb. So we can't store anything huge in a cookie.
-- The total number of cookies per domain is limited to around 20+, the exact limit depends on a browser.
+Birkaç kısıtlama vardır:
+- `encodeURIComponent` fonksiyonunu kullanırken `name=value` çifti 4kb yi geçmemelidir. Yani br çerezde çok büyük bir değer tutulamaz.
+- 
+- Kesin sınır tarayıcının türüne bağlı olmakla birlilte, etki alanı başına toplam çerez sayısı 20+ ile sınırlıdır.
 ```
 
-Cookies have several options, many of them are important and should be set.
+Çerezlerin birkaç seçeneği vardır, bunların çoğu önemli ve ayarlanması gerekir. 
 
-The options are listed after `key=value`, delimited by `;`, like this:
+Seçenekler `key=value` ile belirtilmiş ve `;` ile ayrılmış, aşağıdaki gibi listelenir:
 
 ```js run
 document.cookie = "user=John; path=/; expires=Tue, 19 Jan 2038 03:14:07 GMT"
@@ -84,59 +81,59 @@ document.cookie = "user=John; path=/; expires=Tue, 19 Jan 2038 03:14:07 GMT"
 
 - **`path=/mypath`**
 
-The url path prefix, where the cookie is accessible. Must be absolute. By default, it's the current path.
+Çerezin URL öneki ulaşılabilir olmalıdır. Tam olmalıdır. Varsayılan olarak, geçerli yoldur.
 
-If a cookie is set with `path=/admin`, it's visible at pages `/admin` and `/admin/something`, but not at `/home` or `/adminpage`.
+Eğer bir çerez `path=/admin` olarak ayarlandıysa, bu çerez `/admin` ve `/admin/something` sayfalarında görülebilir, ancak `/home` ya da `/adminpage` sayfalarında görünmez.
 
-Usually, we set `path=/` to make the cookie accessible from all website pages.
+Genelde, biz  çerezin tüm web sayfalarında  erişebilir olması için `path=/` şeklinde ayarlarız. 
 
 ## domain
 
 - **`domain=site.com`**
 
-A domain where the cookie is accessible. In practice though, there are limitations. We can't set any domain.
+Çerezlere etki alanı üzerinden erişilebilir. Ancak pratikte bazı kısıtlamalar vardır. Bu çerezleri herhangi bir etki alanına ayarlayamayız.
 
-By default, a cookie is accessible only at the domain that set it. So, if the cookie was set by `site.com`, we won't get it `other.com`.
+Varsayılan olarak, bir çerez sadece onu ayarladığımız etki alanından erişilebilir. Yani, eğer çerez `site.com` etki alanına ayarlanmışsa, biz ona `other.com` etki alanından erişemeyiz.
 
-...But what's more tricky, we also won't get the cookie at a subdomain `forum.site.com`!
+...Ancak daha ilginç olanı, `forum.site.com` alt etki alnından da çerezlere erişilemez.
+
 
 ```js
-// at site.com
+//  diyelim ki site.com alan adlı sitede şöyle bir çerez ataması yapılmış olsun 
 document.cookie = "user=John"
 
-// at forum.site.com
-alert(document.cookie); // no user
+// forum.site.com alt etki alanından aynı çereze erişmeye çalıştığımızda çıktı aşağıdaki gibi olur
+alert(document.cookie); // kullanıcı yok
 ```
 
-**There's no way to let a cookie be accessible from another 2nd-level domain, so `other.com` will never receive a cookie set at `site.com`.**
+**Bir çerezin başka 2.seviye bir etki alanından erişilebilmesini sağlamanın bir yolu yok, bu nedenle `other.com` sitesi hiçbir zaman `site.com` sitesinde ayarlanmış bir çereze erişemeyeektir.**
 
-It's a safety restriction, to allow us to store sensitive data in cookies.
+Bunun sebebi, önemli verileri çerezlerde saklamamıza izin veren bir günvelik sınırlamasıdır.
 
-...But if we'd like to grant access to subdomains like `forum.site.com`, that's possible. We  should explicitly set `domain` option to the root domain: `domain=site.com`:
+...Ancak `forum.site.com` gibi alt alan adlarına erişim izni vermek istiyorsak, bu mümkündür. Bunun için `domain` seçeneğini açıkça `domain=site.com` seçeneğine ayarlamamız gerekiyor:
 
 ```js
-// at site.com, make the cookie accessible on any subdomain:
+//  site.com etki alnında, herhangi bir alt etki alanına şöyle ayarlayabiliriz:
 document.cookie = "user=John; domain=site.com"
 
-// at forum.site.com
-alert(document.cookie); // with user
+// forum.site.com alt alanından çerezlere erişelim 
+alert(document.cookie); // çıktı: kullanıcılar
 ```
+Geçmişten gelen nedenlerden dolayı, `domain=.site.com` (başında bir nokta ile) şeklinde de çalışır, çok eski tarayıcıları desteklemek içn noktayı eklemek daha iyi olabilir.
 
-For historical reasons, `domain=.site.com` (a dot at the start) also works this way, it might better to add the dot to support very old browsers.
-
-So, `domain` option allows to make a cookie accessible at subdomains.
+Dolayısıyla, `domain` seçeneği, çerezlere alt alan adlarından da erişmeyi izin verir.
 
 ## expires, max-age
 
-By default, if a cookie doesn't have one of these options, it disappears when the browser is closed. Such cookies are called "session cookies"
+Varsayılan olarak, eğer bir çerez bu seçeneklerden birine sahip değilse, tarayıcı kapatıldığında çerezler de yok olur. Bu tür çerezlere "session cookies" denir.
 
-To let cookies survive browser close, we can set either `expires` or `max-age` option.
+Tarayıcı kapatıldığında bile çerezlerin yok olmasını engellemek için `expires` ya da `max-age` seçeneklerinden birini ayarlamak gerekir.
 
 - **`expires=Tue, 19 Jan 2038 03:14:07 GMT`**
 
-Cookie expiration date, when the browser will delete it automatically.
+Bu örnekte, tarayıcının 19 Ocak 2038 e kadar çerezi otomatik olarak tutumasını ve süresi dolunca silmesini sağlar.
 
-The date must be exactly in this format, in GMT timezone. We can use `date.toUTCString` to get it. For instance, we can set the cookie to expire in 1 day:
+Tarih, kesinlikle GMT zaman dilimi formatında olmalı. Bu formatı elde etmek için `date.toUTCString` methodunu kullanabiliriz. Örneğin, çerezi 1 gün sonra yok olacak şekilde ayarlabiliriz:
 
 ```js
 // +1 day from now
@@ -144,20 +141,19 @@ let date = new Date(Date.now() + 86400e3);
 date = date.toUTCString();
 document.cookie = "user=John; expires=" + date;
 ```
-
-If we set `expires` to a date in the past, the cookie is deleted.
+Eğer çerezin `expires` seçeneğini geçmişteki bir tarihe ayarlarsak, çerez silinir.
 
 -  **`max-age=3600`**
 
-An alternative to `expires`, specifies the cookie expiration in seconds from the current moment.
+`expires` seçeneğine alternatif olarak, çerezi geçerli andan itibaren saniye türünden yok olmasını belirtir.
 
-If zero or negative, then the cookie is deleted:
+Eğer saniye, sıfır ya da negatif bir sayı olursa, çerez silinir.
 
 ```js
-// cookie will die +1 hour from now
+// çerez ayarlandığı zamandan bir saat sonra silinir.
 document.cookie = "user=John; max-age=3600";
 
-// delete cookie (let it expire right now)
+// çerezi sil (çerezin süresinin sona ermesine izin ver)
 document.cookie = "user=John; max-age=0";
 ```  
 
@@ -165,14 +161,13 @@ document.cookie = "user=John; max-age=0";
 
 - **`secure`**
 
-The cookie should be transferred only over HTTPS.
+Çerez sadece HTTPS üzerinden gönderilmelidir.
 
-**By default, if we set a cookie at `http://site.com`, then it also appears at `https://site.com` and vice versa.**
+**Varsayılan olarak, eğer `http://site.com` sitesi üzerinden bir çerez ayarlarsak, bu aynı zamanda `https://site.com` sitesi üzerinden görünür ve tersi de mümkündür.**
 
-That is, cookies are domain-based, they do not distinguish between the protocols.
+Yani, çerezler etki alanı tabanlıdır, protokoller arasında ayırım yapmaz.
 
-With this option, if a cookie is set by `https://site.com`, then it doesn't appear when the same site is accessed by HTTP, as `http://site.com`. So if a cookie has sensitive content that should never be sent over unencrypted HTTP, then the flag is the right thing.
-
+Bu seçenekle beraber, eğer bir çerez hassas bilgiler içeriyorsa, durum değişir. Yani bir çerez `https://site.com` etki alanına ayarlamışsa, bu çereze `http://site.com` üzerinden erişem mümkün değildir, çünkü HTTP ile HTTPS arasında S günvelik flagı vardır. Bu da çerezlere erişilmesini engeller. Sonuç olarak hassas bilgilere sahip çerezleriniz varsa HTTPS protokülünü kullanmanız daha doğru olur.
 ```js
 // assuming we're on https:// now
 // set the cookie secure (only accessible if over HTTPS)
@@ -181,107 +176,110 @@ document.cookie = "user=John; secure";
 
 ## samesite
 
-That's another security option, to protect from so-called XSRF (cross-site request forgery) attacks.
+Bu, XSRF (siteler arası sahte istek) saldırılarından korunmak için başka bir güvenlik seçeneğidir.
 
-To understand when it's useful, let's introduce the following attack scenario.
+Bu seçeneğin ne zaman işimize yarayacağını anlamak için aşağıdaki senaryoya bakalım.
 
 ### XSRF attack
 
-Imagine, you are logged into the site `bank.com`. That is: you have an authentication cookie from that site. Your browser sends it to `bank.com` with every request, so that it recognizes you and performs all sensitive financial operations.
+`bank.com` sitesine giriş yaptığınızı düşünün. Yani: bu siteden bir tane kimlik doğrulama çereziniz var. Tarayıcınızla `bank.com` sitesine her giriş yaptığınızda, tarayıcınız bu çerezi `bank.com` sitesinin bulunduğu sunucuya gönderir, böylece `bank.com` sitesi sizi tanır ve tüm hassas finansal işlemlerinizi gerçekleştirir.
 
-Now, while browsing the web in another window, you occasionally come to another site `evil.com`, that automatically submits a form `<form action="https://bank.com/pay">` to `bank.com` with input fields that initiate a transaction to the hacker's account.
+Şimdi, başka bir sekmede internette gezinirken (`evil.com`), bu sitede (`evil.com`) de bilgisayar korsanına ait bir giriş hesabı var ve bu site zaman zaman <form action="https://bank.com/pay"> ile `bank.com` sitesine otomatik olarak bir form isteği gönderiyor.
 
-The form is submitted from `evil.com` directly to the bank site, and your cookie is also sent, just because it's sent every time you visit `bank.com`. So the bank recognizes you and actually performs the payment.
+Bu form kayıt isteği `evil.com` sitesi üzerinden doğrudan `bank.com` sitesine istekler gönderir ve siz `bank.com` sitesini her ziyaret ettiğinizde gönderildiği için otomatik olarak bu siteye de size gönderilen çerezin aynısı gönderilir. Böylece bilgisayar korsanı kendi bilgiyasarı üzerinden işlem yaptığında, `bank.com` sitesinin sunucusu bunun siz olduğunuzu varsayıp, yapılan tüm finansal işlemlere onay verir.
+
 
 ![](cookie-xsrf.svg)
 
-That's called a cross-site request forgery (or XSRF) attack.
+Buna, siteler arası istek sahteciliği (ya da XSRF) saldırısı denir.
 
-Real banks are protected from it of course. All forms generated by `bank.com` have a special field, so called "xsrf protection token", that an evil page can't neither generate, nor somehow extract from a remote page (it can submit a form there, but can't get the data back).
+Tabi ki, gerçek bankalar buna karşı koruma sağlarlar. `bank.com` tarafından oluşturulan tüm formların özel bir alanı vardır, buna "xsrf protection token" (xsrf koruma belirteci) denir, kötü niyetli biri ne bir form oluşturabilir ne de buradan uzaktan veri çekebilir (formu kayıt edebilir ancak veriyi geri alamaz).
 
-But that takes time to implement: we need to ensure that every form has the token field, and we must also check all requests.
+Ancak bunu uygulamak zaman alır, her formun token (belirteç) alanına sahip olduğundan emin olmalıyız ve ayrıca tüm istekleri kontrol etmemiz gerekir.
 
 ### Enter cookie samesite option
 
-The cookie `samesite` option provides another way to protect from such attacks, that (in theory) should not require "xsrf protection tokens".
+`samesite` seçeneği, bu tür saldırılardan korunmak için, (teorik olarak) "xsrf protection tokens" kullanmayı gerektirmeyen, başka bir yol sağlar.
 
-It has two possible values:
+Olası iki değeri vardır:
 
 - **`samesite=strict` (same as `samesite` without value)**
 
-A cookie with `samesite=strict` is never sent if the user comes from outside the site.
+`samesite=strict` 
 
-In other words, whether a user follows a link from their mail or submits a form from `evil.com`, or does any operation that originates from another domain, the cookie is not sent.
+`samesite=strict` özelliğine sahip bir çerez, kullanıcının web sitesine dışarıdan geldiği durumlarda hiçbir zaman tarayıcı tarafından gönderilmez veya paylaşılmaz. Bu, çerezin sadece aynı web sitesi içindeki isteklerde kullanılmasını ve diğer web siteleriyle paylaşılmamasını sağlayan bir güvenlik önlemidir.
 
-If authentication cookies have `samesite` option, then XSRF attack has no chances to succeed, because a submission from `evil.com` comes without cookies. So `bank.com` will not recognize the user and will not proceed with the payment.
+Başka bir deyişle, bir kullanıcı e-postalarından bir bağlantıyı takip etse veya `evil.com` 'dan bir form gönderse veya başka bir alan alanından kaynaklanan herhangi bir işlem yapsa da çerez gönderilmez.
 
-The protection is quite reliable. Only operations that come from `bank.com` will send the `samesite` cookie.
+Eğer kimlik doğrulama çerezleri `samesite` seçeneğine sahipse, XSRF saldırısının başarılı olma şansı yoktur, çünkü `evil.com` gelen istekler çerezler olmadan gelir. Böylece `bank.com` sitesi kullanıcıyı tanımayacak ve ödeme işlemi gerçekleşmeyecektir.
 
-Although, there's a small inconvenience.
+Koruma oldukça güvenilirdir. Yalnızca `bank.com` sitesi içerisinden gelen işlemlere `samesite` çerezi gönderecektir.
 
-When a user follows a legitimate link to `bank.com`, like from their own notes, they'll be surprised that `bank.com` does not recognize them. Indeed, `samesite=strict` cookies are not sent in that case.
+Yine de, küçük bir sıkıntı var.
 
-We could work around that by using two cookies: one for "general recognition", only for the purposes of saying: "Hello, John", and the other one for data-changing operations with `samesite=strict`. Then a person coming from outside of the site will see a welcome, but payments must be initiated from the bank website.
+Bir kullanıcı kendi bilgisayarında not defterine `bank.com` sitesine giden gerçek bir link kaydettiğinde ve daha sonra bu linke tıklayıp işlem yapmaya çalıştığında, ilginç bir şekilde karşılacağı durum, tekrardan oturum açması gerektiğidir. Aslında, `samesite=strict` çerezleri bu durumda gönderilmez.
+
+Bu durumu iki çerez kullarak aşabiliriz: birincisi "general recognition" (genel tanıma) için, bunun amacı sadece "Hello, John" gibi mesajları gösterme açmacı için kullanılır, ve diğeri de `samesite=strict` özelliği ile verileri değiştirmek içindir. O zaman eğer kişi site dışından geliyorsa hoşgeldin mesajını görecektir, ancak yine de işlem yapmak için (ödeme vs.) bankanın kendi sitesinden içinden işlem başlatmak zorundadır. 
 
 - **`samesite=lax`**
 
-A more relaxed approach that also protects from XSRF and doesn't break user experience.
+XSRF saldırısından korunmak ve kullanıcı deneyimini olumsuz etkilememek için daha iyi bir yaklaşımdır.
 
-Lax mode, just like `strict`, forbids the browser to send cookies when coming from outside the site, but adds an exception.
+Lax modu,  `strict` modu gibi, tarayıcının site dışından gelen istekleri çerezleri göndermesini engeller, ancak bir istisna ekler.
 
-A `samesite=lax` cookie is sent if both of these conditions are true:
-1. The HTTP method is "safe" (e.g. GET, but not POST).
+Eğer aşağıdaki her iki koşul varsa `samesite=lax` çerezi gönderilir: 
 
-    The full list of safe HTTP methods is in the [RFC7231 specification](https://tools.ietf.org/html/rfc7231). Basically, these are the methods that should be used for reading, but not writing the data. They must not perform any data-changing operations. Following a link is always GET, the safe method.
+1. HTTP methodu eğer güvenli ise (örneğin GET, ama POST değilse).
 
-2. The operation performs top-level navigation (changes URL in the browser address bar).
+    [RFC7231 specification](https://tools.ietf.org/html/rfc7231) (RFC7231 teknik şartnamesi) nin güvenli yöntemlerinin tam listesini burada bulabilirsiniz. Temel olarak, bunlar veriyi yazmak için değil, okumak için kullanılması gereken yöntemlerdir. Herhangi bir veriyi değiştirmek için kullanılmamalıdır. Bir link bağlantısını takip etmenin daima en güvenli yolu GET yöntemidir.
 
-    That's usually true, but if the navigation is performed in an `<iframe>`, then it's not top-level. Also, AJAX requests do not perform any navigation, hence they don't fit.
+2. Bu işlem üst seviye gezinti gerçekleştirir (tarayıcı adres çubuğundaki URL'yi değiştirir).
 
-So, what `samesite=lax` does is basically allows a most common "go to URL" operation to have cookies. E.g. opening a website link from notes satisfies these conditions.
+    Bu durum genellikle olur, ancak bu bir `<iframe>` HTML elementi (bir sayfa içine dökümanlar, videolar ve interaktif medya yerleştirmenizi sağlayan bir HTML elementi) içindeyse, o zaman bu üst seviye bir gezinti değildir, Ayrıca, AJAX istekleri de üst seviye gezintiyi değiştirmediğinden, onlar da aynı kapsamdadır.
 
-But anything more complicated, like AJAX request from another site or a form submittion loses cookies.
+Yani, `samesite=lax`'nin yaptığı şey temel olarak en yaygın "go to URL" işlemlerinin çerezlere erişmesine izin vermektir. Örneğin, notlardan bir web sitesi bağlantısı açmak gibi bu koşulları karşılar.
 
-If that's fine for you, then adding `samesite=lax` will probably not break the user experience and add protection.
+Ancak başka siteden gelen AJAX istekleri veya bir form gönderimi gibi daha karmaşık işlemler bu çerezlere erişemezler. 
 
-Overall, `samesite` is a great option, but it has an important drawback:
-- `samesite` is ignored (not supported) by old browsers, year 2017 or so.
+Eğer bu sizin için uygunsa, o zaman `samesite=lax` eklemek muhtemelen size korumak sağlayacak ve kullanıcı deneyiminizi olumsuz etkilemeyecektir. 
 
-**So if we solely rely on `samesite` to provide protection, then old browsers will be vulnerable.**
+Genel olarak, `samesite` harika bir seçenektir, ancak önemli bir dezavantajı vardır:
 
-But we surely can use `samesite` together with other protection measures, like xsrf tokens, to add an additional layer of defence and then, in the future, when old browsers die out, we'll probably be able to drop xsrf tokens.
+- `samesite` 2017 ve önceki tarayıcıları tarafından desteklenmez (yok sayılır).
+
+**Dolayısıyla, koruma sağlamak için yalnızca `samesite` güvenirsek, eski tarayıcılar savunmasız kalacaktır.**
+
+Fakat, ek bir savunma katmanı eklemek için `samesite`'i,"xsrf belirteçleri" gibi, diğer koruma önlemleriyle birlikte kullanabiliriz, gelecekte, eski tarayıcılar kullanımdan kaldırıldığında (internet explorer gibi), muhtemelen "xsrf belirteçlerini" kullanmayı bırakabiliriz.
 
 ## httpOnly
 
-This option has nothing to do with JavaScript, but we have to mention it for completeness.
+Bu seçeneğin JavaScript ile hiçbir ilgisi yoktur, ancak konu bütünlüğünden dolayı bundan da bahsetmemiz gerekiyor.
 
-The web-server uses `Set-Cookie` header to set a cookie. And it may set the `httpOnly` option.
+Web sunucuları çerezleri ayarlamak için `Set-Cookie` başlığını kullanır. Ve bunu yaparken `httpOnly` seçeneğine ayarlanması gerekir.
 
-This option forbids any JavaScript access to the cookie. We can't see such cookie or manipulate it using `document.cookie`.
+Bu seçenek, çerezlere herhangi bir JavaScript erişimini engeller. Böyle bir çerezi göremeyiz ya da `document.cookie` seçeneğini ile üstünde değişiklikler yapamyız.
 
-That's used as a precaution measure, to protect from certain attacks when a hacker injects his own JavaScript code into a page and waits for a user to visit that page. That shouldn't be possible at all, a hacker should not be able to inject their code into our site, but there may be bugs that let hackers do it.
+Bu, bir bilgisayar korsanının kendi JavaScript kodunu bir sayfaya enjekte etmesi ve kullanıcının bu sayfayı ziyaret etmesini beklemesi durumunda belirli saldırılardan korunmak için bir önlem olarak kullanılır. Buna hiçbir zaman izin verilmemeli, bir bilgisayar korsanı kendi kodunu sitemize enjekte edememelidir, ancak bilgisayar korsanlarının bunu yapmasına izin veren hatalar olabilir.
 
+Normalde, eğer böyle bir şey olursa ve bir kullanıcı bilgisayar korsanının kodunu içeren bir web sayfasını ziyaret ederse, bu kod çalışır ve kimlik doğrulama bilgilerini içeren çerezlerine `document.cookie` seçeneği ile erişir. Berbat bir durum.
 
-Normally, if such thing happens, and a user visits a web-page with hacker's code, then that code executes and gains access to `document.cookie` with user cookies containing authentication information. That's bad.
-
-But if a cookie is `httpOnly`, then `document.cookie` doesn't see it, so it is protected.
+Ancak eğer bir çerez `httpOnly` ise, `document.cookie` bu çerezi göremez, bu nedenle bilgilerimiz korunur.
 
 ## Appendix: Cookie functions
 
-Here's a small set of functions to work with cookies, more convenient than a manual modification of `document.cookie`.
+Aşağıda çerezlerle çalışmak için `document.cookie` ile çerezleri  manuel olarak değiştirmekten daha kullanışlı bir fonksiyon var.
 
-There exist many cookie libraries for that, so these are for demo purposes. Fully working though.
-
+Bunun için yayınlanmış birçok çerez kütüphanesi vardır, bu yüzden bunlar sadece gösterim amaçlı. Yine de tamamen çalışıyor.
 
 ### getCookie(name)
 
-The shortest way to access cookie is to use a [regular expression](info:regular-expressions).
+Bir çereze erişmenin kısa yolu [regular expression](info:regular-expressions) (buradan daha detaylı bakabilirsiniz) yöntemini kullanmaktır.
 
-The function `getCookie(name)` returns the cookie with the given `name`:
+ `getCookie(name)` fonksiyonu `name` adı verilen çerezi geriye döndürür:
 
 ```js
-// returns the cookie with the given name,
-// or undefined if not found
+// verilen isme sahip çerezi geri döndürür,
+// ya da bulamazsa undefined geri döndürür
 function getCookie(name) {
   let matches = document.cookie.match(new RegExp(
     "(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"
@@ -289,21 +287,20 @@ function getCookie(name) {
   return matches ? decodeURIComponent(matches[1]) : undefined;
 }
 ```
+Burada `new RegExp` sınıfı dinamik olarak oluşturulur, eşleştirmek için `; name=<value>` kullanılır.
 
-Here `new RegExp` is generated dynamically, to match `; name=<value>`.
-
-Please note that a cookie value is encoded, so `getCookie` uses a built-in `decodeURIComponent` function to decode it.
+Lütfen bir çerez değerinin şifrelenmiş olduğunu unutmayın, bu nedenle `getCookie` fonksiyonu çerezlerin şifresini(encode => decode) çözmek için `decodeURIComponent` yerleşik methodunu kullanır.
 
 ### setCookie(name, value, options)
 
-Sets the cookie `name` to the given `value` with `path=/` by default (can be modified to add other defaults):
+Çerezi verilen `name` ve `value`çifti ile varsayılan olarak `path=/` 'a ayarlar (başka varsayılanları eklemek için değiştirilebilir):
 
 ```js run
 function setCookie(name, value, options = {}) {
 
   options = {
     path: '/',
-    // add other defaults here if necessary
+    // eğer istersek başka varsayılanları da buraya ekleyebiliriz
     ...options
   };
 
@@ -324,13 +321,13 @@ function setCookie(name, value, options = {}) {
   document.cookie = updatedCookie;
 }
 
-// Example of use:
+// Bizim için bir örnek:
 setCookie('user', 'John', {secure: true, 'max-age': 3600});
 ```
 
 ### deleteCookie(name)
 
-To delete a cookie, we can call it with a negative expiration date:
+Bir çerezi silmek için, onu negatif bir son kullanma tarihi ile çağırabiliriz:
 
 ```js
 function deleteCookie(name) {
@@ -341,86 +338,83 @@ function deleteCookie(name) {
 ```
 
 ```warn header="Updating or deleting must use same path and domain"
-Please note: when we update or delete a cookie, we should use exactly the same path and domain options as when we set it.
+Önemli not: bir çerezi güncellediğimizde ya da sildiğimizde, daha önce kullandığımız path ve domain seçeneklerinin tam olarak aynısını kullanmalıyız.
 ```
 
-Together: [cookie.js](cookie.js).
-
+Tüm fonksiyonlar: [cookie.js](cookie.js).
 
 ## Appendix: Third-party cookies
 
-A cookie is called "third-party" if it's placed by domain other than the user is visiting.
+Bir çerez, kullanıcının ziyaret ettiği başka bir etki alanı tarafından yerleştirilmişse buna "third-party" (üçüncü taraf) denir.
 
-For instance:
-1. A page at `site.com` loads a banner from another site: `<img src="https://ads.com/banner.png">`.
-2. Along with the banner, the remote server at `ads.com` may set `Set-Cookie` header with cookie like `id=1234`. Such cookie originates from `ads.com` domain, and will only be visible at `ads.com`:
+Örneğin:
+1. `site.com` sitesindeki bir sayfa başka bir siteden banner yükler: `<img src="https://ads.com/banner.png">`.
+2. Banner ile birlikte, `ads.com` adlı uzak sunucu `id=1234` gibi bir çerezi `Set-Cookie` yöntemiyle başlık olarak ayarlayabilir. Bu çerez `ads.com` etki alanından gelir, ve yalnıca `ads.com` sitesinde görünür:
 
     ![](cookie-third-party.svg)
 
-3. Next time when `ads.com` is accessed, the remote server gets the `id` cookie and recognizes the user:
+3. Bir dahaki sefere `ads.com` sitesine erişildiğinde,  uzak sunucu `id` çerezini alır ve kullanıcıyı tanır:
 
     ![](cookie-third-party-2.svg)
 
-4. What's even more important, when the users moves from `site.com` to another site `other.com` that also has a banner, then `ads.com` gets the cookie, as it belongs to `ads.com`, thus recognizing the visitor and tracking him as he moves between sites:
+4. Daha da önemlisi, kullanıcılar `site.com` sitesinden banneri olan başka bir siteye `other.com` geçtiğinde, o zaman, çerez `ads.com` sitesine ait olduğu için, `ads.com` sitesi çereze erişebilir, böylelikle ziyaretçiyi tanır ve siteler arasında gezinirken onu izler:
 
     ![](cookie-third-party-3.svg)
 
+Üçüncü taraf(third-party) çerezleri, doğaları gereği, geneleneksel olarak izleme ve reklam hizmetleri için kullanılır. Bunlar kaynak etki alanına bağlıdır, bu yüzden `ads.com`, ona erişen farklı siteler arasında aynı kullanıcıyı takip edebilir.
 
-Third-party cookies are traditionally used for tracking and ads services, due to their nature. They are bound to the originating domain, so `ads.com` can track the same user between different sites, if they all access it.
+Doğal olarak, bazı insanlar takip edilmeyi sevmezler, bu yüzden tarayıcı bu tür çerezlerin devre dışı bırakılmasına izin verir.
 
-Naturally, some people don't like being tracked, so browsers allow to disable such cookies.
-
-Also, some modern browsers employ special policies for such cookies:
-- Safari does not allow third-party cookies at all.
-- Firefox comes with a "black list" of third-party domains where it blocks third-party cookies.
+Ayrıca, bazı modern tarayıcılar bu tür çerezler için özel politikalar uygular:
+- Safari üçüncü parti çerezlerine hiç izin vermez.
+- Firefox üçüncü taraf çerezleri kullanan etki alanlarına ait bir "black list" liste seçeneği sunar.
 
 
 ```smart
-If we load a script from a third-party domain, like `<script src="https://google-analytics.com/analytics.js">`, and that script uses `document.cookie` to set a cookie, then such cookie is not third-party.
+Üçüncü taraf bir etki alanından bir script (komut dosyasını) yüklersek, örneğin <script src="https://google-analytics.com/analytics.js">, ve bu script (komut dosyasını) `document.cookie` özelliğini kullanarak bir çerez ayarlamak için kullanırsa, bu çerez üçüncü taraf çerezi değildir.
 
-If a script sets a cookie, then no matter where the script came from -- it belongs to the domain of the current webpage.
+Eğer script(komut dosyasını) çerezleri ayarlarsa, o zaman komut dosyasının nereden geldiğinin bir önemi yoktur -- bu çerez web sayfasının etki alanına aittir.
 ```
 
 ## Appendix: GDPR
 
-This topic is not related to JavaScript at all, just something to keep in mind when setting cookies.
+Bu konu JavaScript ile ilgili değildir, sadece çerezleri ayarlarken akılda tutulması gereken bir durumdur.
 
-There's a legislation in Europe called GDPR, that enforces a set of rules for websites to respect users' privacy. And one of such rules is to require an explicit permission for tracking cookies from a user.
+Avrupa'da GDPR adı verilen ve web sitelerinin kullanıcıların gizliliğine saygı göstermesi için bir dizi kural uygulayan bir mevzuat var. Bu kurallardan biri de çerezlerin izlenmesi için kullanıcıdan açık bir izin alınmasıdır.
 
-Please note, that's only about tracking/identifying cookies.
+Lütfen dikkat, bu yalnızca çerezleri izleme/tanımlama hakkındadır.
 
-So, if we set a cookie that just saves some information, but neither tracks nor identifies the user, then we are free to do it.
+Dolayısıyla, yalnızca bazı bilgileri kaydeden, ancak kullanıcıyı izlemeyen veya tanımlamayan bir çerez ayarlarsak, bunu yapmakta özgürüz.
 
-But if we are going to set a cookie with an authentication session or a tracking id, then a user must allow that.
+Ancak kimlik doğrulama oturumu veya kişiyi izmelek için bir çerez oluşturacaksak, bunun için kullanıcıdan izin almak zorundayız.
 
-Websites generally have two variants of following GDPR. You must have seen them both already in the web:
+Genelde web siteleri GDPR nin iki varyantını takip ederler. Bunları zaten webde görmüşsünüzdür:
 
-1. If a website wants to set tracking cookies only for authenticated users.
+1. Eğer bir web sitesi izleme çerezlerini yalnızca kimliği doğrulanmış kullanıcılar için ayarlamak istiyorsa.
 
-    To do so, the registration form should have a checkbox like "accept the privacy policy", the user must check it, and then the website is free to set auth cookies.
+    Bunu yapmak için, kayıt formunda "gizlilik politikasını kabul et" gibi bir onay kutusu bulunmalı, kullanıcı bunu işaretlemeli ve ardından web sitesi auth(kimlik doğrulama) çerezlerini ayarlamakta özgürdür.
 
-2. If a website wants to set tracking cookies for everyone.
+2. Eğer bir web sitesi herkesi izlemek için çerezleri ayarlamak istiyorsa.
 
-    To do so legally, a website shows a modal "splash screen" for newcomers, and require them to agree for cookies. Then the website can set them and let people see the content. That can be disturbing for new visitors though. No one likes to see "must-click" modal splash screens instead of the content. But GDPR requires an explicit agreement.
+    Bunu yasal olarak yapmak için, web sitesi yeni gelenler için bir tane açılır pencere(modal) "açılış ekranı" gösterir ve  çerezleri kabul etmelerini ister. Daha sonra web sitesi içeriği görüntülemesine izin verecek şekilde ayarlar. Ancak bu yeni ziyaretçiler için sinir bozucu olabilir. Hiç kimse web sitesinin içeriği yerine "tıklanması zorunlu" açılır pencere görmekten hoşlanmaz. Fakat GDPR mevzuatı gereği bunu açık bir şekilde yapması gerekir.
+
+GDPR mevzuatı sadece çerezlerle ilgili değildir, gizliliği içeren diğer konularla da ilgili, ancak bu bizim konumuzun kapsamımının dışında.
 
 
-GDPR is not only about cookies, it's about other privacy-related issues too, but that's too much beyond our scope.
+## Özet
 
+`document.cookie` çerezlere erişmemizi sağlar.
+- yazma işlemleri sadece atıfta bulunduğumuz çerezleri düzenler.
+- isim/değer çifti şifrelenmiş olmak zorundadır.
+- bir çerez 4kb kadar olmalıdır, site başına 20+ çerez ayarlanabilir (tarayıcıya bağlı).
 
-## Summary
+Çerez seçenekleri:
+- `path=/`, varsayılan olarak geçerli yoldur,  çerezi yalnızca bu yol üzerinde görünür hale getirir.
+- `domain=site.com`, varsayılan olarak bir çerez yalnızca geçerli etki alanında görünür, etki alanına açıkça ayarlanırsa, çerezi alt etki alanlarında görünür hale getirir.
+- `expires` ya da `max-age` çerezin son kullanma tarihini ayarlar, eğer ayarlanmazsa tarayıcı kapatıldığında çerezler yok olur.
+- `secure` çerezi HTTPS-only şeklinde ayarlar(hassas verilere sahip çerezler için gevenlik sağlar).
+- `samesite` tarayıcının site dışından gelen isteklerle çerez göndermesini engeller, XSRF saldırılarını önlemeye yardımcı olur.
 
-`document.cookie` provides access to cookies
-- write operations modify only cookies mentioned in it.
-- name/value must be encoded.
-- one cookie up to 4kb, 20+ cookies per site (depends on a browser).
-
-Cookie options:
-- `path=/`, by default current path, makes the cookie visible only under that path.
-- `domain=site.com`, by default a cookie is visible on current domain only, if set explicitly to the domain, makes the cookie visible on subdomains.
-- `expires` or `max-age` sets cookie expiration time, without them the cookie dies when the browser is closed.
-- `secure` makes the cookie HTTPS-only.
-- `samesite` forbids the browser to send the cookie with requests coming from outside the site, helps to prevent XSRF attacks.
-
-Additionally:
-- Third-party cookies may be forbidden by the browser, e.g. Safari does that by default.
-- When setting a tracking cookie for EU citizens, GDPR requires to ask for permission.
+Ek olarak:
+- Üçüncü taraf çerezleri tarayıcı tarafından engellenebilir, örneğin Safari varsayılan olarak engeller.
+- AB vatandaşları için bir izleme çerezi ayarlarken, GDPR mevzuatına göre kullanıcıdan izin istemek zorundasınız.
