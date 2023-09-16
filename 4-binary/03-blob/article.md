@@ -16,8 +16,8 @@ new Blob(blobParts, options);
 
 - **`blobParts`**, `Blob`/`BufferSource`/`String` değerlerinden oluşan bir dizidir.
 - **`options`** isteğe bağlı objesi:
-  - **`type`** blob tipidir ve genellikle örneğin `image/png` gibi bir MIME tipidir.
-  - **`endings`**, blob'un mevcut işletim sisteminin yeni satır karakterlerine (`\r\n\` veya `\n`) uyumlu olabilmesi için, için satır sonu karakterlerinin dönüştürülüp dönüştürülmeyeceği ayarı. Varsayılan olarak `"şeffaf"` (hiçbir şey yapma) şeklindedir, fakat aynı şekilde `"yerel"` (dönüştür) değeri de alabilir.
+  - **`type`** blob tipidir ve genellikle `image/png` gibi bir MIME tipidir.
+  - **`endings`**, blob'un mevcut işletim sisteminin yeni satır karakterlerine (`\r\n\` veya `\n`) uyumlu olabilmesi için satır sonu karakterlerinin dönüştürülüp dönüştürülmeyeceği ayarı. Varsayılan olarak `"şeffaf"` (hiçbir şey yapma) şeklindedir, fakat aynı şekilde `"yerel"` (dönüştür) değeri de alabilir.
 
 Örneğin:
 
@@ -133,7 +133,7 @@ Tarayıcı bu karakter dizisini çözecek ve resmi gösterecek: <img src="data:i
 
 Blob'u base64'e çevirmek için `FileReader` yerleşik objesini kullanacağız. Bu, blob'lardan birçok formatta veri okuyabilmekte. [bir sonraki bölümde](info:file) bunu daha derinlemesine ele alacağız.
 
-Aşağıdaki bir blob indirmenin şimdi base64 ile olan bir demosu:
+Aşağıdaki bir blob indirmenin bu defa base64 ile olan bir demosu:
 
 ```js run
 let link = document.createElement('a');
