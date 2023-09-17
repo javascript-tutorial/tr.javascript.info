@@ -1,87 +1,87 @@
 # Blob
 
-`ArrayBuffer` and views are a part of ECMA standard, a part of JavaScript.
+`ArrayBuffer` ve view'lar, JavaScript'in bir parçası olan ECMA standardının bir parçasıdır.
 
-In the browser, there are additional higher-level objects, described in [File API](https://www.w3.org/TR/FileAPI/), in particular `Blob`.
+Tarayıcıda başta `Blob` olmak üzere, [File API](https://www.w3.org/TR/FileAPI/)'da tanımlanmış olan çeşitli ek yüksek seviye nesneler de bulunur.
 
-`Blob` consists of an optional string `type` (a MIME-type usually), plus `blobParts` -- a sequence of other `Blob` objects, strings and `BufferSources`.
+`Blob`, isteğe bağlı bir `type` karakter dizisi (genellikle bir MIME tipi) ve buna ek olarak `blobParts` - Başka `Blob` objelerinin, stringlerin ve `BufferSource`ların bir dizisi - bölümlerinden meydana gelir.
 
 ![](blob.svg)
 
-The constructor syntax is:
+Kurucu sözdizimi şu şekildedir:
 
 ```js
 new Blob(blobParts, options);
 ```
 
-- **`blobParts`** is an array of `Blob`/`BufferSource`/`String` values.
-- **`options`** optional object:
-  - **`type`** -- blob type, usually MIME-type, e.g. `image/png`,
-  - **`endings`** -- whether to transform end-of-line to make the blob correspond to current OS newlines (`\r\n` or `\n`). By default `"transparent"` (do nothing), but also can be `"native"` (transform).
+- **`blobParts`**, `Blob`/`BufferSource`/`String` değerlerinden oluşan bir dizidir.
+- **`options`** isteğe bağlı objesi:
+  - **`type`** blob tipidir ve genellikle `image/png` gibi bir MIME tipidir.
+  - **`endings`**, blob'un mevcut işletim sisteminin yeni satır karakterlerine (`\r\n\` veya `\n`) uyumlu olabilmesi için satır sonu karakterlerinin dönüştürülüp dönüştürülmeyeceği ayarı. Varsayılan olarak `"şeffaf"` (hiçbir şey yapma) şeklindedir, fakat aynı şekilde `"yerel"` (dönüştür) değeri de alabilir.
 
-For example:
+Örneğin:
 
 ```js
-// create Blob from a string
+// bir karakter dizisinden Blob oluştur
 let blob = new Blob(["<html>…</html>"], {type: 'text/html'});
-// please note: the first argument must be an array [...]
+// not: ilk argüman bir dizi olmalıdır [...]
 ```
 
 ```js
-// create Blob from a typed array and strings
-let hello = new Uint8Array([72, 101, 108, 108, 111]); // "hello" in binary form
+// tipli dizi ve karakter dizilerinden bir Blob oluştur
+let hello = new Uint8Array([72, 101, 108, 108, 111]); // ikili formatta "hello" değeri
 
 let blob = new Blob([hello, ' ', 'world'], {type: 'text/plain'});
 ```
 
 
-We can extract blob slices with:
+Blob dilimlerini şöyle çıkartabiliriz:
 
 ```js
 blob.slice([byteStart], [byteEnd], [contentType]);
 ```
 
-- **`byteStart`** -- the starting byte, by default 0.
-- **`byteEnd`** -- the last byte (exclusive, by default till the end).
-- **`contentType`** -- the `type` of the new blob, by default the same as the source.
+- **`byteStart`** başlangıç Byte'ı, varsayılan olarak 0'dır.
+- **`byteEnd`** son Byte (özel, varsayılan olarak sona kadardır)
+- **`contentType`** yeni blob'un `type`ı, varsayılan olarak kaynakla aynıdır
 
-The arguments are similar to `array.slice`, negative numbers are allowed too.
+Argümanlar `array.slice` ile benzerdir, negatif sayılar da kabul edilir.
 
-```smart header="Blobs are immutable"
-We can't change data directly in a blob, but we can slice parts of blobs, create new blobs from them, mix them into a new blob and so on.
+```smart header="Blob'lar değişmezdir"
+Blob'taki bir veriyi doğrudan değiştiremeyiz fakat blob'u parçalara bölerek bunlardan yeni blob'lar yaratıp bunları da yeni bir blob'ta birleştirebiliriz vesaire.
 
-This behavior is similar to JavaScript strings: we can't change a character in a string, but we can make a new corrected string.
+Bu durum JavaScript karakter dizilerininkine benzerdir: bir karakter dizisindeki bir karakteri değiştiremeyiz, fakat düzeltilmiş yeni bir karakter dizisi oluşturabiliriz.
 ```
 
-## Blob as URL
+## URL olarak Blob
 
-A Blob can be easily used as an URL for `<a>`, `<img>` or other tags, to show its contents.
+Bir Blob `<a>`, `<img>` gibi etiketler için, içeriklerini göstermek adına kolayca URL olarak kullanılabilir.
 
-Thanks to `type`, we can allso download/upload blobs, and it naturally becomes `Content-Type` in network requests.
+`type` özelliği sağ olsun aynı zamanda blob indirip yükleyebiliriz ve doğal bir şekilde `Content-Type` değerini de ağ isteği içerisinde taşıyor olacaktır.
 
-Let's start with a simple example. By\
- clicking on a link you download a dynamically-generated blob with `hello world` contents as a file:
+Basit bir örnekle başlayalım. Linke\
+ tıkladığınızda `Merhaba Dünya` içeriğini taşıyan, dinamik olarak oluşturulmuş bir blob'u bir dosya olarak indirebiliyor olun.
 
 ```html run
-<!-- download attribute forces the browser to download instead of navigating -->
-<a download="hello.txt" href='#' id="link">Download</a>
+<!-- download özelliği tarayıcıyı adrese gitmektense indirmeye zorlayacaktır -->
+<a download="hello.txt" href='#' id="link">İndir</a>
 
 <script>
-let blob = new Blob(["Hello, world!"], {type: 'text/plain'});
+let blob = new Blob(["Merhaba Dünya!"], {type: 'text/plain'});
 
 link.href = URL.createObjectURL(blob);
 </script>
 ```
 
-We can also create a link dynamically in JavaScript and simulate a click by `link.click()`, then download starts automatically.
+Aynı zamanda JavaScript'te bir link yaratabilir ve tıklama eylemini `link.click()` ile simüle edebiliriz, ardından indirme otomatik olarak başlayacaktır.
 
-Here's the similar code that causes user to download the dynamicallly created Blob, without any HTML:
+Aşağıda hiç HTML içermeden kullanıcının yaratılmış bir Blob'u otomatik olarak indirmesini sağlayacak bir kod yer alıyor:
 
 ```js run
 let link = document.createElement('a');
-link.download = 'hello.txt';
+link.download = 'merhaba.txt';
 
-let blob = new Blob(['Hello, world!'], {type: 'text/plain'});
+let blob = new Blob(['Merhaba Dünya!'], {type: 'text/plain'});
 
 link.href = URL.createObjectURL(blob);
 
@@ -90,113 +90,113 @@ link.click();
 URL.revokeObjectURL(link.href);
 ```
 
-`URL.createObjectURL` takes a blob and creates an unique URL for it, in the form `blob:<origin>/<uuid>`.
+`URL.createObjectURL`, bir blob'u alır ve ondan `blob:<kaynak>:<uuid>` formatında benzersiz bir URL oluşturur.
 
-That's what the value of `link.href` looks like:
+`link.href`in değeri şunun gibi olacaktır:
 
 ```
-blob:https://javascript.info/1e67e00e-860d-40a5-89ae-6ab0cbee6273
+blob:https://tr.javascript.info/1e67e00e-860d-40a5-89ae-6ab0cbee6273
 ```
 
-The browser for each url generated by `URL.createObjectURL` stores an the url -> blob mapping internally. So such urls are short, but allow to access the blob.
+`URL.createObjectURL` ile oluşturulmuş her bir URL'in tarayıcısı, url -> blob iç adreslemesini barındırır. Bu nedenle URL'ler kısadır fakat blob'a erişmeye izin verir.
 
-A generated url (and hence the link with it) is only valid within the current document, while it's open. And it allows to reference the blob in `<img>`, `<a>`, basically any other object that expects an url.
+Oluşturulmuş URL (ve dolayısıyla onunla bağlantılı link) yalnızca içinde bulunduğu mevcut belge için, açık olduğu sürece geçerlidir ve `<img>`, `<a>` gibi, bir URL bekleyen herhangi bir objedeki blob'u göstermeyi sağlar.
 
-There's a side-effect though. While there's an mapping for a blob, the blob itself resides in the memory. The browser can't free it.
+Ancak burada bir yan etki vardır. Bir blob adreslendiğinde blob'un kendisi hafızada bulunur. Tarayıcı onu hafızadan silemez.
 
-The mapping is automatically cleared on document unload, so blobs are freed then. But if an app is long-living, then that doesn't happen soon.
+Adresleme döküman kapatıldığında otomatik olarak silinir, böylece blob'lar temizlenmiş olur. Ancak uygulama uzun ömürlü bir yapıdaysa bu hemen gerçekleşmeyecektir.
 
-**So if we create an URL, that blob will hang in memory, even if not needed any more.**
+**Bu nedenle yeni bir URL oluşturduğumuzda ona ihtiyacımız kalmasa bile blob hafızada tutulmaya devam edecektir.**
 
-`URL.revokeObjectURL(url)` removes the reference from the internal mapping, thus allowing the blob to be deleted (if there are no other references), and the memory to be freed.
+`URL.revokeObjectURL(url)`, referansı iç adreslemeden silecektir; böylece blob'un silinmesini (eğer başka referans kalmadıysa) ve hafızanın boşaltılmasını sağlayacaktır.
 
-In the last example, we intend the blob to be used only once, for instant downloading, so we call `URL.revokeObjectURL(link.href)` immediately.
+Son örnekte blob'un yalnızca bir kere anlık indirme için kullanılacağı bir senaryo oluşturduk ve direkt olarak `URL.revokeObjectURL(link.href)` metodunu çağırdık.
 
-In the previous example though, with the clickable HTML-link, we don't call `URL.revokeObjectURL(link.href)`, because that would make the blob url invalid. After the revocation, as the mapping is removed, the url doesn't work any more.
+Ancak tıklanabilir bir HTML linki bulunan önceki örnekte `URL.revokeObjectURL(link.href)` metodunu çağırmadık çünkü bu durum blob'u geçersiz kılacaktı. Kaldırmanın ardından adreslemenin silinmesiyle URL bir daha çalışmayacaktı.
 
-## Blob to base64
+## Blob'tan base64'e
 
-An alternative to `URL.createObjectURL` is to convert a blob into a base64-encoded string.
+`URL.createObjectURL`'a bir alternatif de blob'u base64 olarak kodlanmış bir karakter dizisine dönüştürmek.
 
-That encoding represents binary data as a string of ultra-safe "readable" characters with ASCII-codes from 0 to 64. And what's more important -- we can use this encoding in "data-urls".
+Bu kodlama, ikili veriyi oldukça güvenilir şekilde 0'dan 64'e ASCII kodlarından oluşan "okunabilir" karakterlerle temsil eder ve daha da önemlisi bu kodlamayı "veri URL'leri" içinde kullanabiliriz.
 
-A [data url](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) has the form `data:[<mediatype>][;base64],<data>`. We can use such urls everywhere, on par with "regular" urls.
+Bir [veri URL'i](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/Data_URIs) `data:[<mediatype>][;base64],<data>` formundadır. Bu tür URL'leri sıradan URL'lerle birebir aynı şekilde her yerde kullanabiliriz.
 
-For instance, here's a smiley:
+Örneğin bu bir gülümseme ifadesi:
 
 ```html
 <img src="data:image/png;base64,R0lGODlhDAAMAKIFAF5LAP/zxAAAANyuAP/gaP///wAAAAAAACH5BAEAAAUALAAAAAAMAAwAAAMlWLPcGjDKFYi9lxKBOaGcF35DhWHamZUW0K4mAbiwWtuf0uxFAgA7">
 ```
 
-The browser will decode the string and show the image: <img src="data:image/png;base64,R0lGODlhDAAMAKIFAF5LAP/zxAAAANyuAP/gaP///wAAAAAAACH5BAEAAAUALAAAAAAMAAwAAAMlWLPcGjDKFYi9lxKBOaGcF35DhWHamZUW0K4mAbiwWtuf0uxFAgA7">
+Tarayıcı bu karakter dizisini çözecek ve resmi gösterecek: <img src="data:image/png;base64,R0lGODlhDAAMAKIFAF5LAP/zxAAAANyuAP/gaP///wAAAAAAACH5BAEAAAUALAAAAAAMAAwAAAMlWLPcGjDKFYi9lxKBOaGcF35DhWHamZUW0K4mAbiwWtuf0uxFAgA7">
 
 
-To transform a blob into base64, we'll use the built-in `FileReader` object. It can read data from Blobs in multiple formats. In the [next chapter](info:file) we'll cover it more in-depth.
+Blob'u base64'e çevirmek için `FileReader` yerleşik objesini kullanacağız. Bu, blob'lardan birçok formatta veri okuyabilmekte. [bir sonraki bölümde](info:file) bunu daha derinlemesine ele alacağız.
 
-Here's the demo of downloading a blob, now via base-64:
+Aşağıdaki bir blob indirmenin bu defa base64 ile olan bir demosu:
 
 ```js run
 let link = document.createElement('a');
-link.download = 'hello.txt';
+link.download = 'merhaba.txt';
 
-let blob = new Blob(['Hello, world!'], {type: 'text/plain'});
+let blob = new Blob(['Merhaba Dünya'], {type: 'text/plain'});
 
 *!*
 let reader = new FileReader();
-reader.readAsDataURL(blob); // converts the blob to base64 and calls onload
+reader.readAsDataURL(blob); // blob'u base64'e çevirir ve onload'ı çağırır
 */!*
 
 reader.onload = function() {
-  link.href = reader.result; // data url
+  link.href = reader.result; // veri URL'i
   link.click();
 };
 ```
 
-Both ways of making an URL of a blob are usable. But usually `URL.createObjectURL(blob)` is simpler and faster.
+Bir blob oluşturmanın bu iki yolu da kullanılabilir ancak genellikle `URL.createObjectURL(blob)` daha basit ve hızlıdır.
 
-```compare title-plus="URL.createObjectURL(blob)" title-minus="Blob to data url"
-+ We need to revoke them if care about memory.
-+ Direct access to blob, no "encoding/decoding"
-- No need to revoke anything.
-- Performance and memory losses on big blobs for encoding.
+```compare title-plus="URL.createObjectURL(blob)" title-minus="Blob'tan veri URL'i"
++ Hafızaya önem veriyorsak kaldırmamız gerekiyor..
++ Blob'a doğrudan erişim. "Kodlama/çözme" yok.
+- Herhangi bir şey kaldırmamız gerekmiyor.
+- Performans ve hafıza büyük blob'ların kodlanması için harcanır.
 ```
 
-## Image to blob
+## Resim'den blob'a
 
-We can create a blob of an image, an image part, or even make a page screenshot. That's handy to upload it somewhere.
+Bir resmin blob'unu oluşturabiliriz, bir resim parçası olabilir veya sayfanın ekran görüntüsünü dahi oluşturabiliriz. Bir yerlere yükleme yapmak için oldukça kullanışlı.
 
-Image operations are done via `<canvas>` element:
+Resim işlemleri `<canvas>` öğesi aracılığıyla yapılır:
 
-1. Draw an image (or its part) on canvas using [canvas.drawImage](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage).
-2. Call canvas method [.toBlob(callback, format, quality)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob) that creates a blob and runs `callback` with it when done.
+1. Canvas üzerinde [canvas.drawImage](https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/drawImage) kullanarak bir resim çiz (veya bir parçasını).
+2. Canvas'ın bir blob oluşturan ve tamamlandığında `callback`ini çalıştıran [.toBlob(callback, format, quality)](https://developer.mozilla.org/en-US/docs/Web/API/HTMLCanvasElement/toBlob) metodunu çağır.
 
-In the example below, an image is just copied, but we could cut from it, or transform it on canvas prior to making a blob:
+Aşağıdaki örnekte resim henüz kopyalanmış ancak bu durumda onu kesebiliriz veya bir blob oluşturmadan önce dönüştürebiliriz:
 
 ```js run
-// take any image
+// bir resim al
 let img = document.querySelector('img');
 
-// make <canvas> of the same size
+// aynı boyutlarda <canvas> oluştur
 let canvas = document.createElement('canvas');
 canvas.width = img.clientWidth;
 canvas.height = img.clientHeight;
 
 let context = canvas.getContext('2d');
 
-// copy image to it (this method allows to cut image)
+// resmi içine kopyala (bu metot resmi kesmeye izin verir)
 context.drawImage(img, 0, 0);
-// we can context.rotate(), and do many other things on canvas
+// context.rotate() yapabiliriz ve canvas üzerinde birçok başka işlemde bulunabiliriz
 
-// toBlob is async opereation, callback is called when done
+// toBlob asenkron bir işlem, tamamlandığında callback çağırılacak
 canvas.toBlob(function(blob) {
-  // blob ready, download it
+  // blob hazır, indir
   let link = document.createElement('a');
   link.download = 'example.png';
 
   link.href = URL.createObjectURL(blob);
   link.click();
 
-  // delete the internal blob reference, to let the browser clear memory from it
+  // tarayıcının hafızadan temizleyebilmesi için iç blob referansını sil
   URL.revokeObjectURL(link.href);
 }, 'image/png');
 ```
@@ -208,14 +208,14 @@ let blob = await new Promise(resolve => canvasElem.toBlob(resolve, 'image/png'))
 
 For screenshotting a page, we can use a library such as <https://github.com/niklasvh/html2canvas>. What it does is just walks the page and draws it on `<canvas>`. Then we can get a blob of it the same way as above.
 
-## From Blob to ArrayBuffer
+## Blob'tan ArrayBuffer'a
 
-The `Blob` constructor allows to create a blob from almost anything, including any `BufferSource`.
+`Blob` kurucu metodu, herhangi bir `BufferSource` içeren neredeyse her şeyden bir blob yaratabilmeye olanak sağlar.
 
-But if we need to perform low-level processing, we can get the lowest-level `ArrayBuffer` from it using `FileReader`:
+Yine de düşük seviye bir işleme ihtiyacımız varsa `FileReader`ı kullanarak en düşük seviyeli `ArrayBuffer`ı alabiliriz:
 
 ```js
-// get arrayBuffer from blob
+// blob'tan fileReader al
 let fileReader = new FileReader();
 
 *!*
@@ -228,15 +228,15 @@ fileReader.onload = function(event) {
 ```
 
 
-## Summary
+## Özet
 
-While `ArrayBuffer`, `Uint8Array` and other `BufferSource` are "binary data", a [Blob](https://www.w3.org/TR/FileAPI/#dfn-Blob) represents "binary data with type".
+`ArrayBuffer`, `Uint8Array` ve diğer `BufferSource`lar "ikili veri"ler iken [Blob](https://www.w3.org/TR/FileAPI/#dfn-Blob) "tipi olan ikili veri"yi temsil eder.
 
-That makes Blobs convenient for upload/download operations, that are so common in the browser.
+Bu, Blob'ları tarayıcıda çok yaygın olan indirme/yükleme işlemleri için uygun hale getirir.
 
-Methods that perform web-requests, such as [XMLHttpRequest](info:xmlhttprequest), [fetch](info:fetch-basics) and so on, can work with `Blob` natively, as well as with other binary types.
+[XMLHttpRequest](info:xmlhttprequest), [fetch](info:fetch-basics) gibi web isteği gerçekleştiren metotlar, diğer ikili verilerle olduğu gibi `Blob` ile de doğal olarak çalışabilir.
 
-We can easily convert betweeen `Blob` and low-level binary data types:
+`Blob` ve düşük seviye ikili veri tiplerini kolayca birbiri arasında dönüştürebiliriz:
 
-- We can make a Blob from a typed array using `new Blob(...)` constructor.
-- We can get back `ArrayBuffer` from a Blob using `FileReader`, and then create a view over it for low-level binary processing.
+- `new Blob(...)` kurucu metodunu kullanarak tipli bir diziden bir blob oluşturabiliriz.
+- Blob'tan `ArrayBuffer`a `FileReader` kullanarak dönebiliriz ve ardından düşük seviye ikili veri işleme işlemleri için bir view oluşturabiliriz.
