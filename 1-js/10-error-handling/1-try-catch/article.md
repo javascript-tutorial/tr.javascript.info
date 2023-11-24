@@ -1,10 +1,10 @@
-# Hataları idare etme, "try...catch"
+# Hata Yönetimi, "try...catch"
 
-Programlarken ne kadar mükemmel olmaya çalışsak da bazen kodumuzda hatalar olabilir. Bu bizim hatalarımızdan dolayı olabileceği gibi, kullanıcı girişlerinden, beklenmeyen server cevaplarından veya binlerce farklı nedenden dolayı oluşabilir.
+Programlama konusunda ne kadar iyi olursak olalım, bazen kodlarımızda hatalar olabilir. Bu hatalar bizim hatalarımızdan, beklenmedik bir kullanıcı girdisinden, hatalı bir sunucu yanıtından ve daha binlerce nedenden kaynaklanabilir.
 
 Genelde kodda bir hata olduğunda yazdığımız kod bir adım ileriye gidemeden sona erer ve konsola bunun nedenini yazar.
 
-Hataları "yakalamak" için "try...catch" kullanarak doğrudan kodun ölmesine aman vermek yerine daha mantıklı şeyler yaptırabiliriz.
+Ancak try...catch sözdizimi yapısı hataları "yakalamamızı" sağlar, böylece kodun ölmesi yerine daha makul bir şey yaptırabiliriz.
 
 [cut]
 
@@ -14,17 +14,13 @@ Hataları "yakalamak" için "try...catch" kullanarak doğrudan kodun ölmesine a
 
 ```js
 try {
-
   // kod...
-
 } catch (err) {
-
-  // hataları idare et.
-
+  // hata yönetimi.
 }
 ```
 
-Çalışması aşağıdaki gibidir:
+Şu şekilde çalışır:
 
 1. Önce `try {...}` içerisindekiler çalıştırılır.
 2. Eğer hata yoksa `catch(err)` görmezden gelinir: çalışma try'ın sonuna ulaşır ve sonra `catch`'i atlar.
@@ -34,54 +30,47 @@ try {
 
 Öyleyse `try {...}` içerisindeki kod doğrudan sona eremez, bize `catch` içerisinde bunu idare etmemiz için olanak sağlar.
 
-Birkaç örnek ile daha da pekiştirelim:
+Birkaç örnek inceleyelim.
 
+- Hatasız örnek: `alert` `(1)` ve `(2)`'yi gösterir:
 
-- Hatasız örnek:  `alert` `(1)` ve `(2)`'yi gösterir:
+  ```js run
+  try {
+    alert("try başladı"); // *!*(1) <--*/!*
 
-    ```js run
-    try {
+    // ...no errors here
 
-      alert('try başladı');  // *!*(1) <--*/!*
+    alert("try bitti"); // *!*(2) <--*/!*
+  } catch (err) {
+    alert("Catch görmezden gelindi çünkü bir hata meydana gelmedi."); // (3)
+  }
 
-      // ...no errors here
-
-      alert('try bitti');   // *!*(2) <--*/!*
-
-    } catch(err) {
-
-      alert('Catch görmezden gelindi çünkü bir hata meydana gelmedi.'); // (3)
-
-    }
-
-    alert("...Kod normal çalışmasına devam etti.");
-    ```
+  alert("...Kod normal çalışmasına devam etti.");
+  ```
 
 - Hatalı örnek: `(1)` ve `(3)`'ü gösterir:
 
-    ```js run
-    try {
+  ```js run
+  try {
 
-      alert('try başladı');  // *!*(1) <--*/!*
+    alert('try başladı');  // *!*(1) <--*/!*
 
-    *!*
-      lalala; // hata,  değişken tanımlı değil!
-    */!*
+  *!*
+    lalala; // hata,  değişken tanımlı değil!
+  */!*
 
-      alert('try bitti (hiç erişilemedi)');  // (2)
+    alert('try bitti (Hiç erişilemedi)');  // (2)
 
-    } catch(err) {
+  } catch(err) {
 
-      alert(`Hata meydana geldi!`); // *!*(3) <--*/!*
+    alert(`Hata meydana geldi!`); // *!*(3) <--*/!*
 
-    }
+  }
 
-    alert("...Kod normal çalışmasına devam etti.");
-    ```
+  alert("...Kod normal çalışmasına devam etti.");
+  ```
 
-
-````warn header="`try...catch` sadece çalışma zamanlı hatalar içindir"
-`try...catch`'in çalışabilmesi için kod çalışabilir olmalıdır. Diğer bir deyişle geçerli bir JavaScript kodu olmalıdır.
+````warn header="`try...catch`sadece çalışma zamanlı hatalar içindir"`try...catch`'in çalışabilmesi için kod çalışabilir olmalıdır. Diğer bir deyişle geçerli bir JavaScript kodu olmalıdır.
 
 Eğer kod yazımsal olarak hatalıysa çalışmayacaktır, örneğin süslü parantezler açılmış ama kapatılmamışsa:
 
@@ -93,10 +82,11 @@ try {
 }
 ```
 
-JavaScript motoru önce kodu okur, sonra çalıştırır. Eğer hata okuma safhasında meydana gelirse bunlara "ayrıştırma-zamanı" hataları denir ve kurtarılamaz hatalardır. Bundan dolayı JavaScript motoru bunları anlayamaz.
+JavaScript motoru önce kodu okur, sonra çalıştırır. Eğer hata okuma aşamasında meydana gelirse bunlara "ayrıştırma-zamanı" hataları denir ve kurtarılamaz hatalardır. Bundan dolayı JavaScript motoru bunları anlayamaz.
 
 Bundan dolayı `try...catch` ancak ve ancak geçerli kodlarda oluşacak hataları idare edebilir. Bu hatalara "çalışma zamanı hataları" veya bazen "istisnalar" (exception) denilmektedir.
-````
+
+`````
 
 
 ````warn header="`try...catch` Senkronize olarak çalışmaktadır"
@@ -117,14 +107,14 @@ Eğer zamanlanmış fonksiyon içerisinde bu hatayı yakalamak istiyorsanız, `t
 
 ```js run
 setTimeout(function() {
-  try {    
+  try {
     noSuchVariable; // try...catch hataları yakalayacaktır.
   } catch (e) {
     alert( "hata burada yakalandı!" );
   }
 }, 1000);
 ```
-````
+`````
 
 ## Hata Objesi
 
@@ -133,10 +123,12 @@ Hata meydana geldiğinde, JavaScript bu hata ile ilgili bir obje yaratır. Sonra
 ```js
 try {
   // ...
-} catch(err) { // <-- the "error object", could use another word instead of err
+} catch (err) {
+  // <-- the "error object", could use another word instead of err
   // ...
 }
 ```
+
 Tüm varsayılan hatalar için, `catch` içerisinde hata objesi iki ana özelliği taşır:
 
 `isim` (name)
@@ -168,7 +160,6 @@ try {
 }
 ```
 
-
 ## `try...catch` kullanımı
 
 Gerçek hayatta `try...catch`'in nasıl kullanılabileceğine bakalım.
@@ -190,6 +181,7 @@ let user = JSON.parse(json); // bu veriyi JS objesine dönüştür.
 alert( user.name ); // John
 alert( user.age );  // 30
 ```
+
 JSON hakkında daha derin bilgiyi <info:json> bölümünden öğrenebilirsiniz.
 
 **Eğer `json` düzgün gelmiyorsa `JSON.parse` hata üretir ve kod anında "ölür".**
@@ -219,6 +211,7 @@ try {
 */!*
 }
 ```
+
 Burada `catch` bloğu sadece mesajı göstermek için kullanılmıştır. Fakat burada ağ talebi, kullanıcıya başka bir yöntem sunma, loglama için hata loginin tutulması gibi işlemler yapılabilir.
 
 ## Kendi hatalarımızı atma
@@ -241,6 +234,7 @@ try {
   alert( "çalışmaz" );
 }
 ```
+
 Burada `JSON.parse` doğru bir şekilde çalışır, `"name"`'in olmaması aslında bir sorundur.
 
 Hata idaresini birleştirmek adına burada `throw` operatörü kullanılacaktır.
@@ -254,6 +248,7 @@ Yazımı şu şekildedir:
 ```js
 throw <error object>
 ```
+
 Teknik olarak her şeyi hata objesi olarak kullanmak mümkündür. Hatta bu ilkel tipler olan sayı, karakter dizisi gibi yapılar da olabilir. Fakat obje kullanmak, daha sı `name` ve `message` özelliklerine sahip obje kullanmak daha iyidir. ( Böylece gömülü gelen hatalar ile uyumlu olacaktır.)
 
 JavaScript birçok standart hataya sahiptir:`Error`, `SyntaxError`, `ReferenceError`, `TypeError` vs. Bunları kullanarak da hata objesi yaratmak mümkündür.
@@ -278,6 +273,7 @@ let error = new Error("Bir şeyler oldu o_O");
 alert(error.name); // Error
 alert(error.message); // Bir şeyler oldu o_O
 ```
+
 `JSON.parse` ne tarz hatalar üretti bakalım:
 
 ```js run
@@ -293,7 +289,7 @@ try {
 
 Gördüğünüz gibi bu `SyntaxError` yani yazım yanlışıdır.
 
-Bizim durumumuzda ise `name`'in olmaması yazım hatası olarak tanımlanabilir. 
+Bizim durumumuzda ise `name`'in olmaması yazım hatası olarak tanımlanabilir.
 Bunu isimsiz öğretmen olmayacağından yazım hatası olarak tanımlayabilir.
 
 Atacak olursak:
@@ -335,14 +331,15 @@ try {
   user = JSON.parse(json); // <-- user'dan önce "let" kullanmayı unuttuysak
 
   // ...
-} catch(err) {
+} catch (err) {
   alert("JSON Error: " + err); // JSON Error: ReferenceError: user is not defined
   // (hata aslında JSON ile alakalı değil)
 }
 ```
+
 Tabii ki her şey mümkün! Programcılar da hata yapar. Yıllardır milyonlarca kişinin kullandığı open-source projelerde bile hata vardır. Hatta öyle hatalar vardır ki bulunduğunda çok büyük belaya neden olabilir (`ssh`'ta bulunan hata).
 
-Biz denemelerimizde `try...catch`i "doğru olmayan veri"yi yakalamak için kullandık. Fakat aslında `catch` `try`'da olabilecek *tüm* hataları alır. Yukarıdaki örnekte beklenmeyen bir hata alır ancak yine de`"JSON Error" mesajı verir. Bu aslında kod ayıklamayı zorlaştıran bir şeydir ve yanlış kullanımdır.
+Biz denemelerimizde `try...catch`i "doğru olmayan veri"yi yakalamak için kullandık. Fakat aslında `catch` `try`'da olabilecek _tüm_ hataları alır. Yukarıdaki örnekte beklenmeyen bir hata alır ancak yine de`"JSON Error" mesajı verir. Bu aslında kod ayıklamayı zorlaştıran bir şeydir ve yanlış kullanımdır.
 
 Yine de ne hatası olduğunu `name`'den çıkarmak mümkündür.
 
@@ -396,6 +393,7 @@ try {
 
 }
 ```
+
 `try...catch` içerisinde eğer `(*)` hata tekrar atılırsa bu, `try...catch` in dışına taşar. Bunun daha üstte bulunan başka bir `try...catch` tarafından yakalanması gerekmektedir. Böyle bir ihtimal yoksa kod burada sona ermelidir.
 
 Böylece `catch` bloğu aslında sadece bildiği hataları idare eder ve diğerlerini hiç kontrol etmeden paslar diyebiliriz.
@@ -429,6 +427,7 @@ try {
 */!*
 }
 ```
+
 Burada `readData` sadece `SyntaxError` ile nasıl başa çıkacağını biliyor. Bunun yanında dıştaki `try...catch` ise geri kalan her şeyi idare ediyor.
 
 ## try...catch...finally
@@ -458,12 +457,12 @@ Aşağıdaki kodu çalıştırmayı deneyiniz:
 
 ```js run
 try {
-  alert( 'try' );
-  if (confirm('Make an error?')) BAD_CODE();
+  alert("try");
+  if (confirm("Make an error?")) BAD_CODE();
 } catch (e) {
-  alert( 'catch' );
+  alert("catch");
 } finally {
-  alert( 'finally' );
+  alert("finally");
 }
 ```
 
@@ -478,7 +477,7 @@ Kod iki türlü çalışabilir:
 
 `finally` ne olursa olsun süre ölçmeyi sonlandırmak için harika bir yerdir.
 
-Aşağıda `finally` düzgün veya yanlış çalışan `fib` fonksiyonunun ne kadar sürdüğünü doğru olarak hesaplamamızı sağlar. 
+Aşağıda `finally` düzgün veya yanlış çalışan `fib` fonksiyonunun ne kadar sürdüğünü doğru olarak hesaplamamızı sağlar.
 
 ```js run
 let num = +prompt("Enter a positive integer number?", 35)
@@ -513,13 +512,13 @@ Kodu çalıştırdığınızda `35` değeri girerseniz normal olarak `try` sonra
 
 Diğer bir deyişle, fonksiyondan çıkmanın iki yolu verdir. Bunlar `return` veya `throw` olabilir. `finally` ise bunların ikisini de idare edebilir.
 
-
 ```smart header="Değişkenler `try...catch...finally` içerisinde yereldir"
 
-Dikkat ederseniz `result` ve `diff` değişkenleri `try...catch`'den *önce* tanımlanmışlardır.
+Dikkat ederseniz `result` ve `diff` değişkenleri `try...catch`'den _önce_ tanımlanmışlardır.
 
 Diğer türlü `let` `{...}` bloğunun içerisinde olsaydı, sadece parantez içerisinde görünür olurdu.
-```
+
+`````
 
 ````smart header="`finally` ve `return`"
 
@@ -545,8 +544,9 @@ function func() {
 }
 
 alert( func() ); // önce finally içerisindeki alert çalışır sonra bu.
-```
-````
+`````
+
+`````
 
 ````smart header="`try...finally`"
 
@@ -563,7 +563,7 @@ function func() {
 }
 ```
 Yukarıdaki kodda `try` içerisinde olacak herhangi bir hata doğrudan dışarı çıkacaktır. Akış dışarı sıçramadan önce `finally` çalışır.
-````
+`````
 
 ## Genel Hataları Yakalama
 
@@ -580,7 +580,7 @@ Aslında şartnamede bunun ile ilgili bir belirti bulunmasa da çoğu ortam bunu
 Yazımı:
 
 ```js
-window.onerror = function(message, url, line, col, error) {
+window.onerror = function (message, url, line, col, error) {
   // ...
 };
 ```
@@ -601,17 +601,17 @@ window.onerror = function(message, url, line, col, error) {
 
 ```html run untrusted refresh height=1
 <script>
-*!*
-  window.onerror = function(message, url, line, col, error) {
-    alert(`${message}\n At ${line}:${col} of ${url}`);
-  };
-*/!*
+  *!*
+    window.onerror = function(message, url, line, col, error) {
+      alert(`${message}\n At ${line}:${col} of ${url}`);
+    };
+  */!*
 
-  function readData() {
-    badFunc(); // hata meydana geldi!
-  }
+    function readData() {
+      badFunc(); // hata meydana geldi!
+    }
 
-  readData();
+    readData();
 </script>
 ```
 
@@ -624,7 +624,7 @@ Aşağıdaki gibi çalışırlar:
 1. Servise kayıt olunur ve yazdığımız koda yerleştirmek için bir kod parçası alınır.
 2. Bu JS içerisinde bir çeşit `window.onerror` uygulaması mevcuttur.
 3. Hata meydana geldiğinde, bu servise ağ üzerinden bir istekte bulunur.
-3. Servise tekrar giriş yaptığınızda arayüzde bu hataları görürsünüz.
+4. Servise tekrar giriş yaptığınızda arayüzde bu hataları görürsünüz.
 
 ## Özet
 
@@ -635,21 +635,21 @@ Yazımı:
 ```js
 try {
   // bu kodu çalıştır
-} catch(err) {
+} catch (err) {
   // eğer hata varsa, buraya atla
   // err hata objesi
 } finally {
   // try/catch'den sonra her halükarda burayı çalıştır.
 }
 ```
+
 `catch` bölümü veya `finally` bölümü olmadan da çalışır. `try...catch`, `try...finally`'de doğru kullanımdır.
 
 Hata objeleri şu özellikleri taşır:
 
 - `message` -- insan tarafından okunabilir hata mesajı
-- `name` -- hatanın ismi 
+- `name` -- hatanın ismi
 - `stack` ( standart değil ) - hatanın oluştuğu andaki yığın. Hatanın nedenini bulmak için yararlı bir özellik.
-
 
 `throw` kullanarak biz de kendi hatalarımızı oluşturabiliriz. Teknik olarak, `throw`'un argümanları her şey olabilir. Fakat genelde `Error` sınıfından türemesi ve özelliklerini alması iyi bir yoldur. Bunları nasıl genişleteceğinizi bir sonraki bölümde görebilirsiniz.
 
