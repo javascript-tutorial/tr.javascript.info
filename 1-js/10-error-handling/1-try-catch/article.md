@@ -205,7 +205,7 @@ try {
 } catch (e) {
 *!*
   // ...çalışma buradan devam eder.
-  alert( "Kusura bakmayın, veride hata var.Talep tekrar yapacaktır" );
+  alert( "Kusura bakmayın, veride hata var. Talep tekrar yapacaktır" );
   alert( e.name );
   alert( e.message );
 */!*
