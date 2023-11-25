@@ -16,7 +16,7 @@ JavaScript'in çalıştığı geliştirme ortamları tarafından sağlanan birç
 
 Asenkron eylemlerin diğer gerçek dünya örnekleri de bulunmaktadır, örneğin, betik ve modülleri yükleme (bunları daha sonraki bölümlerde ele alacağız).
 
-İşte loadScript(src) adlı fonksiyonu inceleyin; bu işlev, verilen src ile bir betiği yükler:
+İşte loadScript(src) adlı fonksiyonu inceleyin; bu fonksiyon, verilen src ile bir betiği yükler:
 
 ```js
 function loadScript(src) {
