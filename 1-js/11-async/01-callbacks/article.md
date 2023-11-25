@@ -10,13 +10,13 @@ Bu yöntemlerle alışık değilseniz ve örneklerdeki kullanımı anlamakta zor
 Yine de, her şeyi mümkün olduğunca açık hale getirmeye çalışacağız. Tarayıcı yöntemleri ve işlemleri ile ilgili gerçekten karmaşık bir şey olmayacak.
 ```
 
-JavaScript'in çalıştığı geliştirme ortamları tarafından sağlanan birçok işlev, *asenkron* eylemleri planlamanıza olanak tanır. Başka bir deyişle, şu an başlattığımız ancak daha sonra tamamlanan eylemler.
+JavaScript'in çalıştığı geliştirme ortamları tarafından sağlanan birçok fonksiyon, *asenkron* eylemleri planlamanıza olanak tanır. Başka bir deyişle, şu an başlattığımız ancak daha sonra tamamlanan eylemler.
 
-Örneğin, bu türden bir işlev setTimeout işlevidir.
+Örneğin, setTimeout fonksiyonu, bu türden bir fonksiyona örnektir.
 
 Asenkron eylemlerin diğer gerçek dünya örnekleri de bulunmaktadır, örneğin, betik ve modülleri yükleme (bunları daha sonraki bölümlerde ele alacağız).
 
-İşte loadScript(src) adlı işlevi inceleyin; bu işlev, verilen src ile bir betiği yükler:
+İşte loadScript(src) adlı fonksiyonu inceleyin; bu işlev, verilen src ile bir betiği yükler:
 
 ```js
 function loadScript(src) {
