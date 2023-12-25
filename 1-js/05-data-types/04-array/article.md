@@ -63,7 +63,7 @@ Dizi her türlü elemanı tutabilir.
 let arr = [ 'Elma', { isim: 'Ahmet' }, true, function() { alert('merhaba'); } ];
 
 // Birinci indeksteki değeri al ve "isim" özelliğini görüntüle
-alert( arr[1].name ); // John
+alert( arr[1].isim ); // John
 
 // 3. indeksteki fonksiyonu al ve çalıştır.
 arr[3](); // merhaba
