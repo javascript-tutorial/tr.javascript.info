@@ -1,67 +1,71 @@
-# Form properties and methods
+# Form özellikleri ve metodları
+
+Formlar ve kontrol elemanları, `<input>` gibi, birçok özel özellik ve işlemlere sahiptir.
+
+Fromları öğrendiğimizde, onlarla çalışmak çok daha kolay olacaktır.
 
 Forms and control elements, such as `<input>` have a lot of special properties and events.
 
-Working with forms will be much more convenient when we learn them.
+## Navigasyon: form and elemanlar
 
-## Navigation: form and elements
-
-Document forms are members of the special collection `document.forms`.
+Form dökümanları özel bir koleksiyon üyesidir `document.forms`.
 
 That's a so-called "named collection": it's both named and ordered. We can use both the name or the number in the document to get the form.
 
+Bu "adlandırılmış koleksiyon" olarak isimlendirilerler: hem adlandırılmış hem de sıralanmıştır. Forma ulaşmak için formun adını ya da numarasını kullanabiliriz.
+
 ```js no-beautify
-document.forms.my - the form with name="my"
-document.forms[0] - the first form in the document
+document.forms.my - "my" isimli form
+document.forms[0] - döküman içindeki ilk form
 ```
 
-When we have a form, then any element is available in the named collection `form.elements`.
+Yeni bir form oluşturulduğunda içerisindeki bütün elemanlar `form.elements` isimli koleksiyonda erişilebilir hale gelir.
 
-For instance:
+Örneğin:
 
 ```html run height=40
 <form name="my">
-  <input name="one" value="1">
-  <input name="two" value="2">
+  <input name="one" value="1" />
+  <input name="two" value="2" />
 </form>
 
 <script>
-  // get the form
-  let form = document.forms.my; // <form name="my"> element
+  // forma ulaşmak için
+  let form = document.forms.my; // <form name="my"> form elemanı
 
-  // get the element
-  let elem = form.elements.one; // <input name="one"> element
+  // form elemanına ulaşmak için
+  let elem = form.elements.one; // <input name="one"> input elemanı
 
   alert(elem.value); // 1
 </script>
 ```
 
-There may be multiple elements with the same name, that's often the case with radio buttons.
+Formlarda aynı isme sahip birden fazla eleman olabilir. Böyle bir durumla daha çok radyo tipindeki input elemanlarında karşılaşırız.
 
-In that case `form.elements[name]` is a collection, for instance:
+Bu durumda `form.elements[name]` bir koleksiyondur, örneğin:
 
 ```html run height=40
 <form>
-  <input type="radio" *!*name="age"*/!* value="10">
-  <input type="radio" *!*name="age"*/!* value="20">
+  <input type="radio" *!*name="age"*/!* value="10"> <input
+  type="radio"*!*name="age"*/!* value="20">
 </form>
 
 <script>
-let form = document.forms[0];
+  let form = document.forms[0];
 
-let ageElems = form.elements.age;
+  let ageElems = form.elements.age;
 
-alert(ageElems[0].value); // 10, the first input value
+  alert(ageElems[0].value); // 10, ilk input değeri
 </script>
 ```
 
-These navigation properties do not depend on the tag structure. All elements, no matter how deep they are in the form, are available in `form.elements`.
+Bu navigasyon özellikleri etiket yapılarına bağlı değildir. Bütün elemanlar, formun neresinde olursa olsun, `form.elements` koleksiyonu içerisinde bulunur.
 
+````smart header=""Alt formlar" olarak alan kümeleri"
+Bir form bir veya birden fazla `<fieldset>` elemanına sahip olabilir.
+. Bunlar ayrıca `elements` özelliklerine sahiptirler
 
-````smart header="Fieldsets as \"subforms\""
-A form may have one or many `<fieldset>` elements inside it. They also support the `elements` property.
-
-For instance:
+Örneğin:
 
 ```html run height=80
 <body>
@@ -79,7 +83,7 @@ For instance:
     let fieldset = form.elements.userFields;
     alert(fieldset); // HTMLFieldSetElement
 
-    // we can get the input both from the form and from the fieldset
+    // input elemanına form ve fieldset koleksiyonlarından ulaşabiliriz.
     alert(fieldset.elements.login == form.elements.login); // true
 */!*
   </script>
@@ -87,50 +91,51 @@ For instance:
 ```
 ````
 
-````warn header="Shorter notation: `form.name`"
-There's a shorter notation: we can access the element as `form[index/name]`.
+````warn header="Kısa gösterimi: `form.name`"
+Daha kısa bir gösterimi mevcut: `form[index/name]` ile bu elamana ulaşabiliriz.
 
-Instead of `form.elements.login` we can write `form.login`.
+`form.elements.login` yerine `form.login` yazabiliriz.
 
-That also works, but there's a minor issue: if we access an element, and then change its `name`, then it is still available under the old name (as well as under the new one).
+Bu da çalışır fakat, burada ufak bir problem var:eğer bir elamana ulaşırsak ve daha sonra ismini(`name`) değiştirirsek bu eleman eski ismiyle hala erişilebilr durumdadır.(aynı zamanda yeni ismiylede erişeliebilir).
 
-That's easy to see in an example:
+Aşağıdaki örnekte bunu kolaylıkla görebiliriz:
 
 ```html run height=40
 <form id="form">
-  <input name="login">
+  <input name="login" />
 </form>
 
 <script>
-  alert(form.elements.login == form.login); // true, the same <input>
+    alert(form.elements.login == form.login); // doğru, aynı <input>
 
-  form.login.name = "username"; // change the name of the input
+    form.login.name = "username"; // input'un ismini değiştir
 
-  // form.elements updated the name:
-  alert(form.elements.login); // undefined
-  alert(form.elements.username); // input
+    // form.elements isim etiketini güncelledi:
+    alert(form.elements.login); // tanımsız
+    alert(form.elements.username); // input
 
-*!*
-  // the direct access now can use both names: the new one and the old one
-  alert(form.username == form.login); // true
-*/!*
+  *!*
+    // doğrudan erişim için iki isimde kullanılabilir: yeni isim ve eski isim
+    alert(form.username == form.login); // doğru
+  */!*
 </script>
 ```
 
-That's usually not a problem, because we rarely change names of form elements.
+Bu durum genelde bir sorun oluşturmaz çünkü, form elemanların ismini genellikle değiştirmeyiz.
 
 ````
 
-## Backreference: element.form
+## Geriye referans: element.form
 
-For any element, the form is available as `element.form`. So a form references all elements, and elements
-reference the form.
 
-Here's the picture:
+Herhangi bir eleman için form, `element.form` olarak erişilebilir. Bu sayede bir form, tüm elemanlara referans eder ve elemanlar da forma referans eder.
+
+
+Konuyu görselleştirmek için bir resim:
 
 ![](form-navigation.svg)
 
-For instance:
+Örneğin:
 
 ```html run height=40
 <form id="form">
@@ -139,53 +144,59 @@ For instance:
 
 <script>
 *!*
-  // form -> element
+  // form -> eleman
   let login = form.login;
 
-  // element -> form
+  // eleman -> form
   alert(login.form); // HTMLFormElement
 */!*
 </script>
 ```
 
-## Form elements
+## Form elemanları
 
+Birazda form kontrol elemanlarından bahsedelim, özelliklerine dikkat et.
 Let's talk about form controls, pay attention to their specific features.
 
-### input and textarea
+### input ve textarea
 
-We can access their value as `input.value` (string) or `input.checked` (boolean) for checkboxes.
+Tipi checkbox olan elemanların değerlerine `input.value` (metin tipinde) veya `input.checked` (mantıksal tipde) ulaşılabilir.
 
-Like this:
+
+Bunun gibi:
 
 ```js
-input.value = "New value";
-textarea.value = "New text";
+input.value = "Yeni değer";
+textarea.value = "Yeni metin";
 
-input.checked = true; // for a checkbox or radio button
+input.checked = doğru; // checkbox veya radio button tipleri için
 ```
 
-```warn header="Use `textarea.value`, not `textarea.innerHTML`"
-Please note that even though `<textarea>...</textarea>` holds its value as nested HTML, we should never use `textarea.innerHTML`. It stores only the HTML that was initially on the page, not the current value.
+```warn header=" `textarea.innerHTML` yerine `textarea.value` kullan"
+
+Lütfen şunu unutma, <textarea>...</textarea> içeriğini iç içe geçmiş HTML olarak saklasa da, asla textarea.innerHTML kullanmamalıyız. Bu sadece sayfa ilk yüklendiğinde olan HTML'i saklar, mevcut değeri değil.
+
 ```
 
-### select and option
+### select ve option
 
-A `<select>` element has 3 important properties:
+A `<select>` 3 önemli özelliği vardır:
 
-1. `select.options` -- the collection of `<option>` elements,
-2. `select.value` -- the value of the currently selected option,
-3. `select.selectedIndex` -- the number of the currently selected option.
+1. `select.options` -- `<option>` elemanlarından oluşan bir koleksiyon,
+2. `select.value` --  halihazırda seçilmiş olan seçeneğin değeri,
+3. `select.selectedIndex` -- halihazırda seçilmiş olan seçeneğin dizin numarası.
 
-So we have three ways to set the value of a `<select>`:
+`<select>` elemanınına değer atamak için üç farklı yol mevcut:
 
-1. Find the needed `<option>` and set `option.selected` to `true`.
-2. Set `select.value` to the value.
-3. Set `select.selectedIndex` to the number of the option.
 
-The first way is the most obvious, but `(2)` and `(3)` are usually more convenient.
+1. Gerekli olan `<option>` seçeneğini bul ve `option.selected` değerini `true` olarak ayarla.
+2. `select.value` değerini yaz.
+3. `select.selectedIndex` değerine, seçeneğin dizin numarasını yaz.
 
-Here is an example:
+İlk seçenek en bariz olan fakat `(2)` ve `(3)` daha uygun.
+
+
+İşte bir örnek:
 
 ```html run
 <select id="select">
@@ -195,16 +206,16 @@ Here is an example:
 </select>
 
 <script>
-  // all three lines do the same thing
+  // üç satırda aynı işi yapıyor
   select.options[2].selected = true;
   select.selectedIndex = 2;
   select.value = 'banana';
 </script>
 ```
 
-Unlike most other controls, `<select multiple>` allows multiple choice. In that case we need to walk over `select.options` to get all selected values.
+Diğer çoğu kontrolün aksine, <select multiple> çoklu seçime izin verir. Bu durumda, tüm seçilmiş değerleri almak için `select.options` üzerinde dizi metodları ile işlem yapmamız gerekir.
 
-Like this:
+Şu şekilde:
 
 ```html run
 <select id="select" *!*multiple*/!*>
@@ -214,75 +225,80 @@ Like this:
 </select>
 
 <script>
-  // get all selected values from multi-select
+  // multi-select ile seçilmiş bütün seçekneleri döndürme
   let selected = Array.from(select.options)
     .filter(option => option.selected)
     .map(option => option.value);
 
-  alert(selected); // blues,rock  
+  alert(selected); // blues,rock
 </script>
 ```
+Daha detaylı bilgi edinmek için: <https://html.spec.whatwg.org/multipage/forms.html#the-select-element> sayfasını ziyaret edin.
 
-The full specification of the `<select>` element is available in the specification <https://html.spec.whatwg.org/multipage/forms.html#the-select-element>.
 
-### new Option
+### new Option (yeni Seçenek)
 
-This is rarely used on its own. But there's still an interesting thing.
+Bu yöntem çoğu zaman tek başına kullanılmaz fakat bahsedilmesi gereken bir durum var.
 
-In the specification of [the option element](https://html.spec.whatwg.org/multipage/forms.html#the-option-element) there's a nice short syntax to create `<option>` elements:
+[Seçenek elemanı](https://html.spec.whatwg.org/multipage/forms.html#the-option-element) dökümantasyonunda `<option>` oluşturmak için kısa ve hoş  bir notasyon mevcut:
 
 ```js
 option = new Option(text, value, defaultSelected, selected);
 ```
 
-Parameters:
+Değişkenler:
 
-- `text` -- the text inside the option,
-- `value` -- the option value,
-- `defaultSelected` -- if `true`, then `selected` HTML-attribute is created,
-- `selected` -- if `true`, then the option is selected.
+- `text` -- seçenek içindeki metin,
+- `value` -- seçeneğin değeri,
+- `defaultSelected` -- eğer `true`, ise `selected` HTML-attribute oluşturulur,
+- `selected` -- eğer `true`, ise, seçenek işaretlenir.
 
-For instance:
+Örneğin:
 
 ```js
 let option = new Option("Text", "value");
-// creates <option value="value">Text</option>
+//  <option value="value">Text</option> oluşturur
 ```
 
-The same element selected:
+Aynı eleman seçildi:
 
 ```js
 let option = new Option("Text", "value", true, true);
 ```
 
-```smart header="Additional properties of `<option>`"
-Option elements have additional properties:
+```smart header="`<option>` ın ek özellikleri"
+Seçenek elemanlarının ek özellikleri vardır:
 
 `selected`
-: Is the option selected.
+: seçenek seçildi mi.
 
 `index`
-: The number of the option among the others in its `<select>`.
+: `<select>` seçeneklerinin dizin numarası.
 
 `text`
-: Text content of the option (seen by the visitor).
+: Seçenekte belirtilen metin (kullanıcı tarafından görülür).
 ```
 
-## Summary
+## Özet
 
-Form navigation:
+From navigasyonu:
 
 `document.forms`
-: A form is available as `document.forms[name/index]`.
+: Form `document.forms[name/index]` olarak mevcuttur..
 
-`form.elements`  
-: Form elements are available as `form.elements[name/index]`, or can use just `form[name/index]`. The `elements` property also works for `<fieldset>`.
+`form.elements`
+: Form elemanlarına `form.elements[name/index]` kullanarak ulaşılabilir yada or `form[name/index]` kullanılarak ulaşılabilir. `elements` özelliği `<fieldset>` için de çalışır.
 
 `element.form`
-: Elements reference their form in the `form` property.
 
-Value is available as `input.value`, `textarea.value`, `select.value` etc, or `input.checked` for checkboxes and radio buttons.
 
-For `<select>` we can also get the value by the index `select.selectedIndex` or through the options collection `select.options`. The full specification of this and other elements is in the specification <https://html.spec.whatwg.org/multipage/forms.html>.
+:Elemanlar, form özelliğinde kendi `form`larına referans yaparlar.
 
-These are the basics to start working with forms. We'll meet many examples further in the tutorial. In the next chapter we'll cover `focus` and `blur` events that may occur on any element, but are mostly handled on forms.
+Değerlere `input.value`, `textarea.value`, `select.value` v.b., yada `input.checked` kullanarak checkbox ve radio buttons tipindeki input'lar için ulaşılabilir.
+
+
+
+<select> için değeri ayrıca dizin numarasıyla select.selectedIndex veya seçenekler koleksiyonu select.options üzerinden alabiliriz. Bu ve diğer öğelerin tam belgesi belgede bulunabilir <https://html.spec.whatwg.org/multipage/forms.html>.
+
+Bu bilgiler formlar ile çalışmak için temel bilgiler.Eğitimin ilerleyen bölümlerinde birçok örnekle karşılaşacağız. Bir sonraki bölümde, herhangi bir öğe üzerinde oluşabilecek, ancak çoğunlukla formlar üzerinde işlenen `focus` ve `blur` olaylarını ele alacağız.
+````
