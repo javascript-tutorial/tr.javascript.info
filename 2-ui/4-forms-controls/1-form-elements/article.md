@@ -1,25 +1,21 @@
 # Form özellikleri ve metodları
 
-Formlar ve kontrol elemanları, `<input>` gibi, birçok özel özellik ve işlemlere sahiptir.
+Formlar ve kontrol elemanları, `<input>` gibi, birçok özel işleme ve özelliklere sahiptir.
 
-Fromları öğrendiğimizde, onlarla çalışmak çok daha kolay olacaktır.
-
-Forms and control elements, such as `<input>` have a lot of special properties and events.
+Fromları öğrendiğimizde, onlarla çalışmak çok daha kolay olacak.
 
 ## Navigasyon: form and elemanlar
 
-Form dökümanları özel bir koleksiyon üyesidir `document.forms`.
+Form dökümanları özel bir dizi olan `document.forms` üyleridir.
 
-That's a so-called "named collection": it's both named and ordered. We can use both the name or the number in the document to get the form.
-
-Bu "adlandırılmış koleksiyon" olarak isimlendirilerler: hem adlandırılmış hem de sıralanmıştır. Forma ulaşmak için formun adını ya da numarasını kullanabiliriz.
+Bu, bir "adlandırılmış koleksiyon" olarak adlandırılan bir durumdur: hem isimlendirilmiş hem de sıralanmıştır. Belgede forma ulaşmak için hem adı hem de numarasını kullanabiliriz.
 
 ```js no-beautify
-document.forms.my - "my" isimli form
-document.forms[0] - döküman içindeki ilk form
+document.forms.my; // "my" isimli form
+document.forms[0]; // döküman içindeki ilk form
 ```
 
-Yeni bir form oluşturulduğunda içerisindeki bütün elemanlar `form.elements` isimli koleksiyonda erişilebilir hale gelir.
+Yeni bir form oluşturulduğunda içerisindeki bütün elemanlar `form.elements` isimli adlandırılmış koleksiyonda erişilebilir haldedir.
 
 Örneğin:
 
@@ -62,8 +58,7 @@ Bu durumda `form.elements[name]` bir koleksiyondur, örneğin:
 Bu navigasyon özellikleri etiket yapılarına bağlı değildir. Bütün elemanlar, formun neresinde olursa olsun, `form.elements` koleksiyonu içerisinde bulunur.
 
 ````smart header=""Alt formlar" olarak alan kümeleri"
-Bir form bir veya birden fazla `<fieldset>` elemanına sahip olabilir.
-. Bunlar ayrıca `elements` özelliklerine sahiptirler
+Bir form bir veya birden fazla `<fieldset>` elemanına sahip olabilir. Bunlar ayrıca `elements` özelliklerine sahiptirler.
 
 Örneğin:
 
@@ -83,8 +78,8 @@ Bir form bir veya birden fazla `<fieldset>` elemanına sahip olabilir.
     let fieldset = form.elements.userFields;
     alert(fieldset); // HTMLFieldSetElement
 
-    // input elemanına form ve fieldset koleksiyonlarından ulaşabiliriz.
-    alert(fieldset.elements.login == form.elements.login); // true
+    // input elemanına hem form hemde fieldset kullanarak ulaşabiliriz.
+    alert(fieldset.elements.login == form.elements.login); // doğru
 */!*
   </script>
 </body>
@@ -92,11 +87,11 @@ Bir form bir veya birden fazla `<fieldset>` elemanına sahip olabilir.
 ````
 
 ````warn header="Kısa gösterimi: `form.name`"
-Daha kısa bir gösterimi mevcut: `form[index/name]` ile bu elamana ulaşabiliriz.
+Daha kısa bir gösterim mevcut: `form[index/name]` ile bu elamana ulaşabiliriz.
 
 `form.elements.login` yerine `form.login` yazabiliriz.
 
-Bu da çalışır fakat, burada ufak bir problem var:eğer bir elamana ulaşırsak ve daha sonra ismini(`name`) değiştirirsek bu eleman eski ismiyle hala erişilebilr durumdadır.(aynı zamanda yeni ismiylede erişeliebilir).
+Bu da çalışır fakat, burada ufak bir problem var:eğer bir elamana erişirsek ve daha sonra ismini(`name`) değiştirirsek bu eleman eski ismiyle hala erişilebilir durumdadır.(aynı zamanda yeni ismiylede erişeliebilir).
 
 Aşağıdaki örnekte bunu kolaylıkla görebiliriz:
 
@@ -121,7 +116,7 @@ Aşağıdaki örnekte bunu kolaylıkla görebiliriz:
 </script>
 ```
 
-Bu durum genelde bir sorun oluşturmaz çünkü, form elemanların ismini genellikle değiştirmeyiz.
+Bu durum genelde bir sorun oluşturmaz çünkü, form elemanların ismini hemen hemen hiç değiştirmeyiz.
 
 ````
 
@@ -155,8 +150,7 @@ Konuyu görselleştirmek için bir resim:
 
 ## Form elemanları
 
-Birazda form kontrol elemanlarından bahsedelim, özelliklerine dikkat et.
-Let's talk about form controls, pay attention to their specific features.
+Birazda form kontrol elemanlarından bahsedelim, özelliklerine dikkat etmelisin.
 
 ### input ve textarea
 
@@ -169,10 +163,10 @@ Bunun gibi:
 input.value = "Yeni değer";
 textarea.value = "Yeni metin";
 
-input.checked = doğru; // checkbox veya radio button tipleri için
+input.checked = true; // checkbox veya radio button tipleri için
 ```
 
-```warn header=" `textarea.innerHTML` yerine `textarea.value` kullan"
+```warn header=" `textarea.innerHTML` yerine `textarea.value` kullanmalısın"
 
 Lütfen şunu unutma, <textarea>...</textarea> içeriğini iç içe geçmiş HTML olarak saklasa da, asla textarea.innerHTML kullanmamalıyız. Bu sadece sayfa ilk yüklendiğinde olan HTML'i saklar, mevcut değeri değil.
 
@@ -182,7 +176,7 @@ Lütfen şunu unutma, <textarea>...</textarea> içeriğini iç içe geçmiş HTM
 
 A `<select>` 3 önemli özelliği vardır:
 
-1. `select.options` -- `<option>` elemanlarından oluşan bir koleksiyon,
+1. `select.options` -- `<option>` elemanlarından oluşan bir dizi,
 2. `select.value` --  halihazırda seçilmiş olan seçeneğin değeri,
 3. `select.selectedIndex` -- halihazırda seçilmiş olan seçeneğin dizin numarası.
 
@@ -190,7 +184,7 @@ A `<select>` 3 önemli özelliği vardır:
 
 
 1. Gerekli olan `<option>` seçeneğini bul ve `option.selected` değerini `true` olarak ayarla.
-2. `select.value` değerini yaz.
+2. `select.value` değerine değişken değeri ata.
 3. `select.selectedIndex` değerine, seçeneğin dizin numarasını yaz.
 
 İlk seçenek en bariz olan fakat `(2)` ve `(3)` daha uygun.
@@ -213,7 +207,7 @@ A `<select>` 3 önemli özelliği vardır:
 </script>
 ```
 
-Diğer çoğu kontrolün aksine, <select multiple> çoklu seçime izin verir. Bu durumda, tüm seçilmiş değerleri almak için `select.options` üzerinde dizi metodları ile işlem yapmamız gerekir.
+Diğer çoğu kontrolün aksine, <select multiple> çoklu seçime izin verir. Bu durumda, tüm seçilmiş değerlere ulaşmak için `select.options` üzerinde dizi metodları ile işlem yapmamız gerekir.
 
 Şu şekilde:
 
@@ -225,7 +219,7 @@ Diğer çoğu kontrolün aksine, <select multiple> çoklu seçime izin verir. Bu
 </select>
 
 <script>
-  // multi-select ile seçilmiş bütün seçekneleri döndürme
+  // multi-select ile seçilmiş bütün seçeknelere ulaşma
   let selected = Array.from(select.options)
     .filter(option => option.selected)
     .map(option => option.value);
@@ -266,7 +260,7 @@ Aynı eleman seçildi:
 let option = new Option("Text", "value", true, true);
 ```
 
-```smart header="`<option>` ın ek özellikleri"
+```smart header="`<option>` ek özellikleri"
 Seçenek elemanlarının ek özellikleri vardır:
 
 `selected`
@@ -298,7 +292,7 @@ Değerlere `input.value`, `textarea.value`, `select.value` v.b., yada `input.che
 
 
 
-<select> için değeri ayrıca dizin numarasıyla select.selectedIndex veya seçenekler koleksiyonu select.options üzerinden alabiliriz. Bu ve diğer öğelerin tam belgesi belgede bulunabilir <https://html.spec.whatwg.org/multipage/forms.html>.
+<select> için değeri ayrıca dizin numarasıyla select.selectedIndex veya seçenekler diziu select.options üzerinden alabiliriz. Bu ve diğer öğelerin tam belgesi belgede bulunabilir <https://html.spec.whatwg.org/multipage/forms.html>.
 
 Bu bilgiler formlar ile çalışmak için temel bilgiler.Eğitimin ilerleyen bölümlerinde birçok örnekle karşılaşacağız. Bir sonraki bölümde, herhangi bir öğe üzerinde oluşabilecek, ancak çoğunlukla formlar üzerinde işlenen `focus` ve `blur` olaylarını ele alacağız.
 ````
