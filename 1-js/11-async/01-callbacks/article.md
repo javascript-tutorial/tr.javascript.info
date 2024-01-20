@@ -2,9 +2,21 @@
 
 # Callback fonksiyonlarına giriş
 
-Çoğu JavaScript eylemleri *asenkron*'dur.
+```warn header="Buradaki örneklerde tarayıcı yöntemlerini kullanıyoruz"
+Callback, promises ve diğer soyut kavramları göstermek için belirli tarayıcı yöntemlerini kullanacağız: özellikle, betikleri yüklemek ve basit belge manipülasyonları gerçekleştirmek.
 
-Aşağıdaki `loadScript(src)` fonksiyonuna bakacak olursanız:
+Bu yöntemlerle alışık değilseniz ve örneklerdeki kullanımı anlamakta zorlanıyorsanız, [sonraki bölüm](/document)den birkaç bölümü okumanız faydalı olabilir.
+
+Yine de, her şeyi mümkün olduğunca açık hale getirmeye çalışacağız. Tarayıcı yöntemleri ve işlemleri ile ilgili gerçekten karmaşık bir şey olmayacak.
+```
+
+JavaScript'in çalıştığı geliştirme ortamları tarafından sağlanan birçok fonksiyon, *asenkron* eylemleri planlamanıza olanak tanır. Başka bir deyişle, şu an başlattığımız ancak daha sonra tamamlanan eylemler.
+
+Örneğin, setTimeout fonksiyonu, bu türden bir fonksiyona örnektir.
+
+Asenkron eylemlerin diğer gerçek dünya örnekleri de bulunmaktadır, örneğin, betik ve modülleri yükleme (bunları daha sonraki bölümlerde ele alacağız).
+
+İşte loadScript(src) adlı fonksiyonu inceleyin; bu fonksiyon, verilen src ile bir betiği yükler:
 
 ```js
 function loadScript(src) {
