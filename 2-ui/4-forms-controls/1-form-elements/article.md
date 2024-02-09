@@ -2,13 +2,13 @@
 
 Formlar ve kontrol elemanları, `<input>` gibi, birçok özel işleme ve özelliklere sahiptir.
 
-Fromları öğrendiğimizde, onlarla çalışmak çok daha kolay olacak.
+From elemanlarını öğrendiğimizde, formlarla çalışmak çok daha kolay olacaktır.
 
-## Navigasyon: form ve elemanlar
+## Navigasyon: form ve elemanları
 
 Form dökümanları özel bir dizi olan `document.forms` üyleridir.
 
-Bu, bir "adlandırılmış koleksiyon" olarak adlandırılan bir durumdur: hem isimlendirilmiş hem de sıralanmıştır. Belgede forma ulaşmak için hem adı hem de numarasını kullanabiliriz.
+Bu, "adlandırılmış koleksiyon" olarak adlandırılan bir durumdur: hem isimlendirilmiş hem de sıralanmıştır. Belgede forma ulaşmak için hem adı hem de numarasını kullanabiliriz.
 
 ```js no-beautify
 document.forms.my; // "my" isimli form
@@ -38,7 +38,7 @@ Yeni bir form oluşturulduğunda içerisindeki bütün elemanlar `form.elements`
 
 Formlarda aynı isme sahip birden fazla eleman olabilir. Böyle bir durumla daha çok radyo tipindeki input elemanlarında karşılaşırız.
 
-Bu durumda `form.elements[name]` bir koleksiyondur, örneğin:
+Bu durumda `form.elements[name]` bir koleksiyon döner, örneğin:
 
 ```html run height=40
 <form>
