@@ -4,7 +4,7 @@ Formlar ve kontrol elemanları, `<input>` gibi, birçok özel işleme ve özelli
 
 Fromları öğrendiğimizde, onlarla çalışmak çok daha kolay olacak.
 
-## Navigasyon: form and elemanlar
+## Navigasyon: form ve elemanlar
 
 Form dökümanları özel bir dizi olan `document.forms` üyleridir.
 
