@@ -1,4 +1,4 @@
-`#` ve ardından 6 onaltılık karakterin gelmesine ihtiyacımız var.
+`#` ve ardından 6 tane onaltılık karakterin gelmesine ihtiyacımız var.
 
 Onaltılık bir karakter `pattern:[0-9a-fA-F]` şeklinde ifade edilebilir. Veya eğer `pattern:i` bayrağını kullanırsak, `pattern:[0-9a-f]` şeklinde ifade edilebilir.
 
@@ -14,7 +14,7 @@ let str = "color:#121212; background-color:#AA00ef bad-colors:f#fddee #fd2"
 alert( str.match(regexp) );  // #121212,#AA00ef
 ```
 
-Buradaki sorun rengi daha uzun dizilerde bulması:
+Buradaki sorun rengi daha uzun değerlerini de bulması:
 
 ```js run
 alert( "#12345678".match( /#[a-f0-9]{6}/gi ) ) // #12345678
