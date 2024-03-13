@@ -14,7 +14,7 @@ let str = "color:#121212; background-color:#AA00ef bad-colors:f#fddee #fd2"
 alert( str.match(regexp) );  // #121212,#AA00ef
 ```
 
-Buradaki sorun rengi daha uzun değerlerini de bulması:
+Buradaki sorun daha uzun değerleri de bulmasıdır:
 
 ```js run
 alert( "#12345678".match( /#[a-f0-9]{6}/gi ) ) // #12345678
