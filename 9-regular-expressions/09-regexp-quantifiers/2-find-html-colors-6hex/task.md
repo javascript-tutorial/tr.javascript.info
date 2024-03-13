@@ -1,6 +1,6 @@
 # HTML renkler için düzenli ifade (regexp)
 
-`#ABCDEF` şeklinde yazılmış HTML-renklerini aramak için bir düzenli ifade oluşturun: önce `#` ve ardından 6 onaltılık karakterler gelmesi lazım.
+`#ABCDEF` şeklinde yazılmış HTML-renklerini aramak için bir düzenli ifade oluşturun: önce `#` ve ardından 6 tane onaltılık karakter gelmesi lazım.
 
 Bir kullanım örneği:
 
