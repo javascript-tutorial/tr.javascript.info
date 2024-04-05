@@ -371,7 +371,7 @@ Ayrıca, bazı modern tarayıcılar bu tür çerezler için özel politikalar uy
 
 
 ```smart
-Üçüncü taraf bir etki alanından bir script (komut dosyasını) yüklersek, örneğin <script src="https://google-analytics.com/analytics.js">, ve bu script (komut dosyasını) `document.cookie` özelliğini kullanarak bir çerez ayarlamak için kullanırsa, bu çerez üçüncü taraf çerezi değildir.
+Üçüncü taraf bir etki alanından bir script (komut dosyasını) yüklersek, örneğin `<script src="https://google-analytics.com/analytics.js">`, ve bu script (komut dosyasını) `document.cookie` özelliğini kullanarak bir çerez ayarlamak için kullanırsa, bu çerez üçüncü taraf çerezi değildir.
 
 Eğer script(komut dosyasını) çerezleri ayarlarsa, o zaman komut dosyasının nereden geldiğinin bir önemi yoktur -- bu çerez web sayfasının etki alanına aittir.
 ```
