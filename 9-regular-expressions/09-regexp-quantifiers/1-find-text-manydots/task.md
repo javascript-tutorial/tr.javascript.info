@@ -2,13 +2,13 @@ importance: 5
 
 ---
 
-#  How to find an ellipsis "..." ?
+#  Üç noktayı nasıl buluruz "..." ?
 
-Create a regexp to find ellipsis: 3 (or more?) dots in a row.
+Üç noktayı bulmak için bir düzenli ifade oluşturun: Art arda 3 nokta (veya daha fazlası?).
 
-Check it:
+Kontrol et:
 
 ```js
-let regexp = /your regexp/g;
-alert( "Hello!... How goes?.....".match(regexp) ); // ..., .....
+let regexp = /duzenli ifaden/g;
+alert( "Merhaba!... Nasıl gidiyor?.....".match(regexp) ); // ..., .....
 ```
