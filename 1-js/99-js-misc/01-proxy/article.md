@@ -1,36 +1,36 @@
 
 # Proxy and Reflect
 
-A *proxy* wraps another object and intercepts operations, like reading/writing properties and others, optionally handling them on its own, or transparently allowing the object to handle them.
+Bir *proxy* başka bir nesneyi sarar ve okuma/yazma özellikleri ve diğerleri gibi işlemleri durdurur, isteğe bağlı olarak bunları kendi başına yönetir veya şeffaf bir şekilde nesnenin bunları işlemesine izin verir.
 
-Proxies are used in many libraries and some browser frameworks. We'll see many practical applications in this chapter.
+Proxy'ler birçok kitaplıkta ve bazı tarayıcı çerçevelerinde kullanılır. Bu bölümde birçok pratik uygulama göreceğiz.
 
-The syntax:
+Söz dizimi:
 
 ```js
 let proxy = new Proxy(target, handler)
 ```
 
-- `target` -- is an object to wrap, can be anything, including functions.
-- `handler` -- an object with "traps": methods that intercept operations., e.g. `get` for reading a property, `set` for writing a property, etc.
+- `target` -- sarılacak bir nesnedir, fonksiyonlar dahil herhangi bir şey olabilir.
+- `handler` -- 'tuzaklara' sahip bir nesne: işlemleri engelleyen yöntemler, ör. Bir özelliği okumak için 'get', bir özelliği yazmak için 'set' vb.
 
-For operations on `proxy`, if there's a corresponding trap in `handler`, then it runs, and the proxy has a chance to handle it, otherwise the operation is performed on `target`.
+Proxy üzerinde yapılan işlemlerde, eğer `handler` da buna  karşılık gelen bir tuzak varsa çalışır ve `proxy`'nin onu ele alma şansı vardır, aksi takdirde işlem `hedef` üzerinde gerçekleştirilir.
 
-As a starting example, let's create a proxy without any traps:
+Başlangıç ​​örneği olarak herhangi bir tuzak içermeyen bir proxy oluşturalım:
 
 ```js run
 let target = {};
-let proxy = new Proxy(target, {}); // empty handler
+let proxy = new Proxy(target, {}); // boş handler
 
-proxy.test = 5; // writing to proxy (1)
-alert(target.test); // 5, the property appeared in target!
+proxy.test = 5; // proxy'ye yazıyoruz (1)
+alert(target.test); // 5, the özellik hedefte göründü!
 
-alert(proxy.test); // 5, we can read it from proxy too (2)
+alert(proxy.test); // 5, bunu proxy'den de okuyabiliriz (2)
 
-for(let key in proxy) alert(key); // test, iteration works (3)
+for(let key in proxy) alert(key); // test, iterasyon çalışır (3)
 ```
 
-As there are no traps, all operations on `proxy` are forwarded to `target`.
+ `proxy`'de hiç bir tuzak olmadığından  `target`'e ilerlenir.
 
 1. A writing operation `proxy.test=` sets the value on `target`.
 2. A reading operation `proxy.test` returns the value from `target`.
