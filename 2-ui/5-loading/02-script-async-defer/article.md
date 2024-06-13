@@ -1,9 +1,9 @@
 
 # Komut Dosyaları (Scripts): async, defer
 
-Modern websitelerinde, genellikle komut dosyaları (scripts), HTML kodlarından daha yoğunluktadır: onların indirme boyutu daha fazla ve işlem süreleri daha uzundur.
+Modern websitelerinde, genellikle script'ler HTML'den daha baskındır: script'lerin dosya/indirme boyutları büyüktür ve işlenme süreleri uzundur.
 
-Tarayıcı HTML'i yüklediği sırada `<script>...</script>` kısmına denk geldiğinde, DOM'u oluşturmaya devam edemeyebilir. Tarayıcı böyle bir durumda script'i çalıştırmak zorundadır. Benzer durum `<script src="..."></script>` şeklinde dışarıdan aktarılan script'ler içinde geçerlidir: tarayıcı, script indirilene kadar bekleyecek, onu çalıştıracak ve sonrasında sayfanın geri kalanını işleyecektir.
+Tarayıcı, HTML'i yüklerken `<script>...</script>` etiketiyle karşılaştığında, DOM'u oluşturmaya devam edemez. Böyle bir durumda script'i çalıştırmak zorundadır. Benzer durum `<script src="..."></script>` şeklinde dışarıdan aktarılan script'ler içinde geçerlidir: Tarayıcı script indirilene kadar bekleyecek, sonrasında onu çalıştıracak ve en sonunda sayfanın geri kalananı işleyecektir.
 
 Bu durum iki önemli soruna yol açar:
 
@@ -180,7 +180,7 @@ loadScript("/article/script-async-defer/small.js");
 
 `async` ve `defer` niteliklerinin ortak bir özelliği vardır: sayfanın yüklenmesini (render) engellemezler. Böylece kullanıcı sayfa içeriğini okuyabilir ve sayfayla hemen etkileşime geçebilir.
 
-Ama onların arasında temel farklılıklar var:
+Ancak aralarında temel farklılıklar vardır:
 
 |         | Sıra | `DOMContentLoaded` |
 |---------|---------|---------|
