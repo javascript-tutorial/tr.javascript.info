@@ -16,7 +16,7 @@ function HesapMakinesi() {
 }
 
 let hesapMakinesi = new HesapMakinesi();
-hesapMakimesi.oku();
+hesapMakinesi.oku();
 
 alert( "Toplam=" + hesapMakinesi.topla() );
 alert( "Carpım=" + hesapMakinesi.carp() );
