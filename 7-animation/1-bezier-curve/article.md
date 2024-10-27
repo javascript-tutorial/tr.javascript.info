@@ -1,201 +1,201 @@
-# Bezier curve
+# Bezier Eğrisi
 
-Bezier curves are used in computer graphics to draw shapes, for CSS animation and in many other places.
+Bezier eğrileri, bilgisayar grafiklerinde şekiller çizmek için, CSS animasyonları için ve birçok diğer yerlerde kullanılır.
 
-They are a very simple thing, worth to study once and then feel comfortable in the world of vector graphics and advanced animations.
+Çok basit bir konudur, bir kez çalıştıktan sonra vektör grafikleri ve gelişmiş animasyonlar dünyasında kendinizi rahat hissedebilirsiniz.
 
-## Control points
+## Kontrol Noktaları
 
-A [bezier curve](https://en.wikipedia.org/wiki/B%C3%A9zier_curve) is defined by control points.
+Bir [bezier eğrisi](https://tr.wikipedia.org/wiki/B%C3%A9zier_e%C4%9Frisi) kontrol noktaları ile tanımlanır.
 
-There may be 2, 3, 4 or more.
+2, 3, 4 (adet) veya daha fazlası
 
-For instance, two points curve:
+Örneğin, iki noktalı eğri:
 
 ![](bezier2.svg)
 
-Three points curve:
+Üç noktalı eğri:
 
 ![](bezier3.svg)
 
-Four points curve:
+Dört noktalı eğri:
 
 ![](bezier4.svg)
 
-If you look closely at these curves, you can immediately notice:
+Eğrilere yakından bakarsınız, hemen farkedebilirsiniz:
 
-1. **Points are not always on curve.** That's perfectly normal, later we'll see how the curve is built.
-2. **The curve order equals the number of points minus one**.
-For two points we have a linear curve (that's a straight line), for three points -- quadratic curve (parabolic), for four points -- cubic curve.
-3. **A curve is always inside the [convex hull](https://en.wikipedia.org/wiki/Convex_hull) of control points:**
+1. **Noktalar her zaman eğri üzerinde değil.** Bu tamamen normal, daha sonra eğrinin nasıl oluşturulduğunu göreceğiz.
+2. **Eğri derecesi, nokta sayısından bir eksiğine eşittir**.
+İki nokta için doğrusal bir eğriye sahibiz (düz bir çizgi), üç nokta için -- kuadratik eğri (parabolik), dört nokta için -- kübik eğri.
+3. **Bir eğri her zaman kontrol noktalarının [dışbükey gövdesi](https://en.wikipedia.org/wiki/Convex_hull)nin içindedir**:
 
     ![](bezier4-e.svg) ![](bezier3-e.svg)
 
-Because of that last property, in computer graphics it's possible to optimize intersection tests. If convex hulls do not intersect, then curves do not either. So checking for the convex hulls intersection first can give a very fast "no intersection" result. Checking the intersection or convex hulls is much easier, because they are rectangles, triangles and so on (see the picture above), much simpler figures than the curve.
+Bu son özellik sayesinde, bilgisayar grafiklerinde kesişim testlerini optimize etmek mümkündür. Dışbükey gövdeler (convex hulls) kesişmiyorsa, eğrilerde kesişmez. Dolayısıyla, dışbükey gövde kesişimini kontrol etmek "kesişim yok" sonucunu çok hızlı bir şekilde verebilir. Kesişimi veya dışbükey gövdeleri kontrol etmek çok daha kolaydır, çünkü bunlar dikdörtgenler, üçgenler ve benzerleridir (yukarıdaki görsele bakın), eğriden çok daha basit şekillerdir.   
 
-**The main value of Bezier curves for drawing -- by moving the points the curve is changing *in intuitively obvious way*.**
+**Bezier eğrilerinin ana önemi -- kontrol noktaları hareket ettirildiğinde *sezgisel olarak bariz bir şekilde* eğri değişiyor.**
 
-Try to move control points using a mouse in the example below:
+Aşağıdaki örnekte kontrol noktalarını fareyi (mouse) kullanarak hareket ettirmeyi deneyin:
 
 [iframe src="demo.svg?nocpath=1&p=0,0,0.5,0,0.5,1,1,1" height=370]
 
-**As you can notice, the curve stretches along the tangential lines 1 -> 2 and 3 -> 4.**
+**Fark edebileceğiniz gibi, eğri 1 -> 2 ve 3 -> 4 teğet çizgileri boyunca uzanmaktadır.**
 
-After some practice it becomes obvious how to place points to get the needed curve. And by connecting several curves we can get practically anything.
+Biraz pratik yaptıktan sonra, istenen eğriyi elde etmek için noktaların nasıl konumlandırılacağı belli olur. Ve birkaç eğriyi birleştirerek, pratik olarak her şeyi elde edebiliriz.
 
-Here are some examples:
+İşte bazı örnekler:
 
 ![](bezier-car.svg) ![](bezier-letter.svg) ![](bezier-vase.svg)
 
-## De Casteljau's algorithm
+## De Casteljau'nun Algoritması
 
-There's a mathematical formula for Bezier curves, but let's cover it a bit later, because
-[De Casteljau's algorithm](https://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm) it is identical to the mathematical definition and visually shows how it is constructed.
+Bezier eğrileri için matematiksel bir formül vardır, fakat bunu daha sonra ele alalım, çünkü
+[De Casteljau'nun algoritması](https://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm), matematiksel tanımla aynıdır ve nasıl oluşturulduğunu görsel olarak gösterir.
 
-First let's see the 3-points example.
+İlk olarak 3 noktalı örneğe bakalım.
 
-Here's the demo, and the explanation follow.
+İşte demo ve açıklamaları aşağıda.
 
-Control points (1,2 and 3) can be moved by the mouse. Press the "play" button to run it.
+Kontrol noktaları (1,2 ve 3) fare ile hareket ettirilebilir. "play" butonuna basarak çalıştırın.
 
 [iframe src="demo.svg?p=0,0,0.5,1,1,0&animate=1" height=370]
 
-**De Casteljau's algorithm of building the 3-point bezier curve:**
+**De Casteljau'nun 3-noktalı bezier eğrisi oluşturma algoritması:**
 
-1. Draw control points. In the demo above they are labeled: `1`, `2`, `3`.
-2. Build segments between control points 1 -> 2 -> 3. In the demo above they are <span style="color:#825E28">brown</span>.
-3. The parameter `t` moves from `0` to `1`. In the example above the step `0.05` is used: the loop goes over `0, 0.05, 0.1, 0.15, ... 0.95, 1`.
+1. Kontrol noktaları çizme. Yukarıdaki örnekte bunlar `1`, `2`, `3` olarak adlandırılmıştır.
+2. 1 -> 2 -> 3 kontrol noktaları arasında parçalar oluşturun. Yukarıdaki demoda bunlar <span style="color:#825E28">kahverengidir</span>.
+3. `t` parametresi, `0`'dan `1` gider. Yukarıdaki örnekte `0.05` kademe kullanılmıştır: döngü `0, 0.05, 0.1, 0.15, ... 0.95, 1` şeklinde ilerler.
 
-    For each of these values of `t`:
+    Bu `t` değerlerinin her biri için:
 
-    - On each <span style="color:#825E28">brown</span> segment we take a point located on the distance proportional to `t` from its beginning. As there are two segments, we have two points.
+    - Her <span style="color:#825E28">kahverengi</span> parça üzerinde, parçanın başlangıcından `t` ile orantılı uzaklıkta bulunan bir nokta alıyoruz. İki parça olduğundan dolayı iki noktamız var.
 
-        For instance, for `t=0` -- both points will be at the beginning of segments, and for `t=0.25` -- on the 25% of segment length from the beginning, for `t=0.5` -- 50%(the middle), for `t=1` -- in the end of segments.
+        Örneğin, `t=0` için -- her iki nokta da parçaların başlangıcında olacaktır, ve `t=0.25` için -- başlangıcından itibaren parça uzunluğunun 25%'inde, `t=0.5` için -- 50% (ortası), `t=1` için -- parçanın sonunda. 
 
-    - Connect the points. On the picture below the connecting segment is painted <span style="color:#167490">blue</span>.
+    - Noktaları birleştirin. Aşağıdaki görselde bağlantı parçası <span style="color:#167490">maviye</span> boyanmıştır. 
 
 
-| For `t=0.25`             | For `t=0.5`            |
+| `t=0.25` için            | `t=0.5` için           |
 | ------------------------ | ---------------------- |
 | ![](bezier3-draw1.svg)   | ![](bezier3-draw2.svg) |
 
-4. Now in the <span style="color:#167490">blue</span> segment take a point on the distance proportional to the same value of `t`. That is, for `t=0.25` (the left picture) we have a point at the end of the left quarter of the segment, and for `t=0.5` (the right picture) -- in the middle of the segment. On pictures above that point is <span style="color:red">red</span>.
+4. Şimdi <span style="color:#167490">mavi</span> parçada, aynı `t` değeri ile orantılı uzaklıkta bir nokta alın. Yani, `t=0.25` için (soldaki görsel) parçanın sol çeyreğinin sonunda bir nokta, ve `t=0.5` için (sağdaki görsel) -- parçanın orta noktasında. Yukarıdaki görsellerde bu nokta <span style="color:red">kırmızıdır</span>.
 
-5. As `t` runs from `0` to `1`, every value of `t` adds a point to the curve. The set of such points forms the Bezier curve. It's red and parabolic on the pictures above.
+5. `t`, `0`'dan `1`'e doğru ilerlerken, `t`'nin her değeri eğriye bir nokta ekler. Bu noktaların kümesi Bezier eğrisini oluşturur. Yukarıdaki görsellerde kırmızı ve paraboliktir.
 
-That was a process for 3 points. But the same is for 4 points.
+Bu işlemler 3 nokta içindi. Fakat 4 nokta içinde geçerlidir.
 
-The demo for 4 points (points can be moved by a mouse):
+4 nokta için demo (noktalar fare ile hareket ettirilebilir):
 
 [iframe src="demo.svg?p=0,0,0.5,0,0.5,1,1,1&animate=1" height=370]
 
-The algorithm for 4 points:
+4 nokta için algoritma:
 
-- Connect control points by segments: 1 -> 2, 2 -> 3, 3 -> 4. There will be 3 <span style="color:#825E28">brown</span> segments.
-- For each `t` in the interval from `0` to `1`:
-    - We take points on these segments on the distance proportional to `t` from the beginning. These points are connected, so that we have two <span style="color:#0A0">green segments</span>.
-    - On these segments we take points proportional to `t`. We get one <span style="color:#167490">blue segment</span>.
-    - On the blue segment we take a point proportional to `t`. On the example above it's <span style="color:red">red</span>.
-- These points together form the curve.
+- Kontrol noktalarını parçalarla bağlayın: 1 -> 2, 2 -> 3, 3 -> 4. 3 tane <span style="color:#825E28">kahverengi</span> parça olacak.
+- `0` ile `1` aralığındaki her `t` için:
+    - Bu parçalar üzerinde başlangıçtan `t` ile orantılı uzaklıkta noktalar alıyoruz. Bu noktalar birbirlerine bağlandığında iki (adet) <span style="color:#0A0">yeşil</span> parçamız olur.
+    - Bu parçalar üzerinde `t` ile orantılı noktalar alıyoruz. Bir <span style="color:#167490">mavi parça</span> elde ederiz.
+    - Mavi parça üzerinde `t` ile orantılı bir nokta alıyoruz. Yukarıdaki örnekte <span style="color:red">kırmızı</span>.
+- Bu noktalar birlikte eğriyi oluşturur.
 
-The algorithm is recursive and can be generalized for any number of control points.
+Algoritma tekrarlamalı olup herhangi bir sayıda kontrol noktası için genelleştirilebilir.
 
-Given N of control points:
+N tane kontrol noktası verildiğinde:
 
-1. We connect them to get initially N-1 segments.
-2. Then for each `t` from `0` to `1`, we take a point on each segment on the distance proportional to `t` and connect them. There will be N-2 segments.
-3. Repeat step 2 until there is only one point.
+1. N-1 tane parça elde etmek için onları birleştiriyoruz.
+2. Sonra `0` ile `1` aralığındaki her `t` için, her parça üzerinde `t` ile orantılı uzaklıkta bir nokta alıyoruz ve onları birleşiriyoruz. N-2 parça olacak.
+3. Yalnızca bir nokta kalana kadar 2. adımı tekrarlayın.
 
-These points make the curve.
+Bu noktalar eğriyi oluşturur.
 
 ```online
-**Run and pause examples to clearly see the segments and how the curve is built.**
+**Parçaların ve eğrinin nasıl oluşturulduğunu açıkça görmek için örnekleri çalıştırın ve duraklatın.**
 ```
 
 
-A curve that looks like `y=1/t`:
+`y=1/t`'ye benzeyen bir eğri:
 
 [iframe src="demo.svg?p=0,0,0,0.75,0.25,1,1,1&animate=1" height=370]
 
-Zig-zag control points also work fine:
+Zig-zag kontrol noktaları da iyi/sorunsuz çalışır:
 
 [iframe src="demo.svg?p=0,0,1,0.5,0,0.5,1,1&animate=1" height=370]
 
-Making a loop is possible:
+Bir ilmek/düğüm oluşturmak mümkündür:
 
 [iframe src="demo.svg?p=0,0,1,0.5,0,1,0.5,0&animate=1" height=370]
 
-A non-smooth Bezier curve (yeah, that's possible too):
+Düzgün olmayan bir Bezier eğrisi (evet, bu da mümkün):
 
 [iframe src="demo.svg?p=0,0,1,1,0,1,1,0&animate=1" height=370]
 
 ```online
-If there's something unclear in the algorithm description, please look at the live examples above to see how
-the curve is built.
-```
-
-As the algorithm is recursive, we can build Bezier curves of any order, that is: using 5, 6 or more control points. But in practice many points are less useful. Usually we take 2-3 points, and for complex lines glue several curves together. That's simpler to develop and calculate.
-
-```smart header="How to draw a curve *through* given points?"
-To specify a Bezier curve, control points are used. As we can see, they are not on the curve, except the first and the last ones.
-
-Sometimes we have another task: to draw a curve *through several points*, so that all of them are on a single smooth curve. That task is called  [interpolation](https://en.wikipedia.org/wiki/Interpolation), and here we don't cover it.
-
-There are mathematical formulas for such curves, for instance [Lagrange polynomial](https://en.wikipedia.org/wiki/Lagrange_polynomial). In computer graphics [spline interpolation](https://en.wikipedia.org/wiki/Spline_interpolation) is often used to build smooth curves that connect many points.
+Algoritma açıklamasında net olamayan bir şey varsa, eğrinin nasıl oluşturulduğunu görmek için lütfen yukarıdaki canlı örneklere bakın.
 ```
 
 
-## Maths
+Algoritma tekrarlamalı olduğundan, herhangi bir düzende Bezier eğrileri oluşturabiliriz, yani: 5, 6 veya daha fazla kontrol noktası kullanarak. Ama pratikte çok sayıda nokta daha az kullanışlıdır. Genellikle 2-3 nokta alırız ve karmaşık çizgiler için birkaç eğriyi birbirleriyle birleştiririz. Bunu geliştirmek ve hesaplamak daha basittir.
 
-A Bezier curve can be described using a mathematical formula.
+```smart header="Verilen noktalar üzerinden bir eğri nasıl çizilir?"
+Bir Bezier eğrisi oluşturmak için kontrol noktaları kullanılır. Gördüğümüz gibi, ilki ve sonuncusu hariç eğri üzerinde değiller.
 
-As we saw -- there's actually no need to know it, most people just draw the curve by moving points with a mouse. But if you're into maths -- here it is.
+Bazen başka bir amacımız daha vardır: *birkaç nokta boyunca* bir eğri çizmek, böylece hepsi tek bir eğri üzerinde olur. Bu işleme [intepolasyon](https://tr.wikipedia.org/wiki/%C4%B0nterpolasyon) denir, burada bu konuyu ele almayacağız.
 
-Given the coordinates of control points <code>P<sub>i</sub></code>: the first control point has coordinates <code>P<sub>1</sub> = (x<sub>1</sub>, y<sub>1</sub>)</code>, the second: <code>P<sub>2</sub> = (x<sub>2</sub>, y<sub>2</sub>)</code>, and so on, the curve coordinates are described by the equation that depends on the parameter `t` from the segment `[0,1]`.
+Bu tür eğriler için matematiksel formüller vardır, örneğin [Lagrange polinomu](https://en.wikipedia.org/wiki/Lagrange_polynomial). Bilgisayar grafiklerinde [spline interpolasyonu](https://en.wikipedia.org/wiki/Spline_interpolation) genellikle birçok noktayı birbirine bağlayan düzgün eğriler oluşturmak için kullanılır.
+```
 
-- The formula for a 2-points curve:
+
+## Matematik
+
+Bir Bezier eğrisi matematiksel bir formül kullanılarak tanımlanabilir.
+
+Gördüğümüz gibi -- aslında bunu bilmeye gerek yok, çoğu insan sadece bir fare ile noktaları hareket ettirerek eğri çizer. Ama matematikle ilgiliyseniz -- işte burada.
+
+<code>P<sub>i</sub></code> kontrol noktalarının koordinatları göz önüne alındığında: birinci kontrol noktasının koordinatları <code>P<sub>1</sub> = (x<sub>1</sub>,y<sub>1</sub>)</code>, ikincisinin: <code>P<sub>2</sub> = (x<sub>2</sub>, y<sub>2</sub>)</code>, ve benzer şekilde, eğri koordinatları `[0,1]` aralığındaki `t` parametresine bağlı olan denklemle tanımlanır.
+
+- 2 noktalı eğri için formül:
 
     <code>P = (1-t)P<sub>1</sub> + tP<sub>2</sub></code>
-- For 3 control points:
+- 3 kontrol noktalı için:
 
     <code>P = (1−t)<sup>2</sup>P<sub>1</sub> + 2(1−t)tP<sub>2</sub> + t<sup>2</sup>P<sub>3</sub></code>
-- For 4 control points:
+- 4 kontrol noktalı için:
 
     <code>P = (1−t)<sup>3</sup>P<sub>1</sub> + 3(1−t)<sup>2</sup>tP<sub>2</sub>  +3(1−t)t<sup>2</sup>P<sub>3</sub> + t<sup>3</sup>P<sub>4</sub></code>
 
 
-These are vector equations. In other words, we can put `x` and `y` instead of `P` to get corresponding coordinates.
+Bunlar vektör denklemleridir. Başka bir deyişle, karşılık gelen koordinatları elde etmek için `P` yerine `x` ve `y`'yi koyabiliriz.
 
-For instance, the 3-point curve is formed by points `(x,y)` calculated as:
+Örneğin, 3 noktalı eğri şu şekilde hesaplanan `(x,y)` noktaları tarafından oluşturulur:
 
 - <code>x = (1−t)<sup>2</sup>x<sub>1</sub> + 2(1−t)tx<sub>2</sub> + t<sup>2</sup>x<sub>3</sub></code>
 - <code>y = (1−t)<sup>2</sup>y<sub>1</sub> + 2(1−t)ty<sub>2</sub> + t<sup>2</sup>y<sub>3</sub></code>
 
-Instead of <code>x<sub>1</sub>, y<sub>1</sub>, x<sub>2</sub>, y<sub>2</sub>, x<sub>3</sub>, y<sub>3</sub></code> we should put coordinates of 3 control points, and then as `t` moves from `0` to `1`, for each value of `t` we'll have `(x,y)` of the curve.
+<code>x<sub>1</sub>, y<sub>1</sub>, x<sub>2</sub>, y<sub>2</sub>, x<sub>3</sub>, y<sub>3</sub></code> yerine 3 kontol noktasının koordinatlarını koymalıyız, sonrasında `t`, `0`'dan `1`'e gittikçe, `t`'nin her bir değeri için `(x,y)` değerlerini elde ederiz.
 
-For instance, if control points are  `(0,0)`, `(0.5, 1)` and `(1, 0)`, the equations become:
+Örneğin, kontrol noktaları `(0,0)`, `(0.5, 1)` ve `(1, 0)` ise, denklemler şöyle olur:
 
 - <code>x = (1−t)<sup>2</sup> * 0 + 2(1−t)t * 0.5 + t<sup>2</sup> * 1 = (1-t)t + t<sup>2</sup> = t</code>
 - <code>y = (1−t)<sup>2</sup> * 0 + 2(1−t)t * 1 + t<sup>2</sup> * 0 = 2(1-t)t = –t<sup>2</sup> + 2t</code>
 
-Now as `t` runs from `0` to `1`, the set of values `(x,y)` for each `t` forms the curve for such control points.
+Şimdi `t`, `0`'dan `1`'e gittikçe, her `t` için `(x,y)` değerleri kümesi bu kontrol noktaları için eğriyi oluşturur.
 
-## Summary
+## Özet
 
-Bezier curves are defined by their control points.
+Bezier eğrileri kontrol noktaları ile tanımlanır.
 
-We saw two definitions of Bezier curves:
+Bezier eğrilerinin iki tanımını gördük:
 
-1. Using a drawing process: De Casteljau's algorithm.
-2. Using a mathematical formulas.
+1. Bir çizim işlemi kullanmak: De Casteljau's algoritması.
+2. Matematiksel formüller kullanmak.
 
-Good properties of Bezier curves:
+Bezier eğrilerinin iyi özellikleri:
 
-- We can draw smooth lines with a mouse by moving control points.
-- Complex shapes can be made of several Bezier curves.
+- Kontrol noktalarını fare ile hareket ettirerek düzgün eğriler çizebiliriz.
+- Karmaşık şekilleri birkaç Bezier eğrisi ile oluşturabiliriz.
 
-Usage:
+Kullanım:
 
-- In computer graphics, modeling, vector graphic editors. Fonts are described by Bezier curves.
-- In web development -- for graphics on Canvas and in the SVG format. By the way, "live" examples above are written in SVG. They are actually a single SVG document that is given different points as parameters. You can open it in a separate window and see the source: [demo.svg](demo.svg?p=0,0,1,0.5,0,0.5,1,1&animate=1).
-- In CSS animation to describe the path and speed of animation.
+- Bilgisayar grafiklerinde, modelleme ve vektör grafik editörlerinde. Yazı tipleri Bezier eğrileri ile tanımlanır.
+- Web geliştirmede -- Canvas ve SVG formatında grafikler için. Bu arada, yukarıdaki "canlı" örnekler SVG'de yazılmıştır. Bunlar aslında parametre olarak farklı noktalar verilen tek bir SVG belgesidir. Bunu ayrı bir pencerede açabilir ve kaynağı görebilirsiniz: [demo.svg](demo.svg?p=0,0,1,0.5,0,0.5,1,1&animate=1).
+- CSS animasyonunda animasyonun yolunu ve hızını tanımlamak için kullanılır.
