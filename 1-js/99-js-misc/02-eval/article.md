@@ -1,6 +1,10 @@
 # Eval: kod karakter dizisi çalıştırmak
 
+<<<<<<< HEAD
 Yerleşik `eval` fonksiyonu, `kod` şeklindeki bir karakter dizisini çalıştırmayı sağlar.
+=======
+The built-in `eval` function allows to execute a string of code.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Sözdizimi şu şekildedir:
 
@@ -15,7 +19,13 @@ let code = 'alert("Esenlikler")';
 eval(code); // Esenlikler
 ```
 
+<<<<<<< HEAD
 Bir `eval` çalıştırmak son ifadenin sonucunu döndürür.
+=======
+A string of code may be long, contain line breaks, function declarations, variables and so on.
+
+The result of `eval` is the result of the last statement.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Örneğin:
 ```js run
@@ -23,7 +33,16 @@ let value = eval('1+1');
 alert(value); // 2
 ```
 
+<<<<<<< HEAD
 Kod, o anki sözcüksel ortamda yürütülür, bu nedenle dış değişkenlere erişebilir.
+=======
+```js run
+let value = eval('let i = 0; ++i');
+alert(value); // 1
+```
+
+The eval'ed code is executed in the current lexical environment, so it can see outer variables:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run no-beautify
 let a = 1;
@@ -68,6 +87,7 @@ Nedeni oldukça basit: uzun, çok uzun zaman önce JavaScript, çoğu şeyin yal
 
 Şu an `eval` kullanmak için neredeyse hiçbir neden bulunmuyor. Eğer birisi kullanıyorsa bunu modern bir dil yapısıyla veya bir [JavaScript Modülü](info:modules) ile değiştirmek için iyi bir fırsatı var.
 
+<<<<<<< HEAD
 Halen dinamik bir `eval` karakter dizisi şeklinde bir koda ihtiyacınız varsa lütfen bunun dış değişkenlere yan etkilere neden olarak erişebileceğinin farkında olun.
 
 Kod küçültücüler (minifiers - JS kodlarını yayınlamadan önce sıkıştıran araçlar) yerel değişkenleri üretim için kısa olanlarıyla değiştirir. Bu genellikle güvenlidir, şayet birçok referansa sahip `eval` kullanılmıyorsa. Dolayısıyla küçültücüler `eval`dan görülebilen tüm yerel değişkenleri değiştirmez. Bu, kod sıkıştırma oranını büyük oranda kötü etkileyecektir.
@@ -75,6 +95,15 @@ Kod küçültücüler (minifiers - JS kodlarını yayınlamadan önce sıkışt�
 `eval`ın içinde dış yerel değişkenler kullanmak kod kontrolünü zorlaştıran kötü bir programlama yöntemidir.
 
 Eval ile bağlantılı sorunlardan kaçınmanın iki adet yolu mevcut.
+=======
+Please note that its ability to access outer variables has side-effects.
+
+Code minifiers (tools used before JS gets to production, to compress it) rename local variables into shorter ones (like `a`, `b` etc) to make the code smaller. That's usually safe, but not if `eval` is used, as local variables may be accessed from eval'ed code string. So minifiers don't do that renaming for all variables potentially visible from `eval`. That negatively affects code compression ratio.
+
+Using outer local variables inside `eval` is also considered a bad programming practice, as it makes maintaining the code more difficult.
+
+There are two ways how to be totally safe from such problems.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 **Eğer eval'laştırılmış kod dış değişkenleri kullanmıyorsas lütfen `eval`ı `window.eval(...)` şeklinde kullanın:**
 
@@ -88,7 +117,11 @@ let x = 1;
 }
 ```
 
+<<<<<<< HEAD
 **Eğer kod yerel değişkenlere ihtiyaç duyuyorsa `new Function` ile çalıştırın ve bunları argüman olarak geçirin:**
+=======
+**If eval'ed code needs local variables, change `eval` to `new Function` and pass them as arguments:**
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 let f = new Function('a', 'alert(a)');

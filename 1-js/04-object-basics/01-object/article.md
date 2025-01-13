@@ -1,7 +1,11 @@
 
 # Objeler
 
+<<<<<<< HEAD
 <info:types> bölümünde hatırlanacağı üzere, JavaScript'te yedi tane farklı tip olduğundan bahsedilmşiti. Altı tanesi "basit" tipler, değerleri sadece tek bir şeye eşit olabilir. ( karakter dizisi, sayı vs.)
+=======
+As we know from the chapter <info:types>, there are eight data types in JavaScript. Seven of them are called "primitive", because their values contain only a single thing (be it a string or a number or whatever).
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Buna karşın objeler anahtar bilgileri ile değerlerini tutar ve daha karmaşık veri yapıları oluşturabilirler. JavaScript'te bu objeler dilin neredeyse her alanına etki etmiş durumdadır. Bundan dolayı daha derinlere inmeden nasıl çalıştıklarının öğrenilmesi gerekmekte.
 
@@ -9,7 +13,11 @@ Buna karşın objeler anahtar bilgileri ile değerlerini tutar ve daha karmaşı
 
 Obje `{...}` işareti ile yaratılabilir. Objenin kendine has *özellikleri* mevcuttur. Bir özellik anahtar:değer ikilisinden oluşur. `key`( anahtar) genelde karakter dizisi olur ve "özellik ismi" olarak adlandırılır. Değer ise herhangi bir tip olabilir.
 
+<<<<<<< HEAD
 Obje bir dolap gibi düşünülebilir. Bu dolabın içindeki her klasörün bir ismi var ve bu isme göre içinde değerler mevcut. Bu `key`(anahtar) değerine göre dosyayı bulmak, eklemek ve silmek daha kolay olacaktır.
+=======
+![](object.svg)
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ![](object.svg)
 
@@ -83,12 +91,65 @@ let kullanici = {
 ![](object-user-props.svg)
 
 
+<<<<<<< HEAD
 ````smart header="Virgül"
 Her özellikten sonra virgül konulmalıdır. Son özellikten sonra virgül ile bitirilebilir.
 
 ```js
 let kullanici = {
   name: "Mahsun",
+=======
+1. The first property has the name `"name"` and the value `"John"`.
+2. The second one has the name `"age"` and the value `30`.
+
+The resulting `user` object can be imagined as a cabinet with two signed files labeled "name" and "age".
+
+![user object](object-user.svg)
+
+We can add, remove and read files from it at any time.
+
+Property values are accessible using the dot notation:
+
+```js
+// get property values of the object:
+alert( user.name ); // John
+alert( user.age ); // 30
+```
+
+The value can be of any type. Let's add a boolean one:
+
+```js
+user.isAdmin = true;
+```
+
+![user object 2](object-user-isadmin.svg)
+
+To remove a property, we can use the `delete` operator:
+
+```js
+delete user.age;
+```
+
+![user object 3](object-user-delete.svg)
+
+We can also use multiword property names, but then they must be quoted:
+
+```js
+let user = {
+  name: "John",
+  age: 30,
+  "likes birds": true  // multiword property name must be quoted
+};
+```
+
+![](object-user-props.svg)
+
+
+The last property in the list may end with a comma:
+```js
+let user = {
+  name: "John",
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
   age: 30*!*,*/!*
 }
 ```
@@ -105,7 +166,15 @@ kullanici.Nemrudun Kızı = true
 ```
 Çünkü `.` aslında bir değişken ismi beklemektedir. Değişken tanımlarken boşluk ve başka sınırlamalar aynen `.` yazımı için de geçerlidir.
 
+<<<<<<< HEAD
 Bunun yerine köşeli parantez yazımı ile bunu çözebilirsiniz:
+=======
+JavaScript doesn't understand that. It thinks that we address `user.likes`, and then gives a syntax error when comes across unexpected `birds`.
+
+The dot requires the key to be a valid variable identifier. That implies: contains no spaces, doesn't start with a digit and doesn't include special characters (`$` and `_` are allowed).
+
+There's an alternative "square bracket notation" that works with any string:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 let kullanici = {};
@@ -132,7 +201,13 @@ kullanici[anahtar] = true;
 ```
 Burada `anahtar` çalışma anında veya kullanıcının gireceği değere göre atanır. Sonrasında istenen özelliğe erişmek için kullanılabilir. Nokta yazımı köşeli parantez kadar etkin değildir. Köşeli parantez esneklik sağlar.
 
+<<<<<<< HEAD
 Örneğin:
+=======
+Here, the variable `key` may be calculated at run-time or depend on the user input. And then we use it to access the property. That gives us a great deal of flexibility.
+
+For instance:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 let kullanici = {
@@ -146,10 +221,25 @@ let anahtar = prompt("Kullanıcı hakkında ne bilmek istiyorsun?", "isim");
 alert( kullanici[anahtar] ); // Mahsun (eğer "isim" girerse )
 ```
 
+The dot notation cannot be used in a similar way:
+
+```js run
+let user = {
+  name: "John",
+  age: 30
+};
+
+let key = "name";
+alert( user.key ) // undefined
+```
 
 ### Hesaplanmış Özellikler
 
+<<<<<<< HEAD
 Obje tanımında da köşeli parantez kullanabiliriz. Buna **Hesaplanmış Özellikler** ( Computed Properties ) denir.
+=======
+We can use square brackets in an object literal, when creating an object. That's called *computed properties*.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Örneğin:
 
@@ -190,10 +280,15 @@ let poset = {
 ```
 Köşeli parantez nokta yazımına göre çok daha güçlüdür. Her türlü özellik ismini ve değişkeni desteklerler. Fakat yazımı biraz  gariptir.
 
+<<<<<<< HEAD
 Eğer özellik isimleri tek kelime ise çoğunlukla nokta yazımı kullanılır. Eğer daha karmaşık ise bu durumda köşeli parantez kullanılır.
+=======
+Square brackets are much more powerful than dot notation. They allow any property names and variables. But they are also more cumbersome to write.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ````smart header="JavaScript dili için ayrılmış kelimeler obje içerisinde kullanılabilir."
 
+<<<<<<< HEAD
 Değişken ismi  `for`,`let`,`return` gibi dil için ayrılmış kelimelerden oluşamaz. 
 
 Fakat obje özellikleri için böyle bir sınırlama yoktur. Değişken her türlü adlandırılabilir.
@@ -229,15 +324,26 @@ Böyle bir durumda kullanıcı "__proto__" seçerse tüm mantık yukarıdaki gib
 ## Özellik değeri kısaltması
 
 Kod yazarken genelde var olan değişkenleri özelliklere isim olarak atarız.
+=======
+## Property value shorthand
+
+In real code, we often use existing variables as values for property names.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Örneğin:
 
 ```js run
 function kullaniciOlustur(isim, yas) {
   return {
+<<<<<<< HEAD
     isim: isim,
     yas: yas
     // ...diğer özellikler
+=======
+    name: name,
+    age: age,
+    // ...other properties
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
   };
 }
 
@@ -252,8 +358,13 @@ Yukarıdaki örnekte özellikler değişkenler ile aynı isme sahipler. Bu çeş
 function kullaniciOlustur(isim, yas) {
 *!*
   return {
+<<<<<<< HEAD
     isim, //  isim: isim ile aynı
     yas   // yas: yas ile aynı
+=======
+    name, // same as name: name
+    age,  // same as age: age
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
     // ...
   };
 */!*
@@ -268,9 +379,63 @@ let kullanici = {
 };
 ```
 
+<<<<<<< HEAD
 ## Varlık kontrolü
 
 Bir objedeki her özellik erişilebilirdir. Eğer o özellik olmasa bile hata vemez!!! Olmayan bir özelliğe ulaşmaya çalıştığınızda `undefined` değeri döner. Bu da kolayca o özelliğin olup olmadığını kontrol etmenizi sağlar.
+=======
+
+## Property names limitations
+
+As we already know, a variable cannot have a name equal to one of the language-reserved words like "for", "let", "return" etc.
+
+But for an object property, there's no such restriction:
+
+```js run
+// these properties are all right
+let obj = {
+  for: 1,
+  let: 2,
+  return: 3
+};
+
+alert( obj.for + obj.let + obj.return );  // 6
+```
+
+In short, there are no limitations on property names. They can be any strings or symbols (a special type for identifiers, to be covered later).
+
+Other types are automatically converted to strings.
+
+For instance, a number `0` becomes a string `"0"` when used as a property key:
+
+```js run
+let obj = {
+  0: "test" // same as "0": "test"
+};
+
+// both alerts access the same property (the number 0 is converted to string "0")
+alert( obj["0"] ); // test
+alert( obj[0] ); // test (same property)
+```
+
+There's a minor gotcha with a special property named `__proto__`. We can't set it to a non-object value:
+
+```js run
+let obj = {};
+obj.__proto__ = 5; // assign a number
+alert(obj.__proto__); // [object Object] - the value is an object, didn't work as intended
+```
+
+As we see from the code, the assignment to a primitive `5` is ignored.
+
+We'll cover the special nature of `__proto__` in [subsequent chapters](info:prototype-inheritance), and suggest the [ways to fix](info:prototype-methods) such behavior.
+
+## Property existence test, "in" operator
+
+A notable feature of objects in JavaScript, compared to many other languages, is that it's possible to access any property. There will be no error if the property doesn't exist!
+
+Reading a non-existing property just returns `undefined`. So we can easily test whether the property exists:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 let kullanici = {};
@@ -279,7 +444,13 @@ alert( kullanici.olmayanOzellik === undefined ); // true "böyle bir özellik yo
 ```
 Ayrıca bunu kontrol için `"in"` operatörü de kullanılabilir.
 
+<<<<<<< HEAD
 Yazımı:
+=======
+There's also a special operator `"in"` for that.
+
+The syntax is:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```js
 "anahtar" in obje
 ```
@@ -295,19 +466,33 @@ alert( "blabla" in kullanici ); // false, kullanici.blabla namevcut.
 
 Yazıma dikkat ederseniz `in` in sol tarafında *özellik ismi* tırnak içinde yazılır.
 
+<<<<<<< HEAD
 Eğer tırnağı unutursanız bu durumda değişkenin değerini obje içinde arar. Halbuki bizim amacımız değişkenin isminin obje içinde aramaktır.
 
 Örneğin:
+=======
+If we omit quotes, that means a variable should contain the actual name to be tested. For instance:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 let kullanici = { yas: 30 };
 
+<<<<<<< HEAD
 let anahtar = "yas";
 alert( *!*anahtar*/!* in kullanici ); // true, değişkenden değerini alır ve kontrol eder.
 ```
 
 ````smart header="Eğer özellik undefined döndürüyorsa nasıl kontrol edilmelidir?"
 Genelde sıkı karşılaştırma `"=== undefined"` doğru çalışır. Fakat burada özel bir durum mevcuttur ve sıkı karşılaştırma da başarısız olur. Bu durumda bile `"in"` doğru çalışır.
+=======
+let key = "age";
+alert( *!*key*/!* in user ); // true, property "age" exists
+```
+
+Why does the `in` operator exist? Isn't it enough to compare against `undefined`?
+
+Well, most of the time the comparison with `undefined` works fine. But there's a special case when it fails, but `"in"` works correctly.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Bu olay objenin özelliğinin var olduğu fakat `undefined` döndürdüğü durumlarda meydana gelir.
 
@@ -322,11 +507,20 @@ alert( "test" in obj ); // true, özellik mevcut!
 ```
 Yukarıdaki örnekte `obj.test` teknik olarak mevcut. Bundan dolayı `in` operatörü doğru bir şekilde çalışır.
 
+<<<<<<< HEAD
 Bu türde olaylar çok nadir yaşanır, çünkü bir özelliğe neredeyse kimse `undefined` atamaz. Genelde `bilinmeyen` için `null` veya boş değer kullanılır. Bundan dolayı `in` operatörü kodda yabancı görünür.
 ````
 
 
 ## "for..in" döngüsü
+=======
+In the code above, the property `obj.test` technically exists. So the `in` operator works right.
+
+Situations like this happen very rarely, because `undefined` should not be explicitly assigned. We mostly use `null` for "unknown" or "empty" values. So the `in` operator is an exotic guest in the code.
+
+
+## The "for..in" loop [#forin]
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Objenin içindeki `anahtarlar` içini adım adım gezen `for..in` döngüsü bulunmaktadır. Bu `for(;;)` döngüsünden tamamen farklıdır.
 
@@ -358,9 +552,13 @@ Dikkat ederseniz, "for" yapısına göre döngü içerisinde `let anahtar` tanı
 
 Elbette `anahtar` yerine istediğiniz herhangi bir değişken ismini koyabilirsiniz. Örneğin `key` veya `property` 
 
+<<<<<<< HEAD
 ### Obje sıralaması
 
 Objeler sıralı mıdır? Diğer bir deyişle; eğer döngü içerisinde obje yazdırılırsa bu objeye yerleştirme sırasına göre mi yazılır?
+=======
+### Ordered like an object
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Kısa cevap: "özel bir şekilde sıralanır". Eğer tam sayı ise değerlerine göre, tam sayı değil ise türlü objeye eklenme sırasına göre sıralanır. 
 
@@ -383,7 +581,11 @@ for(let kod in kodlar) {
 ```
 Bu obje belki açılan kutu içerisinde kullanılacaktı, Alman kullanıcılar düşünülerek yapılmış olabilir. Onun için Almanya birinci sıraya konulmuş fakat gördüğünüz üzere anahtar `49` olduğundan ilk değil de sonuncu sırada.
 
+<<<<<<< HEAD
 Kodu çalıştırdığınızda:
+=======
+The object may be used to suggest a list of options to the user. If we're making a site mainly for a German audience then we probably want `49` to be the first.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 - Amerika Birleşik Devletleri 1. sırada
 - Sonra İsveç vs.
@@ -393,7 +595,19 @@ Telefon kodları tam sayı olduğundan dolayı bu sıraya göre dizilmişlerdir.
 
 ````smart header="Özellik anahtarları nasıl tam sayı olabilir ?"
 
+<<<<<<< HEAD
 Burada "tam sayı" aslında sayı tipinde değil de karakter tipinde sayı olmakta. Sıralama yapılacağı sırada sayısal olarak çevriliyor ve buna göre sıralanıyor.
+=======
+So, `"49"` is an integer property name, because when it's transformed to an integer number and back, it's still the same. But `"+49"` and `"1.2"` are not:
+
+```js run
+// Number(...) explicitly converts to a number
+// Math.trunc is a built-in function that removes the decimal part
+alert( String(Math.trunc(Number("49"))) ); // "49", same, integer property
+alert( String(Math.trunc(Number("+49"))) ); // "49", not same "+49" ⇒ not integer property
+alert( String(Math.trunc(Number("1.2"))) ); // "1", not same "1.2" ⇒ not integer property
+```
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ````
 
 ...Diğer yandan, eğer anahtarlar tam sayı değilse bu durumda objeye eklenme sırasına göre çıktı alınır:
@@ -432,6 +646,7 @@ for(let kod in kodlar) {
 
 Olması gerektiği gibi çalışır.
 
+<<<<<<< HEAD
 ## Referans ile kopyalama
 
 Objeler ile ilkel tipler (karakter dizisi, sayı, boolean vs.) arasındaki temel fark objelerin saklanması ve kopyalanması "referans" ile olur.
@@ -684,6 +899,9 @@ Bu derin klonlama için kullanılan [Structured cloning algorithm](https://w3c.g
 
 
 ## Özet
+=======
+## Summary
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Objeler ilişkisel dizilerdir. Bunun haricinde bir kaç tane de kendine has özellikleri vardır.
 
@@ -691,19 +909,29 @@ Objeler ilişkisel dizilerdir. Bunun haricinde bir kaç tane de kendine has öze
 - Anahtarlar karakter veya sembol olabilir, genelde karakter kullanılır.
 - Değerler ise herhangi bir veri tipinde olabilir.
 
+<<<<<<< HEAD
 Özelliğe erişebilmek için :
 - Nokta yazımı:`obj.ozellik`
 - Köşeli parantez yazımı: `obj["özellik"]`. Köşeli parantez ayrıca değişkenden anahtar değerini de alabilir. Örn:`obj[varWithKey]`
+=======
+To access a property, we can use:
+- The dot notation: `obj.property`.
+- Square brackets notation `obj["property"]`. Square brackets allow taking the key from a variable, like `obj[varWithKey]`.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Ek operatörler:
 - Özelliği silmek için: `delete obj.ozellik`
 - Varlığını kontrol etmek için `"anahtar" in obj`
 - Döngüde kullanmak için `for(let anahtar in obj)` kullanılır.
 
+<<<<<<< HEAD
 
 Objeler değer değil de referans tutarlar, yani verilerin hafızadaki adresini. Bundan dolayı Obje değişkenini kopyalamak, veya bir parametreye göndermek demek aslında onun referansını kopyalamak veya referansını bir parametreye göndermek demektir. Tüm olaylar aslında aynı veri üzerinde olur. Bunlar özelliklerin eklenmesi veya silinmesi olabilir.
 
 Eğer objenin "gerçek kopyası" , veya diğer bir deyişle `klonu` yapılmak istenirse `Object.assign` veya  [_.cloneDeep(obj)](https://lodash.com/docs#cloneDeep) kullanılabilir.
+=======
+What we've studied in this chapter is called a "plain object", or just `Object`.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Bu bölümde "basit obje" veya `Obje` konusunu işlendi.
 

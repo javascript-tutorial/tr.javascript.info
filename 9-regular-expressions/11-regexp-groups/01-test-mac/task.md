@@ -16,5 +16,9 @@ alert( regexp.test('0132546789AB') ); // false (no colons)
 
 alert( regexp.test('01:32:54:67:89') ); // false (5 numbers, must be 6)
 
+<<<<<<< HEAD
 alert( regexp.test('01:32:54:67:89:ZZ') ) // false (ZZ ad the end)
+=======
+alert( regexp.test('01:32:54:67:89:ZZ') ) // false (ZZ at the end)
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```

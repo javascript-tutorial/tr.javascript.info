@@ -36,11 +36,19 @@ kullanici.selamVer(); // Merhaba
 ```
 Burada Fonksiyon ifadesi ile fonksiyon yaratıldı ve `kullanici.selamVer` özelliğine atandı.
 
+<<<<<<< HEAD
 Ardından bu metod çağırıldı ve kullanıcı selam verdi.
 
 Bir objenin özelliği olan fonksiyona *metod* denir.
 
 Öyleyse `kullanici` objesinin `selamVer` metodu bulunmaktadır.
+=======
+Here we've just used a Function Expression to create a function and assign it to the property `user.sayHi` of the object.
+
+Then we can call it as `user.sayHi()`. The user can now speak!
+
+A function that is a property of an object is called its *method*.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Tabii ki metodları önceden tanımlanmış fonksiyonlarla da oluşturabilirsiniz. Örneğin:
 
@@ -50,10 +58,17 @@ let kullanici = {
 };
 
 *!*
+<<<<<<< HEAD
 // önce tanımla
 function selamVer() {
   alert("Merhaba!");
 };
+=======
+// first, declare
+function sayHi() {
+  alert("Hello!");
+}
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 // Sonra bunu metod olarak objeye ekle
 kullanici.selamVer = selamVer;
@@ -62,11 +77,18 @@ kullanici.selamVer = selamVer;
 kullanici.selamVer(); // Merhaba!
 ```
 
+<<<<<<< HEAD
 ```smart header="Nesne Tabanlı Programlama"
 
 Varlıkların obje olarak tanımlandığı dillere  [obje tabanlı diller](https://en.wikipedia.org/wiki/Object-oriented_programming), kısaca: "OOP"(Objet-Oriented Programming)
 
 OOP kendi başına kitaplar dolusu anlatılacak bir konudur. Nasıl doğru varlıklar seçilmeli? Bu varlıklar arasında nasıl bir iletişim olmalı? Mimarisi nasıl olmalı, gibi konuların her birisi ile ilgili ayrı ayrı kitaplar bulunmaktadır. Örneğin "Design Patterns: Elements of Reusable Object-Oriented Software" by E.Gamma, R.Helm, R.Johnson, J.Vissides or "Object-Oriented Analysis and Design with Applications" by G.Booch, vs. Bu kitapta <info:object-oriented-programming> sadece başlangıç seviyesinde anlatılacaktır.
+=======
+```smart header="Object-oriented programming"
+When we write our code using objects to represent entities, that's called [object-oriented programming](https://en.wikipedia.org/wiki/Object-oriented_programming), in short: "OOP".
+
+OOP is a big thing, an interesting science of its own. How to choose the right entities? How to organize the interaction between them? That's architecture, and there are great books on that topic, like "Design Patterns: Elements of Reusable Object-Oriented Software" by E. Gamma, R. Helm, R. Johnson, J. Vissides or "Object-Oriented Analysis and Design with Applications" by G. Booch, and more.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```
 ### Metod Kısayolu
 
@@ -84,7 +106,11 @@ let kullanici = {
 // kısa yolu daha güzel görünüyor değil mi?
 let kullanici = {
 *!*
+<<<<<<< HEAD
   selamVer() { // "selamVer: function()" ile aynı
+=======
+  sayHi() { // same as "sayHi: function(){...}"
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 */!*
     alert("Merhaba");
   }
@@ -93,7 +119,11 @@ let kullanici = {
 
 Yukarıda da gösterildiği gibi `"function"` pas geçilerek sadece `selamVer()` yazılabilir.
 
+<<<<<<< HEAD
 Doğrusunu söylemek gerekirse iki fonksiyonda birbiri ile aynı. Altta yatan farklılık ise kalıtım ile alakalı ki bu da şimdilik bir sorun teşkil etmiyor. Çoğu durumda kısa yazım tercih edilmektedir.
+=======
+To tell the truth, the notations are not fully identical. There are subtle differences related to object inheritance (to be covered later), but for now they do not matter. In almost all cases, the shorter syntax is preferred.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 
 ## Metodlarda `this` kullanımı
@@ -113,7 +143,12 @@ let kullanici = {
 
   selamVer() {
 *!*
+<<<<<<< HEAD
     alert(this.isim);
+=======
+    // "this" is the "current object"
+    alert(this.name);
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 */!*
   }
 
@@ -158,17 +193,29 @@ let kullanici = {
 let yonetici = kullanici;
 kullanici = null; 
 
+<<<<<<< HEAD
 yonetici.selamVer(); // `selamVer()` içerisinde `kullanici` kullanıldığından dolayı hata verecektir.
+=======
+*!*
+admin.sayHi(); // TypeError: Cannot read property 'name' of null
+*/!*
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```
 
 Eğer `kullanici.isim` yerine `this.isim` yazmış olsaydınız kod çalışacaktı.
 
 
+<<<<<<< HEAD
 ## "this" bağımsız bir şekilde kullanılabilir.
 
 Diğer dillerden farklı olarak "this" kelimesi yer gözetmeksizin kullanılabilir. Her fonksiyonun içinde kullanılabilir.
 
 Aşağıdaki kodda bir yazım hatası yoktur:
+=======
+In JavaScript, keyword `this` behaves unlike most other programming languages. It can be used in any function, even if it's not a method of an object.
+
+There's no syntax error in the following example:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js
 function selamVer() {
@@ -176,7 +223,11 @@ function selamVer() {
 }
 ```
 
+<<<<<<< HEAD
 `this`'in değeri çalışma anında değerlendirilir. Her şey olabilir.
+=======
+The value of `this` is evaluated during the run-time, depending on the context.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Örneğin `this` farklı objelerden çağırıldıklarında değerler alabilirler:
 
@@ -217,11 +268,16 @@ Sıkı modda `this` `undefined` döndürür. Eğer `this.isim` yazılırsa hata 
 Normal modda ise ( `use strict` unutulursa) `this` değeri *global obje* olur. Tarayıcı için bu `window`dur. Bu konuya daha sonra değinilecektir.
 
 
+<<<<<<< HEAD
 Obje olmadan `this` çağırmak normal değildir, bir programlama hatasıdır. Eğer fonksiyon `this` içeriyorsa, o objenin dahilinde çağırılabileceği anlamı çıkar.
+=======
+Usually such call is a programming error. If there's `this` inside a function, it expects to be called in an object context.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ````
 
 ```smart header="Sınırsız `this` kullanmanın yan etkileri"
 
+<<<<<<< HEAD
 Diğer programlama dillerinden geliyorsanız, "bağımlı `this`" kullanımına alışmış olmalısınız. Metod içerisinde kullanılan `this`  her zaman o objeye referans olur.
 
 JavaScript'te `this` bağımsızdır. Değeri çalışma anında belirlenir, hangi metodda yazıldığı önemli değildir, önemli olan "noktadan önceki" objedir.
@@ -320,6 +376,16 @@ Bundan dolayı `this` in çalışabilmesi için metodun doğrudan `obj.metod()` 
 ## Ok fonksiyonlarında "this" bulunmamaktadır.
 
 Ok fonksiyonları özeldir: Kendilerinin `this`'i bulunmaz. Eğer yine de `this` kullanırsanız ok fonksiyonu dışındaki bölümü `this` olarak alır.
+=======
+In JavaScript `this` is "free", its value is evaluated at call-time and does not depend on where the method was declared, but rather on what object is "before the dot".
+
+The concept of run-time evaluated `this` has both pluses and minuses. On the one hand, a function can be reused for different objects. On the other hand, the greater flexibility creates more possibilities for mistakes.
+
+Here our position is not to judge whether this language design decision is good or bad. We'll understand how to work with it, how to get benefits and avoid problems.
+```
+
+## Arrow functions have no "this"
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Örneğin aşağıdaki `ok()` dışarıda bulunan `kullanici.selamVer()` metodunu kullanmaktadır:
 
@@ -348,4 +414,17 @@ Bu ok fonksiyonlarının bir özelliğidir. Ayrı bir `this` kullanmak yerine he
 - O fonksiyon objeler arasında kopyalanabilir.
 - Fonksiyon metod yazım şekliyle çağırıldığında `obje.metod()`, `this`'in değeri bu çağrı boyunca `obje`'dir.
 
+<<<<<<< HEAD
 Ok fonksiyonlarında `this` bulunmamaktadır. Eğer bu fonksiyonlar içerisinde `this` çağırılırsa bunun değeri dışarıdan alınır.
+=======
+- Functions that are stored in object properties are called "methods".
+- Methods allow objects to "act" like `object.doSomething()`.
+- Methods can reference the object as `this`.
+
+The value of `this` is defined at run-time.
+- When a function is declared, it may use `this`, but that `this` has no value until the function is called.
+- A function can be copied between objects.
+- When a function is called in the "method" syntax: `object.method()`, the value of `this` during the call is `object`.
+
+Please note that arrow functions are special: they have no `this`. When `this` is accessed inside an arrow function, it is taken from outside.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3

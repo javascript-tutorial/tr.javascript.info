@@ -57,18 +57,28 @@ Dikkat ederseniz özçağrı fonksiyonu aslen farklıdır.
 ```js
               if n==1  = x
              /
+<<<<<<< HEAD
 us(x, n) =
              \       
               else     = x * us(x, n - 1)
+=======
+pow(x, n) =
+             \
+              else     = x * pow(x, n - 1)
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```
 
 1. Eğer `n==1` ise geriye kalanlar önemsizdir. Buna *temel* özçağrı denir, çünkü bu belirli bir sonucu çıktı verir: `us(x,1)` eşittir `x` 
 
 2. Diğer türlü `us(x,n)` `x*us(x,n-1)` şeklinde ifade edilebilir. Matematiksel olarak <code>x<sup>n</sup> = x * x<sup>n-1</sup></code> şeklinde ifade edilebilir. Buna *öztekrar basamağı* denir. Görev daha küçük aksiyonlara ( `x` ile çarpma ) indirgenmiş olur. Ayrıca aynı görevi daha basit görevlerle ( `us`'ün daha küçük `n` değeri) indirgenmiş oldu. Bir sonraki sitep ise bunun daha basite indirgene indirgene `n`'in `1` e ulaşmasını sağlamaktır.
 
+<<<<<<< HEAD
 Buna `us` *öz çağrı ile* kendisini `n==1` olana kadar çağırır diyebiliriz.
 
 ![özçağrı diyagramı](recursion-pow.svg)
+=======
+![recursive diagram of pow](recursion-pow.svg)
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 
 `us(2,4)`'ü hesaplayabilmek için *özçağrı* şu adımları gerçekleştirir:
@@ -95,7 +105,11 @@ Maksimum iç içe çağırma sayısına *özçağrı derinliği* `us` fonksiyonu
 
 JavaScript motorları maksimum özçağrı derinliğini sınırlamaktadır. Bazı motorlarda 10000, bazılarında 100000 limiti bulunmaktadır. Bunun için otomatik optimizasyonlar bulunmaktadır. Fakat yine de her motorda desteklenmemektedir ve çok basit durumlarda kullanılır.
 
+<<<<<<< HEAD
 Bu özçağrı uygulamalarını limitler, fakat yine de çoğu yerde kullanılmaktadırlar. Çoğu görevde özçağrı şeklinde düşünmek daha basit ve sürdürülebilir bod yazmanızı sağlayacaktır.
+=======
+The maximal recursion depth is limited by JavaScript engine. We can rely on it being 10000, some engines allow more, but 100000 is probably out of limit for the majority of them. There are automatic optimizations that help alleviate this ("tail calls optimizations"), but they are not yet supported everywhere and work only in simple cases.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 
 ## Çalıştırma Yığını
@@ -129,7 +143,11 @@ Bu aşağıdaki gibi gösterilebilir:
   </li>
 </ul>
 
+<<<<<<< HEAD
 Ardından fonksiyon çalışmaya başlar. `n==1` şartı yanlıştır, bundan dolayı ikinci `if`'e geçer.
+=======
+That's when the function starts to execute. The condition `n == 1` is falsy, so the flow continues into the second branch of `if`:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 function us(x, n) {
@@ -181,7 +199,17 @@ Aşağıda `pow(2,2)` altçağrısına girildiğinde kaynak yığınının durum
 
 Üst tarafta o anda çalışan kaynak ( kalın harflerle ), alt tarafta ise "hatırlatılan" kaynak bulunmaktadır.
 
+<<<<<<< HEAD
 Altçağrı bittiğinde, daha önceki kalınan kaynaktan devam etmek kolaydır. Çünkü bu her iki değişkeni ve kaldığı satırı tutmaktadır. Burada "satır" denmesine rağmen aslında bunun daha net bir şey olduğu bilinmelidir.
+=======
+When we finish the subcall -- it is easy to resume the previous context, because it keeps both variables and the exact place of the code where it stopped.
+
+```smart
+Here in the picture we use the word "line", as in our example there's only one subcall in line, but generally a single line of code may contain multiple subcalls, like `pow(…) + pow(…) + somethingElse(…)`.
+
+So it would be more precise to say that the execution resumes "immediately after the subcall".
+```
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ### us(2, 1)
 
@@ -273,7 +301,11 @@ Tekrar eden `us` fonksiyonu `i` ve `sonuc` kaynağını kullanır ve sürekli bu
 
 **Tüm özçağrılar döngü olarak yazılabilir. Döngü versiyonu daha az kaynak gerektirecektir**
 
+<<<<<<< HEAD
 ... Bazen yeniden yazmak çok kolay değildir, özellikle fonksiyon alt çağrılarda özçağrı kullanıyorsa, bu çağrılar sonucunda daha karmaşık dallanmalar oluyor ise optimizasyon değmeyebilir.
+=======
+...But sometimes the rewrite is non-trivial, especially when a function uses different recursive subcalls depending on conditions and merges their results or when the branching is more intricate. And the optimization may be unneeded and totally not worth the efforts.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Özçağrı fonksiyonun daha kısa kod ile yazılmasını sağlar, ayrıca anlaşılmayı da kolaylaştırır. Optimizasyon her yerde gerekli değildir, genelde iyi kod gereklidir, bunun için kullanılır.
 
@@ -289,8 +321,13 @@ let firma = {
     adi: 'Ahmet',
     maasi: 1000
   }, {
+<<<<<<< HEAD
     adi: 'Mehmet',
     salary: 150
+=======
+    name: 'Alice',
+    salary: 1600
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
   }],
 
   gelistirme: {
@@ -320,23 +357,37 @@ Diğer bir deyişle bu firmanın departmanları bulunmaktadır.
 Öyle bir fonksiyon olsun ki tüm çalışanların maaşlarının toplamını dönsün. Bu nasıl yapılır?
 
 
+<<<<<<< HEAD
 Döngü yaklaşımı kolay değildir, çünkü yapı kolay değildir. Önce `firma` için bir `for` döngüsü kullanıldığını ve bununla ilk seviye departmanları bulduğunuzu varsayın. Sonrasında bunun içine bir döngü daha yapıp `siteler`'i bulmanız gerekir. Ayrıca ilerisi için bir tane daha `for` döngüsü yapmanız lazım ve belki yine onun içerisine de bir döngü koymanız lazım. 3. basamakta mı 4. basamakta mı durmalı? Eğer ileride bu yapı sadece bir seviyeye indirilirse kodda karmaşıklık meydana gelir.
+=======
+An iterative approach is not easy, because the structure is not simple. The first idea may be to make a `for` loop over `company` with nested subloop over 1st level departments. But then we need more nested subloops to iterate over the staff in 2nd level departments like `sites`... And then another subloop inside those for 3rd level departments that might appear in the future? If we put 3-4 nested subloops in the code to traverse a single object, it becomes rather ugly.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Özçağrı yaklaşımıyla.
 
 Fonksiyon toplanacak departmanı aldığında iki muhtemel durum mevcuttur:
 
+<<<<<<< HEAD
 1. Bu "basit" bir departman olabilir *içerisinde çalışanlar bulunur* -- sonra bunların maaşları basit bir döngüyle toplanabilir.
 2. Veya *`N` alt departmana sahip obje* olabilir - öyleyse `N` defa özçağrı yapıp her bir alt departmanın toplamının sonucunu döndürülür.
 
 (1) özçağrının temelidir.
 
 (2) Özçağrının tekrar eden adımlarıdır. Karmaşık görev daha küçük departman görevlerine ayrılır. Sonrasında yine ayrılabilir fakat en sonunda (1)'e erişecektir.
+=======
+1. Either it's a "simple" department with an *array* of people -- then we can sum the salaries in a simple loop.
+2. Or it's *an object* with `N` subdepartments -- then we can make `N` recursive calls to get the sum for each of the subdeps and combine the results.
+
+The 1st case is the base of recursion, the trivial case, when we get an array.
+
+The 2nd case when we get an object is the recursive step. A complex task is split into subtasks for smaller departments. They may in turn split again, but sooner or later the split will finish at (1).
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Algoritma kodunu okumak oldukça kolaydır:
 
 
 ```js run
+<<<<<<< HEAD
 let firma = {
   satis: [{
     adi: 'Ahmet',
@@ -359,6 +410,13 @@ let firma = {
       adi: 'Zafer',
       ucret: 1300
     }]
+=======
+let company = { // the same object, compressed for brevity
+  sales: [{name: 'John', salary: 1000}, {name: 'Alice', salary: 1600 }],
+  development: {
+    sites: [{name: 'Peter', salary: 2000}, {name: 'Alex', salary: 1800 }],
+    internals: [{name: 'Jack', salary: 1300}]
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
   }
 };
 
@@ -377,7 +435,11 @@ function maaslariTopla(firma) {
 }
 */!*
 
+<<<<<<< HEAD
 alert(maaslariTopla(firma)); // 2700
+=======
+alert(sumSalaries(company)); // 7700
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```
 Kod oldukça kısa ve anlaması kolay(umarım). Burada özçağrının gücünden bahsetmek mümkün, her seviye alt departman için çalışacaktır.
 
@@ -385,7 +447,11 @@ Aşağıda ise bu çağrının diyagramı bulunmaktadır.
 
 ![Özçağrı ile maaşlar](recursive-salaries.svg)
 
+<<<<<<< HEAD
 Prensip basitçe şu şekilde açıklanabilir: Obje için `{...}` altçağrıları yapılır, `[...]` ise özçağrı ağacının "yapraklarıdır", anında sonucu dönerler.
+=======
+![recursive salaries](recursive-salaries.svg)
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Kodun akıllı özellikler kullandığına dikkat edin, bunlar daha önceki kolarda işlenmişti:
 
@@ -463,21 +529,39 @@ Bu listenin grafiksel gösterimi şu şekildedir:
 Bu yapıyı yaratmanın alternatif yolu şu şekildedir:
 
 ```js no-beautify
+<<<<<<< HEAD
 let list = { deger: 1 };
 list.sonraki = { deger: 2 };
 list.sonraki.sonraki = { deger: 3 };
 list.sonraki.sonraki.sonraki = { deger: 4 };
+=======
+let list = { value: 1 };
+list.next = { value: 2 };
+list.next.next = { value: 3 };
+list.next.next.next = { value: 4 };
+list.next.next.next.next = null;
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```
 Burada görüldüğü üzere her obje `deger`e sahiptir ve komşusu olan `sonraki`ni gösterir. `list` değişkeni bu zincirin ilk halkasıdır, sonrasında `sonraki` pointer'ını takip eder.
 
+<<<<<<< HEAD
 Liste kolayca birçok parçaya bölünebilir ve sonradan tek bir yapı haline getirilebilir:
+=======
+Here we can even more clearly see that there are multiple objects, each one has the `value` and `next` pointing to the neighbour. The `list` variable is the first object in the chain, so following `next` pointers from it we can reach any element.
+
+The list can be easily split into multiple parts and later joined back:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js
 let ikinciList = list.sonraki.sonraki;
 list.sonraki.sonraki = null;
 ```
 
+<<<<<<< HEAD
 ![linked list ayırma](linked-list-split.svg)
+=======
+![linked list split](linked-list-split.svg)
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Birleştirme:
 
@@ -500,7 +584,11 @@ list = { deger: "yeni eleman", sonraki: list };
 */!*
 ```
 
+<<<<<<< HEAD
 ![linked list](linked-list-0.svg) 
+=======
+![linked list](linked-list-0.svg)
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Yine ortalardan bir yerden veri silineceği zaman `sonraki`'nin bir öncekine getirilmesi gerekri.
 
@@ -536,8 +624,17 @@ Tanımlar:
     ```js
     list = { deger, sonraki -> list }
     ```
+<<<<<<< HEAD
     HTML elemanlarının ağacı veya departman ağacı gibi yapılar özçağrı yapısıdır: Bunların dalları ve dallarının yine dalları bulunmaktadır.
     
     *Özçağrı* fonksiyonları `maaslariTopla` fonksiyonunda olduğu gibi elemanların üzerinden geçer.
     
 Her özçağrı fonksiyonu tekrarlı şekile getirilebilir. Bazen optimize etmek için kullanılabilir. Fakat çoğu görev için özçağrı çözümleri yeteri kadar hızlı ve yazması kolaydır.
+=======
+
+    Trees like HTML elements tree or the department tree from this chapter are also naturally recursive: they have branches and every branch can have other branches.
+
+    Recursive functions can be used to walk them as we've seen in the `sumSalary` example.
+
+Any recursive function can be rewritten into an iterative one. And that's sometimes required to optimize stuff. But for many tasks a recursive solution is fast enough and easier to write and support.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3

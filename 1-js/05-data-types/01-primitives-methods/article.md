@@ -1,17 +1,26 @@
 # İlkel Tiplerin Metodları
 
+<<<<<<< HEAD
 JavaScript ilkel tiplerin(karakter dizisi, sayılar vs.) karakter gibi kullanılmasına olanak verir.
 
 Ayrıca bunların metodlarının çağırılabilmesini sağlar. Az sonra da gösterileceği gibi, aslında bu ilkel tipler obje değillerdir. (İlerleyen zamanlarda bu daha açık bir şekilde görülecektir.)
+=======
+JavaScript allows us to work with primitives (strings, numbers, etc.) as if they were objects. They also provide methods to call as such. We will study those soon, but first we'll see how it works because, of course, primitives are not objects (and here we will make it even clearer).
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 İlkel tipler ile objeler arasındaki farka bakılacak olursa:
 
 İlkel tip:
 - 7 tane ilkel tip vardır: `string`, `number`, `bigint`, `boolean`, `symbol`, `null` ve `undefined`.
 
+<<<<<<< HEAD
 Obje:
 - Birçok değeri özellikleri içerisinde saklayabilir.
 - `{}` şeklinde, örneğin `{isim:"Kemal", yas:30}` gibi. JavaScript'te fonksiyonlar gibi başka türde de objeler bulunmaktadır.
+=======
+- Is a value of a primitive type.
+- There are 7 primitive types: `string`, `number`, `bigint`, `boolean`, `symbol`, `null` and `undefined`.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Objeler için ön önemli özelliklerden birisi de fonksiyonları özellikleri içerisinde tutabilmeleridir:
 
@@ -32,14 +41,23 @@ kemal.selamVer(); // Selam Dostum!
 
 Tabi bu farklılığın bir maliyeti var!
 
+<<<<<<< HEAD
 Objeler ilkellere göre daha "ağırdırlar". Daha fazla kaynak gerektirirler. Fakat özellikler ve metodlar çok önemli olduklarından JavaScript motoru bunları olabildiğince optimize eder.
+=======
+Objects are "heavier" than primitives. They require additional resources to support the internal machinery.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ## Obje olarak ilkel tipler
 
 Burada JavaScript'i oluşturan kişiler ikilem ile karşılaşmışlardır:
 
+<<<<<<< HEAD
 - Karakter dizisi veya sayı gibi ilkel tipler ile birçok şey yapılmak istenebilir. Bunlara metod eklenmesine izin vermek harika olur.
 - İlkel tipler olabildiğince hızlı olmalıdır.
+=======
+- There are many things one would want to do with a primitive, like a string or a number. It would be great to access them using methods.
+- Primitives must be as fast and lightweight as possible.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Çözüm biraz garip :
 
@@ -47,9 +65,15 @@ Burada JavaScript'i oluşturan kişiler ikilem ile karşılaşmışlardır:
 2. Karakter dizisi, sayı, boolean ve sembollerin metodlarına izin verilecek.
 3. Bu yapıldığı yani bu metodlara erişilmeye çalışıldığında özel bir "obje kabı" yaratılacak ve bunun içinde farklı fonksiyonalite eklenebilecek veya silinebilecek.
 
+<<<<<<< HEAD
 "Obje Kapları"(Object wrappers) her ilkel tip için farklıdır bunlar: `String`, `Number`, `Boolean` ve `Symbol` şeklindedir. Hepsinin kendine has metodları vardır.
 
 Örneğin [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase)  bir stringdeki karakterlerin hepsini büyük harfe çevirir.
+=======
+The "object wrappers" are different for each primitive type and are called: `String`, `Number`, `Boolean`, `Symbol` and `BigInt`. Thus, they provide different sets of methods.
+
+For instance, there exists a string method [str.toUpperCase()](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Global_Objects/String/toUpperCase) that returns a capitalized `str`.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 
 Çalışması şu şekilde:
@@ -80,7 +104,12 @@ alert( n.toFixed(2) ); // 1.23
 <info:number> ve <info:string> bölümlerinde daha fazla metod işlenecektir..
 
 
+<<<<<<< HEAD
 ````warn header="`String/Number/Boolean` gibi yapıcılar sadece içte kullanım içindir"
+=======
+````warn header="Constructors `String/Number/Boolean` are for internal use only"
+Some languages like Java allow us to explicitly create "wrapper objects" for primitives using a syntax like `new Number(1)` or `new Boolean(false)`.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Java gibi bazı diller bu obje kapsayıcıları doğrudan tanımlamanıza izin verir. Örneğin `new Number(1)` veya `new Boolean(false)` gibi
 
@@ -102,7 +131,14 @@ if (sifir) { // burada sıfır true gelecek çünkü o bir obje
 ```
 Diğer bir yandan `new` olmadan `String/Number/Boolean` kullanılması ise tamamen mantıklıdır. Değeri belirtilen `ilkel`  tipe çevirmeye yarar.
 
+<<<<<<< HEAD
 Örneğin:
+=======
+On the other hand, using the same functions `String/Number/Boolean` without `new` is totally fine and useful thing. They convert a value to the corresponding type: to a string, a number, or a boolean (primitive).
+
+For example, this is entirely valid:
+
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```js
 let num = Number("123"); // karakteri sayıya çevir.
 ```

@@ -1,11 +1,19 @@
+<<<<<<< HEAD
 # Koşul operatörleri: if, '?'
+=======
+# Conditional branching: if, '?'
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 
 Bazı durumlarda koşula göre farklı eylemler yapmak isteyebilirsiniz.
 
 `"?"` operatörü veya `if` cümlesi bu koşulları kontrol etmenizi sağlar.
 
+<<<<<<< HEAD
 ## "if" cümlesi
+=======
+The `if(...)` statement evaluates a condition in parentheses and, if the result is `true`, executes a block of code.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 "if" cümlesi koşulu alır ve kontrol eder sonucunda `true` ise kodu çalıştırır.
 
@@ -69,7 +77,23 @@ if (sonuc) {
 `if` cümlesi opsiyonel olarak "else" bloğu da içerebilir. Bu eğer `if` parantezi içerisinde yazdığımız kod yanlış ise çalışır.
 
 
+<<<<<<< HEAD
 Örneğin:
+=======
+```js
+let cond = (year == 2015); // equality evaluates to true or false
+
+if (cond) {
+  ...
+}
+```
+
+## The "else" clause
+
+The `if` statement may contain an optional `else` block. It executes when the condition is falsy.
+
+For example:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```js run
 let yil = prompt('ECMAScript-2015 standarları hangi yıl yayınlanmıştır?', '');
 
@@ -183,6 +207,13 @@ alert( mesaj );
 
 aynı `if..else` mantığı gibi
 
+<<<<<<< HEAD
+=======
+1. The first question mark checks whether `age < 3`.
+2. If true -- it returns `'Hi, baby!'`. Otherwise, it continues to the expression after the colon ":", checking `age < 18`.
+3. If that's true -- it returns `'Hello!'`. Otherwise, it continues to the expression after the next colon ":", checking `age < 100`.
+4. If that's true -- it returns `'Greetings!'`. Otherwise, it continues to the expression after the last colon ":", returning `'What an unusual age!'`.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 
 ```js
@@ -214,6 +245,10 @@ Koşula göre `firma =='Netscape'`, soru işaretinden sonra birinci bölüm veya
 
 Sonucu bir değere atanmamıştır. Amaç duruma göre doğrudan kodu çalıştırmak.
 
+<<<<<<< HEAD
+=======
+**It's not recommended to use the question mark operator in this way.**
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 **Soru işaretinin bu amaç doğrultusunda kullanılması önerilmez.**
 

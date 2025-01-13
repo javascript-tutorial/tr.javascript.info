@@ -18,7 +18,11 @@ Without parentheses, the pattern `pattern:go+` means `subject:g` character, foll
 Parentheses group characters together, so `pattern:(go)+` means `match:go`, `match:gogo`, `match:gogogo` and so on.
 
 ```js run
+<<<<<<< HEAD
 alert( 'Gogogo now!'.match(/(go)+/i) ); // "Gogogo"
+=======
+alert( 'Gogogo now!'.match(/(go)+/ig) ); // "Gogogo"
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```
 
 ### Example: domain
@@ -209,17 +213,28 @@ alert(results[0]); // <h1>,h1 (1st tag)
 alert(results[1]); // <h2>,h2 (2nd tag)
 ```
 
+<<<<<<< HEAD
 As we can see, the first difference is very important, as demonstrated in the line `(*)`. We can't get the match as `results[0]`, because that object isn't pseudoarray. We can turn it into a real `Array` using `Array.from`. There are more details about pseudoarrays and iterables in the article <info:iterable>.
 
 There's no need in `Array.from` if we're looping over results:
+=======
+As we can see, the first difference is very important, as demonstrated in the line `(*)`. We can't get the match as `results[0]`, because that object is a pseudoarray. We can turn it into a real `Array` using `Array.from`. There are more details about pseudoarrays and iterables in the article <info:iterable>.
+
+There's no need for `Array.from` if we're looping over results:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 let results = '<h1> <h2>'.matchAll(/<(.*?)>/gi);
 
 for(let result of results) {
   alert(result);
+<<<<<<< HEAD
   // первый вывод: <h1>,h1
   // второй: <h2>,h2
+=======
+  // first alert: <h1>,h1
+  // second: <h2>,h2
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 }
 ```
 
@@ -249,7 +264,11 @@ The call to `matchAll` does not perform the search. Instead, it returns an itera
 
 So, there will be found as many results as needed, not more.
 
+<<<<<<< HEAD
 E.g. there are potentially 100 matches in the text, but in a `for..of` loop we found 5 of them, then decided it's enough and make a `break`. Then the engine won't spend time finding other 95 mathces.
+=======
+E.g. there are potentially 100 matches in the text, but in a `for..of` loop we found 5 of them, then decided it's enough and made a `break`. Then the engine won't spend time finding other 95 matches.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```
 
 ## Named groups
@@ -335,7 +354,11 @@ In the example below we only get the name `match:John` as a separate member of t
 let str = "Gogogo John!";
 
 *!*
+<<<<<<< HEAD
 // ?: exludes 'go' from capturing
+=======
+// ?: excludes 'go' from capturing
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 let regexp = /(?:go)+ (\w+)/i;
 */!*
 

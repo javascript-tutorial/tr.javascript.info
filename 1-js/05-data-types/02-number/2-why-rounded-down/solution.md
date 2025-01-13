@@ -24,5 +24,9 @@ alert( (6.35 * 10).toFixed(20) ); // 63.50000000000000000000
 
 
 ```js run
+<<<<<<< HEAD
 alert( Math.round(6.35 * 10) / 10); // 6.35 -> 63.5 -> 64(yuvarlandı) -> 6.4
+=======
+alert( Math.round(6.35 * 10) / 10 ); // 6.35 -> 63.5 -> 64(rounded) -> 6.4
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```
