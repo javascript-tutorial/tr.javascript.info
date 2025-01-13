@@ -1,9 +1,9 @@
 
 # Static properties and methods
 
-We can also assign a method to the class function, not to its `"prototype"`. Such methods are called *static*.
+We can also assign a method to the class as a whole. Such methods are called *static*.
 
-An example:
+In a class declaration, they are prepended by `static` keyword, like this:
 
 ```js run
 class User {
@@ -17,21 +17,25 @@ class User {
 User.staticMethod(); // true
 ```
 
-That actually does the same as assigning it as a function property:
+That actually does the same as assigning it as a property directly:
 
-```js
-function User() { }
+```js run
+class User { }
 
 User.staticMethod = function() {
   alert(this === User);
 };
+
+User.staticMethod(); // true
 ```
 
-The value of `this` inside `User.staticMethod()` is the class constructor `User` itself (the "object before dot" rule).
+The value of `this` in `User.staticMethod()` call is the class constructor `User` itself (the "object before dot" rule).
 
-Usually, static methods are used to implement functions that belong to the class, but not to any particular object of it.
+Usually, static methods are used to implement functions that belong to the class as a whole, but not to any particular object of it.
 
-For instance, we have `Article` objects and need a function to compare them. The natural choice would be `Article.compare`, like this:
+For instance, we have `Article` objects and need a function to compare them.
+
+A natural solution would be to add `Article.compare` static method:
 
 ```js run
 class Article {
@@ -61,17 +65,19 @@ articles.sort(Article.compare);
 alert( articles[0].title ); // CSS
 ```
 
-Here `Article.compare` stands "over" the articles, as a means to compare them. It's not a method of an article, but rather of the whole class.
+Here `Article.compare` method stands "above" articles, as a means to compare them. It's not a method of an article, but rather of the whole class.
 
-Another example would be a so-called "factory" method. Imagine, we need few ways to create an article:
+Another example would be a so-called "factory" method.
+
+Let's say, we need multiple ways to create an article:
 
 1. Create by given parameters (`title`, `date` etc).
 2. Create an empty article with today's date.
-3. ...
+3. ...or else somehow.
 
 The first way can be implemented by the constructor. And for the second one we can make a static method of the class.
 
-Like `Article.createTodays()` here:
+Such as `Article.createTodays()` here:
 
 ```js run
 class Article {
@@ -90,7 +96,7 @@ class Article {
 
 let article = Article.createTodays();
 
-alert( article.title ); // Todays digest
+alert( article.title ); // Today's digest
 ```
 
 Now every time we need to create a today's digest, we can call `Article.createTodays()`. Once again, that's not a method of an article, but a method of the whole class.
@@ -99,15 +105,26 @@ Static methods are also used in database-related classes to search/save/remove e
 
 ```js
 // assuming Article is a special class for managing articles
-// static method to remove the article:
+// static method to remove the article by id:
 Article.remove({id: 12345});
 ```
+
+````warn header="Static methods aren't available for individual objects"
+Static methods are callable on classes, not on individual objects.
+
+E.g. such code won't work:
+
+```js
+// ...
+article.createTodays(); /// Error: article.createTodays is not a function
+```
+````
 
 ## Static properties
 
 [recent browser=Chrome]
 
-Static properties are also possible, just like regular class properties:
+Static properties are also possible, they look like regular class properties, but prepended by `static`:
 
 ```js run
 class Article {
@@ -123,14 +140,15 @@ That is the same as a direct assignment to `Article`:
 Article.publisher = "Ilya Kantor";
 ```
 
-## Statics and inheritance
+## Inheritance of static properties and methods [#statics-and-inheritance]
 
-Statics are inherited, we can access `Parent.method` as `Child.method`.
+Static properties and methods are inherited.
 
-For instance, `Animal.compare` in the code below is inherited and accessible as `Rabbit.compare`:
+For instance, `Animal.compare` and `Animal.planet` in the code below are inherited and accessible as `Rabbit.compare` and `Rabbit.planet`:
 
 ```js run
 class Animal {
+  static planet = "Earth";
 
   constructor(name, speed) {
     this.speed = speed;
@@ -167,38 +185,47 @@ rabbits.sort(Rabbit.compare);
 */!*
 
 rabbits[0].run(); // Black Rabbit runs with speed 5.
+
+alert(Rabbit.planet); // Earth
 ```
 
-Now we can call `Rabbit.compare` assuming that the inherited `Animal.compare` will be called.
+Now when we call `Rabbit.compare`, the inherited `Animal.compare` will be called.
 
 How does it work? Again, using prototypes. As you might have already guessed, `extends` gives `Rabbit` the `[[Prototype]]` reference to `Animal`.
 
-
 ![](animal-rabbit-static.svg)
 
-So, `Rabbit` function now inherits from `Animal` function. And `Animal` function normally has `[[Prototype]]` referencing `Function.prototype`, because it doesn't `extend` anything.
+<<<<<<< HEAD
+![](animal-rabbit-static.svg)
+=======
+So, `Rabbit extends Animal` creates two `[[Prototype]]` references:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
-Here, let's check that:
+1. `Rabbit` function prototypally inherits from `Animal` function.
+2. `Rabbit.prototype` prototypally inherits from `Animal.prototype`.
+
+As a result, inheritance works both for regular and static methods.
+
+Here, let's check that by code:
 
 ```js run
 class Animal {}
 class Rabbit extends Animal {}
 
-// for static properties and methods
+// for statics
 alert(Rabbit.__proto__ === Animal); // true
 
-// the next step up leads to Function.prototype
-alert(Animal.__proto__ === Function.prototype); // true
-
-// the "normal" prototype chain for object methods
-alert(Rabbit.prototype.__proto__ === Animal.prototype);
+// for regular methods
+alert(Rabbit.prototype.__proto__ === Animal.prototype); // true
 ```
-
-This way `Rabbit` has access to all static methods of `Animal`.
 
 ## Summary
 
-Static methods are used for the functionality that doesn't relate to a concrete class instance, doesn't require an instance to exist, but rather belongs to the class as a whole, like `Article.compare` -- a generic method to compare two articles.
+Static methods are used for the functionality that belongs to the class "as a whole". It doesn't relate to a concrete class instance.
+
+For example, a method for comparison `Article.compare(article1, article2)` or a factory method `Article.createTodays()`.
+
+They are labeled by the word `static` in class declaration.
 
 Static properties are used when we'd like to store class-level data, also not bound to an instance.
 
@@ -214,13 +241,13 @@ class MyClass {
 }
 ```
 
-That's technically the same as assigning to the class itself:
+Technically, static declaration is the same as assigning to the class itself:
 
 ```js
 MyClass.property = ...
 MyClass.method = ...
 ```
 
-Static properties are inherited.
+Static properties and methods are inherited.
 
-Technically, for `class B extends A` the prototype of the class `B` itself points to `A`: `B.[[Prototype]] = A`. So if a field is not found in `B`, the search continues in `A`.
+For `class B extends A` the prototype of the class `B` itself points to `A`: `B.[[Prototype]] = A`. So if a field is not found in `B`, the search continues in `A`.

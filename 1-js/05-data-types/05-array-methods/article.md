@@ -1,6 +1,10 @@
 # Dizi Metodları
 
+<<<<<<< HEAD
 Diziler birçok metod sunarlar. İşleri daha kolaylaştırmak için bu bölüm ikiye ayrılacaktır.
+=======
+Arrays provide a lot of methods. To make things easier, in this chapter, they are split into groups.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ## Elaman silme/ekleme
 
@@ -32,20 +36,32 @@ alert( arr.length ); // 3
 
 Eleman silinmesine rağmen, dizi hala 3 elemana sahip. Bunu `arr.length == 3` kontrolünü yaparak görebilirsiniz.
 
+<<<<<<< HEAD
 Olması gereken de bu, çünkü `delete obj.key` değeri `anahtara` göre siler. Sadece bu işi yapar. Bu da objeler için yeterlidir. Fakat diziler için genelde istediğimiz elamanların birbirlerinin yerleri doldurmasıdır. Bundan dolayı dizinin kısaldığını görmemiz lazım.
+=======
+That's natural, because `delete obj.key` removes a value by the `key`. It's all it does. Fine for objects. But for arrays we usually want the rest of the elements to shift and occupy the freed place. We expect to have a shorter array now.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Bundan dolayı özel metodlar kullanılmalıdır.
 
+<<<<<<< HEAD
 [arr.splice(str)](mdn:js/Array/splice) metodu isviçre çakısı gibi her işe yarar. Diziye yeni bir eleman ekleyebilir ve silebilir.
+=======
+The [arr.splice](mdn:js/Array/splice) method is a Swiss army knife for arrays. It can do everything: insert, remove and replace elements.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Yazımı:
 
 ```js
-arr.splice(index[, deleteCount, elem1, ..., elemN])
+arr.splice(start[, deleteCount, elem1, ..., elemN])
 ```
 `index`'ten başlar ve `deleteCount`kadar elemanı siler ve sonra `elem1, ..., elemN` şeklinde yerlerine yerleştirir. Diziden silinen elemanları dönderir.
 
+<<<<<<< HEAD
 Bu metodu örnek ile anlamak çok daha kolaydır.
+=======
+It modifies `arr` starting from the index `start`: removes `deleteCount` elements and then inserts `elem1, ..., elemN` at their place. Returns the array of removed elements.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Silme işlemi ile başlayalım:
 
@@ -60,7 +76,13 @@ alert( arr ); // ["Ben", "çalışıyorum"]
 ```
 Kolay değil mi? `1`. indeksten başlayarak 1 eleman sildi.
 
+<<<<<<< HEAD
 Bir sonraki örnekte ise 4 eleman silinecek ve yeni bir eleman bunların yerine konulacak.
+=======
+Easy, right? Starting from the index `1` it removed `1` element.
+
+In the next example, we remove 3 elements and replace them with the other two:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 let arr = [*!*"Ben", "şu", "an", "JavaScript",*/!* "çalışıyorum"];
@@ -80,7 +102,12 @@ let removed = arr.splice(0, 2);
 
 alert( removed ); // "Ben", "şu" <-- silinen elemanlar
 ```
+<<<<<<< HEAD
 `splice` metodu ayrıca hiçbir şey silmeden de ekleme yapabilir. Bunun için `deleteCount`'u `0` yapmanız gerekmektedir:
+=======
+
+The `splice` method is also able to insert the elements without any removals. For that, we need to set `deleteCount` to `0`:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 let arr = ["Ben", "JavaScript", "çalışıyorum"];
@@ -110,33 +137,48 @@ alert( arr ); // 1,2,3,4,5
 
 ### slice
 
+<<<<<<< HEAD
 [arr.slice](mdn:js/Array/slice) metodu `arr.splice`'a göre daha basittir.
+=======
+The method [arr.slice](mdn:js/Array/slice) is much simpler than the similar-looking `arr.splice`.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Yazımı:
 
 ```js
-arr.slice(start, end)
+arr.slice([start], [end])
 ```
 Yeni bir dizi döndürür. Bu dizi içerisinde `"start"` ile `"end"` arasında ( `"end"` dahil olmadan ) tüm elemanları kopyalar. `start` ve `end` negatif olabilir. Negatif durumlarda dizi sondan değer başlar.
 
+<<<<<<< HEAD
 `str.slice` gibi çalışır fakat karakter dizisi(string) yapmak yerine alt-dizi yapar.
 
 Örneğin:
+=======
+It returns a new array copying to it all items from index `start` to `end` (not including `end`). Both `start` and `end` can be negative, in that case position from array end is assumed.
+
+It's similar to a string method `str.slice`, but instead of substrings, it makes subarrays.
+
+For instance:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
-let str = "test";
 let arr = ["t", "e", "s", "t"];
 
-alert( str.slice(1, 3) ); // es
-alert( arr.slice(1, 3) ); // e,s
+alert( arr.slice(1, 3) ); // e,s (copy from 1 to 3)
 
-alert( str.slice(-2) ); // st
-alert( arr.slice(-2) ); // s,t
+alert( arr.slice(-2) ); // s,t (copy from -2 till the end)
 ```
+
+We can also call it without arguments: `arr.slice()` creates a copy of `arr`. That's often used to obtain a copy for further transformations that should not affect the original array.
 
 ### concat
 
+<<<<<<< HEAD
 [arr.concat](mdn:js/Array/concat) metodu dizi ile diğer dizileri veya elemanları birbirine eklemeye yarar.
+=======
+The method [arr.concat](mdn:js/Array/concat) creates a new array that includes values from other arrays and additional items.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Yazımı:
 
@@ -148,13 +190,18 @@ arr.concat(arg1, arg2...)
 
 Sonuç `arr`, ardından `arg1`, `arg2` şeklinde tüm dizileri ve değerleri içeren bir dizi olur.
 
+<<<<<<< HEAD
 Eğer bir argüman dizi ve `Symbol.isConcatSpreadable` özelliğine sahip ise bunun tüm alt elemanları kopyalanır. Diğer türlü argümanın sadece kendisi kopyalanır.
+=======
+If an argument `argN` is an array, then all its elements are copied. Otherwise, the argument itself is copied.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Örneğin:
 
 ```js run
 let arr = [1, 2];
 
+<<<<<<< HEAD
 // diziyi [3,4] ile birleştir
 alert( arr.concat([3, 4])); // 1,2,3,4
 
@@ -165,6 +212,19 @@ alert( arr.concat([3, 4], [5, 6])); // 1,2,3,4,5,6
 alert( arr.concat([3, 4], 5, 6)); // 1,2,3,4,5,6
 ```
 Normalde, dizide bulunan elemanları kopyalar. Diğer objeler dizi olsalar bile bir bütün olarak eklenirler.
+=======
+// create an array from: arr and [3,4]
+alert( arr.concat([3, 4]) ); // 1,2,3,4
+
+// create an array from: arr and [3,4] and [5,6]
+alert( arr.concat([3, 4], [5, 6]) ); // 1,2,3,4,5,6
+
+// create an array from: arr and [3,4], then add values 5 and 6
+alert( arr.concat([3, 4], 5, 6) ); // 1,2,3,4,5,6
+```
+
+Normally, it only copies elements from arrays. Other objects, even if they look like arrays, are added as a whole:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 let arr = [1, 2];
@@ -175,11 +235,14 @@ let arrayLike = {
 };
 
 alert( arr.concat(arrayLike) ); // 1,2,[object Object]
-//[1, 2, arrayLike]
 ```
 
+<<<<<<< HEAD
 ...Fakat dizi benzeri obje `Symbol.isConcatSpreadable` özelliğine sahipse, bunların elemanları eklenir:
 
+=======
+...But if an array-like object has a special `Symbol.isConcatSpreadable` property, then it's treated as an array by `concat`: its elements are added instead:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 let arr = [1, 2];
@@ -200,7 +263,16 @@ alert( arr.concat(arrayLike) ); // 1,2,başka,bir şey
 
 Dizi içerisinde aramak için bazı metodlar bulunmaktadır.
 
+<<<<<<< HEAD
 ### indexOf/lastIndexOf ve includes
+=======
+The syntax:
+```js
+arr.forEach(function(item, index, array) {
+  // ... do something with an item
+});
+```
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 [arr.indexOf](mdn:js/Array/indexOf), [arr.lastIndexOf](mdn:js/Array/lastIndexOf) ve [arr.includes](mdn:js/Array/includes) aynı yazıma sahiptirler, ve aslında hepsi aynı işi yapar. Sadece karakterler yerine elemanlar üzerinde çalışırlar.
 
@@ -209,7 +281,24 @@ Dizi içerisinde aramak için bazı metodlar bulunmaktadır.
 - `arr.includes(eleman, baslangic)` --  `eleman` `baslangıc`'tan başlayarak elemanları kontrol eder. Bulursa `true` döner.
 
 
+<<<<<<< HEAD
 Örneğin:
+=======
+## Searching in array
+
+Now let's cover methods that search in an array.
+
+### indexOf/lastIndexOf and includes
+
+The methods [arr.indexOf](mdn:js/Array/indexOf) and [arr.includes](mdn:js/Array/includes) have the similar syntax and do essentially the same as their string counterparts, but operate on items instead of characters:
+
+- `arr.indexOf(item, from)` -- looks for `item` starting from index `from`, and returns the index where it was found, otherwise `-1`.
+- `arr.includes(item, from)` -- looks for `item` starting from index `from`, returns `true` if found.
+
+Usually, these methods are used with only one argument: the `item` to search. By default, the search is from the beginning.
+
+For instance:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 let arr = [1, 0, false];
@@ -221,6 +310,7 @@ alert( arr.indexOf(null) ); // -1
 alert( arr.includes(1) ); // true
 ```
 
+<<<<<<< HEAD
 Bu metodlar eşitlik kontrolü için `===` kullanır. Bundan dolayı `false`'a bakacak olursanız `0` ile eşit değildir. Sadece `false` ile eşittir.
 Eğer sadece dizi içinde var olup olmadığını kontrol etmek istiyorsanız `arr.includes` tercih edilir.
  
@@ -229,6 +319,37 @@ Eğer sadece dizi içinde var olup olmadığını kontrol etmek istiyorsanız `a
 Objelerden oluşma bir dizinin olduğunu varsayın. Bazı şartları sağlayan objeleri nasıl bulursunuz.
 
 Burada [arr.find](mdn:js/Array/find) metodu yararlı olur.
+=======
+Please note that `indexOf` uses the strict equality `===` for comparison. So, if we look for `false`, it finds exactly `false` and not the zero.
+
+If we want to check if `item` exists in the array and don't need the index, then `arr.includes` is preferred.
+
+The method [arr.lastIndexOf](mdn:js/Array/lastIndexOf) is the same as `indexOf`, but looks for from right to left.
+
+```js run
+let fruits = ['Apple', 'Orange', 'Apple']
+
+alert( fruits.indexOf('Apple') ); // 0 (first Apple)
+alert( fruits.lastIndexOf('Apple') ); // 2 (last Apple)
+```
+
+````smart header="The `includes` method handles `NaN` correctly"
+A minor, but noteworthy feature of `includes` is that it correctly handles `NaN`, unlike `indexOf`:
+
+```js run
+const arr = [NaN];
+alert( arr.indexOf(NaN) ); // -1 (wrong, should be 0)
+alert( arr.includes(NaN) );// true (correct)
+```
+That's because `includes` was added to JavaScript much later and uses the more up-to-date comparison algorithm internally.
+````
+
+### find and findIndex/findLastIndex
+
+Imagine we have an array of objects. How do we find an object with a specific condition?
+
+Here the [arr.find(fn)](mdn:js/Array/find) method comes in handy.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Yazımı:
 ```js
@@ -238,13 +359,23 @@ let result = arr.find(function(elaman, index, dizi) {
 ```
 Bu fonksiyon her eleman için tekrar tekrar çağırılır.
 
+<<<<<<< HEAD
 - `elaman` eleman'ı tanımlar.
 - `index` indeks'i tanımlar.
 - `array` dizinin kendisidir.
+=======
+The function is called for elements of the array, one after another:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Eğer `true` döndürür ise arama durur ve `eleman`'ın kendisi döner. Eğer bulunamazsa `undefined` döndürülür.
 
+<<<<<<< HEAD
 Örneğin, kullanıcıların bulunduğu bir dizi ve her dizide `id` ve `isim` alanları bulunsun. `id == 1` olan elemanı bulalım.
+=======
+If it returns `true`, the search is stopped, the `item` is returned. If nothing is found, `undefined` is returned.
+
+For example, we have an array of users, each with the fields `id` and `name`. Let's find the one with `id == 1`:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 let kullanicilar = [
@@ -259,9 +390,36 @@ alert(kullanici.isim); // Ahmet
 ```
 Objelerin dizi içerisinde yer alması çokça karşılaşılan bir olaydır, bundan dolayı `find` metodu çok kullanışlıdır.
 
+<<<<<<< HEAD
 Dikkat ederseniz `find` metodunda sadece bir tane argüman kullanılmıştır `item => item.id == 1`. `find` metodunun diğer parametreleri çok nadir olarak kullanılır.
 
 [arr.findIndex](mdn:js/Array/findIndex) metodu da aynı find metodu gibi çalışır fakat elemanın kendi yerine `index`'ini döndürür.
+=======
+In real life, arrays of objects are a common thing, so the `find` method is very useful.
+
+Note that in the example we provide to `find` the function `item => item.id == 1` with one argument. That's typical, other arguments of this function are rarely used.
+
+The [arr.findIndex](mdn:js/Array/findIndex) method has the same syntax but returns the index where the element was found instead of the element itself. The value of `-1` is returned if nothing is found.
+
+The [arr.findLastIndex](mdn:js/Array/findLastIndex) method is like `findIndex`, but searches from right to left, similar to `lastIndexOf`.
+
+Here's an example:
+
+```js run
+let users = [
+  {id: 1, name: "John"},
+  {id: 2, name: "Pete"},
+  {id: 3, name: "Mary"},
+  {id: 4, name: "John"}
+];
+
+// Find the index of the first John
+alert(users.findIndex(user => user.name == 'John')); // 0
+
+// Find the index of the last John
+alert(users.findLastIndex(user => user.name == 'John')); // 3
+```
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ### filter
 
@@ -269,11 +427,20 @@ Dikkat ederseniz `find` metodunda sadece bir tane argüman kullanılmıştır `i
 
 Birden fazlası için ise [arr.filter(fn)](mdn:js/Array/filter) kullanılabilir.
 
+<<<<<<< HEAD
 Yazımı neredeyse `find` ile aynıdır, fakat tek bir eleman yerine kurala uyan elemanları dizi halinde döner.
 
 ```js
 let results = arr.filter(function(eleman, index, dizi) {
   // eğer elemanlar filtreye uygunsa true döndürür.
+=======
+The syntax is similar to `find`, but `filter` returns an array of all matching elements:
+
+```js
+let results = arr.filter(function(item, index, array) {
+  // if true item is pushed to results and the iteration continues
+  // returns empty array if nothing found
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 });
 ```
 
@@ -292,24 +459,45 @@ let baziKullanicilar = kullanicilar.filter(eleman => eleman.id < 3);
 alert(baziKullanicilar.length); // 2
 ```
 
+<<<<<<< HEAD
 ## Dizi dönüşümleri
 Bu bölüm dizinin dönüşümleri veya yeniden sıralanması hakkındadır.
 
+=======
+## Transform an array
+
+Let's move on to methods that transform and reorder an array.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ### map
 
 [arr.map](mdn:js/Array/map) metodu en fazla kullanılan ve kullanışlı olan metodlardandır.
 
+<<<<<<< HEAD
 Yazımı:
 
 ```js
 let sonuc = arr.map(function(eleman, index, dizi) {
   // eleman yerine yeni değer döndürür.
 })
+=======
+It calls the function for each element of the array and returns the array of results.
+
+The syntax is:
+
+```js
+let result = arr.map(function(item, index, array) {
+  // returns the new value instead of item
+});
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```
 Dizinin her elemanı için fonksiyonu çalıştırır ve sonuçlarını dizi olarak döner.
 
+<<<<<<< HEAD
 Örneğin elemanların uzunlukları ile ilgili bir değişiklik yapılabilir:
+=======
+For instance, here we transform each element into its length:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 let uzunluklar = ["Bilbo", "Gandalf", "Nazgul"].map(eleman => eleman.length)
@@ -318,14 +506,24 @@ alert(uzunluklar); // 5,7,6
 
 ### sort(fn)
 
+<<<<<<< HEAD
 [arr.sort](mdn:js/Array/sort) metodu diziyi olduğu yerde sıralar.
+=======
+The call to [arr.sort()](mdn:js/Array/sort) sorts the array *in place*, changing its element order.
+
+It also returns the sorted array, but the returned value is usually ignored, as `arr` itself is modified.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Örneğin:
 
 ```js run
 let arr = [ 1, 2, 15 ];
 
+<<<<<<< HEAD
 // metod dizinin içeriğini sıralar ve döndürür.
+=======
+// the method reorders the content of arr
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 arr.sort();
 
 alert( arr );  // *!*1, 15, 2*/!*
@@ -338,20 +536,33 @@ Sıralama `1, 15, 2` oldu. Yanlış. Neden peki?
 
 Tüm elemanlar karakter dizisine çevrilir ve karşılaştırılır. Bundan dolayı karakter sırasına göre `"2" > "15"` karşılaştırılır. 
 
+<<<<<<< HEAD
 Kendi sıralamanızı yapmak için, iki argümanlı bir fonksiyonu `arr.sort()`'ın argüman olarak alması gerekmektedir.
 
 
 Fonksiyon aşağıdaki şekilde çalışmalıdır:
 
+=======
+Literally, all elements are converted to strings for comparisons. For strings, lexicographic ordering is applied and indeed `"2" > "15"`.
+
+To use our own sorting order, we need to supply a function as the argument of `arr.sort()`.
+
+The function should compare two arbitrary values and return:
+
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```js
 function compare(a, b) {
-  if (a > b) return 1;
-  if (a == b) return 0;
-  if (a < b) return -1;
+  if (a > b) return 1; // if the first value is greater than the second
+  if (a == b) return 0; // if values are equal
+  if (a < b) return -1; // if the first value is less than the second
 }
 ```
 
+<<<<<<< HEAD
 Örneğin:
+=======
+For instance, to sort as numbers:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 function compareNumeric(a, b) {
@@ -372,18 +583,32 @@ alert(arr);  // *!*1, 2, 15*/!*
 
 Ne olduğunu düşünürsek. `arr` her şeyi tutabilir, değil mi? Sayı, karakter veya html elementi vs. tutabilir. İçinde bulunanları sıralamak için karşılaştırmayı yapan *sıralama fonksiyonu*na ihtiyaç vardır. Bunun da varsayılanı karakter sıralamadır.
 
+<<<<<<< HEAD
 `arr.sort(fn)` metodu içinde sıralama algoritmasına sahiptir. Bu sıralamanın nasıl çalıştığına dair bir bilgimiz olmasına gerek yok (Çoğu zaman [quicksort](https://en.wikipedia.org/wiki/Quicksort) kullanılır). Diziyi dolanır ve elemanları verilen algoritmaya göre karşılaştırır ve sıralar. Tek bilmeniz gereken `fn` fonksiyonunun karşılaştırmayı yaptığıdır.
 
 Eğer hangi elemanın karşılaştırıldığını öğrenmek istiyorsanız elbette bunu görebilirsiniz.
 
+=======
+Let's step aside and think about what's happening. The `arr` can be an array of anything, right? It may contain numbers or strings or objects or whatever. We have a set of *some items*. To sort it, we need an *ordering function* that knows how to compare its elements. The default is a string order.
+
+The `arr.sort(fn)` method implements a generic sorting algorithm. We don't need to care how it internally works (an optimized [quicksort](https://en.wikipedia.org/wiki/Quicksort) or [Timsort](https://en.wikipedia.org/wiki/Timsort) most of the time). It will walk the array, compare its elements using the provided function and reorder them, all we need is to provide the `fn` which does the comparison.
+
+By the way, if we ever want to know which elements are compared -- nothing prevents us from alerting them:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 [1, -2, 15, 2, 0, 8].sort(function(a, b) {
   alert( a + " <> " + b );
+  return a - b;
 });
 ```
+<<<<<<< HEAD
 Algoritma aynı elemanı bir kaç defa çalıştırma ihtiyacı duyabilir, fakat yine de olduğunca az karşılaştırmaya çalışır.
 
+=======
+
+The algorithm may compare an element with multiple others in the process, but it tries to make as few comparisons as possible.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 
 ````smart header="Karşılaştırma fonksiyonu herhangi bir sayıyı döndürebilir."
@@ -401,13 +626,39 @@ alert(arr);  // *!*1, 2, 15*/!*
 ```
 ````
 
+<<<<<<< HEAD
 ````smart header="Daha zarif bir fonksiyon için ok kullanmak."
 [Ok fonksiyonlarını](info:arrow-functions-basics) hatırlarsanız burada daha zarif bir biçimde sıralama yapılabilir:
+=======
+````smart header="Arrow functions for the best"
+Remember [arrow functions](info:arrow-functions-basics)? We can use them here for neater sorting:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js
 arr.sort( (a, b) => a - b );
 ```
+<<<<<<< HEAD
 Bu, daha uzun versiyonu ile aynı şekilde çalışır.
+=======
+
+This works exactly the same as the longer version above.
+````
+
+````smart header="Use `localeCompare` for strings"
+Remember [strings](info:string#correct-comparisons) comparison algorithm? It compares letters by their codes by default.
+
+For many alphabets, it's better to use `str.localeCompare` method to correctly sort letters, such as `Ö`.
+
+For example, let's sort a few countries in German:
+
+```js run
+let countries = ['Österreich', 'Andorra', 'Vietnam'];
+
+alert( countries.sort( (a, b) => a > b ? 1 : -1) ); // Andorra, Vietnam, Österreich (wrong)
+
+alert( countries.sort( (a, b) => a.localeCompare(b) ) ); // Andorra,Österreich,Vietnam (correct!)
+```
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ````
 
 ### reverse
@@ -430,7 +681,11 @@ Bunun uygulamasını gerçek hayatta şu şekilde görmek mümkndür. Bir mesajl
 
 [str.split(delim)](mdn:js/String/split) tam olarak bunu yapmaktadır. Karakterleri verilen `delim` e göre ayırır ve sonrasında bunları dizi olarak döner.
 
+<<<<<<< HEAD
 Aşağıdaki örnekte isimler virgül ve ardından boşluk yazarak ayrılmıştır.
+=======
+In the example below, we split by a comma followed by a space:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 let isimler = 'Bilbo, Gandalf, Nazgul';
@@ -459,14 +714,22 @@ alert( str.split('') ); // t,e,s,t
 ```
 ````
 
+<<<<<<< HEAD
 [arr.join(str)](mdn:js/Array/join) `split` in tam tersini yapar. `arr`'den karakter dizileri yaratır.
+=======
+The call [arr.join(glue)](mdn:js/Array/join) does the reverse to `split`. It creates a string of `arr` items joined by `glue` between them.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Örnek:
 
 ```js run
 let dizi = ['Bilbo', 'Gandalf', 'Nazgul'];
 
+<<<<<<< HEAD
 let str = dizi.join(';');
+=======
+let str = arr.join(';'); // glue the array into a string using ;
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 alert( str ); // Bilbo;Gandalf;Nazgul
 ```
@@ -480,11 +743,16 @@ Dizi elemanlarının üzerinden geçilmek istendiğinde `forEach` kullanmak müm
 Yazımı:
 
 ```js
+<<<<<<< HEAD
 let value = arr.reduce(function(previousValue, item, index, arr) {
+=======
+let value = arr.reduce(function(accumulator, item, index, array) {
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
   // ...
-}, initial);
+}, [initial]);
 ```
 
+<<<<<<< HEAD
 Fonksiyon elemanlara uygulanır. İkinciden itibaren benzer bir yazıma rastlayabilirsiniz.
 
 - `item` -- dizinin o anki elemanı.
@@ -494,6 +762,22 @@ Fonksiyon elemanlara uygulanır. İkinciden itibaren benzer bir yazıma rastlaya
 Şimdiye kadar `forEach/map` gibi. Fakat bir argüman daha var:
 
 - `previousValue` bir önceki fonksiyonun sonucudur `initial` ilk çağrının sonucudur.
+=======
+The function is applied to all array elements one after another and "carries on" its result to the next call.
+
+Arguments:
+
+- `accumulator` -- is the result of the previous function call, equals `initial` the first time (if `initial` is provided).
+- `item` -- is the current array item.
+- `index` -- is its position.
+- `array` -- is the array.
+
+As the function is applied, the result of the previous function call is passed to the next one as the first argument.
+
+So, the first argument is essentially the accumulator that stores the combined result of all previous executions. And at the end, it becomes the result of `reduce`.
+
+Sounds complicated?
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Örnekle anlatmak gerekirse:
 
@@ -508,19 +792,37 @@ alert(result); // 15
 ```
 Burada `reduce` fonksiyonunun en çok kullanılan 2 argümanlı şekli kullanıldı.
 
+<<<<<<< HEAD
 Detaylarına bakılacak olursa:
+=======
+The function passed to `reduce` uses only 2 arguments, that's typically enough.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 1. İlk çalıştırıldığında `sum` başlangıç değerini alır ( `reduce`'un son argümanı ) `0`, ve `current` dizinin ilk elemanıdır `1`. Bundan dolayı sonuç `1` olur.
 2. İkinci döngüde `sum = 1`, buna ikinci dizi elemanı olan `2` eklenir ve döndürülür.
 3. Üçüncü döngüde ise `sum = 3` ve buna bir sonraki dizi elemanı eklenir ve böyle devam eder.
 
+<<<<<<< HEAD
 Hesaplama akışı:
+=======
+1. On the first run, `sum` is the `initial` value (the last argument of `reduce`), equals `0`, and `current` is the first array element, equals `1`. So the function result is `1`.
+2. On the second run, `sum = 1`, we add the second array element (`2`) to it and return.
+3. On the 3rd run, `sum = 3` and we add one more element to it, and so on...
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ![](reduce.svg)
 
+<<<<<<< HEAD
 Form tablosunda bunu daha açık bir şekilde görebilirsiniz. Satırlar fonksiyon çağrılarını göstermektedir.
 
 |   |`toplam`|`şimdiki`|`sonuç`|
+=======
+![](reduce.svg)
+
+Or in the form of a table, where each row represents a function call on the next array element:
+
+|   |`sum`|`current`|result|
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 |---|-----|---------|---------|
 |birinci çağrı|`0`|`1`|`1`|
 |ikinci çağrı|`1`|`2`|`3`|
@@ -528,9 +830,15 @@ Form tablosunda bunu daha açık bir şekilde görebilirsiniz. Satırlar fonksiy
 |dördüncü çağrı|`6`|`4`|`10`|
 |beşinci çağrı|`10`|`5`|`15`|
 
+<<<<<<< HEAD
 Gördüğünüz gibi bir önceki fonksiyonun sonucu sonraki fonksiyonun argümanı olmakta.
 
 Bunun ile birlikte başlangıç değerini pas geçmekte mümkün:
+=======
+Here we can clearly see how the result of the previous call becomes the first argument of the next one.
+
+We also can omit the initial value:
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ```js run
 let arr = [1, 2, 3, 4, 5];
@@ -556,6 +864,7 @@ let arr = [];
 arr.reduce((sum, current) => sum + current);
 ```
 
+<<<<<<< HEAD
 Bundan dolayı her zaman başlangıç değeri kullanılması önerilir.
 
 [arr.reduceRight](mdn:js/Array/reduceRight) metodu da `reduce` metodu ile aynı işi yapar fakat diziyi sağdan sola doğru okur.
@@ -585,6 +894,11 @@ Aşağıdaki kod elemanın dizideki pozisyonu hakkında daha açıklayıcıdır:
 });
 ```
 Eğer fonksiyonun bir sonucu varsa bu görmezden gelinir.
+=======
+So it's advised to always specify the initial value.
+
+The method [arr.reduceRight](mdn:js/Array/reduceRight) does the same but goes from right to left.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ## Array.isArray
 
@@ -594,7 +908,11 @@ Bundan dolayı `typeof` normal obje ile diziyi ayırt etmekte yardımcı olamaz:
 
 ```js run
 alert(typeof {}); // object
+<<<<<<< HEAD
 alert(typeof []); // aynısı
+=======
+alert(typeof []); // object (same)
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 ```
 
 ... Fakat diziler çok kullanıldığından dolayı buna has metod bulunmaktadır: [Array.isArray(value)](mdn:js/Array/isArray) . Eğer değer `dizi` ise `true` döndürür. Diğer türlü `false` döndürür.
@@ -609,7 +927,11 @@ alert(Array.isArray([])); // true
 
 Fonksiyonları çağıran neredeyse tüm dizi metodları -- `find`, `filter`, `map` gibi `sort` hariç, ayrıca opsiyonel `thisArg` parametresini kabul eder.
 
+<<<<<<< HEAD
 Yukarıdaki bölümde bu parametreden bahsedilmedi, bunun sebebi çok nadir olarak kullanılmasından dolayıdır. Fakat bütünlüğün sağlanmasından dolayı üstünden geçmekte fayda var.
+=======
+That parameter is not explained in the sections above, because it's rarely used. But for completeness, we have to cover it.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Bu metodlarla "thisArg"'ın yazımı aşağıdaki gibidir:
 
@@ -622,6 +944,7 @@ arr.map(func, thisArg);
 ```
 `thisArg` değeri `func` için `this` olmaktadır.
 
+<<<<<<< HEAD
 Örneğin, aşağıda objenin metodu filtre olarak kullanılmaktadır ve `thisArg` bu durumda oldukça kullanışlıdır:
 
 ```js run
@@ -647,11 +970,47 @@ alert(dahaGencKullanicilar.length); // 2
 ```
 
 Yukarıdaki çağrıda `kullanici.dahaGenc` filtre olarak kullanılmaktadır. Ayrıca `kullanici` bu fonksiyona gönderilmektedir. Eğer `kullanici.filter(kullanici.dahaGenc)`'i vermezseniz, `kullanici.dahaGenc` `this=undefined` olarak çağrılır. Bu da anında hata verir.
+=======
+The value of `thisArg` parameter becomes `this` for `func`.
+
+For example, here we use a method of `army` object as a filter, and `thisArg` passes the context:
+
+```js run
+let army = {
+  minAge: 18,
+  maxAge: 27,
+  canJoin(user) {
+    return user.age >= this.minAge && user.age < this.maxAge;
+  }
+};
+
+let users = [
+  {age: 16},
+  {age: 20},
+  {age: 23},
+  {age: 30}
+];
+
+*!*
+// find users, for who army.canJoin returns true
+let soldiers = users.filter(army.canJoin, army);
+*/!*
+
+alert(soldiers.length); // 2
+alert(soldiers[0].age); // 20
+alert(soldiers[1].age); // 23
+```
+
+If in the example above we used `users.filter(army.canJoin)`, then `army.canJoin` would be called as a standalone function, with `this=undefined`, thus leading to an instant error.
+
+A call to `users.filter(army.canJoin, army)` can be replaced with `users.filter(user => army.canJoin(user))`, that does the same. The latter is used more often, as it's a bit easier to understand for most people.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 ## Özet
 
 Dizi metodlarının kısa açıklamaları:
 
+<<<<<<< HEAD
 - Eleman ekleme/silme metodları:
   - `push(...items)` -- elemanları sona ekler,
   - `pop()` -- en sondaki elemanı alır,
@@ -681,23 +1040,80 @@ Dizi metodlarının kısa açıklamaları:
   - `Array.isArray(arr)`  `arr`'in dizi olup olmadığını kontrol eder.
 
 Bu metodların içinden sadece `sort`, `reverse` ve `splice` doğrudan dizinin kendisi üzerinden işlem yapar. Diğerleri değer döndürür.
+=======
+- To add/remove elements:
+  - `push(...items)` -- adds items to the end,
+  - `pop()` -- extracts an item from the end,
+  - `shift()` -- extracts an item from the beginning,
+  - `unshift(...items)` -- adds items to the beginning.
+  - `splice(pos, deleteCount, ...items)` -- at index `pos` deletes `deleteCount` elements and inserts `items`.
+  - `slice(start, end)` -- creates a new array, copies elements from index `start` till `end` (not inclusive) into it.
+  - `concat(...items)` -- returns a new array: copies all members of the current one and adds `items` to it. If any of `items` is an array, then its elements are taken.
+
+- To search among elements:
+  - `indexOf/lastIndexOf(item, pos)` -- look for `item` starting from position `pos`, and return the index or `-1` if not found.
+  - `includes(value)` -- returns `true` if the array has `value`, otherwise `false`.
+  - `find/filter(func)` -- filter elements through the function, return first/all values that make it return `true`.
+  - `findIndex` is like `find`, but returns the index instead of a value.
+
+- To iterate over elements:
+  - `forEach(func)` -- calls `func` for every element, does not return anything.
+
+- To transform the array:
+  - `map(func)` -- creates a new array from results of calling `func` for every element.
+  - `sort(func)` -- sorts the array in-place, then returns it.
+  - `reverse()` -- reverses the array in-place, then returns it.
+  - `split/join` -- convert a string to array and back.
+  - `reduce/reduceRight(func, initial)` -- calculate a single value over the array by calling `func` for each element and passing an intermediate result between the calls.
+
+- Additionally:
+  - `Array.isArray(value)` checks `value` for being an array, if so returns `true`, otherwise `false`.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 
 Yukarıdaki metodlar projelerin çoğundaki kullanılan dizi fonksiyonlarının %99'unu kapsar. Fakat bunun yanında farklı metodlar da bulunmaktadır:
 
+<<<<<<< HEAD
 - [arr.some(fn)](mdn:js/Array/some)/[arr.every(fn)](mdn:js/Array/every) diziyi kontrol eder.
+=======
+- [arr.some(fn)](mdn:js/Array/some)/[arr.every(fn)](mdn:js/Array/every) check the array.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
   Dizinin her elemanı için `fn` çağırılır. `Map`'e çok benzer fakat herhangi biri/hepsi `true` ise `true` döndürür. Diğer türlü `false` döndürür.
   
 - [arr.fill(value, start, end)](mdn:js/Array/fill) -- diziyi tekrar eden `value` değeri ile `start` ile `index` arasına doldurur.
 
+<<<<<<< HEAD
 - [arr.copyWithin(target, start, end)](mdn:js/Array/copyWithin) -- `start` tan `end`'e kadar olan elemanları `target`'tan itibaren var olanların üzerine yazarak yapıştırır.
+=======
+  These methods behave sort of like `||` and `&&` operators: if `fn` returns a truthy value, `arr.some()` immediately returns `true` and stops iterating over the rest of items; if `fn` returns a falsy value, `arr.every()` immediately returns `false` and stops iterating over the rest of items as well.
+
+  We can use `every` to compare arrays:
+
+  ```js run
+  function arraysEqual(arr1, arr2) {
+    return arr1.length === arr2.length && arr1.every((value, index) => value === arr2[index]);
+  }
+
+  alert( arraysEqual([1, 2], [1, 2])); // true
+  ```
+
+- [arr.fill(value, start, end)](mdn:js/Array/fill) -- fills the array with repeating `value` from index `start` to `end`.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Tüm liste için [kullanım talimatları](mdn:js/Array) sayfasına bakabilirsiniz.
 
+<<<<<<< HEAD
 Görünürde çok fazla metod varmış gibi ve ezberlemesi zormuş gibi görünse de aslında göründüğünden çok daha kolaydır.
 
 Sadece tanımların bulunduğu sayfaya bakmanız yeterlid. Ardından bu bölümdeki örnekleri çözerek pratik yaparsanız metodlar ile ilgili yeteri kadar bilgi sahibi olmuş olursunuz.
+=======
+- [arr.flat(depth)](mdn:js/Array/flat)/[arr.flatMap(fn)](mdn:js/Array/flatMap) create a new flat array from a multidimensional array.
+
+For the full list, see the [manual](mdn:js/Array).
+
+At first sight, it may seem that there are so many methods, quite difficult to remember. But actually, that's much easier.
+>>>>>>> 34a80e70f8cce5794be259d25f815d7a7db7cbe3
 
 Daha sonrasında metodlar ile ilgili bir şey yapmak istediğinizde, nasıl yapıldığını bilmiyorsanız, buraya tekrar gelip doğru metodu bulabilirsiniz.
 Buradaki örnekler doğru bir şekilde yazmanıza yardımcı olacaktır. Sonrasında metodları hiçbir özel çaba harcamadan hatırlayacak duruma gelebilirsiniz.
