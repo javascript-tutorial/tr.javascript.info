@@ -26,7 +26,13 @@ alert( kullaniciMapped[0].adi_soyadi ) // Ahmet Doğtaş
 ```
 Dikkat ederseniz ok fonksiyonunda süslü parantez kullanmamız gerekti.
 
+<<<<<<< HEAD
 Aşağıdaki gibi yazılamaz:
+=======
+Please note that in the arrow functions we need to use additional brackets. 
+
+We can't write like this:
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 ```js
 let kullaniciMapped = kullanicilar.map(kullanici => *!*{*/!*
   adi_soyadi: `${kullanici.adi} ${kullanici.soyadi}`,

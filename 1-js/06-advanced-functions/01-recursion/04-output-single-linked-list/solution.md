@@ -43,7 +43,11 @@ function listeYaz(list) {
 ```
 ... Fakat çok akıllıca bir yöntem değil. İleride fonksiyonu genişletmek gerekebilir. Liste ile bir şeyler yapmak gerekebilir. Eğer `list` değişirse bu gerekliliklerin hiçbiri yerine getirilemez.
 
+<<<<<<< HEAD
 Değişken isimlerinden konuşmak gerekirse `list` burada liste'nin kendisidir, `ilk` elemanıdır ve öyle kalmalıdır. Temiz ve güvenilir.
+=======
+...But that would be unwise. In the future we may need to extend a function, do something else with the list. If we change `list`, then we lose such ability.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 Diğer taraftan `tmp` liste için aynı `i`'nin `for` için gerekliliği gibidir.
 

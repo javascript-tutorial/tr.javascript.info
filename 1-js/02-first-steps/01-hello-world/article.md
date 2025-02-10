@@ -1,6 +1,10 @@
 # Merhaba Dünya
 
+<<<<<<< HEAD
 Okuyacağınız bu konu Javascript'in özü hakkındadır, platform ile bağlantılı değildir. İleride Node.JS ve diğer platformlarda aynı şekilde kullanabilirsiniz.
+=======
+This part of the tutorial is about core JavaScript, the language itself.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 Fakat kodlarımızın çalıştırılabilmesi için en azından bir ortam gerekli ve bu kitap tarayıcı üzerinden açılarak size bu ortamı yaratmış oluyor. Tarayıcı özel komutları ( `alert`) daha az tutulacak. Böylece eğer diğer platformlara yönelmek istiyorsanız bu komutlarla zaman geçirmenize gerek kalmayacak. Diğer yandan [sonraki](/ui) bölümde tarayıcı özellikleri daha derinlemesine incelenecektir.
 
@@ -9,7 +13,11 @@ Fakat kodlarımızın çalıştırılabilmesi için en azından bir ortam gerekl
 
 ## Script etiketi
 
+<<<<<<< HEAD
 Javascript programları html içerisine `<script>` etiketi ile eklenebilir.
+=======
+JavaScript programs can be inserted almost anywhere into an HTML document using the `<script>` tag.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 Örneğin:
 
@@ -45,8 +53,13 @@ Sağ üst taraftaki "Play" (Çalıştır) butonuna basarak örneği çalıştır
 
 Bugünlerde `<script>` etiketi genelde özellikler eklenmeden yazılmakta. Fakat eski kodlara baktığınızda aşağıdaki gibi kodları görmek mümkündür:
 
+<<<<<<< HEAD
  `type` özelliği: <code>&lt;script <u>type</u>=...&gt;</code>
  : Eski HTML4 standardı script etiketi içerisinde tip getirmeyi zorunlu kılıyordu. Genelde bu `type="text/javascript"` idi. Günümüzde ise HTML standartları `type` özelliğini varsayılan olarak kabul edebiliyor.
+=======
+The `type` attribute: <code>&lt;script <u>type</u>=...&gt;</code>
+: The old HTML standard, HTML4, required a script to have a `type`. Usually it was `type="text/javascript"`. It's not required anymore. Also, the modern HTML standard totally changed the meaning of this attribute. Now, it can be used for JavaScript modules. But that's an advanced topic, we'll talk about modules in another part of the tutorial.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 `language` (dil) özelliği: <code>&lt;script <u>language</u>=...&gt;</code>
 : Bu özellik yazılan script'in dilini göstermek amacıyla kullanılır. Fakat bu da artık önemini yitirmiştir. Javascript varsayılan dil olduğundan dolayı söylemeye gerek yoktur.
@@ -59,7 +72,11 @@ JavaScript kodundan önce ve sonra yazılan yorumlar. Çok eski JavaScript kitap
     //--></script>
     ```
 
+<<<<<<< HEAD
   Bu yorumların amacı `<script>` etiketini anlamayan tarayıcılarda JavaScript kodunun ekrana yazılmasını engellemektir. Fakat artık neredeyse tüm tarayıcılar `<script>` etiketini anladıklarından bu konuda da bir sıkıntı bulunmamaktadır. Eğer böyle bir kod bloğu görürseniz kod çok eski diyebilirsiniz.
+=======
+    This trick isn't used in modern JavaScript. These comments hide JavaScript code from old browsers that didn't know how to process the `<script>` tag. Since browsers released in the last 15 years don't have this issue, this kind of comment can help you identify really old code.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 
 ## Dışardan yüklenen Javascript kod dosyaları
@@ -72,14 +89,18 @@ Sonrasında bu dosyayı aşağıdaki gibi yol göstererek sayfanızda çalışt�
 <script src="/kod/yolu/ana.js"></script>
 ```
 
+<<<<<<< HEAD
 Buradaki `/kod/yolu/ana.js` site ana dizininden itibaren kesin (absolute) yol belirtir.
 
 Tabi göreceli (relative) yol belirtmek de mümkündür. Örneğin `src="script.js"` HTML dosyasının kayıt edildiği klasördeki `"script.js"`'yi al anlamına gelir.
+=======
+Here, `/path/to/script.js` is an absolute path to the script from the site root. One can also provide a relative path from the current page. For instance, `src="script.js"`, just like `src="./script.js"`, would mean a file `"script.js"` in the current folder.
+>>>>>>> 6236eb8c3cdde729dab761a1d0967a88a1a6197e
 
 Tam URL vermek de mümkündür. Örneğin:
 
 ```html
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/3.2.0/lodash.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.11/lodash.js"></script>
 ```
 Birkaç kod dosyası eklemek isterseniz aşağıdaki gibi yazabilirsiniz.
 
