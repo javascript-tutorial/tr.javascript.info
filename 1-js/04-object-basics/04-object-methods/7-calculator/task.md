@@ -6,9 +6,15 @@ importance: 5
 
 `hesapMakinesi` objesini aşağıdaki üç metod ile oluşturunuz:
 
+<<<<<<< HEAD
 - `oku()` veri giriş ekranı gösterir ve iki değeri objenin özelliklerine kaydeder.
 - `topla()` kaydedilen değerlerin toplamını döner.
 - `carp()` kaydedilen değerlerin çarpımını döner.
+=======
+- `read()` prompts for two values and saves them as object properties with names `a` and `b` respectively.
+- `sum()` returns the sum of saved values.
+- `mul()` multiplies saved values and returns the result.
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 ```js
 let hesapMakinesi = {
@@ -21,4 +27,3 @@ alert( hesapMakinesi.carp() );
 ```
 
 [demo]
-

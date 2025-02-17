@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 Önce gezegenimizin isminin tutulduğu değişkeni oluşturun.
+=======
+## The variable for our planet
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 Basit bir şekilde aşağıdaki gibi oluşturabilirsiniz:
 
@@ -6,10 +10,16 @@ Basit bir şekilde aşağıdaki gibi oluşturabilirsiniz:
 let gezegenimizinIsmi = "Dünya";
 ```
 
+<<<<<<< HEAD
 Dikkat edin daha kısa olabilirdi. Örneğin kısaca `gezegen` diyebilirdik fakat bu çok açıkça bizim gezegenimizin ismini ifade etmezdi. Değişken çok uzun olmadıkça açık olmakta fayda var.
 
 İkincisi şu anda siteyi ziyaret eden kullanıcının adı:
 
+=======
+Note, we could use a shorter name `planet`, but it might not be obvious what planet it refers to. It's nice to be more verbose. At least until the variable isNotTooLong.
+
+## The name of the current visitor
+>>>>>>> 1dce5b72b16288dad31b7b3febed4f38b7a5cd8a
 
 ```js
 let simdikiKullaniciAdi = "Ahmet";
