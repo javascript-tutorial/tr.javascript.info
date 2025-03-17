@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 A positive number with an optional decimal part is (per previous task): `pattern:\d+(\.\d+)?`.
+=======
+A positive number with an optional decimal part is: `pattern:\d+(\.\d+)?`.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Let's add the optional `pattern:-` in the beginning:
 

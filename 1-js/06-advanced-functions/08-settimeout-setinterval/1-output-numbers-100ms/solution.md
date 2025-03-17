@@ -18,7 +18,11 @@ function printNumbers(from, to) {
 printNumbers(5, 10);
 ```
 
+<<<<<<< HEAD
 `setTimeout` kullanilarak:
+=======
+Using nested `setTimeout`:
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 
 ```js run

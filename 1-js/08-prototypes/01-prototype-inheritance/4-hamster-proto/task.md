@@ -2,11 +2,19 @@ importance: 5
 
 ---
 
+<<<<<<< HEAD
 # Neden iki hamster da full'dür?
+=======
+# Why are both hamsters full?
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 `speedy` ve `lazy` diye `hamster`'objesinden türemiş iki tane objemiz olsun.
 
+<<<<<<< HEAD
 Biz bir tanesini beslediğimizde, diğeri de full oluyor. Bunun nedeni nedir, nasıl düzeltilir?
+=======
+When we feed one of them, the other one is also full. Why? How can we fix it?
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 ```js run
 let hamster = {

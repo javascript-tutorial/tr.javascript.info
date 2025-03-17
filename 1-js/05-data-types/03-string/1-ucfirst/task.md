@@ -2,6 +2,10 @@ importance: 5
 
 ---
 
+<<<<<<< HEAD
+=======
+# Uppercase the first character
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 # İlk karakteri büyük harf yapma
 

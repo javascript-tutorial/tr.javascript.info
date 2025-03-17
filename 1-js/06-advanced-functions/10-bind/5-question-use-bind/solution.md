@@ -1,5 +1,9 @@
 
+<<<<<<< HEAD
 Nedeni `ask`'ın `loginOk/loginFail` fonksiyonlarını obje olmadan almasıdır.
+=======
+The error occurs because `askPassword` gets functions `loginOk/loginFail` without the object.
+>>>>>>> 3d7abb9cc8fa553963025547717f06f126c449b6
 
 Bunları çağırdığında doğal olarak `this=undefined` olarak çalışacaktır.
 
