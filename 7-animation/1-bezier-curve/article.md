@@ -4,7 +4,17 @@ Bezier eğrileri, bilgisayar grafiklerinde şekiller çizmek için, CSS animasyo
 
 Çok basit bir konudur, bir kez çalıştıktan sonra vektör grafikleri ve gelişmiş animasyonlar dünyasında kendinizi rahat hissedebilirsiniz.
 
+<<<<<<< HEAD
 ## Kontrol Noktaları
+=======
+```smart header="Some theory, please"
+This article provides a theoretical, but very needed insight into what Bezier curves are, while [the next one](info:css-animations#bezier-curve) shows how we can use them for CSS animations.
+
+Please take your time to read and understand the concept, it'll serve you well.
+```
+
+## Control points
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 Bir [bezier eğrisi](https://tr.wikipedia.org/wiki/B%C3%A9zier_e%C4%9Frisi) kontrol noktaları ile tanımlanır.
 
@@ -31,7 +41,11 @@ Eğrilere yakından bakarsınız, hemen farkedebilirsiniz:
 
     ![](bezier4-e.svg) ![](bezier3-e.svg)
 
+<<<<<<< HEAD
 Bu son özellik sayesinde, bilgisayar grafiklerinde kesişim testlerini optimize etmek mümkündür. Dışbükey gövdeler (convex hulls) kesişmiyorsa, eğrilerde kesişmez. Dolayısıyla, dışbükey gövde kesişimini kontrol etmek "kesişim yok" sonucunu çok hızlı bir şekilde verebilir. Kesişimi veya dışbükey gövdeleri kontrol etmek çok daha kolaydır, çünkü bunlar dikdörtgenler, üçgenler ve benzerleridir (yukarıdaki görsele bakın), eğriden çok daha basit şekillerdir.   
+=======
+Because of that last property, in computer graphics it's possible to optimize intersection tests. If convex hulls do not intersect, then curves do not either. So checking for the convex hulls intersection first can give a very fast "no intersection" result. Checking the intersection of convex hulls is much easier, because they are rectangles, triangles and so on (see the picture above), much simpler figures than the curve.
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 **Bezier eğrilerinin ana önemi -- kontrol noktaları hareket ettirildiğinde *sezgisel olarak bariz bir şekilde* eğri değişiyor.**
 
@@ -49,8 +63,13 @@ Biraz pratik yaptıktan sonra, istenen eğriyi elde etmek için noktaların nas�
 
 ## De Casteljau'nun Algoritması
 
+<<<<<<< HEAD
 Bezier eğrileri için matematiksel bir formül vardır, fakat bunu daha sonra ele alalım, çünkü
 [De Casteljau'nun algoritması](https://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm), matematiksel tanımla aynıdır ve nasıl oluşturulduğunu görsel olarak gösterir.
+=======
+There's a mathematical formula for Bezier curves, but let's cover it a bit later, because
+[De Casteljau's algorithm](https://en.wikipedia.org/wiki/De_Casteljau%27s_algorithm) is identical to the mathematical definition and visually shows how it is constructed.
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 İlk olarak 3 noktalı örneğe bakalım.
 
@@ -176,7 +195,7 @@ Bunlar vektör denklemleridir. Başka bir deyişle, karşılık gelen koordinatl
 Örneğin, kontrol noktaları `(0,0)`, `(0.5, 1)` ve `(1, 0)` ise, denklemler şöyle olur:
 
 - <code>x = (1−t)<sup>2</sup> * 0 + 2(1−t)t * 0.5 + t<sup>2</sup> * 1 = (1-t)t + t<sup>2</sup> = t</code>
-- <code>y = (1−t)<sup>2</sup> * 0 + 2(1−t)t * 1 + t<sup>2</sup> * 0 = 2(1-t)t = –t<sup>2</sup> + 2t</code>
+- <code>y = (1−t)<sup>2</sup> * 0 + 2(1−t)t * 1 + t<sup>2</sup> * 0 = 2(1-t)t = –2t<sup>2</sup> + 2t</code>
 
 Şimdi `t`, `0`'dan `1`'e gittikçe, her `t` için `(x,y)` değerleri kümesi bu kontrol noktaları için eğriyi oluşturur.
 

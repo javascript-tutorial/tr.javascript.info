@@ -6,6 +6,12 @@ importance: 5
 
 Yapıcı `HesapMakinesi` fonksiyonunu yazınız ve aşağıdaki üç fonksiyonu buna uygulayınız:
 
+<<<<<<< HEAD
+=======
+- `read()` prompts for two values and saves them as object properties with names `a` and `b` respectively.
+- `sum()` returns the sum of these properties.
+- `mul()` returns the multiplication product of these properties.
+>>>>>>> 035c5267ba80fa7b55878f7213cbde449b4092d9
 
 - `oku()` veri giriş ekranı gösterir ve iki değeri objenin özelliklerine kaydeder.
 - `topla()` kaydedilen değerlerin toplamını döner.
