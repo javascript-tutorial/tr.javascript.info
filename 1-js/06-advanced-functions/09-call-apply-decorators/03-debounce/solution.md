@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 ```js run no-beautify
@@ -5,20 +6,21 @@ function debounce(f, ms) {
 
   let isCooldown = false;
 
+=======
+```js demo
+function debounce(func, ms) {
+  let timeout;
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
   return function() {
-    if (isCooldown) return;
-
-    f.apply(this, arguments);
-
-    isCooldown = true;
-
-    setTimeout(() => isCooldown = false, ms);
+    clearTimeout(timeout);
+    timeout = setTimeout(() => func.apply(this, arguments), ms);
   };
-
 }
+
 ```
 `debounce` çağrısı bir saklayıcı döner. İki durum söz konusudur:
 
+<<<<<<< HEAD
 - `isCooldown = false` -- çalışmaya hazır.
 - `isCooldown = true` -- timeout'u bekliyor..
 
@@ -26,3 +28,7 @@ function debounce(f, ms) {
 
 `isCooldown` true iken diğer çağrılar görmezden gelinir.
 `setTimeout` belirlenen vakit geçtikten sonra tekrar `isCooldown`'u false'a çevirir.
+=======
+A call to `debounce` returns a wrapper. When called, it schedules the original function call after given `ms` and cancels the previous such timeout.
+
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b

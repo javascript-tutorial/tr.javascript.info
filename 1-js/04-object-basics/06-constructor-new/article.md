@@ -1,6 +1,10 @@
 # Yapıcı, "new" operatörü
 
+<<<<<<< HEAD
 `{ ... }` yazımı bir objenin yaratılmasına yarar. Fakat bir objenin benzeri farklı objeler yaratmak istenebilir. Örneğin farklı kullanıcılar, farklı menü değerleri.
+=======
+The regular `{...}` syntax allows us to create one object. But often we need to create many similar objects, like multiple users or menu items and so on.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 Bu yapıcı fonksiyon ve `"new"` operatörü ile yapılabilir.
 
@@ -30,9 +34,13 @@ alert(kullanici.yoneticiMi); // false
 ```
 Fonksiyon `new Kullanici(...)` şeklinde çalıştığında, aşağıdaki adımlar izlenir:
 
+<<<<<<< HEAD
 1. Yeni bir obje yaratılır ve `this` bu obje olur.
 2. Fonksiyon gövdesi çalışır. Genelde `this` modifiye edilir ve yeni özellikler eklenir.
 3. `this` değeri dönderilir.
+=======
+When a function is executed with `new`, it does the following steps:
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 Diğer bir deyişle, `new Kullanici(...)` şöyle yapar:
 
@@ -52,7 +60,11 @@ function Kullanici(isim) {
 }
 ```
 
+<<<<<<< HEAD
 Öyleyse `new Kullanici("İhsan") objesi aşağıdaki gibidir:
+=======
+So `let user = new User("Jack")` gives the same result as:
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 ```js
 let kullanici = {
@@ -64,6 +76,7 @@ Eğer başka bir kullanici oluşturmak istiyorsanız, yapmanız gereken `new Kul
 
 Yapıcı fonksiyonların amacı  -- tekrar kullanılabilecek objeleri yaratan kodun uygulanmasıdır.
 
+<<<<<<< HEAD
 Dikkat edecek olursanız, herhangi bir fonksiyon yapıcı fonksiyon olarabilir. Her fonksiyon `new`  ile çalıştırılabilir, ve yukarda anlatılan algoritmaya göre çalışır. "Yapıcı fonksiyon isimleri büyük harfle başlamalıdır" aslında genel bir ittifaktır, bunu daha da açıklayıcı yapmak için bu fonksiyonlar `new` ile çağırılmalıdır.
 
 ````smart header="new function() { ... }"
@@ -73,12 +86,31 @@ Eğer birçok satırdan oluşan kodda amacınız sadece karmaşık bir obje yapm
 let kullanici = new function() {
   this.isim = "İhsan";
   this.yonetici = false;
+=======
+That's the main purpose of constructors -- to implement reusable object creation code.
+
+Let's note once again -- technically, any function (except arrow functions, as they don't have `this`) can be used as a constructor. It can be run with `new`, and it will execute the algorithm above. The "capital letter first" is a common agreement, to make it clear that a function is to be run with `new`.
+
+````smart header="new function() { ... }"
+If we have many lines of code all about creation of a single complex object, we can wrap them in an immediately called constructor function, like this:
+
+```js
+// create a function and immediately call it with new
+let user = new function() { 
+  this.name = "John";
+  this.isAdmin = false;
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
   // diğer karmaşık yapılar
   // mantıklar veya yerel değişkenler
 };
 ```
+<<<<<<< HEAD
 Yapıcı fonksiyon tekrar çağırılamaz çünkü hiçbir yere kayıt edilmemiştir, sadece yaratılır ve çağırılır. Böylece yapıcı metod ilerde tekrar kullanılmayacağına garanti verir.
+=======
+
+This constructor can't be called again, because it is not saved anywhere, just created and called. So this trick aims to encapsulate the code that constructs the single object, without future reuse.
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 ````
 
 ## Yapıcı modu testi: new.target
@@ -89,7 +121,11 @@ Bu olay çok nadir kullanılır. Eğer her şeyi öğrenmek istemiyorsanız bura
 
 Fonksiyon içinde, bu fonksiyon `new` ile mi yoksa `new` olmadan mı çağırılmış bu `new.target` özelliği kullanılarak anlaşılabilir.
 
+<<<<<<< HEAD
 Normal çağrılarda bunun içerisi boştur fakat `new` ile çağrılırsa:
+=======
+It is undefined for regular calls and equals the function if called with `new`:
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 ```js run
 function Kullanici() {
@@ -130,17 +166,33 @@ Fakat `return` sözcüğü var ise kurallar basittir:
 
 Diğer bir deyişle, obje ile `return` kullanıldığında obje döner, diğer tüm hallerde `this` döner.
 
+<<<<<<< HEAD
 Örneğin aşağıda `return` edilen obje `this` yerine dönderilir.
+=======
+- If `return` is called with an object, then the object is returned instead of `this`.
+- If `return` is called with a primitive, it's ignored.
+
+In other words, `return` with an object returns that object, in all other cases `this` is returned.
+
+For instance, here `return` overrides `this` by returning an object:
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 ```js run
 function BuyukKullanici() {
 
   this.isim = "İhsan";
 
+<<<<<<< HEAD
   return { isim: "Muhsin" };  // <-- obje dönderir
 }
 
 alert( new BuyukKullanici().isim );  // Muhsin, objeyi aldık ^^
+=======
+  return { name: "Godzilla" };  // <-- returns this object
+}
+
+alert( new BigUser().name );  // Godzilla, got that object
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 ```
 Şimdi ise boş bir `return` cümlesi yazalım( eğer ilkel bir tipte kullanılsa bir şey değiştirmez)
 
@@ -149,8 +201,12 @@ function KucukKullanici() {
 
   this.isim = "İhsan";
 
+<<<<<<< HEAD
   return; // çalışmayı bitirir ve `this`'i döndürür.
 
+=======
+  return; // <-- returns this
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 }
 
 alert( new KucukKullanici().isim );  // İhsan
@@ -159,7 +215,12 @@ Genelde yapıcılar `return` sözcüğü kullanmazlar. Buarada amaç bütünlü�
 
 ````smart header="Parantezlerin yazılmaması"
 
+<<<<<<< HEAD
 Bu arada `new`'den sonra eğer bir argüman yoksa parantez kullanmasanız da olur:
+=======
+````smart header="Omitting parentheses"
+By the way, we can omit parentheses after `new`:
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 ```js
 let kullanici = new Kullanici; // <-- parantez yok
@@ -200,7 +261,13 @@ ihsan = {
 */
 ```
 
+<<<<<<< HEAD
 ## Özet
+=======
+To create complex objects, there's a more advanced syntax, [classes](info:classes), that we'll cover later.
+
+## Summary
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 - Yapıcı fonksiyonlar, veya kısaca yapıcılar, normal fonksiyonlardır. Fakat baş haflerinin büyük olmasıyla ilgili ortak bir kullanım vardır.
 - Bu fonksiyonlar sadece `new` kullanılarak çağırılmalıdır. Böyle çağrılar önce boş bir `this` yaratır ve buna değerler eklendikten sonra bu `this`'i geri gönderir.

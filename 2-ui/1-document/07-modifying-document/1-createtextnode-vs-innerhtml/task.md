@@ -6,7 +6,11 @@ importance: 5
 
 Boş bir DOM elementimiz `elem` ve bir string metnimiz `text` var.
 
+<<<<<<< HEAD
 Bu 3 komuttan hangisi tamamen aynıdır?
+=======
+Which of these 3 commands will do exactly the same?
+>>>>>>> 540d753e90789205fc6e75c502f68382c87dea9b
 
 1. `elem.append(document.createTextNode(text))`
 2. `elem.innerHTML = text`
