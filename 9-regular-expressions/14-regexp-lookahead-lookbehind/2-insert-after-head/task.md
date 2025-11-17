@@ -21,6 +21,10 @@ str = str.replace(regexp, `<h1>Hello</h1>`);
 ```
 
 After that the value of `str` should be:
+<<<<<<< HEAD
+=======
+
+>>>>>>> 5e893cffce8e2346d4e50926d5148c70af172533
 ```html
 <html>
   <body style="height: 200px"><h1>Hello</h1>
