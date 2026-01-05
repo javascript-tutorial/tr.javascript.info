@@ -21,9 +21,13 @@ let merdiven = {
     return this;
 */!*
   }
-}
+};
 
+<<<<<<< HEAD
 merdiven.yukari().yukari().asagi().yukari().asagi().adimiGoster();//1
+=======
+ladder.up().up().down().showStep().down().showStep(); // shows 1 then 0
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 ```
 Ayrıca her satır için tek çağrı da yazılabilir. Uzun zincirleme fonksiyonlar için bu daha okunabilirdir.
 
@@ -33,6 +37,14 @@ merdiven
   .yukari()
   .asagi()
   .up()
+<<<<<<< HEAD
   .asagi()
   .adimiGoster(); // 1
+=======
+  .up()
+  .down()
+  .showStep() // 1
+  .down()
+  .showStep(); // 0
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 ```
