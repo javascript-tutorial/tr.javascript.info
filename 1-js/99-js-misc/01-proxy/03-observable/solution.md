@@ -1,7 +1,12 @@
 Çözüm iki bölümden oluşur:
 
+<<<<<<< HEAD
 1. `.observe(handler)` çağrıldığında, handler'ı daha sonra çağırabilmek için bir yerde saklamamız gerekir. Bunu, sembolümüzü anahtar olarak kullanarak doğrudan nesnede saklayabiliriz.
 2. Herhangi bir değişiklik durumunda handler'ları çağırmak için `set` tuzağına sahip bir proxy'ye ihtiyacımız var.
+=======
+1. Whenever `.observe(handler)` is called, we need to remember the handler somewhere, to be able to call it later. We can store handlers right in the object, using our symbol as the property key.
+2. We need a proxy with `set` trap to call handlers in case of any change.
+>>>>>>> d78b01e9833009fab534462e05c03cffc51bf0e3
 
 ```js run
 let handlers = Symbol('handlers');
