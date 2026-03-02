@@ -2,6 +2,7 @@
 Notunuz aşağıdaki gibi olabilir:
 
 ```js no-beautify
+<<<<<<< HEAD
 function ust(x,n)  // <- argümanlar arasında boşluk bulunmamakta.
 {  // <-süslü parantez yeni satırda
   let sonuc=1;   // <-  = in iki yanında da boşluk bulunmamakta
@@ -16,6 +17,22 @@ if (n<0)  // <- (n < 0) olmalı, arada boşluk kullanılmamış
 {   // <- süslü parantez yeni satırda
   // Aşağıdaki uzun metin iki satırda yazılsa daha iyi olabilir
   alert(`${n} üssü alınamadı, kullandığınız sayı 0'dan küçük olamaz. Lütfen doğal sayıları kullanınız.`);
+=======
+function pow(x,n)  // <- no space between arguments
+{  // <- curly brace on a separate line
+  let result=1;   // <- no spaces before or after =
+  for(let i=0;i<n;i++) {result*=x;}   // <- no spaces
+  // the contents of { ... } should be on a new line
+  return result;
+}
+
+let x=prompt("x?",''), n=prompt("n?",'') // <-- technically possible,
+// but better make it 2 lines, also there's no spaces and missing ;
+if (n<=0)  // <- no spaces inside (n <= 0), and should be extra line above it
+{   // <- curly brace on a separate line
+  // below - long lines can be split into multiple lines for improved readability
+  alert(`Power ${n} is not supported, please enter an integer number greater than zero`);
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 }
 else // <- tek satırda  "} else {" şeklinde kullanılabilir.
 {
@@ -39,9 +56,15 @@ function ust(x, n) {
 let x = prompt("x?", "");
 let n = prompt("n?", "");
 
+<<<<<<< HEAD
 if (n < 0) {
   alert(`${n} üssü alınamadı, kullandığınız sayı 0'dan küçük olamaz.
      Lütfen doğal sayıları kullanınız.`);
+=======
+if (n <= 0) {
+  alert(`Power ${n} is not supported,
+    please enter an integer number greater than zero`);
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 } else {
   alert( ust(x, n) );
 }

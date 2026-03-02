@@ -28,4 +28,8 @@ alert(dictionary); // "apple,__proto__"
 
 Tanımlayıcı ile özellik yarattığımızda bunun bayrakları varsayılan olarak `false` olur. Bundan dolayı yukarıdaki `dictionary.toString` dönülemezdir.
 
+<<<<<<< HEAD
 Daha fazla bilgi için [](info:property-descriptors) bölümünü inceleyebilirsiniz.
+=======
+See the chapter [](info:property-descriptors) for review.
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11

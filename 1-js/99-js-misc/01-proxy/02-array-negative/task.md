@@ -1,7 +1,11 @@
 
 # array[-1]'e Erişmek
 
+<<<<<<< HEAD
 Bazı dillerde, dizi elemanlarına sondan sayılarak negatif indekslerle erişebiliriz.
+=======
+In some programming languages, we can access array elements using negative indexes, counted from the end.
+>>>>>>> ff804bc19351b72bc5df7766f4b9eb8249a3cb11
 
 Şöyle:
 
