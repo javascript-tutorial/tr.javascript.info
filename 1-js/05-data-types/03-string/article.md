@@ -15,7 +15,12 @@ let cift = "çift-tırnak";
 
 let us_isareti = `üs işareti`; // Backticks
 ```
+<<<<<<< HEAD
 Tek ve çift tırnak zaten aynıydı. Üs işareti ise JavaScript ifadelerini karakter dizisine yerleştirmenizi sağlar. Bu fonksiyon çağrısı dahil her şey olabilir:
+=======
+
+Single and double quotes are essentially the same. Backticks, however, allow us to embed any expression into the string, by wrapping it in `${…}`:
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
 ```js run
 function toplam(a, b) {
@@ -35,22 +40,45 @@ let davetliListesi = `Davetliler:
 
 alert(davetliListesi); // birçok satırdan oluşan davetiye listesi
 ```
+<<<<<<< HEAD
 Eğer yukarıdaki şekilde tek veya çift tırnak kullanmaya kalkarsanız hata alırsınız:
 ```js run
 let davetliListesi = "Davetliler:  // Error: Unexpected token ILLEGAL
   * İhsan";
+=======
+
+Looks natural, right? But single or double quotes do not work this way.
+
+If we use them and try to use multiple lines, there'll be an error:
+
+```js run
+let guestList = "Guests: // Error: Unexpected token ILLEGAL
+  * John";
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 ```
 Tek tırnak ve çift tırnak dil ilk yazılmaya başlandığı, çoklu satırların hesaba katılmadığı zamanlardan kalmadır. Garip tırnak ise ( alt + , ) çok sonraları oluşturulduğundan çok yönlüdür.
 
+<<<<<<< HEAD
 İlk üs işareti öncesinde "şablon fonksiyonu" tanımlanması da mümkündür. Yazımı : <code>func&#96;string&#96;</code> şeklindedir. `func` fonksiyonu otomatik olarak çağrılır, karakter dizisi ile ve içine gömülü ifadeyi alır ve çalıştırır. Bunun ile ilgili daha fazla bilgiyi [dökümanda](mdn:JavaScript/Reference/Template_literals#Tagged_template_literals) bulabilirsiniz. Buna "etiketmiş şablon" (tagged templates) denir. Bu şekilde karakter dizilerini özel temalar içerisinde veya diğer fonksiyonlarda kullanmak daha kolay olur, fakat yine de nadiren kullanılırlar.
+=======
+Single and double quotes come from ancient times of language creation, when the need for multiline strings was not taken into account. Backticks appeared much later and thus are more versatile.
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
+Backticks also allow us to specify a "template function" before the first backtick. The syntax is: <code>func&#96;string&#96;</code>. The function `func` is called automatically, receives the string and embedded expressions and can process them. This feature is called "tagged templates", it's rarely seen, but you can read about it in the MDN: [Template literals](mdn:/JavaScript/Reference/Template_literals#Tagged_templates).
 
+<<<<<<< HEAD
 ## Özel Karakterler
 "yeni satır" `\n` karakterini kullanarak çift tırnaklı karakter dizisi içerisinde birçok satırdan oluşan bir metin yazılabilir:
+=======
+## Special characters
+
+It is still possible to create multiline strings with single and double quotes by using a so-called "newline character", written as `\n`, which denotes a line break:
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
 ```js run
 let davetliListesi = "Davetliler:\n * İhsan\n * Cemal\n * Muzaffer";
 
+<<<<<<< HEAD
 alert(davetliListesi); // birçok satırdan oluşan davetiye listesi
 ```
 
@@ -61,9 +89,25 @@ alert( "Merhaba\nDünya" ); // "yeni satır" sambolü ile iki satır.
 // üs işareti ile iki satır ( altgr + , )
 alert( `Merhaba
 Dünya` );
+=======
+alert(guestList); // a multiline list of guests, same as above
+```
+
+As a simpler example, these two lines are equal, just written differently:
+
+```js run
+let str1 = "Hello\nWorld"; // two lines using a "newline symbol"
+
+// two lines using a normal newline and backticks
+let str2 = `Hello
+World`;
+
+alert(str1 == str2); // true
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 ```
 "Yeni satır" karakterine göre daha az kullanılan "özel" karakterler bulunmaktadır:
 
+<<<<<<< HEAD
 | Karakter | Açıklama |
 |-----------|-------------|
 |`\b`|Backspace|
@@ -85,6 +129,28 @@ alert( "\u{1F60D}"); // 😍, gülen yüz sembolü (uzun Unicode)
 Tüm özel karakterler her zaman `\` karakteri ile başlarlar. Karakterler normal akışında giderken başka bir iş yapması için var olan işlemi kesmesinden dolayı "kesme karakteri" denebilir..
 
 Karakter dizisi içinde kesme işareti kullanmak istersek bu işaret yardımıyla yaparız.
+=======
+There are other, less common special characters:
+
+| Character | Description |
+|-----------|-------------|
+|`\n`|New line|
+|`\r`|In Windows text files a combination of two characters `\r\n` represents a new break, while on non-Windows OS it's just `\n`. That's for historical reasons, most Windows software also understands `\n`. |
+|`\'`,&nbsp;`\"`,&nbsp;<code>\\`</code>|Quotes|
+|`\\`|Backslash|
+|`\t`|Tab|
+|`\b`, `\f`, `\v`| Backspace, Form Feed, Vertical Tab -- mentioned for completeness, coming from old times, not used nowadays (you can forget them right now). |
+
+As you can see, all special characters start with a backslash character `\`. It is also called an "escape character".
+
+Because it's so special, if we need to show an actual backslash `\` within the string, we need to double it:
+
+```js run
+alert( `The backslash: \\` ); // The backslash: \
+```
+
+So-called "escaped" quotes `\'`, `\"`, <code>\\`</code> are used to insert a quote into the same-quoted string.
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
 Örneğin:
 
@@ -103,6 +169,7 @@ Peki gerçekten `\` gösterilmek istenirse ne yapılmalı ?
 
 Bu da mümkün, bunun için `\\` kullanılmalı:
 
+<<<<<<< HEAD
 
 ```js run
 alert( `\\` ); //  \
@@ -123,10 +190,23 @@ Genelde başka diller ile çalışmış programcılar yanlışlıkla `str.length
 
 `str.length` sayısal bir değerdir, fonksiyon değildir! Sonunda parantez açıp kapanmaz.
 ```
+=======
+Of course, only the quotes that are the same as the enclosing ones need to be escaped. So, as a more elegant solution, we could switch to double quotes or backticks instead:
+
+```js run
+alert( "I'm the Walrus!" ); // I'm the Walrus!
+```
+
+Besides these special characters, there's also a special notation for Unicode codes `\u…`, it's rarely used and is covered in the optional chapter about [Unicode](info:unicode).
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
 ## Karakterlere erişim
 
+<<<<<<< HEAD
 İstediğiniz pozisyondaki karakteri alabilmek için köşeli parantez içerisinde pozisyonu neresiyse onu yazın `[poz]` veya bunun yerine [str.charAt(pos)](mdn:js/String/charAt) metodunu da kullanabilirsiniz. İlk karakter 0. pozisyondur:
+=======
+The `length` property has the string length:
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
 ```js run
 let str = `Selam`;
@@ -140,6 +220,7 @@ alert( str[str.length - 1] ); // m
 ```
 Köşeli parantez karakter almanın modern yoludur, `charAt` ilk metodlardandır.
 
+<<<<<<< HEAD
 Aralarındaki tek fark `[]` eğer karakteri bulamaz ise `undefined` döner. Fakat `charAt` boş karakter döner:
 
 ```js run
@@ -147,6 +228,43 @@ let str = `Selam`;
 
 alert( str[1000] ); // undefined
 alert( str.charAt(1000) ); // '' (boş karakter)
+=======
+Note that `\n` is a single "special" character, so the length is indeed `3`.
+
+```warn header="`length` is a property"
+People with a background in some other languages sometimes mistype by calling `str.length()` instead of just `str.length`. That doesn't work.
+
+Please note that `str.length` is a numeric property, not a function. There is no need to add parenthesis after it. Not `.length()`, but `.length`.
+```
+
+## Accessing characters
+
+To get a character at position `pos`, use square brackets `[pos]` or call the method [str.at(pos)](mdn:js/String/at). The first character starts from the zero position:
+
+```js run
+let str = `Hello`;
+
+// the first character
+alert( str[0] ); // H
+alert( str.at(0) ); // H
+
+// the last character
+alert( str[str.length - 1] ); // o
+alert( str.at(-1) );
+```
+
+As you can see, the `.at(pos)` method has a benefit of allowing negative position. If `pos` is negative, then it's counted from the end of the string.
+
+So `.at(-1)` means the last character, and `.at(-2)` is the one before it, etc.
+
+The square brackets always return `undefined` for negative indexes, for instance:
+
+```js run
+let str = `Hello`;
+
+alert( str[-2] ); // undefined
+alert( str.at(-2) ); // l
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 ```
 
 Karakterleri döngüye sokmak da mümkündür.
@@ -186,14 +304,27 @@ Bir dahaki bölümde bunun ile ilgili daha fazla örneğe denk geleceksiniz.
 Küçük harfe çevirmek için [toLowerCase()](mdn:js/String/toLowerCase) ve büyük harfe çevirmek için [toUpperCase()](mdn:js/String/toUpperCase) metodları kullanılabilir.
 
 ```js run
+<<<<<<< HEAD
 alert( 'Arayüz'.toUpperCase() ); // ARAYÜZ
 alert( 'Arayüz'.toLowerCase() ); // arayüz
+=======
+let str = 'Hi';
+
+str = 'h' + str[1]; // replace the string
+
+alert( str ); // hi
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 ```
 
 veya, sadece baş harfini alıp küçük harf olmasını istiyorsanız istiyorsanız:
 
+<<<<<<< HEAD
 ```js
 alert( 'Arayüz'[0].toLowerCase() ); // 'a'
+=======
+```js run
+alert( 'Interface'[0].toLowerCase() ); // 'i'
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 ```
 
 ## Karakter dizisi içinde başka bir karakter arama
@@ -226,8 +357,21 @@ let str = "N`aber Canım - Tavşan";
 alert( str.indexOf('an', 9) ) // 19
 ```
 
+<<<<<<< HEAD
 Eğer sizin istediğiniz tüm tekrarlar ise, `indexOf`'u döngü içerisinde kullanabilirsiniz. Her yeni çağrı bir önceki pozisyonu tutar:
+=======
+The optional second parameter allows us to start searching from a given position.
 
+For instance, the first occurrence of `"id"` is at position `1`. To look for the next occurrence, let's start the search from position `2`:
+
+```js run
+let str = 'Widget with id';
+
+alert( str.indexOf('id', 2) ) // 12
+```
+
+If we're interested in all occurrences, we can run `indexOf` in a loop. Every new call is made with the position after the previous match:
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
 ```js run
 let str = 'Bir berber bir berbere gel birader beraber bir berber dükkanı açalım demiş';
@@ -300,6 +444,7 @@ alert( ~2 ); // -3,  -(2+1) demektir.
 alert( ~1 ); // -2,  -(1+1) demektir.
 alert( ~0 ); // -1,  -(0+1) demektir.
 *!*
+<<<<<<< HEAD
 alert( ~-1 ); // 0,  -(-1+1) demektir.
 */!*
 ```
@@ -320,6 +465,13 @@ Genelde çok açık olmayan dil özellikleri üzerinde cambazlık yapılması ö
 
 Hatırlatma: `if (~str.indexOf(...))`  "eğer bulunursa" diye okunur..
 ````
+=======
+if (str.indexOf("Widget") != -1) {
+*/!*
+    alert("We found it"); // works now!
+}
+```
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
 ### includes, startsWith, endsWith
 
@@ -336,15 +488,25 @@ alert( "Merhaba".includes("Güle Güle") ); // false
 `str.includes` un isteğe bağlı ikinci argümanı başlanacak pozisyonu belirtmenizi sağlar:
 
 ```js run
+<<<<<<< HEAD
 alert( "birader".includes("ir") ); // true
 alert( "birader".includes("ir", 3) ); // false, 3. pozisyondan sonra `ir` bulunmamaktadır.
+=======
+alert( "Widget".includes("id") ); // true
+alert( "Widget".includes("id", 3) ); // false, from position 3 there is no "id"
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 ```
 
 Aynı şekilde [str.startsWith](mdn:js/String/startsWith) ve [str.endsWith](mdn:js/String/endsWith) metodları söyledikleri gibi, aranan karakter dizilerinin başlangıç ve bitişlerine bakarlar.
 
 ```js run
+<<<<<<< HEAD
 alert( "birader".startsWith("bir") ); // true, "birader" "bir" ile başlar.
 alert( "birader".endsWith("er") );   // true, "birader" "er" ile biter.
+=======
+alert( "*!*Wid*/!*get".startsWith("Wid") ); // true, "Widget" starts with "Wid"
+alert( "Wid*!*get*/!*".endsWith("get") ); // true, "Widget" ends with "get"
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 ```
 
 ## Alt karakter dizisi alma
@@ -366,7 +528,11 @@ Alt karakter dizisi alma JavaScript'te 3 metod ile yapılır: `substring`, `subs
 
     ```js run
     let str = "st*!*ringify*/!*";
+<<<<<<< HEAD
     alert( str.slice(2) ); // ringify, ikinci pozisyondan sonuna kadar.
+=======
+    alert( str.slice(2) ); // 'ringify', from the 2nd position till the end
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
     ```
 
     `basla/bitir` için negatif değerler kullanmakta mümkündür. Bu pozisyonun karakter bitiminden itibaren çalıştığı anlamına gelir.
@@ -375,6 +541,7 @@ Alt karakter dizisi alma JavaScript'te 3 metod ile yapılır: `substring`, `subs
     ```js run
     let str = "strin*!*gif*/!*y";
 
+<<<<<<< HEAD
     // sağdan 4. pozisyondan başla ve yine sağdan 1. pozisyona kadar al.
     alert( str.slice(-4, -1) ); // gif
     ```
@@ -384,7 +551,18 @@ Alt karakter dizisi alma JavaScript'te 3 metod ile yapılır: `substring`, `subs
 : `başla` ile `bitir` *arasındaki* karakterleri çevirir.
 
     Örneğin:
+=======
+    // start at the 4th position from the right, end at the 1st from the right
+    alert( str.slice(-4, -1) ); // 'gif'
+    ```
 
+`str.substring(start [, end])`
+: Returns the part of the string *between* `start` and `end` (not including `end`).
+
+    This is almost the same as `slice`, but it allows `start` to be greater than `end` (in this case it simply swaps `start` and `end` values).
+
+    For instance:
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
     ```js run
     let str = "st*!*ring*/!*ify";
@@ -400,6 +578,7 @@ Alt karakter dizisi alma JavaScript'te 3 metod ile yapılır: `substring`, `subs
     ```
     `slice`'a göre farklı olarak negatif sayılar `0` olarak hesaba katılır.
 
+<<<<<<< HEAD
 
 `str.substr(başlangıç [, length])`
 : Verilen uzunluğa bağlı olarak `başlangıç`'tan uzunluk kadar karakter alır.
@@ -409,12 +588,23 @@ Alt karakter dizisi alma JavaScript'te 3 metod ile yapılır: `substring`, `subs
     ```js run
     let str = "st*!*ring*/!*ify";
     alert( str.substr(2, 4) ); // ring, 2. pozisyondan 4 karakter al.
+=======
+`str.substr(start [, length])`
+: Returns the part of the string from `start`, with the given `length`.
+
+    In contrast with the previous methods, this one allows us to specify the `length` instead of the ending position:
+
+    ```js run
+    let str = "st*!*ring*/!*ify";
+    alert( str.substr(2, 4) ); // 'ring', from the 2nd position get 4 characters
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
     ```
 
     İlk karakter negatif olabilir. Sondan sayarak:
 
     ```js run
     let str = "strin*!*gi*/!*fy";
+<<<<<<< HEAD
     alert( str.substr(-4, 2) ); // gi, 4. pozisyondan 2 karakter al.
     ```
 
@@ -432,6 +622,27 @@ Karışıklığı önlemek adına metodların üzerinden geçersek:
 Aslında tamamı iş görür. Daha resmi düzeyde bakılırsa: `substr` JavaScript özellik tanımlarında bulunmamaktadır. Fakat Annex B'ye göre sadece tarayıcı tabanlı özellikler içerisinde bulunmaktadır. Bu da tarihi nedenlerden dolayıdır. Bundan dolayı tarayıcı üzerine yazmıyorsanız. Yazdığınız yere bağlı olarak bu kod hata verebilir. Fakat pratikte her yerde çalıştığı görülebilir.
 
 Yazar genelde `slice` kullanmaktadır.
+=======
+    alert( str.substr(-4, 2) ); // 'gi', from the 4th position get 2 characters
+    ```
+
+    This method resides in the [Annex B](https://tc39.es/ecma262/#sec-string.prototype.substr) of the language specification. It means that only browser-hosted Javascript engines should support it, and it's not recommended to use it. In practice, it's supported everywhere.
+
+Let's recap these methods to avoid any confusion:
+
+| method | selects... | negatives |
+|--------|-----------|-----------|
+| `slice(start, end)` | from `start` to `end` (not including `end`) | allows negatives |
+| `substring(start, end)` | between `start` and `end` (not including `end`)| negative values mean `0` |
+| `substr(start, length)` | from `start` get `length` characters | allows negative `start` |
+
+```smart header="Which one to choose?"
+All of them can do the job. Formally, `substr` has a minor drawback: it is described not in the core JavaScript specification, but in Annex B, which covers browser-only features that exist mainly for historical reasons. So, non-browser environments may fail to support it. But in practice it works everywhere.
+
+Of the other two variants, `slice` is a little bit more flexible, it allows negative arguments and shorter to write.
+
+So, for practical use it's enough to remember only `slice`.
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 ```
 
 ## Karakterlerin karşılaştırılması
@@ -455,6 +666,7 @@ Buna rağmen bazı gariplikler de mevcuttur.
 
     Eğer ülke isimlerini karşılaştırmak istiyorsanız bu garip sonuçlara neden olabilir. Örneğin `Zealand` normalde `Österreich`'ten sonra gelmesi beklenirken önce gelir.
 
+<<<<<<< HEAD
 Ne olduğunu anlamak için JavaScript karakter dizilerini nasıl tanımlıyor buna bakmak lazım.
 
 Tük karakter dizileri [UTF-16](https://en.wikipedia.org/wiki/UTF-16) ile kodlanmıştır. Buna göre: Tüm karakterler sayısal olarak kodlanır. Bu koda göre karakteri geri döndürecek özel metodlar mevcuttur.
@@ -465,7 +677,20 @@ Tük karakter dizileri [UTF-16](https://en.wikipedia.org/wiki/UTF-16) ile kodlan
     ```js run
     // Büyük küçük harflerde farklı kodlar döndürülür.
     alert( "z".codePointAt(0) ); // 122
+=======
+To understand what happens, we should be aware that strings in Javascript are encoded using [UTF-16](https://en.wikipedia.org/wiki/UTF-16). That is: each character has a corresponding numeric code.
+
+There are special methods that allow to get the character for the code and back:
+
+`str.codePointAt(pos)`
+: Returns a decimal number representing the code for the character at position `pos`:
+
+    ```js run
+    // different case letters have different codes
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
     alert( "Z".codePointAt(0) ); // 90
+    alert( "z".codePointAt(0) ); // 122
+    alert( "z".codePointAt(0).toString(16) ); // 7a (if we need a hexadecimal value)
     ```
 
 `String.fromCodePoint(code)`
@@ -473,12 +698,16 @@ Tük karakter dizileri [UTF-16](https://en.wikipedia.org/wiki/UTF-16) ile kodlan
 
     ```js run
     alert( String.fromCodePoint(90) ); // Z
+<<<<<<< HEAD
     ```
     Ayrıca `\u` ile birlikte kodun hexa decimal değerini kullanarak Unicode karakter eklemeniz de mümkündür: 
 
     ```js run
     // 90 hexa decimal sistemde 5a ya denk gelmektedir.
     alert( '\u005a' ); // Z
+=======
+    alert( String.fromCodePoint(0x5a) ); // Z (we can also use a hex value as an argument)
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
     ```
 `65..220` arasında sayısal değeri olan (Latin alfabesi ve bunun yanında sayılar vs.) karakterleri ekrana basalım:
 
@@ -489,33 +718,62 @@ for (let i = 65; i <= 220; i++) {
   str += String.fromCodePoint(i);
 }
 alert( str );
+// Output:
 // ABCDEFGHIJKLMNOPQRSTUVWXYZ[\]^_`abcdefghijklmnopqrstuvwxyz{|}~
 // ¡¢£¤¥¦§¨©ª«¬­®¯°±²³´µ¶·¸¹º»¼½¾¿ÀÁÂÃÄÅÆÇÈÉÊËÌÍÎÏÐÑÒÓÔÕÖ×ØÙÚÛÜ
 ```
 Gördüğünüz gibi önce büyük harfler, sonrasında birkaç özel harf ve küçük harfler şeklinde yazılmaktadır.
 
+<<<<<<< HEAD
 `a > Z` olduğu yukarıda açıkça görülmektedir.
 
 Karakterler sayısal kodları ile karşılaştırılmaktadır. Kod büyüdükçe karakter de büyür denebilir. `a` için yazılan kod (97) `Z`(90) kodundan büyüktür.
 - Tük küçük harfler büyük harflerden sonra gelir. Bundan dolayı küçük harflerin en küçüğü bile büyük harflerin tamamından büyüktür.
 - `Ö` gibi karakterler alfabeden tamamen farklı düşünmelidir. Bu karakterlerin kodları küçük harflerden büyüktür.
+=======
+See? Capital characters go first, then a few special ones, then lowercase characters, and `Ö` near the end of the output.
 
+Now it becomes obvious why `a > Z`.
 
+The characters are compared by their numeric code. The greater code means that the character is greater. The code for `a` (97) is greater than the code for `Z` (90).
+
+- All lowercase letters go after uppercase letters because their codes are greater.
+- Some letters like `Ö` stand apart from the main alphabet. Here, its code is greater than anything from `a` to `z`.
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
+
+### Correct comparisons [#correct-comparisons]
+
+<<<<<<< HEAD
 ### Doğru Karşılaştırma
 
 Karakter karşılaştırmasını "doğru" olarak yapmak göründüğünden daha zordur. Çünkü alfabe dilden dile farklılık göstermektedir. Aynı görünüşlü harfler farklı alfabelerde farklı yerlerde yer alırlar.
+=======
+The "right" algorithm to do string comparisons is more complex than it may seem, because alphabets are different for different languages.
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
 Tarayıcı hangi dil ile karşılaştıracağını bilmeli.
 
+<<<<<<< HEAD
 Neyse ki tüm modern tarayıcılar(IE10- ek kütüphanelere gerek duymaktadır [Intl.JS](https://github.com/andyearnshaw/Intl.js/) ) uluslararası dil standardına sahiptir [ECMA 402](http://www.ecma-international.org/ecma-402/1.0/ECMA-402.pdf).
+=======
+Luckily, modern browsers support the internationalization standard [ECMA-402](https://www.ecma-international.org/publications-and-standards/standards/ecma-402/).
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
 Bu özel bir metod ile farklı dillerde karakterlerin birbirleri ile karşılaştırılabilmesini sağlar. Kuralları şu şekildedir:
 
+<<<<<<< HEAD
 [str.localeCompare(str2)](mdn:js/String/localeCompare) in çağırılması:
 
 - Eğer dil kurallarına göre `str` `str2` den büyükse `1` döndürür.
 - Eğer `str` `str2` den küçükse `-1` döndürür.
 - Eğer birbirleri ile eşit ise `0` döndürür.
+=======
+The call [str.localeCompare(str2)](mdn:js/String/localeCompare) returns an integer indicating whether `str` is less, equal or greater than `str2` according to the language rules:
+
+- Returns a negative number if `str` is less than `str2`.
+- Returns a positive number if `str` is greater than `str2`.
+- Returns `0` if they are equivalent.
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
 Örneğin:
 
@@ -524,6 +782,7 @@ alert( 'Österreich'.localeCompare('Zealand') ); // -1
 ```
 Aslında bu metodun [dökümantasyon](mdn:js/String/localeCompare)'da belirtilen iki tane argümanı vardır. Bu argümanlar ile hangi dili kullanmak istediğinizi veya `"a"` ile `"á"`'nın aynı şekilde davranılmasını isteyip istemediğinizi belirtebilirsiniz.
 
+<<<<<<< HEAD
 ## Unicode ve Internaller.
 
 ```warn header="İleri derecede bilgiler"
@@ -622,10 +881,23 @@ alert( "S\u0307\u0323".normalize() == "\u1e68" ); // true
 
 Gerçekte bu durumla çok nadir karşılaşılır. Bu karakter bile `Ṩ` oldukça "yaygın" olduğundan, UTF-16 standart tablosu içerisinde yer almaktadır.
 
+=======
+This method actually has two additional arguments specified in [the documentation](mdn:js/String/localeCompare), which allows it to specify the language (by default taken from the environment, letter order depends on the language) and setup additional rules like case sensitivity or should `"a"` and `"á"` be treated as the same etc.
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
 Eğer normalizasyon kurallarını ve tiplerini daha derinlemesine öğrenmek istiyorsanız [Unicode Normalization Forms](http://www.unicode.org/reports/tr15/) adresinden inceleyebilirsiniz. Pratikte yukarıda verilen bilgiler yeterli olacaktır.
 
+<<<<<<< HEAD
 ## Özet
+=======
+- There are 3 types of quotes. Backticks allow a string to span multiple lines and embed expressions `${…}`.
+- We can use special characters, such as a line break `\n`.
+- To get a character, use: `[]` or `at` method.
+- To get a substring, use: `slice` or `substring`.
+- To lowercase/uppercase a string, use: `toLowerCase/toUpperCase`.
+- To look for a substring, use: `indexOf`, or `includes/startsWith/endsWith` for simple checks.
+- To compare strings according to the language, use: `localeCompare`, otherwise they are compared by character codes.
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 
 - 3 tip tırnak bulunmaktadır. "`" işareti ile birkaç satırdan oluşan karakter dizisi yazmak mümkündür.
 - JavaScript'te karakterler UTF-16 ile kodlanmıştır.
@@ -636,6 +908,7 @@ Eğer normalizasyon kurallarını ve tiplerini daha derinlemesine öğrenmek ist
 - Alt karakter dizisi aramak için : `indexOf` veya `includes/startsWith/endsWith` kullanılabilir.
 - Karakterleri dile göre karşılaştırmak için `localceCompare` kullanılabilir. Diğer türlü karakterler kodlarına göre karşılaştırılırlar.
 
+<<<<<<< HEAD
 Bunun yanında karakter dizileri için daha başka yardımcı metodlar bulunmaktadır:
 
 - `str.trim()` -- başlangıç ve bitişteki boşlukları siler.
@@ -643,3 +916,12 @@ Bunun yanında karakter dizileri için daha başka yardımcı metodlar bulunmakt
 - ... Daha fazlası için [manual](mdn:js/String)  adresine bakabilirsiniz.
 
 Karakter dizileri bunun yanında arama/değiştirme veya regular expression için metodlar barındırmaktadır. Fakat bu konular ayrı bölümleri hak etmektedir. Bu konulara ilerleyen bölümlerde dönülecektir.
+=======
+- `str.trim()` -- removes ("trims") spaces from the beginning and end of the string.
+- `str.repeat(n)` -- repeats the string `n` times.
+- ...and more to be found in the [manual](mdn:js/String).
+
+Strings also have methods for doing search/replace with regular expressions. But that's big topic, so it's explained in a separate tutorial section <info:regular-expressions>.
+
+Also, as of now it's important to know that strings are based on Unicode encoding, and hence there're issues with comparisons. There's more about Unicode in the chapter <info:unicode>.
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
