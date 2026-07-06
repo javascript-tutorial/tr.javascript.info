@@ -12,7 +12,13 @@ Fonksiyonun sonucunda eğer gerekliyse metin kesilmelidir.
 Örneğin:
 
 ```js
+<<<<<<< HEAD
 truncate("Size bu konuda söylemek istediğim şey:", 20) = "Size bu konuda sö..."
 
 truncate("Merhaba!", 20) = "Merhaba!"
+=======
+truncate("What I'd like to tell on this topic is:", 20) == "What I'd like to te…"
+
+truncate("Hi everyone!", 20) == "Hi everyone!"
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf
 ```
