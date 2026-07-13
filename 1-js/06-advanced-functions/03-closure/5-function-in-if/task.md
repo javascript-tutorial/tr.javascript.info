@@ -1,0 +1,28 @@
+importance: 5
+
+<<<<<<< HEAD:1-js/06-advanced-functions/03-closure/3-function-in-if/task.md
+# if'in içindeki fonksiyon
+
+Aşağıdaki son satır çalıştığında sonuç ne olur?
+=======
+---
+# Function in if
+
+Look at the code. What will be the result of the call at the last line?
+>>>>>>> 52c1e61915bc8970a950a3f59bd845827e49b4bf:1-js/06-advanced-functions/03-closure/5-function-in-if/task.md
+
+```js run
+let sozcuk = "Merhaba";
+
+if (true) {
+  let kullanici = "Ahmet";
+
+  function selamVer() {
+    alert(`${sozcuk}, ${kullanici}`);
+  }
+}
+
+*!*
+selamVer();
+*/!*
+```
