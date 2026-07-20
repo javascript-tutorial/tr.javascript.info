@@ -17,24 +17,42 @@ Lütfen proje yöneticilerinin değişiklikleri incelemesi ve merge etmesine zam
 
 Eğer cevap vermiyorlar ise, ve siz yöneticiliğe geçmek istiyorsanız, [ana repo](https://github.com/javascript-tutorial/en.javascript.info/issues/new) üzerinden bizimle iletişime geçebilirsiniz.
 
+<<<<<<< HEAD
 **Başkalarına çeviri yaptığınızı bildirerek onların da bize katılmalarını isteyebilirsiniz**
 
 🎉 Teşekkürler!
+=======
+Something's wrong? A topic is missing? Explain it to people, add it as PR 👏
+
+**You can edit the text in any editor.** The tutorial uses an enhanced "markdown" format, easy to grasp. And if you want to see how it looks on-site, there's a server to run the tutorial locally at <https://github.com/javascript-tutorial/server>.
+>>>>>>> 725653fd99b19d42195e837ac3bb23c1784f8f6e
 
 İsminiz ve paylaşımınız proje yayınlandığında "Proje Hakkında" bölümünde yer alacaktır.
 
 Not: Tercüme edilen dillerin listesi <https://javascript.info/translate> adresinden erişilebilir.
 
+<<<<<<< HEAD
 ## Yapı
 
 Makale veya görev farketmeksizin her bölüm kendine ait klasörde bulunur.
 Klasör `N-url` şeklinde `N`-sırası ( makaleler sıralıdır ) ve `url` sitedeki url yazımıdır.
+=======
+Every chapter, article, or task has its folder.
+
+The folder is named like `N-url`, where `N` is a number for the sorting purposes and `URL` is the URL part with the title of the material.
+>>>>>>> 725653fd99b19d42195e837ac3bb23c1784f8f6e
 
 Klasörler aşağıdaki dosyalardan oluşur:
 
+<<<<<<< HEAD
 - Bölüm için `index.md`,
 - Makale için `article.md`,
 - Görev için `task.md` ve çözüm var ise `solution.md`.
+=======
+  - `index.md` stands for a chapter
+  - `article.md` stands for an article
+  - `task.md` stands for a task (solution must be provided in `solution.md` file as well)
+>>>>>>> 725653fd99b19d42195e837ac3bb23c1784f8f6e
 
 Dosya `# Title Header` başında diyez ile başlar ve bu metnin hepsi Markdown-benzeri bir format ile yazılmalıdır. Böylece basit metin editörleri ile yazabilirsiniz.
 
@@ -123,4 +141,8 @@ Bazı başlıklar sonunda `[#çapa]`'ya sahiptir.
 ```
 Lütfen bunu tercüme etmeyiniz veya silmeyiniz. Burası URL'i ayarlamak için yazılmıştır.
 
+<<<<<<< HEAD
+=======
+---  
+>>>>>>> 725653fd99b19d42195e837ac3bb23c1784f8f6e
 ♥  
