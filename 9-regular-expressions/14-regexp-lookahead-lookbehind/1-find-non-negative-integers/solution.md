@@ -1,7 +1,11 @@
 
 The regexp for an integer number is `pattern:\d+`.
 
+<<<<<<< HEAD
 We can exclude negatives by prepending it with the negative lookahead: `pattern:(?<!-)\d+`.
+=======
+We can exclude negatives by prepending it with the negative lookbehind: `pattern:(?<!-)\d+`.
+>>>>>>> 20208769e528337949e946f526534d61d38bac47
 
 Although, if we try it now, we may notice one more "extra" result:
 
