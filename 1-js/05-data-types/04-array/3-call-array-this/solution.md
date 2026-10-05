@@ -9,6 +9,6 @@ arr.push(function() {
   alert( this );
 })
 
-arr[2](); // "a","b",function
+arr[2](); // a,b,function(){...}
 ```
 Dizinin 3 değeri bulunmaktadır: Başlangıçta tanımlanan 2 tanesi ve üstüne eklenen bir fonksiyon.
