@@ -14,7 +14,7 @@ function kullaniciOlustur() {
     isim: "İhsan",
     ref: this
   };
-};
+}
 
 let kullanici = kullaniciOlustur();
 
