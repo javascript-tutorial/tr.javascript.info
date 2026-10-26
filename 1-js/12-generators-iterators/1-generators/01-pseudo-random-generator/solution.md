@@ -3,7 +3,7 @@ function* pseudoRandom(seed) {
   let value = seed;
 
   while(true) {
-    value = value * 16807 % 2147483647
+    value = value * 16807 % 2147483647;
     yield value;
   }
 
@@ -35,4 +35,4 @@ alert(generator()); // 282475249
 alert(generator()); // 1622650073
 ```
 
-That's fine for this context. But then we loose ability to iterate with `for..of` and to use generator composition, that may be useful elsewhere.
+That also works. But then we lose ability to iterate with `for..of` and to use generator composition, that may be useful elsewhere.
