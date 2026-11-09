@@ -20,17 +20,29 @@ Bu sayfada bulunan JavaScript kodunda bir hata var. Kullanıcı bunu göremiyor,
 
 Geliştirici araçları konsol paneliyle açılacaktır. Aşağıdaki ekranda ilk hatanızı göreceksiniz:
 
-![chrome](chrome.png)
+![chrome](chrome.webp)
 
 Chrome'un geliştirme aracı versiyona göre değişiklik gösterecektir. Fakat genel hatları itibariyle şu anda gördüğünüze benzeyecektir.
 
 - Konsol panelinde kırmızı renk ile hatayı görebilirsiniz. Bu durumda kodunuz bilinmeyen "lalala" komutunda hata vermiş.
 
+<<<<<<< HEAD
 - Sağ tarafında hatanın hangi satırda olduğunu görebilirsiniz. Bu alan tıklanabilirdir. Şu anda hata `bug.html:12`'de bulunmaktadır.
+=======
+Below the error message, there is a blue `>` symbol. It marks a "command line" where we can type JavaScript commands. Press `key:Enter` to run them.
+>>>>>>> 20208769e528337949e946f526534d61d38bac47
 
 Hatanın altında `>` sembolünü görebilirsiniz. Bu, "komut satırı"'nı işaret eder. Komutunuzu yazdıktan sonra `key:Enter`'a basarak o satırdaki komutu çalıştırabilirsiniz. Birden fazla satır kod yazabilmek için ise `key:Shift+Enter` tuş kombinasyonunu kullanabilirsiniz.
 
+<<<<<<< HEAD
 Başlangıç için hataları görmek yeterli olacaktır. Daha sonra geliştirme aracını <info:debugging-chrome> bölümünde derinlemesine öğreneceksiniz.
+=======
+```smart header="Multi-line input"
+Usually, when we put a line of code into the console, and then press `key:Enter`, it executes.
+
+To insert multiple lines, press `key:Shift+Enter`. This way one can enter long fragments of JavaScript code.
+```
+>>>>>>> 20208769e528337949e946f526534d61d38bac47
 
 ## Firefox, Edge ve diğerleri
 
@@ -40,12 +52,19 @@ Görüntü ve kullanım olarak çoğu birbirine benzer. Bir tanesini öğrendiğ
 
 ## Safari
 
+<<<<<<< HEAD
 Safari (sadece macOS için desteklenmektedir) biraz özeldir. Geliştirici araçlarını kullanabilmek için önce "Geliştirici Menüsü"'nü aktif hale getirmeniz gerekmektedir. Bunun için özellikler sayfasını açıp "Gelişmiş" panelinden aşağıdaki gibi "Show Develop menu in menu bar"'ı işaretlemelisiniz.
+=======
+Safari (Mac browser, not supported by Windows/Linux) is a little bit special here. We need to enable the "Develop menu" first.
+
+Open Settings and go to the "Advanced" pane. There's a checkbox at the bottom:
+>>>>>>> 20208769e528337949e946f526534d61d38bac47
 
 ![safari](safari.png)
 
 Bu işlemi yaptıktan sonra `key:Cmd+Opt+C` ile geliştirici konsolunu açıp kapatabilirsiniz. Ayrıca dikkat ederseniz üst menüde "Develop" adında yeni bir başlık göreceksiniz. Buradan da birçok komutu çalıştırabilirsiniz.
 
+<<<<<<< HEAD
 ## Multi-line input
 
 Genelde konsol ekranında `key:Enter` yaparsanız bulunduğu satırı çalıştırır. Birden fazla satırı yazmak istiyorsanız `key:Shift+Enter` kullanabilirsiniz.
@@ -54,5 +73,8 @@ Genelde konsol ekranında `key:Enter` yaparsanız bulunduğu satırı çalışt�
 
 - Geliştirici araçları hataları görmenizi, komutları çalıştırmanızı, değişkenleri takip etmenizi sağlar.
 - Windows işletim sisteminde `key:f12` tuşu ile açılır (Çoğu tarayıcıda bu tuş çalışır). macOS işletim sistemi için ise Google Chrome: `key:Cmd+Opt+J`  ile Safari ise: `key:Cmd+Opt+C` tuşu ile açılır (Safari'de geliştirici modunu açmanız gerekmekte).
+=======
+## Summary
+>>>>>>> 20208769e528337949e946f526534d61d38bac47
 
 Artık çalışma ortamınızı da ayarladığınıza göre JavaScript öğrenmeye başlayabilirsiniz.
