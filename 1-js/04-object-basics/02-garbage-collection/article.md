@@ -179,7 +179,7 @@ Son adım olarak ziyaret edilmeyen objeler "ulaşılamaz" addedilip silinir:
 
 ![](garbage-collection-5.svg)
 
-JavaScript motoru bunu hızlıca çalıştırmak ve kodun çalışmasını etkilememek için birçok optimizsyon yapar.
+JavaScript motoru bunu hızlıca çalıştırmak ve kodun çalışmasını etkilememek için birçok optimizasyon yapar.
 
 
 Bazı Optimizasyonlar:
