@@ -296,7 +296,7 @@ Burada `selamVer = kullanici.selamVer` fonksiyonu değişkene atar, sonra son sa
 
 **`kullanici.selamVer()` çağrısının çalışabilmesi için bir çözüm bulunmaktadır. `'.'` fonksiyon değil [Referans Tipi] döndürmektedir.(https://tc39.github.io/ecma262/#sec-reference-specification-type)**
 
-Referans Tipi "şartname tipidi". Doğrudan kullanılamaz, dil kendince kullanabilir bu tipleri.
+Referans Tipi "şartname tipidir". Doğrudan kullanılamaz, dil kendince kullanabilir bu tipleri.
 
 Referans Tipi üç değerin birleşmesi ile oluşur `(base, name, strict)`:
 
