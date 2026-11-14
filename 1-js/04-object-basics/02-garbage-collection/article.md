@@ -120,7 +120,7 @@ Fakat ikisini birden silerseniz, İhsan'a erişilemez:
 
 Dışarı giden referanslar önemli değildir. Sadece içeri gelenler o objeyi *ulaşılabilir* yapar. Öyleyse artık İhsan erişilemez ve hafızadan silinecektir. Ayrıca hiçbir verisine de erişilemez.
 
-Çöp toplmaa işleminden sonra:
+Çöp toplama işleminden sonra:
 
 ![](family-no-father-2.svg)
 
